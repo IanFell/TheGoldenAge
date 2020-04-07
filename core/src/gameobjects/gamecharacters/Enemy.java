@@ -14,6 +14,7 @@ import handlers.CollisionHandler;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import missions.MissionRawBar;
 import physics.Lighting.Explosion;
 
 /**
@@ -241,7 +242,7 @@ public class Enemy extends GameCharacter {
 		attackBoundary.y = y - 2;
 
 		// Make sure dead fire animation doesn't move around.
-		if (!dead) {
+		if (!dead && !MissionRawBar.phasesAreInProgress) {
 			executeAI(myGame);
 		}
 

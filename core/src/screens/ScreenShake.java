@@ -2,6 +2,7 @@ package screens;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import gameobjects.GameObject;
 import helpers.RandomNumberGenerator;
 
 /**
@@ -46,9 +47,10 @@ public class ScreenShake {
 	 * 
 	 * @param float              delta
 	 * @param OrthographicCamera camera
+	 * @param GameObject         player
 	 */
-	public void update(float delta, OrthographicCamera camera) {
-		Screens.saveCameraCoordinatesBeforeScreenShake();
+	public void update(float delta, OrthographicCamera camera, GameObject player) {
+		Screens.saveCameraCoordinatesBeforeScreenShake(player);
 
 		// Only shake when required.
 		if((elapsedScreenShakeTime < durationOfScreenShakeInMilliseconds)) {

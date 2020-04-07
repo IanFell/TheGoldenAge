@@ -14,6 +14,7 @@ import handlers.CollisionHandler;
 import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import screens.GameScreen;
 
 /**
  * 
@@ -34,10 +35,13 @@ public class Giant extends Enemy {
 	private float shadowY;
 
 	private final int GIANT_EXPLOSION_SIZE = 5;
-	
+
 	public static boolean playLandingSound = false;
-	
+
 	private Rectangle landingSoundBoundary;
+
+	private boolean screenShouldShake = true;
+	private int shakeTimer            = 0;
 
 	/**
 	 * Constructor.
@@ -73,32 +77,50 @@ public class Giant extends Enemy {
 		rectangle.height = height;
 
 		shadowY = y - 1.5f;
-		
+
 		int boundarySize     = 26;
 		landingSoundBoundary = new Rectangle(x - 13, y - 13, boundarySize, boundarySize);
 	}
 
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
 	private void handleJumping(MyGame myGame) {
 		jumpTimer++;
 		if (jumpTimer > JUMP_TIMER_MAX_VALUE) {
 			jumpTimer = 0;
 			// Re-align shadow with giant after jump.
 			shadowY          = y - 1.5f;
-			
-			if (landingSoundBoundary.overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
+
+			if (CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
 				playLandingSound = true;
 			}
+			screenShouldShake = true;
 		}
+		handleLandingScreenShakeTimer();
+
 		// Execute jump.
 		if (jumpTimer > EXECUTE_JUMP_VALUE) {
 			x += dx;
 			y += dy;
+			screenShouldShake = false;
 		}
 		// Come up or down.
 		if (jumpTimer > PEAK_JUMP_VALUE) {
 			dy = 0.1f;
 		} else {
 			dy = -0.1f;
+		}
+	}
+
+	private void handleLandingScreenShakeTimer() {
+		if (screenShouldShake) {
+			shakeTimer++;
+			if (shakeTimer > 20) {
+				shakeTimer        = 0;
+				screenShouldShake = false;
+			}
 		}
 	}
 
@@ -111,7 +133,7 @@ public class Giant extends Enemy {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		rectangle.x = x;
 		rectangle.y = y - height;
-		
+
 		landingSoundBoundary.x = x - 10;
 		landingSoundBoundary.y = y - 10;
 
@@ -134,6 +156,11 @@ public class Giant extends Enemy {
 		}
 
 		handleDeathExplosion(GIANT_EXPLOSION_SIZE);
+
+		// If player is within bounds and the giant lands a jump, shake the screen.
+		if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
+			GameScreen.screenShake.shake(0.3f, 3);
+		} 
 	}
 
 	/**
@@ -161,8 +188,6 @@ public class Giant extends Enemy {
 			//batch.draw(imageLoader.whiteSquare, attackBoundary.x, attackBoundary.y, attackBoundary.width, attackBoundary.height);
 			// Uncomment to draw enemy hit box.
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-
-
 		} else {
 			if (explosion != null) {
 				if (timer < MAX_DEATH_ANIMATION_VALUE) {

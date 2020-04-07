@@ -146,7 +146,7 @@ public class GameScreen extends Screens {
 		clearScreenAndSetScreenColor(GameAttributeHelper.gameState, weatherHandler);
 
 		// Screen only shakes when needed, but we must update it at all times just in case it needs to shake.
-		screenShake.update(delta, camera);
+		screenShake.update(delta, camera, myGame.getGameObject(Player.PLAYER_ONE));
 		updateCamera();
 
 		// Draw SpriteBatch.
@@ -211,7 +211,7 @@ public class GameScreen extends Screens {
 				);
 		heartHandler.init();
 		rumHandler.init();
-		
+
 		Input.initializeInventoryUiForInput();
 
 		/**
@@ -236,7 +236,7 @@ public class GameScreen extends Screens {
 			} else {
 				cameraFollowCurrentPlayer();
 			}
-		}
+		} 
 		camera.update();
 	}
 

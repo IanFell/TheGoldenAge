@@ -66,7 +66,7 @@ public class SoundHandler {
 			handleEnemyDeathSound(myGame, soundLoader);
 
 			if (myGame.getGameObject(Player.PLAYER_ONE).getPlaySound()) {
-				soundLoader.playerHit.play(AudioHandler.MAX_VOLUME);
+				soundLoader.playerHit.play(AudioHandler.MEDIAN_VOLUME);
 				myGame.getGameObject(Player.PLAYER_ONE).setPlaySound(false);
 			}
 
@@ -76,7 +76,7 @@ public class SoundHandler {
 			for (int i = 0; i < CannonBallLoader.cannonballs.size(); i++) {
 				if (CannonBallLoader.cannonballs.get(i).getAttackBoundary().overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
 					if (CannonBallLoader.cannonballs.get(i).isPlayLandSound()) {
-						soundLoader.bombSound.play(AudioHandler.EIGHTH_VOLUME);
+						soundLoader.bombSound.play(AudioHandler.SIXTEENTH_VOLUME);
 						CannonBallLoader.cannonballs.get(i).setPlayLandSound(false);
 					}
 				}
@@ -91,7 +91,7 @@ public class SoundHandler {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 						soundLoader.swordSound.play(AudioHandler.MAX_VOLUME);
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
-						soundLoader.pistolSound.play(AudioHandler.MEDIAN_VOLUME);
+						soundLoader.pistolSound.play(AudioHandler.SIXTEENTH_VOLUME);
 					} else {
 						soundLoader.bubbleSound.play(AudioHandler.MAX_VOLUME);
 					}
@@ -104,7 +104,7 @@ public class SoundHandler {
 				Heart.playSound = false;
 			}
 			if (Rum.playSound) {
-				soundLoader.rumSound.play(AudioHandler.MEDIAN_VOLUME);
+				soundLoader.rumSound.play(AudioHandler.EIGHTH_VOLUME);
 				Rum.playSound = false;
 			}
 			for (int i = 0; i < ChestLoader.chests.length; i++) {
@@ -145,7 +145,7 @@ public class SoundHandler {
 			}
 
 			if (LocationMarker.playBeepSound) {
-				soundLoader.locatorBeep.play(AudioHandler.MAX_VOLUME);
+				soundLoader.locatorBeep.play(AudioHandler.MEDIAN_VOLUME);
 				LocationMarker.playBeepSound = false;
 			}
 		}

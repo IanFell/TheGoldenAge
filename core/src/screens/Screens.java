@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import helpers.GameAttributeHelper;
 import physics.Weather.WeatherHandler;
 
@@ -111,9 +112,13 @@ public class Screens implements Screen {
 		camera.update();
 	}
 
-	public static void saveCameraCoordinatesBeforeScreenShake() {
-		cameraX = camera.position.x;
-		cameraY = camera.position.y;
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	public static void saveCameraCoordinatesBeforeScreenShake(GameObject player) {
+		cameraX = player.getX();
+		cameraY = player.getY();
 	}
 
 	@Override

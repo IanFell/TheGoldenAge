@@ -67,7 +67,7 @@ public class Objective {
 			}
 			if (Gun.hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveRawBar;
-				if (MissionRawBar.rawBarMissionComplete) {
+				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
 					objectiveTexture = imageLoader.objectiveStumpHole;
 					if (MissionStumpHole.missionIsActive) {
 						objectiveTexture = imageLoader.objectiveCollectFeathers;
@@ -75,7 +75,7 @@ public class Objective {
 				}
 			}
 		}
-		if (MissionRawBar.phasesAreInProgress) {
+		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {
 			objectiveTexture = imageLoader.objectiveCollectOysters;
 		}
 		return objectiveTexture;

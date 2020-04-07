@@ -487,4 +487,17 @@ public class CollisionHandler {
 		}
 		return false;
 	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Rectangle  landingSoundBoundary
+	 * @return boolean
+	 */
+	public static boolean playerIsWithinSoundBoundsOfGiant(GameObject player, Rectangle landingSoundBoundary) {
+		if (landingSoundBoundary.overlaps(player.rectangle)) {
+			return true;
+		}
+		return false;
+	}
 }
