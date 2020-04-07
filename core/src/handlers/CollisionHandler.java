@@ -353,9 +353,9 @@ public class CollisionHandler {
 					if (!Player.isInvincible) {
 						player.setHealth(player.getHealth() - 0.1f);
 						player.setPlaySound(true);
+						player.setBouncingBack(true);
 					}
 				}
-				player.setBouncingBack(true);
 			}
 		}
 	}
