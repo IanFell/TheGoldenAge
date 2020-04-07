@@ -351,7 +351,7 @@ public class CollisionHandler {
 				// Lets try this instead of the above method to see how it works out.
 				if (!CutScene.anyCutSceneIsInProgress) {
 					if (!Player.isInvincible) {
-						player.setHealth(player.getHealth() - 1);
+						player.setHealth(player.getHealth() - 0.1f);
 						player.setPlaySound(true);
 					}
 				}
