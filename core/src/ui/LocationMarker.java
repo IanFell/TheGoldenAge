@@ -71,7 +71,7 @@ public class LocationMarker {
 	 * @return boolean
 	 */
 	public boolean timerValuesAreCorrectToFlash() {
-		if (flashTimer % 10 >= 0 && flashTimer % 10 <= 5) {
+		if (flashTimer % 20 == 0) {
 			if (playerIsWithinSoundBounds) {
 				playBeepSound = true;
 			}
