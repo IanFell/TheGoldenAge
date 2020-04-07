@@ -2,6 +2,7 @@ package loaders;
 
 import com.mygdx.mygame.MyGame;
 
+import loaders.bossloader.BossLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
 import loaders.dockloader.DockLoader;
@@ -46,6 +47,7 @@ public class GameWorld {
 	private CannonLoader cannonLoader;
 	private StumpLoader stumpLoader;
 	private QuickSandLoader quickSandLoader;
+	private BossLoader bossLoader;
 
 	/**
 	 * Constructor.
@@ -70,6 +72,7 @@ public class GameWorld {
 		cannonLoader       = new CannonLoader();
 		stumpLoader        = new StumpLoader();
 		quickSandLoader    = new QuickSandLoader();
+		bossLoader         = new BossLoader();
 		loadGameWorld(myGame);
 	}
 
@@ -95,6 +98,7 @@ public class GameWorld {
 		cannonLoader.loadCannons(myGame);
 		stumpLoader.loadStumps();
 		quickSandLoader.loadQuickSand();
+		bossLoader.loadBosses();
 	}
 
 	/**
@@ -139,5 +143,9 @@ public class GameWorld {
 		RawBarLoader.rawbar.updateObject(myGame, mapHandler);
 		PigglyWigglyLoader.pigglyWiggly.updateObject(myGame, mapHandler);
 		TradingPostLoader.tradingPost.updateObject(myGame, mapHandler);
+		
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			BossLoader.boss[i].updateObject(myGame, mapHandler);
+		}
 	}
 }

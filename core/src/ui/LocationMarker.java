@@ -53,8 +53,18 @@ public class LocationMarker {
 		return locator;
 	}
 
-	public void updateObject() {
+	private void handleFlashTimer() {
 		flashTimer++;
+		if (flashTimer > 39) {
+			flashTimer = 0;
+		}
+		if (flashTimer == 0 && playerIsWithinSoundBounds) {
+			playBeepSound = true;
+		}
+	}
+
+	public void updateObject() {
+		handleFlashTimer();
 		hitBox.x = locator.x;
 		hitBox.y = locator.y;
 	}
@@ -96,10 +106,7 @@ public class LocationMarker {
 	 * @return boolean
 	 */
 	public boolean timerValuesAreCorrectToFlash() {
-		if (flashTimer % 20 == 0) {
-			if (playerIsWithinSoundBounds) {
-				playBeepSound = true;
-			}
+		if (flashTimer < 19) {
 			return true;
 		}
 		return false;
