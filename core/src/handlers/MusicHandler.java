@@ -4,6 +4,7 @@ import gameobjects.gamecharacters.Player;
 import helpers.GameAttributeHelper;
 import loaders.MusicLoader;
 import missions.MissionRawBar;
+import mixer.Mixer;
 import physics.Lighting.Fire;
 import physics.Weather.NightAndDayCycle;
 import physics.Weather.WeatherHandler;
@@ -44,7 +45,7 @@ public class MusicHandler {
 				handleFootstepsAudio(musicLoader);
 				handleFireAudio(musicLoader);
 				handleOceanAudio(musicLoader);
-				musicLoader.ambientMusic.setVolume(AudioHandler.AMBIENT_MUSIC_VOLUME);
+				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
 				musicLoader.ambientMusic.play();
 			}
@@ -60,7 +61,7 @@ public class MusicHandler {
 		if (musicLoader.ambientMusic.isPlaying()) {
 			musicLoader.ambientMusic.stop();
 		}
-		musicLoader.invincibleMusic.setVolume(AudioHandler.INVINCIBLE_MUSIC_VOLUME);
+		musicLoader.invincibleMusic.setVolume(Mixer.INVINCIBLE_MUSIC_VOLUME);
 		musicLoader.invincibleMusic.setLooping(true);
 		musicLoader.invincibleMusic.play();
 	}
@@ -75,7 +76,7 @@ public class MusicHandler {
 			startNightTimeAmbientAudio = true;
 		}
 		if (startDayTimeAmbientAudio) {
-			musicLoader.dayTimeAmbientNoise.setVolume(AudioHandler.DAY_TIME_AMBIENT_VOLUME);
+			musicLoader.dayTimeAmbientNoise.setVolume(Mixer.DAY_TIME_AMBIENT_VOLUME);
 			musicLoader.dayTimeAmbientNoise.setLooping(true);
 			musicLoader.dayTimeAmbientNoise.play();
 			startDayTimeAmbientAudio = false;
@@ -89,7 +90,7 @@ public class MusicHandler {
 	 */
 	private void handleStormAudio(MusicLoader musicLoader) {
 		if (WeatherHandler.isStorming() && startStormAudio) {
-			musicLoader.rainAndThunder.setVolume(AudioHandler.MAX_VOLUME);
+			musicLoader.rainAndThunder.setVolume(Mixer.STORM_VOLUME);
 			musicLoader.rainAndThunder.setLooping(true);
 			musicLoader.rainAndThunder.play();
 			musicLoader.dayTimeAmbientNoise.stop();
@@ -108,7 +109,7 @@ public class MusicHandler {
 	 */
 	private void handleNightTimeAudio(MusicLoader musicLoader) {
 		if (startNightTimeAmbientAudio) {
-			musicLoader.nightTimeAmbientNoise.setVolume(AudioHandler.NIGHT_TIME_AMBIENT_VOLUME);
+			musicLoader.nightTimeAmbientNoise.setVolume(Mixer.NIGHT_TIME_AMBIENT_VOLUME);
 			musicLoader.nightTimeAmbientNoise.setLooping(true);
 			musicLoader.nightTimeAmbientNoise.play();
 			startNightTimeAmbientAudio = false;
@@ -126,7 +127,7 @@ public class MusicHandler {
 	 */
 	private void handleFireAudio(MusicLoader musicLoader) {
 		if (Fire.playSound) {
-			musicLoader.fire.setVolume(AudioHandler.MAX_VOLUME);
+			musicLoader.fire.setVolume(Mixer.FIRE_VOLUME);
 			musicLoader.fire.play();
 			Fire.playSound = false;
 		} else {
@@ -146,7 +147,7 @@ public class MusicHandler {
 			musicLoader.ocean.stop();
 		}
 		if (startOceanAudio) {
-			musicLoader.ocean.setVolume(AudioHandler.MAX_VOLUME);
+			musicLoader.ocean.setVolume(Mixer.OCEAN_VOLUME);
 			musicLoader.ocean.setLooping(true);
 			musicLoader.ocean.play();
 			startOceanAudio = false;
@@ -169,7 +170,7 @@ public class MusicHandler {
 			musicLoader.footsteps.stop();
 		}
 		if (startFootstepsAudio) {
-			musicLoader.footsteps.setVolume(AudioHandler.FOOTSTEPS_VOLUME);
+			musicLoader.footsteps.setVolume(Mixer.FOOTSTEPS_VOLUME);
 			musicLoader.footsteps.setLooping(true);
 			musicLoader.footsteps.play();
 			startFootstepsAudio = false;

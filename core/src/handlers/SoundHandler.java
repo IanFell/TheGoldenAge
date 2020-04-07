@@ -19,6 +19,7 @@ import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import mixer.Mixer;
 import screens.Screens;
 import ui.LocationMarker;
 
@@ -47,26 +48,26 @@ public class SoundHandler {
 	public void handleSound(SoundLoader soundLoader, MyGame myGame) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
 			if (LegendSword.playSound) {
-				soundLoader.pickUpSwordSound.play(AudioHandler.PICK_UP_SWORD_VOLUME);
+				soundLoader.pickUpSwordSound.play(Mixer.PICK_UP_SWORD_VOLUME);
 				LegendSword.playSound = false;
 			}
 			if (Gun.playCollectionSound) {
-				soundLoader.pickUpGunSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.pickUpGunSound.play(Mixer.PICK_UP_GUN_VOLUME);
 				Gun.playCollectionSound = false;
 			}
 			if (MagicPearl.playCollectionSound) {
-				soundLoader.bubbleSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
 				MagicPearl.playCollectionSound = false;
 			}
 			if (MissionRawBar.playCollectionSound) {
-				soundLoader.bubbleSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
 				MissionRawBar.playCollectionSound = false;
 			}
 
 			handleEnemyDeathSound(myGame, soundLoader);
 
 			if (myGame.getGameObject(Player.PLAYER_ONE).getPlaySound()) {
-				soundLoader.playerHit.play(AudioHandler.MEDIAN_VOLUME);
+				soundLoader.playerHit.play(Mixer.PLAYER_HIT_VOLUME);
 				myGame.getGameObject(Player.PLAYER_ONE).setPlaySound(false);
 			}
 
@@ -76,7 +77,7 @@ public class SoundHandler {
 			for (int i = 0; i < CannonBallLoader.cannonballs.size(); i++) {
 				if (CannonBallLoader.cannonballs.get(i).getAttackBoundary().overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
 					if (CannonBallLoader.cannonballs.get(i).isPlayLandSound()) {
-						soundLoader.bombSound.play(AudioHandler.SIXTEENTH_VOLUME);
+						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
 						CannonBallLoader.cannonballs.get(i).setPlayLandSound(false);
 					}
 				}
@@ -89,37 +90,37 @@ public class SoundHandler {
 			if (Player.playerIsPerformingAttack) {
 				if (attackTimer > 1) {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
-						soundLoader.swordSound.play(AudioHandler.MAX_VOLUME);
+						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
-						soundLoader.pistolSound.play(AudioHandler.SIXTEENTH_VOLUME);
+						soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
 					} else {
-						soundLoader.bubbleSound.play(AudioHandler.MAX_VOLUME);
+						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 					}
 				}
 			}
 
 			// Collectibles.
 			if (Heart.playSound) {
-				soundLoader.heartSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);
 				Heart.playSound = false;
 			}
 			if (Rum.playSound) {
-				soundLoader.rumSound.play(AudioHandler.EIGHTH_VOLUME);
+				soundLoader.rumSound.play(Mixer.RUM_COLLECT_VOLUME);
 				Rum.playSound = false;
 			}
 			for (int i = 0; i < ChestLoader.chests.length; i++) {
 				if (ChestLoader.chests[i].getPlaySound()) {
-					soundLoader.chestSound.play(AudioHandler.CHEST_VOLUME);
+					soundLoader.chestSound.play(Mixer.CHEST_COLLECT_VOLUME);
 					ChestLoader.chests[i].setPlaySound(false);
 				}
 			}
 			if (Feather.playSound) {
-				soundLoader.pickUpSwordSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.pickUpSwordSound.play(Mixer.FEATHER_COLLECT_VOLUME);
 				Feather.playSound = false;
 			}
 
 			if (Giant.playLandingSound) {
-				soundLoader.giantLandingSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.giantLandingSound.play(Mixer.GIANT_LANDING_VOLUME);
 				Giant.playLandingSound = false;
 			}
 
@@ -130,7 +131,7 @@ public class SoundHandler {
 			}
 			if (Inventory.playClickSound) {
 				if (inventoryTimer < 1) {
-					soundLoader.clickSound.play(AudioHandler.MAX_VOLUME);
+					soundLoader.clickSound.play(Mixer.CLICK_VOLUME);
 					Inventory.playClickSound = false;
 					inventoryTimer           = GameAttributeHelper.TIMER_START_VALUE;
 				}
@@ -140,12 +141,12 @@ public class SoundHandler {
 			handleQuickSandAudio(soundLoader);
 
 			if (LocationMarker.playSound) {
-				soundLoader.locationMarkerSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.locationMarkerSound.play(Mixer.LOCATION_MARKER_HIT_VOLUME);
 				LocationMarker.playSound = false;
 			}
 
 			if (LocationMarker.playBeepSound) {
-				soundLoader.locatorBeep.play(AudioHandler.MEDIAN_VOLUME);
+				soundLoader.locatorBeep.play(Mixer.LOCATION_MARKER_BEEP_VOLUME);
 				LocationMarker.playBeepSound = false;
 			}
 		}
@@ -158,7 +159,7 @@ public class SoundHandler {
 	private void handleQuickSandAudio(SoundLoader soundLoader) {
 		if (Player.isInQuickSand) {
 			if (quickSandTimer == 0) {
-				soundLoader.quickSand.play(AudioHandler.QUICK_SAND_VOLUME);
+				soundLoader.quickSand.play(Mixer.QUICK_SAND_VOLUME);
 			}
 			quickSandTimer++;
 			if (quickSandTimer > QUICK_SAND_LOOPING_VALUE) {
@@ -178,14 +179,14 @@ public class SoundHandler {
 			if (CannonLoader.cannons[i].isPlayBlastSound()) {
 				GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 				if (CannonLoader.cannons[i].getAttackBoundary().overlaps(player.rectangle)) {
-					soundLoader.cannonFire.play(AudioHandler.MAX_VOLUME);
+					soundLoader.cannonFire.play(Mixer.CANNON_FIRE_VOLUME);
 
 				}
 				CannonLoader.cannons[i].setPlayBlastSound(false);
 
 				// If the knight dies.
 				if (CannonLoader.cannons[i].knight.getPlaySound()) {
-					soundLoader.enemyDeathSound.play(AudioHandler.MAX_VOLUME);
+					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
 					CannonLoader.cannons[i].knight.setPlaySound(false);
 				}
 			}
@@ -202,7 +203,7 @@ public class SoundHandler {
 			for (int k = 0; k < myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.size(); k++) {
 				// For now make the same sound for every enemy killing.  
 				if (myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).getPlaySound()) {
-					soundLoader.enemyDeathSound.play(AudioHandler.MAX_VOLUME);
+					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
 					myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).setPlaySound(false);
 				}
 			}
@@ -211,14 +212,14 @@ public class SoundHandler {
 			for (int k = 0; k < myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.size(); k++) {
 				// For now make the same sound for every grunt killing.  
 				if (myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.get(k).getPlaySound()) {
-					soundLoader.enemyDeathSound.play(AudioHandler.MAX_VOLUME);
+					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
 					myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.get(k).setPlaySound(false);
 				}
 			}
 		}
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			if (GiantHandler.giants[i].getPlaySound()) {
-				soundLoader.enemyDeathSound.play(AudioHandler.MAX_VOLUME);
+				soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
 				GiantHandler.giants[i].setPlaySound(false);
 			}
 		}
@@ -234,7 +235,7 @@ public class SoundHandler {
 	private void handleJumpingAudio(SoundLoader soundLoader) {
 		if (Player.isJumping || MissionStumpHole.jumpSoundShouldPlay) {
 			if (jumpTimer < 1) {
-				soundLoader.jumpSound.play(AudioHandler.JUMP_VOLUME);
+				soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
 			}
 			jumpTimer++;
 			if (jumpTimer > 50) {
@@ -251,7 +252,7 @@ public class SoundHandler {
 	 */
 	private void handleLandingAudio(SoundLoader soundLoader) {
 		if (startLandingAudio && Player.jumpingAction == Player.ON_GROUND) {
-			soundLoader.landSound.play(AudioHandler.LAND_VOLUME);
+			soundLoader.landSound.play(Mixer.LAND_VOLUME);
 			startLandingAudio = false;
 		}
 		if (Player.isJumping) {

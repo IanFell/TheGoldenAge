@@ -20,6 +20,7 @@ public class LocationMarker {
 	private int flashTimer;
 
 	private Rectangle locator;
+	private Rectangle hitBox;
 
 	/**
 	 * Constructor.
@@ -30,6 +31,12 @@ public class LocationMarker {
 	public LocationMarker(float x, float y) {
 		int size  = 1;
 		locator   = new Rectangle(
+				x, 
+				y,
+				size, 
+				size
+				);
+		hitBox   = new Rectangle(
 				x, 
 				y,
 				size, 
@@ -48,6 +55,8 @@ public class LocationMarker {
 
 	public void updateObject() {
 		flashTimer++;
+		hitBox.x = locator.x;
+		hitBox.y = locator.y;
 	}
 
 	/**
@@ -62,6 +71,22 @@ public class LocationMarker {
 				locator.y,
 				locator.width, 
 				-locator.height
+				);
+		//renderHitBox(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderHitBox(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(
+				imageLoader.whiteSquare, 
+				hitBox.x, 
+				hitBox.y,
+				hitBox.width, 
+				-hitBox.height
 				);
 	}
 
