@@ -14,7 +14,7 @@ public class BossLoader {
 
 	public static GameObject[] boss = new GameObject[1];
 
-	private final int APALACHICOLA = 0;
+	public static final int APALACHICOLA = 0;
 
 	public void loadBosses() {
 		boss[APALACHICOLA] = new Boss(

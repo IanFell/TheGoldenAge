@@ -2,6 +2,7 @@ package loaders;
 
 import com.mygdx.mygame.MyGame;
 
+import handlers.BossHandler;
 import loaders.bossloader.BossLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
@@ -143,9 +144,8 @@ public class GameWorld {
 		RawBarLoader.rawbar.updateObject(myGame, mapHandler);
 		PigglyWigglyLoader.pigglyWiggly.updateObject(myGame, mapHandler);
 		TradingPostLoader.tradingPost.updateObject(myGame, mapHandler);
-		
-		for (int i = 0; i < BossLoader.boss.length; i++) {
-			BossLoader.boss[i].updateObject(myGame, mapHandler);
-		}
+
+		// Update bosses.
+		BossHandler.handleBosses(myGame, mapHandler);
 	}
 }
