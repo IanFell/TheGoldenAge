@@ -4,10 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-import gameobjects.gamecharacters.Player;
 import loaders.ImageLoader;
-import physics.Weather.NightAndDayCycle;
-import tiles.Tile;
 
 /**
  * Handles sprite animations.
@@ -67,18 +64,19 @@ public class AnimationHandler {
 				);
 
 
-		if (objectType == OBJECT_TYPE_PLAYER) {
-			// If player is swimming, mask him with a water tile below his head.
-			if (Player.isInWater) {
-				batch.draw(imageLoader.waterTileOne, x, y, width, -height / 2);
-				/**
-				 * If it is night time, draw a transparant black shader over the tile.
-				 * If we don't do this, the overlapping water tile will not be tinted.
-				 */
-				if (!NightAndDayCycle.isDayTime()) {
-					batch.draw(Tile.nightTimeTexture, x, y, width, -height);
-				}
-			}
-		}
+		// Remove this for now.  It looks better without it.
+		//if (objectType == OBJECT_TYPE_PLAYER) {
+		// If player is swimming, mask him with a water tile below his head.
+		//if (Player.isInWater) {
+		//batch.draw(imageLoader.waterTileOne, x, y, width, -height / 2);
+		///**
+		// * If it is night time, draw a transparant black shader over the tile.
+		// * If we don't do this, the overlapping water tile will not be tinted.
+		// */
+		//if (!NightAndDayCycle.isDayTime()) {
+		//	batch.draw(Tile.nightTimeTexture, x, y, width, -height);
+		//}
+		//}
+		//}
 	}
 }
