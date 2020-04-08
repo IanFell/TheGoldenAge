@@ -27,7 +27,7 @@ public class HealthUi {
 		int yIncrement       = 0;
 		GameObject player    = PlayerController.getCurrentPlayer(myGame);
 		float size           = 0.8f;
-		int topRightCorner   = 26;
+		int topRightCorner   = 27;
 		int bottomRightCorer = 40;
 		int bottomLeftCorner = 66;
 
