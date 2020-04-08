@@ -18,8 +18,8 @@ public class BossLoader {
 
 	public void loadBosses() {
 		boss[APALACHICOLA] = new Boss(
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 35, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 43,
+				0, 
+				0,
 				Boss.WIDTH,
 				Boss.HEIGHT,
 				GameObject.DIRECTION_LEFT

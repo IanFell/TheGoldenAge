@@ -1,9 +1,14 @@
 package gameobjects.gamecharacters;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import handlers.AnimationHandler;
 import handlers.CollisionHandler;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
@@ -18,7 +23,7 @@ import ui.BossHealthUi;
  */
 public class Boss extends Enemy {
 
-	public static final int WIDTH  = 2;
+	public static final int WIDTH  = 3;
 	public static final int HEIGHT = 5;
 
 	private float maxDistanceFromPlayer = 5.0f;
@@ -71,6 +76,16 @@ public class Boss extends Enemy {
 			explosionStartValue[i] = startValue;
 			startValue += 10;
 		}
+		walkDownTexture  = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntRight.atlas"));
+		walkUpTexture    = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntLeft.atlas"));
+		walkRightTexture = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntRight.atlas"));
+		walkLeftTexture  = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntLeft.atlas"));
+
+		float animationSpeed = 7/15f;
+		walkDownAnimation    = new Animation <TextureRegion> (animationSpeed, walkDownTexture.getRegions());
+		walkUpAnimation      = new Animation <TextureRegion> (animationSpeed, walkUpTexture.getRegions());
+		walkRightAnimation   = new Animation <TextureRegion> (animationSpeed, walkRightTexture.getRegions());
+		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
 	}
 
 	/**
@@ -81,7 +96,22 @@ public class Boss extends Enemy {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!dead) {
-			batch.draw(imageLoader.whiteSquare, x, y, width, height);
+			// We need to do this instead of using super() because we need to render the boss lower so it works.
+			updateElapsedTime();
+			renderEnemyShadow(batch, imageLoader, width, height / 2, y + height - 1.75f);
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					getCurrentAnimation(), 
+					x, 
+					y + height, 
+					width,
+					height,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_ENEMY
+					);
+			// Uncomment to draw enemy hit box.
+			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 			bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
 		} else {
 			renderExplosions(batch, imageLoader);
