@@ -7,6 +7,7 @@ import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.Heart;
 import gameobjects.Rum;
+import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Enemy;
 import gameobjects.gamecharacters.Player;
 import gameobjects.nature.Feather;
@@ -499,5 +500,21 @@ public class CollisionHandler {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Boss       boss
+	 */
+	public static void checkIfPlayerCollidedWithBoss(GameObject player, Boss boss) {
+		if (player.rectangle.overlaps(boss.rectangle)) {
+			boss.setAttacking(false);
+			boss.setX(boss.getX() + 5);
+			Boss.currentAttackNumber++;
+			((Player) player).setBouncingBack(true);
+			player.setHealth(player.getHealth() - 1.0f);
+			player.setPlaySound(true);
+		}
 	}
 }
