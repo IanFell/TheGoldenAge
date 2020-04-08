@@ -7,6 +7,7 @@ import gameobjects.GameObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import ui.BossHealthUi;
 
 /**
  * 
@@ -25,6 +26,8 @@ public class Boss extends Enemy {
 	public static int currentAttackNumber = 0;
 
 	private float attackSpeed = 0.5f;
+	
+	private BossHealthUi bossHealthUi;
 
 	/**
 	 * Constructor.
@@ -39,6 +42,7 @@ public class Boss extends Enemy {
 		super(x, y, width, height, direction);
 		rectangle.width  = width;
 		rectangle.height = height;
+		bossHealthUi     = new BossHealthUi(x, y - 2);
 	}
 
 	/**
@@ -49,6 +53,7 @@ public class Boss extends Enemy {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.whiteSquare, x, y, width, height);
+		bossHealthUi.renderBossHealthUi(batch, imageLoader);
 	}
 
 	/**
@@ -70,6 +75,7 @@ public class Boss extends Enemy {
 			x = player.getX() + maxDistanceFromPlayer;
 		}
 		y = player.getY() - height / 2;
+		bossHealthUi.updateBossHealthUi(this);
 	}
 
 	/**
