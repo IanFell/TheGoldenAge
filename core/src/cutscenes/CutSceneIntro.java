@@ -68,7 +68,7 @@ public class CutSceneIntro extends CutScene {
 	@Override
 	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(
-				imageLoader.boat,
+				imageLoader.boatSide,
 				boatStartXPosition, 
 				startYPosition - 1,
 				1,

@@ -34,8 +34,6 @@ public class PlayerOne extends Player {
 
 	private Torch torch;
 
-	int timer = 0;
-
 	/**
 	 * Keeps a list of player one's coordinates and direction.  
 	 * This is used to determine the paths of player two and player three.
@@ -247,6 +245,9 @@ public class PlayerOne extends Player {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		super.renderObject(batch, imageLoader);
+
+		renderBoat(batch, imageLoader);
+
 		if (!Player.isInvincible) {
 			AnimationHandler.renderAnimation(
 					batch, 
@@ -275,11 +276,34 @@ public class PlayerOne extends Player {
 			}
 		}
 
-
 		if (hasTorch) {	
 			torch.renderObject(batch, imageLoader);
 		}
 		//renderHitBox(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderBoat(SpriteBatch batch, ImageLoader imageLoader) {
+		if (isInWater) {
+			switch (direction) {
+			case DIRECTION_LEFT:
+				batch.draw(imageLoader.boatSide, x - 2, y + 1, 4, -3);
+				break;
+			case DIRECTION_RIGHT:
+				batch.draw(imageLoader.boatSide, x - 1, y + 1, 4, -3);
+				break;
+			case DIRECTION_UP:
+				batch.draw(imageLoader.boatUp, x - 1, y + 1, 3, -4);
+				break;
+			case DIRECTION_DOWN:
+				batch.draw(imageLoader.boatDown, x - 1, y + 2, 3, -4);
+				break;
+			}
+		}
 	}
 
 	/**

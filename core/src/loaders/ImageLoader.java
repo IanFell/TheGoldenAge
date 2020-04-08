@@ -16,8 +16,12 @@ public class ImageLoader {
 	public Texture chestOpen;
 	public Texture heart;
 	public Texture heartShadow;
-	public Texture boat;
 	public Texture rum;
+
+	// Boat objects.
+	public Texture boatSide;
+	public Texture boatUp;
+	public Texture boatDown;
 
 	// Sign objects.
 	public Texture sign;
@@ -163,8 +167,12 @@ public class ImageLoader {
 		chestOpen   = new Texture(Gdx.files.internal("artwork/ChestOpen.png"));
 		heart       = new Texture(Gdx.files.internal("artwork/Heart.png"));
 		heartShadow = new Texture(Gdx.files.internal("artwork/HeartShadow.png"));
-		boat        = new Texture(Gdx.files.internal("artwork/BOAT_NEW.png"));
 		rum         = new Texture(Gdx.files.internal("artwork/Rum_Alternate.png"));
+
+		// Boat objects.
+		boatSide = new Texture(Gdx.files.internal("artwork/boat/BOAT_NEW.png"));
+		boatUp   = new Texture(Gdx.files.internal("artwork/boat/BoatUp.png"));
+		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
 		rock 		  = new Texture(Gdx.files.internal("artwork/nature/Rock.png"));
@@ -334,8 +342,12 @@ public class ImageLoader {
 		chestOpen.dispose();
 		heart.dispose();
 		heartShadow.dispose();
-		boat.dispose();
 		rum.dispose();
+
+		// Boat objects.
+		boatSide.dispose();
+		boatUp.dispose();
+		boatDown.dispose();
 
 		// Sign objects.
 		sign.dispose();
