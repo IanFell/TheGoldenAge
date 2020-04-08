@@ -30,7 +30,6 @@ public class MusicHandler {
 	 */
 	public void handleMusic(MusicLoader musicLoader) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
-
 			if (Player.isInvincible) {
 				handleInvincibleAudio(musicLoader);
 			} else {

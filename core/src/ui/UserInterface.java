@@ -20,7 +20,7 @@ public class UserInterface {
 	private PlayerNameUi playerNameUi;
 	private SelectedInventoryUi selectedInventoryUi;
 	private RumUi rumUi;
-	private Objective objective;
+	private ObjectiveUi objective;
 
 	/**
 	 * Constructor.
@@ -31,7 +31,7 @@ public class UserInterface {
 		playerNameUi        = new PlayerNameUi();
 		selectedInventoryUi = new SelectedInventoryUi();
 		rumUi               = new RumUi();
-		objective           = new Objective();
+		objective           = new ObjectiveUi();
 	}
 
 	/**

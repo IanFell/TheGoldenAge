@@ -12,7 +12,7 @@ import loaders.GameObjectLoader;
  */
 public class BossLoader {
 
-	public static GameObject[] boss = new GameObject[1];
+	public static Boss[] boss = new Boss[1];
 
 	public static final int APALACHICOLA = 0;
 

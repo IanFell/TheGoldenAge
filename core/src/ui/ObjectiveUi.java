@@ -7,6 +7,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.weapons.Gun;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import missions.MissionChests;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
@@ -17,7 +18,7 @@ import missions.MissionTradinPost;
  * @author Fabulous Fellini
  *
  */
-public class Objective {
+public class ObjectiveUi {
 
 	// Use this to flash objective.
 	private int flashTimer = 0;
@@ -61,10 +62,12 @@ public class Objective {
 	private Texture getObjectiveTexture(ImageLoader imageLoader) {
 		Texture objectiveTexture = imageLoader.objectiveCollectLoot;
 		if (MissionChests.chestMissionIsComplete) {
+			
 			objectiveTexture = imageLoader.objectiveTradinPost;
 			if (MissionTradinPost.locationMarkerHasBeenHit) {
 				objectiveTexture = imageLoader.objectiveBuyTheGun;
 			}
+			
 			if (Gun.hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveRawBar;
 				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
@@ -75,9 +78,15 @@ public class Objective {
 				}
 			}
 		}
+		
 		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {
 			objectiveTexture = imageLoader.objectiveCollectOysters;
 		}
+		
+		if (Gun.hasBeenCollected && !BossLoader.boss[0].isDead()) {
+			objectiveTexture = imageLoader.objectiveKillTheBoss;
+		}
+		
 		return objectiveTexture;
 	}
 

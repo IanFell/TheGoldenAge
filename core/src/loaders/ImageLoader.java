@@ -137,6 +137,7 @@ public class ImageLoader {
 	public Texture objectiveCollectOysters;
 	public Texture objectiveCollectFeathers;
 	public Texture objectiveBuyTheGun;
+	public Texture objectiveKillTheBoss;
 
 	// Player name UI labels.
 	public Texture jollyRogerUiNameLabel;
@@ -292,6 +293,7 @@ public class ImageLoader {
 		objectiveCollectOysters  = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectOysters.png"));
 		objectiveCollectFeathers = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectFeathers.png"));
 		objectiveBuyTheGun       = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
+		objectiveKillTheBoss     = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
@@ -467,6 +469,7 @@ public class ImageLoader {
 		objectiveCollectOysters.dispose();
 		objectiveCollectFeathers.dispose();
 		objectiveBuyTheGun.dispose();
+		objectiveKillTheBoss.dispose();
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel.dispose();
