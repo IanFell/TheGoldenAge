@@ -98,6 +98,11 @@ public class MissionHandler extends Mission {
 			if (MissionRawBar.rawBarMissionComplete && !MissionStumpHole.stumpHoleMissionComplete) {
 				missionStumpHole.updateMission(myGame, mapHandler);
 			} 
+
+			// Keep this here, because without it, the missions keep breaking at this part and I can't figure out why.
+			if (MissionRawBar.rawBarMissionComplete) {
+				MissionRawBar.phasesAreInProgress = false;
+			}
 		}
 	}
 

@@ -147,6 +147,7 @@ public class ImageLoader {
 	// Debugging objects.
 	public Texture whiteSquare;
 	public Texture blackSquare;
+	public Texture redSquare;
 
 	// Character objects.
 	public Texture knightLeft;
@@ -307,6 +308,7 @@ public class ImageLoader {
 		// Debugging objects.
 		whiteSquare = new Texture(Gdx.files.internal("artwork/debugging/WhiteSquare.png"));
 		blackSquare = new Texture(Gdx.files.internal("artwork/debugging/BlackSquare.png"));
+		redSquare   = new Texture(Gdx.files.internal("artwork/debugging/RedSquare.png"));
 
 		// Character objects.
 		knightLeft  = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightLeft.png"));
@@ -467,6 +469,7 @@ public class ImageLoader {
 		// Debugging objects.
 		whiteSquare.dispose();
 		blackSquare.dispose();
+		redSquare.dispose();
 
 		// Character objects.
 		knightLeft.dispose();

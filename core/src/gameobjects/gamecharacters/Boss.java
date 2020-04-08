@@ -28,6 +28,9 @@ public class Boss extends Enemy {
 	private float attackSpeed = 0.5f;
 	
 	private BossHealthUi bossHealthUi;
+	
+	private final int BOSS_MAX_HEALTH = 5;
+	private float bossHealth;
 
 	/**
 	 * Constructor.
@@ -43,6 +46,7 @@ public class Boss extends Enemy {
 		rectangle.width  = width;
 		rectangle.height = height;
 		bossHealthUi     = new BossHealthUi(x, y - 2);
+		bossHealth       = BOSS_MAX_HEALTH;
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class Boss extends Enemy {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.whiteSquare, x, y, width, height);
-		bossHealthUi.renderBossHealthUi(batch, imageLoader);
+		bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
 	}
 
 	/**
@@ -75,7 +79,17 @@ public class Boss extends Enemy {
 			x = player.getX() + maxDistanceFromPlayer;
 		}
 		y = player.getY() - height / 2;
+		
+		bossHealth -= .01;
 		bossHealthUi.updateBossHealthUi(this);
+	}
+
+	/**
+	 * 
+	 * @return float
+	 */
+	public float getBossHealth() {
+		return bossHealth;
 	}
 
 	/**

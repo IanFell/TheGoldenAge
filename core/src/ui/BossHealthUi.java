@@ -30,9 +30,11 @@ public class BossHealthUi extends GameObject {
 	 * 
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
+	 * @param Boss        boss
 	 */
-	public void renderBossHealthUi(SpriteBatch batch, ImageLoader imageLoader) {
+	public void renderBossHealthUi(SpriteBatch batch, ImageLoader imageLoader, Boss boss) {
 		batch.draw(imageLoader.blackSquare, x, y, width, height);
+		batch.draw(imageLoader.redSquare, x, y, boss.getBossHealth(), height);
 	}
 
 	/**
