@@ -145,7 +145,7 @@ public class GameWorld {
 		TradingPostLoader.tradingPost.updateObject(myGame, mapHandler);
 		
 		for (int i = 0; i < BossLoader.boss.length; i++) {
-			//BossLoader.boss[i].updateObject(myGame, mapHandler);
+			BossLoader.boss[i].updateObject(myGame, mapHandler);
 		}
 	}
 }
