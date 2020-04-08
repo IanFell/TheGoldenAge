@@ -5,12 +5,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import gameobjects.gamecharacters.Boss;
+import gameobjects.gamecharacters.Enemy;
 import gameobjects.gamecharacters.PlayerOne;
 import handlers.CollisionHandler;
 import handlers.GiantHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 
 /**
@@ -140,6 +143,7 @@ public class LegendSword extends Weapon {
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[0], this);
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[1], this);
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[2], this);
+		CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[0], this);
 	}
 
 	private void setRotationAngleDependingOnPlayerDirection() {

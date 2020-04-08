@@ -289,6 +289,19 @@ public class CollisionHandler {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @param Boss   boss
+	 * @param Weapon weapon
+	 */
+	public static void checkIfWeaponHasCollidedWithBoss(Boss boss, Weapon weapon) {
+		if (Player.playerIsPerformingAttack && Inventory.inventoryIsEquipped) {
+			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
+				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+			}
+		}
+	}
 
 	/**
 	 * 

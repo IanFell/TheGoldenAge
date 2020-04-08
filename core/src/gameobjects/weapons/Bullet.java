@@ -3,10 +3,12 @@ package gameobjects.weapons;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.Enemy;
 import gameobjects.gamecharacters.PlayerOne;
 import handlers.CollisionHandler;
 import handlers.GiantHandler;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 
 /**
@@ -75,6 +77,7 @@ public class Bullet extends Weapon {
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			CollisionHandler.checkIfProjectileHasCollidedWithEnemy(GiantHandler.giants[i], this);
 		}
+		CollisionHandler.checkIfProjectileHasCollidedWithEnemy((Enemy) BossLoader.boss[0], this);
 	}
 
 	/**

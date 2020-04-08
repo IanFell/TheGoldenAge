@@ -31,10 +31,10 @@ public class Boss extends Enemy {
 
 	private BossHealthUi bossHealthUi;
 
-	private final int BOSS_MAX_HEALTH = 5;
+	private final int BOSS_MAX_HEALTH = 7;
 	private float bossHealth;
 
-	private final float BOSS_DAMAGE_TAKEN_FROM_PLAYER = .05f;
+	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f;
 
 	private boolean explosionsShouldBeRendered = false;
 	private boolean explosionsShouldBeCreated  = false;
@@ -80,9 +80,12 @@ public class Boss extends Enemy {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.draw(imageLoader.whiteSquare, x, y, width, height);
-		bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
-		renderExplosions(batch, imageLoader);
+		if (!dead) {
+			batch.draw(imageLoader.whiteSquare, x, y, width, height);
+			bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
+		} else {
+			renderExplosions(batch, imageLoader);
+		}
 	}
 
 	/**
@@ -138,14 +141,15 @@ public class Boss extends Enemy {
 		handleAttackTimer();
 
 		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
-		if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
-			handleAttack(player);
-		} else {
-			x = player.getX() + maxDistanceFromPlayer;
-		}
-		y = player.getY() - height / 2;
+		if (!dead) {
+			if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
+				handleAttack(player);
+			} else {
+				x = player.getX() + maxDistanceFromPlayer;
+			}
+			y = player.getY() - height / 2;
+		} 
 
-		bossHealth -= BOSS_DAMAGE_TAKEN_FROM_PLAYER;
 		bossHealthUi.updateBossHealthUi(this);
 
 		if (!dead) {
@@ -193,6 +197,14 @@ public class Boss extends Enemy {
 	 */
 	public float getBossHealth() {
 		return bossHealth;
+	}
+
+	/**
+	 * 
+	 * @param float bossHealth
+	 */
+	public void setBossHealth(float bossHealth) {
+		this.bossHealth = bossHealth;
 	}
 
 	/**
