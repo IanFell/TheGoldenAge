@@ -4,6 +4,7 @@ import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Player;
 import helpers.GameAttributeHelper;
 import loaders.MusicLoader;
+import loaders.bossloader.BossLoader;
 import missions.MissionRawBar;
 import mixer.Mixer;
 import physics.Lighting.Fire;
@@ -52,8 +53,29 @@ public class MusicHandler {
 				musicLoader.ambientMusic.setLooping(true);
 				musicLoader.ambientMusic.play();
 			}
+			handleBossBattleMusic(musicLoader);
 			handleBossExplosionMusic(musicLoader);
 		} 
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleBossBattleMusic(MusicLoader musicLoader) {
+		if (Boss.battleMusicHasStarted && !BossLoader.boss[0].isDead()) {
+			if (musicLoader.ambientMusic.isPlaying()) {
+				musicLoader.ambientMusic.stop();
+			}
+			musicLoader.bossBattleMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
+			musicLoader.bossBattleMusic.setLooping(true);
+			musicLoader.bossBattleMusic.play();
+			Boss.battleMusicHasStarted = false;
+		} else {
+			if (musicLoader.bossBattleMusic.isPlaying()) {
+				musicLoader.bossBattleMusic.stop();
+			}
+		}
 	}
 
 	/**

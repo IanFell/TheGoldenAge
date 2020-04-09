@@ -52,9 +52,11 @@ public class Boss extends Enemy {
 	private int[] explosionFinishTimer   = new int[5];
 	private int[] explosionStartValue    = new int[5];
 	private final int EXPLOSION_MAX_TIME = 100;
-	
+
 	// Use this for the rumble during explosion after boss dies.
 	public static boolean shouldPlayExplosionMusic = false;
+
+	public static boolean battleMusicHasStarted = false;
 
 	/**
 	 * Constructor.
@@ -203,16 +205,6 @@ public class Boss extends Enemy {
 			for (int i = 0; i < explosion.length; i++) {
 				explosion[i].updateObject(myGame, mapHandler);
 			}
-		}
-		checkForTheConclusionOfBossBattle();
-	}
-
-	/**
-	 * If the last explosion has finished, boss battle is over.
-	 */
-	private void checkForTheConclusionOfBossBattle() {
-		if (explosionFinishTimer[4] >= EXPLOSION_MAX_TIME) {
-			//System.exit(0);
 		}
 	}
 

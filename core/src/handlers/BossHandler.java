@@ -2,6 +2,7 @@ package handlers;
 
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.Boss;
 import gameobjects.weapons.Gun;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
@@ -22,6 +23,7 @@ public class BossHandler {
 	public static void handleBosses(MyGame myGame, MapHandler mapHandler) {
 		if (Gun.hasBeenCollected) {
 			BossLoader.boss[BossLoader.APALACHICOLA].updateObject(myGame, mapHandler);
+			Boss.battleMusicHasStarted = true;
 		}
 	}
 }
