@@ -18,6 +18,7 @@ public class MusicLoader {
 	public Music ocean;
 	public Music ambientMusic;
 	public Music invincibleMusic;
+	public Music bossDeafeatedMusic;
 
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
@@ -34,6 +35,7 @@ public class MusicLoader {
 		nightTimeAmbientNoise = Gdx.audio.newMusic(Gdx.files.internal("audio/nighttimeambience.ogg"));
 		ambientMusic          = Gdx.audio.newMusic(Gdx.files.internal("audio/AmbientMusic.ogg"));
 		invincibleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/InvincibleMusic.ogg"));
+		bossDeafeatedMusic    = Gdx.audio.newMusic(Gdx.files.internal("audio/avalanche.ogg"));
 	}
 
 	public void dispose() {
@@ -45,5 +47,6 @@ public class MusicLoader {
 		ocean.dispose();
 		ambientMusic.dispose();
 		invincibleMusic.dispose();
+		bossDeafeatedMusic.dispose();
 	}
 }

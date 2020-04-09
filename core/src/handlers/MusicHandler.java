@@ -1,5 +1,6 @@
 package handlers;
 
+import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Player;
 import helpers.GameAttributeHelper;
 import loaders.MusicLoader;
@@ -23,6 +24,9 @@ public class MusicHandler {
 	private boolean startStormAudio            = true;
 	private boolean startFootstepsAudio        = true;
 	private boolean startOceanAudio            = true;
+
+	private int bossExplosionTimer              = 0;
+	private final int EXPLOSION_TIMER_MAX_VALUE = 110;
 
 	/**
 	 * 
@@ -48,7 +52,26 @@ public class MusicHandler {
 				musicLoader.ambientMusic.setLooping(true);
 				musicLoader.ambientMusic.play();
 			}
+			handleBossExplosionMusic(musicLoader);
+		} 
+	}
 
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleBossExplosionMusic(MusicLoader musicLoader) {
+		if (Boss.shouldPlayExplosionMusic) {
+			if (bossExplosionTimer == 0) {
+				musicLoader.bossDeafeatedMusic.setVolume(Mixer.MAX_VOLUME);
+				musicLoader.bossDeafeatedMusic.play();
+			}
+			bossExplosionTimer++;
+			if (bossExplosionTimer > EXPLOSION_TIMER_MAX_VALUE) {
+				Boss.shouldPlayExplosionMusic = false;
+				bossExplosionTimer = 0;
+				musicLoader.bossDeafeatedMusic.stop();
+			}
 		} 
 	}
 

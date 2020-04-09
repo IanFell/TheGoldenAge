@@ -39,7 +39,7 @@ public class Boss extends Enemy {
 	private final int BOSS_MAX_HEALTH = 7;
 	private float bossHealth;
 
-	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f;
+	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 0.08f;
 
 	private boolean explosionsShouldBeRendered = false;
 	private boolean explosionsShouldBeCreated  = false;
@@ -52,6 +52,9 @@ public class Boss extends Enemy {
 	private int[] explosionFinishTimer   = new int[5];
 	private int[] explosionStartValue    = new int[5];
 	private final int EXPLOSION_MAX_TIME = 100;
+	
+	// Use this for the rumble during explosion after boss dies.
+	public static boolean shouldPlayExplosionMusic = false;
 
 	/**
 	 * Constructor.
@@ -218,6 +221,7 @@ public class Boss extends Enemy {
 			explosionsShouldBeCreated  = true;
 			explosionsShouldBeRendered = true;
 			dead                       = true;
+			shouldPlayExplosionMusic   = true;
 		}
 	}
 

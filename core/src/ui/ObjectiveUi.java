@@ -62,12 +62,12 @@ public class ObjectiveUi {
 	private Texture getObjectiveTexture(ImageLoader imageLoader) {
 		Texture objectiveTexture = imageLoader.objectiveCollectLoot;
 		if (MissionChests.chestMissionIsComplete) {
-			
+
 			objectiveTexture = imageLoader.objectiveTradinPost;
 			if (MissionTradinPost.locationMarkerHasBeenHit) {
 				objectiveTexture = imageLoader.objectiveBuyTheGun;
 			}
-			
+
 			if (Gun.hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveRawBar;
 				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
@@ -78,15 +78,15 @@ public class ObjectiveUi {
 				}
 			}
 		}
-		
+
 		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {
 			objectiveTexture = imageLoader.objectiveCollectOysters;
 		}
-		
+
 		if (Gun.hasBeenCollected && !BossLoader.boss[0].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
-		
+
 		return objectiveTexture;
 	}
 

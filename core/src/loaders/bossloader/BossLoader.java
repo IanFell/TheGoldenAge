@@ -2,7 +2,6 @@ package loaders.bossloader;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.Boss;
-import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 
 /**

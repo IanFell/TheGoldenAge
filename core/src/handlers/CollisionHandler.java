@@ -289,7 +289,7 @@ public class CollisionHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param Boss   boss
@@ -313,6 +313,19 @@ public class CollisionHandler {
 			// Checking if dead is false keeps the sound from playing repeatedly.
 			if (enemy.rectangle.overlaps(weapon.rectangle) /*&& !enemy.isDead()*/) {
 				handleEnemyDeath(enemy);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param Boss   boss
+	 * @param Weapon weapon
+	 */
+	public static void checkIfProjectileHasCollidedWithBoss(Boss boss, Weapon weapon)  {
+		if (Player.playerIsPerformingAttack && Inventory.inventoryIsEquipped) {
+			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
+				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 			}
 		}
 	}

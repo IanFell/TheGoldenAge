@@ -40,7 +40,7 @@ public class Mixer {
 	public final static float PICK_UP_GUN_VOLUME   = MAX_VOLUME;
 
 	// Damage to player and enemies.
-	public final static float PLAYER_HIT_VOLUME  = MEDIAN_VOLUME;
+	public final static float PLAYER_HIT_VOLUME  = QUARTER_VOLUME;
 	public final static float ENEMY_DEATH_VOLUME = MAX_VOLUME;
 
 	// Player attacks.
