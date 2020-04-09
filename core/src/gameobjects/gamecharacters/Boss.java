@@ -14,6 +14,7 @@ import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import physics.Lighting.Explosion;
+import screens.GameScreen;
 import ui.BossHealthUi;
 
 /**
@@ -193,8 +194,8 @@ public class Boss extends Enemy {
 
 		if (explosionsShouldBeCreated) {
 			for (int i = 0; i < explosion.length; i++) {
-				float xPos = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
-				float yPos = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
 				explosion[i] = new Explosion(xPos, yPos, explosionSize);
 			}
 			explosionsShouldBeCreated = false;
@@ -205,6 +206,11 @@ public class Boss extends Enemy {
 			for (int i = 0; i < explosion.length; i++) {
 				explosion[i].updateObject(myGame, mapHandler);
 			}
+		}
+
+		// Shake screen during explosion.
+		if (shouldPlayExplosionMusic) {
+			GameScreen.screenShake.shake(0.3f,  3);
 		}
 	}
 

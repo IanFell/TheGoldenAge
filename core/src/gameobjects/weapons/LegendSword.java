@@ -6,7 +6,6 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
 import gameobjects.gamecharacters.Boss;
-import gameobjects.gamecharacters.Enemy;
 import gameobjects.gamecharacters.PlayerOne;
 import handlers.CollisionHandler;
 import handlers.GiantHandler;

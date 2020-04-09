@@ -67,7 +67,7 @@ public class MusicHandler {
 			if (musicLoader.ambientMusic.isPlaying()) {
 				musicLoader.ambientMusic.stop();
 			}
-			musicLoader.bossBattleMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
+			musicLoader.bossBattleMusic.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
 			musicLoader.bossBattleMusic.setLooping(true);
 			musicLoader.bossBattleMusic.play();
 			Boss.battleMusicHasStarted = false;
