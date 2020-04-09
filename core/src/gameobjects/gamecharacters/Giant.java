@@ -43,6 +43,9 @@ public class Giant extends Enemy {
 	private boolean screenShouldShake = true;
 	private int shakeTimer            = 0;
 
+	private int deathTimer                = 0;
+	private final int AMOUNT_OF_TIME_DEAD = 200;
+
 	/**
 	 * Constructor.
 	 * 
@@ -161,6 +164,18 @@ public class Giant extends Enemy {
 		if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
 			GameScreen.screenShake.shake(0.3f, 3);
 		} 
+
+		respawn();
+	}
+
+	private void respawn() {
+		if (dead) {
+			deathTimer++;
+			if (deathTimer > AMOUNT_OF_TIME_DEAD) {
+				dead       = false;
+				deathTimer = 0;
+			}
+		}
 	}
 
 	/**

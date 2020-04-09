@@ -24,13 +24,13 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 
 	private final int AMOUNT_OF_SWORDS_NEEDED_TO_COMPLETE_MISSION = 7;
 
-	public static final int SWORD_RED = 0;
-	public static final int SWORD_BLUE = 1;
-	public static final int SWORD_GREEN = 2;
-	public static final int SWORD_YELLOW = 3;
-	public static final int SWORD_PURPLE = 4;
-	public static final int SWORD_ORANGE = 5;
-	public static final int SWORD_PINK = 6;
+	public static final int SWORD_RED     = 0;
+	public static final int SWORD_BLUE    = 1;
+	public static final int SWORD_GREEN   = 2;
+	public static final int SWORD_YELLOW  = 3;
+	public static final int SWORD_PURPLE  = 4;
+	public static final int SWORD_ORANGE  = 5;
+	public static final int SWORD_PINK    = 6;
 	public static final int SWORD_RAINBOW = 7;
 
 	public static int swordsCollected;
@@ -51,7 +51,7 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 	public MissionLegendOfTheSevenSwords(MyGame myGame) {
 		super();
 		missionBeginTextTimer = 0;
-		swordsCollected = 0;
+		swordsCollected       = 0;
 		legendSwords[SWORD_RED] = new LegendSword(GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 40,
 				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 5, SWORD_RED,
 				new TextureRegion(myGame.imageLoader.legendSwordRed),
@@ -85,12 +85,9 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 
 	/**
 	 * 
-	 * @param SpriteBatch
-	 *            batch
-	 * @param ImageLoader
-	 *            imageLoader
-	 * @param MyGame
-	 *            myGame
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
 	 */
 	@Override
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
@@ -117,10 +114,8 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 
 	/**
 	 * 
-	 * @param MyGame
-	 *            myGame
-	 * @param MapHandler
-	 *            mapHandler
+	 * @param MyGame     myGame
+	 * @param MapHandler mapHandler
 	 */
 	@Override
 	public void updateMission(MyGame myGame, MapHandler mapHandler) {

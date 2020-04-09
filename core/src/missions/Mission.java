@@ -92,9 +92,5 @@ public class Mission {
 	 * @param MyGame     myGame
 	 * @param MapHandler mapHandler
 	 */
-	public void updateMission(MyGame myGame, MapHandler mapHandler) {
-		if (missionBeginTextTimer < MISSION_TEXT_DISPLAY_TIME_VALUE) {
-			missionBeginTextTimer++;
-		}
-	}
+	public void updateMission(MyGame myGame, MapHandler mapHandler) {}
 }
