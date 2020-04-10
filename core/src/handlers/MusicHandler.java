@@ -79,6 +79,14 @@ public class MusicHandler {
 			musicLoader.bossBattleMusic.setLooping(true);
 			musicLoader.bossBattleMusic.play();
 			BossLoader.boss[BossHandler.APALACHICOLA].setBattleMusicHasStarted(false);
+		} else if (BossLoader.boss[BossHandler.STUMP_HOLE].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) { 
+			if (musicLoader.ambientMusic.isPlaying()) {
+				musicLoader.ambientMusic.stop();
+			}
+			musicLoader.bossBattleMusic.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
+			musicLoader.bossBattleMusic.setLooping(true);
+			musicLoader.bossBattleMusic.play();
+			BossLoader.boss[BossHandler.STUMP_HOLE].setBattleMusicHasStarted(false);
 		} else {
 			if (musicLoader.bossBattleMusic.isPlaying()) {
 				musicLoader.bossBattleMusic.stop();

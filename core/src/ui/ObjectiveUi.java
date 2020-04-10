@@ -91,6 +91,9 @@ public class ObjectiveUi {
 		if (MissionRawBar.rawBarMissionComplete && !BossLoader.boss[BossHandler.APALACHICOLA].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
+		if (MissionStumpHole.stumpHoleMissionComplete && !BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			objectiveTexture = imageLoader.objectiveKillTheBoss;
+		}
 
 		return objectiveTexture;
 	}

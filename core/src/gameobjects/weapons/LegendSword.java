@@ -142,7 +142,9 @@ public class LegendSword extends Weapon {
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[0], this);
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[1], this);
 		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[2], this);
-		CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[0], this);
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
+		}
 	}
 
 	private void setRotationAngleDependingOnPlayerDirection() {

@@ -11,7 +11,7 @@ import loaders.GameObjectLoader;
  */
 public class BossLoader {
 
-	public static Boss[] boss = new Boss[2];
+	public static Boss[] boss = new Boss[3];
 
 	public void loadBosses() {
 		for (int i = 0; i < boss.length; i++) {
