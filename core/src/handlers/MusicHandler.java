@@ -28,6 +28,8 @@ public class MusicHandler {
 
 	private int bossExplosionTimer              = 0;
 	private final int EXPLOSION_TIMER_MAX_VALUE = 110;
+	
+	private boolean bossBattleIsInProgress = false;
 
 	/**
 	 * 
@@ -35,7 +37,8 @@ public class MusicHandler {
 	 */
 	public void handleMusic(MusicLoader musicLoader) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
-			if (Player.isInvincible) {
+			// Dont let invincible music play during a boss battle because it will interfere with battle music.
+			if (Player.isInvincible && !bossBattleIsInProgress) {
 				handleInvincibleAudio(musicLoader);
 			} else {
 				if (musicLoader.invincibleMusic.isPlaying()) {
@@ -64,6 +67,7 @@ public class MusicHandler {
 	 */
 	private void handleBossBattleMusic(MusicLoader musicLoader) {
 		if (BossLoader.boss[BossHandler.TRADIN_POST].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.TRADIN_POST].isDead()) {
+			bossBattleIsInProgress = true;
 			if (musicLoader.ambientMusic.isPlaying()) {
 				musicLoader.ambientMusic.stop();
 			}
@@ -72,6 +76,7 @@ public class MusicHandler {
 			musicLoader.bossBattleMusic.play();
 			BossLoader.boss[BossHandler.TRADIN_POST].setBattleMusicHasStarted(false);
 		} else if (BossLoader.boss[BossHandler.APALACHICOLA].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.APALACHICOLA].isDead()) { 
+			bossBattleIsInProgress = true;
 			if (musicLoader.ambientMusic.isPlaying()) {
 				musicLoader.ambientMusic.stop();
 			}
@@ -80,6 +85,7 @@ public class MusicHandler {
 			musicLoader.bossBattleMusic.play();
 			BossLoader.boss[BossHandler.APALACHICOLA].setBattleMusicHasStarted(false);
 		} else if (BossLoader.boss[BossHandler.STUMP_HOLE].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) { 
+			bossBattleIsInProgress = true;
 			if (musicLoader.ambientMusic.isPlaying()) {
 				musicLoader.ambientMusic.stop();
 			}
@@ -88,6 +94,7 @@ public class MusicHandler {
 			musicLoader.bossBattleMusic.play();
 			BossLoader.boss[BossHandler.STUMP_HOLE].setBattleMusicHasStarted(false);
 		} else {
+			bossBattleIsInProgress = false;
 			if (musicLoader.bossBattleMusic.isPlaying()) {
 				musicLoader.bossBattleMusic.stop();
 			}
