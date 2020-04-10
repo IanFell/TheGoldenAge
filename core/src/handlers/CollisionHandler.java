@@ -299,6 +299,7 @@ public class CollisionHandler {
 		if (Player.playerIsPerformingAttack && Inventory.inventoryIsEquipped) {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+				Boss.playGruntSound = true;
 			}
 		}
 	}
@@ -326,6 +327,7 @@ public class CollisionHandler {
 		if (Player.playerIsPerformingAttack && Inventory.inventoryIsEquipped) {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+				Boss.playGruntSound = true;
 			}
 		}
 	}

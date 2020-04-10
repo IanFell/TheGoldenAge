@@ -43,6 +43,7 @@ public class Mixer {
 	// Damage to player and enemies.
 	public final static float PLAYER_HIT_VOLUME  = QUARTER_VOLUME;
 	public final static float ENEMY_DEATH_VOLUME = MAX_VOLUME;
+	public final static float BOSS_GRUNT_VOLUME  = MEDIAN_VOLUME;
 
 	// Player attacks.
 	public final static float SWORD_ATTACK_VOLUME  = MEDIAN_VOLUME;
@@ -51,7 +52,7 @@ public class Mixer {
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME = MEDIAN_VOLUME;
-	public final static float BOMB_VOLUME = SIXTEENTH_VOLUME;
+	public final static float BOMB_VOLUME        = SIXTEENTH_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;

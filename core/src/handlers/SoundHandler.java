@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.Heart;
 import gameobjects.Rum;
+import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Giant;
 import gameobjects.gamecharacters.Player;
 import gameobjects.nature.Feather;
@@ -122,6 +123,11 @@ public class SoundHandler {
 			if (Giant.playLandingSound) {
 				soundLoader.giantLandingSound.play(Mixer.GIANT_LANDING_VOLUME);
 				Giant.playLandingSound = false;
+			}
+
+			if (Boss.playGruntSound) {
+				soundLoader.bossGrunt.play(Mixer.BOSS_GRUNT_VOLUME);
+				Boss.playGruntSound = false;
 			}
 
 			// Click sound when choosing different inventory objects.

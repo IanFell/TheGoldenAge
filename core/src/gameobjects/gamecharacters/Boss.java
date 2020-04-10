@@ -58,7 +58,10 @@ public class Boss extends Enemy {
 	public static boolean shouldPlayExplosionMusic = false;
 
 	private boolean battleMusicHasStarted = false;
-	
+
+	// When boss gets hit, play the grunt sound.
+	public static boolean playGruntSound = false;
+
 	/**
 	 * Constructor.
 	 * 
@@ -94,7 +97,7 @@ public class Boss extends Enemy {
 		walkRightAnimation   = new Animation <TextureRegion> (animationSpeed, walkRightTexture.getRegions());
 		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
 	}
-	
+
 	/**
 	 * 
 	 * @param boolean battleMusicHasStarted

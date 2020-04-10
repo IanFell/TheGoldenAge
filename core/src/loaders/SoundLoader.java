@@ -30,6 +30,7 @@ public class SoundLoader {
 	public Sound locationMarkerSound;
 	public Sound locatorBeep;
 	public Sound quickSand;
+	public Sound bossGrunt;
 
 	public void init() {
 		heartSound          = Gdx.audio.newSound(Gdx.files.internal("audio/Heart.wav"));
@@ -51,6 +52,7 @@ public class SoundLoader {
 		locationMarkerSound = Gdx.audio.newSound(Gdx.files.internal("audio/LocationMarkerSound.wav"));
 		locatorBeep         = Gdx.audio.newSound(Gdx.files.internal("audio/LocatorBeep.wav"));
 		quickSand           = Gdx.audio.newSound(Gdx.files.internal("audio/QuickSand.wav"));
+		bossGrunt           = Gdx.audio.newSound(Gdx.files.internal("audio/grunt.wav"));
 	}
 
 	public void dispose() {
@@ -73,5 +75,6 @@ public class SoundLoader {
 		locationMarkerSound.dispose();
 		locatorBeep.dispose();
 		quickSand.dispose();
+		bossGrunt.dispose();
 	}
 }
