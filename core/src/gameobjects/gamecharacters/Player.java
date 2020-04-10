@@ -351,7 +351,7 @@ public class Player extends GameCharacter {
 	 * @param MyGame myGame
 	 */
 	protected void handleJumping(MyGame myGame) {
-		if (isJumping) {
+		if (isJumping && !isInWater) {
 			jumpCount++;
 			if (jumpCount >= JUMP_COUNT_MAX) {
 				// Reset jump variables and get ready to jump again.

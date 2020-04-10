@@ -235,7 +235,9 @@ public class SoundHandler {
 	private void handleJumpingAudio(SoundLoader soundLoader) {
 		if (Player.isJumping || MissionStumpHole.jumpSoundShouldPlay) {
 			if (jumpTimer < 1) {
-				soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
+				if (!Player.isInWater) { 
+					soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
+				}
 			}
 			jumpTimer++;
 			if (jumpTimer > 50) {
@@ -252,7 +254,9 @@ public class SoundHandler {
 	 */
 	private void handleLandingAudio(SoundLoader soundLoader) {
 		if (startLandingAudio && Player.jumpingAction == Player.ON_GROUND) {
-			soundLoader.landSound.play(Mixer.LAND_VOLUME);
+			if (!Player.isInWater) { 
+				soundLoader.landSound.play(Mixer.LAND_VOLUME);
+			}
 			startLandingAudio = false;
 		}
 		if (Player.isJumping) {
