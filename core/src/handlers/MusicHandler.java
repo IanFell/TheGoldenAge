@@ -63,14 +63,22 @@ public class MusicHandler {
 	 * @param MusicLoader musicLoader
 	 */
 	private void handleBossBattleMusic(MusicLoader musicLoader) {
-		if (Boss.battleMusicHasStarted && !BossLoader.boss[0].isDead()) {
+		if (BossLoader.boss[BossHandler.TRADIN_POST].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.TRADIN_POST].isDead()) {
 			if (musicLoader.ambientMusic.isPlaying()) {
 				musicLoader.ambientMusic.stop();
 			}
 			musicLoader.bossBattleMusic.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
 			musicLoader.bossBattleMusic.setLooping(true);
 			musicLoader.bossBattleMusic.play();
-			Boss.battleMusicHasStarted = false;
+			BossLoader.boss[BossHandler.TRADIN_POST].setBattleMusicHasStarted(false);
+		} else if (BossLoader.boss[BossHandler.APALACHICOLA].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.APALACHICOLA].isDead()) { 
+			if (musicLoader.ambientMusic.isPlaying()) {
+				musicLoader.ambientMusic.stop();
+			}
+			musicLoader.bossBattleMusic.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
+			musicLoader.bossBattleMusic.setLooping(true);
+			musicLoader.bossBattleMusic.play();
+			BossLoader.boss[BossHandler.APALACHICOLA].setBattleMusicHasStarted(false);
 		} else {
 			if (musicLoader.bossBattleMusic.isPlaying()) {
 				musicLoader.bossBattleMusic.stop();

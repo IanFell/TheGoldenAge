@@ -99,14 +99,14 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 
 		// If mission is complete, render "Mission Complete" message for a
 		// little while.
-		if (missionComplete) {
+		//if (missionComplete) {
 			/**
 			 * This variable needs to be changed because as of now, it's a static global.
 			 * Which means this message will render anytime missionComplete is true.
 			 * We can't have that.
 			 */
 			//renderMissionMessage(batch, myGame, imageLoader.missionComplete);
-		}
+		//}
 
 		// Remove this for now.
 		//renderMissionStartMessage(batch, myGame, imageLoader.legendOfTheSevenSwordsBeginMissionText);

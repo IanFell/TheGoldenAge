@@ -341,7 +341,7 @@ public class GameObject extends Sprite implements GameObjectInterface, Comparabl
 	 */
 	protected void grow() {
 		int doubleGrowth = 2;
-		float growValue  = 0.2f;
+		float growValue  = 0.5f;
 		x -= growValue;
 		y -= growValue;
 		width  += growValue * doubleGrowth;

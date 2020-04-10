@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.weapons.Gun;
+import handlers.BossHandler;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionChests;
@@ -83,7 +84,11 @@ public class ObjectiveUi {
 			objectiveTexture = imageLoader.objectiveCollectOysters;
 		}
 
-		if (Gun.hasBeenCollected && !BossLoader.boss[0].isDead()) {
+		// Bosses.
+		if (Gun.hasBeenCollected && !BossLoader.boss[BossHandler.TRADIN_POST].isDead()) {
+			objectiveTexture = imageLoader.objectiveKillTheBoss;
+		}
+		if (MissionRawBar.rawBarMissionComplete && !BossLoader.boss[BossHandler.APALACHICOLA].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
 

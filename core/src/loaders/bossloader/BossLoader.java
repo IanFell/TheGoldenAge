@@ -11,18 +11,12 @@ import loaders.GameObjectLoader;
  */
 public class BossLoader {
 
-	public static Boss[] boss = new Boss[1];
-
-	public static final int APALACHICOLA = 0;
+	public static Boss[] boss = new Boss[2];
 
 	public void loadBosses() {
-		boss[APALACHICOLA] = new Boss(
-				0, 
-				0,
-				Boss.WIDTH,
-				Boss.HEIGHT,
-				GameObject.DIRECTION_LEFT
-				);
-		GameObjectLoader.gameObjectList.add(boss[0]);
+		for (int i = 0; i < boss.length; i++) {
+			boss[i] = new Boss(0, 0, Boss.WIDTH, Boss.HEIGHT, GameObject.DIRECTION_LEFT);
+			GameObjectLoader.gameObjectList.add(boss[i]);
+		}
 	}
 }

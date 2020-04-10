@@ -40,7 +40,7 @@ public class Boss extends Enemy {
 	private final int BOSS_MAX_HEALTH = 7;
 	private float bossHealth;
 
-	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 0.08f;
+	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f; // 0.08f
 
 	private boolean explosionsShouldBeRendered = false;
 	private boolean explosionsShouldBeCreated  = false;
@@ -57,8 +57,8 @@ public class Boss extends Enemy {
 	// Use this for the rumble during explosion after boss dies.
 	public static boolean shouldPlayExplosionMusic = false;
 
-	public static boolean battleMusicHasStarted = false;
-
+	private boolean battleMusicHasStarted = false;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -70,10 +70,11 @@ public class Boss extends Enemy {
 	 */
 	public Boss(float x, float y, float width, float height, int direction) {
 		super(x, y, width, height, direction);
-		rectangle.width  = width;
-		rectangle.height = height;
-		bossHealthUi     = new BossHealthUi(x, y - 2);
-		bossHealth       = BOSS_MAX_HEALTH;
+		rectangle.width       = width;
+		rectangle.height      = height;
+		bossHealthUi          = new BossHealthUi(x, y - 2);
+		bossHealth            = BOSS_MAX_HEALTH;
+		battleMusicHasStarted = false;
 		for (int i = 0; i < explosionFinishTimer.length; i++) {
 			explosionFinishTimer[i] = 0;
 		}
@@ -92,6 +93,22 @@ public class Boss extends Enemy {
 		walkUpAnimation      = new Animation <TextureRegion> (animationSpeed, walkUpTexture.getRegions());
 		walkRightAnimation   = new Animation <TextureRegion> (animationSpeed, walkRightTexture.getRegions());
 		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
+	}
+	
+	/**
+	 * 
+	 * @param boolean battleMusicHasStarted
+	 */
+	public void setBattleMusicHasStarted(boolean battleMusicHasStarted) {
+		this.battleMusicHasStarted = battleMusicHasStarted;
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public boolean isBattleMusicHasStarted() {
+		return battleMusicHasStarted;
 	}
 
 	/**
@@ -157,7 +174,7 @@ public class Boss extends Enemy {
 			}
 			if (explosion[4] != null) {
 				explosionFinishTimer[4]++;
-				if (explosionOffsetTimer > explosionStartValue[4] && explosionFinishTimer[3] < EXPLOSION_MAX_TIME) {
+				if (explosionOffsetTimer > explosionStartValue[4] && explosionFinishTimer[4] < EXPLOSION_MAX_TIME) {
 					explosion[4].renderExplosion(batch, imageLoader);
 				}
 			}
@@ -211,7 +228,7 @@ public class Boss extends Enemy {
 		// Shake screen during explosion.
 		if (shouldPlayExplosionMusic) {
 			GameScreen.screenShake.shake(0.3f,  3);
-		}
+		} 
 	}
 
 	private void checkDeath() {

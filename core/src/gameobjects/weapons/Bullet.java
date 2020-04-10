@@ -76,7 +76,9 @@ public class Bullet extends Weapon {
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			CollisionHandler.checkIfProjectileHasCollidedWithEnemy(GiantHandler.giants[i], this);
 		}
-		CollisionHandler.checkIfProjectileHasCollidedWithBoss(BossLoader.boss[0], this);
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			CollisionHandler.checkIfProjectileHasCollidedWithBoss(BossLoader.boss[i], this);
+		}
 	}
 
 	/**
