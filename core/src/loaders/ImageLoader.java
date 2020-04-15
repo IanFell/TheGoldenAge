@@ -157,6 +157,10 @@ public class ImageLoader {
 	// Character objects.
 	public Texture knightLeft;
 	public Texture knightRight;
+	public Texture bossLeft01;
+	public Texture bossLeft02;
+	public Texture bossRight01;
+	public Texture bossRight02;
 
 	// Number objects.
 	public Texture[] number = new Texture[10];
@@ -323,6 +327,10 @@ public class ImageLoader {
 		// Character objects.
 		knightLeft  = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightLeft.png"));
 		knightRight = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightRight.png"));
+		bossLeft01  = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/01.png"));
+		bossLeft02  = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/02.png"));
+		bossRight01 = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/01.png"));
+		bossRight02 = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/02.png"));
 
 		// Number objects.
 		number[0] = new Texture(Gdx.files.internal("artwork/numbers/0.png"));
@@ -489,6 +497,10 @@ public class ImageLoader {
 		// Character objects.
 		knightLeft.dispose();
 		knightRight.dispose();
+		bossLeft01.dispose();
+		bossLeft02.dispose();
+		bossRight01.dispose();
+		bossRight02.dispose();
 
 		// Number objects.
 		for (int i = 0; i < number.length; i++) {

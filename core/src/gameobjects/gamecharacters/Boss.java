@@ -61,6 +61,7 @@ public class Boss extends Enemy {
 
 	// When boss gets hit, play the grunt sound.
 	public static boolean playGruntSound = false;
+	
 
 	/**
 	 * Constructor.
