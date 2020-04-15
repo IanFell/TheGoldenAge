@@ -34,10 +34,10 @@ public class MusicLoader {
 		rainAndThunder        = Gdx.audio.newMusic(Gdx.files.internal("audio/rain.ogg"));
 		fire                  = Gdx.audio.newMusic(Gdx.files.internal("audio/fire.ogg"));
 		nightTimeAmbientNoise = Gdx.audio.newMusic(Gdx.files.internal("audio/nighttimeambience.ogg"));
-		ambientMusic          = Gdx.audio.newMusic(Gdx.files.internal("audio/AmbientMusic.ogg"));
+		ambientMusic          = Gdx.audio.newMusic(Gdx.files.internal("audio/NonCombat.ogg"));
 		invincibleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/InvincibleMusic.ogg"));
 		bossDeafeatedMusic    = Gdx.audio.newMusic(Gdx.files.internal("audio/avalanche.ogg"));
-		bossBattleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/BossBattle.ogg"));
+		bossBattleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/Combat.ogg"));
 	}
 
 	public void dispose() {
