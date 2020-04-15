@@ -1,6 +1,7 @@
 package gameobjects.gamecharacters;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -62,6 +63,9 @@ public class Boss extends Enemy {
 	// When boss gets hit, play the grunt sound.
 	public static boolean playGruntSound = false;
 	
+	private int animationTimer;
+	
+	private final int ANIMATION_OVER_VALUE = 9;
 
 	/**
 	 * Constructor.
@@ -87,6 +91,7 @@ public class Boss extends Enemy {
 			explosionStartValue[i] = startValue;
 			startValue += 10;
 		}
+		/*
 		walkDownTexture  = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntRight.atlas"));
 		walkUpTexture    = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntLeft.atlas"));
 		walkRightTexture = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/grunt/gruntRight.atlas"));
@@ -97,6 +102,8 @@ public class Boss extends Enemy {
 		walkUpAnimation      = new Animation <TextureRegion> (animationSpeed, walkUpTexture.getRegions());
 		walkRightAnimation   = new Animation <TextureRegion> (animationSpeed, walkRightTexture.getRegions());
 		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
+		*/
+		animationTimer = 0;
 	}
 
 	/**
@@ -126,6 +133,7 @@ public class Boss extends Enemy {
 			// We need to do this instead of using super() because we need to render the boss lower so it works.
 			updateElapsedTime();
 			renderEnemyShadow(batch, imageLoader, width, height / 2, y + height - 1.75f);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -136,7 +144,13 @@ public class Boss extends Enemy {
 					height,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_ENEMY
-					);
+					);*/
+			Texture texture = imageLoader.bossLeft01;
+			if (animationTimer > ANIMATION_OVER_VALUE / 2) {
+				// Switch to second image for animation.
+				texture = imageLoader.bossLeft02;
+			}
+			batch.draw(texture, x, y + height, width, -height);
 			// Uncomment to draw enemy hit box.
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 			bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
@@ -233,6 +247,15 @@ public class Boss extends Enemy {
 		if (shouldPlayExplosionMusic) {
 			GameScreen.screenShake.shake(0.3f,  3);
 		} 
+		
+		handleAnimationTimer();
+	}
+	
+	private void handleAnimationTimer() {
+		animationTimer++;
+		if (animationTimer > ANIMATION_OVER_VALUE) {
+			animationTimer = 0;
+		}
 	}
 
 	private void checkDeath() {
