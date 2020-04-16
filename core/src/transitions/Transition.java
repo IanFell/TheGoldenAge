@@ -1,7 +1,10 @@
 package transitions;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
+import gameobjects.gamecharacters.Player;
 import loaders.ImageLoader;
 
 /**
@@ -22,14 +25,14 @@ public class Transition {
 	/**
 	 * Constructor.
 	 * 
-	 * @param float x
-	 * @param float y
+	 * @param MyGame myGame
 	 */
-	public Transition(float x, float y) {
-		this.x      = x;
-		this.y      = y;
-		this.width  = initialSize;
-		this.height = initialSize;
+	public Transition(MyGame myGame) {
+		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
+		this.x            = player.getX() - 5;
+		this.y            = player.getY() - 5;
+		this.width        = initialSize;
+		this.height       = initialSize;
 	}
 
 	/**

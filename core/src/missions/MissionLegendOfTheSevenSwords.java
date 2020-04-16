@@ -92,10 +92,7 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 				new TextureRegion(myGame.imageLoader.legendSwordPinkHalf));
 		legendSwordCollection.clear();
 
-		transition = new Transition(
-				myGame.getGameObject(Player.PLAYER_ONE).getX() - 5,
-				myGame.getGameObject(Player.PLAYER_ONE).getY() - 5
-				);
+		transition = new Transition(myGame);
 	}
 
 	/**
