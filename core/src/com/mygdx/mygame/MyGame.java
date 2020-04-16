@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
-import handlers.AudioHandler;
 import handlers.InputHandler;
+import handlers.audio.AudioHandler;
 import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;

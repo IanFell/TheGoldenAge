@@ -1,9 +1,7 @@
-package handlers;
+package handlers.audio;
 
 import com.mygdx.mygame.MyGame;
 
-import handlers.audio.MusicHandler;
-import handlers.audio.SoundHandler;
 import loaders.MusicLoader;
 import loaders.SoundLoader;
 
