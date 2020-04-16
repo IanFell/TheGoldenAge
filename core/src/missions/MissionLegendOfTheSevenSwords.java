@@ -14,6 +14,7 @@ import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import transitions.Transition;
 
 /**
  * 
@@ -42,6 +43,8 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 	 */
 	public static ArrayList<GameObject> legendSwordCollection = new ArrayList<GameObject>();
 
+	private Transition transition;
+
 	/**
 	 * Constructor.
 	 * 
@@ -52,35 +55,47 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 		super();
 		missionBeginTextTimer = 0;
 		swordsCollected       = 0;
-		legendSwords[SWORD_RED] = new LegendSword(GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 40,
+		legendSwords[SWORD_RED] = new LegendSword(
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 40,
 				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 5, SWORD_RED,
 				new TextureRegion(myGame.imageLoader.legendSwordRed),
 				new TextureRegion(myGame.imageLoader.legendSwordRedHalf));
-		legendSwords[SWORD_BLUE] = new LegendSword(GameAttributeHelper.CHUNK_FIVE_X_POSITION_START + 40,
+		legendSwords[SWORD_BLUE] = new LegendSword(
+				GameAttributeHelper.CHUNK_FIVE_X_POSITION_START + 40,
 				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 35, SWORD_BLUE,
 				new TextureRegion(myGame.imageLoader.legendSwordBlue),
 				new TextureRegion(myGame.imageLoader.legendSwordBlueHalf));
-		legendSwords[SWORD_GREEN] = new LegendSword(GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 10,
+		legendSwords[SWORD_GREEN] = new LegendSword(
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 10,
 				GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 40, SWORD_GREEN,
 				new TextureRegion(myGame.imageLoader.legendSwordGreen),
 				new TextureRegion(myGame.imageLoader.legendSwordGreenHalf));
-		legendSwords[SWORD_YELLOW] = new LegendSword(GameAttributeHelper.CHUNK_SIX_X_POSITION_START + 5,
-				GameAttributeHelper.CHUNK_FOUR_Y_POSITION_START + 4, SWORD_YELLOW,
-				new TextureRegion(myGame.imageLoader.legendSwordYellow),
-				new TextureRegion(myGame.imageLoader.legendSwordYellowHalf));
-		legendSwords[SWORD_PURPLE] = new LegendSword(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 5,
+		legendSwords[SWORD_YELLOW] = new LegendSword
+				(GameAttributeHelper.CHUNK_SIX_X_POSITION_START + 5,
+						GameAttributeHelper.CHUNK_FOUR_Y_POSITION_START + 4, SWORD_YELLOW,
+						new TextureRegion(myGame.imageLoader.legendSwordYellow),
+						new TextureRegion(myGame.imageLoader.legendSwordYellowHalf));
+		legendSwords[SWORD_PURPLE] = new LegendSword(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 5,
 				GameAttributeHelper.CHUNK_FOUR_Y_POSITION_START + 4, SWORD_PURPLE,
 				new TextureRegion(myGame.imageLoader.legendSwordPurple),
 				new TextureRegion(myGame.imageLoader.legendSwordPurpleHalf));
-		legendSwords[SWORD_ORANGE] = new LegendSword(GameAttributeHelper.CHUNK_FIVE_X_POSITION_START + 25,
+		legendSwords[SWORD_ORANGE] = new LegendSword(
+				GameAttributeHelper.CHUNK_FIVE_X_POSITION_START + 25,
 				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 3, SWORD_ORANGE,
 				new TextureRegion(myGame.imageLoader.legendSwordOrange),
 				new TextureRegion(myGame.imageLoader.legendSwordOrangeHalf));
-		legendSwords[SWORD_PINK] = new LegendSword(GameAttributeHelper.CHUNK_SEVEN_X_POSITION_START + 15,
+		legendSwords[SWORD_PINK] = new LegendSword(
+				GameAttributeHelper.CHUNK_SEVEN_X_POSITION_START + 15,
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 45, SWORD_PINK,
 				new TextureRegion(myGame.imageLoader.legendSwordPink),
 				new TextureRegion(myGame.imageLoader.legendSwordPinkHalf));
 		legendSwordCollection.clear();
+
+		transition = new Transition(
+				myGame.getGameObject(Player.PLAYER_ONE).getX() - 5,
+				myGame.getGameObject(Player.PLAYER_ONE).getY() - 5
+				);
 	}
 
 	/**
@@ -100,16 +115,18 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 		// If mission is complete, render "Mission Complete" message for a
 		// little while.
 		//if (missionComplete) {
-			/**
-			 * This variable needs to be changed because as of now, it's a static global.
-			 * Which means this message will render anytime missionComplete is true.
-			 * We can't have that.
-			 */
-			//renderMissionMessage(batch, myGame, imageLoader.missionComplete);
+		/**
+		 * This variable needs to be changed because as of now, it's a static global.
+		 * Which means this message will render anytime missionComplete is true.
+		 * We can't have that.
+		 */
+		//renderMissionMessage(batch, myGame, imageLoader.missionComplete);
 		//}
 
 		// Remove this for now.
 		//renderMissionStartMessage(batch, myGame, imageLoader.legendOfTheSevenSwordsBeginMissionText);
+
+		transition.renderTransition(batch, imageLoader);
 	}
 
 	/**
@@ -133,6 +150,8 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 			missionComplete = true;
 			// clearSevenSwordsFromInventory(myGame);
 		}
+
+		transition.updateTransition();
 	}
 
 	/**

@@ -109,6 +109,7 @@ public class ImageLoader {
 	public Texture fishRight;
 	public Texture playerRight;
 	public Texture playerLeft;
+	public Texture transition;
 
 	// Tile objects.
 	public Texture grassTileOne;
@@ -269,6 +270,7 @@ public class ImageLoader {
 		fishRight                              = new Texture(Gdx.files.internal("artwork/missions/fishRight.png"));
 		playerLeft                             = new Texture(Gdx.files.internal("artwork/gamecharacters/player/PlayerLeft.png"));
 		playerRight                            = new Texture(Gdx.files.internal("artwork/gamecharacters/player/PlayerRight.png"));
+		transition                             = new Texture(Gdx.files.internal("artwork/missions/Transition.png"));
 
 		// Tile objects.
 		grassTileOne     	   = new Texture(Gdx.files.internal("artwork/tiles/GrassTileOne.png"));
@@ -449,6 +451,7 @@ public class ImageLoader {
 		fishRight.dispose();
 		playerRight.dispose();
 		playerLeft.dispose();
+		transition.dispose();
 
 		// Tile objects.
 		grassTileOne.dispose();
