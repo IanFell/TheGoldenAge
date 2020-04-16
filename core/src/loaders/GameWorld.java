@@ -2,7 +2,7 @@ package loaders;
 
 import com.mygdx.mygame.MyGame;
 
-import handlers.BossHandler;
+import handlers.enemies.BossHandler;
 import loaders.bossloader.BossLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;

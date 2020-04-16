@@ -5,7 +5,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.gamecharacters.PlayerOne;
 import handlers.CollisionHandler;
-import handlers.GiantHandler;
+import handlers.enemies.GiantHandler;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;

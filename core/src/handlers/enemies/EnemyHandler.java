@@ -1,10 +1,11 @@
-package handlers;
+package handlers.enemies;
 
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.stationarygameobjects.buildings.EnemyHut;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.Weapon;
+import handlers.CollisionHandler;
 import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;

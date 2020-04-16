@@ -6,7 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.weapons.Gun;
-import handlers.BossHandler;
+import handlers.enemies.BossHandler;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionChests;

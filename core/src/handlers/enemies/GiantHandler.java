@@ -1,4 +1,4 @@
-package handlers;
+package handlers.enemies;
 
 import com.mygdx.mygame.MyGame;
 

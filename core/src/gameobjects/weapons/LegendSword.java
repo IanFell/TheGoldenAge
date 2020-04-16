@@ -8,7 +8,7 @@ import controllers.PlayerController;
 import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.PlayerOne;
 import handlers.CollisionHandler;
-import handlers.GiantHandler;
+import handlers.enemies.GiantHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
