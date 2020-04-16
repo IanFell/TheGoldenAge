@@ -1,7 +1,8 @@
-package handlers;
+package handlers.audio;
 
 import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Player;
+import handlers.BossHandler;
 import helpers.GameAttributeHelper;
 import loaders.MusicLoader;
 import loaders.bossloader.BossLoader;

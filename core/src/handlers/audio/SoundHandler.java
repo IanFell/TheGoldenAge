@@ -1,4 +1,4 @@
-package handlers;
+package handlers.audio;
 
 import com.mygdx.mygame.MyGame;
 
@@ -13,6 +13,7 @@ import gameobjects.nature.Feather;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import handlers.GiantHandler;
 import handlers.collectibles.AmmoHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
