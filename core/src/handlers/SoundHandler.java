@@ -13,6 +13,7 @@ import gameobjects.nature.Feather;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import handlers.collectibles.AmmoHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.SoundLoader;
@@ -94,7 +95,9 @@ public class SoundHandler {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
-						soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
+						if (AmmoHandler.ammoCount > 0) {
+							soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
+						}
 					} else {
 						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 					}

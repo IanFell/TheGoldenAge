@@ -9,6 +9,7 @@ import gameobjects.gamecharacters.Player;
 import gameobjects.gamecharacters.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import handlers.CollisionHandler;
+import handlers.collectibles.AmmoHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
@@ -81,7 +82,11 @@ public class Gun extends Weapon {
 		rectangle.x = x;
 		rectangle.y = y;
 
-		if (Player.playerIsPerformingAttack && myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
+		if (
+				Player.playerIsPerformingAttack && 
+				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun && 
+				AmmoHandler.ammoCount > 0
+				) {
 			BulletLoader.createBullet(myGame);
 		}
 

@@ -9,6 +9,7 @@ import controllers.PlayerController;
 import gameobjects.gamecharacters.Player;
 import gameobjects.gamecharacters.PlayerOne;
 import gameobjects.weapons.Bullet;
+import handlers.collectibles.AmmoHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
@@ -85,6 +86,9 @@ public class BulletLoader {
 			}
 			bullets.add(new Bullet(xPosition, yPosition));
 			timer = 0;
+			if (AmmoHandler.ammoCount > 0) {
+				AmmoHandler.ammoCount--;
+			}
 		}
 	}
 }
