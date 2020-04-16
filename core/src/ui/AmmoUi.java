@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import handlers.collectibles.RumHandler;
+import handlers.collectibles.AmmoHandler;
 import loaders.ImageLoader;
 
 /**
@@ -12,7 +12,7 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class RumUi extends TextBasedUiParent {
+public class AmmoUi extends TextBasedUiParent {
 
 	/**
 	 * 
@@ -28,14 +28,14 @@ public class RumUi extends TextBasedUiParent {
 			GameObject player
 			) {
 		float xPos = player.getX() - 12.5f;
-		float yPos = player.getY() - 2.0f;
+		float yPos = player.getY() - 0.0f;
 		batch.draw(
-				imageLoader.rum, 
+				imageLoader.ammo, 
 				xPos,
 				yPos - 1,
 				iconSize, 
 				-iconSize
 				); 
-		super.renderUi(batch, imageLoader, myGame, player, xPos + 2, yPos - 1, RumHandler.rumCount);
+		super.renderUi(batch, imageLoader, myGame, player, xPos + 2, yPos - 1, AmmoHandler.ammoCount);
 	}	
 }

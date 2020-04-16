@@ -20,6 +20,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Weapon;
+import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
@@ -416,7 +417,7 @@ public class CollisionHandler {
 	public static void checkIfPlayerCollidedWithAmmo(GameObject player, Ammo ammo) {
 		if (player.rectangle.overlaps(ammo.rectangle)) {
 			ammo.setHasBeenCollected(true);
-			//((Player) player).setHealth(player.getHealth() + Heart.HEALTH);
+			AmmoHandler.ammoCount += AmmoHandler.ammoValue;
 			Ammo.playSound = true;
 		}
 	}

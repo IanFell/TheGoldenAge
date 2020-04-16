@@ -21,6 +21,7 @@ public class UserInterface {
 	private SelectedInventoryUi selectedInventoryUi;
 	private RumUi rumUi;
 	private ObjectiveUi objective;
+	private AmmoUi ammoUi;
 
 	/**
 	 * Constructor.
@@ -32,6 +33,7 @@ public class UserInterface {
 		selectedInventoryUi = new SelectedInventoryUi();
 		rumUi               = new RumUi();
 		objective           = new ObjectiveUi();
+		ammoUi              = new AmmoUi();
 	}
 
 	/**
@@ -47,6 +49,7 @@ public class UserInterface {
 			GameObject player = PlayerController.getCurrentPlayer(myGame);
 			lootUi.renderUi(batch, imageLoader, myGame, player);
 			rumUi.renderUi(batch, imageLoader, myGame, player);
+			ammoUi.renderUi(batch, imageLoader, myGame, player);
 			playerNameUi.renderUi(batch, imageLoader, myGame, player, 10.5f, 6.0f);
 			selectedInventoryUi.renderSelectedInventoryUi(batch, imageLoader, myGame, player);
 			objective.renderUi(batch, imageLoader, myGame, player);

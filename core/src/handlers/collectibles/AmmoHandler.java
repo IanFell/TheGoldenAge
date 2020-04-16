@@ -11,7 +11,15 @@ import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
+/**
+ * 
+ * @author Fabulous Fellini
+ *
+ */
 public class AmmoHandler extends CollectibleHandler {
+
+	public static int ammoCount       = 0;
+	public final static int ammoValue = 5;
 
 	private final int MAX_AMOUNT_AMMO_ALLOWED = 200;
 

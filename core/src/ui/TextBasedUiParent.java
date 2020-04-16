@@ -19,6 +19,8 @@ public class TextBasedUiParent extends GameObject {
 	public static final int DIGIT_TWO = 2;
 
 	private int textSize = 1;
+	
+	protected int iconSize = 1;
 
 	//protected BitmapFont font;
 
