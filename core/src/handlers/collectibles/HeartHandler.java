@@ -1,24 +1,22 @@
-package handlers;
+package handlers.collectibles;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.GameObject;
 import gameobjects.collectibles.Heart;
 import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import maps.MapHandler;
-import screens.GameScreen;
 
 /**
  * 
  * @author Fabulous Fellini
  *
  */
-public class HeartHandler {
+public class HeartHandler extends CollectibleHandler {
 
 	private final int MAX_AMOUNT_HEARTS_ALLOWED = 200;
 
@@ -67,28 +65,5 @@ public class HeartHandler {
 				hearts.get(i).renderObject(batch, imageLoader);
 			}
 		}
-	}
-
-	/**
-	 * Determines if game object is rendering bounds.
-	 * 
-	 * @param GameObject gameObject
-	 * @return boolean
-	 */
-	public static boolean gameObjectIsWithinScreenBounds(GameObject gameObject) {
-		float cameraXPosition   = GameScreen.camera.position.x;
-		float cameraYPosition   = GameScreen.camera.position.y;
-		float playerXPosition   = gameObject.getX();
-		float playerYPosition   = gameObject.getY();
-		float screenBoundOffset = 17.0f;
-		if (
-				playerXPosition < cameraXPosition + screenBoundOffset &&
-				playerXPosition > cameraXPosition - screenBoundOffset &&
-				playerYPosition < cameraYPosition + screenBoundOffset &&
-				playerYPosition > cameraYPosition - screenBoundOffset
-				) {
-			return true;
-		}
-		return false;
 	}
 }

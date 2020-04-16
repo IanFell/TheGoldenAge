@@ -12,7 +12,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.collectibles.Torch;
 import handlers.AnimationHandler;
-import handlers.RumHandler;
+import handlers.collectibles.RumHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;

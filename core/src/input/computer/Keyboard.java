@@ -9,7 +9,7 @@ import controllers.PlayerController;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.Player;
 import gameobjects.nature.Stump;
-import handlers.RumHandler;
+import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;

@@ -1,4 +1,4 @@
-package handlers;
+package handlers.collectibles;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ import screens.GameScreen;
  * @author Fabulous Fellini
  *
  */
-public class RumHandler {
+public class RumHandler extends CollectibleHandler {
 	
 	public static int rumCount;
 	
@@ -69,28 +69,5 @@ public class RumHandler {
 				rum.get(i).renderObject(batch, imageLoader);
 			}
 		}
-	}
-
-	/**
-	 * Determines if game object is rendering bounds.
-	 * 
-	 * @param GameObject gameObject
-	 * @return boolean
-	 */
-	public static boolean gameObjectIsWithinScreenBounds(GameObject gameObject) {
-		float cameraXPosition   = GameScreen.camera.position.x;
-		float cameraYPosition   = GameScreen.camera.position.y;
-		float playerXPosition   = gameObject.getX();
-		float playerYPosition   = gameObject.getY();
-		float screenBoundOffset = 17.0f;
-		if (
-				playerXPosition < cameraXPosition + screenBoundOffset &&
-				playerXPosition > cameraXPosition - screenBoundOffset &&
-				playerYPosition < cameraYPosition + screenBoundOffset &&
-				playerYPosition > cameraYPosition - screenBoundOffset
-				) {
-			return true;
-		}
-		return false;
 	}
 }

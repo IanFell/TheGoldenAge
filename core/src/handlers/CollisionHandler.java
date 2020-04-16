@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import gameobjects.GameObject;
+import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.Boss;
@@ -19,6 +20,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Weapon;
+import handlers.collectibles.RumHandler;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import maps.MapHandler;
@@ -408,6 +410,14 @@ public class CollisionHandler {
 			heart.setHasBeenCollected(true);
 			((Player) player).setHealth(player.getHealth() + Heart.HEALTH);
 			Heart.playSound = true;
+		}
+	}
+	
+	public static void checkIfPlayerCollidedWithAmmo(GameObject player, Ammo ammo) {
+		if (player.rectangle.overlaps(ammo.rectangle)) {
+			ammo.setHasBeenCollected(true);
+			//((Player) player).setHealth(player.getHealth() + Heart.HEALTH);
+			Ammo.playSound = true;
 		}
 	}
 

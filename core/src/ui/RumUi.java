@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import handlers.RumHandler;
+import handlers.collectibles.RumHandler;
 import loaders.ImageLoader;
 
 /**
