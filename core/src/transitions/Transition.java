@@ -35,6 +35,14 @@ public class Transition {
 		this.height       = initialSize;
 	}
 
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
 	/**
 	 * 
 	 * @param SpriteBatch batch

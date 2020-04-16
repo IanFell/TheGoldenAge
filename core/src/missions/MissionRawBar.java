@@ -14,6 +14,7 @@ import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import screens.GameScreen;
+import transitions.Transition;
 import ui.LocationMarker;
 
 /**
@@ -115,6 +116,10 @@ public class MissionRawBar extends Mission {
 	public static boolean locationMarkerHasBeenHit = false;
 
 	private static LocationMarker locationMarker;
+
+	private Transition transition;
+
+	private boolean initializeTransition = true;
 
 	/**
 	 * Constructor.
@@ -276,6 +281,12 @@ public class MissionRawBar extends Mission {
 	 * @param MyGame myGame
 	 */
 	private void updatePhases(MyGame myGame) {
+		if (initializeTransition) {
+			transition           = new Transition(myGame);
+			initializeTransition = false;
+		}
+		transition.updateTransition();
+
 		playerBounds.x = playerX;
 		playerBounds.y = playerY;
 
@@ -459,6 +470,7 @@ public class MissionRawBar extends Mission {
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (phasesAreInProgress) {
 			renderPhases(batch, imageLoader, myGame);
+			transition.renderTransition(batch, imageLoader);
 		} else {
 			if (locationMarker.timerValuesAreCorrectToFlash()) {
 				locationMarker.renderObject(batch, imageLoader);
