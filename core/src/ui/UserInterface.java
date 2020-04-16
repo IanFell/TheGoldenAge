@@ -7,6 +7,10 @@ import controllers.PlayerController;
 import cutscenes.CutScene;
 import gameobjects.GameObject;
 import loaders.ImageLoader;
+import ui.collectibles.AmmoUi;
+import ui.collectibles.HealthUi;
+import ui.collectibles.LootUi;
+import ui.collectibles.RumUi;
 
 /**
  * 

@@ -17,7 +17,7 @@ import handlers.collectibles.AmmoHandler;
 import handlers.enemies.GiantHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
-import loaders.SoundLoader;
+import loaders.audio.SoundLoader;
 import loaders.cannonballloader.CannonBallLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;

@@ -1,4 +1,4 @@
-package ui;
+package ui.collectibles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import handlers.collectibles.RumHandler;
 import loaders.ImageLoader;
+import ui.TextBasedUiParent;
 
 /**
  * 

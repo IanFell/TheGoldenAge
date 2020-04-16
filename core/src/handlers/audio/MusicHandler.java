@@ -4,7 +4,7 @@ import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Player;
 import handlers.enemies.BossHandler;
 import helpers.GameAttributeHelper;
-import loaders.MusicLoader;
+import loaders.audio.MusicLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionRawBar;
 import mixer.Mixer;

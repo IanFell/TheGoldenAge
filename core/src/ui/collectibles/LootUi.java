@@ -1,4 +1,4 @@
-package ui;
+package ui.collectibles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -10,6 +10,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import handlers.AnimationHandler;
 import loaders.ImageLoader;
+import ui.TextBasedUiParent;
 
 /**
  * 

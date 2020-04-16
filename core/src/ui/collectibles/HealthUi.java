@@ -1,4 +1,4 @@
-package ui;
+package ui.collectibles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
