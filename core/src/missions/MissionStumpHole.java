@@ -17,6 +17,7 @@ import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import screens.GameScreen;
+import transitions.Transition;
 import ui.LocationMarker;
 
 /**
@@ -112,6 +113,10 @@ public class MissionStumpHole extends Mission {
 
 	private int breakTimer            = 0;
 	private final int MAX_BREAK_VALUE = 30;
+
+	private Transition transition;
+
+	private boolean initializeTransition = true;
 
 	/**
 	 * Constructor.
@@ -209,6 +214,10 @@ public class MissionStumpHole extends Mission {
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
+			}
+
+			if (transition != null) {
+				transition.renderTransition(batch, imageLoader);
 			}
 		} else {
 			bird.renderObject(batch, imageLoader);
@@ -328,6 +337,12 @@ public class MissionStumpHole extends Mission {
 			if (CollisionHandler.playerHasCollidedWithLocationMarker(myGame.getGameObject(Player.PLAYER_ONE), locationMarker)) {
 				missionIsActive = true;
 			}
+		} else {
+			if (initializeTransition) {
+				transition           = new Transition(myGame);
+				initializeTransition = false;
+			}
+			transition.updateTransition();
 		}
 
 		applyPlayerPhysics();
