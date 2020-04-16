@@ -16,6 +16,7 @@ import handlers.GruntHandler;
 import handlers.MissionHandler;
 import handlers.TownHandler;
 import handlers.WeaponHandler;
+import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.HeartHandler;
 import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
@@ -114,8 +115,8 @@ public class GameScreen extends Screens {
 	public TownHandler townHandler = new TownHandler();
 
 	private HeartHandler heartHandler = new HeartHandler();
-
-	private RumHandler rumHandler = new RumHandler();
+	private RumHandler rumHandler     = new RumHandler();
+	private AmmoHandler ammoHandler   = new AmmoHandler();
 
 	private CutSceneIntro cutSceneIntro;
 
@@ -211,6 +212,7 @@ public class GameScreen extends Screens {
 				);
 		heartHandler.init();
 		rumHandler.init();
+		ammoHandler.init();
 
 		Input.initializeInventoryUiForInput();
 
@@ -290,6 +292,7 @@ public class GameScreen extends Screens {
 
 		heartHandler.updateHearts(myGame, mapHandler);
 		rumHandler.updateRum(myGame, mapHandler);
+		ammoHandler.updateAmmo(myGame, mapHandler);
 
 		gun.updateObject(myGame, mapHandler);
 		magicPearl.updateObject(myGame, mapHandler);
@@ -334,6 +337,12 @@ public class GameScreen extends Screens {
 				myGame.renderer.batch, 
 				myGame.imageLoader
 				);
+		
+		// These are not rendered in the game object list so they're not accidently rendered behind other objects.
+				ammoHandler.renderAmmo(
+						myGame.renderer.batch, 
+						myGame.imageLoader
+						);
 
 		// This shows the border of the towns strictly for debugging.
 		//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);

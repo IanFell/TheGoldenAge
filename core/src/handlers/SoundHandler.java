@@ -3,6 +3,7 @@ package handlers;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.Boss;
@@ -104,6 +105,10 @@ public class SoundHandler {
 			if (Heart.playSound) {
 				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);
 				Heart.playSound = false;
+			}
+			if (Ammo.playSound) {
+				soundLoader.pickUpGunSound.play(Mixer.HEART_COLLECT_VOLUME);
+				Ammo.playSound = false;
 			}
 			if (Rum.playSound) {
 				soundLoader.rumSound.play(Mixer.RUM_COLLECT_VOLUME);

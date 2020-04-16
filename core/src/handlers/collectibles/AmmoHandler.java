@@ -12,7 +12,7 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 
 public class AmmoHandler extends CollectibleHandler {
-	
+
 	private final int MAX_AMOUNT_AMMO_ALLOWED = 200;
 
 	private ArrayList <Ammo> ammo = new ArrayList<Ammo>();
@@ -22,7 +22,7 @@ public class AmmoHandler extends CollectibleHandler {
 			addRandomlyPlacedAmmo();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param MyGame     myGame

@@ -11,9 +11,9 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 
 public class Ammo extends GameObject {
-	
+
 	public static boolean playSound = false;
-	
+
 	/**
 	 * Constructor.
 	 * 
@@ -24,15 +24,15 @@ public class Ammo extends GameObject {
 		this.x           = x;
 		this.y           = y;
 		int size         = 1;
-		this.width       = size;
+		this.width       = size * 2;
 		this.height      = size;
 		rectangle.x      = x;
 		rectangle.y      = y - 1;
-		rectangle.width  = size;
+		rectangle.width  = size * 2;
 		rectangle.height = size;
 		hasBeenCollected = false;
 	}
-	
+
 	/**
 	 * 
 	 * @param SpriteBatch   batch
@@ -65,7 +65,7 @@ public class Ammo extends GameObject {
 				-rectangle.height
 				);
 	}
-	
+
 	/**
 	 * 
 	 * @param MyGame     myGame
