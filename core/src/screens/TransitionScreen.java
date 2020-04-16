@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.mygame.MyGame;
 
 /**
+ * This is currently not used, but keep for now.
+ * 
  * Overlays the screen with a black square and fades out.
  * This makes transition between screens much smoother.
  * Everything is static because this screen will only be

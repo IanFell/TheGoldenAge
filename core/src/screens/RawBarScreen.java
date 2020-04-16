@@ -7,6 +7,7 @@ import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
 
 /**
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *

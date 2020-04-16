@@ -7,6 +7,7 @@ import inventory.Inventory;
 
 /**
  * Currently this class is not used.
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *

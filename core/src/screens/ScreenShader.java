@@ -10,6 +10,7 @@ import physics.Weather.NightAndDayCycle;
 
 /**
  * Puts a dark shading over the screen to simulate darkness.
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *

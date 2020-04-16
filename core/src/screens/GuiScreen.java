@@ -7,6 +7,7 @@ import loaders.ImageLoader;
 
 /**
  * Screen for graphical user interface.
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *

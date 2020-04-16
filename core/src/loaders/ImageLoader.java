@@ -11,12 +11,13 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class ImageLoader {
 
-	// Game objects.
+	// Collectibles.
 	public Texture chestClosed;
 	public Texture chestOpen;
 	public Texture heart;
 	public Texture heartShadow;
 	public Texture rum;
+	public Texture ammo;
 
 	// Boat objects.
 	public Texture boatSide;
@@ -168,12 +169,13 @@ public class ImageLoader {
 
 	public void init() {
 
-		// Game objects.
-		chestClosed = new Texture(Gdx.files.internal("artwork/Chest.png"));
-		chestOpen   = new Texture(Gdx.files.internal("artwork/ChestOpen.png"));
-		heart       = new Texture(Gdx.files.internal("artwork/Heart.png"));
-		heartShadow = new Texture(Gdx.files.internal("artwork/HeartShadow.png"));
-		rum         = new Texture(Gdx.files.internal("artwork/Rum_Alternate.png"));
+		// Collectibles.
+		chestClosed = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
+		chestOpen   = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
+		heart       = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
+		heartShadow = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
+		rum         = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
+		ammo        = new Texture(Gdx.files.internal("artwork/collectibles/Ammo.png"));
 
 		// Boat objects.
 		boatSide = new Texture(Gdx.files.internal("artwork/boat/BOAT_NEW.png"));
@@ -349,12 +351,13 @@ public class ImageLoader {
 
 	public void dispose() {
 
-		// Game objects.
+		// Collectibles.
 		chestClosed.dispose();
 		chestOpen.dispose();
 		heart.dispose();
 		heartShadow.dispose();
 		rum.dispose();
+		ammo.dispose();
 
 		// Boat objects.
 		boatSide.dispose();

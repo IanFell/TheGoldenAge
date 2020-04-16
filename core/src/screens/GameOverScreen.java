@@ -4,6 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 /**
  * Screen for game over.
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *

@@ -4,6 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 /**
  * Screen when the game is paused.
+ * This is currently not used, but keep for now.
  * 
  * @author Fabulous Fellini
  *
