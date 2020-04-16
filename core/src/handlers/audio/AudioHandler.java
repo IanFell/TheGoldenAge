@@ -8,7 +8,7 @@ import loaders.audio.SoundLoader;
 /**
  * Handles all audio in game.
  * 
- * @author Fabulous Fellini
+ * @author Fabulous Fellinis
  *
  */
 public class AudioHandler {
