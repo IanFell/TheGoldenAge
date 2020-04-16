@@ -3,8 +3,8 @@ package handlers;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.Heart;
-import gameobjects.Rum;
+import gameobjects.collectibles.Heart;
+import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Giant;
 import gameobjects.gamecharacters.Player;

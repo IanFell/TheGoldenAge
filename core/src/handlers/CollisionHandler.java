@@ -5,8 +5,8 @@ import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import gameobjects.GameObject;
-import gameobjects.Heart;
-import gameobjects.Rum;
+import gameobjects.collectibles.Heart;
+import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.Boss;
 import gameobjects.gamecharacters.Enemy;
 import gameobjects.gamecharacters.Player;

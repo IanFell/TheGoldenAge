@@ -1,9 +1,10 @@
-package gameobjects;
+package gameobjects.collectibles;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import gameobjects.GameObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;

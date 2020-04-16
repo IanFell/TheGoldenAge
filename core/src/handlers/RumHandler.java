@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.Rum;
+import gameobjects.collectibles.Rum;
 import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;

@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.Bird;
 import gameobjects.GameObject;
+import gameobjects.collectibles.Bird;
 import gameobjects.gamecharacters.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.Stump;

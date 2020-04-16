@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.Torch;
+import gameobjects.collectibles.Torch;
 import handlers.AnimationHandler;
 import handlers.RumHandler;
 import inventory.Inventory;
