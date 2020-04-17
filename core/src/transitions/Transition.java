@@ -19,7 +19,7 @@ public class Transition {
 	private float width;
 	private float height;
 	private float initialSize         = 10;
-	private float transitionSizeValue = 15.0f;
+	private float transitionSizeValue = 30.0f;
 	private final float MAX_WIDTH     = 2590;
 
 	/**

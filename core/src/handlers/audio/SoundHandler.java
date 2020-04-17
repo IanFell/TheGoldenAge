@@ -14,6 +14,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import handlers.collectibles.AmmoHandler;
+import handlers.enemies.BossHandler;
 import handlers.enemies.GiantHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
@@ -111,7 +112,7 @@ public class SoundHandler {
 				Heart.playSound = false;
 			}
 			if (Ammo.playSound) {
-				soundLoader.pickUpGunSound.play(Mixer.HEART_COLLECT_VOLUME);
+				soundLoader.pickUpGunSound.play(Mixer.AMMO_COLLECT_VOLUME);
 				Ammo.playSound = false;
 			}
 			if (Rum.playSound) {
@@ -137,6 +138,11 @@ public class SoundHandler {
 			if (Boss.playGruntSound) {
 				soundLoader.bossGrunt.play(Mixer.BOSS_GRUNT_VOLUME);
 				Boss.playGruntSound = false;
+			}
+
+			if (BossHandler.playLaughSound) {
+				soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
+				BossHandler.playLaughSound = false;
 			}
 
 			// Click sound when choosing different inventory objects.

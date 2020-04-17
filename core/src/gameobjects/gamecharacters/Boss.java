@@ -62,9 +62,9 @@ public class Boss extends Enemy {
 
 	// When boss gets hit, play the grunt sound.
 	public static boolean playGruntSound = false;
-	
+
 	private int animationTimer;
-	
+
 	private final int ANIMATION_OVER_VALUE = 9;
 
 	/**
@@ -102,7 +102,7 @@ public class Boss extends Enemy {
 		walkUpAnimation      = new Animation <TextureRegion> (animationSpeed, walkUpTexture.getRegions());
 		walkRightAnimation   = new Animation <TextureRegion> (animationSpeed, walkRightTexture.getRegions());
 		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
-		*/
+		 */
 		animationTimer = 0;
 	}
 
@@ -247,10 +247,10 @@ public class Boss extends Enemy {
 		if (shouldPlayExplosionMusic) {
 			GameScreen.screenShake.shake(0.3f,  3);
 		} 
-		
+
 		handleAnimationTimer();
 	}
-	
+
 	private void handleAnimationTimer() {
 		animationTimer++;
 		if (animationTimer > ANIMATION_OVER_VALUE) {
