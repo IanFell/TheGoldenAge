@@ -6,6 +6,6 @@ package loaders;
  *
  */
 public class BuildingLoader {
-	protected final int BUILDING_WIDTH  = 7;
-	protected final int BUILDING_HEIGHT = 6;
+	public static final int BUILDING_WIDTH  = 7;
+	public static final int BUILDING_HEIGHT = 6;
 }
