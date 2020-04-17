@@ -324,18 +324,18 @@ public class Inventory extends Screens {
 	 * @param ImageLoader   imageLoader
 	 */
 	public void renderInventory(SpriteBatch batch, ImageLoader imageLoader) {
-		if (!Player.isInWater) { 
-			inventoryUi.renderInventoryUi(
-					batch, 
-					imageLoader, 
-					inventory, 
-					inventoryIsEquipped, 
-					currentlySelectedInventoryObject, 
-					allInventoryShouldBeRendered,
-					fire,
-					mouseIsClickingOnInventoryObject,
-					rectangle
-					);
-		}
+		//if (!Player.isInWater) { 
+		inventoryUi.renderInventoryUi(
+				batch, 
+				imageLoader, 
+				inventory, 
+				inventoryIsEquipped, 
+				currentlySelectedInventoryObject, 
+				allInventoryShouldBeRendered,
+				fire,
+				mouseIsClickingOnInventoryObject,
+				rectangle
+				);
+		//} 
 	}
 }
