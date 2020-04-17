@@ -38,6 +38,16 @@ public class QuickSand extends NatureObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		renderNatureObject(batch, imageLoader.quickSand);
+		//renderHitBox(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderHitBox(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 	}
 
 	/**

@@ -413,7 +413,7 @@ public class CollisionHandler {
 			Heart.playSound = true;
 		}
 	}
-	
+
 	public static void checkIfPlayerCollidedWithAmmo(GameObject player, Ammo ammo) {
 		if (player.rectangle.overlaps(ammo.rectangle)) {
 			ammo.setHasBeenCollected(true);
