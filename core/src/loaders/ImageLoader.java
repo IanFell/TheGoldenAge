@@ -83,6 +83,7 @@ public class ImageLoader {
 	// Structure Shadows.
 	public Texture lightHouseShadow;
 	public Texture tradingPostShadow;
+	public Texture rawBarShadow;
 
 	// Effects Objects.
 	public Texture dustParticleOne;
@@ -241,6 +242,7 @@ public class ImageLoader {
 		// Structure Shadows.
 		lightHouseShadow  = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
 		tradingPostShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/TradingPost3dShadow.png"));
+		rawBarShadow      = new Texture(Gdx.files.internal("artwork/structures/shadows/RawBar3dShadow.png"));
 
 		// Effects Objects.
 		dustParticleOne   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleOne.png"));
@@ -433,6 +435,7 @@ public class ImageLoader {
 		// Structure Shadows.
 		lightHouseShadow.dispose();
 		tradingPostShadow.dispose();
+		rawBarShadow.dispose();
 
 		// Effects Objects.
 		dustParticleOne.dispose();
