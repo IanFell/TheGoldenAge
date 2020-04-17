@@ -79,7 +79,10 @@ public class ImageLoader {
 	public Texture dockLeft;
 	public Texture dockRight;
 	public Texture tradingPost;
+
+	// Structure Shadows.
 	public Texture lightHouseShadow;
+	public Texture tradingPostShadow;
 
 	// Effects Objects.
 	public Texture dustParticleOne;
@@ -234,7 +237,10 @@ public class ImageLoader {
 		dockLeft   	     = new Texture(Gdx.files.internal("artwork/structures/DockLeft.png"));
 		dockRight        = new Texture(Gdx.files.internal("artwork/structures/DockRight.png"));
 		tradingPost      = new Texture(Gdx.files.internal("artwork/structures/TradingPost3d.png"));
-		lightHouseShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
+
+		// Structure Shadows.
+		lightHouseShadow  = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
+		tradingPostShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/TradingPost3dShadow.png"));
 
 		// Effects Objects.
 		dustParticleOne   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleOne.png"));
@@ -423,7 +429,10 @@ public class ImageLoader {
 		dockRight.dispose();
 		dockLeft.dispose();
 		tradingPost.dispose();
+
+		// Structure Shadows.
 		lightHouseShadow.dispose();
+		tradingPostShadow.dispose();
 
 		// Effects Objects.
 		dustParticleOne.dispose();

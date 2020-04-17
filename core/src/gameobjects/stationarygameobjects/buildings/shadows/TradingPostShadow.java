@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Fabulous Fellini
  *
  */
-public class LightHouseShadow extends StructureShadow {
+public class TradingPostShadow extends StructureShadow {
 
 	/**
 	 * Constructor.
@@ -18,7 +18,7 @@ public class LightHouseShadow extends StructureShadow {
 	 * @param float   height
 	 * @param Texture texture
 	 */
-	public LightHouseShadow(float x, float y, float width, float height, Texture shadowTexture) {
+	public TradingPostShadow(float x, float y, float width, float height, Texture shadowTexture) {
 		super(x, y, width, height, shadowTexture);
 	}
 }
