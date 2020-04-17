@@ -61,7 +61,7 @@ public class Mixer {
 	public final static float RUM_COLLECT_VOLUME     = EIGHTH_VOLUME;
 	public final static float CHEST_COLLECT_VOLUME   = QUARTER_VOLUME;
 	public final static float FEATHER_COLLECT_VOLUME = MAX_VOLUME;
-	public final static float BUBBLE_VOLUME          = MAX_VOLUME;
+	public final static float BUBBLE_VOLUME          = MEDIAN_VOLUME;
 	public final static float AMMO_COLLECT_VOLUME    = MAX_VOLUME;
 
 	// Location marker.
