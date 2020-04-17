@@ -3,6 +3,7 @@ package physics.Lighting;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.stationarygameobjects.buildings.shadows.LightHouseShadow;
+import gameobjects.stationarygameobjects.buildings.shadows.PigglyWigglyShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.RawBarShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.TradingPostShadow;
 import helpers.GameAttributeHelper;
@@ -20,6 +21,7 @@ public class StructureShadowHandler {
 	private LightHouseShadow lightHouseShadow;
 	private TradingPostShadow tradingPostShadow;
 	private RawBarShadow rawBarShadow;
+	private PigglyWigglyShadow pigglyWigglyShadow;
 
 	/**
 	 * Constructor.
@@ -48,6 +50,13 @@ public class StructureShadowHandler {
 				BuildingLoader.BUILDING_HEIGHT, 
 				imageLoader.rawBarShadow
 				);
+		pigglyWigglyShadow = new PigglyWigglyShadow(
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 0.5f, 
+				GameAttributeHelper.CHUNK_THREE_Y_POSITION_START - 6.0f, 
+				BuildingLoader.BUILDING_WIDTH - 1.0f,
+				BuildingLoader.BUILDING_HEIGHT + 0.5f, 
+				imageLoader.pigglyWigglyShadow
+				);
 	}
 
 	/**
@@ -59,5 +68,6 @@ public class StructureShadowHandler {
 		lightHouseShadow.renderObject(batch, imageLoader);
 		tradingPostShadow.renderObject(batch, imageLoader);
 		rawBarShadow.renderObject(batch, imageLoader);
+		pigglyWigglyShadow.renderObject(batch, imageLoader);
 	}
 }
