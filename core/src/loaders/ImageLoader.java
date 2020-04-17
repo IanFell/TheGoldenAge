@@ -79,6 +79,7 @@ public class ImageLoader {
 	public Texture dockLeft;
 	public Texture dockRight;
 	public Texture tradingPost;
+	public Texture lightHouseShadow;
 
 	// Effects Objects.
 	public Texture dustParticleOne;
@@ -224,15 +225,16 @@ public class ImageLoader {
 		cannonRight           = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonRight.png"));
 
 		// Structure Objects.
-		slaveHut     = new Texture(Gdx.files.internal("artwork/structures/SlaveHut.png"));
-		rawbar		 = new Texture(Gdx.files.internal("artwork/structures/RawBar3d.png"));
-		lightHouse   = new Texture(Gdx.files.internal("artwork/structures/LightHouse.png"));
-		pigglywiggly = new Texture(Gdx.files.internal("artwork/structures/PigglyWiggly3D.png"));
-		teePee   	 = new Texture(Gdx.files.internal("artwork/structures/TeePee3D.png"));
-		gruntHut     = new Texture(Gdx.files.internal("artwork/structures/GruntHut.png"));
-		dockLeft   	 = new Texture(Gdx.files.internal("artwork/structures/DockLeft.png"));
-		dockRight    = new Texture(Gdx.files.internal("artwork/structures/DockRight.png"));
-		tradingPost  = new Texture(Gdx.files.internal("artwork/structures/TradingPost3d.png"));
+		slaveHut         = new Texture(Gdx.files.internal("artwork/structures/SlaveHut.png"));
+		rawbar		     = new Texture(Gdx.files.internal("artwork/structures/RawBar3d.png"));
+		lightHouse       = new Texture(Gdx.files.internal("artwork/structures/LightHouse.png"));
+		pigglywiggly     = new Texture(Gdx.files.internal("artwork/structures/PigglyWiggly3D.png"));
+		teePee   	     = new Texture(Gdx.files.internal("artwork/structures/TeePee3D.png"));
+		gruntHut         = new Texture(Gdx.files.internal("artwork/structures/GruntHut.png"));
+		dockLeft   	     = new Texture(Gdx.files.internal("artwork/structures/DockLeft.png"));
+		dockRight        = new Texture(Gdx.files.internal("artwork/structures/DockRight.png"));
+		tradingPost      = new Texture(Gdx.files.internal("artwork/structures/TradingPost3d.png"));
+		lightHouseShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
 
 		// Effects Objects.
 		dustParticleOne   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleOne.png"));
@@ -421,6 +423,7 @@ public class ImageLoader {
 		dockRight.dispose();
 		dockLeft.dispose();
 		tradingPost.dispose();
+		lightHouseShadow.dispose();
 
 		// Effects Objects.
 		dustParticleOne.dispose();

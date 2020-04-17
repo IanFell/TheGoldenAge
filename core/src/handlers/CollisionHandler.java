@@ -414,11 +414,18 @@ public class CollisionHandler {
 		}
 	}
 
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Ammo       ammo
+	 */
 	public static void checkIfPlayerCollidedWithAmmo(GameObject player, Ammo ammo) {
 		if (player.rectangle.overlaps(ammo.rectangle)) {
-			ammo.setHasBeenCollected(true);
-			AmmoHandler.ammoCount += AmmoHandler.ammoValue;
-			Ammo.playSound = true;
+			if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
+				ammo.setHasBeenCollected(true);
+				AmmoHandler.ammoCount += AmmoHandler.ammoValue;
+				Ammo.playSound = true;
+			} 
 		}
 	}
 

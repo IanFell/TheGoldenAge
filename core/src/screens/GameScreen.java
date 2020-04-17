@@ -29,6 +29,7 @@ import maps.MapHandler;
 import maps.MapLoader;
 import maps.MapRenderer;
 import physics.Lighting.LightingHandler;
+import physics.Lighting.StructureShadowHandler;
 import physics.Weather.LightningBoltHandler;
 import physics.Weather.WeatherHandler;
 import ui.MapUi;
@@ -117,6 +118,8 @@ public class GameScreen extends Screens {
 	private HeartHandler heartHandler = new HeartHandler();
 	private RumHandler rumHandler     = new RumHandler();
 	private AmmoHandler ammoHandler   = new AmmoHandler();
+
+	private StructureShadowHandler structureShadowHandler;
 
 	private CutSceneIntro cutSceneIntro;
 
@@ -213,6 +216,8 @@ public class GameScreen extends Screens {
 		heartHandler.init();
 		rumHandler.init();
 		ammoHandler.init();
+
+		structureShadowHandler = new StructureShadowHandler(myGame.imageLoader);
 
 		Input.initializeInventoryUiForInput();
 
@@ -320,6 +325,8 @@ public class GameScreen extends Screens {
 				myGame.imageLoader
 				);
 
+		structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
+
 		GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
 				GameObjectLoader.gameObjectList, 
 				myGame.renderer.batch, 
@@ -337,12 +344,12 @@ public class GameScreen extends Screens {
 				myGame.renderer.batch, 
 				myGame.imageLoader
 				);
-		
+
 		// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-				ammoHandler.renderAmmo(
-						myGame.renderer.batch, 
-						myGame.imageLoader
-						);
+		ammoHandler.renderAmmo(
+				myGame.renderer.batch, 
+				myGame.imageLoader
+				);
 
 		// This shows the border of the towns strictly for debugging.
 		//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);

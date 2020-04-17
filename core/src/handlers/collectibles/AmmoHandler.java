@@ -21,12 +21,14 @@ public class AmmoHandler extends CollectibleHandler {
 	public static int ammoCount       = 0;
 	public final static int ammoValue = 5;
 
-	private final int MAX_AMOUNT_AMMO_ALLOWED = 200;
+	private final int MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT = 200;
+
+	public static final int MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY = 99;
 
 	private ArrayList <Ammo> ammo = new ArrayList<Ammo>();
 
 	public void init() {
-		for (int i = 0; i < MAX_AMOUNT_AMMO_ALLOWED; i++) {
+		for (int i = 0; i < MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT; i++) {
 			addRandomlyPlacedAmmo();
 		}
 	}
@@ -42,9 +44,13 @@ public class AmmoHandler extends CollectibleHandler {
 			if (ammo.get(i).getY() + ammo.get(i).getHeight() < 0) {
 				ammo.remove(i);
 			}
-			if (ammo.size() < MAX_AMOUNT_AMMO_ALLOWED) {
+			if (ammo.size() < MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT) {
 				addRandomlyPlacedAmmo();
 			}
+		}
+		// Don't let ammo get above max amount player can carry so UI value doesn't roll over.
+		if (ammoCount >= MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
+			ammoCount = MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY;
 		}
 	}
 

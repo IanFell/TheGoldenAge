@@ -15,12 +15,15 @@ public class LightHouseLoader {
 
 	public static LightHouse lightHouse;
 
+	public static final int LIGHT_HOUSE_WIDTH  = 4;
+	public static final int LIGHT_HOUSE_HEIGHT = 15;
+
 	public void loadLightHouse(MyGame myGame) {
 		lightHouse = new LightHouse(
 				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 39, 
 				GameAttributeHelper.CHUNK_FIVE_Y_POSITION_START + 9,
-				4,
-				15,
+				LIGHT_HOUSE_WIDTH,
+				LIGHT_HOUSE_HEIGHT,
 				myGame.imageLoader.lightHouse
 				);
 		GameObjectLoader.gameObjectList.add(lightHouse);
