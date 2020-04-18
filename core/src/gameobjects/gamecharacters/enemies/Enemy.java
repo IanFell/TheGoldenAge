@@ -14,10 +14,13 @@ import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
 import helpers.RandomNumberGenerator;
+import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import physics.Lighting.Explosion;
+import ui.MapUi;
 
 /**
  * 
@@ -48,7 +51,7 @@ public class Enemy extends GameCharacter {
 
 	// Death explosion variable.
 	protected boolean explosionShouldBeCreated;
-	
+
 	private final int ENEMY_EXPLOSION_SIZE = 2;
 
 	/**
@@ -243,14 +246,31 @@ public class Enemy extends GameCharacter {
 		attackBoundary.x = x - 1;
 		attackBoundary.y = y - 2;
 
-		// Make sure dead fire animation doesn't move around.
-		if (!dead && !MissionRawBar.phasesAreInProgress) {
+		if (enemiesShouldExecuteAi()) {
 			executeAI(myGame);
 		}
 
 		CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
 
 		handleDeathExplosion(ENEMY_EXPLOSION_SIZE);
+	}
+
+	/**
+	 * Don't execute AI if screen is covered.
+	 * 
+	 * @return boolean
+	 */
+	private boolean enemiesShouldExecuteAi() {
+		if (
+				!dead && 
+				!Inventory.allInventoryShouldBeRendered &&
+				!MapUi.mapShouldBeRendered &&
+				!MissionRawBar.phasesAreInProgress &&
+				!MissionStumpHole.missionIsActive
+				) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
