@@ -24,7 +24,7 @@ public class Ammo extends GameObject {
 		this.x           = x;
 		this.y           = y;
 		int size         = 1;
-		this.width       = size * 2;
+		this.width       = size * 1.0f;
 		this.height      = size;
 		rectangle.x      = x;
 		rectangle.y      = y - 1;
