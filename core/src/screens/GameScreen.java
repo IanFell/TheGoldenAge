@@ -28,6 +28,8 @@ import loaders.GameWorld;
 import maps.MapHandler;
 import maps.MapLoader;
 import maps.MapRenderer;
+import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import physics.Lighting.LightingHandler;
 import physics.Lighting.StructureShadowHandler;
 import physics.Weather.LightningBoltHandler;
@@ -402,9 +404,11 @@ public class GameScreen extends Screens {
 
 		mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 
-		gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
-		magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
-		birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+		if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered) {
+			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+			birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+		}
 
 		weatherHandler.renderClouds(myGame);
 	}
