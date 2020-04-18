@@ -28,9 +28,14 @@ public class WeatherHandler {
 
 	private int randomNumberToDetermineIfStormCycleShouldBegin = 0;
 
-	private int maxLimitToDetermineIfStormCycleShouldBegin = 10;  // 100000  
+	private int maxLimitToDetermineIfStormCycleShouldBegin = 100;  // 100000  
 
-	private static boolean isStorming = false;
+	private static boolean isStorming  = false;
+	private final int STORM_CYCLE_MIN  = 1000;
+	private final long STORM_CYCLE_MAX = 10000L;
+	private double stormLength         = 0L;
+	private int stormTimer             = 0;
+	private boolean stormLengthHasBeenSet;
 
 	/**
 	 * Keep these as arrays for now because I might want to change this later 
@@ -45,9 +50,10 @@ public class WeatherHandler {
 	 * Constructor.
 	 */
 	public WeatherHandler() {
-		rainHandler      = new RainHandler[100];
-		lightningHandler = new LightningHandler();
-		nightAndDayCycle = new NightAndDayCycle();
+		rainHandler           = new RainHandler[100];
+		lightningHandler      = new LightningHandler();
+		nightAndDayCycle      = new NightAndDayCycle();
+		stormLengthHasBeenSet = false;
 	}
 
 	/**
@@ -198,13 +204,30 @@ public class WeatherHandler {
 		if (randomNumberToDetermineIfStormCycleShouldBegin == maxLimitToDetermineIfStormCycleShouldBegin / 2) {
 			isStorming = true;
 		}
-
 		if (isStorming) {
+			setStormLength();
+			handleStormTiming();
 			RainHandler.isRaining = true;
 			for (int i = 0; i < rainHandler.length; i++) {
 				rainHandler[i].updateObject(gameScreen, mapHandler, myGame);
 			}
 			lightningHandler.updateObject(myGame, mapHandler);
+		}
+	}
+
+	private void handleStormTiming() {
+		stormTimer++;
+		if (stormTimer > stormLength) {
+			isStorming            = false;
+			stormTimer            = 0;
+			stormLengthHasBeenSet = false;
+		}
+	}
+
+	private void setStormLength() {
+		if (!stormLengthHasBeenSet) {
+			stormLength = RandomNumberGenerator.generateRandomDouble(STORM_CYCLE_MIN, STORM_CYCLE_MAX);
+			stormLengthHasBeenSet = true;
 		}
 	}
 
