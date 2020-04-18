@@ -4,6 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.Player;
 import helpers.RandomNumberGenerator;
 import maps.MapHandler;
 import screens.GameScreen;
@@ -27,7 +28,7 @@ public class WeatherHandler {
 
 	private int randomNumberToDetermineIfStormCycleShouldBegin = 0;
 
-	private int maxLimitToDetermineIfStormCycleShouldBegin = 100000;  
+	private int maxLimitToDetermineIfStormCycleShouldBegin = 10;  // 100000  
 
 	private static boolean isStorming = false;
 
@@ -56,7 +57,7 @@ public class WeatherHandler {
 	 */
 	public void init(MyGame myGame, GameScreen gameScreen) {
 		for (int i = 0; i < rainHandler.length; i++) {
-			rainHandler[i] = new RainHandler(gameScreen);
+			rainHandler[i] = new RainHandler(gameScreen, myGame.getGameObject(Player.PLAYER_ONE));
 		}
 		initializeClouds(myGame);
 	}
@@ -198,16 +199,10 @@ public class WeatherHandler {
 			isStorming = true;
 		}
 
-		// If it is day time, and isStorming is true, start raining.  Stop raining during night time.
 		if (isStorming) {
-			if (NightAndDayCycle.isDayTime()) {
-				RainHandler.isRaining = true;
-				for (int i = 0; i < rainHandler.length; i++) {
-					rainHandler[i].updateObject(gameScreen, mapHandler, myGame);
-				}
-			} else {
-				RainHandler.isRaining = false;
-				isStorming = false;
+			RainHandler.isRaining = true;
+			for (int i = 0; i < rainHandler.length; i++) {
+				rainHandler[i].updateObject(gameScreen, mapHandler, myGame);
 			}
 			lightningHandler.updateObject(myGame, mapHandler);
 		}

@@ -29,16 +29,14 @@ public class RainHandler extends GameObject {
 	 */
 	private float maxDy = 0.3f;
 
-	private float startingRainDropYPosition = 0;
-
 	/**
 	 * Constructor.
 	 * 
 	 * @param GameScreen gameScreen
 	 */
-	public RainHandler(GameScreen gameScreen) {
+	public RainHandler(GameScreen gameScreen, GameObject player) {
 		this.x      = RandomNumberGenerator.generateRandomInteger((int)gameScreen.getViewportWidth());
-		this.y      = startingRainDropYPosition;
+		this.y      = (float) RandomNumberGenerator.generateRandomDouble(player.getY() - 7, player.getY() - 10);
 		float size  = 0.05f;
 		this.width  = size;
 		this.height = size * 5;
@@ -47,9 +45,9 @@ public class RainHandler extends GameObject {
 
 	/**
 	 * 
-	 * @param SpriteBatch   batch
-	 * @param ImageLoader   imageLoader
-	 * @param GameScreen    gameScreen
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param GameScreen  gameScreen
 	 */
 	public void renderObject(
 			SpriteBatch batch, 
@@ -71,7 +69,7 @@ public class RainHandler extends GameObject {
 		if (isRaining) {
 			x += .05;
 			y += dy;
-			int rainYBoundary = 5;
+			int rainYBoundary = 7;
 			if (y > myGame.getGameObject(GameObject.PLAYER_ONE).getY() + rainYBoundary) {
 				// Only make it rain around player.
 				int rainXBoundary      = 15;
@@ -83,7 +81,7 @@ public class RainHandler extends GameObject {
 				y  = myGame.getGameObject(GameObject.PLAYER_ONE).getY() - rainYBoundary;
 				dy = (float) RandomNumberGenerator.generateRandomDouble(minDy, maxDy);
 			}
-			System.out.println("It is raining!");
+			//System.out.println("It is raining!");
 		}
 	}
 }
