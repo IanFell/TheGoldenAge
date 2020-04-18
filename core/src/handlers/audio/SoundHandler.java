@@ -19,6 +19,7 @@ import handlers.enemies.GiantHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.audio.SoundLoader;
+import loaders.bossloader.BossLoader;
 import loaders.cannonballloader.CannonBallLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
@@ -140,9 +141,11 @@ public class SoundHandler {
 				Boss.playGruntSound = false;
 			}
 
-			if (BossHandler.playLaughSound) {
-				soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
-				BossHandler.playLaughSound = false;
+			for (int i = 0; i < BossLoader.boss.length; i++) {
+				if (BossHandler.shouldPlayLaughSound[i]) {
+					soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
+					BossHandler.shouldPlayLaughSound[i] = false;
+				}
 			}
 
 			// Click sound when choosing different inventory objects.

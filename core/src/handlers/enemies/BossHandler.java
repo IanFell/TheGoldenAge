@@ -21,9 +21,19 @@ public class BossHandler {
 	public final static int TRADIN_POST  = 0;
 	public final static int APALACHICOLA = 1;
 	public final static int STUMP_HOLE   = 2;
-	
-	public static boolean playLaughSound          = false;
-	public static boolean laughSoundHasBeenPlayed = false;
+
+	public static boolean[] shouldPlayLaughSound    = new boolean[3];
+	public static boolean[] laughSoundHasBeenPlayed = new boolean[3];
+
+	/**
+	 * Constructor.
+	 */
+	public BossHandler() {
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			shouldPlayLaughSound[i]    = false;
+			laughSoundHasBeenPlayed[i] = false;
+		}
+	}
 
 	/**
 	 * 
@@ -34,18 +44,28 @@ public class BossHandler {
 		if (Gun.hasBeenCollected) {
 			BossLoader.boss[TRADIN_POST].updateObject(myGame, mapHandler);
 			BossLoader.boss[TRADIN_POST].setBattleMusicHasStarted(true);
-			if (!laughSoundHasBeenPlayed) {
-				playLaughSound          = true;
-				laughSoundHasBeenPlayed = true;
-			}
+			handleBossLaughAtStartOfBattle(TRADIN_POST);
 		}
 		if (MissionRawBar.rawBarMissionComplete && !BossLoader.boss[APALACHICOLA].isDead()) {
 			BossLoader.boss[APALACHICOLA].updateObject(myGame, mapHandler);
 			BossLoader.boss[APALACHICOLA].setBattleMusicHasStarted(true);
+			handleBossLaughAtStartOfBattle(APALACHICOLA);
 		}
 		if (MissionStumpHole.stumpHoleMissionComplete && !BossLoader.boss[STUMP_HOLE].isDead()) {
 			BossLoader.boss[STUMP_HOLE].updateObject(myGame, mapHandler);
 			BossLoader.boss[STUMP_HOLE].setBattleMusicHasStarted(true);
+			handleBossLaughAtStartOfBattle(STUMP_HOLE);
+		}
+	}
+
+	/**
+	 * 
+	 * @param int battle
+	 */
+	private static void handleBossLaughAtStartOfBattle(int battle) {
+		if (!laughSoundHasBeenPlayed[battle]) {
+			shouldPlayLaughSound[battle]    = true;
+			laughSoundHasBeenPlayed[battle] = true;
 		}
 	}
 }
