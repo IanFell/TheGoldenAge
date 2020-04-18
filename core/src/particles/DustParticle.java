@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 

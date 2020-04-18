@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.gamecharacters.Player;
-import gameobjects.gamecharacters.PlayerOne;
+import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.Bullet;
 import handlers.collectibles.AmmoHandler;
 import loaders.ImageLoader;

@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Knight;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.enemies.Knight;
+import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
 import loaders.cannonballloader.CannonBallLoader;
 import maps.MapHandler;

@@ -1,10 +1,10 @@
 package factories;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
-import gameobjects.gamecharacters.PlayerOne;
-import gameobjects.gamecharacters.PlayerThree;
-import gameobjects.gamecharacters.PlayerTwo;
+import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
+import gameobjects.gamecharacters.players.PlayerThree;
+import gameobjects.gamecharacters.players.PlayerTwo;
 import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.LightHouse;
 import gameobjects.stationarygameobjects.buildings.PigglyWiggly;

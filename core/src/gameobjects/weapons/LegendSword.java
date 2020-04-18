@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.gamecharacters.Boss;
-import gameobjects.gamecharacters.PlayerOne;
+import gameobjects.gamecharacters.enemies.Boss;
+import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.CollisionHandler;
 import handlers.enemies.GiantHandler;
 import helpers.GamePlayHelper;

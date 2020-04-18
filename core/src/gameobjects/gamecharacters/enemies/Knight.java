@@ -1,8 +1,9 @@
-package gameobjects.gamecharacters;
+package gameobjects.gamecharacters.enemies;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;

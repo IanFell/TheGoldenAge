@@ -1,4 +1,4 @@
-package gameobjects.gamecharacters;
+package gameobjects.gamecharacters.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -9,6 +9,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import gameobjects.gamecharacters.GameCharacter;
+import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
 import helpers.RandomNumberGenerator;

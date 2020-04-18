@@ -1,4 +1,4 @@
-package gameobjects.gamecharacters;
+package gameobjects.gamecharacters.players;
 
 import java.util.ArrayList;
 

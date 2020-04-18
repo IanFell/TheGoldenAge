@@ -6,7 +6,7 @@ import com.mygdx.mygame.MyGame;
 import controllers.PlayerController;
 import cutscenes.CutSceneIntro;
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;

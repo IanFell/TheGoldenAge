@@ -2,7 +2,7 @@ package maps;
 
 import java.awt.Point;
 
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import helpers.GameAttributeHelper;
 
 /**

@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import inventory.Inventory;
 import physics.Lighting.Fire;
 

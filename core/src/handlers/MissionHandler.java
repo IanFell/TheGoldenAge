@@ -5,7 +5,7 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
 import cutscenes.CutScene;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.Gun;
 import loaders.ImageLoader;
 import maps.MapHandler;

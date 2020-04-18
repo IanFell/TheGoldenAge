@@ -1,7 +1,7 @@
 package input.controllers;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.MagicPearl;
 import inventory.Inventory;
 import missions.MissionRawBar;

@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.gamecharacters.Player;
-import gameobjects.gamecharacters.PlayerOne;
+import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import handlers.CollisionHandler;
 import handlers.collectibles.AmmoHandler;

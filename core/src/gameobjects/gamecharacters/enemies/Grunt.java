@@ -1,4 +1,4 @@
-package gameobjects.gamecharacters;
+package gameobjects.gamecharacters.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;

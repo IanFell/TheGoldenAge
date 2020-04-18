@@ -1,7 +1,7 @@
 package loaders.bossloader;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Boss;
+import gameobjects.gamecharacters.enemies.Boss;
 import loaders.GameObjectLoader;
 
 /**

@@ -4,7 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import helpers.RandomNumberGenerator;
 import maps.MapHandler;
 import screens.GameScreen;

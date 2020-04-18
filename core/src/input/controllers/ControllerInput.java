@@ -5,7 +5,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import helpers.ControllerInputHelper;
 import helpers.GameAttributeHelper;
 import input.Input;

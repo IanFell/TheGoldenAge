@@ -1,4 +1,4 @@
-package gameobjects.gamecharacters;
+package gameobjects.gamecharacters.players;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.GameCharacter;
 import handlers.AnimationHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;

@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;

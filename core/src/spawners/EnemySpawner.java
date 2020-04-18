@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Enemy;
+import gameobjects.gamecharacters.enemies.Enemy;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import maps.MapHandler;

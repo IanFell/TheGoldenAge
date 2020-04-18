@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Player;
-import gameobjects.gamecharacters.PlayerOne;
+import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
 import inventory.Inventory;

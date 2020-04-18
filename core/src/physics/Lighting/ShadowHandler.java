@@ -3,7 +3,7 @@ package physics.Lighting;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
 
 /**

@@ -2,7 +2,7 @@ package missions;
 
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import maps.MapHandler;
 
 /**

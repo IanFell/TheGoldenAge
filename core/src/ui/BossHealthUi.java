@@ -3,7 +3,7 @@ package ui;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Boss;
+import gameobjects.gamecharacters.enemies.Boss;
 import loaders.ImageLoader;
 
 /**

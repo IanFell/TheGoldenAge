@@ -9,7 +9,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.collectibles.Bird;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.Stump;
 import handlers.CollisionHandler;

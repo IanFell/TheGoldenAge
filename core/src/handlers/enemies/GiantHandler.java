@@ -3,7 +3,7 @@ package handlers.enemies;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Giant;
+import gameobjects.gamecharacters.enemies.Giant;
 import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;

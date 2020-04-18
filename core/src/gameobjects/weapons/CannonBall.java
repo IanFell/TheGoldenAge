@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;

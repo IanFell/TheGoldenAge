@@ -3,7 +3,7 @@ package missions;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import handlers.CollisionHandler;
 import helpers.GameAttributeHelper;

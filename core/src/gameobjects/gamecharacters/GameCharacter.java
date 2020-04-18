@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
 
 /**
  * This is the parent of:

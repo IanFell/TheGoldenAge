@@ -7,7 +7,7 @@ import com.mygdx.mygame.MyGame;
 import controllers.GameStateController;
 import controllers.PlayerController;
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.Player;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
 import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
