@@ -28,11 +28,11 @@ public class WeatherHandler {
 
 	private int randomNumberToDetermineIfStormCycleShouldBegin = 0;
 
-	private int maxLimitToDetermineIfStormCycleShouldBegin = 100;  // 100000  
+	private int maxLimitToDetermineIfStormCycleShouldBegin = 100000;
 
 	private static boolean isStorming  = false;
 	private final int STORM_CYCLE_MIN  = 1000;
-	private final long STORM_CYCLE_MAX = 10000L;
+	private final int STORM_CYCLE_MAX  = 10000;
 	private double stormLength         = 0L;
 	private int stormTimer             = 0;
 	private boolean stormLengthHasBeenSet;
