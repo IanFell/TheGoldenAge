@@ -25,6 +25,7 @@ import input.Input;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import loaders.GameWorld;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import maps.MapLoader;
 import maps.MapRenderer;
@@ -393,6 +394,17 @@ public class GameScreen extends Screens {
 				myGame.imageLoader,
 				myGame
 				);
+
+		/**
+		 * The boss' health UI is attached to the boss object.
+		 * So, render this here so the health UI isn't rendered behind other game objects
+		 * so player can see it at all times.
+		 */
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			if (!BossLoader.boss[i].isDead()) {
+				BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(myGame.renderer.batch, myGame.imageLoader, BossLoader.boss[i]);
+			}
+		}
 
 		// Here we render the inventory screen if needed.
 		if (Inventory.allInventoryShouldBeRendered) {

@@ -109,6 +109,14 @@ public class Boss extends Enemy {
 
 	/**
 	 * 
+	 * @return BossHealthUi
+	 */
+	public BossHealthUi getBossHealthUi() {
+		return bossHealthUi;
+	}
+
+	/**
+	 * 
 	 * @param boolean battleMusicHasStarted
 	 */
 	public void setBattleMusicHasStarted(boolean battleMusicHasStarted) {
