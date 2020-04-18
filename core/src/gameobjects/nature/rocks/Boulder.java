@@ -1,7 +1,8 @@
-package gameobjects.nature;
+package gameobjects.nature.rocks;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import gameobjects.nature.NatureObject;
 import loaders.ImageLoader;
 
 /**
@@ -9,7 +10,7 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class Rock extends NatureObject {
+public class Boulder extends NatureObject {
 
 	/**
 	 * Constructor.
@@ -17,11 +18,10 @@ public class Rock extends NatureObject {
 	 * @param int x
 	 * @param int y
 	 */
-	public Rock(int x, int y) {
+	public Boulder(int x, int y) {
 		super(x, y);
-		float size  = 1.0f;
-		this.width  = size;
-		this.height = size;
+		this.width  = 5;
+		this.height = 5;
 	}
 
 	/**

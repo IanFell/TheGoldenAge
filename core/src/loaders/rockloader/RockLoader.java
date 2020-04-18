@@ -3,7 +3,7 @@ package loaders.rockloader;
 import java.util.ArrayList;
 
 import gameobjects.GameObject;
-import gameobjects.nature.Rock;
+import gameobjects.nature.rocks.Rock;
 import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;
 import loaders.ClassObjectLoader;

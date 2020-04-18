@@ -4,6 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 import handlers.enemies.BossHandler;
 import loaders.bossloader.BossLoader;
+import loaders.boulderloader.BoulderLoader;
 import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
 import loaders.dockloader.DockLoader;
@@ -42,6 +43,7 @@ public class GameWorld {
 	private FireLoader fireLoader;
 	private PigglyWigglyLoader pigglyWigglyLoader;
 	private RockLoader rockLoader;
+	private BoulderLoader boulderLoader;
 	private FlowerLoader flowerLoader;
 	private SignLoader signLoader;
 	private DockLoader dockLoader;
@@ -66,6 +68,7 @@ public class GameWorld {
 		fireLoader         = new FireLoader();
 		pigglyWigglyLoader = new PigglyWigglyLoader();
 		rockLoader         = new RockLoader();
+		boulderLoader      = new BoulderLoader();
 		flowerLoader       = new FlowerLoader();
 		signLoader         = new SignLoader();
 		dockLoader         = new DockLoader();
@@ -86,6 +89,7 @@ public class GameWorld {
 		drSuessTreeLoader.loadTrees();
 		plantLoader.loadPlants();
 		rockLoader.loadRocks();
+		boulderLoader.loadBoulders();
 		flowerLoader.loadFlowers();
 		chestLoader.loadChests();
 		teePeeLoader.loadTeePees(myGame);
