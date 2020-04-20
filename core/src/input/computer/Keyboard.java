@@ -32,6 +32,8 @@ public class Keyboard extends ComputerInput {
 	private int inventoryTimer      = 0;
 	private boolean startClickTimer = false;
 
+	private int weaponElement = 0;
+
 	/**
 	 * 
 	 * @param MyGame myGame
@@ -123,6 +125,29 @@ public class Keyboard extends ComputerInput {
 
 			if (Gdx.input.isKeyPressed(Input.Keys.F)) {
 				Player.hasTorch = !Player.hasTorch;
+			}
+
+			if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						weaponElement = Inventory.currentlySelectedInventoryObject;
+						if (weaponElement < player.getInventory().inventory.size() - 1) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject + 1;
+						}
+					}
+				}
+			}
+
+			if (Gdx.input.isKeyPressed(Input.Keys.J)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						if (Inventory.currentlySelectedInventoryObject > 0) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject - 1;
+						}
+					}
+				}
 			}
 
 			// Display all inventory.
