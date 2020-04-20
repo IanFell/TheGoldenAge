@@ -42,8 +42,8 @@ public class MusicHandler {
 			if (Player.isInvincible && !bossBattleIsInProgress) {
 				handleInvincibleAudio(musicLoader);
 			} else {
-				if (musicLoader.invincibleMusic.isPlaying()) {
-					musicLoader.invincibleMusic.stop();
+				if (musicLoader.buff.isPlaying()) {
+					musicLoader.buff.stop();
 				}
 				if (NightAndDayCycle.isDayTime()) {
 					handleDayTimeAudio(musicLoader);
@@ -129,9 +129,9 @@ public class MusicHandler {
 		if (musicLoader.ambientMusic.isPlaying()) {
 			musicLoader.ambientMusic.stop();
 		}
-		musicLoader.invincibleMusic.setVolume(Mixer.INVINCIBLE_MUSIC_VOLUME);
-		musicLoader.invincibleMusic.setLooping(true);
-		musicLoader.invincibleMusic.play();
+		musicLoader.buff.setVolume(Mixer.INVINCIBLE_MUSIC_VOLUME);
+		musicLoader.buff.setLooping(true);
+		musicLoader.buff.play();
 	}
 
 	/**

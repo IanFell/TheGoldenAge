@@ -20,6 +20,7 @@ public class MusicLoader {
 	public Music invincibleMusic;
 	public Music bossDeafeatedMusic;
 	public Music bossBattleMusic;
+	public Music buff;
 
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
@@ -38,6 +39,7 @@ public class MusicLoader {
 		invincibleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/music/InvincibleMusic.ogg"));
 		bossDeafeatedMusic    = Gdx.audio.newMusic(Gdx.files.internal("audio/music/avalanche.ogg"));
 		bossBattleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Combat.ogg"));
+		buff                  = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Buff.ogg"));
 	}
 
 	public void dispose() {
@@ -51,5 +53,6 @@ public class MusicLoader {
 		invincibleMusic.dispose();
 		bossDeafeatedMusic.dispose();
 		bossBattleMusic.dispose();
+		buff.dispose();
 	}
 }
