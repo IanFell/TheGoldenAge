@@ -89,9 +89,7 @@ public class Mouse extends ComputerInput {
 					// Dont throw exception if inventory is not equipped.
 					if (Inventory.inventoryIsEquipped) {
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-							MagicPearl.hasReachedPeakDistance = true;
-							MagicPearl.isMovingForward        = false;
-							MagicPearl.isMovingBackward       = true;
+							MagicPearl.isMovingForward = false;
 						}
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 							BirdWeapon.birdIsAttacking = false;

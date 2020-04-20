@@ -4,14 +4,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.CollisionHandler;
+import handlers.enemies.GiantHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import missions.MissionRawBar;
+import physics.Lighting.Fire;
 import ui.MapUi;
 
 /**
@@ -23,14 +26,14 @@ import ui.MapUi;
 public class MagicPearl extends Weapon {
 
 	public static boolean isAttacking;
-	public static boolean hasReachedPeakDistance;
 	public static boolean isMovingForward;
-	public static boolean isMovingBackward;
 
 	// This hitbox is bigger than the object to ensure player catches it upon return.
 	private Rectangle collisionWithPlayerUponReturnHitbox;
 
 	public static boolean playCollectionSound = false;
+
+	private Fire fire;
 
 	/**
 	 * Constructor.
@@ -48,11 +51,10 @@ public class MagicPearl extends Weapon {
 		rectangle.height                    = height;
 		hasBeenCollected                    = false;
 		isAttacking                         = false;
-		hasReachedPeakDistance              = false;
 		isMovingForward                     = false;
-		isMovingBackward                    = false;
 		dx                                  = 0;
 		dy                                  = 0;
+		fire                                = new Fire(0, 0, 1, 1, null, false);
 	}
 
 	/**
@@ -63,79 +65,55 @@ public class MagicPearl extends Weapon {
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		if (MissionRawBar.rawBarMissionComplete) {
+			GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 			collisionWithPlayerUponReturnHitbox.x = x - 1;
 			collisionWithPlayerUponReturnHitbox.y = y - 1;
 			rectangle.x                           = x;
 			rectangle.y                           = y;
 
 			if (!hasBeenCollected) {
-				CollisionHandler.checkIfPlayerHasCollidedWithMagicPearl(myGame.getGameObject(Player.PLAYER_ONE), this);
+				CollisionHandler.checkIfPlayerHasCollidedWithMagicPearl(player, this);
 			} else {
 				// Player has just thrown pearl.
 				if (isAttacking && isMovingForward) {
 					myGame.gameScreen.enemyHandler.checkProjectileCollision(myGame, this);
 					myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
-					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-					case DIRECTION_RIGHT:
-						dx = 1;
-						dy = 0;
-						x += dx;
-						y += dy;
-						break;
-					case DIRECTION_LEFT:
-						dx = 1;
-						dy = 0;
-						x -= dx;
-						y += dy;
-						break;
-					case DIRECTION_DOWN:
-						dx = 0;
-						dy = 1;
-						x += dx;
-						y += dy;
-						break;
-					case DIRECTION_UP:
-						dx = 0;
-						dy = 1;
-						x += dx;
-						y -= dy;
-						break;
-					}	
-				} else if (hasReachedPeakDistance && isMovingBackward) {
-					// Pearl has reached it's peak and is moving back towards player. 
-					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-					case DIRECTION_RIGHT:
-						dx = 1;
-						dy = 0;
-						x -= dx;
-						y += dy;
-						break;
-					case DIRECTION_LEFT:
-						dx = 1;
-						dy = 0;
-						x += dx;
-						y += dy;
-						break;
-					case DIRECTION_DOWN:
-						dx = 0;
-						dy = 1;
-						x += dx;
-						y -= dy;
-						break;
-					case DIRECTION_UP:
-						dx = 0;
-						dy = 1;
-						x += dx;
-						y += dy;
-						break;
-					}	
-
-					// Pearl has returned to player.  Get it ready to throw again.
-					if (collisionWithPlayerUponReturnHitbox.overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
-						isAttacking      = false;
-						isMovingBackward = false;
-						isMovingForward  = false;
+					for (int i = 0; i < GiantHandler.giants.length; i++) {
+						CollisionHandler.checkIfProjectileHasCollidedWithEnemy(GiantHandler.giants[i], this);
 					}
+					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+					case DIRECTION_RIGHT:
+						dx = 1;
+						dy = 0;
+						x += dx;
+						y += dy;
+						break;
+					case DIRECTION_LEFT:
+						dx = 1;
+						dy = 0;
+						x -= dx;
+						y += dy;
+						break;
+					case DIRECTION_DOWN:
+						dx = 0;
+						dy = 1;
+						x += dx;
+						y += dy;
+						break;
+					case DIRECTION_UP:
+						dx = 0;
+						dy = 1;
+						x += dx;
+						y -= dy;
+						break;
+					}	
+					fire.setX(x);
+					fire.setY(y);
+					fire.updateObject(myGame, mapHandler);
+				} else {
+					x           = player.getX();
+					y           = player.getY();
+					isAttacking = false;
 				}
 			}
 		}
@@ -165,6 +143,10 @@ public class MagicPearl extends Weapon {
 						width, 
 						-height
 						);
+			}
+
+			if (isAttacking) {
+				fire.renderObject(batch, imageLoader);
 			}
 		}
 	}

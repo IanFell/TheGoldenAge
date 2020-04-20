@@ -54,7 +54,7 @@ public class ScreenShake {
 
 		// Only shake when required.
 		if((elapsedScreenShakeTime < durationOfScreenShakeInMilliseconds)) {
-			System.out.println("Screen is shaking!");
+			//System.out.println("Screen is shaking!");
 			// Calculate the shake based on the remaining radius.
 			radius                 *= 0.9f; // Diminish radius each frame
 			randomScreenShakeAngle += (150 + RandomNumberGenerator.random.nextFloat() % 60f);

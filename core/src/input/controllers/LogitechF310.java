@@ -62,9 +62,7 @@ public class LogitechF310 extends ControllerInput {
 		} else {
 			if (Inventory.inventoryIsEquipped) {
 				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-					MagicPearl.hasReachedPeakDistance = true;
-					MagicPearl.isMovingForward        = false;
-					MagicPearl.isMovingBackward       = true;
+					MagicPearl.isMovingForward = false;
 				}
 			}
 		}
