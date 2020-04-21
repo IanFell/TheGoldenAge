@@ -13,6 +13,7 @@ import missions.MissionChests;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import missions.MissionTradinPost;
+import store.Store;
 
 /**
  * 
@@ -29,6 +30,8 @@ public class ObjectiveUi {
 
 	private final int WIDTH  = 5;
 	private final int HEIGHT = 1;
+
+	private Texture objectiveTexture = null;
 
 	/**
 	 * 
@@ -61,15 +64,17 @@ public class ObjectiveUi {
 	 * @return Texture
 	 */
 	private Texture getObjectiveTexture(ImageLoader imageLoader) {
-		Texture objectiveTexture = imageLoader.objectiveCollectLoot;
+		objectiveTexture = imageLoader.objectiveCollectLoot;
 		if (MissionChests.chestMissionIsComplete) {
 
+			// Player is on his way to Trading Post or has hit the Trading Post location marker and needs to enter the Post.
 			objectiveTexture = imageLoader.objectiveTradinPost;
 			if (MissionTradinPost.locationMarkerHasBeenHit) {
-				objectiveTexture = imageLoader.objectiveBuyTheGun;
+				objectiveTexture = imageLoader.objectiveEnterTheTradingPost;
 			}
 
-			if (Gun.hasBeenCollected) {
+			// Player has purchased gun from Trading Post and has left the store.
+			if (Store.gunHasBeenPurchasedAtStore) {
 				objectiveTexture = imageLoader.objectiveRawBar;
 				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
 					objectiveTexture = imageLoader.objectiveStumpHole;
@@ -85,6 +90,20 @@ public class ObjectiveUi {
 		}
 
 		// Bosses.
+		handleBossUiObjectives(imageLoader);
+
+		if (Store.storeShouldBeRendered) {
+			objectiveTexture = imageLoader.objectiveBuyTheGun;
+		}
+
+		return objectiveTexture;
+	}
+
+	/**
+	 * 
+	 * @param ImageLoader imageLoader
+	 */
+	private void handleBossUiObjectives(ImageLoader imageLoader) {
 		if (Gun.hasBeenCollected && !BossLoader.boss[BossHandler.TRADIN_POST].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
@@ -94,8 +113,6 @@ public class ObjectiveUi {
 		if (MissionStumpHole.stumpHoleMissionComplete && !BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
-
-		return objectiveTexture;
 	}
 
 	public void updateObjective() {

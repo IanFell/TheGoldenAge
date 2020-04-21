@@ -225,7 +225,7 @@ public class GameScreen extends Screens {
 
 		structureShadowHandler = new StructureShadowHandler(myGame.imageLoader);
 
-		Input.initializeInventoryUiForInput();
+		Input.initializeInventoryAndPurchasingUiForInput();
 
 		/**
 		 * This overlays the game screen and fades out from black.
@@ -311,7 +311,7 @@ public class GameScreen extends Screens {
 
 		userInterface.updateUserInterface();
 
-		store.updateStore(myGame.getGameObject(Player.PLAYER_ONE));
+		//store.updateStore(myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
@@ -394,13 +394,13 @@ public class GameScreen extends Screens {
 					);
 		}
 
+		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
+
 		userInterface.renderUserInterface(
 				myGame.renderer.batch,  
 				myGame.imageLoader,
 				myGame
 				);
-
-		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
 
 		/**
 		 * The boss' health UI is attached to the boss object.
@@ -423,7 +423,7 @@ public class GameScreen extends Screens {
 
 		mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 
-		if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered) {
+		if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered && !Store.storeShouldBeRendered) {
 			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);

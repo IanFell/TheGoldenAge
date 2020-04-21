@@ -247,7 +247,7 @@ public class Enemy extends GameCharacter {
 		attackBoundary.y = y - 2;
 
 		if (enemiesShouldExecuteAi()) {
-			executeAI(myGame);
+			//executeAI(myGame);
 		}
 
 		CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));

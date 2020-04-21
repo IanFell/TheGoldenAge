@@ -3,7 +3,11 @@ package gameobjects.stationarygameobjects.buildings;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.players.Player;
+import handlers.CollisionHandler;
 import maps.MapHandler;
+import missions.MissionTradinPost;
+import store.Store;
 
 /**
  * 
@@ -37,5 +41,13 @@ public class TradingPost extends Building {
 	 */
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
+		if (MissionTradinPost.locationMarkerHasBeenHit && !Store.gunHasBeenPurchasedAtStore) {
+			CollisionHandler.checkIfPlayerHasCollidedWithStructure(
+					myGame.getGameObject(Player.PLAYER_ONE), 
+					this, 
+					"Trading Post", 
+					myGame
+					);
+		}
 	}
 }

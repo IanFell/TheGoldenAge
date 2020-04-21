@@ -4,11 +4,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
-import controllers.PlayerController;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
-import handlers.CollisionHandler;
 import handlers.collectibles.AmmoHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
@@ -71,10 +69,12 @@ public class Gun extends Weapon {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
 		if (!hasBeenCollected) {
+			// Don't need this, because the player now BUYS the gun from the Trading Post.
+			/*
 			CollisionHandler.checkIfPlayerHasCollidedWithGun(
 					PlayerController.getCurrentPlayer(myGame),
 					this
-					);
+					); */
 		} else {
 			setRotationAngleDependingOnPlayerDirection(myGame.imageLoader);
 		}
@@ -134,6 +134,13 @@ public class Gun extends Weapon {
 			if (TradingPost.hasBeenEntered) {
 				if (!hasBeenCollected) {	
 					if (!MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered) {
+						/**
+						 * This is commented out because now, player has to BUY the gun from the Trading Post, 
+						 * and this is no longer needed.  
+						 * 
+						 * Keep it for now in case we change the gun back to a regular collectible.
+						 */
+						/*
 						batch.draw(
 								textureRegion, 
 								x, 
@@ -145,7 +152,7 @@ public class Gun extends Weapon {
 								value, 
 								value, 
 								rotationAngle
-								);
+								); */
 					}
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped && !Inventory.allInventoryShouldBeRendered) {
 					batch.draw(

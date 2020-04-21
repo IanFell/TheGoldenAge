@@ -22,6 +22,13 @@ public class Input extends ApplicationAdapter {
 	protected static int maxNumberOfInventoryObjects  = 12;
 	protected static Rectangle[] inventoryButtons     = new Rectangle[maxNumberOfInventoryObjects];
 	public static boolean[] inventoryButtonIsPressed  = new boolean[maxNumberOfInventoryObjects];
+	
+	/**
+	 * Purchasing buttons reside here because it is easier to translate mouse to world coordinates.
+	 */
+	protected static int maxNumberOfPurchasingObjects  = 6;
+	protected static Rectangle[] purchasingButtons     = new Rectangle[maxNumberOfInventoryObjects];
+	public static boolean[] purchasingButtonIsPressed  = new boolean[maxNumberOfInventoryObjects];
 
 	protected static double yStartPositionTopRow;
 	protected static double yStartPositionBottomRow;
@@ -32,12 +39,17 @@ public class Input extends ApplicationAdapter {
 	protected static double xStartPositionColumnFive;
 	protected static double xStartPositionColumnSix;
 
-	public static void initializeInventoryUiForInput() {
+	public static void initializeInventoryAndPurchasingUiForInput() {
 		for (int i = 0; i < inventoryButtons.length; i++) {
 			inventoryButtons[i]         = new Rectangle(0, 0, 0, 0);
 			inventoryButtonIsPressed[i] = false;
 			inventoryButtons[i].width   = (float) (Gdx.graphics.getWidth() / 6.9);
 			inventoryButtons[i].height  = (float) (Gdx.graphics.getHeight() / 3.2);
+			
+			purchasingButtons[i]         = new Rectangle(0, 0, 0, 0);
+			purchasingButtonIsPressed[i] = false;
+			purchasingButtons[i].width   = (float) (Gdx.graphics.getWidth() / 6.9);
+			purchasingButtons[i].height  = (float) (Gdx.graphics.getHeight() / 3.2);
 		}
 		yStartPositionTopRow      = Gdx.graphics.getHeight() / 3.07;
 		yStartPositionBottomRow   = Gdx.graphics.getHeight() / 1.595;
@@ -83,6 +95,26 @@ public class Input extends ApplicationAdapter {
 
 		inventoryButtons[11].x      = (float) xStartPositionColumnSix;
 		inventoryButtons[11].y      = (float) yStartPositionBottomRow;
+		
+		//
+		
+		purchasingButtons[0].x      = (float) xStartPositionColumnOne;
+		purchasingButtons[0].y      = (float) yStartPositionBottomRow;
+
+		purchasingButtons[1].x      = (float) xStartPositionColumnTwo;
+		purchasingButtons[1].y      = (float) yStartPositionBottomRow;
+
+		purchasingButtons[2].x      = (float) xStartPositionColumnThree;
+		purchasingButtons[2].y      = (float) yStartPositionBottomRow;
+
+		purchasingButtons[3].x      = (float) xStartPositionColumnFour;
+		purchasingButtons[3].y      = (float) yStartPositionBottomRow;
+
+		purchasingButtons[4].x      = (float) xStartPositionColumnFive;
+		purchasingButtons[4].y      = (float) yStartPositionBottomRow;
+
+		purchasingButtons[5].x      = (float) xStartPositionColumnSix;
+		purchasingButtons[5].y      = (float) yStartPositionBottomRow;
 	}
 
 	/**

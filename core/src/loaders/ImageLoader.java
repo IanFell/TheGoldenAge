@@ -135,6 +135,7 @@ public class ImageLoader {
 	public Texture inventoryNavigationBar;
 	public Texture mapNavigationBar;
 	public Texture inventoryScreen;
+	public Texture storeUi;
 	public Texture inventoryLabel;
 	public Texture locationSkull;
 	public Texture attackBird;
@@ -146,6 +147,7 @@ public class ImageLoader {
 	public Texture objectiveCollectFeathers;
 	public Texture objectiveBuyTheGun;
 	public Texture objectiveKillTheBoss;
+	public Texture objectiveEnterTheTradingPost;
 
 	// Player name UI labels.
 	public Texture jollyRogerUiNameLabel;
@@ -300,20 +302,22 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
-		mapNavigationBar         = new Texture(Gdx.files.internal("artwork/ui/UiMap.png"));
-		inventoryNavigationBar   = new Texture(Gdx.files.internal("artwork/ui/UiInventory.png"));
-		inventoryScreen          = new Texture(Gdx.files.internal("artwork/ui/InventoryScreen.png"));
-		inventoryLabel           = new Texture(Gdx.files.internal("artwork/ui/InventoryLabel.png"));
-		locationSkull            = new Texture(Gdx.files.internal("artwork/ui/Skull.png"));
-		attackBird               = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
-		objectiveRawBar          = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
-		objectiveStumpHole       = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
-		objectiveCollectLoot     = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
-		objectiveTradinPost      = new Texture(Gdx.files.internal("artwork/ui/objectives/TradinPost.png"));
-		objectiveCollectOysters  = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectOysters.png"));
-		objectiveCollectFeathers = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectFeathers.png"));
-		objectiveBuyTheGun       = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
-		objectiveKillTheBoss     = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
+		mapNavigationBar             = new Texture(Gdx.files.internal("artwork/ui/UiMap.png"));
+		inventoryNavigationBar       = new Texture(Gdx.files.internal("artwork/ui/UiInventory.png"));
+		inventoryScreen              = new Texture(Gdx.files.internal("artwork/ui/InventoryScreen.png"));
+		storeUi                      = new Texture(Gdx.files.internal("artwork/ui/StoreUi.png"));
+		inventoryLabel               = new Texture(Gdx.files.internal("artwork/ui/InventoryLabel.png"));
+		locationSkull                = new Texture(Gdx.files.internal("artwork/ui/Skull.png"));
+		attackBird                   = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
+		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
+		objectiveStumpHole           = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
+		objectiveCollectLoot         = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
+		objectiveTradinPost          = new Texture(Gdx.files.internal("artwork/ui/objectives/TradinPost.png"));
+		objectiveCollectOysters      = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectOysters.png"));
+		objectiveCollectFeathers     = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectFeathers.png"));
+		objectiveBuyTheGun           = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
+		objectiveKillTheBoss         = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
+		objectiveEnterTheTradingPost = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterTheTradinPost.png"));
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
@@ -491,6 +495,7 @@ public class ImageLoader {
 		mapNavigationBar.dispose();
 		inventoryNavigationBar.dispose();
 		inventoryScreen.dispose();
+		storeUi.dispose();
 		inventoryLabel.dispose();
 		locationSkull.dispose();
 		attackBird.dispose();
@@ -502,6 +507,7 @@ public class ImageLoader {
 		objectiveCollectFeathers.dispose();
 		objectiveBuyTheGun.dispose();
 		objectiveKillTheBoss.dispose();
+		objectiveEnterTheTradingPost.dispose();
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel.dispose();

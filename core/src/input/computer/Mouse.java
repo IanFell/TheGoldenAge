@@ -2,17 +2,20 @@ package input.computer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.mygame.MyGame;
 
 import controllers.GameStateController;
 import controllers.PlayerController;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
+import loaders.GameObjectLoader;
 import missions.MissionRawBar;
 import screens.Screens;
 import store.Store;
@@ -55,6 +58,43 @@ public class Mouse extends ComputerInput {
 			}
 			break;
 		case Screens.GAME_SCREEN:
+			if (Store.storeShouldBeRendered) {
+				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+					for (int i = 0; i < purchasingButtons.length; i++) {
+						if (purchasingButtons[0].contains(Gdx.input.getX(), Gdx.input.getY())) {
+							myGame.getGameObject(Player.PLAYER_ONE).setHealth(myGame.getGameObject(Player.PLAYER_ONE).getHealth() + 1);
+							Store.storeShouldBeRendered = false;
+						}
+						else if (purchasingButtons[1].contains(Gdx.input.getX(), Gdx.input.getY())) {
+							RumHandler.rumCount++;
+							Store.storeShouldBeRendered = false;
+						}
+						else if (purchasingButtons[2].contains(Gdx.input.getX(), Gdx.input.getY())) {
+							if (player.getPlayerLoot() >= Gun.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) {
+								GameObject gun = myGame.getGameScreen().gun;
+								((Player) player).getInventory().addObjectToInventory(gun);
+								Inventory.inventoryHasStartedCollection = true;
+								Gun.hasBeenCollected                    = true;
+								Gun.playCollectionSound                 = true;
+								GameObjectLoader.gameObjectList.add(gun);
+
+								// Remove loot (player has bought gun).
+								player.updatePlayerLoot(-Gun.LOOT_NEEDED_TO_BUY_GUN);
+
+								// Close the store.
+								Store.gunHasBeenPurchasedAtStore = true;
+								Store.storeShouldBeRendered      = false;
+							}
+
+						}
+					}
+				}
+			} else {
+				Store.mouseIsClickingOnPurchasingObject = false;
+				for (int i = 0; i < purchasingButtonIsPressed.length; i++) {
+					purchasingButtonIsPressed[i] = false;
+				}
+			}
 			if (Inventory.allInventoryShouldBeRendered) {
 				// Inventory menu buttons.
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {

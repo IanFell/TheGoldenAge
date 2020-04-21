@@ -18,6 +18,7 @@ import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.GameScreen;
 import screens.Screens;
+import store.Store;
 import ui.MapUi;
 
 /**
@@ -194,6 +195,10 @@ public class Keyboard extends ComputerInput {
 					RumHandler.rumCount--;
 					Player.invincibilityTimer = 0;
 				}
+			}
+
+			if (Gdx.input.isKeyPressed(Input.Keys.N)) {
+				Store.storeShouldBeRendered = !Store.storeShouldBeRendered;
 			}
 
 			if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {

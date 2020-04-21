@@ -28,6 +28,7 @@ import maps.MapHandler;
 import missions.MissionChests;
 import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionStumpHole;
+import store.Store;
 import tiles.Tile;
 import ui.LocationMarker;
 
@@ -178,7 +179,7 @@ public class CollisionHandler {
 				// Start the mission.
 				//MissionRawBar.startMission = true;
 			} else if (structureName.equalsIgnoreCase("Trading Post")) {
-				//TradingPost.hasBeenEntered = true;
+				Store.storeShouldBeRendered = true;
 			}
 			/*
 			if (structureName.equalsIgnoreCase("Tee Pee")) {
@@ -228,6 +229,9 @@ public class CollisionHandler {
 	}
 
 	/**
+	 * Currently this method is not used, because player must BUY the gun from the Trading Post.
+	 * Player cannot just pick the gun up as a collectible.
+	 * Keep this method for now, just in case this is changed in the future.
 	 * 
 	 * @param GameObject player
 	 * @param GameObject gun
