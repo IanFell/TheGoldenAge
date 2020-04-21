@@ -2,6 +2,7 @@ package input.computer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.mygame.MyGame;
 
 import controllers.GameStateController;
@@ -14,6 +15,7 @@ import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import missions.MissionRawBar;
 import screens.Screens;
+import store.Store;
 
 /**
  * Handles mouse input.

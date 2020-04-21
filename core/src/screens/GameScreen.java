@@ -35,6 +35,7 @@ import physics.Lighting.LightingHandler;
 import physics.Lighting.StructureShadowHandler;
 import physics.Weather.LightningBoltHandler;
 import physics.Weather.WeatherHandler;
+import store.Store;
 import ui.MapUi;
 import ui.UserInterface;
 
@@ -125,6 +126,8 @@ public class GameScreen extends Screens {
 	private StructureShadowHandler structureShadowHandler;
 
 	private CutSceneIntro cutSceneIntro;
+
+	private Store store = new Store();
 
 	/**
 	 * 
@@ -307,6 +310,8 @@ public class GameScreen extends Screens {
 		birdWeapon.updateObject(myGame, mapHandler);
 
 		userInterface.updateUserInterface();
+
+		store.updateStore(myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
@@ -394,6 +399,8 @@ public class GameScreen extends Screens {
 				myGame.imageLoader,
 				myGame
 				);
+
+		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
 
 		/**
 		 * The boss' health UI is attached to the boss object.
