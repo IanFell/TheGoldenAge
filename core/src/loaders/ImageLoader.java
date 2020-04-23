@@ -139,6 +139,8 @@ public class ImageLoader {
 	public Texture inventoryLabel;
 	public Texture locationSkull;
 	public Texture attackBird;
+
+	// Objective UI objects.
 	public Texture objectiveRawBar;
 	public Texture objectiveStumpHole;
 	public Texture objectiveTradinPost;
@@ -148,6 +150,7 @@ public class ImageLoader {
 	public Texture objectiveBuyTheGun;
 	public Texture objectiveKillTheBoss;
 	public Texture objectiveEnterTheTradingPost;
+	public Texture objectiveEnterStore;
 
 	// Player name UI labels.
 	public Texture jollyRogerUiNameLabel;
@@ -309,6 +312,8 @@ public class ImageLoader {
 		inventoryLabel               = new Texture(Gdx.files.internal("artwork/ui/InventoryLabel.png"));
 		locationSkull                = new Texture(Gdx.files.internal("artwork/ui/Skull.png"));
 		attackBird                   = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
+
+		// Objective UI objects.
 		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
 		objectiveStumpHole           = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
 		objectiveCollectLoot         = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
@@ -318,6 +323,7 @@ public class ImageLoader {
 		objectiveBuyTheGun           = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
 		objectiveKillTheBoss         = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
 		objectiveEnterTheTradingPost = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterTheTradinPost.png"));
+		objectiveEnterStore          = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterStore.png"));
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
@@ -499,6 +505,8 @@ public class ImageLoader {
 		inventoryLabel.dispose();
 		locationSkull.dispose();
 		attackBird.dispose();
+
+		// Objective UI objects.
 		objectiveRawBar.dispose();
 		objectiveStumpHole.dispose();
 		objectiveCollectLoot.dispose();
@@ -508,6 +516,7 @@ public class ImageLoader {
 		objectiveBuyTheGun.dispose();
 		objectiveKillTheBoss.dispose();
 		objectiveEnterTheTradingPost.dispose();
+		objectiveEnterStore.dispose();
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel.dispose();

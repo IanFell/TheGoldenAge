@@ -20,6 +20,7 @@ import maps.MapHandler;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import physics.Lighting.Explosion;
+import store.Store;
 import ui.MapUi;
 
 /**
@@ -247,7 +248,7 @@ public class Enemy extends GameCharacter {
 		attackBoundary.y = y - 2;
 
 		if (enemiesShouldExecuteAi()) {
-			//executeAI(myGame);
+			executeAI(myGame);
 		}
 
 		CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
@@ -264,6 +265,7 @@ public class Enemy extends GameCharacter {
 		if (
 				!dead && 
 				!Inventory.allInventoryShouldBeRendered &&
+				!Store.shouldDisplayEnterStoreMessage &&
 				!MapUi.mapShouldBeRendered &&
 				!MissionRawBar.phasesAreInProgress &&
 				!MissionStumpHole.missionIsActive

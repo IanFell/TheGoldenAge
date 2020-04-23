@@ -3,7 +3,10 @@ package gameobjects.stationarygameobjects.buildings;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
+import handlers.CollisionHandler;
 import maps.MapHandler;
+import towns.Apalachicola;
 
 /**
  * 
@@ -11,6 +14,8 @@ import maps.MapHandler;
  *
  */
 public class RawBar extends Building {
+
+	private Apalachicola apalachicola = new Apalachicola();
 
 	/**
 	 * Constructor.
@@ -34,12 +39,14 @@ public class RawBar extends Building {
 	 */
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
-		/*
-		CollisionHandler.checkIfPlayerHasCollidedWithStructure(
-				myGame.getGameObject(GameObject.PLAYER_ONE),
-				this,
-				"Raw Bar",
-				myGame
-				); */
+		apalachicola.updateTown(myGame);
+		if (apalachicola.isInTown()) {
+			CollisionHandler.checkIfPlayerHasCollidedWithStructure(
+					myGame.getGameObject(GameObject.PLAYER_ONE),
+					this,
+					"Raw Bar",
+					myGame
+					); 
+		}
 	}
 }

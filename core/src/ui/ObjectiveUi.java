@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
 import handlers.enemies.BossHandler;
 import loaders.ImageLoader;
@@ -66,7 +67,6 @@ public class ObjectiveUi {
 	private Texture getObjectiveTexture(ImageLoader imageLoader) {
 		objectiveTexture = imageLoader.objectiveCollectLoot;
 		if (MissionChests.chestMissionIsComplete) {
-
 			// Player is on his way to Trading Post or has hit the Trading Post location marker and needs to enter the Post.
 			objectiveTexture = imageLoader.objectiveTradinPost;
 			if (MissionTradinPost.locationMarkerHasBeenHit) {
@@ -92,7 +92,8 @@ public class ObjectiveUi {
 		// Bosses.
 		handleBossUiObjectives(imageLoader);
 
-		if (Store.storeShouldBeRendered) {
+		// Player is inside Trading Post and needs to buy the gun.
+		if (Store.playerWantsToEnterStore && TradingPost.hasBeenEntered && !Store.gunHasBeenPurchasedAtStore) {
 			objectiveTexture = imageLoader.objectiveBuyTheGun;
 		}
 

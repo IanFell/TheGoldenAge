@@ -62,7 +62,7 @@ public class Mouse extends ComputerInput {
 				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
 					for (int i = 0; i < purchasingButtons.length; i++) {
 						if (purchasingButtons[0].contains(Gdx.input.getX(), Gdx.input.getY())) {
-							myGame.getGameObject(Player.PLAYER_ONE).setHealth(myGame.getGameObject(Player.PLAYER_ONE).getHealth() + 1);
+							player.setHealth(player.getHealth() + 1);
 							Store.storeShouldBeRendered = false;
 						}
 						else if (purchasingButtons[1].contains(Gdx.input.getX(), Gdx.input.getY())) {
@@ -82,10 +82,11 @@ public class Mouse extends ComputerInput {
 								player.updatePlayerLoot(-Gun.LOOT_NEEDED_TO_BUY_GUN);
 
 								// Close the store.
-								Store.gunHasBeenPurchasedAtStore = true;
-								Store.storeShouldBeRendered      = false;
+								Store.gunHasBeenPurchasedAtStore     = true;
+								Store.storeShouldBeRendered          = false;
+								Store.playerWantsToEnterStore        = false;
+								Store.shouldDisplayEnterStoreMessage = false;
 							}
-
 						}
 					}
 				}

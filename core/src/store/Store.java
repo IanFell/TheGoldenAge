@@ -17,20 +17,16 @@ public class Store {
 	private final int SALE_RUM    = 1;
 	private final int SALE_GUN    = 2;
 
-
 	private int[] saleItems = {SALE_HEARTS, SALE_RUM, SALE_GUN};
 
+	// Use these to make the store work.
 	public static boolean mouseIsClickingOnPurchasingObject = false;
-
-	public static boolean storeShouldBeRendered = false;
-
-	public static boolean gunHasBeenPurchasedAtStore = false;
-
-	/**
-	 * 
-	 * @param GameObject player
-	 */
-	//public void updateStore(GameObject player) {}
+	public static boolean storeShouldBeRendered             = false;
+	public static boolean gunHasBeenPurchasedAtStore        = false;
+	public static boolean playerWantsToEnterStore           = false;
+	// False for game to work.  True to debug.
+	public static boolean storeIsUnlocked                   = false; 
+	public static boolean shouldDisplayEnterStoreMessage    = false;
 
 	/**
 	 * 
@@ -39,7 +35,21 @@ public class Store {
 	 * @param GameObject  player
 	 */
 	public void renderStore(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
-		if (storeShouldBeRendered) {
+		if (playerWantsToEnterStore) {
+			storeShouldBeRendered = true;
+		}
+
+		if (shouldDisplayEnterStoreMessage) {
+			batch.draw(
+					imageLoader.objectiveEnterStore, 
+					player.getX() - 5, 
+					player.getY(), 
+					10, 
+					-2
+					);
+		}
+
+		if (storeShouldBeRendered && playerWantsToEnterStore) {
 			batch.draw(
 					imageLoader.storeUi, 
 					player.getX() - 13.7f, 

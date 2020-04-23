@@ -8,6 +8,7 @@ import handlers.CollisionHandler;
 import maps.MapHandler;
 import missions.MissionTradinPost;
 import store.Store;
+import towns.CapeSanBlas;
 
 /**
  * 
@@ -17,6 +18,8 @@ import store.Store;
 public class TradingPost extends Building {
 
 	public static boolean hasBeenEntered;
+
+	private CapeSanBlas capeSanBlas = new CapeSanBlas();
 
 	/**
 	 * Constructor.
@@ -42,12 +45,15 @@ public class TradingPost extends Building {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
 		if (MissionTradinPost.locationMarkerHasBeenHit && !Store.gunHasBeenPurchasedAtStore) {
-			CollisionHandler.checkIfPlayerHasCollidedWithStructure(
-					myGame.getGameObject(Player.PLAYER_ONE), 
-					this, 
-					"Trading Post", 
-					myGame
-					);
+			capeSanBlas.updateTown(myGame);
+			if (capeSanBlas.isInTown()) {
+				CollisionHandler.checkIfPlayerHasCollidedWithStructure(
+						myGame.getGameObject(Player.PLAYER_ONE), 
+						this, 
+						"Trading Post", 
+						myGame
+						);
+			}
 		}
 	}
 }

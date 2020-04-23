@@ -176,15 +176,29 @@ public class CollisionHandler {
 			) {
 		if (structure.rectangle.overlaps(player.rectangle)) {
 			if (structureName.equalsIgnoreCase("Raw Bar")) {
-				// Start the mission.
-				//MissionRawBar.startMission = true;
+				setStoreRenderState();
 			} else if (structureName.equalsIgnoreCase("Trading Post")) {
-				Store.storeShouldBeRendered = true;
+				/**
+				 * Trading Post is where player is introduced to a "store" and must buy something to proceed.
+				 * That is why this code differs from the other structure cases.
+				 */
+				if (Store.storeIsUnlocked) {
+					Store.storeShouldBeRendered = true;
+				} else {
+					Store.storeIsUnlocked = true;
+				}
+			} else if (structureName.equalsIgnoreCase("Piggly Wiggly")) {
+				setStoreRenderState();
 			}
-			/*
-			if (structureName.equalsIgnoreCase("Tee Pee")) {
-				new TeePeeScreen(myGame);
-			} */
+			Store.shouldDisplayEnterStoreMessage = true;
+		} else {
+			Store.shouldDisplayEnterStoreMessage = false;
+		}
+	}
+
+	private static void setStoreRenderState() {
+		if (Store.storeIsUnlocked) {
+			Store.storeShouldBeRendered = true;
 		}
 	}
 

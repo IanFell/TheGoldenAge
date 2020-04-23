@@ -200,6 +200,12 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyPressed(Input.Keys.N)) {
 				Store.storeShouldBeRendered = !Store.storeShouldBeRendered;
 			}
+			
+			if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+				if (Store.storeIsUnlocked) {
+					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+				}
+			}
 
 			if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
 				System.exit(0);

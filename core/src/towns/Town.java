@@ -25,7 +25,7 @@ public class Town {
 	public static final int CAPE_SAN_BLAS = 6; 
 	public static final int STUMP_HOLE    = 7;
 
-	public boolean isInTown;
+	private boolean isInTown;
 
 	protected Rectangle townBorder = new Rectangle();
 

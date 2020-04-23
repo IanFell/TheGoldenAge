@@ -1,6 +1,12 @@
 package gameobjects.stationarygameobjects.buildings;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.mygame.MyGame;
+
+import gameobjects.GameObject;
+import handlers.CollisionHandler;
+import maps.MapHandler;
+import towns.PortStJoe;
 
 /**
  * 
@@ -8,6 +14,8 @@ import com.badlogic.gdx.graphics.Texture;
  *
  */
 public class PigglyWiggly extends Building {
+
+	private PortStJoe portStJoe = new PortStJoe();
 
 	/**
 	 * Constructor.
@@ -20,5 +28,25 @@ public class PigglyWiggly extends Building {
 	 */
 	public PigglyWiggly(int x, int y, int width, int height, Texture texture) {
 		super(x, y, width, height, texture);
+		rectangle.width  = width;
+		rectangle.height = height;
+	}
+
+	/**
+	 * 
+	 * @param MyGame     myGame
+	 * @param MapHandler mapHandler
+	 */
+	public void updateObject(MyGame myGame, MapHandler mapHandler) {
+		super.updateObject(myGame, mapHandler);
+		portStJoe.updateTown(myGame);
+		if (portStJoe.isInTown()) {
+			CollisionHandler.checkIfPlayerHasCollidedWithStructure(
+					myGame.getGameObject(GameObject.PLAYER_ONE),
+					this,
+					"Piggly Wiggly",
+					myGame
+					); 
+		}
 	}
 }
