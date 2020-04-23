@@ -261,7 +261,7 @@ public class Enemy extends GameCharacter {
 	 * 
 	 * @return boolean
 	 */
-	private boolean enemiesShouldExecuteAi() {
+	public boolean enemiesShouldExecuteAi() {
 		if (
 				!dead && 
 				!Inventory.allInventoryShouldBeRendered &&

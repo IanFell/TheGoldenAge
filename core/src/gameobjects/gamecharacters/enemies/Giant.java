@@ -135,38 +135,40 @@ public class Giant extends Enemy {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		rectangle.x = x;
-		rectangle.y = y - height;
+		if (enemiesShouldExecuteAi()) {
+			rectangle.x = x;
+			rectangle.y = y - height;
 
-		landingSoundBoundary.x = x - 10;
-		landingSoundBoundary.y = y - 10;
+			landingSoundBoundary.x = x - 10;
+			landingSoundBoundary.y = y - 10;
 
-		handleJumping(myGame);
+			handleJumping(myGame);
 
-		// Handle direction change.
-		if (x < LEFT_BOUNDARY) {
-			dx = -dx;
-		} else if (x > RIGHT_BOUNDARY) {
-			dx = -dx;
+			// Handle direction change.
+			if (x < LEFT_BOUNDARY) {
+				dx = -dx;
+			} else if (x > RIGHT_BOUNDARY) {
+				dx = -dx;
+			}
+
+			direction = DIRECTION_RIGHT;
+			if (dx < 0) {
+				direction = DIRECTION_LEFT;
+			}
+
+			if (!dead) {
+				CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
+			}
+
+			handleDeathExplosion(GIANT_EXPLOSION_SIZE);
+
+			// If player is within bounds and the giant lands a jump, shake the screen.
+			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
+				GameScreen.screenShake.shake(0.3f, 3);
+			} 
+
+			respawn();
 		}
-
-		direction = DIRECTION_RIGHT;
-		if (dx < 0) {
-			direction = DIRECTION_LEFT;
-		}
-
-		if (!dead) {
-			CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
-		}
-
-		handleDeathExplosion(GIANT_EXPLOSION_SIZE);
-
-		// If player is within bounds and the giant lands a jump, shake the screen.
-		if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
-			GameScreen.screenShake.shake(0.3f, 3);
-		} 
-
-		respawn();
 	}
 
 	private void respawn() {
