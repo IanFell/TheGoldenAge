@@ -115,6 +115,13 @@ public class Store extends TextBasedUiParent {
 				itemSize, 
 				-itemSize
 				);
+		batch.draw(
+				imageLoader.oyster, 
+				xPos + 1.7f, 
+				yPos, 
+				itemSize, 
+				-itemSize
+				);
 	}
 
 	/**

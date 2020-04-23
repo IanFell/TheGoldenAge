@@ -176,7 +176,8 @@ public class ImageLoader {
 	public Texture bossRight02;
 
 	// Number objects.
-	public Texture[] number = new Texture[10];
+	public Texture[] numberBlack = new Texture[10];
+	public Texture[] numberWhite = new Texture[10];
 
 	public void init() {
 
@@ -359,16 +360,27 @@ public class ImageLoader {
 		bossRight02 = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/02.png"));
 
 		// Number objects.
-		number[0] = new Texture(Gdx.files.internal("artwork/numbers/0.png"));
-		number[1] = new Texture(Gdx.files.internal("artwork/numbers/1.png"));
-		number[2] = new Texture(Gdx.files.internal("artwork/numbers/2.png"));
-		number[3] = new Texture(Gdx.files.internal("artwork/numbers/3.png"));
-		number[4] = new Texture(Gdx.files.internal("artwork/numbers/4.png"));
-		number[5] = new Texture(Gdx.files.internal("artwork/numbers/5.png"));
-		number[6] = new Texture(Gdx.files.internal("artwork/numbers/6.png"));
-		number[7] = new Texture(Gdx.files.internal("artwork/numbers/7.png"));
-		number[8] = new Texture(Gdx.files.internal("artwork/numbers/8.png"));
-		number[9] = new Texture(Gdx.files.internal("artwork/numbers/9.png"));
+		numberBlack[0] = new Texture(Gdx.files.internal("artwork/numbers/black/0.png"));
+		numberBlack[1] = new Texture(Gdx.files.internal("artwork/numbers/black/1.png"));
+		numberBlack[2] = new Texture(Gdx.files.internal("artwork/numbers/black/2.png"));
+		numberBlack[3] = new Texture(Gdx.files.internal("artwork/numbers/black/3.png"));
+		numberBlack[4] = new Texture(Gdx.files.internal("artwork/numbers/black/4.png"));
+		numberBlack[5] = new Texture(Gdx.files.internal("artwork/numbers/black/5.png"));
+		numberBlack[6] = new Texture(Gdx.files.internal("artwork/numbers/black/6.png"));
+		numberBlack[7] = new Texture(Gdx.files.internal("artwork/numbers/black/7.png"));
+		numberBlack[8] = new Texture(Gdx.files.internal("artwork/numbers/black/8.png"));
+		numberBlack[9] = new Texture(Gdx.files.internal("artwork/numbers/black/9.png"));
+
+		numberWhite[0] = new Texture(Gdx.files.internal("artwork/numbers/white/0.png"));
+		numberWhite[1] = new Texture(Gdx.files.internal("artwork/numbers/white/1.png"));
+		numberWhite[2] = new Texture(Gdx.files.internal("artwork/numbers/white/2.png"));
+		numberWhite[3] = new Texture(Gdx.files.internal("artwork/numbers/white/3.png"));
+		numberWhite[4] = new Texture(Gdx.files.internal("artwork/numbers/white/4.png"));
+		numberWhite[5] = new Texture(Gdx.files.internal("artwork/numbers/white/5.png"));
+		numberWhite[6] = new Texture(Gdx.files.internal("artwork/numbers/white/6.png"));
+		numberWhite[7] = new Texture(Gdx.files.internal("artwork/numbers/white/7.png"));
+		numberWhite[8] = new Texture(Gdx.files.internal("artwork/numbers/white/8.png"));
+		numberWhite[9] = new Texture(Gdx.files.internal("artwork/numbers/white/9.png"));
 	}
 
 	public void dispose() {
@@ -542,8 +554,9 @@ public class ImageLoader {
 		bossRight02.dispose();
 
 		// Number objects.
-		for (int i = 0; i < number.length; i++) {
-			number[i].dispose();
+		for (int i = 0; i < numberBlack.length; i++) {
+			numberBlack[i].dispose();
+			numberWhite[i].dispose();
 		}
 	}
 }

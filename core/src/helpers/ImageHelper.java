@@ -34,7 +34,7 @@ public class ImageHelper {
 	 * @return texture
 	 */
 	public static Texture getConvertedTextureForDigit(int number, ImageLoader imageLoader, int digit) {
-		Texture texture   = imageLoader.number[0];
+		Texture texture   = imageLoader.numberBlack[0];
 		int digitToRender = 0;
 		// If number is bigger than 10, split the digits up so we can handle them seperately.
 		if (number > 9) {
@@ -60,10 +60,10 @@ public class ImageHelper {
 	 * @return texture
 	 */
 	private static Texture setTextureNumber(int digit, ImageLoader imageLoader) {
-		Texture texture = imageLoader.number[0];
+		Texture texture = imageLoader.numberBlack[0];
 		for (int i = 0; i < 10; i++) {
 			if (digit == i) {
-				texture = imageLoader.number[digit];
+				texture = imageLoader.numberBlack[digit];
 			}
 		}
 		return texture;

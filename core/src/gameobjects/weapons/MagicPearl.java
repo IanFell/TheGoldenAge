@@ -72,7 +72,7 @@ public class MagicPearl extends Weapon {
 			rectangle.y                           = y;
 
 			if (!hasBeenCollected) {
-				CollisionHandler.checkIfPlayerHasCollidedWithMagicPearl(player, this);
+				//CollisionHandler.checkIfPlayerHasCollidedWithMagicPearl(player, this);
 			} else {
 				// Player has just thrown pearl.
 				if (isAttacking && isMovingForward) {

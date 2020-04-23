@@ -421,7 +421,7 @@ public class GameScreen extends Screens {
 
 		mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 
-		if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered && !Store.storeShouldBeRendered) {
+		if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered /*&& !Store.storeShouldBeRendered*/) {
 			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
