@@ -151,6 +151,8 @@ public class ImageLoader {
 	public Texture objectiveKillTheBoss;
 	public Texture objectiveEnterTheTradingPost;
 	public Texture objectiveEnterStore;
+	public Texture objectiveExitStore;
+	public Texture objectiveNotEnoughLoot;
 
 	// Player name UI labels.
 	public Texture jollyRogerUiNameLabel;
@@ -325,6 +327,8 @@ public class ImageLoader {
 		objectiveKillTheBoss         = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
 		objectiveEnterTheTradingPost = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterTheTradinPost.png"));
 		objectiveEnterStore          = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterStore.png"));
+		objectiveExitStore           = new Texture(Gdx.files.internal("artwork/ui/objectives/ExitStore.png"));
+		objectiveNotEnoughLoot       = new Texture(Gdx.files.internal("artwork/ui/objectives/NotEnoughLoot.png"));
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
@@ -529,6 +533,8 @@ public class ImageLoader {
 		objectiveKillTheBoss.dispose();
 		objectiveEnterTheTradingPost.dispose();
 		objectiveEnterStore.dispose();
+		objectiveExitStore.dispose();
+		objectiveNotEnoughLoot.dispose();
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel.dispose();

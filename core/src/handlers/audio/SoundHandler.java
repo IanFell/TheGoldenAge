@@ -27,6 +27,7 @@ import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import mixer.Mixer;
 import screens.Screens;
+import store.Store;
 import ui.LocationMarker;
 
 /**
@@ -172,6 +173,11 @@ public class SoundHandler {
 			if (LocationMarker.playBeepSound) {
 				soundLoader.locatorBeep.play(Mixer.LOCATION_MARKER_BEEP_VOLUME);
 				LocationMarker.playBeepSound = false;
+			}
+
+			if (Store.playSound) {
+				soundLoader.register.play(Mixer.REGISTER_VOLUME);
+				Store.playSound = false;
 			}
 		}
 	}

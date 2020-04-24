@@ -22,8 +22,6 @@ import ui.MapUi;
  */
 public class Gun extends Weapon {
 
-	public static final int LOOT_NEEDED_TO_BUY_GUN = 1;
-
 	public static boolean hasBeenCollected;
 
 	public static boolean shouldNotRender = true;

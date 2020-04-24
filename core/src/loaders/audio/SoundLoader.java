@@ -32,6 +32,7 @@ public class SoundLoader {
 	public Sound quickSand;
 	public Sound bossGrunt;
 	public Sound bossLaugh;
+	public Sound register;
 
 	public void init() {
 		heartSound          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Heart.wav"));
@@ -55,6 +56,7 @@ public class SoundLoader {
 		quickSand           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/QuickSand.wav"));
 		bossGrunt           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/grunt.wav"));
 		bossLaugh           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/laugh.wav"));
+		register            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/register.wav"));
 	}
 
 	public void dispose() {
@@ -79,5 +81,6 @@ public class SoundLoader {
 		quickSand.dispose();
 		bossGrunt.dispose();
 		bossLaugh.dispose();
+		register.dispose();
 	}
 }

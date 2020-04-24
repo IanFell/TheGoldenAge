@@ -26,7 +26,7 @@ public class Input extends ApplicationAdapter {
 	/**
 	 * Purchasing buttons reside here because it is easier to translate mouse to world coordinates.
 	 */
-	protected static int maxNumberOfPurchasingObjects  = 3;
+	protected static int maxNumberOfPurchasingObjects  = 6;
 	protected static Rectangle[] purchasingButtons     = new Rectangle[maxNumberOfPurchasingObjects];
 	public static boolean[] purchasingButtonIsPressed  = new boolean[maxNumberOfPurchasingObjects];
 
@@ -108,14 +108,14 @@ public class Input extends ApplicationAdapter {
 		purchasingButtons[2].x      = (float) xStartPositionColumnThree;
 		purchasingButtons[2].y      = (float) yStartPositionBottomRow;
 
-		/*purchasingButtons[3].x      = (float) xStartPositionColumnFour;
+		purchasingButtons[3].x      = (float) xStartPositionColumnFour;
 		purchasingButtons[3].y      = (float) yStartPositionBottomRow;
 
 		purchasingButtons[4].x      = (float) xStartPositionColumnFive;
 		purchasingButtons[4].y      = (float) yStartPositionBottomRow;
 
 		purchasingButtons[5].x      = (float) xStartPositionColumnSix;
-		purchasingButtons[5].y      = (float) yStartPositionBottomRow;*/
+		purchasingButtons[5].y      = (float) yStartPositionBottomRow;
 	}
 
 	/**

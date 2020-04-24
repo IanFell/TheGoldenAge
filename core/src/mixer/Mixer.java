@@ -16,6 +16,9 @@ public class Mixer {
 	public static final float MAX_VOLUME            = 1.0f;
 
 	public static final float CLICK_VOLUME = MAX_VOLUME;
+	
+	// When player buys something from the store.
+	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
 
 	// Music.
 	public final static float AMBIENT_MUSIC_VOLUME     = QUARTER_VOLUME;

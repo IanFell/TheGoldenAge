@@ -21,6 +21,7 @@ import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
+import handlers.collectibles.CollectibleHandler;
 import handlers.collectibles.RumHandler;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
@@ -252,7 +253,7 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerHasCollidedWithGun(GameObject player, GameObject gun) {
 		// Only collect gun if we have enough loot.
-		if (player.getPlayerLoot() >= Gun.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) {
+		if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) {
 			if (gun.rectangle.overlaps(player.rectangle)) {
 				((Player) player).getInventory().addObjectToInventory(gun);
 				Inventory.inventoryHasStartedCollection = true;
@@ -260,7 +261,7 @@ public class CollisionHandler {
 				Gun.playCollectionSound                 = true;
 				GameObjectLoader.gameObjectList.add(gun);
 				// Remove loot (player has bought gun).
-				player.updatePlayerLoot(-Gun.LOOT_NEEDED_TO_BUY_GUN);
+				player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
 			}
 		}
 	}

@@ -23,8 +23,10 @@ public class Store extends TextBasedUiParent {
 	private final int SALE_HEARTS = 0;
 	private final int SALE_RUM    = 1;
 	private final int SALE_GUN    = 2;
+	private final int SALE_PEARL  = 3;
+	private final int SALE_AMMO   = 4;
 
-	private int[] saleItems = {SALE_HEARTS, SALE_RUM, SALE_GUN};
+	private int[] saleItems = {SALE_HEARTS, SALE_RUM, SALE_GUN, SALE_PEARL, SALE_AMMO};
 
 	// Use these to make the store work.
 	public static boolean mouseIsClickingOnPurchasingObject = false;
@@ -32,11 +34,18 @@ public class Store extends TextBasedUiParent {
 	public static boolean gunHasBeenPurchasedAtStore        = false;
 	public static boolean playerWantsToEnterStore           = false;
 	// False for game to work.  True to debug.
-	public static boolean storeIsUnlocked                   = true; 
+	public static boolean storeIsUnlocked                   = false; 
 	public static boolean shouldDisplayEnterStoreMessage    = false;
 
-	private int itemSize = 1;
-	private int coinSize = 1;
+	private int itemSize   = 1;
+	private int coinSize   = 1;
+	private int numberSize = 1;
+
+	public static boolean playSound = false;
+
+	public static boolean playerIsShortOnLootMessageShouldRender = false;
+	private int shortOnLootTimer                                 = 0;
+	private final int SHORT_ON_LOOT_MAX_DISPLAY_VALUE            = 30;
 
 	/**
 	 * Constructor.
@@ -44,6 +53,16 @@ public class Store extends TextBasedUiParent {
 	public Store() {
 		textureAtlas = new TextureAtlas(Gdx.files.internal("artwork/ui/loot.atlas"));
 		animation    = new Animation <TextureRegion> (AnimationHandler.ANIMATION_SPEED_LOOT, textureAtlas.getRegions());
+	}
+
+	public void updateStore() {
+		if (playerIsShortOnLootMessageShouldRender) {
+			shortOnLootTimer++;
+			if (shortOnLootTimer >= SHORT_ON_LOOT_MAX_DISPLAY_VALUE) {
+				shortOnLootTimer                       = 0;
+				playerIsShortOnLootMessageShouldRender = false;
+			}
+		}
 	}
 
 	/**
@@ -83,7 +102,102 @@ public class Store extends TextBasedUiParent {
 			float playerY = player.getY();
 			renderItems(batch, imageLoader, playerX, playerY + 5);
 			renderCoins(batch, imageLoader, playerX, playerY);
+			renderPrices(batch, imageLoader, playerX, playerY + 1);
+
+			// Render this if player doesn't have enough loot to buy item.
+			if (playerIsShortOnLootMessageShouldRender) {
+				batch.draw(
+						imageLoader.objectiveNotEnoughLoot, 
+						playerX - 5, 
+						playerY, 
+						10, 
+						-2
+						);
+			}
+			
+			batch.draw(
+					imageLoader.objectiveExitStore, 
+					playerX - 2.5f, 
+					playerY - 2.5f, 
+					5, 
+					-1
+					);
 		}
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param float       xPos
+	 * @param float       yPos
+	 */
+	private void renderPrices(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
+		// Heart: Cost 5.
+		batch.draw(
+				imageLoader.numberWhite[5], 
+				xPos - 10.2f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+
+		// Rum: Cost 15.
+		batch.draw(
+				imageLoader.numberWhite[1], 
+				xPos - 6.2f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+		batch.draw(
+				imageLoader.numberWhite[5], 
+				xPos - 5.6f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+
+		// Gun: Cost 10.
+		batch.draw(
+				imageLoader.numberWhite[1], 
+				xPos - 1.8f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+		batch.draw(
+				imageLoader.numberWhite[0], 
+				xPos - 1.0f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+
+		// Magic Pearl: Cost 10.
+		batch.draw(
+				imageLoader.numberWhite[1], 
+				xPos + 2.8f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+		batch.draw(
+				imageLoader.numberWhite[0], 
+				xPos + 3.5f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
+
+		// Ammo: Cost 5 (for 5 ammo).
+		batch.draw(
+				imageLoader.numberWhite[5], 
+				xPos + 7.0f, 
+				yPos, 
+				numberSize, 
+				-numberSize
+				);
 	}
 
 	/**
@@ -118,6 +232,13 @@ public class Store extends TextBasedUiParent {
 		batch.draw(
 				imageLoader.oyster, 
 				xPos + 1.7f, 
+				yPos, 
+				itemSize, 
+				-itemSize
+				);
+		batch.draw(
+				imageLoader.ammo, 
+				xPos + 6.0f, 
 				yPos, 
 				itemSize, 
 				-itemSize
@@ -184,7 +305,7 @@ public class Store extends TextBasedUiParent {
 				AnimationHandler.OBJECT_TYPE_LOOT
 				);
 
-		// Loot object for next item.
+		// Loot object for ammo.
 		AnimationHandler.renderAnimation(
 				batch, 
 				elapsedTime, 

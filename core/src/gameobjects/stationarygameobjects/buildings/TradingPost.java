@@ -44,7 +44,7 @@ public class TradingPost extends Building {
 	 */
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
-		if (MissionTradinPost.locationMarkerHasBeenHit && !Store.gunHasBeenPurchasedAtStore) {
+		if (MissionTradinPost.locationMarkerHasBeenHit /*&& !Store.gunHasBeenPurchasedAtStore*/) {
 			capeSanBlas.updateTown(myGame);
 			if (capeSanBlas.isInTown()) {
 				CollisionHandler.checkIfPlayerHasCollidedWithStructure(

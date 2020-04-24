@@ -310,6 +310,8 @@ public class GameScreen extends Screens {
 		birdWeapon.updateObject(myGame, mapHandler);
 
 		userInterface.updateUserInterface();
+		
+		store.updateStore();
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {

@@ -126,15 +126,15 @@ public class MagicPearl extends Weapon {
 	 * @param MyGame       myGame
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
-		if (MissionRawBar.rawBarMissionComplete && GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+		if (/*MissionRawBar.rawBarMissionComplete &&*/ GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
 			if (!hasBeenCollected && !MapUi.mapShouldBeRendered) {
-				batch.draw(
+				/*batch.draw(
 						imageLoader.oyster, 
 						x, 
 						y, 
 						width, 
 						-height
-						);
+						);*/
 			} else if ((myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped) || Inventory.allInventoryShouldBeRendered) {
 				batch.draw(
 						imageLoader.oyster, 

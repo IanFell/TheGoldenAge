@@ -9,6 +9,12 @@ import screens.GameScreen;
  *
  */
 public class CollectibleHandler {
+	
+	public static final int LOOT_NEEDED_TO_BUY_HEART = 5;
+	public static final int LOOT_NEEDED_TO_BUY_RUM   = 15;
+	public static final int LOOT_NEEDED_TO_BUY_GUN   = 10;
+	public static final int LOOT_NEEDED_TO_BUY_PEARL = 10;
+	public static final int LOOT_NEEDED_TO_BUY_AMMO  = 5;
 
 	/**
 	 * Determines if game object is rendering bounds.
