@@ -9,6 +9,7 @@ import controllers.PlayerController;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
+import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
@@ -200,11 +201,18 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyPressed(Input.Keys.N)) {
 				Store.storeShouldBeRendered = !Store.storeShouldBeRendered;
 			}
-			
+
 			if (Gdx.input.isKeyPressed(Input.Keys.E)) {
 				if (Store.storeIsUnlocked) {
 					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 				}
+			}
+
+			// Fill your collectibles for debugging.
+			if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) {
+				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
+				RumHandler.rumCount = 99;
+				AmmoHandler.ammoCount = 99;
 			}
 
 			if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
