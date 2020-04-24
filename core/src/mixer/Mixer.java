@@ -21,9 +21,9 @@ public class Mixer {
 	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
 
 	// Music.
-	public final static float AMBIENT_MUSIC_VOLUME     = QUARTER_VOLUME;
-	public final static float INVINCIBLE_MUSIC_VOLUME  = QUARTER_VOLUME;
-	public static final float BOSS_BATTLE_MUSIC_VOLUME = THREE_QUARTERS_VOLUME;
+	public final static float AMBIENT_MUSIC_VOLUME     = MEDIAN_VOLUME;
+	public final static float INVINCIBLE_MUSIC_VOLUME  = MEDIAN_VOLUME;
+	public static final float BOSS_BATTLE_MUSIC_VOLUME = MEDIAN_VOLUME;
 
 	// Game character walking and jumping.
 	public final static float FOOTSTEPS_VOLUME     = TWELVETH_VOLUME;
