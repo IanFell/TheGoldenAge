@@ -7,7 +7,6 @@ import com.mygdx.mygame.MyGame;
 import controllers.GameStateController;
 import controllers.PlayerController;
 import gameobjects.GameObject;
-import gameobjects.collectibles.Ammo;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.BirdWeapon;
@@ -223,7 +222,7 @@ public class Mouse extends ComputerInput {
 							Store.playerIsShortOnLootMessageShouldRender = true;
 							break;
 						}
-						
+
 					}
 					else if (purchasingButtons[PURCHASE_BUTTON_NULL].contains(Gdx.input.getX(), Gdx.input.getY())) {
 						closeStore();

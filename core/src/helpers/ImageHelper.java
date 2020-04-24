@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import loaders.ImageLoader;
+import store.Store;
 import ui.TextBasedUiParent;
 
 /**
@@ -55,15 +56,23 @@ public class ImageHelper {
 	 * Returns the texture of the actual number of the digit.
 	 * For instance, if the number is 15, either 1 or 5 will be returned.
 	 * 
+	 * Change color of digits if player has store open, since both the default digits and store are black.
+	 * 
 	 * @param int         digit
 	 * @param ImageLoader imageLoader
 	 * @return texture
 	 */
 	private static Texture setTextureNumber(int digit, ImageLoader imageLoader) {
 		Texture texture = imageLoader.numberBlack[0];
+		if (Store.playerWantsToEnterStore ) {
+			texture = imageLoader.numberWhite[0];
+		}
 		for (int i = 0; i < 10; i++) {
 			if (digit == i) {
 				texture = imageLoader.numberBlack[digit];
+				if (Store.playerWantsToEnterStore ) {
+					texture = imageLoader.numberWhite[digit];
+				}
 			}
 		}
 		return texture;
