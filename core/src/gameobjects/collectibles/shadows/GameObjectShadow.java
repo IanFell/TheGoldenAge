@@ -1,4 +1,4 @@
-package gameobjects.stationarygameobjects.buildings.shadows;
+package gameobjects.collectibles.shadows;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +11,7 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class StructureShadow extends GameObject {
+public class GameObjectShadow extends GameObject {
 
 	protected Texture shadowTexture;
 
@@ -24,7 +24,7 @@ public class StructureShadow extends GameObject {
 	 * @param float   height
 	 * @param Texture shadowTexture
 	 */
-	public StructureShadow(float x, float y, float width, float height, Texture shadowTexture) {
+	public GameObjectShadow(float x, float y, float width, float height, Texture shadowTexture) {
 		this.x             = x;
 		this.y             = y;
 		this.width         = width;

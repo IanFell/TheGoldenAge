@@ -18,9 +18,9 @@ import maps.MapHandler;
  */
 public class HeartHandler extends CollectibleHandler {
 
-	private final int MAX_AMOUNT_HEARTS_ALLOWED = 200;
+	public static final int MAX_AMOUNT_HEARTS_ALLOWED = 200;
 
-	private ArrayList <Heart> hearts = new ArrayList<Heart>();
+	public static ArrayList <Heart> hearts = new ArrayList<Heart>();
 
 	public void init() {
 		for (int i = 0; i < MAX_AMOUNT_HEARTS_ALLOWED; i++) {

@@ -12,7 +12,7 @@ import loaders.ImageLoader;
  * @author Fabulous Felini
  *
  */
-public class ShadowHandler extends AbstractLightingHandler {
+public class PlayerShadowHandler extends AbstractLightingHandler {
 
 	/**
 	 * Amount to offset shadows under player so they do not appear behind player.

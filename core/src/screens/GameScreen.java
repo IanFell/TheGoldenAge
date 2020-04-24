@@ -31,6 +31,7 @@ import maps.MapLoader;
 import maps.MapRenderer;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import physics.Lighting.CollectibleShadowHandler;
 import physics.Lighting.LightingHandler;
 import physics.Lighting.StructureShadowHandler;
 import physics.Weather.LightningBoltHandler;
@@ -124,6 +125,7 @@ public class GameScreen extends Screens {
 	private AmmoHandler ammoHandler   = new AmmoHandler();
 
 	private StructureShadowHandler structureShadowHandler;
+	private CollectibleShadowHandler collectibleShadowHandler;
 
 	private CutSceneIntro cutSceneIntro;
 
@@ -223,7 +225,8 @@ public class GameScreen extends Screens {
 		rumHandler.init();
 		ammoHandler.init();
 
-		structureShadowHandler = new StructureShadowHandler(myGame.imageLoader);
+		structureShadowHandler   = new StructureShadowHandler(myGame.imageLoader);
+		collectibleShadowHandler = new CollectibleShadowHandler(myGame.imageLoader);
 
 		Input.initializeInventoryAndPurchasingUiForInput();
 
@@ -310,7 +313,7 @@ public class GameScreen extends Screens {
 		birdWeapon.updateObject(myGame, mapHandler);
 
 		userInterface.updateUserInterface();
-		
+
 		store.updateStore();
 	}
 
@@ -334,6 +337,7 @@ public class GameScreen extends Screens {
 				);
 
 		structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
+		collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
 
 		GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
 				GameObjectLoader.gameObjectList, 

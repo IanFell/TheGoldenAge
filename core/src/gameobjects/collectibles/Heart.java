@@ -48,13 +48,6 @@ public class Heart extends GameObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(
-				imageLoader.heartShadow,
-				x,
-				y + 0.5f,
-				width,
-				-height
-				);
-		batch.draw(
 				imageLoader.heart,
 				x,
 				y,

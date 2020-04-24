@@ -15,14 +15,14 @@ import loaders.GameObjectLoader;
 public class LightingHandler {
 
 	public LightHandler lightHandler;
-	public ShadowHandler shadowHandler;
+	public PlayerShadowHandler shadowHandler;
 
 	/**
 	 * Constructor.
 	 */
 	public LightingHandler() {
 		lightHandler  = new LightHandler();
-		shadowHandler = new ShadowHandler();
+		shadowHandler = new PlayerShadowHandler();
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class Store extends TextBasedUiParent {
 	public static boolean gunHasBeenPurchasedAtStore        = false;
 	public static boolean playerWantsToEnterStore           = false;
 	// False for game to work.  True to debug.
-	public static boolean storeIsUnlocked                   = true; 
+	public static boolean storeIsUnlocked                   = false; 
 	public static boolean shouldDisplayEnterStoreMessage    = false;
 
 	private int itemSize   = 1;
