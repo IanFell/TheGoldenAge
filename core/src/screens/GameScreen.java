@@ -375,8 +375,6 @@ public class GameScreen extends Screens {
 				myGame.imageLoader
 				);
 
-		arrowHandler.renderArrowHandler(myGame.renderer.batch, myGame.imageLoader);
-
 		// This shows the border of the towns strictly for debugging.
 		//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
 

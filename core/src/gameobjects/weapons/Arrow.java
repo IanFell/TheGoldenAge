@@ -27,11 +27,11 @@ public class Arrow extends Weapon {
 		super(x, y);
 		this.directionOfArrow = directionOfArrow;
 		if (directionOfArrow == GameObject.DIRECTION_RIGHT || directionOfArrow == GameObject.DIRECTION_LEFT) {
-			this.width  = 2.0f;
+			this.width  = 1.0f;
 			this.height = 0.1f;
 		} else {
 			this.width  = 0.1f;
-			this.height = 2.0f;
+			this.height = 1.0f;
 		}
 		this.rectangle.width  = width;
 		this.rectangle.height = height;
@@ -43,7 +43,7 @@ public class Arrow extends Weapon {
 			dx = -1.0f;
 			break;
 		case DIRECTION_UP:
-			dy = -.5f;
+			dy = -1.0f;
 			break;
 		}
 	}
@@ -78,11 +78,11 @@ public class Arrow extends Weapon {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(
-				imageLoader.whiteSquare,
+				imageLoader.arrow,
 				x, 
 				y,
 				width,
-				height
+				-height
 				);
 	}
 }

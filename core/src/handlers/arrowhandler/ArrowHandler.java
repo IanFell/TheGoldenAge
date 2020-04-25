@@ -1,11 +1,10 @@
 package handlers.arrowhandler;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import helpers.GameAttributeHelper;
-import loaders.ImageLoader;
+import loaders.GameObjectLoader;
 import maps.MapHandler;
 import spawners.ArrowSpawner;
 
@@ -36,21 +35,14 @@ public class ArrowHandler {
 				GameObject.DIRECTION_LEFT
 				);
 		arrowSpawner[STUMP_HOLE] = new ArrowSpawner(
-				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12,
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 9,
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 45,
 				STUMP_HOLE,
 				GameObject.DIRECTION_UP
 				);
-	}
-
-	/**
-	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 */
-	public void renderArrowHandler(SpriteBatch batch, ImageLoader imageLoader) {
+		
 		for (int i = 0; i < arrowSpawner.length; i++) {
-			arrowSpawner[i].renderArrowSpawner(batch, imageLoader);
+			GameObjectLoader.gameObjectList.add(arrowSpawner[i]);
 		}
 	}
 

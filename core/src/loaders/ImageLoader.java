@@ -70,6 +70,7 @@ public class ImageLoader {
 	public Texture cannonBall;
 	public Texture cannonLeft;
 	public Texture cannonRight;
+	public Texture arrow;
 
 	// Structure Objects.
 	public Texture teePee;
@@ -81,6 +82,8 @@ public class ImageLoader {
 	public Texture dockLeft;
 	public Texture dockRight;
 	public Texture tradingPost;
+	public Texture fortTop;
+	public Texture fortSide;
 
 	// Structure Shadows.
 	public Texture lightHouseShadow;
@@ -240,6 +243,7 @@ public class ImageLoader {
 		cannonBall            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonBall.png"));
 		cannonLeft            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonLeft.png"));
 		cannonRight           = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonRight.png"));
+		arrow                 = new Texture(Gdx.files.internal("artwork/weapons/Arrow.png"));
 
 		// Structure Objects.
 		slaveHut     = new Texture(Gdx.files.internal("artwork/structures/SlaveHut.png"));
@@ -251,6 +255,8 @@ public class ImageLoader {
 		dockLeft   	 = new Texture(Gdx.files.internal("artwork/structures/DockLeft.png"));
 		dockRight    = new Texture(Gdx.files.internal("artwork/structures/DockRight.png"));
 		tradingPost  = new Texture(Gdx.files.internal("artwork/structures/TradingPost3d.png"));
+		fortTop      = new Texture(Gdx.files.internal("artwork/structures/fort/FortTop.png"));
+		fortSide     = new Texture(Gdx.files.internal("artwork/structures/fort/FortSide.png"));
 
 		// Structure Shadows.
 		lightHouseShadow   = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
@@ -454,6 +460,7 @@ public class ImageLoader {
 		cannonBall.dispose();
 		cannonLeft.dispose();
 		cannonRight.dispose();
+		arrow.dispose();
 
 		// Structure objects.
 		slaveHut.dispose();
@@ -465,6 +472,8 @@ public class ImageLoader {
 		dockRight.dispose();
 		dockLeft.dispose();
 		tradingPost.dispose();
+		fortTop.dispose();
+		fortSide.dispose();
 
 		// Structure Shadows.
 		lightHouseShadow.dispose();
