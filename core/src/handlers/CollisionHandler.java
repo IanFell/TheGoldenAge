@@ -15,6 +15,7 @@ import gameobjects.nature.Feather;
 import gameobjects.nature.QuickSand;
 import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
+import gameobjects.weapons.Arrow;
 import gameobjects.weapons.CannonBall;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
@@ -580,6 +581,23 @@ public class CollisionHandler {
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
 			player.setPlaySound(true);
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Arrow      arrow
+	 */
+	public static void checkIfArrowHasCollidedWithPlayer(GameObject player, Arrow arrow) {
+		if (player.rectangle.overlaps(arrow.rectangle)) {
+			if (!CutScene.anyCutSceneIsInProgress) {
+				if (!Player.isInvincible) {
+					player.setHealth(player.getHealth() - 0.1f);
+					player.setPlaySound(true);
+					//((Player) player).setBouncingBack(true);
+				}
+			}
 		}
 	}
 }

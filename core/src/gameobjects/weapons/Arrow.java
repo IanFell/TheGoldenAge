@@ -1,9 +1,12 @@
 package gameobjects.weapons;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
+import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
@@ -35,15 +38,16 @@ public class Arrow extends Weapon {
 		}
 		this.rectangle.width  = width;
 		this.rectangle.height = height;
+		float speed = 1.0f;
 		switch (directionOfArrow) {
 		case DIRECTION_RIGHT:
-			dx = 1.0f;
+			dx = speed;
 			break;
 		case DIRECTION_LEFT:
-			dx = -1.0f;
+			dx = -speed;
 			break;
 		case DIRECTION_UP:
-			dy = -1.0f;
+			dy = -speed;
 			break;
 		}
 	}
@@ -68,6 +72,7 @@ public class Arrow extends Weapon {
 		y += dy;
 		this.rectangle.x = x;
 		this.rectangle.y = y;
+		CollisionHandler.checkIfArrowHasCollidedWithPlayer(myGame.getGameObject(Player.PLAYER_ONE), this);
 	}
 
 	/**
@@ -77,12 +82,18 @@ public class Arrow extends Weapon {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.draw(
-				imageLoader.arrow,
-				x, 
-				y,
-				width,
-				-height
-				);
+		Texture texture = null;
+		switch (directionOfArrow) {
+		case GameObject.DIRECTION_RIGHT:
+			texture = imageLoader.arrowRight;
+			break;
+		case GameObject.DIRECTION_LEFT:
+			texture = imageLoader.arrowLeft;
+			break;
+		case GameObject.DIRECTION_UP:
+			texture = imageLoader.arrowUp;
+			break;
+		}
+		batch.draw(texture, x, y, width, -height);
 	}
 }

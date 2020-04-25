@@ -70,7 +70,9 @@ public class ImageLoader {
 	public Texture cannonBall;
 	public Texture cannonLeft;
 	public Texture cannonRight;
-	public Texture arrow;
+	public Texture arrowRight;
+	public Texture arrowLeft;
+	public Texture arrowUp;
 
 	// Structure Objects.
 	public Texture teePee;
@@ -243,7 +245,9 @@ public class ImageLoader {
 		cannonBall            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonBall.png"));
 		cannonLeft            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonLeft.png"));
 		cannonRight           = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonRight.png"));
-		arrow                 = new Texture(Gdx.files.internal("artwork/weapons/Arrow.png"));
+		arrowRight            = new Texture(Gdx.files.internal("artwork/weapons/arrows/Arrow.png"));
+		arrowLeft             = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowLeft.png"));
+		arrowUp               = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowUp.png"));
 
 		// Structure Objects.
 		slaveHut     = new Texture(Gdx.files.internal("artwork/structures/SlaveHut.png"));
@@ -460,7 +464,9 @@ public class ImageLoader {
 		cannonBall.dispose();
 		cannonLeft.dispose();
 		cannonRight.dispose();
-		arrow.dispose();
+		arrowRight.dispose();
+		arrowLeft.dispose();
+		arrowUp.dispose();
 
 		// Structure objects.
 		slaveHut.dispose();

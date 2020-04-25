@@ -28,8 +28,6 @@ public class ArrowSpawner extends GameObject {
 	private final int LEFT_BOUNDARY  = 0;
 	private final int TOP_BOUNDARY   = 0;
 	
-	private int directionFacing;
-	
 	private Knight[] knight = new Knight[4];
 
 	/**
@@ -44,7 +42,6 @@ public class ArrowSpawner extends GameObject {
 		this.y               = y;
 		this.width           = 7;
 		this.height          = 7;
-		this.directionFacing = directionFacing;
 		createArrows(directionFacing);
 		float xPos     = x + 1.3f;
 		int knightSize = 1;
