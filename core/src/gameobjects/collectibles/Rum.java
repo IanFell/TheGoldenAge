@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.GameObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -14,7 +13,7 @@ import maps.MapHandler;
  * @author Fabulous Fellini
  *
  */
-public class Rum extends GameObject {
+public class Rum extends GameObjectCollectible {
 
 	public static boolean playSound;
 
@@ -35,6 +34,7 @@ public class Rum extends GameObject {
 		rectangle.width  = size;
 		rectangle.height = size;
 		playSound        = false;
+		setMovement();
 	}
 
 	/**
@@ -62,6 +62,7 @@ public class Rum extends GameObject {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		if (!hasBeenCollected) {
 			CollisionHandler.checkIfPlayerCollidedWithRum(PlayerController.getCurrentPlayer(myGame), this);
+			handleMovement();
 		} else {
 			grow();
 		}

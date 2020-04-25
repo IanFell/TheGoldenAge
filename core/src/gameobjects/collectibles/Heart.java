@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.GameObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -15,7 +14,7 @@ import maps.MapHandler;
  * @author Fabulous Fellini
  *
  */
-public class Heart extends GameObject {
+public class Heart extends GameObjectCollectible {
 
 	public static final int HEALTH = 1;
 
@@ -38,6 +37,7 @@ public class Heart extends GameObject {
 		rectangle.width  = size;
 		rectangle.height = size;
 		hasBeenCollected = false;
+		setMovement();
 	}
 
 	/**
@@ -82,6 +82,7 @@ public class Heart extends GameObject {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		if (!hasBeenCollected) {
 			CollisionHandler.checkIfPlayerCollidedWithHeart(PlayerController.getCurrentPlayer(myGame), this);
+			handleMovement();
 		} else {
 			grow();
 		}

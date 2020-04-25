@@ -5,12 +5,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import gameobjects.GameObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
-public class Ammo extends GameObject {
+/**
+ * 
+ * @author Fabulous Fellini
+ *
+ */
+public class Ammo extends GameObjectCollectible {
 
 	public static boolean playSound = false;
 
@@ -31,6 +35,7 @@ public class Ammo extends GameObject {
 		rectangle.width  = size * 2;
 		rectangle.height = size;
 		hasBeenCollected = false;
+		setMovement();
 	}
 
 	/**
@@ -75,9 +80,9 @@ public class Ammo extends GameObject {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		if (!hasBeenCollected) {
 			CollisionHandler.checkIfPlayerCollidedWithAmmo(PlayerController.getCurrentPlayer(myGame), this);
+			handleMovement();
 		} else {
 			grow();
 		}
 	}
-
 }

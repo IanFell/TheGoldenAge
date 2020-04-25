@@ -7,6 +7,7 @@ import gameobjects.stationarygameobjects.buildings.shadows.PigglyWigglyShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.RawBarShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.TradingPostShadow;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import loaders.BuildingLoader;
 import loaders.ImageLoader;
 import loaders.lighthouseloader.LightHouseLoader;
@@ -65,9 +66,17 @@ public class StructureShadowHandler {
 	 * @param ImageLoader imageLoader
 	 */
 	public void renderStructureShadows(SpriteBatch batch, ImageLoader imageLoader) {
-		lightHouseShadow.renderObject(batch, imageLoader);
-		tradingPostShadow.renderObject(batch, imageLoader);
-		rawBarShadow.renderObject(batch, imageLoader);
-		pigglyWigglyShadow.renderObject(batch, imageLoader);
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(lightHouseShadow)) {
+			lightHouseShadow.renderObject(batch, imageLoader);
+		}
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(tradingPostShadow)) {
+			tradingPostShadow.renderObject(batch, imageLoader);
+		}
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(rawBarShadow)) {
+			rawBarShadow.renderObject(batch, imageLoader);
+		}
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(pigglyWigglyShadow)) {
+			pigglyWigglyShadow.renderObject(batch, imageLoader);
+		}
 	}
 }

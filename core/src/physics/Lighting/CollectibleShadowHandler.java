@@ -8,6 +8,7 @@ import gameobjects.collectibles.shadows.RumShadow;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.HeartHandler;
 import handlers.collectibles.RumHandler;
+import helpers.GamePlayHelper;
 import loaders.ImageLoader;
 
 /**
@@ -66,17 +67,23 @@ public class CollectibleShadowHandler {
 	public void renderCollectibleShadows(SpriteBatch batch, ImageLoader imageLoader) {
 		for (int i = 0; i < HeartHandler.MAX_AMOUNT_HEARTS_ALLOWED; i++) {
 			if (!HeartHandler.hearts.get(i).hasBeenCollected) {
-				heartShadow[i].renderObject(batch, imageLoader);
+				if (GamePlayHelper.gameObjectIsWithinScreenBounds(heartShadow[i])) {
+					heartShadow[i].renderObject(batch, imageLoader);
+				}
 			}
 		}
 		for (int i = 0; i < RumHandler.MAX_AMOUNT_RUM_ALLOWED; i++) {
 			if (!RumHandler.rum.get(i).hasBeenCollected) {
-				rumShadow[i].renderObject(batch, imageLoader);
+				if (GamePlayHelper.gameObjectIsWithinScreenBounds(rumShadow[i])) {
+					rumShadow[i].renderObject(batch, imageLoader);
+				}
 			}
 		}
 		for (int i = 0; i < AmmoHandler.MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT; i++) {
 			if (!AmmoHandler.ammo.get(i).hasBeenCollected) {
-				ammoShadow[i].renderObject(batch, imageLoader);
+				if (GamePlayHelper.gameObjectIsWithinScreenBounds(ammoShadow[i])) {
+					ammoShadow[i].renderObject(batch, imageLoader);
+				}
 			}
 		}
 	}
