@@ -2,6 +2,7 @@ package spawners;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
@@ -27,7 +28,7 @@ public class ArrowSpawner extends GameObject {
 	private final int RIGHT_BOUNDARY = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH;
 	private final int LEFT_BOUNDARY  = 0;
 	private final int TOP_BOUNDARY   = 0;
-	
+
 	private Knight[] knight = new Knight[4];
 
 	/**
@@ -108,6 +109,14 @@ public class ArrowSpawner extends GameObject {
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.fortSide, x, y, width, -height);
 		for (int i = 0; i < knight.length; i++) {
+			Texture bowTexture = imageLoader.bowRight;
+			if (knight[i].direction == DIRECTION_LEFT) {
+				bowTexture = imageLoader.bowLeft;
+			} else if (knight[i].direction == DIRECTION_UP) {
+				bowTexture = imageLoader.bowUp;
+			}
+			int bowSize = 1;
+			batch.draw(bowTexture, knight[i].getX(), knight[i].getY(), bowSize, -bowSize);
 			knight[i].renderObject(batch, imageLoader);
 		}
 		for (int i = 0; i < arrows.size(); i++) {
