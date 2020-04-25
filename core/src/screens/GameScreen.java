@@ -38,6 +38,7 @@ import physics.Weather.LightningBoltHandler;
 import physics.Weather.WeatherHandler;
 import store.Store;
 import ui.MapUi;
+import ui.Pause;
 import ui.UserInterface;
 
 /**
@@ -47,6 +48,8 @@ import ui.UserInterface;
  *
  */
 public class GameScreen extends Screens {
+
+	private Pause pause = new Pause(0, 0);
 
 	// Map when user pauses game.
 	private MapUi mapUi;
@@ -183,7 +186,9 @@ public class GameScreen extends Screens {
 		}
 
 		// Update objects associated with GameScreen.
-		updateGameScreen();
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+			updateGameScreen();
+		} 
 	}
 
 	/**
@@ -315,6 +320,8 @@ public class GameScreen extends Screens {
 		userInterface.updateUserInterface();
 
 		store.updateStore();
+
+		pause.updateObject(myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
@@ -431,6 +438,10 @@ public class GameScreen extends Screens {
 			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+		}
+
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+			pause.renderObject(myGame.renderer.batch, myGame.imageLoader);
 		}
 
 		weatherHandler.renderClouds(myGame);

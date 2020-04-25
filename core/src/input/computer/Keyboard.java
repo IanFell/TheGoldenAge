@@ -36,6 +36,8 @@ public class Keyboard extends ComputerInput {
 
 	private int weaponElement = 0;
 
+	private int pauseTimer = 0;
+
 	/**
 	 * 
 	 * @param MyGame myGame
@@ -72,8 +74,11 @@ public class Keyboard extends ComputerInput {
 			break;
 
 		case Screens.GAME_SCREEN:	
-
-			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered) {
+			if (
+					!Inventory.allInventoryShouldBeRendered && 
+					!MapUi.mapShouldBeRendered && 
+					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY
+					) {
 				//handleKeyboardDirectionalButtons(myGame, "arrows", player);
 				handleKeyboardDirectionalButtons(myGame, "wasd", player);
 			}
@@ -213,6 +218,20 @@ public class Keyboard extends ComputerInput {
 				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
 				RumHandler.rumCount = 99;
 				AmmoHandler.ammoCount = 99;
+			}
+
+			if (Gdx.input.isKeyPressed(Input.Keys.R)) {
+				if (pauseTimer % 5 == 0) {
+					if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+					} else {
+						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+					}
+				}
+			}
+			pauseTimer++;
+			if (pauseTimer > 50) {
+				pauseTimer = 0;
 			}
 
 			if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {

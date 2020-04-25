@@ -13,7 +13,8 @@ import loaders.ImageLoader;
  */
 public class GameObjectShadow extends GameObject {
 
-	protected Texture shadowTexture;
+	private Texture shadowTexture;
+	
 
 	/**
 	 * Constructor.

@@ -17,7 +17,9 @@ public class ImageLoader {
 	public Texture heart;
 	public Texture heartShadow;
 	public Texture rum;
+	public Texture rumShadow;
 	public Texture ammo;
+	public Texture ammoShadow;
 
 	// Boat objects.
 	public Texture boatSide;
@@ -189,7 +191,9 @@ public class ImageLoader {
 		heart       = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
 		heartShadow = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
 		rum         = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
+		rumShadow   = new Texture(Gdx.files.internal("artwork/collectibles/RumShadow.png"));
 		ammo        = new Texture(Gdx.files.internal("artwork/collectibles/Ammo.png"));
+		ammoShadow  = new Texture(Gdx.files.internal("artwork/collectibles/AmmoShadow.png"));
 
 		// Boat objects.
 		boatSide = new Texture(Gdx.files.internal("artwork/boat/BOAT_NEW.png"));
@@ -395,7 +399,9 @@ public class ImageLoader {
 		heart.dispose();
 		heartShadow.dispose();
 		rum.dispose();
+		rumShadow.dispose();
 		ammo.dispose();
+		ammoShadow.dispose();
 
 		// Boat objects.
 		boatSide.dispose();

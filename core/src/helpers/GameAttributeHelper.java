@@ -14,11 +14,15 @@ public final class GameAttributeHelper {
 
 	public final static int SCREEN_WIDTH  = Gdx.graphics.getWidth();
 	public final static int SCREEN_HEIGHT = Gdx.graphics.getHeight();
-	
+
 	public final static int FRAMES_PER_SECOND = 30;
-	
+
 	public final static int TIMER_START_VALUE = 0;
-	
+
+	public static int STATE_PLAY    = 0;
+	public static int STATE_PAUSE   = 1;
+	public static int gamePlayState = STATE_PLAY;
+
 	/**
 	 * Game world has 68 chunks, a grid of 8 x 8.
 	 */
@@ -31,7 +35,7 @@ public final class GameAttributeHelper {
 	public static final int CHUNK_SIX_X_POSITION_START   = CHUNK_FIVE_X_POSITION_START + CHUNK_WIDTH;
 	public static final int CHUNK_SEVEN_X_POSITION_START = CHUNK_SIX_X_POSITION_START + CHUNK_WIDTH;
 	public static final int CHUNK_EIGHT_X_POSITION_START = CHUNK_SEVEN_X_POSITION_START + CHUNK_WIDTH;
-	
+
 	private static final int CHUNK_HEIGHT                = MapInformationHolder.CHUNK_HEIGHT;
 	public static final int CHUNK_ONE_Y_POSITION_START   = 1;
 	public static final int CHUNK_TWO_Y_POSITION_START   = CHUNK_ONE_Y_POSITION_START + CHUNK_HEIGHT;
@@ -45,6 +49,8 @@ public final class GameAttributeHelper {
 	/**
 	 * Holds current state of game, 
 	 * based on the constants located in the Screens class.
+	 * This does not include the game play or pause states.
+	 * 
 	 * This will include any and all screens:
 	 * 	- Game Screen
 	 *  - Menu Screen

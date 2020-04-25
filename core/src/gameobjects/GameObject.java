@@ -338,6 +338,7 @@ public class GameObject extends Sprite implements GameObjectInterface, Comparabl
 	 * Some collectibles include:
 	 *     - hearts
 	 *     - rum
+	 *     - ammo
 	 */
 	protected void grow() {
 		int doubleGrowth = 2;

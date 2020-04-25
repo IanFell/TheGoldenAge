@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Fabulous Fellini
  *
  */
-public class HeartShadow extends GameObjectShadow {
+public class RumShadow extends GameObjectShadow {
 
 	/**
 	 * Constructor.
@@ -18,7 +18,7 @@ public class HeartShadow extends GameObjectShadow {
 	 * @param float   height
 	 * @param Texture shadowTexture
 	 */
-	public HeartShadow(float x, float y, float width, float height, Texture shadowTexture) {
+	public RumShadow(float x, float y, float width, float height, Texture shadowTexture) {
 		super(x, y, width, height, shadowTexture);
 	}
 }
