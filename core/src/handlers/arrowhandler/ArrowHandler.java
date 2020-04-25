@@ -3,6 +3,7 @@ package handlers.arrowhandler;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -17,10 +18,14 @@ public class ArrowHandler {
 
 	private ArrowSpawner arrowSpawner;
 
+	private final int MEXICO_BEACH = 0;
+
 	public void init() {
 		arrowSpawner = new ArrowSpawner(
-				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 40,
-				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 10
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 82,
+				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 40,
+				MEXICO_BEACH,
+				GameObject.DIRECTION_RIGHT
 				);
 	}
 

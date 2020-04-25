@@ -18,14 +18,19 @@ public class Arrow extends Weapon {
 	 * 
 	 * @param float x
 	 * @param float y
+	 * @param int   direction
 	 */
-	public Arrow(float x, float y) {
+	public Arrow(float x, float y, int direction) {
 		super(x, y);
-		this.width            = 3;
+		this.width            = 2;
 		this.height           = 0.1f;
 		this.rectangle.width  = width;
 		this.rectangle.height = height;
-		dx                    = 0.1f;
+		switch (direction) {
+		case DIRECTION_RIGHT:
+			dx = 1.0f;
+			break;
+		}
 	}
 
 	/**
