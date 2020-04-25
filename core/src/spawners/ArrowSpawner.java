@@ -24,6 +24,8 @@ public class ArrowSpawner extends GameObject {
 	private final int NUMBER_OF_ARROWS_SHOT = 4;
 
 	private final int RIGHT_BOUNDARY = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH;
+	private final int LEFT_BOUNDARY  = 0;
+	private final int TOP_BOUNDARY   = 0;
 
 	/**
 	 * Constructor.
@@ -38,18 +40,22 @@ public class ArrowSpawner extends GameObject {
 		this.width  = 5;
 		this.height = 5;
 		createArrows(direction);
-
 	}
 
 	/**
 	 * 
-	 * @param int directonOfArrow
+	 * @param int directionOfArrow
 	 */
-	private void createArrows(int directonOfArrow) {
-		float yPos  = y + 0.8f;
+	private void createArrows(int directionOfArrow) {
+		float xPos = x;
+		float yPos = y + 0.8f;
 		for (int i = 0; i < NUMBER_OF_ARROWS_SHOT; i++) {
-			arrows.add(new Arrow(x, yPos, directonOfArrow));
-			yPos += 1;
+			arrows.add(new Arrow(xPos, yPos, directionOfArrow));
+			if (directionOfArrow == GameObject.DIRECTION_RIGHT || directionOfArrow == GameObject.DIRECTION_LEFT) {
+				yPos += 1;
+			} else {
+				xPos += 1;
+			}
 		}
 	}
 
@@ -61,9 +67,21 @@ public class ArrowSpawner extends GameObject {
 	public void updateArrowSpawner(MyGame myGame, MapHandler mapHandler) {
 		for (int i = 0; i < arrows.size(); i++) {
 			arrows.get(i).updateObject(myGame, mapHandler);
-			if (arrows.get(i).getX() > RIGHT_BOUNDARY) {
-				arrows.remove(i);
-				createArrows(GameObject.DIRECTION_RIGHT);
+			if (arrows.get(i).getDirectionOfArrow() == GameObject.DIRECTION_RIGHT) {
+				if (arrows.get(i).getX() > RIGHT_BOUNDARY) {
+					arrows.remove(i);
+					createArrows(GameObject.DIRECTION_RIGHT);
+				}
+			} else if (arrows.get(i).getDirectionOfArrow() == GameObject.DIRECTION_LEFT) {
+				if (arrows.get(i).getX() < LEFT_BOUNDARY) {
+					arrows.remove(i);
+					createArrows(GameObject.DIRECTION_LEFT);
+				}
+			} else if (arrows.get(i).getDirectionOfArrow() == GameObject.DIRECTION_UP) {
+				if (arrows.get(i).getY() < TOP_BOUNDARY) {
+					arrows.remove(i);
+					createArrows(GameObject.DIRECTION_UP);
+				}
 			}
 		}
 	}
