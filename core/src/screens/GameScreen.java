@@ -13,6 +13,7 @@ import gameobjects.weapons.MagicPearl;
 import handlers.MissionHandler;
 import handlers.TownHandler;
 import handlers.WeaponHandler;
+import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.HeartHandler;
 import handlers.collectibles.RumHandler;
@@ -121,6 +122,8 @@ public class GameScreen extends Screens {
 	public GruntHandler gruntHandler = new GruntHandler();
 	public GiantHandler giantHandler = new GiantHandler();
 
+	public ArrowHandler arrowHandler = new ArrowHandler();
+
 	public TownHandler townHandler = new TownHandler();
 
 	private HeartHandler heartHandler = new HeartHandler();
@@ -208,6 +211,7 @@ public class GameScreen extends Screens {
 		enemyHandler.init(myGame.imageLoader);
 		gruntHandler.init(myGame.imageLoader);
 		giantHandler.init(myGame.imageLoader);
+		arrowHandler.init();
 		weatherHandler.init(myGame, this);
 		LightningBoltHandler.init();
 		missionHandler = new MissionHandler(myGame);
@@ -287,6 +291,7 @@ public class GameScreen extends Screens {
 		enemyHandler.updateEnemies(myGame, mapHandler);
 		gruntHandler.updateGrunts(myGame, mapHandler);
 		giantHandler.updateGiants(myGame, mapHandler);
+		arrowHandler.updateArrowHandler(myGame, mapHandler);
 		GameWorld.updateGameWorld(myGame, mapHandler);
 		mapUi.updateWorldMapUi();
 		townHandler.updateTowns(myGame);
@@ -369,6 +374,8 @@ public class GameScreen extends Screens {
 				myGame.renderer.batch, 
 				myGame.imageLoader
 				);
+
+		arrowHandler.renderArrowHandler(myGame.renderer.batch, myGame.imageLoader);
 
 		// This shows the border of the towns strictly for debugging.
 		//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
