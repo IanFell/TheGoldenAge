@@ -10,6 +10,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.enemies.Knight;
 import gameobjects.weapons.Arrow;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import maps.MapInformationHolder;
@@ -107,20 +108,22 @@ public class ArrowSpawner extends GameObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.draw(imageLoader.fortSide, x, y, width, -height);
-		for (int i = 0; i < knight.length; i++) {
-			Texture bowTexture = imageLoader.bowRight;
-			if (knight[i].direction == DIRECTION_LEFT) {
-				bowTexture = imageLoader.bowLeft;
-			} else if (knight[i].direction == DIRECTION_UP) {
-				bowTexture = imageLoader.bowUp;
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+			batch.draw(imageLoader.fortSide, x, y, width, -height);
+			for (int i = 0; i < knight.length; i++) {
+				Texture bowTexture = imageLoader.bowRight;
+				if (knight[i].direction == DIRECTION_LEFT) {
+					bowTexture = imageLoader.bowLeft;
+				} else if (knight[i].direction == DIRECTION_UP) {
+					bowTexture = imageLoader.bowUp;
+				}
+				int bowSize = 1;
+				batch.draw(bowTexture, knight[i].getX(), knight[i].getY(), bowSize, -bowSize);
+				knight[i].renderObject(batch, imageLoader);
 			}
-			int bowSize = 1;
-			batch.draw(bowTexture, knight[i].getX(), knight[i].getY(), bowSize, -bowSize);
-			knight[i].renderObject(batch, imageLoader);
-		}
-		for (int i = 0; i < arrows.size(); i++) {
-			arrows.get(i).renderObject(batch, imageLoader);
+			for (int i = 0; i < arrows.size(); i++) {
+				arrows.get(i).renderObject(batch, imageLoader);
+			}
 		}
 	}
 }
