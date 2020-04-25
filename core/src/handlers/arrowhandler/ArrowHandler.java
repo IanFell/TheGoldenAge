@@ -19,7 +19,7 @@ public class ArrowHandler {
 
 	public void init() {
 		arrowSpawner = new ArrowSpawner(
-				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 43,
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 40,
 				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 10
 				);
 	}

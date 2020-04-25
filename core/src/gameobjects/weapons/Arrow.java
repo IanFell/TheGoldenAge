@@ -21,8 +21,8 @@ public class Arrow extends Weapon {
 	 */
 	public Arrow(float x, float y) {
 		super(x, y);
-		this.width            = 5;
-		this.height           = 1;
+		this.width            = 3;
+		this.height           = 0.1f;
 		this.rectangle.width  = width;
 		this.rectangle.height = height;
 		dx                    = 0.1f;

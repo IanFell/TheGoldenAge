@@ -15,7 +15,7 @@ import maps.MapHandler;
  */
 public class ArrowSpawner extends GameObject {
 
-	private Arrow arrow;
+	private Arrow[] arrows = new Arrow[4];
 
 	/**
 	 * Constructor.
@@ -23,12 +23,16 @@ public class ArrowSpawner extends GameObject {
 	 * @param float x
 	 * @param float Y
 	 */
-	public ArrowSpawner(float x, float Y) {
+	public ArrowSpawner(float x, float y) {
 		this.x      = x;
-		this.dy     = y;
+		this.y      = y;
 		this.width  = 5;
 		this.height = 5;
-		arrow       = new Arrow(x, y);
+		float yPos  = y;
+		for (int i = 0; i < arrows.length; i++) {
+			arrows[i] = new Arrow(x, yPos);
+			yPos += 1;
+		}
 	}
 
 	/**
@@ -37,7 +41,9 @@ public class ArrowSpawner extends GameObject {
 	 * @param MapHandler mapHandler
 	 */
 	public void updateArrowSpawner(MyGame myGame, MapHandler mapHandler) {
-		arrow.updateObject(myGame, mapHandler);
+		for (int i = 0; i < arrows.length; i++) {
+			arrows[i].updateObject(myGame, mapHandler);
+		}
 	}
 
 	/**
@@ -47,6 +53,8 @@ public class ArrowSpawner extends GameObject {
 	 */
 	public void renderArrowSpawner(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.blackSquare, x, y, width, height);
-		arrow.renderObject(batch, imageLoader);
+		for (int i = 0; i < arrows.length; i++) {
+			arrows[i].renderObject(batch, imageLoader);
+		}
 	}
 }
