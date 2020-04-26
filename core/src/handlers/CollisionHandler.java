@@ -593,9 +593,9 @@ public class CollisionHandler {
 		if (player.rectangle.overlaps(arrow.rectangle)) {
 			if (!CutScene.anyCutSceneIsInProgress) {
 				if (!Player.isInvincible) {
-					player.setHealth(player.getHealth() - 0.1f);
+					player.setHealth(player.getHealth() - 0.5f);
 					player.setPlaySound(true);
-					//((Player) player).setBouncingBack(true);
+					((Player) player).setBouncingBack(true);
 				}
 			}
 		}

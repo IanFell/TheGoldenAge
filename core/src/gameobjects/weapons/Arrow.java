@@ -19,38 +19,34 @@ import maps.MapHandler;
 public class Arrow extends Weapon {
 
 	private int directionOfArrow;
+	private float dx;
+	private float dy;
 
 	/**
 	 * Constructor.
 	 * 
+	 * directionOfArrow helps determine which image to render.
+	 * 
 	 * @param float x
 	 * @param float y
 	 * @param int   directionOfArrow
+	 * @param float dx
+	 * @param float dy
 	 */
-	public Arrow(float x, float y, int directionOfArrow) {
+	public Arrow(float x, float y, int directionOfArrow, float dx, float dy) {
 		super(x, y);
+		this.dx               = dx;
+		this.dy               = dy;
 		this.directionOfArrow = directionOfArrow;
 		if (directionOfArrow == GameObject.DIRECTION_RIGHT || directionOfArrow == GameObject.DIRECTION_LEFT) {
 			this.width  = 1.0f;
-			this.height = 0.1f;
+			this.height = 2.0f;
 		} else {
-			this.width  = 0.1f;
+			this.width  = 2.0f;
 			this.height = 1.0f;
 		}
-		this.rectangle.width  = width;
-		this.rectangle.height = height;
-		float speed = 1.0f;
-		switch (directionOfArrow) {
-		case DIRECTION_RIGHT:
-			dx = speed;
-			break;
-		case DIRECTION_LEFT:
-			dx = -speed;
-			break;
-		case DIRECTION_UP:
-			dy = -speed;
-			break;
-		}
+		rectangle.width  = width;
+		rectangle.height = height;
 	}
 
 	/**
@@ -68,11 +64,10 @@ public class Arrow extends Weapon {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		super.updateObject(myGame, mapHandler);
 		x += dx;
 		y += dy;
-		this.rectangle.x = x;
-		this.rectangle.y = y;
+		rectangle.x = x;
+		rectangle.y = y;
 		CollisionHandler.checkIfArrowHasCollidedWithPlayer(myGame.getGameObject(Player.PLAYER_ONE), this);
 	}
 
@@ -83,6 +78,7 @@ public class Arrow extends Weapon {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		// If you can't see arrows, try taking this screen bounds check out:
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
 			Texture texture = null;
 			switch (directionOfArrow) {
