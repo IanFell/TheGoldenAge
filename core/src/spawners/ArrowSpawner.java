@@ -2,14 +2,11 @@ package spawners;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.enemies.Knight;
-import gameobjects.weapons.Arrow;
 import helpers.GamePlayHelper;
 import loaders.ImageLoader;
-import maps.MapHandler;
 
 /**
  * 
@@ -17,8 +14,6 @@ import maps.MapHandler;
  *
  */
 public class ArrowSpawner extends GameObject {
-
-	private Arrow arrow;
 
 	private Knight[] knight = new Knight[4];
 
@@ -37,30 +32,12 @@ public class ArrowSpawner extends GameObject {
 		int arrowSpawnerSize = 7;
 		this.width           = arrowSpawnerSize;
 		this.height          = arrowSpawnerSize;
-		arrow                = new Arrow(x, y, directionFacing, dx, dy);
 		float xPosKnight     = x + 1.3f;
 		int knightSize       = 1;
 		for (int i = 0; i < knight.length; i++) {
 			knight[i] = new Knight(xPosKnight, y - 4, knightSize, knightSize, directionFacing);
 			xPosKnight += 0.5f;
 		}
-	}
-
-	/**
-	 * 
-	 * @return Arrow
-	 */
-	public Arrow getArrow() {
-		return arrow;
-	}
-
-	/**
-	 * 
-	 * @param MyGame     myGame
-	 * @param MapHandler mapHandler
-	 */
-	public void updateArrowSpawner(MyGame myGame, MapHandler mapHandler) {
-		arrow.updateObject(myGame, mapHandler);
 	}
 
 	/**
@@ -83,7 +60,6 @@ public class ArrowSpawner extends GameObject {
 				batch.draw(bowTexture, knight[i].getX(), knight[i].getY(), bowSize, -bowSize);
 				knight[i].renderObject(batch, imageLoader);
 			}
-			arrow.renderObject(batch, imageLoader);
 		}
 	}
 }

@@ -7,7 +7,6 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
-import helpers.GamePlayHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
@@ -78,21 +77,18 @@ public class Arrow extends Weapon {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		// If you can't see arrows, try taking this screen bounds check out:
-		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
-			Texture texture = null;
-			switch (directionOfArrow) {
-			case GameObject.DIRECTION_RIGHT:
-				texture = imageLoader.arrowRight;
-				break;
-			case GameObject.DIRECTION_LEFT:
-				texture = imageLoader.arrowLeft;
-				break;
-			case GameObject.DIRECTION_UP:
-				texture = imageLoader.arrowUp;
-				break;
-			}
-			batch.draw(texture, x, y, width, -height);
+		Texture texture = null;
+		switch (directionOfArrow) {
+		case GameObject.DIRECTION_RIGHT:
+			texture = imageLoader.arrowRight;
+			break;
+		case GameObject.DIRECTION_LEFT:
+			texture = imageLoader.arrowLeft;
+			break;
+		case GameObject.DIRECTION_UP:
+			texture = imageLoader.arrowUp;
+			break;
 		}
+		batch.draw(texture, x, y, width, -height);
 	}
 }

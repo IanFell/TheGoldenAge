@@ -76,6 +76,9 @@ public class ImageLoader {
 	public Texture bowRight;
 	public Texture bowLeft;
 	public Texture bowUp;
+	public Texture arrowShadowRight;
+	public Texture arrowShadowLeft;
+	public Texture arrowShadowUp;
 
 	// Structure Objects.
 	public Texture teePee;
@@ -254,6 +257,9 @@ public class ImageLoader {
 		bowRight              = new Texture(Gdx.files.internal("artwork/weapons/bows/BowRight.png"));
 		bowLeft               = new Texture(Gdx.files.internal("artwork/weapons/bows/BowLeft.png"));
 		bowUp                 = new Texture(Gdx.files.internal("artwork/weapons/bows/BowUp.png"));
+		arrowShadowRight      = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowShadowRight.png"));
+		arrowShadowLeft       = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowShadowLeft.png"));
+		arrowShadowUp         = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowShadowUp.png"));
 
 		// Structure Objects.
 		slaveHut     = new Texture(Gdx.files.internal("artwork/structures/SlaveHut.png"));
@@ -476,6 +482,9 @@ public class ImageLoader {
 		bowRight.dispose();
 		bowLeft.dispose();
 		bowUp.dispose();
+		arrowShadowRight.dispose();
+		arrowShadowLeft.dispose();
+		arrowShadowUp.dispose();
 
 		// Structure objects.
 		slaveHut.dispose();
