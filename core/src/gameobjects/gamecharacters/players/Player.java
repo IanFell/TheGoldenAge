@@ -278,6 +278,8 @@ public class Player extends GameCharacter {
 			width  = playerSize * 2;
 			height = playerSize * 2;
 		}
+		rectangle.width  = width;
+		rectangle.height = height;
 		if (invincibilityTimer > INVINCIBILITY_TIME_LIMIT) {
 			isInvincible = false;
 		}
@@ -296,7 +298,7 @@ public class Player extends GameCharacter {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 
 		rectangle.x = x;
-		rectangle.y = y - height * 2;
+		rectangle.y = y - height;
 
 		// Timer for water animation.
 		timer++;
