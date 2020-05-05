@@ -1,13 +1,10 @@
 package ui;
 
-import java.awt.Point;
-
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
-import maps.MapLocationFinder;
 import screens.Screens;
 
 /**
@@ -17,13 +14,13 @@ import screens.Screens;
  */
 public class MapUi extends Screens {
 
-	private Point playerLocation;
-
 	public static boolean mapShouldBeRendered;
 
 	// Use this to make player location icon flash.
 	private int timer                 = 0;
 	private final int MAX_TIMER_VALUE = 16;
+
+	private int locationMarkerSize = 1;
 
 	/**
 	 * Constructor.
@@ -48,7 +45,7 @@ public class MapUi extends Screens {
 		if (timer > MAX_TIMER_VALUE) {
 			timer = 0;
 		}
-		playerLocation  = MapLocationFinder.getPlayerLocationOnMap((Player) myGame.getGameObject(Player.PLAYER_ONE));
+		//playerLocation  = MapLocationFinder.getPlayerLocationOnMap((Player) myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
 	/**
@@ -78,82 +75,45 @@ public class MapUi extends Screens {
 	 * @param ImageLoader imageLoader
 	 */
 	private void flashPlayerChunkLocation(SpriteBatch batch, ImageLoader imageLoader) {
-		float xChunkLocation  = 0;
-		float yChunkLocation  = 0;
-
-		// Width and heighth of a chunk represented via UI map.
-		int resizeChunkValue  = 8;
-		float chunkWidthOnUi  = 23.3f / resizeChunkValue;
-		float chunkHeightOnUi = 13.5f / resizeChunkValue;
-
-		float cameraWidthSize = camera.position.x - getViewportWidth();
-		float offsetForCamera = 16.4f;
-
-		// Find player's x chunk position.
-		switch (playerLocation.x) {
-		case 1:
-			xChunkLocation = cameraWidthSize + offsetForCamera;
-			break;
-		case 2:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi;
-			break;
-		case 3:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 2;
-			break;
-		case 4:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 3;
-			break;
-		case 5:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 4;
-			break;
-		case 6:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 5;
-			break;
-		case 7:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 6;
-			break;
-		case 8:
-			xChunkLocation = cameraWidthSize + offsetForCamera + chunkWidthOnUi * 7;
-			break;
+		float xPosStart = camera.position.x - getViewportWidth() / 2;
+		float yPosStart = myGame.getGameObject(Player.PLAYER_ONE).getY();
+		float xOffset   = 0;
+		float yOffset   = 0;
+		if (myGame.getGameScreen().getTownHandler().getMexicoBeach().isInTown()) {
+			xOffset = 8.2f;
+			yOffset = -4.5f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getWewa().isInTown()) {
+			xOffset = 24.95f;
+			yOffset = -4.3f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getApalachicola().isInTown()) {
+			xOffset = 25.1f;
+			yOffset = 4.2f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getStGeorge().isInTown()) {
+			xOffset = 21.3f;
+			yOffset = 6.0f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getPortStJoe().isInTown()) {
+			xOffset = 12.2f;
+			yOffset = -2.4f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getThePoint().isInTown()) {
+			xOffset = 6.1f;
+			yOffset = -2.6f;
+		} 
+		else if (myGame.getGameScreen().getTownHandler().getCapeSanBlas().isInTown()) {
+			xOffset = 6.1f;
+			yOffset = 0.2f; 
 		}
-
-		// Find player's y chunk position.
-		offsetForCamera = 1.2f;
-		switch (playerLocation.y) {
-		case 1:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera;
-			break;
-		case 2:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi;
-			break;
-		case 3:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 2;
-			break;
-		case 4:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 3;
-			break;
-		case 5:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 4;
-			break;
-		case 6:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 5;
-			break;
-		case 7:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 6;
-			break;
-		case 8:
-			yChunkLocation = camera.position.y - verticalHeight / denominatorOffset + offsetForCamera + chunkHeightOnUi * 7;
-			break;
-		}
-		
 		if (timer < MAX_TIMER_VALUE / 2) {
-			int locationOffset = 2;
-			int resizeValue    = 2;
-			batch.draw(imageLoader.locationSkull, 
-					xChunkLocation + locationOffset,
-					yChunkLocation + locationOffset, 
-					chunkWidthOnUi / resizeValue, 
-					-chunkHeightOnUi / resizeValue
+			batch.draw(
+					imageLoader.locationSkull, 
+					xPosStart + xOffset, 
+					yPosStart + yOffset, 
+					locationMarkerSize, 
+					-locationMarkerSize
 					);
 		}
 	}

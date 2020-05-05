@@ -332,6 +332,14 @@ public class GameScreen extends Screens {
 		pause.updateObject(myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
+	/**
+	 * 
+	 * @return TownHandler
+	 */
+	public TownHandler getTownHandler() {
+		return townHandler;
+	}
+
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
 		mapRenderer.renderMapOfChunks(myGame, mapHandler);
 		lightingHandler.lightHandler.renderLighting(
