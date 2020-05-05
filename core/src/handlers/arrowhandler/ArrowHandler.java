@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.weapons.Arrow;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -30,6 +31,8 @@ public class ArrowHandler {
 	private final int RIGHT_BOUNDARY = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH;
 	private final int LEFT_BOUNDARY  = 0;
 	private final int TOP_BOUNDARY   = 0;
+
+	public static boolean playSound = false;
 
 	/**
 	 * 
@@ -124,14 +127,23 @@ public class ArrowHandler {
 		if (arrows[MEXICO_BEACH].getX() > RIGHT_BOUNDARY) {
 			arrows[MEXICO_BEACH].setX(arrowSpawner[ArrowHandler.MEXICO_BEACH].getX() + 1);
 			arrows[MEXICO_BEACH].setY(arrowSpawner[ArrowHandler.MEXICO_BEACH].getY() - 3);
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(arrowSpawner[MEXICO_BEACH])) {
+				playSound = true;
+			}
 		}
 		else if (arrows[APALACHICOLA].getX() < LEFT_BOUNDARY) {
 			arrows[APALACHICOLA].setX(arrowSpawner[ArrowHandler.APALACHICOLA].getX() + 1);
 			arrows[APALACHICOLA].setY(arrowSpawner[ArrowHandler.APALACHICOLA].getY() - 3);
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(arrowSpawner[APALACHICOLA])) {
+				playSound = true;
+			}
 		}
 		else if (arrows[STUMP_HOLE].getY() < TOP_BOUNDARY) {
 			arrows[STUMP_HOLE].setX(arrowSpawner[ArrowHandler.STUMP_HOLE].getX() + 1);
 			arrows[STUMP_HOLE].setY(arrowSpawner[ArrowHandler.STUMP_HOLE].getY());
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(arrowSpawner[STUMP_HOLE])) {
+				playSound = true;
+			}
 		}
 	}
 }

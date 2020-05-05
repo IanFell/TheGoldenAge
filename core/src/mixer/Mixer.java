@@ -16,7 +16,7 @@ public class Mixer {
 	public static final float MAX_VOLUME            = 1.0f;
 
 	public static final float CLICK_VOLUME = MAX_VOLUME;
-	
+
 	// When player buys something from the store.
 	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
 
@@ -58,6 +58,7 @@ public class Mixer {
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME = MEDIAN_VOLUME;
 	public final static float BOMB_VOLUME        = SIXTEENTH_VOLUME;
+	public final static float ARROW_VOLUME       = MEDIAN_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;

@@ -13,6 +13,7 @@ import gameobjects.nature.Feather;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.enemies.BossHandler;
 import handlers.enemies.GiantHandler;
@@ -88,6 +89,11 @@ public class SoundHandler {
 						CannonBallLoader.cannonballs.get(i).setPlayLandSound(false);
 					}
 				}
+			}
+			
+			if (ArrowHandler.playSound) {
+				soundLoader.arrow.play(Mixer.ARROW_VOLUME);
+				ArrowHandler.playSound = false;
 			}
 
 			attackTimer++;
