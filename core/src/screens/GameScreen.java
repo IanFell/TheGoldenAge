@@ -20,6 +20,7 @@ import handlers.collectibles.RumHandler;
 import handlers.enemies.EnemyHandler;
 import handlers.enemies.GiantHandler;
 import handlers.enemies.GruntHandler;
+import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
 import input.Input;
@@ -135,6 +136,8 @@ public class GameScreen extends Screens {
 	private CollectibleShadowHandler collectibleShadowHandler;
 	private WeaponShadowHandler arrowShadowHandler;
 
+	private HoleHandler holeHandler = new HoleHandler();
+
 	private CutSceneIntro cutSceneIntro;
 
 	private Store store = new Store();
@@ -240,6 +243,8 @@ public class GameScreen extends Screens {
 		collectibleShadowHandler = new CollectibleShadowHandler(myGame.imageLoader);
 		arrowShadowHandler       = new WeaponShadowHandler();
 
+		holeHandler.init(myGame);
+
 		Input.initializeInventoryAndPurchasingUiForInput();
 
 		/**
@@ -329,6 +334,8 @@ public class GameScreen extends Screens {
 
 		store.updateStore();
 
+		holeHandler.updateHoles(myGame, mapHandler);
+
 		pause.updateObject(myGame.getGameObject(Player.PLAYER_ONE));
 	}
 
@@ -410,7 +417,7 @@ public class GameScreen extends Screens {
 				myGame.imageLoader, 
 				myGame
 				);
-		
+
 		arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
 		/*
 		if (!cutSceneIntro.isCutSceneIsInProgress()) {

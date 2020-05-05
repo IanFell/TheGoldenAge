@@ -13,6 +13,7 @@ import gameobjects.gamecharacters.enemies.Enemy;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.QuickSand;
+import gameobjects.nature.hole.Hole;
 import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
@@ -598,6 +599,17 @@ public class CollisionHandler {
 					((Player) player).setBouncingBack(true);
 				}
 			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Hole       hole
+	 */
+	public static void checkIfPlayerHasCollidedWithHole(GameObject player, Hole hole) {
+		if (player.rectangle.overlaps(hole.rectangle)) {
+			System.exit(0);
 		}
 	}
 }

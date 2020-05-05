@@ -31,6 +31,7 @@ public class ImageLoader {
 	public Texture[] townSigns = new Texture[7];
 
 	// Nature Objects.
+	public Texture hole;
 	public Texture rock;
 	public Texture drSuessTree;
 	public Texture palmTree;
@@ -213,6 +214,7 @@ public class ImageLoader {
 		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
+		hole          = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
 		rock 		  = new Texture(Gdx.files.internal("artwork/nature/Rock.png"));
 		logs          = new Texture(Gdx.files.internal("artwork/nature/Logs.png"));
 		palmTreeThree = new Texture(Gdx.files.internal("artwork/nature/PalmTreeOneAlternate_April2020.png"));
@@ -439,6 +441,7 @@ public class ImageLoader {
 		}
 
 		// Nature Objects.
+		hole.dispose();
 		rock.dispose();
 		logs.dispose();
 		palmTreeThree.dispose();
