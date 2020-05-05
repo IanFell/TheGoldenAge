@@ -67,6 +67,7 @@ public class ImageLoader {
 	public Texture legendSwordPinkHalf;
 	public Texture legendSwordRainbow;
 	public Texture oyster;
+	public Texture oysterShadow;
 	public Texture cannonBall;
 	public Texture cannonLeft;
 	public Texture cannonRight;
@@ -247,7 +248,8 @@ public class ImageLoader {
 		legendSwordOrange     = new Texture(Gdx.files.internal("artwork/weapons/sword/SwordOrange.png"));
 		legendSwordPurple     = new Texture(Gdx.files.internal("artwork/weapons/sword/SwordPurple.png"));
 		legendSwordPink       = new Texture(Gdx.files.internal("artwork/weapons/sword/SwordPink.png"));
-		oyster                = new Texture(Gdx.files.internal("artwork/weapons/Oyster.png"));
+		oyster                = new Texture(Gdx.files.internal("artwork/weapons/oyster/Oyster.png"));
+		oysterShadow          = new Texture(Gdx.files.internal("artwork/weapons/oyster/OysterShadow.png"));
 		cannonBall            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonBall.png"));
 		cannonLeft            = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonLeft.png"));
 		cannonRight           = new Texture(Gdx.files.internal("artwork/weapons/cannon/CannonRight.png"));
@@ -473,6 +475,7 @@ public class ImageLoader {
 		legendSwordPinkHalf.dispose();
 		legendSwordOrangeHalf.dispose();
 		oyster.dispose();
+		oysterShadow.dispose();
 		cannonBall.dispose();
 		cannonLeft.dispose();
 		cannonRight.dispose();

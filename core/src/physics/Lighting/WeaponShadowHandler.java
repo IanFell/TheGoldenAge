@@ -1,7 +1,9 @@
 package physics.Lighting;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import handlers.arrowhandler.ArrowHandler;
 import loaders.ImageLoader;
 
@@ -10,9 +12,9 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class ArrowShadowHandler {
+public class WeaponShadowHandler {
 
-	public void renderArrowShadows(SpriteBatch batch, ImageLoader imageLoader) {
+	public void renderArrowShadows(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		float offset = 1.3f;
 		batch.draw(
 				imageLoader.arrowShadowRight,
@@ -35,6 +37,10 @@ public class ArrowShadowHandler {
 				ArrowHandler.arrows[ArrowHandler.STUMP_HOLE].getWidth(),
 				ArrowHandler.arrows[ArrowHandler.STUMP_HOLE].getHeight()
 				);
-	}
 
+		GameObject magicPearl = myGame.getGameScreen().magicPearl; 
+		if (magicPearl.hasBeenCollected) {
+			batch.draw(imageLoader.oysterShadow, magicPearl.getX(), magicPearl.getY() + 1.0f, magicPearl.getWidth(), magicPearl.getHeight());
+		}
+	}
 }

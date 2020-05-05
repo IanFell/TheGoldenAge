@@ -20,6 +20,9 @@ public class Torch extends GameObject {
 
 	private Fire fire;
 
+	private float stickWidth  = 0.1f;
+	private float stickHeight = 0.5f;
+
 	/**
 	 * 
 	 * @param float x
@@ -68,6 +71,7 @@ public class Torch extends GameObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(imageLoader.blackSquare, fire.getX() + 0.2f, fire.getY(), stickWidth, stickHeight);
 		fire.renderObject(batch, imageLoader);
 	}
 }

@@ -32,7 +32,7 @@ import maps.MapLoader;
 import maps.MapRenderer;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
-import physics.Lighting.ArrowShadowHandler;
+import physics.Lighting.WeaponShadowHandler;
 import physics.Lighting.CollectibleShadowHandler;
 import physics.Lighting.LightingHandler;
 import physics.Lighting.StructureShadowHandler;
@@ -133,7 +133,7 @@ public class GameScreen extends Screens {
 
 	private StructureShadowHandler structureShadowHandler;
 	private CollectibleShadowHandler collectibleShadowHandler;
-	private ArrowShadowHandler arrowShadowHandler;
+	private WeaponShadowHandler arrowShadowHandler;
 
 	private CutSceneIntro cutSceneIntro;
 
@@ -238,7 +238,7 @@ public class GameScreen extends Screens {
 
 		structureShadowHandler   = new StructureShadowHandler(myGame.imageLoader);
 		collectibleShadowHandler = new CollectibleShadowHandler(myGame.imageLoader);
-		arrowShadowHandler       = new ArrowShadowHandler();
+		arrowShadowHandler       = new WeaponShadowHandler();
 
 		Input.initializeInventoryAndPurchasingUiForInput();
 
@@ -353,7 +353,7 @@ public class GameScreen extends Screens {
 
 		structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
 		collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
-		arrowShadowHandler.renderArrowShadows(myGame.renderer.batch, myGame.imageLoader);
+		arrowShadowHandler.renderArrowShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 		GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
 				GameObjectLoader.gameObjectList, 
