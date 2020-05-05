@@ -97,7 +97,7 @@ public class Mouse extends ComputerInput {
 						MissionRawBar.introHasCompleted = true;
 					}
 					// Dont throw exception if inventory is not equipped.
-					if (Inventory.inventoryIsEquipped) {
+					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
 						Player.playerIsPerformingAttack = true;
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 							MagicPearl.isAttacking     = true;

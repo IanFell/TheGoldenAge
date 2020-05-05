@@ -23,7 +23,7 @@ public class Chest extends GamePlayObject {
 	private LocationMarker locationMarker;
 
 	// How much loot player gets from opening chest.
-	public static final int LOOT_VALUE = 1;
+	public static final int LOOT_VALUE = 5; // 1
 
 	protected float objectSize = 1.5f;
 

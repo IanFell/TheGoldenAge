@@ -200,7 +200,7 @@ public class Inventory extends Screens {
 			break;
 		case Player.DIRECTION_UP:
 			xPosition = x;
-			yPosition = y - inventoryHeight - 0.5f;
+			yPosition = y - inventoryHeight;
 			break;
 		}	
 		inventory.get(selectedInventory).setX(xPosition);

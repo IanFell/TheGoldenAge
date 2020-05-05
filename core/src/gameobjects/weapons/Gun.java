@@ -13,6 +13,7 @@ import inventory.Inventory;
 import loaders.ImageLoader;
 import loaders.bulletloader.BulletLoader;
 import maps.MapHandler;
+import store.Store;
 import ui.MapUi;
 
 /**
@@ -83,7 +84,8 @@ public class Gun extends Weapon {
 		if (
 				Player.playerIsPerformingAttack && 
 				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun && 
-				AmmoHandler.ammoCount > 0
+				AmmoHandler.ammoCount > 0 &&
+				!Store.playerWantsToEnterStore
 				) {
 			BulletLoader.createBullet(myGame);
 		}
