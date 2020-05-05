@@ -79,7 +79,7 @@ public class MissionHandler extends Mission {
 			}
 
 			// Player has collected the gun and is on his way to the Raw Bar.
-			if (Gun.hasBeenCollected && !MissionRawBar.phasesAreInProgress) {
+			if (Gun.hasBeenCollected && !MissionRawBar.phasesAreInProgress && !MissionRawBar.rawBarMissionComplete) {
 				MissionRawBar.updateLocationMarker(myGame);
 			}
 
