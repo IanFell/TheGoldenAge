@@ -140,7 +140,7 @@ public class ArrowHandler {
 		}
 		else if (arrows[STUMP_HOLE].getY() < TOP_BOUNDARY) {
 			arrows[STUMP_HOLE].setX(arrowSpawner[ArrowHandler.STUMP_HOLE].getX() + 1);
-			arrows[STUMP_HOLE].setY(arrowSpawner[ArrowHandler.STUMP_HOLE].getY());
+			arrows[STUMP_HOLE].setY(arrowSpawner[ArrowHandler.STUMP_HOLE].getY() - 1);
 			if (GamePlayHelper.gameObjectIsWithinScreenBounds(arrowSpawner[STUMP_HOLE])) {
 				playSound = true;
 			}
