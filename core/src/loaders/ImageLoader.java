@@ -154,6 +154,7 @@ public class ImageLoader {
 	public Texture inventoryLabel;
 	public Texture locationSkull;
 	public Texture attackBird;
+	public Texture gamePaused;
 
 	// Objective UI objects.
 	public Texture objectiveRawBar;
@@ -345,6 +346,7 @@ public class ImageLoader {
 		inventoryLabel               = new Texture(Gdx.files.internal("artwork/ui/InventoryLabel.png"));
 		locationSkull                = new Texture(Gdx.files.internal("artwork/ui/Skull.png"));
 		attackBird                   = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
+		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 
 		// Objective UI objects.
 		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
@@ -559,6 +561,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		gamePaused.dispose();
 		mapNavigationBar.dispose();
 		inventoryNavigationBar.dispose();
 		inventoryScreen.dispose();
