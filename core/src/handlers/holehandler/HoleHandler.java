@@ -22,7 +22,16 @@ import towns.Town;
  */
 public class HoleHandler {
 
-	private Hole hole;
+	private final int MEXICO_BEACH  = 0;
+	private final int WEWA          = 1;
+	private final int APALACHICOLA  = 2;
+	private final int ST_GEORGE     = 3;
+	private final int PORT_ST_JOE   = 4;
+	private final int STUMP_HOLE    = 5;
+	private final int CAPE_SAN_BLAS = 6;
+	private final int THE_POINT     = 7;
+
+	private Hole[] holes = new Hole[8];
 
 	public static boolean playerIsInHole = false;
 
@@ -40,11 +49,42 @@ public class HoleHandler {
 	 * @param MyGame myGame
 	 */
 	public void init(MyGame myGame) {
-		hole = new Hole(
+		holes[MEXICO_BEACH] = new Hole(
 				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 63, 
 				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START
 				);
-		GameObjectLoader.gameObjectList.add(hole);
+		holes[WEWA] = new Hole(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 57, 
+				5
+				);
+		holes[APALACHICOLA] = new Hole(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 45, 
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 29
+				);
+		holes[ST_GEORGE] = new Hole(
+				GameAttributeHelper.CHUNK_SEVEN_X_POSITION_START + 12, 
+				GameAttributeHelper.CHUNK_EIGHT_Y_POSITION_START - 4
+				);
+		holes[PORT_ST_JOE] = new Hole(
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 
+				GameAttributeHelper.CHUNK_THREE_Y_POSITION_START - 21
+				);
+		holes[STUMP_HOLE] = new Hole(
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 9, 
+				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 55
+				);
+		holes[CAPE_SAN_BLAS] = new Hole(
+				GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 35, 
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 30
+				);
+		holes[THE_POINT] = new Hole(
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 9, 
+				GameAttributeHelper.CHUNK_FIVE_Y_POSITION_START - 108
+				);
+
+		for (int i = 0; i < holes.length; i++) {
+			GameObjectLoader.gameObjectList.add(holes[i]);
+		}
 
 		recOne = new Rectangle(0, 0, 20, 10);
 		recTwo = new Rectangle(0, 0, 20, 10);
@@ -81,7 +121,9 @@ public class HoleHandler {
 	 * @param MapHandler mapHandler
 	 */
 	public void updateHoles(MyGame myGame, MapHandler mapHandler) {
-		hole.updateObject(myGame, mapHandler);
+		for (int i = 0; i < holes.length; i++) {
+			holes[i].updateObject(myGame, mapHandler);
+		}
 
 		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 		if (playerIsInHole) {

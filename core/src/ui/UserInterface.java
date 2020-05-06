@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 import controllers.PlayerController;
 import cutscenes.CutScene;
 import gameobjects.GameObject;
+import handlers.holehandler.HoleHandler;
 import loaders.ImageLoader;
 import store.Store;
 import ui.collectibles.AmmoUi;
@@ -49,7 +50,7 @@ public class UserInterface {
 	 */
 	public void renderUserInterface(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		// Dont render this if a cutscene is in progress.
-		if (!CutScene.anyCutSceneIsInProgress) {
+		if (!CutScene.anyCutSceneIsInProgress && !HoleHandler.playerIsInHole) {
 			healthUi.renderHealthUi(batch, imageLoader, myGame);
 			GameObject player = PlayerController.getCurrentPlayer(myGame);
 			lootUi.renderUi(batch, imageLoader, myGame, player);

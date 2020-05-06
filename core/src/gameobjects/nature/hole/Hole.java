@@ -10,6 +10,7 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 
 /**
+ * These are used to teleport to different towns.
  * 
  * @author Fabulous Fellini
  *
