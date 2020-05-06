@@ -20,6 +20,9 @@ public class Mixer {
 	// When player buys something from the store.
 	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
 
+	// When player is teleporting in tunnel.
+	public static final float TUNNEL_VOLUME = QUARTER_VOLUME;
+
 	// Music.
 	public final static float AMBIENT_MUSIC_VOLUME     = MEDIAN_VOLUME;
 	public final static float INVINCIBLE_MUSIC_VOLUME  = MEDIAN_VOLUME;

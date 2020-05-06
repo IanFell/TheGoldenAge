@@ -17,6 +17,7 @@ import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.enemies.BossHandler;
 import handlers.enemies.GiantHandler;
+import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.audio.SoundLoader;
@@ -90,7 +91,7 @@ public class SoundHandler {
 					}
 				}
 			}
-			
+
 			if (ArrowHandler.playSound) {
 				soundLoader.arrow.play(Mixer.ARROW_VOLUME);
 				ArrowHandler.playSound = false;
@@ -184,6 +185,15 @@ public class SoundHandler {
 			if (Store.playSound) {
 				soundLoader.register.play(Mixer.REGISTER_VOLUME);
 				Store.playSound = false;
+			}
+
+			if (HoleHandler.playerIsInHole) {
+				if (HoleHandler.playSound) {
+					soundLoader.tunnel.loop(Mixer.TUNNEL_VOLUME);
+					HoleHandler.playSound = false;
+				}
+			} else {
+				soundLoader.tunnel.stop();
 			}
 		}
 	}

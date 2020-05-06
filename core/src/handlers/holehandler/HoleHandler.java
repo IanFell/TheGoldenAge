@@ -32,6 +32,8 @@ public class HoleHandler {
 	private final int THE_POINT     = 7;
 
 	private Hole[] holes = new Hole[8];
+	
+	public static boolean playSound = false;
 
 	public static boolean playerIsInHole = false;
 

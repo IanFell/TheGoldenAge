@@ -611,6 +611,9 @@ public class CollisionHandler {
 	public static void checkIfPlayerHasCollidedWithHole(GameObject player, Hole hole) {
 		if (player.rectangle.overlaps(hole.rectangle)) {
 			HoleHandler.playerIsInHole = true;
+			HoleHandler.playSound      = true;
+			// Move player away from hole so he's not constantly hitting it, triggering the audio.
+			player.setY(player.getY() + 1);
 		}
 	}
 }
