@@ -11,6 +11,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
+import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
@@ -77,7 +78,8 @@ public class Keyboard extends ComputerInput {
 			if (
 					!Inventory.allInventoryShouldBeRendered && 
 					!MapUi.mapShouldBeRendered && 
-					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY
+					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
+					!HoleHandler.playerIsInHole
 					) {
 				//handleKeyboardDirectionalButtons(myGame, "arrows", player);
 				handleKeyboardDirectionalButtons(myGame, "wasd", player);

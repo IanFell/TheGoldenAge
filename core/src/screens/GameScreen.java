@@ -432,6 +432,8 @@ public class GameScreen extends Screens {
 		}
 
 		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
+		
+		holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 		userInterface.renderUserInterface(
 				myGame.renderer.batch,  

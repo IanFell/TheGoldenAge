@@ -27,6 +27,8 @@ public class TownHandler {
 	private ThePoint thePoint;
 	private CapeSanBlas capeSanBlas;
 
+	private int townLength = 9;
+
 	/**
 	 * Constructor.
 	 */
@@ -38,6 +40,14 @@ public class TownHandler {
 		stGeorge     = new StGeorge();
 		thePoint     = new ThePoint();
 		capeSanBlas  = new CapeSanBlas();
+	}
+
+	/**
+	 * 
+	 * @return int
+	 */
+	public int getTownLength() {
+		return townLength;
 	}
 
 	/**

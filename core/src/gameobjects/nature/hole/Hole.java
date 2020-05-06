@@ -40,7 +40,7 @@ public class Hole extends NatureObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.hole, x, y, width, height);
-		batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+		//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 	}
 
 	/**

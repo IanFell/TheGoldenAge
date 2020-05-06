@@ -25,6 +25,7 @@ import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
 import handlers.collectibles.RumHandler;
+import handlers.holehandler.HoleHandler;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import maps.MapHandler;
@@ -609,7 +610,7 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerHasCollidedWithHole(GameObject player, Hole hole) {
 		if (player.rectangle.overlaps(hole.rectangle)) {
-			System.exit(0);
+			HoleHandler.playerIsInHole = true;
 		}
 	}
 }
