@@ -77,7 +77,7 @@ public class MapUi extends Screens {
 	private void flashPlayerChunkLocation(SpriteBatch batch, ImageLoader imageLoader) {
 		float xPosStart = camera.position.x - getViewportWidth() / 2;
 		float yPosStart = myGame.getGameObject(Player.PLAYER_ONE).getY();
-		float xOffset   = 0;
+		float xOffset   = -100; // Make sure this isn't rendered on screen if not needed.  Move it way to the left.
 		float yOffset   = 0;
 		if (myGame.getGameScreen().getTownHandler().getMexicoBeach().isInTown()) {
 			xOffset = 8.2f;
