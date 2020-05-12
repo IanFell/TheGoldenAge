@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound pause;
 	public Sound clickSound;
 	public Sound heartSound;
 	public Sound rumSound;
@@ -37,6 +38,7 @@ public class SoundLoader {
 	public Sound tunnel;
 
 	public void init() {
+		pause               = Gdx.audio.newSound(Gdx.files.internal("audio/sound/whistle.wav"));
 		heartSound          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Heart.wav"));
 		rumSound            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Glass.wav"));
 		jumpSound           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/JumpSound.wav"));
@@ -64,6 +66,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		pause.dispose();
 		heartSound.dispose();
 		rumSound.dispose();
 		swordSound.dispose();

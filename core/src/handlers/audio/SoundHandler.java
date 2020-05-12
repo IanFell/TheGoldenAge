@@ -28,6 +28,7 @@ import loaders.chestloader.ChestLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import mixer.Mixer;
+import screens.PauseScreen;
 import screens.Screens;
 import store.Store;
 import ui.LocationMarker;
@@ -194,6 +195,11 @@ public class SoundHandler {
 				}
 			} else {
 				soundLoader.tunnel.stop();
+			}
+
+			if (PauseScreen.playSound) {
+				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
+				PauseScreen.playSound = false;
 			}
 		}
 	}

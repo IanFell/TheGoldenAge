@@ -13,6 +13,7 @@ import gameobjects.gamecharacters.GameCharacter;
 import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
+import handlers.holehandler.HoleHandler;
 import helpers.RandomNumberGenerator;
 import inventory.Inventory;
 import loaders.ImageLoader;
@@ -268,7 +269,8 @@ public class Enemy extends GameCharacter {
 				!Store.shouldDisplayEnterStoreMessage &&
 				!MapUi.mapShouldBeRendered &&
 				!MissionRawBar.phasesAreInProgress &&
-				!MissionStumpHole.missionIsActive
+				!MissionStumpHole.missionIsActive &&
+				!HoleHandler.playerIsInHole
 				) {
 			return true;
 		}

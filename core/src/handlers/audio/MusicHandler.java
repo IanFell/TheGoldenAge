@@ -29,7 +29,7 @@ public class MusicHandler {
 
 	private int bossExplosionTimer              = 0;
 	private final int EXPLOSION_TIMER_MAX_VALUE = 110;
-	
+
 	private boolean bossBattleIsInProgress = false;
 
 	/**
@@ -56,6 +56,9 @@ public class MusicHandler {
 				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
 				musicLoader.ambientMusic.play();
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+					musicLoader.ambientMusic.pause();
+				}
 			}
 			handleBossBattleMusic(musicLoader);
 			handleBossExplosionMusic(musicLoader);
@@ -100,6 +103,9 @@ public class MusicHandler {
 				musicLoader.bossBattleMusic.stop();
 			}
 		}
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+			musicLoader.bossBattleMusic.pause();
+		}
 	}
 
 	/**
@@ -132,6 +138,9 @@ public class MusicHandler {
 		musicLoader.buff.setVolume(Mixer.INVINCIBLE_MUSIC_VOLUME);
 		musicLoader.buff.setLooping(true);
 		musicLoader.buff.play();
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+			musicLoader.buff.pause();
+		}
 	}
 
 	/**

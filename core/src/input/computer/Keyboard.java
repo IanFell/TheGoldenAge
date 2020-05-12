@@ -19,6 +19,7 @@ import loaders.bulletloader.BulletLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.GameScreen;
+import screens.PauseScreen;
 import screens.Screens;
 import store.Store;
 import ui.MapUi;
@@ -229,6 +230,7 @@ public class Keyboard extends ComputerInput {
 					} else {
 						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
 					}
+					PauseScreen.playSound = true;
 				}
 			}
 			pauseTimer++;

@@ -3,14 +3,17 @@ package screens;
 import com.mygdx.mygame.MyGame;
 
 /**
- * Screen when the game is paused.
- * This is currently not used, but keep for now.
+ * This mostly just handles the sound for when game is paused.
+ * 
+ * The screen is actually rendered elsewhere.
  * 
  * @author Fabulous Fellini
  *
  */
 public class PauseScreen extends Screens {
-	
+
+	public static boolean playSound = false;
+
 	/**
 	 * 
 	 * @param MyGame myGame
