@@ -158,6 +158,7 @@ public class ImageLoader {
 	public Texture gamePaused;
 
 	// Objective UI objects.
+	public Texture objectiveTryAgain;
 	public Texture objectiveRawBar;
 	public Texture objectiveStumpHole;
 	public Texture objectiveTradinPost;
@@ -351,6 +352,7 @@ public class ImageLoader {
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 
 		// Objective UI objects.
+		objectiveTryAgain            = new Texture(Gdx.files.internal("artwork/ui/objectives/TryAgain.png"));
 		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
 		objectiveStumpHole           = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
 		objectiveCollectLoot         = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
@@ -574,6 +576,7 @@ public class ImageLoader {
 		attackBird.dispose();
 
 		// Objective UI objects.
+		objectiveTryAgain.dispose();
 		objectiveRawBar.dispose();
 		objectiveStumpHole.dispose();
 		objectiveCollectLoot.dispose();

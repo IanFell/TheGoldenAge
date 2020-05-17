@@ -333,7 +333,7 @@ public class MissionRawBar extends Mission {
 	 */
 	private void renderFailMessage(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		batch.draw(
-				imageLoader.gamePaused, 
+				imageLoader.objectiveTryAgain, 
 				myGame.getGameObject(Player.PLAYER_ONE).getX() - 2, 
 				myGame.getGameObject(Player.PLAYER_ONE).getY() - 0.5f,
 				4, 
