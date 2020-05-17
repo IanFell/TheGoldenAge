@@ -12,6 +12,7 @@ import handlers.enemies.GiantHandler;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.MissionRawBar;
 import physics.Lighting.Fire;
@@ -80,6 +81,9 @@ public class MagicPearl extends Weapon {
 					myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
 					for (int i = 0; i < GiantHandler.giants.length; i++) {
 						CollisionHandler.checkIfProjectileHasCollidedWithEnemy(GiantHandler.giants[i], this);
+					}
+					for (int i = 0; i < BossLoader.boss.length; i++) {
+						CollisionHandler.checkIfProjectileHasCollidedWithBoss(BossLoader.boss[i], this);
 					}
 					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 					case DIRECTION_RIGHT:
