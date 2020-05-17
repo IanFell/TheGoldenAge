@@ -122,6 +122,7 @@ public class ImageLoader {
 	public Texture worldMapWewa;
 
 	// Mission objects.
+	public Texture sun;
 	public Texture legendOfTheSevenSwordsBeginMissionText;
 	public Texture missionTransparentBlueSquare;
 	public Texture rightHand;
@@ -316,6 +317,7 @@ public class ImageLoader {
 		worldMapReal		 = new Texture(Gdx.files.internal("artwork/maps/WorldMapReal.png"));
 
 		// Mission objects.
+		sun                                    = new Texture(Gdx.files.internal("artwork/missions/Sun.png"));
 		legendOfTheSevenSwordsBeginMissionText = new Texture(Gdx.files.internal("artwork/missions/LegendOfTheSevenSwords.png"));
 		missionTransparentBlueSquare           = new Texture(Gdx.files.internal("artwork/missions/TransparentBlueSquare.png"));
 		rightHand      						   = new Texture(Gdx.files.internal("artwork/missions/HandOpenRight.png"));
@@ -540,6 +542,7 @@ public class ImageLoader {
 		worldMapReal.dispose();
 
 		// Mission objects.
+		sun.dispose();
 		legendOfTheSevenSwordsBeginMissionText.dispose();
 		missionTransparentBlueSquare.dispose();
 		rightHand.dispose();

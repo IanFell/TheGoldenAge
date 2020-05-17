@@ -185,6 +185,8 @@ public class MissionStumpHole extends Mission {
 					GameScreen.camera.viewportWidth, 
 					-GameScreen.camera.viewportHeight
 					);
+			GameObject realPlayer = myGame.getGameObject(Player.PLAYER_ONE);
+			batch.draw(imageLoader.sun, realPlayer.getX() + 3, realPlayer.getY() - 3, 5, 5);
 
 			// Make attack bird fly in between stumps if he is not spinning.
 			for (int i = 0; i < stumps.size(); i++) {
@@ -211,7 +213,7 @@ public class MissionStumpHole extends Mission {
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
 			
-			renderMeters(batch, imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
+			renderMeters(batch, imageLoader, realPlayer);
 
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
