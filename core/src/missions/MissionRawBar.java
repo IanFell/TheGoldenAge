@@ -317,12 +317,30 @@ public class MissionRawBar extends Mission {
 				-GameScreen.camera.viewportHeight
 				);
 
-		renderOysterValueMeter(batch, imageLoader);
-		renderCountdownMeter(batch, imageLoader);
+		renderMeters(batch, imageLoader);
 
 		if (failMessageShouldDisplay) {
 			renderFailMessage(batch, imageLoader, myGame);
 		}
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader) {
+		// Oyster value meter.
+		float x = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 51;
+		float y = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48;
+		renderValueMeter(batch, x, y, -numberOfOystersNeededToWin, imageLoader.blackSquare);
+		renderValueMeter(batch, x, y, -oystersCollected, imageLoader.whiteSquare);
+
+		// Time limit meter.
+		x = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 49;
+		y = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48;
+		renderValueMeter(batch, x, y, -phaseTimeLimit, imageLoader.blackSquare);
+		renderValueMeter(batch, x, y, -timeSeconds, imageLoader.whiteSquare);
 	}
 
 	/**
@@ -338,52 +356,6 @@ public class MissionRawBar extends Mission {
 				myGame.getGameObject(Player.PLAYER_ONE).getY() - 0.5f,
 				4, 
 				-1
-				);
-	}
-
-	/**
-	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 */
-	private void renderCountdownMeter(SpriteBatch batch, ImageLoader imageLoader) {
-		float width = 1.0f;
-		batch.draw(
-				imageLoader.blackSquare, 
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 49, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48,
-				width, 
-				-phaseTimeLimit
-				);
-		batch.draw(
-				imageLoader.whiteSquare, 
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 49, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48,
-				width, 
-				-timeSeconds
-				);
-	}
-
-	/**
-	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 */
-	private void renderOysterValueMeter(SpriteBatch batch, ImageLoader imageLoader) {
-		float width = 1.0f;
-		batch.draw(
-				imageLoader.blackSquare, 
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 51, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48,
-				width, 
-				-numberOfOystersNeededToWin
-				);
-		batch.draw(
-				imageLoader.whiteSquare, 
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 51, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48,
-				width, 
-				-oystersCollected
 				);
 	}
 

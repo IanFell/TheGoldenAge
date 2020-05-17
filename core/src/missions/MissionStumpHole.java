@@ -35,9 +35,9 @@ public class MissionStumpHole extends Mission {
 	private Feather featherThree;
 
 	// Value each feather is worth when collected.
-	public static final float FEATHER_VALUE = 8.0f;
+	public static final float FEATHER_VALUE = 1.0f;
 
-	private final float FEATHER_VALUE_METER_MAX = 8.0f;
+	private final float FEATHER_VALUE_METER_MAX = 7.0f;
 
 	/**
 	 * This variable will not increase by 1 every time a feather is collected.
@@ -54,7 +54,7 @@ public class MissionStumpHole extends Mission {
 	private float attackBirdOriginX;
 	private float attackBirdOriginY;
 	private float attackBirdAngle               = 0;
-	private float attackBirdDx                  = 0.7f;
+	private float attackBirdDx                  = 0.3f;
 	// Break in between attacks.
 	private float attackBirdBreakTimer          = 0;
 	private final float ATTACK_BREAK_VALUE      = 25;
@@ -142,7 +142,7 @@ public class MissionStumpHole extends Mission {
 		attackBirdOriginY           = attackBird.getY();
 
 		player          = new Rectangle(stumps.get(0).getX(), stumps.get(0).getY() - 60, playerSize, playerSize);
-		playerDx        = 0.2f;
+		playerDx        = 0.1f;
 		playerDy        = 0;
 		playerDirection = DIRECTION_RIGHT;
 
@@ -209,12 +209,16 @@ public class MissionStumpHole extends Mission {
 			renderWater(batch, imageLoader);
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
-			renderFeatherValueMeter(batch, imageLoader);
+			
+			renderMeters(batch, imageLoader);
 
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
 			}
+			
+			batch.draw(imageLoader.whiteSquare, player.x, player.y, player.width, player.height);
+			//batch.draw(imageLoader.whiteSquare, attackBird.rectangle.x, player.y, player.width, player.height);f
 
 			if (transition != null) {
 				transition.renderTransition(batch, imageLoader);
@@ -227,28 +231,17 @@ public class MissionStumpHole extends Mission {
 			}
 		}
 	}
-
+	
 	/**
 	 * 
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
 	 */
-	private void renderFeatherValueMeter(SpriteBatch batch, ImageLoader imageLoader) {
-		float height = 2.0f;
-		batch.draw(
-				imageLoader.blackSquare, 
-				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 7.5f, 
-				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 37.0f,
-				FEATHER_VALUE_METER_MAX, 
-				-height
-				);
-		batch.draw(
-				imageLoader.whiteSquare, 
-				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 7.5f, 
-				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 37.0f,
-				playerFeatherScore, 
-				-height
-				);
+	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader) {
+		float x = GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 0.5f;
+		float y = GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 45f;
+		renderValueMeter(batch, x, y, -FEATHER_VALUE_METER_MAX, imageLoader.blackSquare);
+		renderValueMeter(batch, x, y,-playerFeatherScore, imageLoader.whiteSquare);
 	}
 
 	/**
@@ -399,6 +392,7 @@ public class MissionStumpHole extends Mission {
 		}
 
 		// Player loses health if he gets hit by attack bird.
+		// TODO PUT IN THE SOUND WHEN PLAYER GETS HIT AND LOWER HEALTH LOSS VALUE HERE.
 		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
 				myGame.getGameObject(Player.PLAYER_ONE),
 				attackBird.rectangle

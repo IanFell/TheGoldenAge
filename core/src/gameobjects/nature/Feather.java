@@ -32,7 +32,7 @@ public class Feather extends NatureObject {
 		rectangle.width  = width;
 		rectangle.height = height;
 
-		this.dx = (float) RandomNumberGenerator.generateRandomDouble(0, 1.5f);
+		this.dx = (float) RandomNumberGenerator.generateRandomDouble(0, 1.0f);
 		this.dy = (float) RandomNumberGenerator.generateRandomDouble(0.1f, 0.07f);
 
 		// Make feather either fly left or right.
@@ -62,7 +62,7 @@ public class Feather extends NatureObject {
 		rectangle.x = x;
 		rectangle.y = y;
 		x += dx;
-		y += dy;
+		y -= dy;
 
 		// Slow down dx with time so it appears feather slows down after it's dropped.
 		if (dx > 0) {

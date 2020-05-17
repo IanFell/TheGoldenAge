@@ -27,12 +27,26 @@ public class Mission {
 
 	protected LocationMarker locationMarker;
 
+	private float meterWidth = 1.0f;
+
 	/**
-	 * Consructor.
+	 * Constructor.
 	 */
 	public Mission() {
 		missionComplete = false; 
 		timer           = 0;
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param float       x
+	 * @param float       y
+	 * @param float       height
+	 * @param Texture     texture
+	 */
+	protected void renderValueMeter(SpriteBatch batch, float x, float y, float height, Texture texture) {
+		batch.draw(texture, x, y, meterWidth, height);
 	}
 
 	/**
