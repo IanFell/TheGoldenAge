@@ -93,7 +93,7 @@ public class MissionStumpHole extends Mission {
 	// Player cannot fall past this barrier. 
 	private float gravityHaltBarrier;
 
-	private float waterTileHeight                    = 2.3f;
+	private float waterTileHeight                    = 2.5f;
 	private int animatedWaterTimer                   = 0;
 	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 10;
 
@@ -209,7 +209,7 @@ public class MissionStumpHole extends Mission {
 				playerTexture = imageLoader.playerLeft;
 			}
 			batch.draw(playerTexture, player.x, player.y + player.height, player.width, -player.height);
-			renderWater(batch, imageLoader);
+			renderWater(batch, imageLoader, realPlayer);
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
 			
@@ -284,9 +284,9 @@ public class MissionStumpHole extends Mission {
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
 	 */
-	private void renderWater(SpriteBatch batch, ImageLoader imageLoader) {
+	private void renderWater(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
 		float originalX                    = GameScreen.camera.position.x - GameScreen.camera.viewportWidth / 2;
-		float originalY                    = GameScreen.camera.position.y + GameScreen.camera.viewportHeight / 2;
+		float originalY                    = player.getY() + 7;
 		float startX                       = originalX;
 		float startY                       = originalY;
 		int rowLength                      = 29;
