@@ -17,20 +17,24 @@ import transitions.Transition;
 import ui.LocationMarker;
 
 /**
- * This mission will consist of three phases, where the player will have to collect a certain amount of 
- * oysters within a certain amount of time.
+ * This is the previous mess of the raw bar mission.  The other actual "MissionRawBar" class is the current,
+ * cleaned version.  This is basically not used unless I need to revert back to something.
  *  
  * @author Fabulous Fellini
  *
  */
-public class MissionRawBar extends Mission {
+public class MissionRawBarBackUp extends Mission {
 
 	// Time alloted for all phases of mission.
-	public static final float MAX_MISSION_TIME_PHASE_ONE = 7f;
+	public static final float MAX_MISSION_TIME_PHASE_ONE   = 7f;
+	//public static final float MAX_MISSION_TIME_PHASE_TWO   = 15f;
+	//public static final float MAX_MISSION_TIME_PHASE_THREE = 15f;
 
-	private final int MAX_OYSTERS_SPAWNED                       = 100;
-	public static final int NUMBER_OF_OYSTERS_NEEDED_PHASE_ONE  = 7;
-
+	private final int MAX_OYSTERS_SPAWNED                        = 100;
+	public static final int NUMBER_OF_OYSTERS_NEEDED_PHASE_ONE   = 7;
+	//public static final int NUMBER_OF_OYSTERS_NEEDED_PHASE_TWO   = 15;
+	//public static final int NUMBER_OF_OYSTERS_NEEDED_PHASE_THREE = 10;
+	// This will be assigned to one of the above values.
 	private int numberOfOystersNeededToWin;
 
 	// Represents if PHASES are active, not necessarily entire mission.
@@ -45,6 +49,12 @@ public class MissionRawBar extends Mission {
 	private boolean phaseComplete = false;
 
 	public static boolean phasesAreInProgress = false;
+
+	/**
+	 * Timer to display to user how many oysters to collect.  
+	 * This message only appears for a few seconds at the start of the phase.
+	 */
+	//private int collectOysterMessageTimer = 0;
 
 	// Oysters will have a random x, y, and size.
 	private double[] oysterX                   = new double[MAX_OYSTERS_SPAWNED];
@@ -78,12 +88,28 @@ public class MissionRawBar extends Mission {
 
 	private final int FAIL_MESSAGE_RENDER_MAX_VALUE = 50;
 
+	/*
+	private Rectangle[] fish = new Rectangle[5];
+
+	private float fishOneDx;
+	private float fishTwoDy;
+	private float fishThreeDx;
+	private float fishFourDx;
+	private float fishFourDy;
+	private float fishFiveDy;
+
+	private int fishTurnTimer; */
+
 	public static boolean playCollectionSound = false;
+
+	private int handOpenClosedTimer = 0;
 
 	private static boolean setPlayer = true;
 
 	// Used when player enters the raw bar to start the mission.
 	public static boolean startMission = false;
+
+	//private final int COLLECT_OYSTER_MESSAGE_MAX_TIME = 20;
 
 	public static boolean locationMarkerHasBeenHit = false;
 
@@ -99,7 +125,7 @@ public class MissionRawBar extends Mission {
 	 * @param int   numberOfOystersNeededToWin
 	 * @param float phaseTimeLimit
 	 */
-	public MissionRawBar(int numberOfOystersNeededToWin, float phaseTimeLimit) {
+	public MissionRawBarBackUp(int numberOfOystersNeededToWin, float phaseTimeLimit) {
 		this.numberOfOystersNeededToWin = numberOfOystersNeededToWin;
 		this.phaseTimeLimit             = phaseTimeLimit;
 		for (int i = 0 ; i < MAX_OYSTERS_SPAWNED; i++) {
@@ -118,6 +144,17 @@ public class MissionRawBar extends Mission {
 			playerY   = locationMarker.getLocator().getY();
 			setPlayer = false;
 		}
+
+		/*
+		int startX     = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 25;
+		int startY     = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 43;
+		float fishSize = 1.5f;
+		fish[0] = new Rectangle(startX, startY, fishSize, fishSize);
+		fish[1] = new Rectangle(startX + 7, startY, fishSize, fishSize);
+		fish[2] = new Rectangle(startX + 3, startY + 5, fishSize, fishSize);
+		fish[3] = new Rectangle(startX + 2, startY, fishSize, fishSize);
+		fish[4] = new Rectangle(startX + 15, startY + 5, fishSize, fishSize);
+		fishTurnTimer = 0; */
 	}
 
 	/**
@@ -144,6 +181,15 @@ public class MissionRawBar extends Mission {
 		playerBounds.width  = playerSize;
 		playerBounds.height = playerSize;
 		missionComplete     = false;
+
+		/*
+		int velocityValue = 1;
+		fishOneDx         = velocityValue;
+		fishTwoDy         = velocityValue;
+		fishThreeDx       = velocityValue;
+		fishFourDx        = velocityValue;
+		fishFourDy        = velocityValue;
+		fishFiveDy        = velocityValue; */
 	}
 
 	/**
@@ -185,6 +231,52 @@ public class MissionRawBar extends Mission {
 		}
 	}
 
+	private void updateFishPositions() {
+		/*
+		fish[0].setX(fish[0].getX() + fishOneDx);
+		if (fish[0].getX() > playerX + 3) {
+			fishOneDx = -0.5f;
+		} 
+		if (fish[0].getX() < playerX - 3) {
+			fishOneDx = 0.5f;
+		}
+
+		fish[1].setY(fish[1].getY() + fishTwoDy);
+		if (fish[1].getY() > playerY + 3) {
+			fishTwoDy = -0.5f;
+		} 
+		if (fish[1].getY() < playerY - 3) {
+			fishTwoDy = 0.5f;
+		}
+
+		fish[2].setX(fish[2].getX() + fishThreeDx);
+		if (fish[2].getX() > playerX + 1) {
+			fishThreeDx = -0.5f;
+		} 
+		if (fish[2].getX() < playerX - 6) {
+			fishThreeDx = 0.5f;
+		}
+
+		fish[3].setX(fish[3].getX() + fishFourDx);
+		fish[3].setY(fish[3].getY() + fishFourDy);
+		if (fish[3].getX() > playerX + 10) {
+			fishFourDx = -0.5f;
+			fishFourDy = -0.5f;
+		} 
+		if (fish[3].getX() < playerX - 10) {
+			fishFourDx = 0.5f;
+			fishFourDy = 0.5f;
+		}
+
+		fish[4].setY(fish[4].getY() + fishFiveDy);
+		if (fish[4].getY() > playerY + 3) {
+			fishFiveDy = -0.5f;
+		} 
+		if (fish[4].getY() < playerY - 3) {
+			fishFiveDy = 0.5f;
+		}*/
+	}
+
 	/**
 	 * 
 	 * @param MyGame myGame
@@ -199,6 +291,9 @@ public class MissionRawBar extends Mission {
 		playerBounds.x = playerX;
 		playerBounds.y = playerY;
 
+		//fishTurnTimer++;
+		//updateFishPositions();
+
 		for (int i = 0 ; i < MAX_OYSTERS_SPAWNED; i++) {
 			if (playerBounds.overlaps(oysterBounds[i]) && collectedOyster.get(i).equals(false)) {
 				collectedOyster.set(i, true);
@@ -210,6 +305,39 @@ public class MissionRawBar extends Mission {
 		handleCountdownTimer();
 		handleFailMessageTimer();
 		checkForMissionComplete();
+
+		//System.out.println("Oysters Collected: " + oystersCollected);
+
+		// Only display how many oysters to collect for a few seconds.
+		//if (collectOysterMessageTimer < COLLECT_OYSTER_MESSAGE_MAX_TIME) {
+		//	collectOysterMessageTimer++;
+		//}
+
+		handOpenClosedTimer++;
+		if (handOpenClosedTimer > 20) {
+			handOpenClosedTimer = 0;
+		}
+
+		/*
+		for (int i = 0; i < fish.length; i++) {
+			if (fish[i].overlaps(playerBounds)) {
+				switch (Player.direction) {
+				case Player.DIRECTION_RIGHT:
+					playerX = playerX - 0.5f;
+					break;
+				case Player.DIRECTION_LEFT:
+					playerX = playerX + 0.5f;
+					break;
+				case Player.DIRECTION_DOWN:
+					playerY = playerY - 0.5f;
+					break;
+				case Player.DIRECTION_UP:
+					playerY = playerY + 0.5f;
+					break;
+				}
+				//myGame.getGameObject(Player.PLAYER_ONE).setHealth((int) (myGame.getGameObject(Player.PLAYER_ONE).getHealth() - 0.000001f));
+			}
+		}*/
 	}
 
 	private void handleFailMessageTimer() {
@@ -217,7 +345,7 @@ public class MissionRawBar extends Mission {
 			failMessageTimer++;
 			if (failMessageTimer > FAIL_MESSAGE_RENDER_MAX_VALUE) {
 				failMessageShouldDisplay = false;
-				failMessageTimer         = 0;
+				failMessageTimer = 0;
 			}
 		}
 	}
@@ -268,7 +396,7 @@ public class MissionRawBar extends Mission {
 	private void renderPhases(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		// Draw background.
 		batch.draw(
-				imageLoader.sandTile, 
+				imageLoader.whiteSquare, 
 				GameScreen.camera.position.x - GameScreen.camera.viewportWidth / 2, 
 				GameScreen.camera.position.y + GameScreen.camera.viewportHeight / 2,
 				GameScreen.camera.viewportWidth, 
@@ -289,24 +417,100 @@ public class MissionRawBar extends Mission {
 			}
 		}
 
-		// Draw player.
-		if (playerX > GameScreen.cameraX + 2.5f) {
-			batch.draw(
-					imageLoader.playerLeft, 
-					playerX, 
-					playerY,
-					playerSize, 
-					-playerSize
-					);
-		} else {
-			batch.draw(
-					imageLoader.playerRight, 
-					playerX, 
-					playerY,
-					playerSize, 
-					-playerSize
-					);
+		/*
+		// Draw fish.
+		Texture fishTexture = imageLoader.fishRight;
+		if (fishTurnTimer % 10 < 5) {
+			fishTexture = imageLoader.fishLeft;
 		} 
+		for (int i = 0; i < fish.length; i++) {
+			batch.draw(
+					fishTexture, 
+					fish[i].getX(), 
+					fish[i].getY(),
+					fish[i].width, 
+					-fish[i].height
+					);
+		} */
+
+		// Draw player.  Right now this is just the player's hand opening and closing.
+		if (playerX > GameScreen.cameraX + 3) {
+			if (handOpenClosedTimer < 5) {
+				batch.draw(
+						imageLoader.playerLeft, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			} else {
+				batch.draw(
+						imageLoader.playerLeft, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			}
+		} else {
+			if (handOpenClosedTimer < 5) {
+				batch.draw(
+						imageLoader.playerRight, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			} else {
+				batch.draw(
+						imageLoader.playerRight, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			}
+		} 
+		/*
+		if (playerX > GameScreen.cameraX + 3) {
+			if (handOpenClosedTimer < 5) {
+				batch.draw(
+						imageLoader.rightHand, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			} else {
+				batch.draw(
+						imageLoader.rightHandClosed, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			}
+		} else {
+			if (handOpenClosedTimer < 5) {
+				batch.draw(
+						imageLoader.leftHand, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			} else {
+				batch.draw(
+						imageLoader.leftHandClosed, 
+						playerX, 
+						playerY,
+						playerSize, 
+						-playerSize
+						);
+			}
+		} */
+
+		//myGame.getGameObject(Player.PLAYER_ONE).renderObject(batch, imageLoader);
 
 		// Draw water.
 		batch.draw(
@@ -316,7 +520,6 @@ public class MissionRawBar extends Mission {
 				GameScreen.camera.viewportWidth, 
 				-GameScreen.camera.viewportHeight
 				);
-
 		renderOysterValueMeter(batch, imageLoader);
 		renderCountdownMeter(batch, imageLoader);
 
