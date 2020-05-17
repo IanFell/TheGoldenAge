@@ -25,8 +25,8 @@ public class MissionHandler extends Mission {
 
 	private MissionChests missionChests;
 	private MissionRawBar missionRawBarPhaseOne;
-	private MissionRawBar missionRawBarPhaseTwo;
-	private MissionRawBar missionRawBarPhaseThree;
+	//private MissionRawBar missionRawBarPhaseTwo;
+	//private MissionRawBar missionRawBarPhaseThree;
 	private MissionStumpHole missionStumpHole;
 	private MissionTradinPost missionTradinPost;
 
@@ -54,8 +54,8 @@ public class MissionHandler extends Mission {
 
 	private void initializeRawBarMission() {
 		missionRawBarPhaseOne   = new MissionRawBar(MissionRawBar.NUMBER_OF_OYSTERS_NEEDED_PHASE_ONE, MissionRawBar.MAX_MISSION_TIME_PHASE_ONE);
-		missionRawBarPhaseTwo   = new MissionRawBar(MissionRawBar.NUMBER_OF_OYSTERS_NEEDED_PHASE_TWO, MissionRawBar.MAX_MISSION_TIME_PHASE_TWO);
-		missionRawBarPhaseThree = new MissionRawBar(MissionRawBar.NUMBER_OF_OYSTERS_NEEDED_PHASE_THREE, MissionRawBar.MAX_MISSION_TIME_PHASE_THREE);
+		//missionRawBarPhaseTwo   = new MissionRawBar(MissionRawBar.NUMBER_OF_OYSTERS_NEEDED_PHASE_TWO, MissionRawBar.MAX_MISSION_TIME_PHASE_TWO);
+		//missionRawBarPhaseThree = new MissionRawBar(MissionRawBar.NUMBER_OF_OYSTERS_NEEDED_PHASE_THREE, MissionRawBar.MAX_MISSION_TIME_PHASE_THREE);
 	}
 
 	/**

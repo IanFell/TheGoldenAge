@@ -285,7 +285,7 @@ public class ImageLoader {
 		lightHouseShadow   = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
 		tradingPostShadow  = new Texture(Gdx.files.internal("artwork/structures/shadows/TradingPost3dShadow.png"));
 		rawBarShadow       = new Texture(Gdx.files.internal("artwork/structures/shadows/RawBar3dShadow.png"));
-		pigglyWigglyShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/PigglyWiggly3dShadow.png"));
+		pigglyWigglyShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/PigglyWiggly3DShadow.png"));
 
 		// Effects Objects.
 		dustParticleOne   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleOne.png"));
