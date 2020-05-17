@@ -90,8 +90,8 @@ public class Keyboard extends ComputerInput {
 				// Stump hole mission uses a different player than the game world player.
 				if (MissionStumpHole.missionIsActive) {
 					if (Stump.playerIsOnStump) {
-						Stump.playerIsOnStump               = false;
-						MissionStumpHole.playerIsJumping    = true;
+						Stump.playerIsOnStump                = false;
+						MissionStumpHole.playerIsJumping     = true;
 						MissionStumpHole.jumpSoundShouldPlay = true;
 					}
 				} else {

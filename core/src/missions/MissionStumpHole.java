@@ -19,6 +19,7 @@ import maps.MapHandler;
 import screens.GameScreen;
 import transitions.Transition;
 import ui.LocationMarker;
+import ui.UserInterface;
 
 /**
  * 
@@ -210,15 +211,14 @@ public class MissionStumpHole extends Mission {
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
 			
-			renderMeters(batch, imageLoader);
+			renderMeters(batch, imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
 
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
 			}
 			
-			batch.draw(imageLoader.whiteSquare, player.x, player.y, player.width, player.height);
-			//batch.draw(imageLoader.whiteSquare, attackBird.rectangle.x, player.y, player.width, player.height);f
+			//renderHitBoxes(batch, imageLoader);
 
 			if (transition != null) {
 				transition.renderTransition(batch, imageLoader);
@@ -237,11 +237,21 @@ public class MissionStumpHole extends Mission {
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
 	 */
-	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader) {
-		float x = GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 0.5f;
-		float y = GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 45f;
+	private void renderHitBoxes(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(imageLoader.whiteSquare, player.x, player.y, player.width, player.height);
+		batch.draw(imageLoader.whiteSquare, attackBird.rectangle.x, attackBird.rectangle.y, attackBird.rectangle.width, attackBird.rectangle.height);
+	}
+	
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader, GameObject playerReal) {
+		float x = playerReal.getX() + 11;
+		float y = playerReal.getY() + 3;
 		renderValueMeter(batch, x, y, -FEATHER_VALUE_METER_MAX, imageLoader.blackSquare);
-		renderValueMeter(batch, x, y,-playerFeatherScore, imageLoader.whiteSquare);
+		renderValueMeter(batch, x, y, -playerFeatherScore, imageLoader.whiteSquare);
 	}
 
 	/**
@@ -342,7 +352,7 @@ public class MissionStumpHole extends Mission {
 
 		attackBirdBreakTimer++;
 		attackBird.rectangle.x = attackBird.getX();
-		attackBird.rectangle.y = attackBird.getY();
+		attackBird.rectangle.y = attackBird.getY() - attackBird.getHeight();
 
 		if (playerIsJumping) {
 			// Player goes up.
@@ -392,10 +402,10 @@ public class MissionStumpHole extends Mission {
 		}
 
 		// Player loses health if he gets hit by attack bird.
-		// TODO PUT IN THE SOUND WHEN PLAYER GETS HIT AND LOWER HEALTH LOSS VALUE HERE.
 		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
 				myGame.getGameObject(Player.PLAYER_ONE),
-				attackBird.rectangle
+				attackBird.rectangle,
+				player
 				);
 	}
 

@@ -287,7 +287,7 @@ public class SoundHandler {
 	private void handleJumpingAudio(SoundLoader soundLoader) {
 		if (Player.isJumping || MissionStumpHole.jumpSoundShouldPlay) {
 			if (jumpTimer < 1) {
-				if (!Player.isInWater) { 
+				if (!Player.isInWater || MissionStumpHole.jumpSoundShouldPlay) { 
 					soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
 				}
 			}

@@ -520,11 +520,13 @@ public class CollisionHandler {
 	 * 
 	 * @param GameObject player
 	 * @param Rectangle  birdWeapon
+	 * @param Rectangle  missionPlayerRectangle
 	 */
-	public static void checkIfPlayerHasCollidedWithAttackBird(GameObject player, Rectangle birdWeapon) {
-		if (birdWeapon.overlaps(player.rectangle)) {
+	public static void checkIfPlayerHasCollidedWithAttackBird(GameObject player, Rectangle birdWeapon, Rectangle missionPlayerRectangle) {
+		if (birdWeapon.overlaps(missionPlayerRectangle)) {
 			if (!Player.isInvincible) {
-				player.setHealth(player.getHealth() - 1);
+				player.setHealth(player.getHealth() - 0.1f);
+				player.setPlaySound(true);
 			}
 		}
 	}
