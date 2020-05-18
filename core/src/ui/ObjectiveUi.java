@@ -14,6 +14,7 @@ import missions.MissionChests;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import missions.MissionTradinPost;
+import missions.MissionWewa;
 import store.Store;
 
 /**
@@ -83,11 +84,14 @@ public class ObjectiveUi {
 					}
 				}
 			}
-			
+
 			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
 				objectiveTexture = imageLoader.objectiveGoToWewa;
 			}
-			// TODO FIND THE CAULDRON
+			
+			if (MissionWewa.wewaMissionComplete) {
+				objectiveTexture = imageLoader.objectiveFindTheCauldron;
+			}
 		}
 
 		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {

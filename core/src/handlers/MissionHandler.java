@@ -104,7 +104,7 @@ public class MissionHandler extends Mission {
 				missionStumpHole.updateMission(myGame, mapHandler);
 			} 
 			
-			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !MissionWewa.wewaMissionComplete) {
 				missionWewa.updateMission(myGame);
 			}
 
@@ -171,7 +171,7 @@ public class MissionHandler extends Mission {
 				missionStumpHole.renderMission(batch, imageLoader, myGame);
 			}
 			
-			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !MissionWewa.wewaMissionComplete) {
 				missionWewa.renderMission(batch, imageLoader);
 			}
 		}
