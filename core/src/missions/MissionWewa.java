@@ -24,7 +24,7 @@ public class MissionWewa extends Mission {
 	 * Constructor.
 	 */
 	public MissionWewa() {
-		locationMarker = new LocationMarker(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 62, 10);
+		locationMarker = new LocationMarker(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 63, 11);
 	}
 
 	/**

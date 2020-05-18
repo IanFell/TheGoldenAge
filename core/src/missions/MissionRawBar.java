@@ -210,6 +210,9 @@ public class MissionRawBar extends Mission {
 		handleCountdownTimer();
 		handleFailMessageTimer();
 		checkForMissionComplete();
+		
+		// This makes the location marker NOT beep during mission.  DO NOT REMOVE.
+		LocationMarker.playBeepSound = false;
 	}
 
 	private void handleFailMessageTimer() {
@@ -369,7 +372,9 @@ public class MissionRawBar extends Mission {
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (phasesAreInProgress) {
 			renderPhases(batch, imageLoader, myGame);
-			transition.renderTransition(batch, imageLoader);
+			if (transition != null) {
+				transition.renderTransition(batch, imageLoader);
+			}
 		} else {
 			if (locationMarker.timerValuesAreCorrectToFlash()) {
 				locationMarker.renderObject(batch, imageLoader);
