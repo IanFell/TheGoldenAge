@@ -159,6 +159,8 @@ public class ImageLoader {
 	public Texture gamePaused;
 
 	// Objective UI objects.
+	public Texture objectiveFindTheCauldron;
+	public Texture objectiveGoToWewa;
 	public Texture objectiveTryAgain;
 	public Texture objectiveRawBar;
 	public Texture objectiveStumpHole;
@@ -354,6 +356,8 @@ public class ImageLoader {
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 
 		// Objective UI objects.
+		objectiveGoToWewa            = new Texture(Gdx.files.internal("artwork/ui/objectives/GoToWewa.png"));
+		objectiveFindTheCauldron     = new Texture(Gdx.files.internal("artwork/ui/objectives/FindTheCauldron.png"));
 		objectiveTryAgain            = new Texture(Gdx.files.internal("artwork/ui/objectives/TryAgain.png"));
 		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
 		objectiveStumpHole           = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
@@ -579,6 +583,8 @@ public class ImageLoader {
 		attackBird.dispose();
 
 		// Objective UI objects.
+		objectiveFindTheCauldron.dispose();
+		objectiveGoToWewa.dispose();
 		objectiveTryAgain.dispose();
 		objectiveRawBar.dispose();
 		objectiveStumpHole.dispose();

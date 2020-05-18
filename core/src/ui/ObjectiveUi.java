@@ -83,6 +83,11 @@ public class ObjectiveUi {
 					}
 				}
 			}
+			
+			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+				objectiveTexture = imageLoader.objectiveGoToWewa;
+			}
+			// TODO FIND THE CAULDRON
 		}
 
 		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {

@@ -7,7 +7,9 @@ import controllers.PlayerController;
 import cutscenes.CutScene;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.Gun;
+import handlers.enemies.BossHandler;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.Mission;
 import missions.MissionChests;
@@ -15,6 +17,7 @@ import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import missions.MissionTradinPost;
+import missions.MissionWewa;
 
 /**
  * 
@@ -29,6 +32,7 @@ public class MissionHandler extends Mission {
 	//private MissionRawBar missionRawBarPhaseThree;
 	private MissionStumpHole missionStumpHole;
 	private MissionTradinPost missionTradinPost;
+	private MissionWewa missionWewa;
 
 	/**
 	 * This mission is always active.
@@ -50,6 +54,7 @@ public class MissionHandler extends Mission {
 		initializeRawBarMission();
 		missionStumpHole              = new MissionStumpHole();
 		missionTradinPost             = new MissionTradinPost();
+		missionWewa                   = new MissionWewa();
 	}
 
 	private void initializeRawBarMission() {
@@ -98,6 +103,10 @@ public class MissionHandler extends Mission {
 			if (MissionRawBar.rawBarMissionComplete && !MissionStumpHole.stumpHoleMissionComplete) {
 				missionStumpHole.updateMission(myGame, mapHandler);
 			} 
+			
+			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+				missionWewa.updateMission(myGame);
+			}
 
 			// Keep this here, because without it, the missions keep breaking at this part and I can't figure out why.
 			if (MissionRawBar.rawBarMissionComplete) {
@@ -160,6 +169,10 @@ public class MissionHandler extends Mission {
 
 			if (MissionRawBar.rawBarMissionComplete) {
 				missionStumpHole.renderMission(batch, imageLoader, myGame);
+			}
+			
+			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+				missionWewa.renderMission(batch, imageLoader);
 			}
 		}
 	}
