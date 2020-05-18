@@ -210,7 +210,7 @@ public class MissionRawBar extends Mission {
 		handleCountdownTimer();
 		handleFailMessageTimer();
 		checkForMissionComplete();
-		
+
 		// This makes the location marker NOT beep during mission.  DO NOT REMOVE.
 		LocationMarker.playBeepSound = false;
 	}

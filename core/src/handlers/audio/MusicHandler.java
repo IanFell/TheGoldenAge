@@ -97,6 +97,15 @@ public class MusicHandler {
 			musicLoader.bossBattleMusic.setLooping(true);
 			musicLoader.bossBattleMusic.play();
 			BossLoader.boss[BossHandler.STUMP_HOLE].setBattleMusicHasStarted(false);
+		} else if (BossLoader.boss[BossHandler.WEWA].isBattleMusicHasStarted() && !BossLoader.boss[BossHandler.WEWA].isDead()) { 
+			bossBattleIsInProgress = true;
+			if (musicLoader.ambientMusic.isPlaying()) {
+				musicLoader.ambientMusic.stop();
+			}
+			musicLoader.bossBattleMusic.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
+			musicLoader.bossBattleMusic.setLooping(true);
+			musicLoader.bossBattleMusic.play();
+			BossLoader.boss[BossHandler.WEWA].setBattleMusicHasStarted(false);
 		} else {
 			bossBattleIsInProgress = false;
 			if (musicLoader.bossBattleMusic.isPlaying()) {

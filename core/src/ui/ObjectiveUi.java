@@ -10,6 +10,7 @@ import gameobjects.weapons.Gun;
 import handlers.enemies.BossHandler;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
+import missions.MissionCauldron;
 import missions.MissionChests;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
@@ -121,6 +122,9 @@ public class ObjectiveUi {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
 		if (MissionStumpHole.stumpHoleMissionComplete && !BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			objectiveTexture = imageLoader.objectiveKillTheBoss;
+		}
+		if (MissionCauldron.missionCauldronComplete && !BossLoader.boss[BossHandler.WEWA].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
 	}

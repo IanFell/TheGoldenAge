@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.weapons.Gun;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
+import missions.MissionCauldron;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 
@@ -21,9 +22,10 @@ public class BossHandler {
 	public final static int TRADIN_POST  = 0;
 	public final static int APALACHICOLA = 1;
 	public final static int STUMP_HOLE   = 2;
+	public final static int WEWA         = 3;
 
-	public static boolean[] shouldPlayLaughSound    = new boolean[3];
-	public static boolean[] laughSoundHasBeenPlayed = new boolean[3];
+	public static boolean[] shouldPlayLaughSound    = new boolean[4];
+	public static boolean[] laughSoundHasBeenPlayed = new boolean[4];
 
 	/**
 	 * Constructor.
@@ -55,6 +57,11 @@ public class BossHandler {
 			BossLoader.boss[STUMP_HOLE].updateObject(myGame, mapHandler);
 			BossLoader.boss[STUMP_HOLE].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(STUMP_HOLE);
+		}
+		if (MissionCauldron.missionCauldronComplete && !BossLoader.boss[WEWA].isDead()) {
+			BossLoader.boss[WEWA].updateObject(myGame, mapHandler);
+			BossLoader.boss[WEWA].setBattleMusicHasStarted(true);
+			handleBossLaughAtStartOfBattle(WEWA);
 		}
 	}
 

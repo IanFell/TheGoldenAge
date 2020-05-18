@@ -30,7 +30,7 @@ public class Cauldron extends GamePlayObject {
 		rectangle.y      = y - height;
 		rectangle.width  = width;
 		rectangle.height = height;
-		fire             = new Fire(x, y - height, 2, 2, "Cauldron", false);
+		fire             = new Fire(x + 0.5f, y - height + 0.5f, 1, 2, "Cauldron", false);
 	}
 
 	/**

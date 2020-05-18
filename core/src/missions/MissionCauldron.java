@@ -13,6 +13,8 @@ public class MissionCauldron extends Mission {
 	
 	private Cauldron cauldron;
 	
+	public static boolean missionCauldronComplete = false;
+	
 	public MissionCauldron() {
 		cauldron = new Cauldron(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 62, 30);
 		GameObjectLoader.gameObjectList.add(cauldron);
@@ -33,7 +35,7 @@ public class MissionCauldron extends Mission {
 	 */
 	public void updateMission(MyGame myGame) {
 		if (cauldron.rectangle.overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
-			System.exit(0);
+			missionCauldronComplete = true;
 		}
 	}
 }
