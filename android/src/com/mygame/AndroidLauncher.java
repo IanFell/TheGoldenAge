@@ -1,10 +1,12 @@
 package com.mygame;
 
 import android.os.Bundle;
+import helpers.GameAttributeHelper;
 
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.mygame.MyGame;
+import com.mygdx.mygame.MyGame;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override

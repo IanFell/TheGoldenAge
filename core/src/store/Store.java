@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import gameobjects.GameObject;
 import handlers.AnimationHandler;
 import loaders.ImageLoader;
+import missions.MissionRawBar;
 import screens.GameScreen;
 import ui.TextBasedUiParent;
 
@@ -27,6 +28,15 @@ public class Store extends TextBasedUiParent {
 	private final int SALE_AMMO   = 4;
 
 	private int[] saleItems = {SALE_HEARTS, SALE_RUM, SALE_GUN, SALE_PEARL, SALE_AMMO};
+
+	private boolean heartUnlocked = false;
+	private boolean rumUnlocked   = false;
+	private boolean gunUnlocked   = false;
+	private boolean pearlUnlocked = false;
+	private boolean ammoUnlocked  = false;
+
+	private boolean gunPurchased   = false;
+	private boolean pearlPurchased = false;
 
 	// Use these to make the store work.
 	public static boolean mouseIsClickingOnPurchasingObject = false;
@@ -62,6 +72,20 @@ public class Store extends TextBasedUiParent {
 				shortOnLootTimer                       = 0;
 				playerIsShortOnLootMessageShouldRender = false;
 			}
+		}
+		handleUnlockingOfItems();
+	}
+
+	private void handleUnlockingOfItems() {
+		if (storeIsUnlocked) {
+			heartUnlocked = true;
+			rumUnlocked   = true;
+			gunUnlocked   = true;
+		}
+
+		if (MissionRawBar.rawBarMissionComplete) {
+			pearlUnlocked = true;
+			ammoUnlocked  = true;
 		}
 	}
 
@@ -114,7 +138,7 @@ public class Store extends TextBasedUiParent {
 						-2
 						);
 			}
-			
+
 			batch.draw(
 					imageLoader.objectiveExitStore, 
 					playerX, 
@@ -134,70 +158,76 @@ public class Store extends TextBasedUiParent {
 	 */
 	private void renderPrices(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
 		// Heart: Cost 5.
-		batch.draw(
-				imageLoader.numberWhite[5], 
-				xPos - 10.2f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-
+		if (heartUnlocked) {
+			batch.draw(
+					imageLoader.numberWhite[5], 
+					xPos - 10.2f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+		}
 		// Rum: Cost 15.
-		batch.draw(
-				imageLoader.numberWhite[1], 
-				xPos - 6.2f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-		batch.draw(
-				imageLoader.numberWhite[5], 
-				xPos - 5.6f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-
+		if (rumUnlocked) {
+			batch.draw(
+					imageLoader.numberWhite[1], 
+					xPos - 6.2f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+			batch.draw(
+					imageLoader.numberWhite[5], 
+					xPos - 5.6f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+		}
 		// Gun: Cost 10.
-		batch.draw(
-				imageLoader.numberWhite[1], 
-				xPos - 1.8f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-		batch.draw(
-				imageLoader.numberWhite[0], 
-				xPos - 1.0f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-
+		if (gunUnlocked && !gunPurchased) {
+			batch.draw(
+					imageLoader.numberWhite[1], 
+					xPos - 1.8f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+			batch.draw(
+					imageLoader.numberWhite[0], 
+					xPos - 1.0f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+		}
 		// Magic Pearl: Cost 10.
-		batch.draw(
-				imageLoader.numberWhite[1], 
-				xPos + 2.8f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-		batch.draw(
-				imageLoader.numberWhite[0], 
-				xPos + 3.5f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
-
+		if (pearlUnlocked && !pearlPurchased) {
+			batch.draw(
+					imageLoader.numberWhite[1], 
+					xPos + 2.8f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+			batch.draw(
+					imageLoader.numberWhite[0], 
+					xPos + 3.5f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+		}
 		// Ammo: Cost 5 (for 5 ammo).
-		batch.draw(
-				imageLoader.numberWhite[5], 
-				xPos + 7.0f, 
-				yPos, 
-				numberSize, 
-				-numberSize
-				);
+		if (ammoUnlocked) {
+			batch.draw(
+					imageLoader.numberWhite[5], 
+					xPos + 7.0f, 
+					yPos, 
+					numberSize, 
+					-numberSize
+					);
+		}
 	}
 
 	/**
@@ -208,41 +238,51 @@ public class Store extends TextBasedUiParent {
 	 * @param float       yPos
 	 */
 	private void renderItems(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
-		batch.draw(
-				imageLoader.heart, 
-				xPos - 11.2f, 
-				yPos, 
-				itemSize, 
-				-itemSize
-				);
-		batch.draw(
-				imageLoader.rum, 
-				xPos - 6.9f, 
-				yPos, 
-				itemSize, 
-				-itemSize
-				);
-		batch.draw(
-				imageLoader.gunRight, 
-				xPos - 2.7f, 
-				yPos, 
-				itemSize, 
-				-itemSize
-				);
-		batch.draw(
-				imageLoader.oyster, 
-				xPos + 1.7f, 
-				yPos, 
-				itemSize, 
-				-itemSize
-				);
-		batch.draw(
-				imageLoader.ammo, 
-				xPos + 6.0f, 
-				yPos, 
-				itemSize, 
-				-itemSize
-				);
+		if (heartUnlocked) {
+			batch.draw(
+					imageLoader.heart, 
+					xPos - 11.2f, 
+					yPos, 
+					itemSize, 
+					-itemSize
+					);
+		}
+		if (rumUnlocked) {
+			batch.draw(
+					imageLoader.rum, 
+					xPos - 6.9f, 
+					yPos, 
+					itemSize, 
+					-itemSize
+					);
+		}
+		if (gunUnlocked && !gunPurchased) {
+			batch.draw(
+					imageLoader.gunRight, 
+					xPos - 2.7f, 
+					yPos, 
+					itemSize, 
+					-itemSize
+					);
+		}
+		if (pearlUnlocked && !pearlPurchased) {
+			batch.draw(
+					imageLoader.oyster, 
+					xPos + 1.7f, 
+					yPos, 
+					itemSize, 
+					-itemSize
+					);
+		}
+		if (ammoUnlocked) {
+			batch.draw(
+					imageLoader.ammo, 
+					xPos + 6.0f, 
+					yPos, 
+					itemSize, 
+					-itemSize
+					);
+		}
 	}
 
 	/**
@@ -254,71 +294,77 @@ public class Store extends TextBasedUiParent {
 	 */
 	private void renderCoins(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
 		// Loot object for health.
-		AnimationHandler.renderAnimation(
-				batch, 
-				elapsedTime, 
-				animation, 
-				xPos - 11.2f, 
-				yPos, 
-				coinSize,
-				-coinSize,
-				imageLoader, 
-				AnimationHandler.OBJECT_TYPE_LOOT
-				);
-
+		if (heartUnlocked) {
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					animation, 
+					xPos - 11.2f, 
+					yPos, 
+					coinSize,
+					-coinSize,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_LOOT
+					);
+		}
 		// Loot object for rum.
-		AnimationHandler.renderAnimation(
-				batch, 
-				elapsedTime, 
-				animation, 
-				xPos - 7.0f, 
-				yPos, 
-				coinSize,
-				-coinSize,
-				imageLoader, 
-				AnimationHandler.OBJECT_TYPE_LOOT
-				);
-
+		if (rumUnlocked) {
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					animation, 
+					xPos - 7.0f, 
+					yPos, 
+					coinSize,
+					-coinSize,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_LOOT
+					);
+		}
 		// Loot object for gun.
-		AnimationHandler.renderAnimation(
-				batch, 
-				elapsedTime, 
-				animation, 
-				xPos - 2.8f, 
-				yPos, 
-				coinSize,
-				-coinSize,
-				imageLoader, 
-				AnimationHandler.OBJECT_TYPE_LOOT
-				);
-
+		if (gunUnlocked && !gunPurchased) {
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					animation, 
+					xPos - 2.8f, 
+					yPos, 
+					coinSize,
+					-coinSize,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_LOOT
+					);
+		}
 		// Loot object for magic pearl.
-		AnimationHandler.renderAnimation(
-				batch, 
-				elapsedTime, 
-				animation, 
-				xPos + 1.8f, 
-				yPos, 
-				coinSize,
-				-coinSize,
-				imageLoader, 
-				AnimationHandler.OBJECT_TYPE_LOOT
-				);
-
+		if (pearlUnlocked && !pearlPurchased) {
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					animation, 
+					xPos + 1.8f, 
+					yPos, 
+					coinSize,
+					-coinSize,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_LOOT
+					);
+		}
 		// Loot object for ammo.
-		AnimationHandler.renderAnimation(
-				batch, 
-				elapsedTime, 
-				animation, 
-				xPos + 6.0f, 
-				yPos, 
-				coinSize,
-				-coinSize,
-				imageLoader, 
-				AnimationHandler.OBJECT_TYPE_LOOT
-				);
-
+		if (ammoUnlocked) {
+			AnimationHandler.renderAnimation(
+					batch, 
+					elapsedTime, 
+					animation, 
+					xPos + 6.0f, 
+					yPos, 
+					coinSize,
+					-coinSize,
+					imageLoader, 
+					AnimationHandler.OBJECT_TYPE_LOOT
+					);
+		}
 		// Loot object for last item.
+		/*
 		AnimationHandler.renderAnimation(
 				batch, 
 				elapsedTime, 
@@ -330,5 +376,6 @@ public class Store extends TextBasedUiParent {
 				imageLoader, 
 				AnimationHandler.OBJECT_TYPE_LOOT
 				);
+		 */
 	}
 }
