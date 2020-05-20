@@ -6,7 +6,6 @@ import com.mygdx.mygame.MyGame;
 import controllers.PlayerController;
 import cutscenes.CutScene;
 import gameobjects.gamecharacters.players.Player;
-import gameobjects.weapons.Gun;
 import handlers.enemies.BossHandler;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;

@@ -93,7 +93,7 @@ public class SoundHandler {
 				}
 			}
 
-			if (ArrowHandler.playSound) {
+			if (ArrowHandler.playSound && !MissionStumpHole.missionIsActive) {
 				soundLoader.arrow.play(Mixer.ARROW_VOLUME);
 				ArrowHandler.playSound = false;
 			}
@@ -136,7 +136,7 @@ public class SoundHandler {
 				}
 			}
 			if (Feather.playSound) {
-				soundLoader.pickUpSwordSound.play(Mixer.FEATHER_COLLECT_VOLUME);
+				soundLoader.arrow.play(Mixer.FEATHER_COLLECT_VOLUME);
 				Feather.playSound = false;
 			}
 
