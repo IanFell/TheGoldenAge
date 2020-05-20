@@ -29,14 +29,14 @@ public class Store extends TextBasedUiParent {
 
 	private int[] saleItems = {SALE_HEARTS, SALE_RUM, SALE_GUN, SALE_PEARL, SALE_AMMO};
 
-	private boolean heartUnlocked = false;
-	private boolean rumUnlocked   = false;
-	private boolean gunUnlocked   = false;
-	private boolean pearlUnlocked = false;
-	private boolean ammoUnlocked  = false;
+	private boolean heartUnlocked       = false;
+	private boolean rumUnlocked         = false;
+	private boolean gunUnlocked         = false;
+	public static boolean pearlUnlocked = false;
+	public static boolean ammoUnlocked  = false;
 
-	private boolean gunPurchased   = false;
-	private boolean pearlPurchased = false;
+	public static boolean gunPurchased   = false;
+	public static boolean pearlPurchased = false;
 
 	// Use these to make the store work.
 	public static boolean mouseIsClickingOnPurchasingObject = false;

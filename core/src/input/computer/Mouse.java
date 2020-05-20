@@ -169,60 +169,67 @@ public class Mouse extends ComputerInput {
 						}
 					}
 					else if (purchasingButtons[PURCHASE_BUTTON_GUN].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) { 
-							GameObject gun = myGame.getGameScreen().gun;
-							((Player) player).getInventory().addObjectToInventory(gun);
-							Inventory.inventoryHasStartedCollection = true;
-							Gun.hasBeenCollected                    = true;
-							Gun.playCollectionSound                 = true;
-							GameObjectLoader.gameObjectList.add(gun);
+						if (!Store.gunPurchased) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) { 
+								GameObject gun = myGame.getGameScreen().gun;
+								((Player) player).getInventory().addObjectToInventory(gun);
+								Inventory.inventoryHasStartedCollection = true;
+								Gun.hasBeenCollected                    = true;
+								Gun.playCollectionSound                 = true;
+								GameObjectLoader.gameObjectList.add(gun);
 
-							// Remove loot (player has bought gun).
-							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
+								// Remove loot (player has bought gun).
+								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
 
-							// Close the store.
-							Store.gunHasBeenPurchasedAtStore = true;
-							TradingPost.hasBeenEntered       = true;
-							closeStore();
-							Store.playSound = true;
-							break;
-						} else {
-							Store.playerIsShortOnLootMessageShouldRender = true;
-							break;
+								// Close the store.
+								Store.gunHasBeenPurchasedAtStore = true;
+								TradingPost.hasBeenEntered       = true;
+								closeStore();
+								Store.playSound    = true;
+								Store.gunPurchased = true;
+								break;
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
+								break;
+							}
 						}
 					}
 					else if (purchasingButtons[PURCHASE_BUTTON_PEARL].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
-							GameObject pearl = myGame.gameScreen.magicPearl;
-							((Player) player).getInventory().addObjectToInventory(pearl);
-							Inventory.inventoryHasStartedCollection = true;
-							pearl.hasBeenCollected                  = true;
-							MagicPearl.playCollectionSound          = true;
-							GameObjectLoader.gameObjectList.add(pearl);
-							closeStore();
-							Store.playSound = true;
-							// Remove loot (player has bought gun).
-							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
-							break;
-						} else {
-							Store.playerIsShortOnLootMessageShouldRender = true;
-							break;
+						if (!Store.pearlPurchased && Store.pearlUnlocked) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
+								GameObject pearl = myGame.gameScreen.magicPearl;
+								((Player) player).getInventory().addObjectToInventory(pearl);
+								Inventory.inventoryHasStartedCollection = true;
+								pearl.hasBeenCollected                  = true;
+								MagicPearl.playCollectionSound          = true;
+								GameObjectLoader.gameObjectList.add(pearl);
+								closeStore();
+								Store.playSound      = true;
+								Store.pearlPurchased = true;
+								// Remove loot (player has bought gun).
+								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
+								break;
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
+								break;
+							}
 						}
 					}
 					else if (purchasingButtons[PURCHASE_BUTTON_AMMO].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
-							if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
-								AmmoHandler.ammoCount += AmmoHandler.ammoValue;
-								closeStore();
-								Store.playSound = true;
-								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
+						if (Store.ammoUnlocked) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
+								if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
+									AmmoHandler.ammoCount += AmmoHandler.ammoValue;
+									closeStore();
+									Store.playSound = true;
+									player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
+									break;
+								} 
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
 								break;
-							} 
-						} else {
-							Store.playerIsShortOnLootMessageShouldRender = true;
-							break;
+							}
 						}
-
 					}
 					else if (purchasingButtons[PURCHASE_BUTTON_NULL].contains(Gdx.input.getX(), Gdx.input.getY())) {
 						closeStore();
