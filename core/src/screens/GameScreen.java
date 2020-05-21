@@ -340,6 +340,15 @@ public class GameScreen extends Screens {
 	}
 
 	/**
+	 * Used in ObjectiveUi class to determine if bird has been collected.
+	 * 
+	 * @return BirdWeapon
+	 */
+	public BirdWeapon getBirdWeapon() {
+		return birdWeapon;
+	}
+
+	/**
 	 * 
 	 * @return TownHandler
 	 */
@@ -432,7 +441,7 @@ public class GameScreen extends Screens {
 		}
 
 		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
-		
+
 		holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 		userInterface.renderUserInterface(

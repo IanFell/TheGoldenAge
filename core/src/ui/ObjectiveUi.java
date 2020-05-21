@@ -50,7 +50,7 @@ public class ObjectiveUi {
 			GameObject player
 			) {
 		if (flashTimer > VALUE_TO_FLASH) {
-			Texture objectiveTexture = getObjectiveTexture(imageLoader);
+			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
 			batch.draw(
 					objectiveTexture,
 					player.getX() + 7, 
@@ -64,9 +64,10 @@ public class ObjectiveUi {
 	/**
 	 * 
 	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
 	 * @return Texture
 	 */
-	private Texture getObjectiveTexture(ImageLoader imageLoader) {
+	private Texture getObjectiveTexture(ImageLoader imageLoader, MyGame myGame) {
 		objectiveTexture = imageLoader.objectiveCollectLoot;
 		if (MissionChests.chestMissionIsComplete) {
 			// Player is on his way to Trading Post or has hit the Trading Post location marker and needs to enter the Post.
@@ -75,7 +76,7 @@ public class ObjectiveUi {
 				objectiveTexture = imageLoader.objectiveEnterTheTradingPost;
 			}
 
-			// Player has purchased gun from Trading Post and has left the store.
+			// Player has purchased gun from Trading Post and has left the store and has completed Stump Hole mission.
 			if (Store.gunHasBeenPurchasedAtStore) {
 				objectiveTexture = imageLoader.objectiveRawBar;
 				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
@@ -86,10 +87,16 @@ public class ObjectiveUi {
 				}
 			}
 
-			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			// Player has beat the stump hole boss and needs to collect the bird.
+			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
+				objectiveTexture = imageLoader.objectiveCollectTheBird;
+			}
+
+			// Player has collected the bird and needs to go to Wewa.
+			if (!MissionWewa.wewaMissionComplete && myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveGoToWewa;
 			}
-			
+
 			if (MissionWewa.wewaMissionComplete) {
 				objectiveTexture = imageLoader.objectiveFindTheCauldron;
 			}
