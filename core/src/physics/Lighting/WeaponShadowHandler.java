@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.MagicPearl;
 import handlers.arrowhandler.ArrowHandler;
+import inventory.Inventory;
 import loaders.ImageLoader;
 
 /**
@@ -39,7 +42,9 @@ public class WeaponShadowHandler {
 				);
 
 		GameObject magicPearl = myGame.getGameScreen().magicPearl; 
-		if (magicPearl.hasBeenCollected) {
+		if (
+				magicPearl.hasBeenCollected &&
+				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 			batch.draw(imageLoader.oysterShadow, magicPearl.getX(), magicPearl.getY() + 1.0f, magicPearl.getWidth(), magicPearl.getHeight());
 		}
 	}
