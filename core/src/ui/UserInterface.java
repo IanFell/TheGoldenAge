@@ -6,8 +6,10 @@ import com.mygdx.mygame.MyGame;
 import controllers.PlayerController;
 import cutscenes.CutScene;
 import gameobjects.GameObject;
+import handlers.enemies.BossHandler;
 import handlers.holehandler.HoleHandler;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import store.Store;
 import ui.collectibles.AmmoUi;
 import ui.collectibles.HealthUi;
@@ -28,6 +30,7 @@ public class UserInterface {
 	private RumUi rumUi;
 	private ObjectiveUi objective;
 	private AmmoUi ammoUi;
+	private UnlockUi unlockUi;
 
 	/**
 	 * Constructor.
@@ -40,6 +43,7 @@ public class UserInterface {
 		rumUi               = new RumUi();
 		objective           = new ObjectiveUi();
 		ammoUi              = new AmmoUi();
+		unlockUi            = new UnlockUi();
 	}
 
 	/**
@@ -57,15 +61,30 @@ public class UserInterface {
 			rumUi.renderUi(batch, imageLoader, myGame, player);
 			ammoUi.renderUi(batch, imageLoader, myGame, player);
 			objective.renderUi(batch, imageLoader, myGame, player);
-			
+
 			if (!Store.playerWantsToEnterStore) {
 				playerNameUi.renderUi(batch, imageLoader, myGame, player, 10.5f, 6.0f);
 				selectedInventoryUi.renderSelectedInventoryUi(batch, imageLoader, myGame, player);
 			}
+
+			if (additionalStoreItemsAreUnlocked() && UnlockUi.shouldRenderUnlock) {
+				unlockUi.renderObject(batch, imageLoader, player);
+			}
 		}
+	}
+
+	/**
+	 * This method determines if we should render and update the "ammo and magic pearl unlocked" UI.
+	 * @return boolean
+	 */
+	private boolean additionalStoreItemsAreUnlocked() {
+		return BossLoader.boss[BossHandler.APALACHICOLA].isDead();
 	}
 
 	public void updateUserInterface() {
 		objective.updateObjective();
+		if (additionalStoreItemsAreUnlocked() && UnlockUi.shouldRenderUnlock) {
+			unlockUi.updateObject();
+		}
 	}
 }

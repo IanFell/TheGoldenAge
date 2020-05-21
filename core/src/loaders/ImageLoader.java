@@ -160,6 +160,9 @@ public class ImageLoader {
 	public Texture gamePaused;
 
 	// Objective UI objects.
+	public Texture objectiveCollectTheBird;
+	public Texture objectiveAmmoUnlocked;
+	public Texture objectiveMagicPearlUnlocked;
 	public Texture objectiveFindTheCauldron;
 	public Texture objectiveGoToWewa;
 	public Texture objectiveTryAgain;
@@ -358,6 +361,9 @@ public class ImageLoader {
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 
 		// Objective UI objects.
+		objectiveCollectTheBird      = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectTheBird.png"));
+		objectiveAmmoUnlocked        = new Texture(Gdx.files.internal("artwork/ui/objectives/AmmoUnlocked.png"));
+		objectiveMagicPearlUnlocked  = new Texture(Gdx.files.internal("artwork/ui/objectives/MagicPearlUnlocked.png"));
 		objectiveGoToWewa            = new Texture(Gdx.files.internal("artwork/ui/objectives/GoToWewa.png"));
 		objectiveFindTheCauldron     = new Texture(Gdx.files.internal("artwork/ui/objectives/FindTheCauldron.png"));
 		objectiveTryAgain            = new Texture(Gdx.files.internal("artwork/ui/objectives/TryAgain.png"));
@@ -586,6 +592,9 @@ public class ImageLoader {
 		attackBird.dispose();
 
 		// Objective UI objects.
+		objectiveAmmoUnlocked.dispose();
+		objectiveMagicPearlUnlocked.dispose();
+		objectiveCollectTheBird.dispose();
 		objectiveFindTheCauldron.dispose();
 		objectiveGoToWewa.dispose();
 		objectiveTryAgain.dispose();
