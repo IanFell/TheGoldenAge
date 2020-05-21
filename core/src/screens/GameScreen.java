@@ -134,7 +134,7 @@ public class GameScreen extends Screens {
 
 	private StructureShadowHandler structureShadowHandler;
 	private CollectibleShadowHandler collectibleShadowHandler;
-	private WeaponShadowHandler arrowShadowHandler;
+	private WeaponShadowHandler weaponShadowHandler;
 
 	private HoleHandler holeHandler = new HoleHandler();
 
@@ -241,7 +241,7 @@ public class GameScreen extends Screens {
 
 		structureShadowHandler   = new StructureShadowHandler(myGame.imageLoader);
 		collectibleShadowHandler = new CollectibleShadowHandler(myGame.imageLoader);
-		arrowShadowHandler       = new WeaponShadowHandler();
+		weaponShadowHandler      = new WeaponShadowHandler();
 
 		holeHandler.init(myGame);
 
@@ -377,7 +377,7 @@ public class GameScreen extends Screens {
 
 		structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
 		collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
-		arrowShadowHandler.renderArrowShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
+		weaponShadowHandler.renderWeaponShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 		GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
 				GameObjectLoader.gameObjectList, 

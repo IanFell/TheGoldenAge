@@ -5,10 +5,14 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.MagicPearl;
 import handlers.arrowhandler.ArrowHandler;
+import handlers.enemies.BossHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
+import missions.MissionStumpHole;
 
 /**
  * 
@@ -17,7 +21,13 @@ import loaders.ImageLoader;
  */
 public class WeaponShadowHandler {
 
-	public void renderArrowShadows(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
+	 */
+	public void renderWeaponShadows(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		float offset = 1.3f;
 		batch.draw(
 				imageLoader.arrowShadowRight,
@@ -46,6 +56,18 @@ public class WeaponShadowHandler {
 				magicPearl.hasBeenCollected &&
 				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 			batch.draw(imageLoader.oysterShadow, magicPearl.getX(), magicPearl.getY() + 1.0f, magicPearl.getWidth(), magicPearl.getHeight());
+		}
+
+		GameObject birdWeapon = myGame.getGameScreen().birdWeapon; 
+		// Draw shadow under stationary bird before player has collected it.
+		if (!birdWeapon.hasBeenCollected && MissionStumpHole.stumpHoleMissionComplete) {
+			batch.draw(imageLoader.oysterShadow, birdWeapon.getX(), birdWeapon.getY() + 1.0f, birdWeapon.getWidth(), birdWeapon.getHeight());
+		}
+		// Player has collected bird.  Render shadow if he's using it as a weapon.
+		if (
+				birdWeapon.hasBeenCollected &&
+				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+			batch.draw(imageLoader.oysterShadow, birdWeapon.getX(), birdWeapon.getY() + 1.0f, birdWeapon.getWidth(), birdWeapon.getHeight());
 		}
 	}
 }
