@@ -8,10 +8,8 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.MagicPearl;
 import handlers.arrowhandler.ArrowHandler;
-import handlers.enemies.BossHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
-import loaders.bossloader.BossLoader;
 import missions.MissionStumpHole;
 
 /**

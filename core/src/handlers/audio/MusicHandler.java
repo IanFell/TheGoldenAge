@@ -1,5 +1,7 @@
 package handlers.audio;
 
+import com.badlogic.gdx.audio.Music;
+
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
 import handlers.enemies.BossHandler;
@@ -7,6 +9,7 @@ import helpers.GameAttributeHelper;
 import loaders.audio.MusicLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import mixer.Mixer;
 import physics.Lighting.Fire;
 import physics.Weather.NightAndDayCycle;
@@ -31,6 +34,19 @@ public class MusicHandler {
 	private final int EXPLOSION_TIMER_MAX_VALUE = 110;
 
 	private boolean bossBattleIsInProgress = false;
+
+	/**
+	 * Mission audio consists of three parts:
+	 * 1. Intro.
+	 * 2. Loop that builds up.
+	 * 3. Stinger when player has won.
+	 * These variables control the flow of those three audio tracks.
+	 */
+	private boolean missionIntroCompletionListenerHasBeenSet = false;
+	private boolean missionLoopIsPlaying                     = false;
+	public static boolean playerHasBeatMission               = false;
+	private boolean missionRawBarStingerHasPlayed            = false;
+	private boolean missionStumpHoleStingerHasPlayed         = false;
 
 	/**
 	 * 
@@ -62,7 +78,74 @@ public class MusicHandler {
 			}
 			handleBossBattleMusic(musicLoader);
 			handleBossExplosionMusic(musicLoader);
+			handleMissionMusic(musicLoader);
 		} 
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleMissionMusic(MusicLoader musicLoader) {
+		if (MissionRawBar.phasesAreInProgress || MissionStumpHole.missionIsActive) {
+			if (musicLoader.ambientMusic.isPlaying()) {
+				musicLoader.ambientMusic.pause();
+
+				if (!missionIntroCompletionListenerHasBeenSet) {
+					musicLoader.missionIntro.setOnCompletionListener(new Music.OnCompletionListener() {
+						@Override
+						public void onCompletion(Music music) {  
+							missionLoopIsPlaying = true;
+						}
+					});
+					missionIntroCompletionListenerHasBeenSet = true;
+					playerHasBeatMission                     = true;
+
+					musicLoader.missionIntro.setVolume(Mixer.MISSION_MUSIC_VOLUME);
+					musicLoader.missionIntro.play();
+				}
+
+				if (missionLoopIsPlaying) {
+					musicLoader.missionLoop.setVolume(Mixer.MISSION_MUSIC_VOLUME);
+					musicLoader.missionLoop.setLooping(true);
+					musicLoader.missionLoop.play();
+					missionLoopIsPlaying = false;
+				}
+			}
+		} else {
+			if (musicLoader.missionIntro.isPlaying()) {
+				musicLoader.missionIntro.stop();
+			}
+			if (musicLoader.missionLoop.isPlaying()) {
+				musicLoader.missionLoop.stop();
+			}
+			missionLoopIsPlaying                     = false;
+			missionIntroCompletionListenerHasBeenSet = false;
+		}
+		handleMissionCompleteStinger(musicLoader);
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleMissionCompleteStinger(MusicLoader musicLoader) {
+		if (MissionRawBar.rawBarMissionComplete && !missionRawBarStingerHasPlayed) {
+			executeStinger(musicLoader);
+		} else if (MissionStumpHole.stumpHoleMissionComplete && !missionStumpHoleStingerHasPlayed) {
+			executeStinger(musicLoader);
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void executeStinger(MusicLoader musicLoader) {
+		musicLoader.missionWin.setVolume(Mixer.MISSION_MUSIC_VOLUME);
+		musicLoader.missionWin.play();
+		playerHasBeatMission          = false;
+		missionRawBarStingerHasPlayed = true;
 	}
 
 	/**

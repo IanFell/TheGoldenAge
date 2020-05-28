@@ -21,6 +21,9 @@ public class MusicLoader {
 	public Music bossDeafeatedMusic;
 	public Music bossBattleMusic;
 	public Music buff;
+	public Music missionLoop;
+	public Music missionIntro;
+	public Music missionWin;
 
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
@@ -40,6 +43,9 @@ public class MusicLoader {
 		bossDeafeatedMusic    = Gdx.audio.newMusic(Gdx.files.internal("audio/music/avalanche.ogg"));
 		bossBattleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Combat.ogg"));
 		buff                  = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Buff.ogg"));
+		missionLoop           = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionLoop.ogg"));
+		missionIntro          = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionIntro.ogg"));
+		missionWin            = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionWin.ogg"));
 	}
 
 	public void dispose() {
@@ -54,5 +60,8 @@ public class MusicLoader {
 		bossDeafeatedMusic.dispose();
 		bossBattleMusic.dispose();
 		buff.dispose();
+		missionLoop.dispose();
+		missionIntro.dispose();
+		missionWin.dispose();
 	}
 }
