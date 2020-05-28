@@ -132,8 +132,10 @@ public class MusicHandler {
 	private void handleMissionCompleteStinger(MusicLoader musicLoader) {
 		if (MissionRawBar.rawBarMissionComplete && !missionRawBarStingerHasPlayed) {
 			executeStinger(musicLoader);
+			missionRawBarStingerHasPlayed = true;
 		} else if (MissionStumpHole.stumpHoleMissionComplete && !missionStumpHoleStingerHasPlayed) {
 			executeStinger(musicLoader);
+			missionStumpHoleStingerHasPlayed = true;
 		}
 	}
 
@@ -144,8 +146,7 @@ public class MusicHandler {
 	private void executeStinger(MusicLoader musicLoader) {
 		musicLoader.missionWin.setVolume(Mixer.MISSION_MUSIC_VOLUME);
 		musicLoader.missionWin.play();
-		playerHasBeatMission          = false;
-		missionRawBarStingerHasPlayed = true;
+		playerHasBeatMission = false;
 	}
 
 	/**

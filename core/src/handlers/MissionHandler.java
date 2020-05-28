@@ -16,6 +16,7 @@ import missions.MissionChests;
 import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import missions.MissionThePoint;
 import missions.MissionTradinPost;
 import missions.MissionWewa;
 
@@ -34,6 +35,7 @@ public class MissionHandler extends Mission {
 	private MissionTradinPost missionTradinPost;
 	private MissionWewa missionWewa;
 	private MissionCauldron missionCauldron;
+	private MissionThePoint missionThePoint;
 
 	/**
 	 * This mission is always active.
@@ -57,6 +59,7 @@ public class MissionHandler extends Mission {
 		missionTradinPost             = new MissionTradinPost();
 		missionWewa                   = new MissionWewa();
 		missionCauldron               = new MissionCauldron();
+		missionThePoint               = new MissionThePoint();
 	}
 
 	private void initializeRawBarMission() {
@@ -113,6 +116,10 @@ public class MissionHandler extends Mission {
 			
 			if (MissionWewa.wewaMissionComplete) {
 				missionCauldron.updateMission(myGame);
+			}
+			
+			if (MissionCauldron.missionCauldronComplete) {
+				missionThePoint.updateMission(myGame);
 			}
 
 			// Keep this here, because without it, the missions keep breaking at this part and I can't figure out why.
@@ -185,6 +192,10 @@ public class MissionHandler extends Mission {
 			// No need to render this because the cauldron is a game object, so it's rendered anyway.
 			if (MissionWewa.wewaMissionComplete) {
 				//missionCauldron.renderMission(batch, imageLoader);
+			}
+			
+			if (MissionCauldron.missionCauldronComplete) {
+				missionThePoint.updateMission(myGame);
 			}
 		}
 	}
