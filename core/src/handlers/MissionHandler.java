@@ -195,7 +195,7 @@ public class MissionHandler extends Mission {
 			}
 			
 			if (MissionCauldron.missionCauldronComplete) {
-				missionThePoint.updateMission(myGame);
+				missionThePoint.renderMission(batch, imageLoader);
 			}
 		}
 	}
