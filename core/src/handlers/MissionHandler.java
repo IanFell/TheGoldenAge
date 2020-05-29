@@ -11,6 +11,7 @@ import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.Mission;
+import missions.MissionBlacksIsland;
 import missions.MissionCauldron;
 import missions.MissionChests;
 import missions.MissionLegendOfTheSevenSwords;
@@ -36,6 +37,7 @@ public class MissionHandler extends Mission {
 	private MissionWewa missionWewa;
 	private MissionCauldron missionCauldron;
 	private MissionThePoint missionThePoint;
+	private MissionBlacksIsland missionBlacksIsland;
 
 	/**
 	 * This mission is always active.
@@ -60,6 +62,7 @@ public class MissionHandler extends Mission {
 		missionWewa                   = new MissionWewa();
 		missionCauldron               = new MissionCauldron();
 		missionThePoint               = new MissionThePoint();
+		missionBlacksIsland           = new MissionBlacksIsland();
 	}
 
 	private void initializeRawBarMission() {
@@ -90,8 +93,8 @@ public class MissionHandler extends Mission {
 
 			// Player has collected the gun and is on his way to the Raw Bar.
 			//if (Gun.hasBeenCollected && !MissionRawBar.locationMarkerHasBeenHit/*!MissionRawBar.phasesAreInProgress && !MissionRawBar.rawBarMissionComplete*/) {
-				//if (Gun.hasBeenCollected && !MissionRawBar.phasesAreInProgress && !MissionRawBar.rawBarMissionComplete) {
-				//MissionRawBar.updateLocationMarker(myGame);
+			//if (Gun.hasBeenCollected && !MissionRawBar.phasesAreInProgress && !MissionRawBar.rawBarMissionComplete) {
+			//MissionRawBar.updateLocationMarker(myGame);
 			//}
 
 			// Player has arrived at the Raw Bar, so set up Raw Bar mission.
@@ -109,17 +112,21 @@ public class MissionHandler extends Mission {
 			if (MissionRawBar.rawBarMissionComplete && !MissionStumpHole.stumpHoleMissionComplete) {
 				missionStumpHole.updateMission(myGame, mapHandler);
 			} 
-			
+
 			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !MissionWewa.wewaMissionComplete) {
 				missionWewa.updateMission(myGame);
 			}
-			
+
 			if (MissionWewa.wewaMissionComplete) {
 				missionCauldron.updateMission(myGame);
 			}
-			
+
 			if (MissionCauldron.missionCauldronComplete) {
 				missionThePoint.updateMission(myGame);
+			}
+
+			if (MissionThePoint.missionThePointComplete) {
+				missionBlacksIsland.updateMission(myGame);
 			}
 
 			// Keep this here, because without it, the missions keep breaking at this part and I can't figure out why.
@@ -184,18 +191,22 @@ public class MissionHandler extends Mission {
 			if (MissionRawBar.rawBarMissionComplete) {
 				missionStumpHole.renderMission(batch, imageLoader, myGame);
 			}
-			
+
 			if (MissionStumpHole.stumpHoleMissionComplete && BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !MissionWewa.wewaMissionComplete) {
 				missionWewa.renderMission(batch, imageLoader);
 			}
-			
+
 			// No need to render this because the cauldron is a game object, so it's rendered anyway.
 			if (MissionWewa.wewaMissionComplete) {
 				//missionCauldron.renderMission(batch, imageLoader);
 			}
-			
+
 			if (MissionCauldron.missionCauldronComplete) {
 				missionThePoint.renderMission(batch, imageLoader);
+			}
+
+			if (MissionThePoint.missionThePointComplete) {
+				missionBlacksIsland.renderMission(batch, imageLoader);
 			}
 		}
 	}
