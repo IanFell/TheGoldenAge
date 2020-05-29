@@ -14,6 +14,7 @@ import missions.MissionCauldron;
 import missions.MissionChests;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import missions.MissionThePoint;
 import missions.MissionTradinPost;
 import missions.MissionWewa;
 import store.Store;
@@ -97,8 +98,19 @@ public class ObjectiveUi {
 				objectiveTexture = imageLoader.objectiveGoToWewa;
 			}
 
+			// Player needs to find the cauldron.
 			if (MissionWewa.wewaMissionComplete) {
 				objectiveTexture = imageLoader.objectiveFindTheCauldron;
+			}
+
+			// Player has found the cauldron, and needs to go get the other part of the map at The Point.
+			if (MissionCauldron.missionCauldronComplete) {
+				objectiveTexture = imageLoader.objectiveCollectTheMapAtThePoint;
+			}
+
+			// Player has defeated the boss at The Point and needs to go to Blacks Island and find the treasure.
+			if (BossLoader.boss[BossHandler.THE_POINT].isDead()) {
+				objectiveTexture = imageLoader.objectiveFindTheTreasureAtBlacksIsland;
 			}
 		}
 
@@ -132,6 +144,9 @@ public class ObjectiveUi {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
 		if (MissionCauldron.missionCauldronComplete && !BossLoader.boss[BossHandler.WEWA].isDead()) {
+			objectiveTexture = imageLoader.objectiveKillTheBoss;
+		}
+		if (MissionThePoint.missionThePointComplete && !BossLoader.boss[BossHandler.THE_POINT].isDead()) {
 			objectiveTexture = imageLoader.objectiveKillTheBoss;
 		}
 	}

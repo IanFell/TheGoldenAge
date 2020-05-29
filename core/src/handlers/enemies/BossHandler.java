@@ -8,6 +8,7 @@ import maps.MapHandler;
 import missions.MissionCauldron;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import missions.MissionThePoint;
 
 /**
  * Boss logic goes here.
@@ -23,9 +24,10 @@ public class BossHandler {
 	public final static int APALACHICOLA = 1;
 	public final static int STUMP_HOLE   = 2;
 	public final static int WEWA         = 3;
+	public final static int THE_POINT    = 4;
 
-	public static boolean[] shouldPlayLaughSound    = new boolean[4];
-	public static boolean[] laughSoundHasBeenPlayed = new boolean[4];
+	public static boolean[] shouldPlayLaughSound    = new boolean[5];
+	public static boolean[] laughSoundHasBeenPlayed = new boolean[5];
 
 	/**
 	 * Constructor.
@@ -62,6 +64,11 @@ public class BossHandler {
 			BossLoader.boss[WEWA].updateObject(myGame, mapHandler);
 			BossLoader.boss[WEWA].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(WEWA);
+		}
+		if (MissionThePoint.missionThePointComplete && !BossLoader.boss[THE_POINT].isDead()) {
+			BossLoader.boss[THE_POINT].updateObject(myGame, mapHandler);
+			BossLoader.boss[THE_POINT].setBattleMusicHasStarted(true);
+			handleBossLaughAtStartOfBattle(THE_POINT);
 		}
 	}
 

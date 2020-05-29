@@ -16,6 +16,8 @@ public class TreasureMap extends GameObject {
 
 	private Rectangle rectangle;
 
+	private boolean hasBeenCollected;
+
 	/**
 	 * Constructor.
 	 * 
@@ -23,12 +25,13 @@ public class TreasureMap extends GameObject {
 	 * @param int y
 	 */
 	public TreasureMap(int x, int y) {
-		this.x      = x;
-		this.y      = y;
-		int size    = 1;
-		this.width  = size;
-		this.height = size;
-		rectangle   = new Rectangle(x, y, width, height);
+		this.x           = x;
+		this.y           = y;
+		int size         = 1;
+		this.width       = size;
+		this.height      = size;
+		rectangle        = new Rectangle(x, y, width, height);
+		hasBeenCollected = false;
 	}
 
 	/**
@@ -36,8 +39,9 @@ public class TreasureMap extends GameObject {
 	 * @param GameObject player
 	 */
 	public void update(GameObject player) {
-		if (rectangle.overlaps(player.rectangle)) {
+		if (rectangle.overlaps(player.rectangle) && !hasBeenCollected) {
 			MissionThePoint.missionThePointComplete = true;
+			hasBeenCollected                        = true;
 		}
 	}
 
@@ -48,6 +52,8 @@ public class TreasureMap extends GameObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.draw(imageLoader.whiteSquare, x, y, width, height);
+		if (!hasBeenCollected) {
+			batch.draw(imageLoader.whiteSquare, x, y, width, height);
+		}
 	}
 }

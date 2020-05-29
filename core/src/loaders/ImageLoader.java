@@ -160,6 +160,8 @@ public class ImageLoader {
 	public Texture gamePaused;
 
 	// Objective UI objects.
+	public Texture objectiveCollectTheMapAtThePoint;
+	public Texture objectiveFindTheTreasureAtBlacksIsland;
 	public Texture objectiveCollectTheBird;
 	public Texture objectiveAmmoUnlocked;
 	public Texture objectiveMagicPearlUnlocked;
@@ -361,24 +363,26 @@ public class ImageLoader {
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 
 		// Objective UI objects.
-		objectiveCollectTheBird      = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectTheBird.png"));
-		objectiveAmmoUnlocked        = new Texture(Gdx.files.internal("artwork/ui/objectives/AmmoUnlocked.png"));
-		objectiveMagicPearlUnlocked  = new Texture(Gdx.files.internal("artwork/ui/objectives/MagicPearlUnlocked.png"));
-		objectiveGoToWewa            = new Texture(Gdx.files.internal("artwork/ui/objectives/GoToWewa.png"));
-		objectiveFindTheCauldron     = new Texture(Gdx.files.internal("artwork/ui/objectives/FindTheCauldron.png"));
-		objectiveTryAgain            = new Texture(Gdx.files.internal("artwork/ui/objectives/TryAgain.png"));
-		objectiveRawBar              = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
-		objectiveStumpHole           = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
-		objectiveCollectLoot         = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
-		objectiveTradinPost          = new Texture(Gdx.files.internal("artwork/ui/objectives/TradinPost.png"));
-		objectiveCollectOysters      = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectOysters.png"));
-		objectiveCollectFeathers     = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectFeathers.png"));
-		objectiveBuyTheGun           = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
-		objectiveKillTheBoss         = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
-		objectiveEnterTheTradingPost = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterTheTradinPost.png"));
-		objectiveEnterStore          = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterStore.png"));
-		objectiveExitStore           = new Texture(Gdx.files.internal("artwork/ui/objectives/ExitStore.png"));
-		objectiveNotEnoughLoot       = new Texture(Gdx.files.internal("artwork/ui/objectives/NotEnoughLoot.png"));
+		objectiveCollectTheMapAtThePoint       = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectTheMapAtThePoint.png"));
+		objectiveFindTheTreasureAtBlacksIsland = new Texture(Gdx.files.internal("artwork/ui/objectives/FindTheTreasureAtBlacksIsland.png"));
+		objectiveCollectTheBird                = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectTheBird.png"));
+		objectiveAmmoUnlocked                  = new Texture(Gdx.files.internal("artwork/ui/objectives/AmmoUnlocked.png"));
+		objectiveMagicPearlUnlocked            = new Texture(Gdx.files.internal("artwork/ui/objectives/MagicPearlUnlocked.png"));
+		objectiveGoToWewa                      = new Texture(Gdx.files.internal("artwork/ui/objectives/GoToWewa.png"));
+		objectiveFindTheCauldron               = new Texture(Gdx.files.internal("artwork/ui/objectives/FindTheCauldron.png"));
+		objectiveTryAgain                      = new Texture(Gdx.files.internal("artwork/ui/objectives/TryAgain.png"));
+		objectiveRawBar                        = new Texture(Gdx.files.internal("artwork/ui/objectives/RawBar.png"));
+		objectiveStumpHole                     = new Texture(Gdx.files.internal("artwork/ui/objectives/StumpHole.png"));
+		objectiveCollectLoot                   = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectLoot.png"));
+		objectiveTradinPost                    = new Texture(Gdx.files.internal("artwork/ui/objectives/TradinPost.png"));
+		objectiveCollectOysters                = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectOysters.png"));
+		objectiveCollectFeathers               = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectFeathers.png"));
+		objectiveBuyTheGun                     = new Texture(Gdx.files.internal("artwork/ui/objectives/BuyTheGun.png"));
+		objectiveKillTheBoss                   = new Texture(Gdx.files.internal("artwork/ui/objectives/KillTheBoss.png"));
+		objectiveEnterTheTradingPost           = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterTheTradinPost.png"));
+		objectiveEnterStore                    = new Texture(Gdx.files.internal("artwork/ui/objectives/EnterStore.png"));
+		objectiveExitStore                     = new Texture(Gdx.files.internal("artwork/ui/objectives/ExitStore.png"));
+		objectiveNotEnoughLoot                 = new Texture(Gdx.files.internal("artwork/ui/objectives/NotEnoughLoot.png"));
 
 		// Player name UI labels.
 		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
@@ -592,6 +596,8 @@ public class ImageLoader {
 		attackBird.dispose();
 
 		// Objective UI objects.
+		objectiveCollectTheMapAtThePoint.dispose();
+		objectiveFindTheTreasureAtBlacksIsland.dispose();
 		objectiveAmmoUnlocked.dispose();
 		objectiveMagicPearlUnlocked.dispose();
 		objectiveCollectTheBird.dispose();
