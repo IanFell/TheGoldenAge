@@ -27,7 +27,7 @@ public class Treasure extends GameObject {
 	public Treasure(int x, int y) {
 		this.x           = x;
 		this.y           = y;
-		int size         = 1;
+		int size         = 3;
 		this.width       = size;
 		this.height      = size;
 		rectangle        = new Rectangle(x, y, width, height);
@@ -54,7 +54,7 @@ public class Treasure extends GameObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!hasBeenCollected) {
-			batch.draw(imageLoader.whiteSquare, x, y, width, height);
+			batch.draw(imageLoader.chestClosed, x, y, width, height);
 		}
 	}
 }
