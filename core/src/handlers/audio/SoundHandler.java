@@ -49,6 +49,8 @@ public class SoundHandler {
 	private int inventoryTimer = GameAttributeHelper.TIMER_START_VALUE;
 	private int jumpTimer      = GameAttributeHelper.TIMER_START_VALUE;
 	private int quickSandTimer = GameAttributeHelper.TIMER_START_VALUE;
+	
+	private boolean stumpHoleBirdSFXArePlaying = false;
 
 	/**
 	 * 
@@ -195,6 +197,13 @@ public class SoundHandler {
 				}
 			} else {
 				soundLoader.tunnel.stop();
+			}
+			
+			if (MissionStumpHole.missionIsActive) {
+				if (!stumpHoleBirdSFXArePlaying) {
+					soundLoader.bird.loop(Mixer.BIRD_STUMP_HOLE_MISSION_VOLUME);
+					stumpHoleBirdSFXArePlaying = true;
+				}
 			}
 
 			if (PauseScreen.playSound) {

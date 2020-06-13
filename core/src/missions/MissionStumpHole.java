@@ -434,7 +434,7 @@ public class MissionStumpHole extends Mission {
 	private void updateAttackBirdTwo(MyGame myGame, MapHandler mapHandler) {
 		attackBirdTwo.updateObject(myGame, mapHandler);
 		attackBirdTwo.rectangle.x = attackBirdTwo.getX();
-		attackBirdTwo.rectangle.y = attackBirdTwo.getY();
+		attackBirdTwo.rectangle.y = attackBirdTwo.getY() - attackBirdTwo.getHeight();
 		attackBirdTwo.setX(attackBirdTwo.getX() + attackBirdTwoDx);
 		if (attackBirdTwo.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {
 			attackBirdTwoDx = -attackBirdTwoDx;
@@ -459,7 +459,7 @@ public class MissionStumpHole extends Mission {
 	private void updateAttackBirdThree(MyGame myGame, MapHandler mapHandler) {
 		attackBirdThree.updateObject(myGame, mapHandler);
 		attackBirdThree.rectangle.x = attackBirdThree.getX();
-		attackBirdThree.rectangle.y = attackBirdThree.getY();
+		attackBirdThree.rectangle.y = attackBirdThree.getY() - attackBirdThree.getHeight();
 		attackBirdThree.setX(attackBirdThree.getX() + attackBirdThreeDx);
 		//if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
 		if (attackBirdThree.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {

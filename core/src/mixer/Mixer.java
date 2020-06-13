@@ -77,4 +77,7 @@ public class Mixer {
 	// Location marker.
 	public final static float LOCATION_MARKER_HIT_VOLUME  = MAX_VOLUME;
 	public final static float LOCATION_MARKER_BEEP_VOLUME = QUARTER_VOLUME;
+
+	// Missions.
+	public static final float BIRD_STUMP_HOLE_MISSION_VOLUME = QUARTER_VOLUME;
 }
