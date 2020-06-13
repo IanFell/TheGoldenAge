@@ -17,6 +17,7 @@ import gameobjects.nature.hole.Hole;
 import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
+import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.CannonBall;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
@@ -296,6 +297,7 @@ public class CollisionHandler {
 			birdWeapon.hasBeenCollected             = true;
 			//MagicPearl.playCollectionSound        = true;
 			GameObjectLoader.gameObjectList.add(birdWeapon);
+			BirdWeapon.playCollectionSound          = true;
 		}
 	}
 

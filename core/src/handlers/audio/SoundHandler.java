@@ -10,6 +10,7 @@ import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
+import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -49,7 +50,7 @@ public class SoundHandler {
 	private int inventoryTimer = GameAttributeHelper.TIMER_START_VALUE;
 	private int jumpTimer      = GameAttributeHelper.TIMER_START_VALUE;
 	private int quickSandTimer = GameAttributeHelper.TIMER_START_VALUE;
-	
+
 	private boolean stumpHoleBirdSFXArePlaying = false;
 
 	/**
@@ -70,6 +71,10 @@ public class SoundHandler {
 			if (MagicPearl.playCollectionSound) {
 				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
 				MagicPearl.playCollectionSound = false;
+			}
+			if (BirdWeapon.playCollectionSound) {
+				soundLoader.bird.play(Mixer.PICK_UP_BIRD_VOLUME);
+				BirdWeapon.playCollectionSound = false;
 			}
 			if (MissionRawBar.playCollectionSound) {
 				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
@@ -112,6 +117,8 @@ public class SoundHandler {
 						if (AmmoHandler.ammoCount > 0) {
 							soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
 						}
+					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+						soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
 					} else {
 						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 					}
@@ -198,18 +205,29 @@ public class SoundHandler {
 			} else {
 				soundLoader.tunnel.stop();
 			}
-			
-			if (MissionStumpHole.missionIsActive) {
-				if (!stumpHoleBirdSFXArePlaying) {
-					soundLoader.bird.loop(Mixer.BIRD_STUMP_HOLE_MISSION_VOLUME);
-					stumpHoleBirdSFXArePlaying = true;
-				}
-			}
+
+			handleStumpHoleMissionBirdSFX(soundLoader);
 
 			if (PauseScreen.playSound) {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
 				PauseScreen.playSound = false;
 			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param SoundLoader soundLoader
+	 */
+	private void handleStumpHoleMissionBirdSFX(SoundLoader soundLoader) {
+		if (MissionStumpHole.missionIsActive) {
+			if (!stumpHoleBirdSFXArePlaying) {
+				soundLoader.birdTwo.loop(Mixer.BIRD_STUMP_HOLE_MISSION_VOLUME);
+				stumpHoleBirdSFXArePlaying = true;
+			}
+		}
+		if (MissionStumpHole.stumpHoleMissionComplete) {
+			soundLoader.birdTwo.stop();
 		}
 	}
 

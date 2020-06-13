@@ -25,6 +25,8 @@ public class BirdWeapon extends Weapon {
 
 	public static boolean birdIsAttacking = false;
 
+	public static boolean playCollectionSound = false;
+
 	private TextureAtlas textureAtlasLeft;
 	private TextureAtlas textureAtlasRight;
 

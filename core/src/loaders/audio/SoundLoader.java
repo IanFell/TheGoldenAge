@@ -12,6 +12,7 @@ import com.badlogic.gdx.audio.Sound;
 public class SoundLoader {
 
 	public Sound bird;
+	public Sound birdTwo;
 	public Sound pause;
 	public Sound clickSound;
 	public Sound heartSound;
@@ -39,6 +40,7 @@ public class SoundLoader {
 	public Sound tunnel;
 
 	public void init() {
+		birdTwo             = Gdx.audio.newSound(Gdx.files.internal("audio/sound/BirdTwo.wav"));
 		bird                = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Bird.wav"));
 		pause               = Gdx.audio.newSound(Gdx.files.internal("audio/sound/whistle.wav"));
 		heartSound          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Heart.wav"));
@@ -68,6 +70,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		birdTwo.dispose();
 		bird.dispose();
 		pause.dispose();
 		heartSound.dispose();
