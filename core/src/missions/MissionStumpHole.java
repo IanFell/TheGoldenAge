@@ -19,7 +19,6 @@ import maps.MapHandler;
 import screens.GameScreen;
 import transitions.Transition;
 import ui.LocationMarker;
-import ui.UserInterface;
 
 /**
  * 
@@ -50,8 +49,11 @@ public class MissionStumpHole extends Mission {
 
 	public static boolean missionIsActive = false;
 
-	private Bird attackBirdTop;
-	private float attackBirdTopDx = 0.4f;
+	private Bird attackBirdTwo;
+	private float attackBirdTwoDx = 0.4f;
+
+	private Bird attackBirdThree;
+	private float attackBirdThreeDx = 0.2f;
 
 	private Bird bird;
 	private Bird attackBird;
@@ -98,7 +100,7 @@ public class MissionStumpHole extends Mission {
 
 	private float waterTileHeight                    = 2.5f;
 	private int animatedWaterTimer                   = 0;
-	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 20;
+	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 50;
 
 	// Represents number of big attacks (each containing three waves) that repeat.
 	private final int ATTACK_ONE = 1;
@@ -142,9 +144,13 @@ public class MissionStumpHole extends Mission {
 		attackBirdOriginX           = attackBird.getX();
 		attackBirdOriginY           = attackBird.getY();
 
-		attackBirdTop                  = new Bird(stumps.get(5).getX(), stumps.get(5).getY() - 4);
-		attackBirdTop.rectangle.width  = attackBirdTop.getWidth();
-		attackBirdTop.rectangle.height = attackBirdTop.getHeight();
+		attackBirdTwo                  = new Bird(stumps.get(5).getX(), stumps.get(5).getY() - 4);
+		attackBirdTwo.rectangle.width  = attackBirdTwo.getWidth();
+		attackBirdTwo.rectangle.height = attackBirdTwo.getHeight();
+
+		attackBirdThree                  = new Bird(stumps.get(5).getX(), stumps.get(5).getY() - 6);
+		attackBirdThree.rectangle.width  = attackBirdThree.getWidth();
+		attackBirdThree.rectangle.height = attackBirdThree.getHeight();
 
 		player          = new Rectangle(stumps.get(0).getX(), stumps.get(0).getY() - 60, playerSize, playerSize);
 		playerDx        = 0.1f;
@@ -224,7 +230,8 @@ public class MissionStumpHole extends Mission {
 				attackBird.renderObject(batch, imageLoader);
 			}
 
-			attackBirdTop.renderObject(batch, imageLoader);
+			attackBirdTwo.renderObject(batch, imageLoader);
+			attackBirdThree.renderObject(batch, imageLoader);
 
 			//renderHitBoxes(batch, imageLoader);
 
@@ -379,7 +386,8 @@ public class MissionStumpHole extends Mission {
 
 		// If we have not completed the mission yet:
 		if (!secondAttackComplete) {
-			updateTopAttackBird(myGame, mapHandler);
+			updateAttackBirdTwo(myGame, mapHandler);
+			updateAttackBirdThree(myGame, mapHandler);
 			// Execute first attack if it's not done.
 			if (!firstAttackComplete) {
 				executeBirdAttack(ATTACK_ONE);
@@ -418,22 +426,54 @@ public class MissionStumpHole extends Mission {
 				);
 	}
 
-	private void updateTopAttackBird(MyGame myGame, MapHandler mapHandler) {
-		attackBirdTop.updateObject(myGame, mapHandler);
-		attackBirdTop.rectangle.x = attackBirdTop.getX();
-		attackBirdTop.rectangle.y = attackBirdTop.getY();
-		attackBirdTop.setX(attackBirdTop.getX() + attackBirdTopDx);
-		if (attackBirdTop.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {
-			attackBirdTopDx = -attackBirdTopDx;
-			attackBirdTop.setDirection(DIRECTION_LEFT);
-		} else if (attackBirdTop.getX() < stumps.get(0).getX() - 5) {
-			attackBirdTopDx = -attackBirdTopDx;
-			attackBirdTop.setDirection(DIRECTION_RIGHT);
+	/**
+	 * 
+	 * @param MyGame     myGame
+	 * @param MapHandler mapHandler
+	 */
+	private void updateAttackBirdTwo(MyGame myGame, MapHandler mapHandler) {
+		attackBirdTwo.updateObject(myGame, mapHandler);
+		attackBirdTwo.rectangle.x = attackBirdTwo.getX();
+		attackBirdTwo.rectangle.y = attackBirdTwo.getY();
+		attackBirdTwo.setX(attackBirdTwo.getX() + attackBirdTwoDx);
+		if (attackBirdTwo.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {
+			attackBirdTwoDx = -attackBirdTwoDx;
+			attackBirdTwo.setDirection(DIRECTION_LEFT);
+		} else if (attackBirdTwo.getX() < stumps.get(0).getX() - 5) {
+			attackBirdTwoDx = -attackBirdTwoDx;
+			attackBirdTwo.setDirection(DIRECTION_RIGHT);
 		}
 		// Player loses health if he gets hit by attack bird.
 		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
 				myGame.getGameObject(Player.PLAYER_ONE),
-				attackBirdTop.rectangle,
+				attackBirdTwo.rectangle,
+				player
+				);
+	}
+
+	/**
+	 * 
+	 * @param MyGame     myGame
+	 * @param MapHandler mapHandler
+	 */
+	private void updateAttackBirdThree(MyGame myGame, MapHandler mapHandler) {
+		attackBirdThree.updateObject(myGame, mapHandler);
+		attackBirdThree.rectangle.x = attackBirdThree.getX();
+		attackBirdThree.rectangle.y = attackBirdThree.getY();
+		attackBirdThree.setX(attackBirdThree.getX() + attackBirdThreeDx);
+		//if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
+		if (attackBirdThree.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {
+			attackBirdThreeDx = -attackBirdThreeDx;
+			attackBirdThree.setDirection(DIRECTION_LEFT);
+		} else if (attackBirdThree.getX() < stumps.get(0).getX() - 5) {
+			attackBirdThreeDx = -attackBirdThreeDx;
+			attackBirdThree.setDirection(DIRECTION_RIGHT);
+		}
+		//}
+		// Player loses health if he gets hit by attack bird.
+		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
+				myGame.getGameObject(Player.PLAYER_ONE),
+				attackBirdThree.rectangle,
 				player
 				);
 	}
