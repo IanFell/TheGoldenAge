@@ -27,10 +27,10 @@ public class TreasureMap extends GameObject {
 	public TreasureMap(int x, int y) {
 		this.x           = x;
 		this.y           = y;
-		int size         = 1;
+		int size         = 2;
 		this.width       = size;
 		this.height      = size;
-		rectangle        = new Rectangle(x, y, width, height);
+		rectangle        = new Rectangle(x, y - height, width, height);
 		hasBeenCollected = false;
 	}
 
@@ -53,7 +53,8 @@ public class TreasureMap extends GameObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!hasBeenCollected) {
-			batch.draw(imageLoader.treasureMapRight, x, y, width, height);
+			// TODO PUT IN SHADOW
+			batch.draw(imageLoader.treasureMapRight, x, y, width, -height);
 		}
 	}
 }
