@@ -50,6 +50,9 @@ public class MissionStumpHole extends Mission {
 
 	public static boolean missionIsActive = false;
 
+	private Bird attackBirdTop;
+	private float attackBirdTopDx = 0.4f;
+
 	private Bird bird;
 	private Bird attackBird;
 	private float attackBirdOriginX;
@@ -95,7 +98,7 @@ public class MissionStumpHole extends Mission {
 
 	private float waterTileHeight                    = 2.5f;
 	private int animatedWaterTimer                   = 0;
-	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 10;
+	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 20;
 
 	// Represents number of big attacks (each containing three waves) that repeat.
 	private final int ATTACK_ONE = 1;
@@ -133,14 +136,15 @@ public class MissionStumpHole extends Mission {
 				);
 
 		// This bird moves around.
-		attackBird      = new Bird(
-				stumps.get(5).getX(), 
-				stumps.get(5).getY() - 3
-				);
+		attackBird      = new Bird(stumps.get(5).getX(), stumps.get(5).getY() - 3);
 		attackBird.rectangle.width  = attackBird.getWidth();
 		attackBird.rectangle.height = attackBird.getHeight();
 		attackBirdOriginX           = attackBird.getX();
 		attackBirdOriginY           = attackBird.getY();
+
+		attackBirdTop                  = new Bird(stumps.get(5).getX(), stumps.get(5).getY() - 4);
+		attackBirdTop.rectangle.width  = attackBirdTop.getWidth();
+		attackBirdTop.rectangle.height = attackBirdTop.getHeight();
 
 		player          = new Rectangle(stumps.get(0).getX(), stumps.get(0).getY() - 60, playerSize, playerSize);
 		playerDx        = 0.1f;
@@ -212,14 +216,16 @@ public class MissionStumpHole extends Mission {
 			renderWater(batch, imageLoader, realPlayer);
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
-			
+
 			renderMeters(batch, imageLoader, realPlayer);
 
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
 			}
-			
+
+			attackBirdTop.renderObject(batch, imageLoader);
+
 			//renderHitBoxes(batch, imageLoader);
 
 			if (transition != null) {
@@ -233,7 +239,7 @@ public class MissionStumpHole extends Mission {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param SpriteBatch batch
@@ -243,7 +249,7 @@ public class MissionStumpHole extends Mission {
 		batch.draw(imageLoader.whiteSquare, player.x, player.y, player.width, player.height);
 		batch.draw(imageLoader.whiteSquare, attackBird.rectangle.x, attackBird.rectangle.y, attackBird.rectangle.width, attackBird.rectangle.height);
 	}
-	
+
 	/**
 	 * 
 	 * @param SpriteBatch batch
@@ -373,6 +379,7 @@ public class MissionStumpHole extends Mission {
 
 		// If we have not completed the mission yet:
 		if (!secondAttackComplete) {
+			updateTopAttackBird(myGame, mapHandler);
 			// Execute first attack if it's not done.
 			if (!firstAttackComplete) {
 				executeBirdAttack(ATTACK_ONE);
@@ -407,6 +414,26 @@ public class MissionStumpHole extends Mission {
 		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
 				myGame.getGameObject(Player.PLAYER_ONE),
 				attackBird.rectangle,
+				player
+				);
+	}
+
+	private void updateTopAttackBird(MyGame myGame, MapHandler mapHandler) {
+		attackBirdTop.updateObject(myGame, mapHandler);
+		attackBirdTop.rectangle.x = attackBirdTop.getX();
+		attackBirdTop.rectangle.y = attackBirdTop.getY();
+		attackBirdTop.setX(attackBirdTop.getX() + attackBirdTopDx);
+		if (attackBirdTop.getX() > stumps.get(AMOUNT_OF_STUMPS - 1).getX() + 5) {
+			attackBirdTopDx = -attackBirdTopDx;
+			attackBirdTop.setDirection(DIRECTION_LEFT);
+		} else if (attackBirdTop.getX() < stumps.get(0).getX() - 5) {
+			attackBirdTopDx = -attackBirdTopDx;
+			attackBirdTop.setDirection(DIRECTION_RIGHT);
+		}
+		// Player loses health if he gets hit by attack bird.
+		CollisionHandler.checkIfPlayerHasCollidedWithAttackBird(
+				myGame.getGameObject(Player.PLAYER_ONE),
+				attackBirdTop.rectangle,
 				player
 				);
 	}
