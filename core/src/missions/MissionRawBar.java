@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.nature.Bubble;
 import handlers.CollisionHandler;
 import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;
@@ -93,6 +94,8 @@ public class MissionRawBar extends Mission {
 
 	private boolean initializeTransition = true;
 
+	private Bubble[] bubble = new Bubble[50];
+
 	/**
 	 * Constructor.
 	 * 
@@ -117,6 +120,24 @@ public class MissionRawBar extends Mission {
 			playerX   = locationMarker.getLocator().getX();
 			playerY   = locationMarker.getLocator().getY();
 			setPlayer = false;
+		}
+
+		for (int i = 0; i < bubble.length; i++) {
+			float bubbleSize               = 1;
+			double randomSizeDetermination = RandomNumberGenerator.generateRandomDouble(0, 100);
+			if (randomSizeDetermination < 50) {
+				bubbleSize = 0.5f;
+			}
+			float bubbleDy               = 0.3f;
+			double randomDyDetermination = RandomNumberGenerator.generateRandomDouble(0, 100);
+			if (randomDyDetermination < 50) {
+				bubbleDy = 0.1f;
+			}
+			int xOffset           = 15;
+			double xPlanePosition = RandomNumberGenerator.generateRandomDouble(locationMarker.getLocator().getX() - xOffset, locationMarker.getLocator().getX() + xOffset);
+			int yOffset           = 10;
+			double yPlanePosition = RandomNumberGenerator.generateRandomDouble(locationMarker.getLocator().getY() - yOffset, locationMarker.getLocator().getY() + yOffset);
+			bubble[i] = new Bubble((int) xPlanePosition, (int) yPlanePosition, bubbleSize, bubbleDy);
 		}
 	}
 
@@ -205,6 +226,10 @@ public class MissionRawBar extends Mission {
 				oystersCollected += OYSTER_VALUE;
 				playCollectionSound = true;
 			}
+		}
+
+		for (int i = 0; i < bubble.length; i++) {
+			bubble[i].updateObject(myGame);
 		}
 
 		handleCountdownTimer();
@@ -324,6 +349,10 @@ public class MissionRawBar extends Mission {
 
 		if (failMessageShouldDisplay) {
 			renderFailMessage(batch, imageLoader, myGame);
+		}
+
+		for (int i = 0; i < bubble.length; i++) {
+			bubble[i].renderObject(batch, imageLoader);
 		}
 	}
 

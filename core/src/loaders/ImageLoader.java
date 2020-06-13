@@ -32,6 +32,7 @@ public class ImageLoader {
 	public Texture[] townSigns = new Texture[7];
 
 	// Nature Objects.
+	public Texture bubble;
 	public Texture tunnel;
 	public Texture hole;
 	public Texture rock;
@@ -228,6 +229,7 @@ public class ImageLoader {
 		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
+		bubble        = new Texture(Gdx.files.internal("artwork/nature/Bubble.png"));
 		tunnel        = new Texture(Gdx.files.internal("artwork/nature/TunnelMovement.png"));
 		hole          = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
 		rock 		  = new Texture(Gdx.files.internal("artwork/nature/Rock.png"));
@@ -468,6 +470,7 @@ public class ImageLoader {
 		}
 
 		// Nature Objects.
+		bubble.dispose();
 		tunnel.dispose();
 		hole.dispose();
 		rock.dispose();
