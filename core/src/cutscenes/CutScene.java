@@ -79,4 +79,10 @@ public class CutScene {
 	public boolean isSelectedCutSceneInProgress() {
 		return selectedCutSceneIsInProgress;
 	}
+
+	protected void endCutScene() {
+		cutSceneConcluded            = true;
+		selectedCutSceneIsInProgress = false;
+		anyCutSceneIsInProgress      = false;
+	}
 }

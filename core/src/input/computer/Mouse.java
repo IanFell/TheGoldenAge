@@ -66,12 +66,12 @@ public class Mouse extends ComputerInput {
 		GameObject player = PlayerController.getCurrentPlayer(myGame);
 		switch (GameAttributeHelper.gameState) {
 		case Screens.SPLASH_SCREEN:
-			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
 		case Screens.TITLE_SCREEN:
-			if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
 			}
 			break;

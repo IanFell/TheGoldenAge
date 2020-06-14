@@ -67,6 +67,7 @@ public class CutSceneIntro extends CutScene {
 	 */
 	@Override
 	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {
+		/*
 		batch.draw(
 				imageLoader.boatSide,
 				boatStartXPosition, 
@@ -161,7 +162,7 @@ public class CutSceneIntro extends CutScene {
 				selectedCutSceneIsInProgress = false;
 				anyCutSceneIsInProgress      = false;
 			}
-		}
+		} */
 	}
 
 	@Override

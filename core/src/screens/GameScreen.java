@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
 import cutscenes.CutSceneIntro;
+import cutscenes.CutSceneJollyRoger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
@@ -140,7 +141,8 @@ public class GameScreen extends Screens {
 
 	private HoleHandler holeHandler = new HoleHandler();
 
-	private CutSceneIntro cutSceneIntro;
+	//private CutSceneIntro cutSceneIntro;
+	private CutSceneJollyRoger cutSceneJollyRoger;
 
 	private Store store = new Store();
 
@@ -152,7 +154,8 @@ public class GameScreen extends Screens {
 		super(myGame);
 		GameAttributeHelper.gameState = Screens.GAME_SCREEN;
 		gameScreenHasBeenInitialized  = false;
-		cutSceneIntro                 = new CutSceneIntro("Intro");
+		//cutSceneIntro                 = new CutSceneIntro("Intro");
+		cutSceneJollyRoger            = new CutSceneJollyRoger("Cutscene Jolly Roger");
 	}
 
 	/**
@@ -265,9 +268,16 @@ public class GameScreen extends Screens {
 		myGame.renderer.batch.setProjectionMatrix(camera.combined);
 		//myGame.renderer.shapeRenderer.setProjectionMatrix(camera.combined);
 		if (!ScreenShake.screenIsShaking) {
+			/*
 			if (cutSceneIntro.isSelectedCutSceneInProgress()) {
 				camera.position.x = cutSceneIntro.getStartXPosition() + 5;
 				camera.position.y = cutSceneIntro.getStartYPosition() + 1;
+			} else {
+				cameraFollowCurrentPlayer();
+			} */
+			if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
+				camera.position.x = cutSceneJollyRoger.getStartXPosition() + 5;
+				camera.position.y = cutSceneJollyRoger.getStartYPosition() + 1;
 			} else {
 				cameraFollowCurrentPlayer();
 			}
@@ -314,14 +324,22 @@ public class GameScreen extends Screens {
 		} */
 
 		// Start missions after intro cutscene.
+		/*
 		if (cutSceneIntro.isCutSceneConcluded()) {
+			missionHandler.handleMissions(myGame, mapHandler);
+		} */
+		if (cutSceneJollyRoger.isCutSceneConcluded()) {
 			missionHandler.handleMissions(myGame, mapHandler);
 		}
 
 		WeaponHandler.updateWeapons(myGame, mapHandler);
 
+		/*
 		if (cutSceneIntro.isSelectedCutSceneInProgress()) {
 			cutSceneIntro.updateCutScene();
+		} */
+		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
+			cutSceneJollyRoger.updateCutScene();
 		}
 
 		heartHandler.updateHearts(myGame, mapHandler);
@@ -435,8 +453,16 @@ public class GameScreen extends Screens {
 			guiScreen.render(myGame.renderer.batch, myGame.imageLoader);
 		} */
 
+		/*
 		if (cutSceneIntro.isSelectedCutSceneInProgress()) {
 			cutSceneIntro.renderCutScene(
+					myGame.renderer.batch,  
+					myGame.imageLoader
+					);
+		} */
+
+		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
+			cutSceneJollyRoger.renderCutScene(
 					myGame.renderer.batch,  
 					myGame.imageLoader
 					);

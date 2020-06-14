@@ -110,7 +110,10 @@ public class ImageLoader {
 	public Texture dustParticleThree;
 
 	// Cutscene objects.
-	public Texture[] cutSceneDialogueOne = new Texture[9];
+	//public Texture[] cutSceneDialogueOne = new Texture[9];
+	public Texture cutsceneJollyRoger;
+	public Texture cutsceneCutthroat;
+	public Texture cutsceneFarzenplank;
 
 	// Map objects.
 	public Texture worldMapReal;
@@ -307,6 +310,10 @@ public class ImageLoader {
 		dustParticleThree = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleThree.png"));
 
 		// Cutscene objects.
+		cutsceneJollyRoger  = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_JollyRoger.png"));
+		cutsceneCutthroat   = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Cutthroat.png"));
+		cutsceneFarzenplank = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Farzenplank.png"));
+		/*
 		cutSceneDialogueOne[0] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_One.png"));
 		cutSceneDialogueOne[1] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Two.png"));
 		cutSceneDialogueOne[2] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Three.png"));
@@ -315,7 +322,7 @@ public class ImageLoader {
 		cutSceneDialogueOne[5] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Six.png"));
 		cutSceneDialogueOne[6] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Seven.png"));
 		cutSceneDialogueOne[7] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Eight.png"));
-		cutSceneDialogueOne[8] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Nine.png"));
+		cutSceneDialogueOne[8] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Nine.png")); */
 
 		// Map objects.
 		worldMapMexicoBeach  = new Texture(Gdx.files.internal("artwork/maps/WorldMapMexicoBeach.png"));
@@ -548,9 +555,13 @@ public class ImageLoader {
 		dustParticleThree.dispose();
 
 		// Cutscene objects.
+		cutsceneJollyRoger.dispose();
+		cutsceneCutthroat.dispose();
+		cutsceneFarzenplank.dispose();
+		/*
 		for(int i = 0; i < cutSceneDialogueOne.length; i++) {
 			cutSceneDialogueOne[i].dispose();
-		}
+		} */
 
 		// Map objects.
 		worldMapMexicoBeach.dispose();
