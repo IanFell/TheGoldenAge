@@ -8,6 +8,7 @@ import com.mygdx.mygame.MyGame;
 import handlers.AnimationHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import missions.MissionRawBar;
 
 /**
  * Peg Leg.
@@ -54,28 +55,16 @@ public class PlayerThree extends Player {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		if (!isInWater) {
-			super.renderObject(batch, imageLoader);
+		if (MissionRawBar.rawBarMissionComplete) {
+			if (!isInWater) {
+				super.renderObject(batch, imageLoader);
 
-			/**
-			 * Only draw player three if we are in life state one.
-			 * If we are in life state 2 or 3, player will still be there, but not render.
-			 */
-			if (lifeState == LIFE_STATE_ONE) {
-				if (!Player.isInvincible) {
-					AnimationHandler.renderAnimation(
-							batch, 
-							elapsedTime, 
-							getCurrentAnimation(), 
-							x, 
-							y, 
-							width,
-							height,
-							imageLoader, 
-							AnimationHandler.OBJECT_TYPE_PLAYER
-							);
-				} else {
-					if (Player.invincibilityTimer % 2 == 0) {
+				/**
+				 * Only draw player three if we are in life state one.
+				 * If we are in life state 2 or 3, player will still be there, but not render.
+				 */
+				if (lifeState == LIFE_STATE_ONE) {
+					if (!Player.isInvincible) {
 						AnimationHandler.renderAnimation(
 								batch, 
 								elapsedTime, 
@@ -87,11 +76,25 @@ public class PlayerThree extends Player {
 								imageLoader, 
 								AnimationHandler.OBJECT_TYPE_PLAYER
 								);
+					} else {
+						if (Player.invincibilityTimer % 2 == 0) {
+							AnimationHandler.renderAnimation(
+									batch, 
+									elapsedTime, 
+									getCurrentAnimation(), 
+									x, 
+									y, 
+									width,
+									height,
+									imageLoader, 
+									AnimationHandler.OBJECT_TYPE_PLAYER
+									);
+						}
 					}
-				}
-			} 
+				} 
+			}
+			//renderHitBox(batch, imageLoader);
 		}
-		//renderHitBox(batch, imageLoader);
 	}
 
 

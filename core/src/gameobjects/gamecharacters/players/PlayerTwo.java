@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.weapons.Gun;
 import handlers.AnimationHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -62,24 +63,12 @@ public class PlayerTwo extends Player {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		if (!isInWater) {
-			super.renderObject(batch, imageLoader);
+		if (Gun.hasBeenCollected) {
+			if (!isInWater) {
+				super.renderObject(batch, imageLoader);
 
-			if (lifeState == LIFE_STATE_ONE || lifeState == LIFE_STATE_TWO) {
-				if (!Player.isInvincible) {
-					AnimationHandler.renderAnimation(
-							batch, 
-							elapsedTime, 
-							getCurrentAnimation(), 
-							x, 
-							y, 
-							width,
-							height,
-							imageLoader, 
-							AnimationHandler.OBJECT_TYPE_PLAYER
-							);
-				} else {
-					if (Player.invincibilityTimer % 2 == 0) {
+				if (lifeState == LIFE_STATE_ONE || lifeState == LIFE_STATE_TWO) {
+					if (!Player.isInvincible) {
 						AnimationHandler.renderAnimation(
 								batch, 
 								elapsedTime, 
@@ -91,11 +80,25 @@ public class PlayerTwo extends Player {
 								imageLoader, 
 								AnimationHandler.OBJECT_TYPE_PLAYER
 								);
+					} else {
+						if (Player.invincibilityTimer % 2 == 0) {
+							AnimationHandler.renderAnimation(
+									batch, 
+									elapsedTime, 
+									getCurrentAnimation(), 
+									x, 
+									y, 
+									width,
+									height,
+									imageLoader, 
+									AnimationHandler.OBJECT_TYPE_PLAYER
+									);
+						}
 					}
 				}
 			}
+			//renderHitBox(batch, imageLoader);
 		}
-		//renderHitBox(batch, imageLoader);
 	}
 
 	/**

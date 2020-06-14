@@ -34,6 +34,7 @@ import maps.MapLoader;
 import maps.MapRenderer;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import missions.MissionTradinPost;
 import physics.Lighting.WeaponShadowHandler;
 import physics.Lighting.CollectibleShadowHandler;
 import physics.Lighting.LightingHandler;
