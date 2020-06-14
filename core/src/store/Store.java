@@ -267,7 +267,7 @@ public class Store extends TextBasedUiParent {
 		}
 		if (pearlUnlocked && !pearlPurchased) {
 			batch.draw(
-					imageLoader.oyster, 
+					imageLoader.magicPearl, 
 					xPos + 1.7f, 
 					yPos, 
 					itemSize, 

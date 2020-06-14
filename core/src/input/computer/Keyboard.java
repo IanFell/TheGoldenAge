@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.GameStateController;
 import controllers.PlayerController;
+import debugging.Debugger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
@@ -76,6 +77,12 @@ public class Keyboard extends ComputerInput {
 			break;
 
 		case Screens.GAME_SCREEN:	
+
+			// Skip intro cut scene.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+				Debugger.skipIntroCutscene = true;
+			}
+
 			if (
 					!Inventory.allInventoryShouldBeRendered && 
 					!MapUi.mapShouldBeRendered && 
@@ -129,7 +136,7 @@ public class Keyboard extends ComputerInput {
 			}
 
 			// Zoom camera in.
-			if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.I)) {
+			if (Gdx.input.isKeyPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.I)) {
 				GameScreen.camera.zoom -= cameraZoomAmount;
 			}
 

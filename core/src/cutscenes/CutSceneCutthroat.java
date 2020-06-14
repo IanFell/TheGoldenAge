@@ -1,39 +1,19 @@
 package cutscenes;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.mygame.MyGame;
 
-import debugging.Debugger;
-import loaders.ImageLoader;
+import helpers.GameAttributeHelper;
 
-/**
- * This is the intro cutscene, when Jolly Roger explains the point of the game.
- * 
- * @author Fabulous Fellini
- *
- */
-public class CutSceneJollyRoger extends CutScene {
+public class CutSceneCutthroat extends CutScene {
 
-	private float boatSpeed;
-	private float boatStartXPosition;
-	private int boatSize;
-
-	/**
-	 * Constructor.
-	 * 
-	 * @param String name
-	 */
-	public CutSceneJollyRoger(String name) {
+	public CutSceneCutthroat(String name) {
 		super(name);
-		startXPosition          = 90;
-		startYPosition          = 10;
-		boatSpeed               = 0.0075f;
-		boatStartXPosition      = startXPosition - 2;
-		boatSize                = 1;
+		startXPosition          = GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48; 
+		startYPosition          = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65; 
 		anyCutSceneIsInProgress = true;
 
 		float coverRowYPosition       = startYPosition - 2.3f;
-		float coverRowHeight          = 0.7f;
 		coveringRow[COVER_ROW_ONE]    = new Rectangle(startXPosition, coverRowYPosition, width, coverRowHeight);
 		coveringRow[COVER_ROW_TWO]    = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight, width, coverRowHeight);
 		coveringRow[COVER_ROW_THREE]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 2, width, coverRowHeight);
@@ -52,52 +32,33 @@ public class CutSceneJollyRoger extends CutScene {
 	 * @param SpriteBatch   batch
 	 * @param ImageLoader   imageLoader
 	 */
-	@Override
-	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.draw(
-				imageLoader.boatSide,
-				boatStartXPosition, 
-				startYPosition - 4,
-				boatSize,
-				-boatSize
-				);
+	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
-			batch.draw(
-					imageLoader.cutsceneJollyRoger,
-					startXPosition, 
-					startYPosition + 4,
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.cutsceneCutthroat,
+					GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
+					GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65,
 					width,
 					-height
 					);
+
+			for (int i = 0; i < coveringRow.length; i++) {
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.whiteSquare, 
+						GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
+						GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65 - height, 
+						coveringRow[i].getWidth(), 
+						-coveringRow[i].getHeight()
+						);
+			}
+			//debugRow(batch, imageLoader, COVER_ROW_ONE);
 		}
-		for (int i = 0; i < coveringRow.length; i++) {
-			batch.draw(
-					imageLoader.blackSquare, 
-					coveringRow[i].getX(), 
-					coveringRow[i].getY(), 
-					coveringRow[i].getWidth(), 
-					-coveringRow[i].getHeight()
-					);
-		}
-		//debugRow(batch, imageLoader, COVER_ROW_ONE);
 	}
 
-	/**
-	 * Use this method to see where the rows line up in regards to the image. 
-	 * It will render the specified row in white, offset to it's original x position.
-	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 * @param int         row
-	 */
-	private void debugRow(SpriteBatch batch, ImageLoader imageLoader, int row) {
-		batch.draw(
-				imageLoader.whiteSquare, 
-				coveringRow[row].getX() - 1, 
-				coveringRow[row].getY(), 
-				coveringRow[row].getWidth(), 
-				-coveringRow[row].getHeight()
-				);
+	@Override
+	public void updateCutScene() {
+		super.updateCutScene();
+		updateCoveringRows();
 	}
 
 	/**
@@ -135,18 +96,6 @@ public class CutSceneJollyRoger extends CutScene {
 			coveringRow[COVER_ROW_ELEVEN].setX(coveringRow[COVER_ROW_ELEVEN].getX() + shrinkValue);
 			coveringRow[COVER_ROW_ELEVEN].setWidth(coveringRow[COVER_ROW_ELEVEN].getWidth() - shrinkValue);
 		} else {
-			endCutScene();
-		}
-	}
-
-	@Override
-	public void updateCutScene() {
-		super.updateCutScene();
-		boatStartXPosition += boatSpeed;
-		updateCoveringRows();
-		
-		// TODO Maybe change this to actual controls for player to use.
-		if (Debugger.skipIntroCutscene) {
 			endCutScene();
 		}
 	}

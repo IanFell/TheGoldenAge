@@ -11,6 +11,8 @@ import maps.MapHandler;
  *
  */
 public class Debugger {
+	
+	public static boolean skipIntroCutscene = false;
 
 	/**
 	 * This method is for debugging purposes in order to see the entire game world.  

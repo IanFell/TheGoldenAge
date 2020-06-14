@@ -51,6 +51,7 @@ public class ImageLoader {
 	public Texture quickSand;
 
 	// Weapon Objects.
+	public Texture magicPearl;
 	public Texture gunRight;
 	public Texture gunLeft;
 	public Texture gunUp;
@@ -251,6 +252,7 @@ public class ImageLoader {
 		quickSand     = new Texture(Gdx.files.internal("artwork/nature/QuickSand.png"));
 
 		// Weapon Objects.
+		magicPearl            = new Texture(Gdx.files.internal("artwork/weapons/oyster/MagicPearl.png"));
 		gunRight   			  = new Texture(Gdx.files.internal("artwork/weapons/gun/Right.png"));
 		gunLeft               = new Texture(Gdx.files.internal("artwork/weapons/gun/Left.png"));
 		gunUp                 = new Texture(Gdx.files.internal("artwork/weapons/gun/Up.png"));
@@ -496,6 +498,7 @@ public class ImageLoader {
 		quickSand.dispose();
 
 		// Weapon Objects.
+		magicPearl.dispose();
 		gunRight.dispose();
 		gunLeft.dispose();
 		gunUp.dispose();

@@ -53,7 +53,7 @@ public class WeaponShadowHandler {
 		if (
 				magicPearl.hasBeenCollected &&
 				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-			batch.draw(imageLoader.oysterShadow, magicPearl.getX(), magicPearl.getY() + 1.0f, magicPearl.getWidth(), magicPearl.getHeight());
+			batch.draw(imageLoader.shadow, magicPearl.getX(), magicPearl.getY() + 1.0f, magicPearl.getWidth(), magicPearl.getHeight());
 		}
 
 		GameObject birdWeapon = myGame.getGameScreen().birdWeapon; 

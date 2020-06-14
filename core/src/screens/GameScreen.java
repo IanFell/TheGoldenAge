@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import cutscenes.CutSceneCutthroat;
 import cutscenes.CutSceneIntro;
 import cutscenes.CutSceneJollyRoger;
 import gameobjects.GameObject;
@@ -143,6 +144,7 @@ public class GameScreen extends Screens {
 
 	//private CutSceneIntro cutSceneIntro;
 	private CutSceneJollyRoger cutSceneJollyRoger;
+	private CutSceneCutthroat cutSceneCutthroat;
 
 	private Store store = new Store();
 
@@ -156,6 +158,7 @@ public class GameScreen extends Screens {
 		gameScreenHasBeenInitialized  = false;
 		//cutSceneIntro                 = new CutSceneIntro("Intro");
 		cutSceneJollyRoger            = new CutSceneJollyRoger("Cutscene Jolly Roger");
+		cutSceneCutthroat             = new CutSceneCutthroat("Cutscene Cutthroat");
 	}
 
 	/**
@@ -342,6 +345,11 @@ public class GameScreen extends Screens {
 			cutSceneJollyRoger.updateCutScene();
 		}
 
+		// TODO
+		if (Gun.hasBeenCollected) {
+			cutSceneCutthroat.updateCutScene();
+		}
+
 		heartHandler.updateHearts(myGame, mapHandler);
 		rumHandler.updateRum(myGame, mapHandler);
 		ammoHandler.updateAmmo(myGame, mapHandler);
@@ -466,6 +474,11 @@ public class GameScreen extends Screens {
 					myGame.renderer.batch,  
 					myGame.imageLoader
 					);
+		}
+
+		// TODO something here
+		if (Gun.hasBeenCollected) {
+			cutSceneCutthroat.renderCutScene(myGame);
 		}
 
 		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));

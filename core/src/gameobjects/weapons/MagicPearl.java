@@ -48,7 +48,7 @@ public class MagicPearl extends Weapon {
 	 */
 	public MagicPearl(float x, float y) {
 		super(x, y);
-		int size                            = 1;
+		float size                          = 0.75f;;
 		this.width                          = size;
 		this.height                         = size;
 		collisionWithPlayerUponReturnHitbox = new Rectangle(0, 0, width + 2, height + 2);
@@ -153,7 +153,7 @@ public class MagicPearl extends Weapon {
 						);*/
 			} else if ((myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped) || Inventory.allInventoryShouldBeRendered) {
 				batch.draw(
-						imageLoader.oyster, 
+						imageLoader.magicPearl, 
 						x, 
 						y, 
 						width, 
