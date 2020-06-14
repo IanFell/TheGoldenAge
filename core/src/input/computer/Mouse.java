@@ -78,7 +78,7 @@ public class Mouse extends ComputerInput {
 		case Screens.GAME_SCREEN:
 			if (Inventory.allInventoryShouldBeRendered) {
 				// Inventory menu buttons.
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
 					for (int i = 0; i < ((Player) player).getInventory().inventory.size(); i++) {
 						if (inventoryButtons[i].contains(Gdx.input.getX(), Gdx.input.getY())) {
 							selectAlternateInventoryObject(i, player);
@@ -91,7 +91,7 @@ public class Mouse extends ComputerInput {
 					}
 				}
 			} else {
-				if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+				if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
 					// Skip the raw bar mission intro if we click on anywhere on the screen.
 					if (MissionRawBar.missionIsActive && !MissionRawBar.introHasCompleted) {
 						MissionRawBar.introHasCompleted = true;
