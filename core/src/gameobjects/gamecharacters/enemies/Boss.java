@@ -210,49 +210,52 @@ public class Boss extends Enemy {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		rectangle.x = x;
-		rectangle.y = y;
 
-		handleAttackTimer();
+		if (enemiesShouldExecuteAi()) {
+			rectangle.x = x;
+			rectangle.y = y;
 
-		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
-		if (!dead) {
-			if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
-				handleAttack(player);
-			} else {
-				x = player.getX() + maxDistanceFromPlayer;
+			handleAttackTimer();
+
+			GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
+			if (!dead) {
+				if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
+					handleAttack(player);
+				} else {
+					x = player.getX() + maxDistanceFromPlayer;
+				}
+				y = player.getY() - height / 2;
+			} 
+
+			bossHealthUi.updateBossHealthUi(this);
+
+			if (!dead) {
+				checkDeath();
 			}
-			y = player.getY() - height / 2;
-		} 
 
-		bossHealthUi.updateBossHealthUi(this);
-
-		if (!dead) {
-			checkDeath();
-		}
-
-		if (explosionsShouldBeCreated) {
-			for (int i = 0; i < explosion.length; i++) {
-				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
-				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
-				explosion[i] = new Explosion(xPos, yPos, explosionSize);
+			if (explosionsShouldBeCreated) {
+				for (int i = 0; i < explosion.length; i++) {
+					float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+					float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+					explosion[i] = new Explosion(xPos, yPos, explosionSize);
+				}
+				explosionsShouldBeCreated = false;
 			}
-			explosionsShouldBeCreated = false;
-		}
 
-		if (explosionsShouldBeRendered) {
-			explosionOffsetTimer++;
-			for (int i = 0; i < explosion.length; i++) {
-				explosion[i].updateObject(myGame, mapHandler);
+			if (explosionsShouldBeRendered) {
+				explosionOffsetTimer++;
+				for (int i = 0; i < explosion.length; i++) {
+					explosion[i].updateObject(myGame, mapHandler);
+				}
 			}
+
+			// Shake screen during explosion.
+			if (shouldPlayExplosionMusic) {
+				GameScreen.screenShake.shake(0.3f,  3);
+			} 
+
+			handleAnimationTimer();
 		}
-
-		// Shake screen during explosion.
-		if (shouldPlayExplosionMusic) {
-			GameScreen.screenShake.shake(0.3f,  3);
-		} 
-
-		handleAnimationTimer();
 	}
 
 	private void handleAnimationTimer() {

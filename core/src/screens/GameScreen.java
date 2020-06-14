@@ -17,6 +17,7 @@ import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.HeartHandler;
 import handlers.collectibles.RumHandler;
+import handlers.enemies.BossHandler;
 import handlers.enemies.EnemyHandler;
 import handlers.enemies.GiantHandler;
 import handlers.enemies.GruntHandler;
@@ -478,7 +479,14 @@ public class GameScreen extends Screens {
 				) {
 			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
-			birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+
+			/**
+			 * Only render bird weapon if Stump Hole boss is defeated.
+			 * We will keep rendering the shadow as a hint to the player that something will be there.
+			 */
+			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+				birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+			}
 		}
 
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
