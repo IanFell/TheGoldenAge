@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import loaders.ImageLoader;
 
 /**
+ * This is an outdated cutscene.  The "intro" cutscene now is CutSceneJollyRoger.
  * 
  * @author Fabulous Fellini
  *
