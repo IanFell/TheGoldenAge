@@ -38,7 +38,7 @@ public class Keyboard extends ComputerInput {
 
 	private int weaponElement = 0;
 
-	private int pauseTimer = 0;
+	//private int pauseTimer = 0;
 
 	/**
 	 * 
@@ -86,7 +86,7 @@ public class Keyboard extends ComputerInput {
 				handleKeyboardDirectionalButtons(myGame, "wasd", player);
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 				// Stump hole mission uses a different player than the game world player.
 				if (MissionStumpHole.missionIsActive) {
 					if (Stump.playerIsOnStump) {
@@ -124,20 +124,20 @@ public class Keyboard extends ComputerInput {
 
 			float cameraZoomAmount = 1.0f;
 			// Zoom camera out.
-			if (Gdx.input.isKeyPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.O)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.O)) {
 				GameScreen.camera.zoom += cameraZoomAmount;
 			}
 
 			// Zoom camera in.
-			if (Gdx.input.isKeyPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.I)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.I)) {
 				GameScreen.camera.zoom -= cameraZoomAmount;
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.F)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.F)) {
 				Player.hasTorch = !Player.hasTorch;
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
 				if (player.getInventory().getInventoryIsEquipped()) {
 					if (player.getInventory().inventory.size() > 0) {
 						// Don't switch if the weapon isn't available.
@@ -149,7 +149,7 @@ public class Keyboard extends ComputerInput {
 				}
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.J)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
 				if (player.getInventory().getInventoryIsEquipped()) {
 					if (player.getInventory().inventory.size() > 0) {
 						// Don't switch if the weapon isn't available.
@@ -161,25 +161,25 @@ public class Keyboard extends ComputerInput {
 			}
 
 			// Display all inventory.
-			if (Gdx.input.isKeyPressed(Input.Keys.I)) {
-				if (!startClickTimer) {
-					startClickTimer                        = true;
-					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-					MapUi.mapShouldBeRendered              = false;
-				} else {
-					// Make sure inventory button is only hit once.
-					inventoryTimer++;
-					if (inventoryTimer > 1) {
-						resetClickTimer();
-					}
-				}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+				//if (!startClickTimer) {
+				//startClickTimer                        = true;
+				Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+				MapUi.mapShouldBeRendered              = false;
+				//} else {
+				// Make sure inventory button is only hit once.
+				//inventoryTimer++;
+				//if (inventoryTimer > 1) {
+				//	resetClickTimer();
+				//}
+				//}
 			} 
 
-			if (Gdx.input.isKeyPressed(Input.Keys.B)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
 				Inventory.inventoryIsEquipped = false;
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.M)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
 				if (!startClickTimer) {
 					startClickTimer                        = true;
 					MapUi.mapShouldBeRendered              = !MapUi.mapShouldBeRendered;
@@ -193,12 +193,12 @@ public class Keyboard extends ComputerInput {
 				}
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.P)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
 				BulletLoader.createBullet(myGame);
 			} 
 
 			// If player has rum, decrease rum count and make player invinvible.
-			if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
 				if (RumHandler.rumCount > 0 && !Player.isInvincible) {
 					Player.isInvincible = true;
 					RumHandler.rumCount--;
@@ -206,39 +206,39 @@ public class Keyboard extends ComputerInput {
 				}
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.N)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
 				Store.storeShouldBeRendered = !Store.storeShouldBeRendered;
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.E)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
 				if (Store.storeIsUnlocked) {
 					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 				}
 			}
 
 			// Fill your collectibles for debugging.
-			if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
 				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
-				RumHandler.rumCount = 99;
+				RumHandler.rumCount   = 99;
 				AmmoHandler.ammoCount = 99;
 			}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.R)) {
-				if (pauseTimer % 5 == 0) {
-					if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
-						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
-					} else {
-						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
-					}
-					PauseScreen.playSound = true;
+			if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+				//if (pauseTimer % 5 == 0) {
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+				} else {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
 				}
+				PauseScreen.playSound = true;
+				//}
 			}
-			pauseTimer++;
-			if (pauseTimer > 50) {
-				pauseTimer = 0;
-			}
+			//pauseTimer++;
+			//if (pauseTimer > 50) {
+			//	pauseTimer = 0;
+			//}
 
-			if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 				System.exit(0);
 			}
 		}
