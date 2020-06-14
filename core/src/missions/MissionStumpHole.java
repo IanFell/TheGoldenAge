@@ -98,7 +98,7 @@ public class MissionStumpHole extends Mission {
 	// Player cannot fall past this barrier. 
 	private float gravityHaltBarrier;
 
-	private float waterTileHeight                    = 2.5f;
+	private float waterTileHeight                    = 2.0f;
 	private int animatedWaterTimer                   = 0;
 	private final int MAX_ANIMATED_WATER_TIMER_VALUE = 50;
 
@@ -204,9 +204,10 @@ public class MissionStumpHole extends Mission {
 					stumps.get(i).renderObject(batch, imageLoader);
 				}
 			}
+			/*
 			if (!birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
-			}
+			} */
 			for (int i = 0; i < stumps.size(); i++) {
 				if (i % 2 != 0) {
 					stumps.get(i).renderObject(batch, imageLoader);
@@ -225,11 +226,14 @@ public class MissionStumpHole extends Mission {
 
 			renderMeters(batch, imageLoader, realPlayer);
 
+			/*
 			// Render bird in front of water if he is spinning.
 			if (birdIsSpinning) {
 				attackBird.renderObject(batch, imageLoader);
-			}
+			} */
 
+			// Render all three birds in front of water for now.  Uncomment above to change spinning attack bird.
+			attackBird.renderObject(batch, imageLoader);
 			attackBirdTwo.renderObject(batch, imageLoader);
 			attackBirdThree.renderObject(batch, imageLoader);
 

@@ -62,33 +62,30 @@ public class BulletLoader {
 	 * @param MyGame myGame
 	 */
 	public static void createBullet(MyGame myGame) {
-		// Only create new bullet if previous bullet is dead.  This is to prevent infinite bullets.
-		if (bullets.size() < 1) {
-			float xPosition = 0;
-			float yPosition = 0;
-			switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-			case Player.DIRECTION_LEFT:
-				xPosition = PlayerController.getCurrentPlayer(myGame).getX() - 1f;
-				yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 0.9f;
-				break;
-			case Player.DIRECTION_RIGHT:
-				xPosition = PlayerController.getCurrentPlayer(myGame).getX() + 1.5f;
-				yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 0.7f;
-				break;
-			case Player.DIRECTION_UP:
-				xPosition = PlayerController.getCurrentPlayer(myGame).getX();
-				yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 2.5f;
-				break;
-			case Player.DIRECTION_DOWN:
-				xPosition = PlayerController.getCurrentPlayer(myGame).getX() - 0.2f;
-				yPosition = PlayerController.getCurrentPlayer(myGame).getY();
-				break;
-			}
-			bullets.add(new Bullet(xPosition, yPosition));
-			timer = 0;
-			if (AmmoHandler.ammoCount > 0) {
-				AmmoHandler.ammoCount--;
-			}
+		float xPosition = 0;
+		float yPosition = 0;
+		switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+		case Player.DIRECTION_LEFT:
+			xPosition = PlayerController.getCurrentPlayer(myGame).getX() - 1f;
+			yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 0.9f;
+			break;
+		case Player.DIRECTION_RIGHT:
+			xPosition = PlayerController.getCurrentPlayer(myGame).getX() + 1.5f;
+			yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 0.7f;
+			break;
+		case Player.DIRECTION_UP:
+			xPosition = PlayerController.getCurrentPlayer(myGame).getX();
+			yPosition = PlayerController.getCurrentPlayer(myGame).getY() - 2.5f;
+			break;
+		case Player.DIRECTION_DOWN:
+			xPosition = PlayerController.getCurrentPlayer(myGame).getX() - 0.2f;
+			yPosition = PlayerController.getCurrentPlayer(myGame).getY();
+			break;
+		}
+		bullets.add(new Bullet(xPosition, yPosition));
+		timer = 0;
+		if (AmmoHandler.ammoCount > 0) {
+			AmmoHandler.ammoCount--;
 		}
 	}
 }
