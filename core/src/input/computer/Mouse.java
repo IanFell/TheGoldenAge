@@ -100,8 +100,8 @@ public class Mouse extends ComputerInput {
 					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
 						Player.playerIsPerformingAttack = true;
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-							MagicPearl.isAttacking     = true;
-							MagicPearl.isMovingForward = true;
+							MagicPearl.isAttacking     = !MagicPearl.isAttacking;
+							MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
 						}
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 							BirdWeapon.birdIsAttacking = true;
@@ -112,9 +112,9 @@ public class Mouse extends ComputerInput {
 					Player.playerIsPerformingAttack = false;
 					// Dont throw exception if inventory is not equipped.
 					if (Inventory.inventoryIsEquipped) {
-						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-							MagicPearl.isMovingForward = false;
-						}
+						//if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+						//MagicPearl.isMovingForward = false;
+						//}
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 							BirdWeapon.birdIsAttacking = false;
 						}
@@ -135,109 +135,109 @@ public class Mouse extends ComputerInput {
 	 * @param MyGae      myGame
 	 */
 	private void handleStore(GameObject player, MyGame myGame) {
-		storeTimer++;
-		if (storeTimer > 50) {
-			storeTimer = 0;
-		}
-		if (storeTimer % 5 == 0) {
-			if (Store.storeShouldBeRendered) {
-				for (int i = 0; i < purchasingButtons.length; i++) {
-					if (purchasingButtons[PURCHASE_BUTTON_HEART].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART) {
-							player.setHealth(player.getHealth() + 1);
-							closeStore();
-							Store.playSound = true;
-							// Remove loot (player has bought gun).
-							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
-							break;
-						} else {
-							Store.playerIsShortOnLootMessageShouldRender = true;
-							break;
-						}
-					}
-					else if (purchasingButtons[PURCHASE_BUTTON_RUM].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM) {
-							RumHandler.rumCount++;
-							closeStore();
-							Store.playSound = true;
-							// Remove loot (player has bought gun).
-							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
-							break;
-						} else {
-							Store.playerIsShortOnLootMessageShouldRender = true;
-							break;
-						}
-					}
-					else if (purchasingButtons[PURCHASE_BUTTON_GUN].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (!Store.gunPurchased) {
-							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) { 
-								GameObject gun = myGame.getGameScreen().gun;
-								((Player) player).getInventory().addObjectToInventory(gun);
-								Inventory.inventoryHasStartedCollection = true;
-								Gun.hasBeenCollected                    = true;
-								Gun.playCollectionSound                 = true;
-								GameObjectLoader.gameObjectList.add(gun);
-
-								// Remove loot (player has bought gun).
-								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
-
-								// Close the store.
-								Store.gunHasBeenPurchasedAtStore = true;
-								TradingPost.hasBeenEntered       = true;
-								closeStore();
-								Store.playSound    = true;
-								Store.gunPurchased = true;
-								break;
-							} else {
-								Store.playerIsShortOnLootMessageShouldRender = true;
-								break;
-							}
-						}
-					}
-					else if (purchasingButtons[PURCHASE_BUTTON_PEARL].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (!Store.pearlPurchased && Store.pearlUnlocked) {
-							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
-								GameObject pearl = myGame.gameScreen.magicPearl;
-								((Player) player).getInventory().addObjectToInventory(pearl);
-								Inventory.inventoryHasStartedCollection = true;
-								pearl.hasBeenCollected                  = true;
-								MagicPearl.playCollectionSound          = true;
-								GameObjectLoader.gameObjectList.add(pearl);
-								closeStore();
-								Store.playSound      = true;
-								Store.pearlPurchased = true;
-								// Remove loot (player has bought gun).
-								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
-								break;
-							} else {
-								Store.playerIsShortOnLootMessageShouldRender = true;
-								break;
-							}
-						}
-					}
-					else if (purchasingButtons[PURCHASE_BUTTON_AMMO].contains(Gdx.input.getX(), Gdx.input.getY())) {
-						if (Store.ammoUnlocked) {
-							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
-								if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
-									AmmoHandler.ammoCount += AmmoHandler.ammoValue;
-									closeStore();
-									Store.playSound = true;
-									player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
-									break;
-								} 
-							} else {
-								Store.playerIsShortOnLootMessageShouldRender = true;
-								break;
-							}
-						}
-					}
-					else if (purchasingButtons[PURCHASE_BUTTON_NULL].contains(Gdx.input.getX(), Gdx.input.getY())) {
+		//storeTimer++;
+		//if (storeTimer > 50) {
+		//	storeTimer = 0;
+		//}
+		//if (storeTimer % 5 == 0) {
+		if (Store.storeShouldBeRendered) {
+			for (int i = 0; i < purchasingButtons.length; i++) {
+				if (purchasingButtons[PURCHASE_BUTTON_HEART].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART) {
+						player.setHealth(player.getHealth() + 1);
 						closeStore();
 						Store.playSound = true;
+						// Remove loot (player has bought gun).
+						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
+						break;
+					} else {
+						Store.playerIsShortOnLootMessageShouldRender = true;
 						break;
 					}
 				}
-			} 
-		}
+				else if (purchasingButtons[PURCHASE_BUTTON_RUM].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM) {
+						RumHandler.rumCount++;
+						closeStore();
+						Store.playSound = true;
+						// Remove loot (player has bought gun).
+						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
+						break;
+					} else {
+						Store.playerIsShortOnLootMessageShouldRender = true;
+						break;
+					}
+				}
+				else if (purchasingButtons[PURCHASE_BUTTON_GUN].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					if (!Store.gunPurchased) {
+						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) { 
+							GameObject gun = myGame.getGameScreen().gun;
+							((Player) player).getInventory().addObjectToInventory(gun);
+							Inventory.inventoryHasStartedCollection = true;
+							Gun.hasBeenCollected                    = true;
+							Gun.playCollectionSound                 = true;
+							GameObjectLoader.gameObjectList.add(gun);
+
+							// Remove loot (player has bought gun).
+							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
+
+							// Close the store.
+							Store.gunHasBeenPurchasedAtStore = true;
+							TradingPost.hasBeenEntered       = true;
+							closeStore();
+							Store.playSound    = true;
+							Store.gunPurchased = true;
+							break;
+						} else {
+							Store.playerIsShortOnLootMessageShouldRender = true;
+							break;
+						}
+					}
+				}
+				else if (purchasingButtons[PURCHASE_BUTTON_PEARL].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					if (!Store.pearlPurchased && Store.pearlUnlocked) {
+						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
+							GameObject pearl = myGame.gameScreen.magicPearl;
+							((Player) player).getInventory().addObjectToInventory(pearl);
+							Inventory.inventoryHasStartedCollection = true;
+							pearl.hasBeenCollected                  = true;
+							MagicPearl.playCollectionSound          = true;
+							GameObjectLoader.gameObjectList.add(pearl);
+							closeStore();
+							Store.playSound      = true;
+							Store.pearlPurchased = true;
+							// Remove loot (player has bought gun).
+							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
+							break;
+						} else {
+							Store.playerIsShortOnLootMessageShouldRender = true;
+							break;
+						}
+					}
+				}
+				else if (purchasingButtons[PURCHASE_BUTTON_AMMO].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					if (Store.ammoUnlocked) {
+						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
+							if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
+								AmmoHandler.ammoCount += AmmoHandler.ammoValue;
+								closeStore();
+								Store.playSound = true;
+								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
+								break;
+							} 
+						} else {
+							Store.playerIsShortOnLootMessageShouldRender = true;
+							break;
+						}
+					}
+				}
+				else if (purchasingButtons[PURCHASE_BUTTON_NULL].contains(Gdx.input.getX(), Gdx.input.getY())) {
+					closeStore();
+					Store.playSound = true;
+					break;
+				}
+			}
+		} 
+		//}
 	}
 }

@@ -34,7 +34,11 @@ public class MagicPearl extends Weapon {
 
 	public static boolean playCollectionSound = false;
 
-	private Fire fire;
+	//private Fire fire;
+
+	private float pearlStartThrowXPosition      = 0;
+	private boolean setPearlThrowXPosition      = true;
+	private boolean pearlHasReachedPeakDistance = false;
 
 	/**
 	 * Constructor.
@@ -55,7 +59,7 @@ public class MagicPearl extends Weapon {
 		isMovingForward                     = false;
 		dx                                  = 0;
 		dy                                  = 0;
-		fire                                = new Fire(0, 0, 1, 1, null, false);
+		//fire                                = new Fire(0, 0, 1, 1, null, false);
 	}
 
 	/**
@@ -85,6 +89,14 @@ public class MagicPearl extends Weapon {
 					for (int i = 0; i < BossLoader.boss.length; i++) {
 						CollisionHandler.checkIfProjectileHasCollidedWithBoss(BossLoader.boss[i], this);
 					}
+
+					//if (setPearlThrowXPosition) {
+					//	pearlStartThrowXPosition = x;
+					//	setPearlThrowXPosition = false;
+					//}
+					//if (!pearlHasReachedPeakDistance) {
+
+					//}
 					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 					case DIRECTION_RIGHT:
 						dx = 1;
@@ -111,9 +123,9 @@ public class MagicPearl extends Weapon {
 						y -= dy;
 						break;
 					}	
-					fire.setX(x);
-					fire.setY(y);
-					fire.updateObject(myGame, mapHandler);
+					//fire.setX(x);
+					//fire.setY(y);
+					//fire.updateObject(myGame, mapHandler);
 				} else {
 					x           = player.getX();
 					y           = player.getY();
@@ -149,9 +161,9 @@ public class MagicPearl extends Weapon {
 						);
 			}
 
-			if (isAttacking) {
-				fire.renderObject(batch, imageLoader);
-			}
+			//if (isAttacking) {
+			//	fire.renderObject(batch, imageLoader);
+			//}
 		}
 	}
 }
