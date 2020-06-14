@@ -164,8 +164,10 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
 				//if (!startClickTimer) {
 				//startClickTimer                        = true;
-				Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-				MapUi.mapShouldBeRendered              = false;
+				if (!Store.playerWantsToEnterStore) {
+					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+					MapUi.mapShouldBeRendered              = false;
+				}
 				//} else {
 				// Make sure inventory button is only hit once.
 				//inventoryTimer++;
