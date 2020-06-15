@@ -75,6 +75,15 @@ public class LocationMarker {
 	 * @param ImageLoader imageLoader
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		// Render shadow.
+		batch.draw(
+				imageLoader.skullShadow, 
+				locator.x, 
+				locator.y + 1,
+				locator.width, 
+				-locator.height
+				);
+		// Render skull.
 		batch.draw(
 				imageLoader.locationSkull, 
 				locator.x, 
