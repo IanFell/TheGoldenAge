@@ -136,7 +136,7 @@ public class Boss extends Enemy {
 		if (!dead) {
 			// We need to do this instead of using super() because we need to render the boss lower so it works.
 			updateElapsedTime();
-			renderEnemyShadow(batch, imageLoader, width, height / 2, y + height - 1.75f);
+			//renderEnemyShadow(batch, imageLoader, width, height / 2, y + height - 1.75f);
 			/*
 			AnimationHandler.renderAnimation(
 					batch, 
@@ -213,7 +213,7 @@ public class Boss extends Enemy {
 
 		if (enemiesShouldExecuteAi()) {
 			rectangle.x = x;
-			rectangle.y = y;
+			rectangle.y = y - height;
 
 			handleAttackTimer();
 
@@ -224,7 +224,7 @@ public class Boss extends Enemy {
 				} else {
 					x = player.getX() + maxDistanceFromPlayer;
 				}
-				y = player.getY() - height / 2;
+				y = player.getY() + 0.5f;
 			} 
 
 			bossHealthUi.updateBossHealthUi(this);
