@@ -83,24 +83,6 @@ public class CutSceneJollyRoger extends CutScene {
 	}
 
 	/**
-	 * Use this method to see where the rows line up in regards to the image. 
-	 * It will render the specified row in white, offset to it's original x position.
-	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 * @param int         row
-	 */
-	private void debugRow(SpriteBatch batch, ImageLoader imageLoader, int row) {
-		batch.draw(
-				imageLoader.whiteSquare, 
-				coveringRow[row].getX() - 1, 
-				coveringRow[row].getY(), 
-				coveringRow[row].getWidth(), 
-				-coveringRow[row].getHeight()
-				);
-	}
-
-	/**
 	 * This method takes care of shrinking the cover rows to make the text appear to render one letter at a time.
 	 */
 	private void updateCoveringRows() {
@@ -144,7 +126,7 @@ public class CutSceneJollyRoger extends CutScene {
 		super.updateCutScene();
 		boatStartXPosition += boatSpeed;
 		updateCoveringRows();
-		
+
 		// TODO Maybe change this to actual controls for player to use.
 		if (Debugger.skipIntroCutscene) {
 			endCutScene();

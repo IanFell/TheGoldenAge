@@ -69,6 +69,24 @@ public class CutScene {
 	}
 
 	/**
+	 * Use this method to see where the rows line up in regards to the image. 
+	 * It will render the specified row in white, offset to it's original x position.
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param int         row
+	 */
+	protected void debugRow(SpriteBatch batch, ImageLoader imageLoader, int row) {
+		batch.draw(
+				imageLoader.whiteSquare, 
+				coveringRow[row].getX() - 1, 
+				coveringRow[row].getY(), 
+				coveringRow[row].getWidth(), 
+				-coveringRow[row].getHeight()
+				);
+	}
+
+	/**
 	 * 
 	 * @return int
 	 */
@@ -102,9 +120,7 @@ public class CutScene {
 		return cutSceneConcluded;
 	}
 
-	public void updateCutScene() {
-		timer++;
-	}
+	public void updateCutScene() {}
 
 	/**
 	 * 

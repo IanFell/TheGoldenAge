@@ -4,14 +4,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
-import cutscenes.CutSceneCutthroat;
-import cutscenes.CutSceneIntro;
-import cutscenes.CutSceneJollyRoger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import handlers.CutSceneHandler;
 import handlers.MissionHandler;
 import handlers.TownHandler;
 import handlers.WeaponHandler;
@@ -36,7 +34,6 @@ import maps.MapLoader;
 import maps.MapRenderer;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
-import missions.MissionTradinPost;
 import physics.Lighting.WeaponShadowHandler;
 import physics.Lighting.CollectibleShadowHandler;
 import physics.Lighting.LightingHandler;
@@ -142,9 +139,7 @@ public class GameScreen extends Screens {
 
 	private HoleHandler holeHandler = new HoleHandler();
 
-	//private CutSceneIntro cutSceneIntro;
-	private CutSceneJollyRoger cutSceneJollyRoger;
-	private CutSceneCutthroat cutSceneCutthroat;
+	private CutSceneHandler cutSceneHandler = new CutSceneHandler();
 
 	private Store store = new Store();
 
@@ -156,9 +151,7 @@ public class GameScreen extends Screens {
 		super(myGame);
 		GameAttributeHelper.gameState = Screens.GAME_SCREEN;
 		gameScreenHasBeenInitialized  = false;
-		//cutSceneIntro                 = new CutSceneIntro("Intro");
-		cutSceneJollyRoger            = new CutSceneJollyRoger("Cutscene Jolly Roger");
-		cutSceneCutthroat             = new CutSceneCutthroat("Cutscene Cutthroat");
+		cutSceneHandler.initializeCutScenes();
 	}
 
 	/**
@@ -278,9 +271,9 @@ public class GameScreen extends Screens {
 			} else {
 				cameraFollowCurrentPlayer();
 			} */
-			if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
-				camera.position.x = cutSceneJollyRoger.getStartXPosition() + 5;
-				camera.position.y = cutSceneJollyRoger.getStartYPosition() + 1;
+			if (cutSceneHandler.getCutSceneJollyRoger().isSelectedCutSceneInProgress()) {
+				camera.position.x = cutSceneHandler.getCutSceneJollyRoger().getStartXPosition() + 5;
+				camera.position.y = cutSceneHandler.getCutSceneJollyRoger().getStartYPosition() + 1;
 			} else {
 				cameraFollowCurrentPlayer();
 			}
@@ -331,22 +324,13 @@ public class GameScreen extends Screens {
 		if (cutSceneIntro.isCutSceneConcluded()) {
 			missionHandler.handleMissions(myGame, mapHandler);
 		} */
-		if (cutSceneJollyRoger.isCutSceneConcluded()) {
+		if (cutSceneHandler.getCutSceneJollyRoger().isCutSceneConcluded()) {
 			missionHandler.handleMissions(myGame, mapHandler);
 		}
 
 		WeaponHandler.updateWeapons(myGame, mapHandler);
 
-		/*
-		if (cutSceneIntro.isSelectedCutSceneInProgress()) {
-			cutSceneIntro.updateCutScene();
-		} */
-		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
-			cutSceneJollyRoger.updateCutScene();
-		}
-		if (Gun.hasBeenCollected) {
-			cutSceneCutthroat.updateCutScene();
-		}
+		cutSceneHandler.updateCutScenes();
 
 		heartHandler.updateHearts(myGame, mapHandler);
 		rumHandler.updateRum(myGame, mapHandler);
@@ -454,29 +438,6 @@ public class GameScreen extends Screens {
 				);
 
 		arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
-		/*
-		if (!cutSceneIntro.isCutSceneIsInProgress()) {
-			guiScreen.render(myGame.renderer.batch, myGame.imageLoader);
-		} */
-
-		/*
-		if (cutSceneIntro.isSelectedCutSceneInProgress()) {
-			cutSceneIntro.renderCutScene(
-					myGame.renderer.batch,  
-					myGame.imageLoader
-					);
-		} */
-
-		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
-			cutSceneJollyRoger.renderCutScene(
-					myGame.renderer.batch,  
-					myGame.imageLoader
-					);
-		}
-
-		if (Gun.hasBeenCollected) {
-			cutSceneCutthroat.renderCutScene(myGame);
-		}
 
 		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
 
@@ -525,6 +486,8 @@ public class GameScreen extends Screens {
 				birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			}
 		}
+
+		cutSceneHandler.renderCutScenes(myGame);
 
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 			pause.renderObject(myGame.renderer.batch, myGame.imageLoader);

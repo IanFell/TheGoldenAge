@@ -5,18 +5,28 @@ import com.mygdx.mygame.MyGame;
 
 import helpers.GameAttributeHelper;
 
+/**
+ * 
+ * @author Fabulous Fellini
+ *
+ */
 public class CutSceneCutthroat extends CutScene {
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param String name
+	 */
 	public CutSceneCutthroat(String name) {
 		super(name);
 		startXPosition          = GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48; 
-		startYPosition          = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65; 
+		startYPosition          = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65 - height; 
 		anyCutSceneIsInProgress = true;
 
-		float coverRowYPosition       = startYPosition - 2.3f;
+		float coverRowYPosition       = startYPosition + 0.7f;
 		coveringRow[COVER_ROW_ONE]    = new Rectangle(startXPosition, coverRowYPosition, width, coverRowHeight);
 		coveringRow[COVER_ROW_TWO]    = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight, width, coverRowHeight);
-		coveringRow[COVER_ROW_THREE]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 2, width, coverRowHeight);
+		coveringRow[COVER_ROW_THREE]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 1.8f, width, coverRowHeight);
 		coveringRow[COVER_ROW_FOUR]   = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 2.6f, width, coverRowHeight);
 		coveringRow[COVER_ROW_FIVE]   = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 3.4f, width, coverRowHeight);
 		coveringRow[COVER_ROW_SIX]    = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 4.2f, width, coverRowHeight);
@@ -44,14 +54,14 @@ public class CutSceneCutthroat extends CutScene {
 
 			for (int i = 0; i < coveringRow.length; i++) {
 				myGame.renderer.batch.draw(
-						myGame.imageLoader.whiteSquare, 
-						GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
-						GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65 - height, 
+						myGame.imageLoader.blackSquare, 
+						coveringRow[i].getX(), 
+						coveringRow[i].getY(), 
 						coveringRow[i].getWidth(), 
 						-coveringRow[i].getHeight()
 						);
 			}
-			//debugRow(batch, imageLoader, COVER_ROW_ONE);
+			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_FIVE);
 		}
 	}
 
@@ -72,10 +82,10 @@ public class CutSceneCutthroat extends CutScene {
 		} else if (coveringRow[COVER_ROW_TWO].getWidth() > 0) {
 			coveringRow[COVER_ROW_TWO].setX(coveringRow[COVER_ROW_TWO].getX() + shrinkValue);
 			coveringRow[COVER_ROW_TWO].setWidth(coveringRow[COVER_ROW_TWO].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_THREE].getWidth() > 0) {
-			coveringRow[COVER_ROW_THREE].setX(coveringRow[COVER_ROW_THREE].getX() + shrinkValue);
-			coveringRow[COVER_ROW_THREE].setWidth(coveringRow[COVER_ROW_THREE].getWidth() - shrinkValue);
-			// Skip row 4 because it's a blank line.
+			// Skip row 3 because it's a blank line.
+		} else if (coveringRow[COVER_ROW_FOUR].getWidth() > 0) {
+			coveringRow[COVER_ROW_FOUR].setX(coveringRow[COVER_ROW_FOUR].getX() + shrinkValue);
+			coveringRow[COVER_ROW_FOUR].setWidth(coveringRow[COVER_ROW_FOUR].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_FIVE].getWidth() > 0) {
 			coveringRow[COVER_ROW_FIVE].setX(coveringRow[COVER_ROW_FIVE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FIVE].setWidth(coveringRow[COVER_ROW_FIVE].getWidth() - shrinkValue);
@@ -89,12 +99,6 @@ public class CutSceneCutthroat extends CutScene {
 		} else if (coveringRow[COVER_ROW_NINE].getWidth() > 0) {
 			coveringRow[COVER_ROW_NINE].setX(coveringRow[COVER_ROW_NINE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_TEN].getWidth() > 0) {
-			coveringRow[COVER_ROW_TEN].setX(coveringRow[COVER_ROW_TEN].getX() + shrinkValue);
-			coveringRow[COVER_ROW_TEN].setWidth(coveringRow[COVER_ROW_TEN].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_ELEVEN].getWidth() > 0) {
-			coveringRow[COVER_ROW_ELEVEN].setX(coveringRow[COVER_ROW_ELEVEN].getX() + shrinkValue);
-			coveringRow[COVER_ROW_ELEVEN].setWidth(coveringRow[COVER_ROW_ELEVEN].getWidth() - shrinkValue);
 		} else {
 			endCutScene();
 		}
