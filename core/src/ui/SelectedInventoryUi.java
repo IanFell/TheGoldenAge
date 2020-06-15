@@ -49,7 +49,7 @@ public class SelectedInventoryUi {
 			if (object instanceof Gun) {
 				image = imageLoader.gunRight;
 			} else if (object instanceof MagicPearl) {
-				image = imageLoader.oyster;
+				image = imageLoader.magicPearl;
 			} else if (object instanceof LegendSword) {
 				image = imageLoader.legendSwordRainbow;
 			} else if (object instanceof BirdWeapon) {
