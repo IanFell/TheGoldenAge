@@ -154,7 +154,7 @@ public class Boss extends Enemy {
 				// Switch to second image for animation.
 				texture = imageLoader.bossLeft02;
 			}
-			batch.draw(texture, x, y + height, width, -height);
+			batch.draw(texture, x, y, width, -height);
 			// Uncomment to draw enemy hit box.
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 			bossHealthUi.renderBossHealthUi(batch, imageLoader, this);

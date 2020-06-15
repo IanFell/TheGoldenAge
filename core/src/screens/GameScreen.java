@@ -344,8 +344,6 @@ public class GameScreen extends Screens {
 		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
 			cutSceneJollyRoger.updateCutScene();
 		}
-
-		// TODO
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.updateCutScene();
 		}
@@ -476,7 +474,6 @@ public class GameScreen extends Screens {
 					);
 		}
 
-		// TODO something here
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.renderCutScene(myGame);
 		}
