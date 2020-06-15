@@ -218,7 +218,7 @@ public class ImageLoader {
 	public void init() {
 
 		// Collectibles.
-		treasureMapRight = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapRight.png"));
+		treasureMapRight = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapTextWhole.png"));
 		chestClosed      = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
 		chestOpen        = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
 		heart            = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
