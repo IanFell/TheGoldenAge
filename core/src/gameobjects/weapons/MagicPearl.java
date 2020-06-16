@@ -127,9 +127,25 @@ public class MagicPearl extends Weapon {
 					//fire.setY(y);
 					//fire.updateObject(myGame, mapHandler);
 				} else {
-					x           = player.getX();
-					y           = player.getY();
 					isAttacking = false;
+					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+					case Player.DIRECTION_RIGHT:
+						x = player.getX() + 1;
+						y = player.getY();
+						break;
+					case Player.DIRECTION_LEFT:
+						x = player.getX() - 1;
+						y = player.getY();
+						break;
+					case Player.DIRECTION_UP:
+						x = player.getX();
+						y = player.getY() - 1;
+						break;
+					case Player.DIRECTION_DOWN:
+						x = player.getX();
+						y = player.getY();
+						break;
+					}
 				}
 			}
 		}

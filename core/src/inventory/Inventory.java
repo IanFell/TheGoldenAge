@@ -143,6 +143,7 @@ public class Inventory extends Screens {
 	}
 
 	/**
+	 * TODO This doesn't appear to be doing anything.  The pearl seems to be controlled in it's own class.
 	 * 
 	 * @param int   selectedInventory
 	 * @param float xPosition
