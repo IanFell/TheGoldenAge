@@ -47,7 +47,7 @@ public class CutScene {
 	public static boolean anyCutSceneIsInProgress = false;
 
 	// Pause game during cutscene.
-	public static boolean gameShouldPause = false;
+	public static boolean gameShouldPause = true;
 
 	protected boolean textBoxIsSet = false;
 

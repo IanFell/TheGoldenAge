@@ -86,7 +86,22 @@ public class MusicHandler {
 				handleBossExplosionMusic(musicLoader);
 			}
 			handleMissionMusic(musicLoader);
+			handleCutsceneMusic(musicLoader);
 		} 
+	}
+	
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleCutsceneMusic(MusicLoader musicLoader) {
+		if (CutScene.gameShouldPause) {
+			musicLoader.missionLoop.setVolume(Mixer.MISSION_MUSIC_VOLUME);
+			musicLoader.missionLoop.setLooping(true);
+			musicLoader.missionLoop.play();
+		} else {
+			musicLoader.missionLoop.stop();
+		}
 	}
 
 	/**
