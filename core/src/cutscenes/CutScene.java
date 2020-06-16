@@ -31,8 +31,8 @@ public class CutScene {
 
 	protected float coverRowHeight = 0.7f;
 
-	protected int startXPosition;
-	protected int startYPosition;
+	protected float startXPosition;
+	protected float startYPosition;
 
 	protected int width;
 	protected int height;
@@ -43,12 +43,13 @@ public class CutScene {
 	protected String name;
 	protected boolean cutSceneConcluded;
 	protected boolean selectedCutSceneIsInProgress;
-	protected int timer;
 
 	public static boolean anyCutSceneIsInProgress = false;
 
 	// Pause game during cutscene.
 	public static boolean gameShouldPause = false;
+
+	protected boolean textBoxIsSet = false;
 
 	/**
 	 * Constructor.
@@ -57,7 +58,7 @@ public class CutScene {
 	 */
 	public CutScene(String name) {
 		this.name = name;
-		timer     = 0;
+		textBoxIsSet = false;
 		/**
 		 * This has to be false to just start the game with no intro.
 		 * It must be true if you start the game with intro.
@@ -94,17 +95,17 @@ public class CutScene {
 
 	/**
 	 * 
-	 * @return int
+	 * @return float
 	 */
-	public int getStartXPosition() {
+	public float getStartXPosition() {
 		return startXPosition;
 	}
 
 	/**
 	 * 
-	 * @return int
+	 * @return float
 	 */
-	public int getStartYPosition() {
+	public float getStartYPosition() {
 		return startYPosition;
 	}
 
@@ -126,7 +127,7 @@ public class CutScene {
 		return cutSceneConcluded;
 	}
 
-	public void updateCutScene() {}
+	public void updateCutScene(MyGame myGame) {}
 
 	/**
 	 * Renders background image full screen.

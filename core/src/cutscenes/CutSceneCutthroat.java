@@ -3,7 +3,7 @@ package cutscenes;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import helpers.GameAttributeHelper;
+import screens.GameScreen;
 
 /**
  * 
@@ -19,9 +19,49 @@ public class CutSceneCutthroat extends CutScene {
 	 */
 	public CutSceneCutthroat(String name) {
 		super(name);
-		startXPosition          = GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 55; 
-		startYPosition          = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65 - height; 
+		startXPosition          = 0; 
+		startYPosition          = 0; 
 		anyCutSceneIsInProgress = true;
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch   batch
+	 * @param ImageLoader   imageLoader
+	 */
+	public void renderCutScene(MyGame myGame) {
+		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageCutthroat);
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.cutsceneCutthroat,
+					GameScreen.camera.position.x, 
+					GameScreen.camera.position.y,
+					width,
+					-height
+					);
+
+			for (int i = 0; i < coveringRow.length; i++) {
+				if (coveringRow[i] != null) {
+					myGame.renderer.batch.draw(
+							myGame.imageLoader.blackSquare, 
+							coveringRow[i].getX(), 
+							coveringRow[i].getY(), 
+							coveringRow[i].getWidth(), 
+							-coveringRow[i].getHeight()
+							);
+				}
+			}
+			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_FIVE);
+		}
+	}
+
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	private void createCoverRows(MyGame myGame) {
+		startXPosition          = GameScreen.camera.position.x; 
+		startYPosition          = GameScreen.camera.position.y - height; 
 
 		float coverRowYPosition       = startYPosition + 0.7f;
 		coveringRow[COVER_ROW_ONE]    = new Rectangle(startXPosition, coverRowYPosition, width, coverRowHeight);
@@ -37,38 +77,16 @@ public class CutSceneCutthroat extends CutScene {
 		coveringRow[COVER_ROW_ELEVEN] = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 8.2f, width, coverRowHeight);
 	}
 
-	/**
-	 * 
-	 * @param SpriteBatch   batch
-	 * @param ImageLoader   imageLoader
-	 */
-	public void renderCutScene(MyGame myGame) {
-		if (!cutSceneConcluded) {
-			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageCutthroat);
-			myGame.renderer.batch.draw(
-					myGame.imageLoader.cutsceneCutthroat,
-					GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 55, 
-					GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65,
-					width,
-					-height
-					);
-
-			for (int i = 0; i < coveringRow.length; i++) {
-				myGame.renderer.batch.draw(
-						myGame.imageLoader.blackSquare, 
-						coveringRow[i].getX(), 
-						coveringRow[i].getY(), 
-						coveringRow[i].getWidth(), 
-						-coveringRow[i].getHeight()
-						);
-			}
-			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_FIVE);
-		}
-	}
-
 	@Override
-	public void updateCutScene() {
-		super.updateCutScene();
+	public void updateCutScene(MyGame myGame) {
+		super.updateCutScene(myGame);
+
+		// Cannot set cover rows in the constructor due to changes needed in position, so set it here.
+		if (!textBoxIsSet) {
+			createCoverRows(myGame);
+			textBoxIsSet = true;
+		}
+
 		gameShouldPause = true;
 		updateCoveringRows();
 	}
@@ -84,14 +102,12 @@ public class CutSceneCutthroat extends CutScene {
 		} else if (coveringRow[COVER_ROW_TWO].getWidth() > 0) {
 			coveringRow[COVER_ROW_TWO].setX(coveringRow[COVER_ROW_TWO].getX() + shrinkValue);
 			coveringRow[COVER_ROW_TWO].setWidth(coveringRow[COVER_ROW_TWO].getWidth() - shrinkValue);
-			// Skip row 3 because it's a blank line.
 		} else if (coveringRow[COVER_ROW_FOUR].getWidth() > 0) {
 			coveringRow[COVER_ROW_FOUR].setX(coveringRow[COVER_ROW_FOUR].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FOUR].setWidth(coveringRow[COVER_ROW_FOUR].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_FIVE].getWidth() > 0) {
 			coveringRow[COVER_ROW_FIVE].setX(coveringRow[COVER_ROW_FIVE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FIVE].setWidth(coveringRow[COVER_ROW_FIVE].getWidth() - shrinkValue);
-			// Skip row 6 because it's a blank line.
 		} else if (coveringRow[COVER_ROW_SEVEN].getWidth() > 0) {
 			coveringRow[COVER_ROW_SEVEN].setX(coveringRow[COVER_ROW_SEVEN].getX() + shrinkValue);
 			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);

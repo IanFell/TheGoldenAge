@@ -206,7 +206,8 @@ public class SoundHandler {
 				soundLoader.tunnel.stop();
 			}
 
-			handleStumpHoleMissionBirdSFX(soundLoader);
+			// Take this out for now because it's really annoying.
+			//handleStumpHoleMissionBirdSFX(soundLoader);
 
 			if (PauseScreen.playSound) {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);

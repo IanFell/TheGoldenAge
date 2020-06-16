@@ -46,24 +46,28 @@ public class CutSceneHandler {
 		return cutSceneJollyRoger;
 	}
 
-	public void updateCutScenes() {
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	public void updateCutScenes(MyGame myGame) {
 		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
-			cutSceneJollyRoger.updateCutScene();
+			cutSceneJollyRoger.updateCutScene(myGame);
 		}
 		if (Gun.hasBeenCollected) {
-			cutSceneCutthroat.updateCutScene();
+			cutSceneCutthroat.updateCutScene(myGame);
 		}
 		if (MissionRawBar.rawBarMissionComplete) {
-			cutSceneFarzenplank.updateCutScene();
+			cutSceneFarzenplank.updateCutScene(myGame);
 		}
 		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
-			cutSceneBird.updateCutScene();
+			cutSceneBird.updateCutScene(myGame);
 		}
 		if (MissionCauldron.missionCauldronComplete) {
-			cutSceneCauldron.updateCutScene();
+			cutSceneCauldron.updateCutScene(myGame);
 		}
 		if (MissionThePoint.missionThePointComplete) {
-			cutSceneMap.updateCutScene();
+			cutSceneMap.updateCutScene(myGame);
 		}
 	}
 

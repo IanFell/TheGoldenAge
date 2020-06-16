@@ -122,9 +122,13 @@ public class CutSceneJollyRoger extends CutScene {
 		}
 	}
 
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
 	@Override
-	public void updateCutScene() {
-		super.updateCutScene();
+	public void updateCutScene(MyGame myGame) {
+		super.updateCutScene(myGame);
 		boatStartXPosition += boatSpeed;
 		gameShouldPause = true;
 		updateCoveringRows();

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import helpers.GameAttributeHelper;
+import screens.GameScreen;
 
 /**
  * 
@@ -13,6 +14,7 @@ import helpers.GameAttributeHelper;
 public class CutSceneMap extends CutScene {
 
 	/**
+	 * Constructor.
 	 * 
 	 * @param String name
 	 */
@@ -21,6 +23,15 @@ public class CutSceneMap extends CutScene {
 		startXPosition          = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12; 
 		startYPosition          = GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 36 - height; 
 		anyCutSceneIsInProgress = true;
+	}
+
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	private void createCoverRows(MyGame myGame) {
+		startXPosition          = GameScreen.camera.position.x; 
+		startYPosition          = GameScreen.camera.position.y - height; 
 
 		float coverRowYPosition       = startYPosition + 0.7f;
 		coveringRow[COVER_ROW_ONE]    = new Rectangle(startXPosition, coverRowYPosition, width, coverRowHeight);
@@ -46,28 +57,41 @@ public class CutSceneMap extends CutScene {
 			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageMap);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.mapMessage,
-					GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12, 
-					GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 36,
+					GameScreen.camera.position.x, 
+					GameScreen.camera.position.y,
 					width,
 					-height
 					);
 
 			for (int i = 0; i < coveringRow.length; i++) {
-				myGame.renderer.batch.draw(
-						myGame.imageLoader.blackSquare, 
-						coveringRow[i].getX(), 
-						coveringRow[i].getY(), 
-						coveringRow[i].getWidth(), 
-						-coveringRow[i].getHeight()
-						);
+				if (coveringRow[i] != null) {
+					myGame.renderer.batch.draw(
+							myGame.imageLoader.blackSquare, 
+							coveringRow[i].getX(), 
+							coveringRow[i].getY(), 
+							coveringRow[i].getWidth(), 
+							-coveringRow[i].getHeight()
+							);
+				}
 			}
 			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_SIX);
 		}
 	}
 
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
 	@Override
-	public void updateCutScene() {
-		super.updateCutScene();
+	public void updateCutScene(MyGame myGame) {
+		super.updateCutScene(myGame);
+
+		// Cannot set cover rows in the constructor due to changes needed in position, so set it here.
+		if (!textBoxIsSet) {
+			createCoverRows(myGame);
+			textBoxIsSet = true;
+		}
+
 		gameShouldPause = true;
 		updateCoveringRows();
 	}
@@ -83,7 +107,6 @@ public class CutSceneMap extends CutScene {
 		} else if (coveringRow[COVER_ROW_TWO].getWidth() > 0) {
 			coveringRow[COVER_ROW_TWO].setX(coveringRow[COVER_ROW_TWO].getX() + shrinkValue);
 			coveringRow[COVER_ROW_TWO].setWidth(coveringRow[COVER_ROW_TWO].getWidth() - shrinkValue);
-			// Skip row 3 because it's a blank line.
 		} else if (coveringRow[COVER_ROW_FOUR].getWidth() > 0) {
 			coveringRow[COVER_ROW_FOUR].setX(coveringRow[COVER_ROW_FOUR].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FOUR].setWidth(coveringRow[COVER_ROW_FOUR].getWidth() - shrinkValue);

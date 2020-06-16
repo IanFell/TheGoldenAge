@@ -43,23 +43,7 @@ public class CutSceneIntro extends CutScene {
 		 * Comment this out to play the fullength cutscene.
 		 * Else start cutscene at very end so it also renders the UI.
 		 */
-		timer = dialogueLength * 9 - 2;
-	}
-
-	/**
-	 * 
-	 * @return int
-	 */
-	public int getStartXPosition() {
-		return startXPosition;
-	}
-
-	/**
-	 * 
-	 * @return int
-	 */
-	public int getStartYPosition() {
-		return startYPosition;
+		//timer = dialogueLength * 9 - 2;
 	}
 
 	/**
@@ -167,9 +151,13 @@ public class CutSceneIntro extends CutScene {
 		} */
 	}
 
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
 	@Override
-	public void updateCutScene() {
-		super.updateCutScene();
+	public void updateCutScene(MyGame myGame) {
+		super.updateCutScene(myGame);
 		boatStartXPosition += boatSpeed;
 	}
 }

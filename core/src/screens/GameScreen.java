@@ -333,7 +333,7 @@ public class GameScreen extends Screens {
 
 			WeaponHandler.updateWeapons(myGame, mapHandler);
 		}
-		cutSceneHandler.updateCutScenes();
+		cutSceneHandler.updateCutScenes(myGame);
 
 		heartHandler.updateHearts(myGame, mapHandler);
 		rumHandler.updateRum(myGame, mapHandler);
