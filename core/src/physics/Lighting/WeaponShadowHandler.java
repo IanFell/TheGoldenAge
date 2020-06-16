@@ -8,8 +8,10 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.MagicPearl;
 import handlers.arrowhandler.ArrowHandler;
+import handlers.enemies.BossHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import missions.MissionStumpHole;
 
 /**
@@ -59,7 +61,16 @@ public class WeaponShadowHandler {
 		GameObject birdWeapon = myGame.getGameScreen().birdWeapon; 
 		// Draw shadow under stationary bird before player has collected it.
 		if (!birdWeapon.hasBeenCollected && MissionStumpHole.stumpHoleMissionComplete) {
-			batch.draw(imageLoader.oysterShadow, birdWeapon.getX(), birdWeapon.getY() + 1.0f, birdWeapon.getWidth(), birdWeapon.getHeight());
+			// Only render shadow if boss is dead.
+			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+				batch.draw(
+						imageLoader.oysterShadow, 
+						birdWeapon.getX(), 
+						birdWeapon.getY() + 1.0f, 
+						birdWeapon.getWidth(), 
+						birdWeapon.getHeight()
+						);
+			}
 		}
 		// Player has collected bird.  Render shadow if he's using it as a weapon.
 		if (

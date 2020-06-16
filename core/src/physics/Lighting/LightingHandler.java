@@ -4,7 +4,9 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.Gun;
 import loaders.GameObjectLoader;
+import missions.MissionRawBar;
 
 /**
  * Handles ALL in game lighting.
@@ -44,20 +46,24 @@ public class LightingHandler {
 		}
 		if (Player.lifeState == Player.LIFE_STATE_ONE || Player.lifeState == Player.LIFE_STATE_TWO) {
 			if (GameObjectLoader.gameObjectList.contains(myGame.getGameObject(GameObject.PLAYER_TWO))) {
-				shadowHandler.renderLighting(
-						myGame.renderer.batch, 
-						myGame.imageLoader, 
-						myGame.getGameObject(GameObject.PLAYER_TWO)
-						);
+				if (Gun.hasBeenCollected) {
+					shadowHandler.renderLighting(
+							myGame.renderer.batch, 
+							myGame.imageLoader, 
+							myGame.getGameObject(GameObject.PLAYER_TWO)
+							);
+				}
 			}
 		}
 		if (Player.lifeState == Player.LIFE_STATE_ONE) {
 			if (GameObjectLoader.gameObjectList.contains(myGame.getGameObject(GameObject.PLAYER_THREE))) {
-				shadowHandler.renderLighting(
-						myGame.renderer.batch, 
-						myGame.imageLoader, 
-						myGame.getGameObject(GameObject.PLAYER_THREE)
-						);
+				if (MissionRawBar.rawBarMissionComplete) {
+					shadowHandler.renderLighting(
+							myGame.renderer.batch, 
+							myGame.imageLoader, 
+							myGame.getGameObject(GameObject.PLAYER_THREE)
+							);
+				}
 			}
 		}
 		//}
