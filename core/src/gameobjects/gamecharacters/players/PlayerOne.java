@@ -297,7 +297,7 @@ public class PlayerOne extends Player {
 				batch.draw(imageLoader.boatSide, x - 1, y + 1, 4, -3);
 				break;
 			case DIRECTION_UP:
-				batch.draw(imageLoader.boatUp, x - 1, y + 1, 3, -4);
+				batch.draw(imageLoader.boatDown, x - 1, y + 1, 3, -4);
 				break;
 			case DIRECTION_DOWN:
 				batch.draw(imageLoader.boatDown, x - 1, y + 2, 3, -4);
