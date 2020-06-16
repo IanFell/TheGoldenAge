@@ -73,6 +73,14 @@ public class Screens implements Screen {
 	}
 
 	/**
+	 * 
+	 * @return int
+	 */
+	public int getBorderShrinkOffset() {
+		return borderShrinkOffset;
+	}
+
+	/**
 	 * Creates camera object and sets position for basic camera with a straight on view.
 	 */
 	public void createCamera() {

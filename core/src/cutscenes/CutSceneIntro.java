@@ -1,6 +1,7 @@
 package cutscenes;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.mygame.MyGame;
 
 import loaders.ImageLoader;
 
@@ -67,7 +68,7 @@ public class CutSceneIntro extends CutScene {
 	 * @param ImageLoader   imageLoader
 	 */
 	@Override
-	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {
+	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		/*
 		batch.draw(
 				imageLoader.boatSide,

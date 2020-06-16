@@ -2,6 +2,7 @@ package cutscenes;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.mygame.MyGame;
 
 import debugging.Debugger;
 import loaders.ImageLoader;
@@ -53,7 +54,7 @@ public class CutSceneJollyRoger extends CutScene {
 	 * @param ImageLoader   imageLoader
 	 */
 	@Override
-	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {
+	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		batch.draw(
 				imageLoader.boatSide,
 				boatStartXPosition, 
@@ -125,6 +126,7 @@ public class CutSceneJollyRoger extends CutScene {
 	public void updateCutScene() {
 		super.updateCutScene();
 		boatStartXPosition += boatSpeed;
+		gameShouldPause = true;
 		updateCoveringRows();
 
 		// TODO Maybe change this to actual controls for player to use.

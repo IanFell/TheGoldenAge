@@ -44,6 +44,7 @@ public class CutSceneBird extends CutScene {
 	 */
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageBird);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.birdMessage,
 					GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 

@@ -19,7 +19,7 @@ public class CutSceneCutthroat extends CutScene {
 	 */
 	public CutSceneCutthroat(String name) {
 		super(name);
-		startXPosition          = GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48; 
+		startXPosition          = GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 55; 
 		startYPosition          = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65 - height; 
 		anyCutSceneIsInProgress = true;
 
@@ -44,9 +44,10 @@ public class CutSceneCutthroat extends CutScene {
 	 */
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageCutthroat);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.cutsceneCutthroat,
-					GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
+					GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 55, 
 					GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 65,
 					width,
 					-height

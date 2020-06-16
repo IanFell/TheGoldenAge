@@ -43,6 +43,7 @@ public class CutSceneFarzenplank extends CutScene {
 	 */
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageFarzenplank);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.cutsceneFarzenplank,
 					GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 40, 

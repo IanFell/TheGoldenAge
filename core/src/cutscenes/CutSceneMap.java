@@ -43,6 +43,7 @@ public class CutSceneMap extends CutScene {
 	 */
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageMap);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.mapMessage,
 					GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12, 

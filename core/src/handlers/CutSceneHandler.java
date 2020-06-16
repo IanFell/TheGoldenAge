@@ -73,7 +73,7 @@ public class CutSceneHandler {
 	 */
 	public void renderCutScenes(MyGame myGame) {
 		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
-			cutSceneJollyRoger.renderCutScene(myGame.renderer.batch,  myGame.imageLoader);
+			cutSceneJollyRoger.renderCutScene(myGame.renderer.batch,  myGame.imageLoader, myGame);
 		}
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.renderCutScene(myGame);

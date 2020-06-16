@@ -1,9 +1,12 @@
 package cutscenes;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.mygame.MyGame;
 
 import loaders.ImageLoader;
+import screens.GameScreen;
 
 /**
  * 
@@ -43,7 +46,7 @@ public class CutScene {
 	protected int timer;
 
 	public static boolean anyCutSceneIsInProgress = false;
-	
+
 	// Pause game during cutscene.
 	public static boolean gameShouldPause = false;
 
@@ -126,11 +129,29 @@ public class CutScene {
 	public void updateCutScene() {}
 
 	/**
+	 * Renders background image full screen.
+	 * 
+	 * @param SpriteBatch batch
+	 * @param MyGame      myGame
+	 * @param Texture     texture
+	 */
+	protected void renderBackgroundImage(SpriteBatch batch, MyGame myGame, Texture texture) {
+		batch.draw(
+				texture,
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + myGame.getGameScreen().getBorderShrinkOffset(),
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() * 2, 
+				-GameScreen.camera.viewportHeight
+				);
+	}
+
+	/**
 	 * 
 	 * @param SpriteBatch   batch
 	 * @param ImageLoader   imageLoader
+	 * @param MyGame        myGame
 	 */
-	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader) {}
+	public void renderCutScene(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {}
 
 	/**
 	 * 

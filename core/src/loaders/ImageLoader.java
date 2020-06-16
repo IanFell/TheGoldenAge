@@ -119,6 +119,13 @@ public class ImageLoader {
 	public Texture cauldronMessage;
 	public Texture birdMessage;
 
+	// Cutscene background images.
+	public Texture cutSceneBackGroundImageMap;
+	public Texture cutSceneBackGroundImageCauldron;
+	public Texture cutSceneBackGroundImageCutthroat;
+	public Texture cutSceneBackGroundImageFarzenplank;
+	public Texture cutSceneBackGroundImageBird;
+
 	// Map objects.
 	public Texture worldMapReal;
 	public Texture worldMapFake;
@@ -322,6 +329,13 @@ public class ImageLoader {
 		cutsceneJollyRoger  = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_JollyRoger.png"));
 		cutsceneCutthroat   = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Cutthroat.png"));
 		cutsceneFarzenplank = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Farzenplank.png"));
+
+		//Cutscene background images.
+		cutSceneBackGroundImageMap         = new Texture(Gdx.files.internal("artwork/cutscenes/MapCutSceneImage.png"));
+		cutSceneBackGroundImageCauldron    = new Texture(Gdx.files.internal("artwork/cutscenes/CauldronCutSceneImage.png"));
+		cutSceneBackGroundImageBird        = new Texture(Gdx.files.internal("artwork/cutscenes/BirdCutSceneImage.png"));
+		cutSceneBackGroundImageCutthroat   = new Texture(Gdx.files.internal("artwork/cutscenes/CutthroatCutSceneImage.png"));
+		cutSceneBackGroundImageFarzenplank = new Texture(Gdx.files.internal("artwork/cutscenes/FarzenplankCutSceneImage.png"));
 		/*
 		cutSceneDialogueOne[0] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_One.png"));
 		cutSceneDialogueOne[1] = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_One_Dialogue_Two.png"));
@@ -572,6 +586,13 @@ public class ImageLoader {
 		cutsceneJollyRoger.dispose();
 		cutsceneCutthroat.dispose();
 		cutsceneFarzenplank.dispose();
+
+		// Cutscene background images.
+		cutSceneBackGroundImageMap.dispose();
+		cutSceneBackGroundImageCauldron.dispose();
+		cutSceneBackGroundImageCutthroat.dispose();
+		cutSceneBackGroundImageFarzenplank.dispose();
+		cutSceneBackGroundImageBird.dispose();
 		/*
 		for(int i = 0; i < cutSceneDialogueOne.length; i++) {
 			cutSceneDialogueOne[i].dispose();

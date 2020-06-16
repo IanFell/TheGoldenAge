@@ -44,6 +44,7 @@ public class CutSceneCauldron extends CutScene {
 	 */
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageCauldron);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.cauldronMessage,
 					GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 62, 
