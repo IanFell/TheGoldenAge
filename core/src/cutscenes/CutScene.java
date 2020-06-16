@@ -57,7 +57,7 @@ public class CutScene {
 	 * @param String name
 	 */
 	public CutScene(String name) {
-		this.name = name;
+		this.name    = name;
 		textBoxIsSet = false;
 		/**
 		 * This has to be false to just start the game with no intro.
@@ -139,6 +139,23 @@ public class CutScene {
 	protected void renderBackgroundImage(SpriteBatch batch, MyGame myGame, Texture texture) {
 		batch.draw(
 				texture,
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + myGame.getGameScreen().getBorderShrinkOffset(),
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() * 2, 
+				-GameScreen.camera.viewportHeight
+				);
+	}
+
+	/**
+	 * Renders black border around cutscene background image.
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
+	 */
+	protected void renderBorder(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		batch.draw(
+				imageLoader.border,
 				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + myGame.getGameScreen().getBorderShrinkOffset(),
 				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() * 2, 

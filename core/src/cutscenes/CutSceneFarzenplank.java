@@ -54,6 +54,7 @@ public class CutSceneFarzenplank extends CutScene {
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
 			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageFarzenplank);
+			renderBorder(myGame.renderer.batch, myGame.imageLoader, myGame);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.cutsceneFarzenplank,
 					GameScreen.camera.position.x, 

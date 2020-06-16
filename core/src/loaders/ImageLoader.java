@@ -166,6 +166,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture border;
 	public Texture skullShadow;
 	public Texture inventoryNavigationBar;
 	public Texture mapNavigationBar;
@@ -387,6 +388,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		border                       = new Texture(Gdx.files.internal("artwork/ui/Border.png"));
 		skullShadow                  = new Texture(Gdx.files.internal("artwork/ui/SkullShadow.png"));
 		mapNavigationBar             = new Texture(Gdx.files.internal("artwork/ui/UiMap.png"));
 		inventoryNavigationBar       = new Texture(Gdx.files.internal("artwork/ui/UiInventory.png"));
@@ -638,6 +640,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		border.dispose();
 		skullShadow.dispose();
 		gamePaused.dispose();
 		mapNavigationBar.dispose();

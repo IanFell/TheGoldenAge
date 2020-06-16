@@ -3,7 +3,6 @@ package cutscenes;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import helpers.GameAttributeHelper;
 import screens.GameScreen;
 
 /**
@@ -20,8 +19,8 @@ public class CutSceneMap extends CutScene {
 	 */
 	public CutSceneMap(String name) {
 		super(name);
-		startXPosition          = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12; 
-		startYPosition          = GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 36 - height; 
+		startXPosition          = 0; 
+		startYPosition          = 0; 
 		anyCutSceneIsInProgress = true;
 	}
 
@@ -55,6 +54,7 @@ public class CutSceneMap extends CutScene {
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
 			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.cutSceneBackGroundImageMap);
+			renderBorder(myGame.renderer.batch, myGame.imageLoader, myGame);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.mapMessage,
 					GameScreen.camera.position.x, 

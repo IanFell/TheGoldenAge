@@ -70,6 +70,7 @@ public class CutSceneJollyRoger extends CutScene {
 					width,
 					-height
 					);
+			renderBorder(batch, imageLoader, myGame);
 		}
 		for (int i = 0; i < coveringRow.length; i++) {
 			batch.draw(
