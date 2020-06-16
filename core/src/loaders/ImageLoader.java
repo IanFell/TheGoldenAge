@@ -115,6 +115,9 @@ public class ImageLoader {
 	public Texture cutsceneJollyRoger;
 	public Texture cutsceneCutthroat;
 	public Texture cutsceneFarzenplank;
+	public Texture mapMessage;
+	public Texture cauldronMessage;
+	public Texture birdMessage;
 
 	// Map objects.
 	public Texture worldMapReal;
@@ -313,6 +316,9 @@ public class ImageLoader {
 		dustParticleThree = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleThree.png"));
 
 		// Cutscene objects.
+		mapMessage          = new Texture(Gdx.files.internal("artwork/cutscenes/MapMessage.png"));
+		birdMessage         = new Texture(Gdx.files.internal("artwork/cutscenes/BirdMessage.png"));
+		cauldronMessage     = new Texture(Gdx.files.internal("artwork/cutscenes/CauldronMessage.png"));
 		cutsceneJollyRoger  = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_JollyRoger.png"));
 		cutsceneCutthroat   = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Cutthroat.png"));
 		cutsceneFarzenplank = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Farzenplank.png"));
@@ -560,6 +566,9 @@ public class ImageLoader {
 		dustParticleThree.dispose();
 
 		// Cutscene objects.
+		mapMessage.dispose();
+		birdMessage.dispose();
+		cauldronMessage.dispose();
 		cutsceneJollyRoger.dispose();
 		cutsceneCutthroat.dispose();
 		cutsceneFarzenplank.dispose();

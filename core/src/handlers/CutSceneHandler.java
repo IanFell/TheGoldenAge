@@ -2,10 +2,13 @@ package handlers;
 
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutSceneBird;
 import cutscenes.CutSceneCutthroat;
 import cutscenes.CutSceneFarzenplank;
 import cutscenes.CutSceneJollyRoger;
 import gameobjects.weapons.Gun;
+import handlers.enemies.BossHandler;
+import loaders.bossloader.BossLoader;
 import missions.MissionRawBar;
 
 /**
@@ -18,11 +21,13 @@ public class CutSceneHandler {
 	private CutSceneJollyRoger cutSceneJollyRoger;
 	private CutSceneCutthroat cutSceneCutthroat;
 	private CutSceneFarzenplank cutSceneFarzenplank;
+	private CutSceneBird cutSceneBird;
 
 	public void initializeCutScenes() {
 		cutSceneJollyRoger  = new CutSceneJollyRoger("Cutscene Jolly Roger");
 		cutSceneCutthroat   = new CutSceneCutthroat("Cutscene Cutthroat");
-		cutSceneFarzenplank = new CutSceneFarzenplank("Cutscen Farzenplank");
+		cutSceneFarzenplank = new CutSceneFarzenplank("Cutscene Farzenplank");
+		cutSceneBird        = new CutSceneBird("Cutscene Bird");
 	}
 
 	/**
@@ -43,6 +48,10 @@ public class CutSceneHandler {
 		if (MissionRawBar.rawBarMissionComplete) {
 			cutSceneFarzenplank.updateCutScene();
 		}
+
+		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			cutSceneBird.updateCutScene();
+		}
 	}
 
 	/**
@@ -58,6 +67,10 @@ public class CutSceneHandler {
 		}
 		if (MissionRawBar.rawBarMissionComplete) {
 			cutSceneFarzenplank.renderCutScene(myGame);
+		}
+
+		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+			cutSceneBird.renderCutScene(myGame);
 		}
 	}
 }
