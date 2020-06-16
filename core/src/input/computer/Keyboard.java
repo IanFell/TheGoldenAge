@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.GameStateController;
 import controllers.PlayerController;
+import cutscenes.CutScene;
 import debugging.Debugger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
@@ -87,7 +88,8 @@ public class Keyboard extends ComputerInput {
 					!Inventory.allInventoryShouldBeRendered && 
 					!MapUi.mapShouldBeRendered && 
 					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
-					!HoleHandler.playerIsInHole
+					!HoleHandler.playerIsInHole &&
+					!CutScene.gameShouldPause
 					) {
 				//handleKeyboardDirectionalButtons(myGame, "arrows", player);
 				handleKeyboardDirectionalButtons(myGame, "wasd", player);

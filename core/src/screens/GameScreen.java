@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
@@ -301,35 +302,37 @@ public class GameScreen extends Screens {
 		}
 		lightingHandler.lightHandler.updateLighting(myGame.imageLoader);
 		weatherHandler.update(myGame, this, mapHandler);
-		myGame.getGameObject(GameObject.PLAYER_ONE).updateObject(myGame, mapHandler);
-		myGame.getGameObject(GameObject.PLAYER_TWO).updateObject(myGame, mapHandler);
-		myGame.getGameObject(GameObject.PLAYER_THREE).updateObject(myGame, mapHandler);
-		enemyHandler.updateEnemies(myGame, mapHandler);
-		gruntHandler.updateGrunts(myGame, mapHandler);
-		giantHandler.updateGiants(myGame, mapHandler);
-		arrowHandler.updateArrowHandler(myGame, mapHandler);
-		GameWorld.updateGameWorld(myGame, mapHandler);
-		mapUi.updateWorldMapUi();
-		townHandler.updateTowns(myGame);
-		//screenShader.updateObject();
 
-		// Fade into gameplay after intro cutscene.
-		/*
+		if (!CutScene.gameShouldPause) {
+			myGame.getGameObject(GameObject.PLAYER_ONE).updateObject(myGame, mapHandler);
+			myGame.getGameObject(GameObject.PLAYER_TWO).updateObject(myGame, mapHandler);
+			myGame.getGameObject(GameObject.PLAYER_THREE).updateObject(myGame, mapHandler);
+			enemyHandler.updateEnemies(myGame, mapHandler);
+			gruntHandler.updateGrunts(myGame, mapHandler);
+			giantHandler.updateGiants(myGame, mapHandler);
+			arrowHandler.updateArrowHandler(myGame, mapHandler);
+			GameWorld.updateGameWorld(myGame, mapHandler);
+			mapUi.updateWorldMapUi();
+			townHandler.updateTowns(myGame);
+			//screenShader.updateObject();
+
+			// Fade into gameplay after intro cutscene.
+			/*
 		if (cutSceneIntro.isCutSceneConcluded()) {
 			screenShaderPostIntro.updateObject();
 		} */
 
-		// Start missions after intro cutscene.
-		/*
+			// Start missions after intro cutscene.
+			/*
 		if (cutSceneIntro.isCutSceneConcluded()) {
 			missionHandler.handleMissions(myGame, mapHandler);
 		} */
-		if (cutSceneHandler.getCutSceneJollyRoger().isCutSceneConcluded()) {
-			missionHandler.handleMissions(myGame, mapHandler);
+			if (cutSceneHandler.getCutSceneJollyRoger().isCutSceneConcluded()) {
+				missionHandler.handleMissions(myGame, mapHandler);
+			}
+
+			WeaponHandler.updateWeapons(myGame, mapHandler);
 		}
-
-		WeaponHandler.updateWeapons(myGame, mapHandler);
-
 		cutSceneHandler.updateCutScenes();
 
 		heartHandler.updateHearts(myGame, mapHandler);

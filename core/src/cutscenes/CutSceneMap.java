@@ -19,7 +19,7 @@ public class CutSceneMap extends CutScene {
 	public CutSceneMap(String name) {
 		super(name);
 		startXPosition          = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12; 
-		startYPosition          = GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 34 - height; 
+		startYPosition          = GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 36 - height; 
 		anyCutSceneIsInProgress = true;
 
 		float coverRowYPosition       = startYPosition + 0.7f;
@@ -44,9 +44,9 @@ public class CutSceneMap extends CutScene {
 	public void renderCutScene(MyGame myGame) {
 		if (!cutSceneConcluded) {
 			myGame.renderer.batch.draw(
-					myGame.imageLoader.birdMessage,
+					myGame.imageLoader.mapMessage,
 					GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 12, 
-					GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 34,
+					GameAttributeHelper.CHUNK_TWO_Y_POSITION_START + 36,
 					width,
 					-height
 					);
@@ -67,6 +67,7 @@ public class CutSceneMap extends CutScene {
 	@Override
 	public void updateCutScene() {
 		super.updateCutScene();
+		gameShouldPause = true;
 		updateCoveringRows();
 	}
 

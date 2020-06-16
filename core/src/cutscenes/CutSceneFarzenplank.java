@@ -67,6 +67,7 @@ public class CutSceneFarzenplank extends CutScene {
 	@Override
 	public void updateCutScene() {
 		super.updateCutScene();
+		gameShouldPause = true;
 		updateCoveringRows();
 	}
 

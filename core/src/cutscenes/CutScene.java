@@ -43,6 +43,9 @@ public class CutScene {
 	protected int timer;
 
 	public static boolean anyCutSceneIsInProgress = false;
+	
+	// Pause game during cutscene.
+	public static boolean gameShouldPause = false;
 
 	/**
 	 * Constructor.
@@ -141,5 +144,6 @@ public class CutScene {
 		cutSceneConcluded            = true;
 		selectedCutSceneIsInProgress = false;
 		anyCutSceneIsInProgress      = false;
+		gameShouldPause              = false;
 	}
 }

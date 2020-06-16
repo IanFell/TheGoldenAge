@@ -20,7 +20,7 @@ public class RumHandler extends CollectibleHandler {
 
 	public static int rumCount;
 
-	public static final int MAX_AMOUNT_RUM_ALLOWED = 50;
+	public static final int MAX_AMOUNT_RUM_ALLOWED = 10;
 
 	public static ArrayList <Rum> rum = new ArrayList<Rum>();
 

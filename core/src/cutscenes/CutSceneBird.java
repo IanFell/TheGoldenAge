@@ -68,6 +68,7 @@ public class CutSceneBird extends CutScene {
 	@Override
 	public void updateCutScene() {
 		super.updateCutScene();
+		gameShouldPause = true;
 		updateCoveringRows();
 	}
 
