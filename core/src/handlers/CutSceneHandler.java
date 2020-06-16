@@ -7,11 +7,13 @@ import cutscenes.CutSceneCauldron;
 import cutscenes.CutSceneCutthroat;
 import cutscenes.CutSceneFarzenplank;
 import cutscenes.CutSceneJollyRoger;
+import cutscenes.CutSceneMap;
 import gameobjects.weapons.Gun;
 import handlers.enemies.BossHandler;
 import loaders.bossloader.BossLoader;
 import missions.MissionCauldron;
 import missions.MissionRawBar;
+import missions.MissionThePoint;
 
 /**
  * 
@@ -25,6 +27,7 @@ public class CutSceneHandler {
 	private CutSceneFarzenplank cutSceneFarzenplank;
 	private CutSceneBird cutSceneBird;
 	private CutSceneCauldron cutSceneCauldron;
+	private CutSceneMap cutSceneMap;
 
 	public void initializeCutScenes() {
 		cutSceneJollyRoger  = new CutSceneJollyRoger("Cutscene Jolly Roger");
@@ -32,6 +35,7 @@ public class CutSceneHandler {
 		cutSceneFarzenplank = new CutSceneFarzenplank("Cutscene Farzenplank");
 		cutSceneBird        = new CutSceneBird("Cutscene Bird");
 		cutSceneCauldron    = new CutSceneCauldron("Cutscene Cauldron");
+		cutSceneMap         = new CutSceneMap("Cutscene Map");
 	}
 
 	/**
@@ -58,6 +62,9 @@ public class CutSceneHandler {
 		if (MissionCauldron.missionCauldronComplete) {
 			cutSceneCauldron.updateCutScene();
 		}
+		if (MissionThePoint.missionThePointComplete) {
+			cutSceneMap.updateCutScene();
+		}
 	}
 
 	/**
@@ -79,6 +86,9 @@ public class CutSceneHandler {
 		}
 		if (MissionCauldron.missionCauldronComplete) {
 			cutSceneCauldron.renderCutScene(myGame);
+		}
+		if (MissionThePoint.missionThePointComplete) {
+			cutSceneMap.renderCutScene(myGame);
 		}
 	}
 }
