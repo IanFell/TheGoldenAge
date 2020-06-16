@@ -11,6 +11,7 @@ import loaders.dockloader.DockLoader;
 import loaders.fireloader.FireLoader;
 import loaders.flowerloader.FlowerLoader;
 import loaders.lighthouseloader.LightHouseLoader;
+import loaders.logloader.LogLoader;
 import loaders.pigglywigglyloader.PigglyWigglyLoader;
 import loaders.plantloaders.PlantLoader;
 import loaders.quicksandloader.QuickSandLoader;
@@ -32,6 +33,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private LogLoader logLoader;
 	private TreeLoader treeLoader;
 	private DrSuessTreeLoader drSuessTreeLoader;
 	private PlantLoader plantLoader;
@@ -58,6 +60,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
+		logLoader          = new LogLoader();
 		treeLoader         = new TreeLoader();
 		drSuessTreeLoader  = new DrSuessTreeLoader();
 		plantLoader        = new PlantLoader();
@@ -85,6 +88,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	private void loadGameWorld(MyGame myGame) {
+		logLoader.loadLogs();
 		treeLoader.loadTrees();
 		drSuessTreeLoader.loadTrees();
 		plantLoader.loadPlants();
