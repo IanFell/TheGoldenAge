@@ -29,7 +29,7 @@ public class CutSceneFarzenplank extends CutScene {
 		coveringRow[COVER_ROW_FOUR]   = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 2.6f, width, coverRowHeight);
 		coveringRow[COVER_ROW_FIVE]   = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 3.4f, width, coverRowHeight);
 		coveringRow[COVER_ROW_SIX]    = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 4.2f, width, coverRowHeight);
-		coveringRow[COVER_ROW_SEVEN]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 5f, width, coverRowHeight);
+		coveringRow[COVER_ROW_SEVEN]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 5.0f, width, coverRowHeight);
 		coveringRow[COVER_ROW_EIGHT]  = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 5.8f, width, coverRowHeight);
 		coveringRow[COVER_ROW_NINE]   = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 6.6f, width, coverRowHeight);
 		coveringRow[COVER_ROW_TEN]    = new Rectangle(startXPosition, coverRowYPosition + coverRowHeight * 7.4f, width, coverRowHeight);
@@ -60,7 +60,7 @@ public class CutSceneFarzenplank extends CutScene {
 						-coveringRow[i].getHeight()
 						);
 			}
-			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_FIVE);
+			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_SIX);
 		}
 	}
 
@@ -88,16 +88,18 @@ public class CutSceneFarzenplank extends CutScene {
 		} else if (coveringRow[COVER_ROW_FIVE].getWidth() > 0) {
 			coveringRow[COVER_ROW_FIVE].setX(coveringRow[COVER_ROW_FIVE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FIVE].setWidth(coveringRow[COVER_ROW_FIVE].getWidth() - shrinkValue);
-			// Skip row 6 because it's a blank line.
-		} else if (coveringRow[COVER_ROW_SEVEN].getWidth() > 0) {
-			coveringRow[COVER_ROW_SEVEN].setX(coveringRow[COVER_ROW_SEVEN].getX() + shrinkValue);
-			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_SIX].getWidth() > 0) {
+			coveringRow[COVER_ROW_SIX].setX(coveringRow[COVER_ROW_SIX].getX() + shrinkValue);
+			coveringRow[COVER_ROW_SIX].setWidth(coveringRow[COVER_ROW_SIX].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_EIGHT].getWidth() > 0) {
 			coveringRow[COVER_ROW_EIGHT].setX(coveringRow[COVER_ROW_EIGHT].getX() + shrinkValue);
 			coveringRow[COVER_ROW_EIGHT].setWidth(coveringRow[COVER_ROW_EIGHT].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_NINE].getWidth() > 0) {
 			coveringRow[COVER_ROW_NINE].setX(coveringRow[COVER_ROW_NINE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_TEN].getWidth() > 0) {
+			coveringRow[COVER_ROW_TEN].setX(coveringRow[COVER_ROW_TEN].getX() + shrinkValue);
+			coveringRow[COVER_ROW_TEN].setWidth(coveringRow[COVER_ROW_TEN].getWidth() - shrinkValue); 
 		} else {
 			endCutScene();
 		}
