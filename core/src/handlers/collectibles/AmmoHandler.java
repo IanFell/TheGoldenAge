@@ -21,7 +21,7 @@ public class AmmoHandler extends CollectibleHandler {
 	public static int ammoCount       = 0;
 	public final static int ammoValue = 5;
 
-	public static final int MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT = 200;
+	public static final int MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT = 75;
 
 	public static final int MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY = 99;
 
