@@ -2,6 +2,7 @@ package handlers.audio;
 
 import com.badlogic.gdx.audio.Music;
 
+import cutscenes.CutScene;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
 import handlers.enemies.BossHandler;
@@ -55,7 +56,7 @@ public class MusicHandler {
 	public void handleMusic(MusicLoader musicLoader) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
 			// Dont let invincible music play during a boss battle because it will interfere with battle music.
-			if (Player.isInvincible && !bossBattleIsInProgress) {
+			if (Player.isInvincible && !bossBattleIsInProgress && !CutScene.gameShouldPause) {
 				handleInvincibleAudio(musicLoader);
 			} else {
 				if (musicLoader.buff.isPlaying()) {
@@ -71,13 +72,19 @@ public class MusicHandler {
 				handleOceanAudio(musicLoader);
 				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
-				musicLoader.ambientMusic.play();
+
+				if (!CutScene.gameShouldPause) {
+					musicLoader.ambientMusic.play();
+				}
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 					musicLoader.ambientMusic.pause();
 				}
 			}
-			handleBossBattleMusic(musicLoader);
-			handleBossExplosionMusic(musicLoader);
+
+			if (!CutScene.gameShouldPause) {
+				handleBossBattleMusic(musicLoader);
+				handleBossExplosionMusic(musicLoader);
+			}
 			handleMissionMusic(musicLoader);
 		} 
 	}
