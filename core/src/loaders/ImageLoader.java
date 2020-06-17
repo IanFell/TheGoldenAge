@@ -11,6 +11,9 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class ImageLoader {
 
+	// Title screen.
+	public Texture titleScreen;
+
 	// Collectibles.
 	public Texture chestClosed;
 	public Texture chestOpen;
@@ -227,6 +230,9 @@ public class ImageLoader {
 	public Texture[] numberWhite = new Texture[10];
 
 	public void init() {
+
+		// Title Screen.
+		titleScreen = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
 
 		// Collectibles.
 		treasureMapRight = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapTextWhole.png"));
@@ -479,6 +485,9 @@ public class ImageLoader {
 	}
 
 	public void dispose() {
+
+		// Title Screen.
+		titleScreen.dispose();
 
 		// Collectibles.
 		treasureMapRight.dispose();

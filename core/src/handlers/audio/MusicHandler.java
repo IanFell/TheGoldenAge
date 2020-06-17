@@ -75,6 +75,8 @@ public class MusicHandler {
 
 				if (!CutScene.gameShouldPause) {
 					musicLoader.ambientMusic.play();
+				} else {
+					musicLoader.ambientMusic.pause();
 				}
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 					musicLoader.ambientMusic.pause();
@@ -89,18 +91,18 @@ public class MusicHandler {
 			handleCutsceneMusic(musicLoader);
 		} 
 	}
-	
+
 	/**
 	 * 
 	 * @param MusicLoader musicLoader
 	 */
 	private void handleCutsceneMusic(MusicLoader musicLoader) {
 		if (CutScene.gameShouldPause) {
-			musicLoader.missionLoop.setVolume(Mixer.MISSION_MUSIC_VOLUME);
-			musicLoader.missionLoop.setLooping(true);
-			musicLoader.missionLoop.play();
+			musicLoader.invincibleMusic.setVolume(Mixer.CUTSCENE_MUSIC_VOLUME);
+			musicLoader.invincibleMusic.setLooping(true);
+			musicLoader.invincibleMusic.play();
 		} else {
-			musicLoader.missionLoop.stop();
+			musicLoader.invincibleMusic.stop();
 		}
 	}
 
