@@ -35,7 +35,8 @@ public class SplashScreen extends Screens {
 				myGame.renderer.batch, 
 				myGame.imageLoader.splashScreenLogo, 
 				GameAttributeHelper.SCREEN_WIDTH, 
-				GameAttributeHelper.SCREEN_HEIGHT
+				GameAttributeHelper.SCREEN_HEIGHT,
+				myGame
 				);
 		myGame.renderer.batch.end();
 	}

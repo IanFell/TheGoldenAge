@@ -2,8 +2,10 @@ package helpers;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.mygame.MyGame;
 
 import loaders.ImageLoader;
+import screens.GameScreen;
 import store.Store;
 import ui.TextBasedUiParent;
 
@@ -22,8 +24,24 @@ public class ImageHelper {
 	 * @param int         width
 	 * @param int         height
 	 */
-	public static void drawImageInMiddleOfScreen(SpriteBatch batch, Texture texture, int width, int height) {
-		batch.draw(texture, (width / 2) - (texture.getWidth() / 2), (height / 2) - (texture.getHeight() / 2));
+	public static void drawImageInMiddleOfScreen(SpriteBatch batch, Texture texture, int width, int height, MyGame myGame) {
+		batch.draw(
+				texture, 
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() - 10,
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				-GameScreen.camera.viewportHeight
+				);
+	}
+
+	public static void drawTitleScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
+		batch.draw(
+				myGame.imageLoader.titleScreen, 
+				0,
+				0,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				GameScreen.camera.viewportHeight
+				);
 	}
 
 	/**

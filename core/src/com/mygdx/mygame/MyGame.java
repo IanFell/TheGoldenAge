@@ -12,6 +12,7 @@ import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import render.Render;
 import screens.GameScreen;
+import screens.TitleScreen;
 
 /**
  * Main game class.
@@ -54,6 +55,7 @@ public class MyGame extends Game {
 	public InputHandler inputHandler = new InputHandler();
 
 	public GameScreen gameScreen;
+	public TitleScreen titleScreen;
 
 	/**
 	 * 
@@ -74,7 +76,8 @@ public class MyGame extends Game {
 		inputHandler.init();
 		gameAttributeHelper = new GameAttributeHelper();
 		gameScreen          = new GameScreen(this);
-		this.setScreen(gameScreen);
+		titleScreen         = new TitleScreen(this);
+		this.setScreen(titleScreen);
 	}
 
 	@Override

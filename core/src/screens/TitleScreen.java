@@ -31,11 +31,10 @@ public class TitleScreen extends Screens {
 		clearScreenAndSetScreenColor(GameAttributeHelper.gameState, null);
 		updateCamera();
 		myGame.renderer.batch.begin();
-		ImageHelper.drawImageInMiddleOfScreen(
+		ImageHelper.drawTitleScreen(
 				myGame.renderer.batch, 
-				myGame.imageLoader.titleScreenLogo, 
-				GameAttributeHelper.SCREEN_WIDTH, 
-				GameAttributeHelper.SCREEN_HEIGHT
+				myGame.imageLoader.titleScreen, 
+				myGame
 				);
 		myGame.renderer.batch.end();
 	}
