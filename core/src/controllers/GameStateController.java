@@ -2,6 +2,8 @@ package controllers;
 
 import com.mygdx.mygame.MyGame;
 
+import helpers.GameAttributeHelper;
+import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
 
@@ -21,11 +23,14 @@ public class GameStateController {
 	public static void switchGameStates(MyGame myGame, int newGameState) {
 		switch (newGameState) {
 		case Screens.GAME_SCREEN:
-			// Use our original game screen so current game state is restored.
+			// Use our original game screen so current state is restored.
 			myGame.setScreen(myGame.getGameScreen());
+			GameAttributeHelper.gameState = Screens.GAME_SCREEN; 
 			break;
 		case Screens.TITLE_SCREEN:
-			myGame.setScreen(new TitleScreen(myGame));
+			// Use our original title screen so current state is restored.
+			myGame.setScreen(myGame.getTitleScreen());
+			GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 			break;
 		}
 	}

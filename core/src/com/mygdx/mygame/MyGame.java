@@ -65,6 +65,14 @@ public class MyGame extends Game {
 		return gameScreen;
 	}
 
+	/**
+	 * 
+	 * @return TitleScreen
+	 */
+	public TitleScreen getTitleScreen() {
+		return titleScreen;
+	}
+
 	@Override
 	public void create () {
 		Gdx.graphics.setContinuousRendering(true);
@@ -75,16 +83,19 @@ public class MyGame extends Game {
 		audioHandler.init();
 		inputHandler.init();
 		gameAttributeHelper = new GameAttributeHelper();
+
+		// TODO KEEP THESE IN THIS ORDER SO GameAttributeHelper.gameState doesn't get set to the incorrect value.
 		gameScreen          = new GameScreen(this);
 		titleScreen         = new TitleScreen(this);
 		this.setScreen(titleScreen);
+		//this.setScreen(gameScreen);
 	}
 
 	@Override
 	public void render () {
 		super.render();
 		gameLoop();
-		//System.out.println("Game State: " + GameAttributeHelper.gameState);
+		//GameAttributeHelper.printFramesPerSecond();
 	}
 
 	@Override
@@ -100,7 +111,6 @@ public class MyGame extends Game {
 	private void gameLoop() {
 		inputHandler.handleInput(this);
 		audioHandler.handleAudio(this);
-		//System.out.println("Frames Per Second: " + Gdx.graphics.getFramesPerSecond());
 	}
 
 	/**

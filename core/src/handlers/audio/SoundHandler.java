@@ -81,7 +81,10 @@ public class SoundHandler {
 				MissionRawBar.playCollectionSound = false;
 			}
 
-			handleEnemyDeathSound(myGame, soundLoader);
+			// This will throw a null pointer if started from the title screen without the if statement.
+			if (myGame.gameScreen.enemyHandler.enemySpawner[0] != null) {
+				handleEnemyDeathSound(myGame, soundLoader);
+			}
 
 			if (myGame.getGameObject(Player.PLAYER_ONE).getPlaySound()) {
 				soundLoader.playerHit.play(Mixer.PLAYER_HIT_VOLUME);

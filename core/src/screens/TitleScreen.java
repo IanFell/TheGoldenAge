@@ -17,7 +17,7 @@ public class TitleScreen extends Screens {
 	 * 
 	 * @param MyGame myGame
 	 */
-	public TitleScreen(MyGame myGame) {
+	public TitleScreen(final MyGame myGame) {
 		super(myGame);
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 	}

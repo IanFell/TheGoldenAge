@@ -58,4 +58,8 @@ public final class GameAttributeHelper {
 	 *  - Etc.
 	 */
 	public static int gameState;
+
+	public static void printFramesPerSecond() {
+		System.out.println("Game State: " + GameAttributeHelper.gameState);
+	}
 }

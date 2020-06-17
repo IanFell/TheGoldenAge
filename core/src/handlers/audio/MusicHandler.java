@@ -89,7 +89,11 @@ public class MusicHandler {
 			}
 			handleMissionMusic(musicLoader);
 			handleCutsceneMusic(musicLoader);
-		} 
+		} else if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+			musicLoader.ocean.setVolume(Mixer.OCEAN_VOLUME);
+			musicLoader.ocean.setLooping(true);
+			musicLoader.ocean.play();
+		}
 	}
 
 	/**

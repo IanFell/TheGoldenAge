@@ -156,7 +156,7 @@ public class GameScreen extends Screens {
 	 */
 	public GameScreen(final MyGame myGame) {
 		super(myGame);
-		GameAttributeHelper.gameState = Screens.GAME_SCREEN;
+		GameAttributeHelper.gameState = Screens.GAME_SCREEN; 
 		gameScreenHasBeenInitialized  = false;
 		cutSceneHandler.initializeCutScenes();
 	}

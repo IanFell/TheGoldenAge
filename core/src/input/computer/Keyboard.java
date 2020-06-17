@@ -51,33 +51,18 @@ public class Keyboard extends ComputerInput {
 		GameObject player = PlayerController.getCurrentPlayer(myGame);
 		switch (GameAttributeHelper.gameState) {
 		case Screens.SPLASH_SCREEN:
-			if(Gdx.input.isKeyPressed(Input.Keys.ENTER)){ 
+			if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ 
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
 
 		case Screens.TITLE_SCREEN:
-			if(Gdx.input.isKeyPressed(Input.Keys.ENTER)){ 
-				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+			if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ 
+				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN); 
 			}
 			break;
 
-		case Screens.INVENTORY_SCREEN:
-			// Display all inventory.
-			if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-				Inventory.allInventoryShouldBeRendered = true;
-			} else {
-				Inventory.allInventoryShouldBeRendered = false;
-			}
-
-			if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT)) {
-				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
-				GameAttributeHelper.gameState = Screens.GAME_SCREEN;
-				myGame.gameScreen.resume();
-			}
-			break;
-
-		case Screens.GAME_SCREEN:	
+		case Screens.GAME_SCREEN:	System.out.println("xxxxxx");
 
 			// Skip intro cut scene.
 			if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
