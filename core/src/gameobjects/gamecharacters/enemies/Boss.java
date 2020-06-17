@@ -157,7 +157,6 @@ public class Boss extends Enemy {
 			batch.draw(texture, x, y, width, -height);
 			// Uncomment to draw enemy hit box.
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-			bossHealthUi.renderBossHealthUi(batch, imageLoader, this);
 		} else {
 			renderExplosions(batch, imageLoader);
 		}
@@ -211,6 +210,8 @@ public class Boss extends Enemy {
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 
+		BossHealthUi.shouldDisplay = false;
+
 		if (enemiesShouldExecuteAi()) {
 			rectangle.x = x;
 			rectangle.y = y - height;
@@ -219,6 +220,8 @@ public class Boss extends Enemy {
 
 			GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 			if (!dead) {
+				BossHealthUi.shouldDisplay = true;
+				checkDeath();
 				if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
 					handleAttack(player);
 				} else {
@@ -226,12 +229,10 @@ public class Boss extends Enemy {
 				}
 				y = player.getY() + 0.5f;
 			} 
-
-			bossHealthUi.updateBossHealthUi(this);
-
-			if (!dead) {
-				checkDeath();
-			}
+			
+			//if (!dead) {
+			//	checkDeath();
+			//}
 
 			if (explosionsShouldBeCreated) {
 				for (int i = 0; i < explosion.length; i++) {

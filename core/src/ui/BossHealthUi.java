@@ -1,10 +1,10 @@
 package ui;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.enemies.Boss;
-import loaders.ImageLoader;
+import screens.GameScreen;
 
 /**
  * 
@@ -12,6 +12,8 @@ import loaders.ImageLoader;
  *
  */
 public class BossHealthUi extends GameObject {
+
+	public static boolean shouldDisplay = false;
 
 	/**
 	 * Constructor.
@@ -22,27 +24,25 @@ public class BossHealthUi extends GameObject {
 	public BossHealthUi(float x, float y) {
 		this.x      = x;
 		this.y      = y;
-		this.width  = 7;
-		this.height = 1;
+		this.width  = 8;
+		this.height = 2;
 	}
 
 	/**
 	 * 
-	 * @param SpriteBatch batch
-	 * @param ImageLoader imageLoader
-	 * @param Boss        boss
+	 * @param MyGame myGame
+	 * @param Boss   boss
 	 */
-	public void renderBossHealthUi(SpriteBatch batch, ImageLoader imageLoader, Boss boss) {
-		batch.draw(imageLoader.blackSquare, x, y, width, height);
-		batch.draw(imageLoader.redSquare, x, y, boss.getBossHealth(), height);
-	}
-
-	/**
-	 * 
-	 * @param Boss boss
-	 */
-	public void updateBossHealthUi(Boss boss) {
-		x = boss.getX();
-		y = boss.getY() - 2;
+	public void renderBossHealthUi(MyGame myGame, Boss boss) {
+		if (shouldDisplay) {
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.enemyHealthMeterBase, 
+					GameScreen.camera.position.x - width / 2, 
+					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 13.5f, 
+					width, 
+					height
+					);	
+		}
+		//batch.draw(imageLoader.redSquare, x, y, boss.getBossHealth(), height);
 	}
 }

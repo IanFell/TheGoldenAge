@@ -59,6 +59,9 @@ public class GameScreen extends Screens {
 	 * This is so there's not a flash of the game world before the intro cutscene renders.
 	 */
 	private boolean shouldRender = false;
+	// Don't render the first frame when game loads.  Give it some time to load up and look nice.
+	private final int ONE_FRAME  = 1;
+	private int renderTimer      = 0;
 
 	private Pause pause = new Pause(0, 0);
 
@@ -184,7 +187,12 @@ public class GameScreen extends Screens {
 
 		// Draw SpriteBatch.
 		myGame.renderer.batch.begin();
-		renderObjectsOnGameScreenThatUseSpriteBatch();
+
+		if (renderTimer > ONE_FRAME) {
+			renderObjectsOnGameScreenThatUseSpriteBatch();
+		} else {
+			renderTimer++;
+		}
 		myGame.renderer.batch.end();
 
 		// Comment this out for now.  Lets see if the game runs faster.
@@ -468,7 +476,10 @@ public class GameScreen extends Screens {
 			 */
 			for (int i = 0; i < BossLoader.boss.length; i++) {
 				if (!BossLoader.boss[i].isDead()) {
-					BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(myGame.renderer.batch, myGame.imageLoader, BossLoader.boss[i]);
+					BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(
+							myGame, 
+							BossLoader.boss[i]
+							);
 				}
 			}
 

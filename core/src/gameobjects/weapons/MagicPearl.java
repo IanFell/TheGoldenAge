@@ -143,7 +143,7 @@ public class MagicPearl extends Weapon {
 						break;
 					case Player.DIRECTION_DOWN:
 						x = player.getX();
-						y = player.getY();
+						y = player.getY() + 1;
 						break;
 					}
 				}
