@@ -54,6 +54,12 @@ import ui.UserInterface;
  */
 public class GameScreen extends Screens {
 
+	/**
+	 * Use this to NOT draw anything but the intro cutscene for the first frame.
+	 * This is so there's not a flash of the game world before the intro cutscene renders.
+	 */
+	private boolean shouldRender = false;
+
 	private Pause pause = new Pause(0, 0);
 
 	// Map when user pauses game.
@@ -168,7 +174,9 @@ public class GameScreen extends Screens {
 		}
 
 		// TODO I dunno why I'm using the weatherHandler for this.
-		clearScreenAndSetScreenColor(GameAttributeHelper.gameState, weatherHandler);
+		if (shouldRender) {
+			clearScreenAndSetScreenColor(GameAttributeHelper.gameState, weatherHandler);
+		}
 
 		// Screen only shakes when needed, but we must update it at all times just in case it needs to shake.
 		screenShake.update(delta, camera, myGame.getGameObject(Player.PLAYER_ONE));
@@ -370,128 +378,129 @@ public class GameScreen extends Screens {
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
-		mapRenderer.renderMapOfChunks(myGame, mapHandler);
-		lightingHandler.lightHandler.renderLighting(
-				myGame.renderer.batch, 
-				myGame.imageLoader, 
-				myGame.getGameObject(GameObject.PLAYER_ONE)
-				);
-		weatherHandler.renderStormCycle(myGame, this);
-		lightingHandler.renderShadows(myGame);
-
-		/**
-		 * We are not displaying the "inventory screen" here.
-		 * This renderes weapons as player has them.
-		 */
-		myGame.getGameObject(Player.PLAYER_ONE).inventory.renderInventory(
-				myGame.renderer.batch, 
-				myGame.imageLoader
-				);
-
-		structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
-		collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
-		weaponShadowHandler.renderWeaponShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
-
-		GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
-				GameObjectLoader.gameObjectList, 
-				myGame.renderer.batch, 
-				myGame.imageLoader
-				);
-
-		// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-		heartHandler.renderHearts(
-				myGame.renderer.batch, 
-				myGame.imageLoader
-				);
-
-		// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-		rumHandler.renderRum(
-				myGame.renderer.batch, 
-				myGame.imageLoader
-				);
-
-		// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-		ammoHandler.renderAmmo(
-				myGame.renderer.batch, 
-				myGame.imageLoader
-				);
-
-		// This shows the border of the towns strictly for debugging.
-		//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
-
-		// Rain should be in front of all objects. 
-		for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
-			weatherHandler.rainHandler[i].renderObject(
+		if (shouldRender) {
+			mapRenderer.renderMapOfChunks(myGame, mapHandler);
+			lightingHandler.lightHandler.renderLighting(
 					myGame.renderer.batch, 
-					myGame.imageLoader,
-					this
+					myGame.imageLoader, 
+					myGame.getGameObject(GameObject.PLAYER_ONE)
 					);
-		}
+			weatherHandler.renderStormCycle(myGame, this);
+			lightingHandler.renderShadows(myGame);
 
-		missionHandler.renderMissions(
-				myGame.renderer.batch, 
-				myGame.imageLoader,
-				myGame
-				);
-
-		WeaponHandler.renderWeapons(
-				myGame.renderer.batch, 
-				myGame.imageLoader, 
-				myGame
-				);
-
-		arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
-
-		store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
-
-		holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
-
-		userInterface.renderUserInterface(
-				myGame.renderer.batch,  
-				myGame.imageLoader,
-				myGame
-				);
-
-		/**
-		 * The boss' health UI is attached to the boss object.
-		 * So, render this here so the health UI isn't rendered behind other game objects
-		 * so player can see it at all times.
-		 */
-		for (int i = 0; i < BossLoader.boss.length; i++) {
-			if (!BossLoader.boss[i].isDead()) {
-				BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(myGame.renderer.batch, myGame.imageLoader, BossLoader.boss[i]);
-			}
-		}
-
-		// Here we render the inventory screen if needed.
-		if (Inventory.allInventoryShouldBeRendered) {
+			/**
+			 * We are not displaying the "inventory screen" here.
+			 * This renderes weapons as player has them.
+			 */
 			myGame.getGameObject(Player.PLAYER_ONE).inventory.renderInventory(
 					myGame.renderer.batch, 
 					myGame.imageLoader
 					);
-		}
 
-		mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
+			structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
+			collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
+			weaponShadowHandler.renderWeaponShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
 
-		if (!MissionRawBar.phasesAreInProgress && 
-				!MissionStumpHole.missionIsActive && 
-				!MapUi.mapShouldBeRendered && 
-				!Store.playerWantsToEnterStore
-				) {
-			gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
-			magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+			GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
+					GameObjectLoader.gameObjectList, 
+					myGame.renderer.batch, 
+					myGame.imageLoader
+					);
+
+			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
+			heartHandler.renderHearts(
+					myGame.renderer.batch, 
+					myGame.imageLoader
+					);
+
+			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
+			rumHandler.renderRum(
+					myGame.renderer.batch, 
+					myGame.imageLoader
+					);
+
+			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
+			ammoHandler.renderAmmo(
+					myGame.renderer.batch, 
+					myGame.imageLoader
+					);
+
+			// This shows the border of the towns strictly for debugging.
+			//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
+
+			// Rain should be in front of all objects. 
+			for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
+				weatherHandler.rainHandler[i].renderObject(
+						myGame.renderer.batch, 
+						myGame.imageLoader,
+						this
+						);
+			}
+
+			missionHandler.renderMissions(
+					myGame.renderer.batch, 
+					myGame.imageLoader,
+					myGame
+					);
+
+			WeaponHandler.renderWeapons(
+					myGame.renderer.batch, 
+					myGame.imageLoader, 
+					myGame
+					);
+
+			arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
+
+			store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
+
+			holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
+
+			userInterface.renderUserInterface(
+					myGame.renderer.batch,  
+					myGame.imageLoader,
+					myGame
+					);
 
 			/**
-			 * Only render bird weapon if Stump Hole boss is defeated.
-			 * We will keep rendering the shadow as a hint to the player that something will be there.
+			 * The boss' health UI is attached to the boss object.
+			 * So, render this here so the health UI isn't rendered behind other game objects
+			 * so player can see it at all times.
 			 */
-			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
-				birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+			for (int i = 0; i < BossLoader.boss.length; i++) {
+				if (!BossLoader.boss[i].isDead()) {
+					BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(myGame.renderer.batch, myGame.imageLoader, BossLoader.boss[i]);
+				}
+			}
+
+			// Here we render the inventory screen if needed.
+			if (Inventory.allInventoryShouldBeRendered) {
+				myGame.getGameObject(Player.PLAYER_ONE).inventory.renderInventory(
+						myGame.renderer.batch, 
+						myGame.imageLoader
+						);
+			}
+
+			mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
+
+			if (!MissionRawBar.phasesAreInProgress && 
+					!MissionStumpHole.missionIsActive && 
+					!MapUi.mapShouldBeRendered && 
+					!Store.playerWantsToEnterStore
+					) {
+				gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+				magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+
+				/**
+				 * Only render bird weapon if Stump Hole boss is defeated.
+				 * We will keep rendering the shadow as a hint to the player that something will be there.
+				 */
+				if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+					birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+				}
 			}
 		}
-
 		cutSceneHandler.renderCutScenes(myGame);
-
+		shouldRender = true;
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 			pause.renderObject(myGame.renderer.batch, myGame.imageLoader);
 		}

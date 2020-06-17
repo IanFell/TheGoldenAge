@@ -30,7 +30,7 @@ public class CutSceneJollyRoger extends CutScene {
 		startYPosition          = 10;
 		boatSpeed               = 0.0075f;
 		boatStartXPosition      = startXPosition - 2;
-		boatSize                = 1;
+		boatSize                = 3;
 		anyCutSceneIsInProgress = true;
 
 		float coverRowYPosition       = startYPosition - 2.3f;
@@ -58,9 +58,16 @@ public class CutSceneJollyRoger extends CutScene {
 		batch.draw(
 				imageLoader.boatSide,
 				boatStartXPosition, 
-				startYPosition - 4,
+				startYPosition - 2.5f,
 				boatSize,
 				-boatSize
+				);
+		batch.draw(
+				imageLoader.playerRight,
+				boatStartXPosition + 0.4f, 
+				startYPosition - 3.7f,
+				1,
+				-1
 				);
 		if (!cutSceneConcluded) {
 			batch.draw(
@@ -82,6 +89,10 @@ public class CutSceneJollyRoger extends CutScene {
 					);
 		}
 		//debugRow(batch, imageLoader, COVER_ROW_ONE);
+
+		if (transition != null) {
+			transition.renderTransition(batch, imageLoader);
+		}
 	}
 
 	/**
@@ -98,11 +109,9 @@ public class CutSceneJollyRoger extends CutScene {
 		} else if (coveringRow[COVER_ROW_THREE].getWidth() > 0) {
 			coveringRow[COVER_ROW_THREE].setX(coveringRow[COVER_ROW_THREE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_THREE].setWidth(coveringRow[COVER_ROW_THREE].getWidth() - shrinkValue);
-			// Skip row 4 because it's a blank line.
 		} else if (coveringRow[COVER_ROW_FIVE].getWidth() > 0) {
 			coveringRow[COVER_ROW_FIVE].setX(coveringRow[COVER_ROW_FIVE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FIVE].setWidth(coveringRow[COVER_ROW_FIVE].getWidth() - shrinkValue);
-			// Skip row 6 because it's a blank line.
 		} else if (coveringRow[COVER_ROW_SEVEN].getWidth() > 0) {
 			coveringRow[COVER_ROW_SEVEN].setX(coveringRow[COVER_ROW_SEVEN].getX() + shrinkValue);
 			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);

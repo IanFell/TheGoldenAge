@@ -8,6 +8,7 @@ import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
 
 /**
+ * This is the black circle that opens on the screen, kind of like a curtain, when a new activity begins.
  * 
  * @author Fabulous Fellini
  *
@@ -35,12 +36,28 @@ public class Transition {
 		this.height       = initialSize;
 	}
 
+	/**
+	 * 
+	 * @return float
+	 */
 	public float getX() {
 		return x;
 	}
 
+	/**
+	 * 
+	 * @return float
+	 */
 	public float getY() {
 		return y;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public void setY(float y) {
+		this.y = y;
 	}
 
 	/**

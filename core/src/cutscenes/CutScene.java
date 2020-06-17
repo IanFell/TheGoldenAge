@@ -7,6 +7,7 @@ import com.mygdx.mygame.MyGame;
 
 import loaders.ImageLoader;
 import screens.GameScreen;
+import transitions.Transition;
 
 /**
  * 
@@ -14,6 +15,10 @@ import screens.GameScreen;
  *
  */
 public class CutScene {
+
+	protected Transition transition;
+
+	protected boolean initializeTransition = true;
 
 	protected Rectangle[] coveringRow = new Rectangle[11];
 
@@ -127,7 +132,15 @@ public class CutScene {
 		return cutSceneConcluded;
 	}
 
-	public void updateCutScene(MyGame myGame) {}
+	public void updateCutScene(MyGame myGame) {
+		if (initializeTransition) {
+			transition           = new Transition(myGame);
+			initializeTransition = false;
+			transition.setX(GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() - 7);
+			transition.setY((GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 15);
+		}
+		transition.updateTransition();
+	}
 
 	/**
 	 * Renders background image full screen.
@@ -139,9 +152,9 @@ public class CutScene {
 	protected void renderBackgroundImage(SpriteBatch batch, MyGame myGame, Texture texture) {
 		batch.draw(
 				texture,
-				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + myGame.getGameScreen().getBorderShrinkOffset(),
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset(),
 				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
-				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() * 2, 
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
 				-GameScreen.camera.viewportHeight
 				);
 	}
@@ -156,9 +169,9 @@ public class CutScene {
 	protected void renderBorder(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		batch.draw(
 				imageLoader.border,
-				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + myGame.getGameScreen().getBorderShrinkOffset(),
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset(),
 				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
-				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() * 2, 
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + + myGame.getGameScreen().getBorderShrinkOffset(), 
 				-GameScreen.camera.viewportHeight
 				);
 	}
