@@ -34,7 +34,7 @@ public class Boss extends Enemy {
 
 	private BossHealthUi bossHealthUi;
 
-	private final int BOSS_MAX_HEALTH = 7;
+	private final int BOSS_MAX_HEALTH = 2;
 	private float bossHealth;
 
 	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f; // 0.08f
@@ -62,6 +62,9 @@ public class Boss extends Enemy {
 	private int animationTimer;
 
 	private final int ANIMATION_OVER_VALUE = 9;
+
+	// Used for health meter.  It will get brighter by this percent each time boss is hit.
+	public static float percentToChangeAlphaEachHit;
 
 	/**
 	 * Constructor.
@@ -100,6 +103,8 @@ public class Boss extends Enemy {
 		walkLeftAnimation    = new Animation <TextureRegion> (animationSpeed, walkLeftTexture.getRegions());
 		 */
 		animationTimer = 0;
+
+		percentToChangeAlphaEachHit = BOSS_DAMAGE_TAKEN_FROM_PLAYER / BOSS_MAX_HEALTH;    
 	}
 
 	/**
@@ -229,10 +234,6 @@ public class Boss extends Enemy {
 				}
 				y = player.getY() + 0.5f;
 			} 
-			
-			//if (!dead) {
-			//	checkDeath();
-			//}
 
 			if (explosionsShouldBeCreated) {
 				for (int i = 0; i < explosion.length; i++) {

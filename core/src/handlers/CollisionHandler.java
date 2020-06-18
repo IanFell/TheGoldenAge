@@ -35,6 +35,7 @@ import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionStumpHole;
 import store.Store;
 import tiles.Tile;
+import ui.BossHealthUi;
 import ui.LocationMarker;
 
 /**
@@ -355,6 +356,7 @@ public class CollisionHandler {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 				Boss.playGruntSound = true;
+				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit; 
 			}
 		}
 	}

@@ -180,7 +180,7 @@ public class ImageLoader {
 	public Texture attackBird;
 	public Texture gamePaused;
 	public Texture enemyHealthMeterBase;
-	public Texture enemyHealthMeterBorder;
+	public Texture enemyHealthMeterBlack;
 
 	// Objective UI objects.
 	public Texture objectiveCollectTheMapAtThePoint;
@@ -407,7 +407,7 @@ public class ImageLoader {
 		attackBird                   = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 		enemyHealthMeterBase         = new Texture(Gdx.files.internal("artwork/ui/EnemyHealthMeterBase.png"));
-		enemyHealthMeterBorder       = new Texture(Gdx.files.internal("artwork/ui/EnemyHealthMeterBorder.png"));
+		enemyHealthMeterBlack        = new Texture(Gdx.files.internal("artwork/ui/EnemyHealthMeterBlack.png"));
 
 		// Objective UI objects.
 		objectiveCollectTheMapAtThePoint       = new Texture(Gdx.files.internal("artwork/ui/objectives/CollectTheMapAtThePoint.png"));
@@ -664,7 +664,7 @@ public class ImageLoader {
 		locationSkull.dispose();
 		attackBird.dispose();
 		enemyHealthMeterBase.dispose();
-		enemyHealthMeterBorder.dispose();
+		enemyHealthMeterBlack.dispose();
 
 		// Objective UI objects.
 		objectiveCollectTheMapAtThePoint.dispose();
