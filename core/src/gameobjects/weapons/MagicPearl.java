@@ -99,26 +99,26 @@ public class MagicPearl extends Weapon {
 					//}
 					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 					case DIRECTION_RIGHT:
-						dx = 1;
+						dx = 0.5f;
 						dy = 0;
 						x += dx;
 						y += dy;
 						break;
 					case DIRECTION_LEFT:
-						dx = 1;
+						dx = 0.5f;
 						dy = 0;
 						x -= dx;
 						y += dy;
 						break;
 					case DIRECTION_DOWN:
 						dx = 0;
-						dy = 1;
+						dy = 0.5f;
 						x += dx;
 						y += dy;
 						break;
 					case DIRECTION_UP:
 						dx = 0;
-						dy = 1;
+						dy = 0.5f;
 						x += dx;
 						y -= dy;
 						break;

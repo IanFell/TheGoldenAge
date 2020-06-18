@@ -584,9 +584,7 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerCollidedWithBoss(GameObject player, Boss boss) {
 		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible) {
-			boss.setAttacking(false);
 			boss.setX(boss.getX() + 5);
-			Boss.currentAttackNumber++;
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
 			player.setPlaySound(true);

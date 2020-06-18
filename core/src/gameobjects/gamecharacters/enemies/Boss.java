@@ -21,20 +21,20 @@ import ui.BossHealthUi;
  */
 public class Boss extends Enemy {
 
+	private float originX;
+	private float originY;
+	private float angle;
+
+
+
 	public static final int WIDTH  = 3;
 	public static final int HEIGHT = 5;
-
-	private float maxDistanceFromPlayer = 5.0f;
-
-	private boolean isAttacking           = false;
-	private final int NUMBER_OF_ATTACKS   = 100;
-	public static int currentAttackNumber = 0;
 
 	private float attackSpeed = 0.5f;
 
 	private BossHealthUi bossHealthUi;
 
-	private final int BOSS_MAX_HEALTH = 2;
+	private final int BOSS_MAX_HEALTH = 25;
 	private float bossHealth;
 
 	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f; // 0.08f
@@ -105,6 +105,11 @@ public class Boss extends Enemy {
 		animationTimer = 0;
 
 		percentToChangeAlphaEachHit = BOSS_DAMAGE_TAKEN_FROM_PLAYER / BOSS_MAX_HEALTH;    
+
+		this.originX = x;
+		this.originY = y;
+		timer        = 0;
+		angle        = 0;
 	}
 
 	/**
@@ -227,14 +232,14 @@ public class Boss extends Enemy {
 			if (!dead) {
 				BossHealthUi.shouldDisplay = true;
 				checkDeath();
-				if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
-					if (!Player.isInvincible) { 
-						handleAttack(player);
-					}
-				} else {
-					x = player.getX() + maxDistanceFromPlayer;
+				//if (isAttacking) {
+				if (!Player.isInvincible) { 
+					handleAttack(player);
 				}
-				y = player.getY() + 0.5f;
+				//} else {
+				//	x = player.getX() + maxDistanceFromPlayer;
+				//}
+				//y = player.getY() + 0.5f;
 			} 
 
 			if (explosionsShouldBeCreated) {
@@ -299,14 +304,127 @@ public class Boss extends Enemy {
 	 * @param GameObject player
 	 */
 	private void handleAttack(GameObject player) {
+		if (timer > 100 && timer < 200) {
+			spin(player);
+		} 
+		if (timer > 300 && timer < 400) {
+			ram(player);
+		}  
+		if(timer > 500 && timer < 600) {
+			spin(player);
+		}
+		if (timer > 700 && timer < 715) {
+			jumpAttack(player, timer, 1);
+		}
+		if (timer > 730 && timer < 745) {
+			jumpAttack(player, timer, 2);
+		}
+		if (timer > 760 && timer < 775) {
+			jumpAttack(player, timer, 3);
+		}
+		if (timer > 790 && timer < 805) {
+			jumpAttack(player, timer, 4);
+		}
+		if (timer > 820 && timer < 835) {
+			jumpAttack(player, timer, 5);
+		}	
+		if (timer > 900 && timer < 1000) {
+			ram(player);
+		}
+		if (timer > 1000) {
+			timer = 0;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param int        timerStartValue
+	 * @param int        attackNumber
+	 */
+	private void jumpAttack(GameObject player, int timerStartValue, int attackNumber) {
 		if (bossIsToTheRightOfPlayer(player)) {
-			if (x > player.getX()) {
-				x -= attackSpeed;
+			dx = -0.2f;
+		}
+		if (bossIsToTheLeftOfPlayer(player)) {
+			dx = 0.2f;
+		}
+		dy = -0.2f;
+		if (attackNumber == 1) {
+			if (timer > 707) {
+				dy = 0.2f;
 			}
+		}
+		else if (attackNumber == 2) {
+			if (timer > 737) {
+				dy = 0.2f;
+			}
+		}
+		else if (attackNumber == 3) {
+			if (timer > 767) {
+				dy = 0.2f;
+			}
+		}
+		else if (attackNumber == 4) {
+			if (timer > 797) {
+				dy = 0.2f;
+			}
+		}
+		else if (attackNumber == 5) {
+			if (timer > 827) {
+				dy = 0.2f;
+			}
+		}
+		x += dx;
+		y += dy;
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	private void spin(GameObject player) {
+		// Spin boss.
+		float angleValue = 0.8f;
+		angle += angleValue;
+		float radius = 3;
+		x = (float) (originX - Math.cos(angle) * radius);
+		y = (float) (originY + Math.sin(angle) * radius);
+
+		// Also make him move towards player slowly.
+		float movementValue = 1f;
+		if (bossIsToTheRightOfPlayer(player)) {
+			x       -= movementValue;
+			originX -= movementValue;
+		}
+		if (bossIsToTheLeftOfPlayer(player)) {
+			x       += movementValue;
+			originX += movementValue;
+		}
+		if (bossIsToTheTopOfPlayer(player)) {
+			y       += movementValue;
+			originY += movementValue;
+		}
+		if (bossIsToTheBottomOfPlayer(player)) {
+			y       -= movementValue;
+			originY -= movementValue;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	private void ram(GameObject player) {
+		if (bossIsToTheRightOfPlayer(player)) {
+			x -= attackSpeed;
 		} else if (bossIsToTheLeftOfPlayer(player)) {
-			if (x < player.getX()) {
-				x += attackSpeed;
-			}
+			x += attackSpeed;
+		}
+		if (bossIsToTheTopOfPlayer(player)) {
+			y += attackSpeed;
+		} else if (bossIsToTheBottomOfPlayer(player)) {
+			y -= attackSpeed;
 		}
 		CollisionHandler.checkIfPlayerCollidedWithBoss(player, this);
 	}
@@ -317,10 +435,7 @@ public class Boss extends Enemy {
 	 * @return boolean
 	 */
 	private boolean bossIsToTheRightOfPlayer(GameObject player) {
-		if (x > player.getX()) {
-			return true;
-		}
-		return false;
+		return x > player.getX();
 	}
 
 	/**
@@ -329,28 +444,28 @@ public class Boss extends Enemy {
 	 * @return boolean
 	 */
 	private boolean bossIsToTheLeftOfPlayer(GameObject player) {
-		if (x < player.getX()) {
-			return true;
-		}
-		return false;
-	}
-
-	private void handleAttackTimer() {
-		if (!isAttacking) {
-			timer++;
-			if (timer > 100) {
-				isAttacking = true;
-			}
-		} else {
-			timer = 0;
-		}
+		return x < player.getX();
 	}
 
 	/**
 	 * 
-	 * @param boolean isAttacking
+	 * @param GameObject player
+	 * @return boolean
 	 */
-	public void setAttacking(boolean isAttacking) {
-		this.isAttacking = isAttacking;
+	private boolean bossIsToTheTopOfPlayer(GameObject player) {
+		return y < player.getY();
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @return boolean
+	 */
+	private boolean bossIsToTheBottomOfPlayer(GameObject player) {
+		return y > player.getY();
+	}
+
+	private void handleAttackTimer() {
+		timer++;
 	}
 }
