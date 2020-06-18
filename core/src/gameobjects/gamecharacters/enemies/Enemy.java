@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
+import gameobjects.GameObject;
 import gameobjects.gamecharacters.GameCharacter;
 import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
@@ -30,6 +31,21 @@ import ui.MapUi;
  *
  */
 public class Enemy extends GameCharacter {
+
+	private final float ENEMY_RADIUS   = 1;
+	protected final float BOSS_RADIUS  = 3;
+
+	private final int ATTACK_SPIN = 0;
+	private final int ATTACK_RAM  = 1;
+	// This will be reset to one of the above.
+	private int attackToPerform   = 0;
+
+	private float ramSpeed = 0.5f;
+
+	protected float originX;
+	protected float originY;
+	protected float spinAngle;
+	private boolean setOrigin = true;
 
 	public int direction;
 
@@ -88,6 +104,16 @@ public class Enemy extends GameCharacter {
 		if (randomAttackValue < 1) {
 			willAttack = true;
 		}
+
+		// Choose attack to perform.
+		/*
+		if (willAttack) {
+			int attack = RandomNumberGenerator.generateRandomInteger(100);
+			attackToPerform = ATTACK_SPIN;
+			if (attack < 50) {
+				attackToPerform = ATTACK_RAM;
+			}
+		} */
 
 		walkDownTexture  = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/enemy/enemyDown.atlas"));
 		walkUpTexture    = new TextureAtlas(Gdx.files.internal("artwork/gamecharacters/enemy/enemyUp.atlas"));
@@ -297,15 +323,112 @@ public class Enemy extends GameCharacter {
 	 * @param MyGame myGame
 	 */
 	private void executeAI(MyGame myGame) {
-		pathFind(myGame);
+		//pathFind(myGame);
 		if (attackBoundary.overlaps(PlayerController.getCurrentPlayer(myGame).rectangle)) {
 			if (willAttack) {
-				attackPlayer(myGame);
-			} else {
-				dx = stoppedValue;
-				dy = stoppedValue;
-			}
+				//if (attackToPerform ) {
+				spin(myGame.getGameObject(Player.PLAYER_ONE), ENEMY_RADIUS);
+				//} else {
+				//ram(myGame.getGameObject(Player.PLAYER_ONE));
+				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) myGame.getGameObject(Player.PLAYER_ONE));
+				//}
+			} 
+		} else {
+			pathFind(myGame);
 		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	protected void ram(GameObject player) {
+		if (bossIsToTheRightOfPlayer(player)) {
+			x -= ramSpeed;
+		} else if (bossIsToTheLeftOfPlayer(player)) {
+			x += ramSpeed;
+		}
+		if (bossIsToTheTopOfPlayer(player)) {
+			y += ramSpeed;
+		} else if (bossIsToTheBottomOfPlayer(player)) {
+			y -= ramSpeed;
+		}
+	}
+
+	/**
+	 * TODO Right now, the enemy will only attack the player once.  
+	 * set "setOrigin" to true somewhere if we want enemy to repeat action.
+	 * Right now it seems fair they only attack once since there can be a lot of them at once.
+	 * 
+	 * @param GameObject player
+	 * @param float      radius
+	 */
+	protected void spin(GameObject player, float radius) {
+		if (setOrigin) {
+			originX   = x;
+			originY   = y;
+			setOrigin = false;
+		}
+		// Spin enemy.
+		float angleValue = 0.8f;
+		spinAngle += angleValue;
+		x = (float) (originX - Math.cos(spinAngle) * radius);
+		y = (float) (originY + Math.sin(spinAngle) * radius);
+
+		// Also make him move towards player slowly.
+		float movementValue = 0.2f;
+		if (bossIsToTheRightOfPlayer(player)) {
+			x       -= movementValue;
+			originX -= movementValue;
+		}
+		if (bossIsToTheLeftOfPlayer(player)) {
+			x       += movementValue;
+			originX += movementValue;
+		}
+		if (bossIsToTheTopOfPlayer(player)) {
+			y       += movementValue;
+			originY += movementValue;
+		}
+		if (bossIsToTheBottomOfPlayer(player)) {
+			y       -= movementValue;
+			originY -= movementValue;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @return boolean
+	 */
+	protected boolean bossIsToTheRightOfPlayer(GameObject player) {
+		return x > player.getX();
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @return boolean
+	 */
+	protected boolean bossIsToTheLeftOfPlayer(GameObject player) {
+		return x < player.getX();
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @return boolean
+	 */
+	protected boolean bossIsToTheTopOfPlayer(GameObject player) {
+		return y < player.getY();
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @return boolean
+	 */
+	protected boolean bossIsToTheBottomOfPlayer(GameObject player) {
+		return y > player.getY();
 	}
 
 	/**
