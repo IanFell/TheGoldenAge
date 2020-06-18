@@ -2,6 +2,8 @@ package handlers.enemies;
 
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutScene;
+import cutscenes.CutSceneCutthroat;
 import gameobjects.weapons.Gun;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
@@ -45,7 +47,7 @@ public class BossHandler {
 	 * @param MapHandler mapHandler
 	 */
 	public static void handleBosses(MyGame myGame, MapHandler mapHandler) {
-		if (Gun.hasBeenCollected) {
+		if (Gun.hasBeenCollected && CutSceneCutthroat.bossCanLaugh) {
 			BossLoader.boss[TRADIN_POST].updateObject(myGame, mapHandler);
 			BossLoader.boss[TRADIN_POST].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(TRADIN_POST);

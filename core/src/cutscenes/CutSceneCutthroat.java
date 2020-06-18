@@ -11,6 +11,12 @@ import screens.GameScreen;
  *
  */
 public class CutSceneCutthroat extends CutScene {
+	
+	/**
+	 * Triggers Boss' laugh to play AFTER this cutscene.  
+	 * Otherwise, how it's set now, the laugh will play at the beginning of the cutscene.
+	 */
+	public static boolean bossCanLaugh = false;
 
 	/**
 	 * Constructor.
@@ -91,7 +97,7 @@ public class CutSceneCutthroat extends CutScene {
 		gameShouldPause = true;
 		updateCoveringRows();
 	}
-
+	
 	/**
 	 * This method takes care of shrinking the cover rows to make the text appear to render one letter at a time.
 	 */
@@ -120,6 +126,7 @@ public class CutSceneCutthroat extends CutScene {
 			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
 		} else {
 			endCutScene();
+			bossCanLaugh = true;
 		}
 	}
 }

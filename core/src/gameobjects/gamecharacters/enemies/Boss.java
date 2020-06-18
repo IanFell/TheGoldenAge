@@ -232,14 +232,9 @@ public class Boss extends Enemy {
 			if (!dead) {
 				BossHealthUi.shouldDisplay = true;
 				checkDeath();
-				//if (isAttacking) {
 				if (!Player.isInvincible) { 
 					handleAttack(player);
 				}
-				//} else {
-				//	x = player.getX() + maxDistanceFromPlayer;
-				//}
-				//y = player.getY() + 0.5f;
 			} 
 
 			if (explosionsShouldBeCreated) {
