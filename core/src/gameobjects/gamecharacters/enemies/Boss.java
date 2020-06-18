@@ -387,7 +387,7 @@ public class Boss extends Enemy {
 		y = (float) (originY + Math.sin(angle) * radius);
 
 		// Also make him move towards player slowly.
-		float movementValue = 1f;
+		float movementValue = 0.2f;
 		if (bossIsToTheRightOfPlayer(player)) {
 			x       -= movementValue;
 			originX -= movementValue;
