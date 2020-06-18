@@ -289,19 +289,36 @@ public class PlayerOne extends Player {
 	 */
 	private void renderBoat(SpriteBatch batch, ImageLoader imageLoader) {
 		if (isInWater) {
-			switch (direction) {
-			case DIRECTION_LEFT:
-				batch.draw(imageLoader.boatSide, x - 2, y + 1, 4, -3);
-				break;
-			case DIRECTION_RIGHT:
-				batch.draw(imageLoader.boatSide, x - 1, y + 1, 4, -3);
-				break;
-			case DIRECTION_UP:
-				batch.draw(imageLoader.boatDown, x - 1, y + 1, 3, -4);
-				break;
-			case DIRECTION_DOWN:
-				batch.draw(imageLoader.boatDown, x - 1, y + 2, 3, -4);
-				break;
+			if (isInvincible) {
+				switch (direction) {
+				case DIRECTION_LEFT:
+					batch.draw(imageLoader.boatSide, x - 2, y + 1.3f, 4, -3);
+					break;
+				case DIRECTION_RIGHT:
+					batch.draw(imageLoader.boatSide, x, y + 1.3f, 4, -3);
+					break;
+				case DIRECTION_UP:
+					batch.draw(imageLoader.boatDown, x - 0.5f, y + 1, 3, -4);
+					break;
+				case DIRECTION_DOWN:
+					batch.draw(imageLoader.boatDown, x - 0.5f, y + 2, 3, -4);
+					break;
+				}
+			} else {
+				switch (direction) {
+				case DIRECTION_LEFT:
+					batch.draw(imageLoader.boatSide, x - 2, y + 1.3f, 4, -3);
+					break;
+				case DIRECTION_RIGHT:
+					batch.draw(imageLoader.boatSide, x - 1, y + 1.3f, 4, -3);
+					break;
+				case DIRECTION_UP:
+					batch.draw(imageLoader.boatDown, x - 1, y + 1, 3, -4);
+					break;
+				case DIRECTION_DOWN:
+					batch.draw(imageLoader.boatDown, x - 1, y + 2, 3, -4);
+					break;
+				}
 			}
 		}
 	}

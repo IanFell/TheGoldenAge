@@ -228,7 +228,9 @@ public class Boss extends Enemy {
 				BossHealthUi.shouldDisplay = true;
 				checkDeath();
 				if (isAttacking && currentAttackNumber < NUMBER_OF_ATTACKS) {
-					handleAttack(player);
+					if (!Player.isInvincible) { 
+						handleAttack(player);
+					}
 				} else {
 					x = player.getX() + maxDistanceFromPlayer;
 				}
