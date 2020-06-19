@@ -102,11 +102,11 @@ public class MusicHandler {
 	 */
 	private void handleCutsceneMusic(MusicLoader musicLoader) {
 		if (CutScene.gameShouldPause) {
-			musicLoader.invincibleMusic.setVolume(Mixer.CUTSCENE_MUSIC_VOLUME);
-			musicLoader.invincibleMusic.setLooping(true);
-			musicLoader.invincibleMusic.play();
+			musicLoader.ocean.setVolume(Mixer.CUTSCENE_MUSIC_VOLUME);
+			musicLoader.ocean.setLooping(true);
+			musicLoader.ocean.play();
 		} else {
-			musicLoader.invincibleMusic.stop();
+			musicLoader.ocean.stop();
 		}
 	}
 
