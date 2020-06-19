@@ -121,6 +121,7 @@ public class ImageLoader {
 	public Texture mapMessage;
 	public Texture cauldronMessage;
 	public Texture birdMessage;
+	public Texture enemyMessage;
 
 	// Cutscene background images.
 	public Texture cutSceneBackGroundImageMap;
@@ -128,6 +129,7 @@ public class ImageLoader {
 	public Texture cutSceneBackGroundImageCutthroat;
 	public Texture cutSceneBackGroundImageFarzenplank;
 	public Texture cutSceneBackGroundImageBird;
+	public Texture cutsceneBackGroundImageEnemy;
 
 	// Map objects.
 	public Texture worldMapReal;
@@ -332,6 +334,7 @@ public class ImageLoader {
 		dustParticleThree = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleThree.png"));
 
 		// Cutscene objects.
+		enemyMessage        = new Texture(Gdx.files.internal("artwork/cutscenes/EnemyMessage.png"));
 		mapMessage          = new Texture(Gdx.files.internal("artwork/cutscenes/MapMessage.png"));
 		birdMessage         = new Texture(Gdx.files.internal("artwork/cutscenes/BirdMessage.png"));
 		cauldronMessage     = new Texture(Gdx.files.internal("artwork/cutscenes/CauldronMessage.png"));
@@ -340,6 +343,7 @@ public class ImageLoader {
 		cutsceneFarzenplank = new Texture(Gdx.files.internal("artwork/cutscenes/Cutscene_Farzenplank.png"));
 
 		//Cutscene background images.
+		cutsceneBackGroundImageEnemy       = new Texture(Gdx.files.internal("artwork/cutscenes/EnemyCutSceneImage.png"));
 		cutSceneBackGroundImageMap         = new Texture(Gdx.files.internal("artwork/cutscenes/MapCutSceneImage.png"));
 		cutSceneBackGroundImageCauldron    = new Texture(Gdx.files.internal("artwork/cutscenes/CauldronCutSceneImage.png"));
 		cutSceneBackGroundImageBird        = new Texture(Gdx.files.internal("artwork/cutscenes/BirdCutSceneImage.png"));
@@ -595,6 +599,7 @@ public class ImageLoader {
 		dustParticleThree.dispose();
 
 		// Cutscene objects.
+		enemyMessage.dispose();
 		mapMessage.dispose();
 		birdMessage.dispose();
 		cauldronMessage.dispose();
@@ -603,6 +608,7 @@ public class ImageLoader {
 		cutsceneFarzenplank.dispose();
 
 		// Cutscene background images.
+		cutsceneBackGroundImageEnemy.dispose();
 		cutSceneBackGroundImageMap.dispose();
 		cutSceneBackGroundImageCauldron.dispose();
 		cutSceneBackGroundImageCutthroat.dispose();

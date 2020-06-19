@@ -2,7 +2,6 @@ package handlers.enemies;
 
 import com.mygdx.mygame.MyGame;
 
-import cutscenes.CutScene;
 import cutscenes.CutSceneCutthroat;
 import gameobjects.weapons.Gun;
 import loaders.bossloader.BossLoader;

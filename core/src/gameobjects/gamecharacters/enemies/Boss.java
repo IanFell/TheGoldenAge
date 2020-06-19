@@ -23,7 +23,9 @@ public class Boss extends Enemy {
 
 
 
-
+	// Use this to control shadow when boss jumps.
+    private boolean isPerformingJumpAttack = false;
+    private float jumpAttackStartY         = 0;
 
 	public static final int WIDTH  = 3;
 	public static final int HEIGHT = 5;
@@ -152,7 +154,13 @@ public class Boss extends Enemy {
 		if (!dead) {
 			// We need to do this instead of using super() because we need to render the boss lower so it works.
 			updateElapsedTime();
-			//renderEnemyShadow(batch, imageLoader, width, height / 2, y + height - 1.75f);
+			
+			if (isPerformingJumpAttack) {
+				System.exit(0);
+				renderEnemyShadow(batch, imageLoader, width, height / 2, jumpAttackStartY);
+			} else {
+				renderEnemyShadow(batch, imageLoader, width, height / 2, y - 1.5f);
+			}
 			/*
 			AnimationHandler.renderAnimation(
 					batch, 
@@ -314,6 +322,9 @@ public class Boss extends Enemy {
 		if(timer > 500 && timer < 600) {
 			spin(player, BOSS_RADIUS);
 		}
+		// Make sure shadow doesn't move with player.  This will make it look like he's jumping.
+		isPerformingJumpAttack = true;
+		jumpAttackStartY       = y;
 		if (timer > 700 && timer < 715) {
 			jumpAttack(player, timer, 1);
 		}
@@ -329,6 +340,8 @@ public class Boss extends Enemy {
 		if (timer > 820 && timer < 835) {
 			jumpAttack(player, timer, 5);
 		}	
+		// Now make shadow move with boss again.
+		isPerformingJumpAttack = false;
 		if (timer > 900 && timer < 1000) {
 			ram(player);
 		}

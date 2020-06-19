@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 import cutscenes.CutSceneBird;
 import cutscenes.CutSceneCauldron;
 import cutscenes.CutSceneCutthroat;
+import cutscenes.CutSceneEnemy;
 import cutscenes.CutSceneFarzenplank;
 import cutscenes.CutSceneJollyRoger;
 import cutscenes.CutSceneMap;
@@ -22,14 +23,20 @@ import missions.MissionThePoint;
  */
 public class CutSceneHandler {
 
+	private int ENEMY_CUTSCENE_DELAY = 120;
+
 	private CutSceneJollyRoger cutSceneJollyRoger;
 	private CutSceneCutthroat cutSceneCutthroat;
 	private CutSceneFarzenplank cutSceneFarzenplank;
 	private CutSceneBird cutSceneBird;
 	private CutSceneCauldron cutSceneCauldron;
 	private CutSceneMap cutSceneMap;
+	private CutSceneEnemy cutSceneEnemy;
+
+	private int cutSceneEnemyStartTimer = 0;
 
 	public void initializeCutScenes() {
+		cutSceneEnemy       = new CutSceneEnemy("Cutscene Enemy");
 		cutSceneJollyRoger  = new CutSceneJollyRoger("Cutscene Jolly Roger");
 		cutSceneCutthroat   = new CutSceneCutthroat("Cutscene Cutthroat");
 		cutSceneFarzenplank = new CutSceneFarzenplank("Cutscene Farzenplank");
@@ -53,6 +60,12 @@ public class CutSceneHandler {
 	public void updateCutScenes(MyGame myGame) {
 		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
 			cutSceneJollyRoger.updateCutScene(myGame);
+		}
+		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer < ENEMY_CUTSCENE_DELAY) {
+			cutSceneEnemyStartTimer++;
+		}
+		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer == ENEMY_CUTSCENE_DELAY) {
+			cutSceneEnemy.updateCutScene(myGame);
 		}
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.updateCutScene(myGame);
@@ -78,6 +91,9 @@ public class CutSceneHandler {
 	public void renderCutScenes(MyGame myGame) {
 		if (cutSceneJollyRoger.isSelectedCutSceneInProgress()) {
 			cutSceneJollyRoger.renderCutScene(myGame.renderer.batch,  myGame.imageLoader, myGame);
+		}
+		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer == ENEMY_CUTSCENE_DELAY) {
+			cutSceneEnemy.renderCutScene(myGame);
 		}
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.renderCutScene(myGame);
