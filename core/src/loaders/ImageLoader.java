@@ -436,9 +436,9 @@ public class ImageLoader {
 		objectiveNotEnoughLoot                 = new Texture(Gdx.files.internal("artwork/ui/objectives/NotEnoughLoot.png"));
 
 		// Player name UI labels.
-		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/JollyRoger.png"));
-		blackBeardUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/BlackBeard.png"));
-		pegLegUiNameLabel     = new Texture(Gdx.files.internal("artwork/ui/playernames/PegLeg.png"));
+		jollyRogerUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/Goldenage.png"));
+		blackBeardUiNameLabel = new Texture(Gdx.files.internal("artwork/ui/playernames/Cutthroat.png"));
+		pegLegUiNameLabel     = new Texture(Gdx.files.internal("artwork/ui/playernames/Farzenplank.png"));
 
 		// Logo objects.
 		splashScreenLogo = new Texture(Gdx.files.internal("artwork/logos/logo_ffg.png"));
