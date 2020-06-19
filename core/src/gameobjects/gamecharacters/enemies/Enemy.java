@@ -67,6 +67,8 @@ public class Enemy extends GameCharacter {
 
 	public static boolean playDeathSound = false;
 
+	private boolean isInWater = false;
+
 	// Death explosion variable.
 	protected boolean explosionShouldBeCreated;
 
@@ -228,6 +230,44 @@ public class Enemy extends GameCharacter {
 
 	/**
 	 * 
+	 * @param boolean
+	 */
+	public void setInWater(boolean isInWater) {
+		this.isInWater = isInWater;
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public boolean isInWater() {
+		return isInWater;
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderBoat(SpriteBatch batch, ImageLoader imageLoader) {
+		switch (direction) {
+		case DIRECTION_LEFT:
+			batch.draw(imageLoader.boatSide, x - 2, y + 1.3f, 4, -3);
+			break;
+		case DIRECTION_RIGHT:
+			batch.draw(imageLoader.boatSide, x - 1, y + 1.3f, 4, -3);
+			break;
+		case DIRECTION_UP:
+			batch.draw(imageLoader.boatDown, x - 1, y + 1, 3, -4);
+			break;
+		case DIRECTION_DOWN:
+			batch.draw(imageLoader.boatDown, x - 1, y + 2, 3, -4);
+			break;
+		}
+	}
+
+	/**
+	 * 
 	 * @param SpriteBatch   batch
 	 * @param ImageLoader   imageLoader
 	 */
@@ -236,6 +276,9 @@ public class Enemy extends GameCharacter {
 		updateElapsedTime();
 		if (!dead) {
 			renderEnemyShadow(batch, imageLoader, width, height / 2, y - 0.25f);
+			if (isInWater) {
+				renderBoat(batch, imageLoader);
+			}
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -326,12 +369,7 @@ public class Enemy extends GameCharacter {
 		//pathFind(myGame);
 		if (attackBoundary.overlaps(PlayerController.getCurrentPlayer(myGame).rectangle)) {
 			if (willAttack) {
-				//if (attackToPerform ) {
 				spin(myGame.getGameObject(Player.PLAYER_ONE), ENEMY_RADIUS);
-				//} else {
-				//ram(myGame.getGameObject(Player.PLAYER_ONE));
-				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) myGame.getGameObject(Player.PLAYER_ONE));
-				//}
 			} 
 		} else {
 			pathFind(myGame);

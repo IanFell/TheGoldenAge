@@ -76,6 +76,9 @@ public class CutSceneBird extends CutScene {
 			}
 			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_SIX);
 		}
+		if (transition != null) {
+			transition.renderTransition(myGame.renderer.batch, myGame.imageLoader);
+		}
 	}
 
 	/**
@@ -85,6 +88,8 @@ public class CutSceneBird extends CutScene {
 	@Override
 	public void updateCutScene(MyGame myGame) {
 		super.updateCutScene(myGame);
+
+		handleCutSceneTransition(myGame);
 
 		// Cannot set cover rows in the constructor due to changes needed in position, so set it here.
 		if (!textBoxIsSet) {

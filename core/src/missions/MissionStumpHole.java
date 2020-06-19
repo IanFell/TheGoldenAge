@@ -220,7 +220,7 @@ public class MissionStumpHole extends Mission {
 				playerTexture = imageLoader.playerLeft;
 			}
 			batch.draw(playerTexture, player.x, player.y + player.height, player.width, -player.height);
-			renderWater(batch, imageLoader, realPlayer);
+			renderWater(batch, imageLoader, realPlayer, myGame);
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
 
@@ -300,15 +300,25 @@ public class MissionStumpHole extends Mission {
 	 * 
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
+	 * @param MyGame myGame
 	 */
-	private void renderWater(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
+	private void renderWater(SpriteBatch batch, ImageLoader imageLoader, GameObject player, MyGame myGame) {
 		float originalX                    = GameScreen.camera.position.x - GameScreen.camera.viewportWidth / 2;
-		float originalY                    = player.getY() + 7;
+		float originalY                    = stumps.get(0).getY() + stumps.get(0).getHeight() - 1;
 		float startX                       = originalX;
 		float startY                       = originalY;
 		int rowLength                      = 29;
 		int numberOfRows                   = 2;
 		boolean secondRowOfWaterHasBeenSet = false;
+
+		// TODO Water tile in the background that is stretched.  It's function is because I can't get the other water to draw farther down.
+		batch.draw(
+				imageLoader.waterTileOne,
+				GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset(),
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight + 11,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				-GameScreen.camera.viewportHeight
+				);
 
 		for (int i = 0; i < rowLength * numberOfRows; i++) {
 			animateWaterTiles(batch, imageLoader, startX, startY);

@@ -14,6 +14,7 @@ import missions.Mission;
 import missions.MissionBlacksIsland;
 import missions.MissionCauldron;
 import missions.MissionChests;
+import missions.MissionFinalFight;
 import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
@@ -38,6 +39,7 @@ public class MissionHandler extends Mission {
 	private MissionCauldron missionCauldron;
 	private MissionThePoint missionThePoint;
 	private MissionBlacksIsland missionBlacksIsland;
+	private MissionFinalFight missionFinalFight;
 
 	/**
 	 * This mission is always active.
@@ -63,6 +65,7 @@ public class MissionHandler extends Mission {
 		missionCauldron               = new MissionCauldron();
 		missionThePoint               = new MissionThePoint();
 		missionBlacksIsland           = new MissionBlacksIsland();
+		missionFinalFight             = new MissionFinalFight();
 	}
 
 	private void initializeRawBarMission() {
@@ -132,6 +135,11 @@ public class MissionHandler extends Mission {
 			// Keep this here, because without it, the missions keep breaking at this part and I can't figure out why.
 			if (MissionRawBar.rawBarMissionComplete) {
 				MissionRawBar.phasesAreInProgress = false;
+			}
+
+			if (MissionFinalFight.finalFightShouldBeSetup) {
+				missionFinalFight.prepareForFinalFight(myGame.getGameObject(Player.PLAYER_ONE), myGame);
+				MissionFinalFight.finalFightShouldBeSetup = false;
 			}
 		}
 	}

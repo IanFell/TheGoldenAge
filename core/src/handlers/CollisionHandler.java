@@ -107,6 +107,34 @@ public class CollisionHandler {
 
 	/**
 	 * 
+	 * @param GameObject enemy
+	 * @param Tile       tile
+	 */
+	public static boolean checkIfEnemyHasCollidedWithWaterTile(GameObject enemy, Tile tile) {
+		if (tile.getBoundingRectangle().overlaps(enemy.rectangle)) {
+			if (tile.isWater()) {
+				return true;
+			} 
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param GameObject enemy
+	 * @param Tile       tile
+	 */
+	public static boolean checkIfEnemyHasCollidedWithSandTile(GameObject enemy, Tile tile) {
+		if (tile.getBoundingRectangle().overlaps(enemy.rectangle)) {
+			if (!tile.isWater()) {
+				return true;
+			} 
+		}
+		return false;
+	}
+
+	/**
+	 * 
 	 * @param GameObject player
 	 * @param MapHandler mapHandler
 	 * @param Tile       tile

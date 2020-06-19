@@ -81,6 +81,22 @@ public class CutScene {
 	}
 
 	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	protected void handleCutSceneTransition(MyGame myGame) {
+		if (initializeTransition) {
+			transition           = new Transition(myGame);
+			initializeTransition = false;
+			transition.setX(GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 20);
+			transition.setY((GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 14);
+		}
+		if (transition != null) {
+			transition.updateTransition();
+		}
+	}
+
+	/**
 	 * Use this method to see where the rows line up in regards to the image. 
 	 * It will render the specified row in white, offset to it's original x position.
 	 * 

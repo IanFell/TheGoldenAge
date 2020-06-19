@@ -85,25 +85,31 @@ public class MapRenderer {
 								mapHandler, 
 								MapHandler.mapChunks.get(i).tileMap[x][z]
 								);
-						/**
-						 * This slows the game down.  Maybe we don't need it as enemies will always follow player anyway.
-						 * 
-						 * Take this out for now and make enemies swim after player.
-						 */
+						// Determine if enemy is in water or not.  If he is, a boat is rendered under him.
 						/*
 						for (int k = 0; k < myGame.gameScreen.enemyHandler.enemySpawner.length; k++) {
 							if (myGame.gameScreen.enemyHandler.enemySpawner[k].enemies != null) {
 								for (int enemy = 0; enemy < myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.size(); enemy++) {
 									if (myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy) != null) {
-										CollisionHandler.checkIfNPCHasCollidedWithSandOrWaterTile(
-												myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy), 
-												mapHandler, 
-												MapHandler.mapChunks.get(i).tileMap[x][z]
-												);
+										if (
+												CollisionHandler.checkIfEnemyHasCollidedWithWaterTile(
+														myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy), 
+														MapHandler.mapChunks.get(i).tileMap[x][z]
+														)
+												) {
+											myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy).setInWater(true);
+										} else if (
+												CollisionHandler.checkIfEnemyHasCollidedWithSandTile(
+														myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy), 
+														MapHandler.mapChunks.get(i).tileMap[x][z]
+														)) {
+											myGame.gameScreen.enemyHandler.enemySpawner[k].enemies.get(enemy).setInWater(false);
+										}
 									}
 								}
 							}
-						} */
+						}  */
+
 					}
 				}
 			}

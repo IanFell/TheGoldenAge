@@ -11,7 +11,7 @@ import screens.GameScreen;
  *
  */
 public class CutSceneCutthroat extends CutScene {
-	
+
 	/**
 	 * Triggers Boss' laugh to play AFTER this cutscene.  
 	 * Otherwise, how it's set now, the laugh will play at the beginning of the cutscene.
@@ -60,6 +60,9 @@ public class CutSceneCutthroat extends CutScene {
 			}
 			//debugRow(myGame.renderer.batch, myGame.imageLoader, COVER_ROW_FIVE);
 		}
+		if (transition != null) {
+			transition.renderTransition(myGame.renderer.batch, myGame.imageLoader);
+		}
 	}
 
 	/**
@@ -88,6 +91,8 @@ public class CutSceneCutthroat extends CutScene {
 	public void updateCutScene(MyGame myGame) {
 		super.updateCutScene(myGame);
 
+		handleCutSceneTransition(myGame);
+
 		// Cannot set cover rows in the constructor due to changes needed in position, so set it here.
 		if (!textBoxIsSet) {
 			createCoverRows(myGame);
@@ -97,7 +102,7 @@ public class CutSceneCutthroat extends CutScene {
 		gameShouldPause = true;
 		updateCoveringRows();
 	}
-	
+
 	/**
 	 * This method takes care of shrinking the cover rows to make the text appear to render one letter at a time.
 	 */

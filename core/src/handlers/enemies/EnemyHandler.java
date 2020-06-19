@@ -2,6 +2,7 @@ package handlers.enemies;
 
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import gameobjects.stationarygameobjects.buildings.EnemyHut;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.Weapon;
@@ -123,6 +124,26 @@ public class EnemyHandler {
 			if (enemySpawner[i].enemies != null) {
 				for (int k = 0; k < enemySpawner[i].enemies.size(); k++) {
 					CollisionHandler.checkIfProjectileHasCollidedWithEnemy(enemySpawner[i].enemies.get(k), weapon);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets position near player for final fight.
+	 * 
+	 * @param GameObject player
+	 */
+	public void setEnemiesToPlayer(GameObject player) {
+		float spinAngle = 0;
+		int radius      = 3;
+		for (int i = 0; i < enemySpawner.length; i++) {
+			if (enemySpawner[i].enemies != null) {
+				for (int k = 0; k < enemySpawner[i].enemies.size(); k++) {
+					float angleValue = 0.8f;
+					spinAngle += angleValue;
+					enemySpawner[i].enemies.get(k).setX((float) (player.getX() - Math.cos(spinAngle) * radius));
+					enemySpawner[i].enemies.get(k).setY((float) (player.getY() + Math.sin(spinAngle) * radius));
 				}
 			}
 		}

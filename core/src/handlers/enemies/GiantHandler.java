@@ -73,4 +73,27 @@ public class GiantHandler {
 			giants[GIANT_WEWA].setY(3);
 		}
 	}
+
+	/**
+	 * Sets position near player for final fight.
+	 * 
+	 * @param GameObject player
+	 */
+	public void setGiantsToPlayer(GameObject player) {
+		float spinAngle  = 0;
+		int radius       = 7;
+		float angleValue = 2f;
+		spinAngle += angleValue;
+		giants[GIANT_WEWA].setX((float) (player.getX() - Math.cos(spinAngle) * radius));
+		giants[GIANT_WEWA].setY((float) (player.getY() + Math.sin(spinAngle) * radius));
+		giants[GIANT_WEWA].setIsDead(false);
+		spinAngle += angleValue;
+		giants[GIANT_APALACHICOLA].setX((float) (player.getX() - Math.cos(spinAngle) * radius));
+		giants[GIANT_APALACHICOLA].setY((float) (player.getY() + Math.sin(spinAngle) * radius));
+		giants[GIANT_APALACHICOLA].setIsDead(false);
+		spinAngle += angleValue;
+		giants[GIANT_PORT_ST_JOE].setX((float) (player.getX() - Math.cos(spinAngle) * radius));
+		giants[GIANT_PORT_ST_JOE].setY((float) (player.getY() + Math.sin(spinAngle) * radius));
+		giants[GIANT_PORT_ST_JOE].setIsDead(false);
+	}
 }

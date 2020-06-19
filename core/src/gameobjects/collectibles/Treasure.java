@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import gameobjects.GameObject;
 import loaders.ImageLoader;
 import missions.MissionBlacksIsland;
+import missions.MissionFinalFight;
 
 /**
  * 
@@ -42,7 +43,7 @@ public class Treasure extends GameObject {
 		if (rectangle.overlaps(player.rectangle) && !hasBeenCollected) {
 			MissionBlacksIsland.missionBlacksIslandComplete = true;
 			hasBeenCollected                                = true;
-			System.exit(0);
+			MissionFinalFight.finalFightShouldBeSetup       = true;
 		}
 	}
 
