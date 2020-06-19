@@ -171,6 +171,14 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture gunUi;
+	public Texture magicPearlUi;
+	public Texture woodyUi;
+	public Texture healthUi;
+	public Texture ammoUi;
+	public Texture rumUi;
+	public Texture legendSwordUi;
+	public Texture addedToInventory;
 	public Texture border;
 	public Texture skullShadow;
 	public Texture inventoryNavigationBar;
@@ -400,6 +408,14 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		gunUi                        = new Texture(Gdx.files.internal("artwork/ui/Gun.png"));
+		healthUi                     = new Texture(Gdx.files.internal("artwork/ui/Health.png"));
+		woodyUi                      = new Texture(Gdx.files.internal("artwork/ui/Woody.png"));
+		magicPearlUi                 = new Texture(Gdx.files.internal("artwork/ui/MagicPearl.png"));
+		rumUi                        = new Texture(Gdx.files.internal("artwork/ui/Rum.png"));
+		ammoUi                       = new Texture(Gdx.files.internal("artwork/ui/Ammo.png"));
+		legendSwordUi                = new Texture(Gdx.files.internal("artwork/ui/LegendSword.png"));
+		addedToInventory             = new Texture(Gdx.files.internal("artwork/ui/AddedToInventory.png"));
 		border                       = new Texture(Gdx.files.internal("artwork/ui/Border.png"));
 		skullShadow                  = new Texture(Gdx.files.internal("artwork/ui/SkullShadow.png"));
 		mapNavigationBar             = new Texture(Gdx.files.internal("artwork/ui/UiMap.png"));
@@ -659,6 +675,15 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		legendSwordUi.dispose();
+		ammoUi.dispose();
+		healthUi.dispose();
+		magicPearlUi.dispose();
+		rumUi.dispose();
+		woodyUi.dispose();
+		gunUi.dispose();
+		addedToInventory.dispose();
+		legendSwordUi.dispose();
 		border.dispose();
 		skullShadow.dispose();
 		gamePaused.dispose();

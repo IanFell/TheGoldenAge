@@ -35,6 +35,7 @@ import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionStumpHole;
 import store.Store;
 import tiles.Tile;
+import ui.AddedToInventory;
 import ui.BossHealthUi;
 import ui.LocationMarker;
 
@@ -255,6 +256,8 @@ public class CollisionHandler {
 			MissionLegendOfTheSevenSwords.swordsCollected++;
 			MissionLegendOfTheSevenSwords.legendSwordCollection.add(legendSword);
 			((Player) player).getInventory().addObjectToInventory(legendSword);
+			AddedToInventory.shouldRender             = true;
+			AddedToInventory.shouldDisplayLegendSword = true;
 
 			// Uncomment this to fill up inventory.
 			/*
@@ -327,6 +330,8 @@ public class CollisionHandler {
 			//MagicPearl.playCollectionSound        = true;
 			GameObjectLoader.gameObjectList.add(birdWeapon);
 			BirdWeapon.playCollectionSound          = true;
+			AddedToInventory.shouldRender           = true;
+			AddedToInventory.shouldDisplayWoody     = true;
 		}
 	}
 
@@ -464,7 +469,9 @@ public class CollisionHandler {
 		if (player.rectangle.overlaps(heart.rectangle)) {
 			heart.setHasBeenCollected(true);
 			((Player) player).setHealth(player.getHealth() + Heart.HEALTH);
-			Heart.playSound = true;
+			Heart.playSound                      = true;
+			AddedToInventory.shouldRender        = true;
+			AddedToInventory.shouldDisplayHealth = true;
 		}
 	}
 
@@ -479,6 +486,8 @@ public class CollisionHandler {
 				ammo.setHasBeenCollected(true);
 				AmmoHandler.ammoCount += AmmoHandler.ammoValue;
 				Ammo.playSound = true;
+				AddedToInventory.shouldRender       = true;
+				AddedToInventory.shouldDisplayAmmo = true;
 			} 
 		}
 	}
@@ -514,6 +523,8 @@ public class CollisionHandler {
 			rum.setHasBeenCollected(true);
 			Rum.playSound = true;
 			RumHandler.rumCount++;
+			AddedToInventory.shouldRender     = true;
+			AddedToInventory.shouldDisplayRum = true;
 		}
 	}
 

@@ -31,6 +31,7 @@ public class UserInterface {
 	private ObjectiveUi objective;
 	private AmmoUi ammoUi;
 	private UnlockUi unlockUi;
+	private AddedToInventory addedToInventory;
 
 	/**
 	 * Constructor.
@@ -44,6 +45,7 @@ public class UserInterface {
 		objective           = new ObjectiveUi();
 		ammoUi              = new AmmoUi();
 		unlockUi            = new UnlockUi();
+		addedToInventory    = new AddedToInventory();
 	}
 
 	/**
@@ -70,6 +72,8 @@ public class UserInterface {
 			if (additionalStoreItemsAreUnlocked() && UnlockUi.shouldRenderUnlock) {
 				unlockUi.renderObject(batch, imageLoader, player);
 			}
+
+			addedToInventory.render(myGame);
 		}
 	}
 
@@ -81,10 +85,15 @@ public class UserInterface {
 		return BossLoader.boss[BossHandler.APALACHICOLA].isDead();
 	}
 
-	public void updateUserInterface() {
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	public void updateUserInterface(GameObject player) {
 		objective.updateObjective();
 		if (additionalStoreItemsAreUnlocked() && UnlockUi.shouldRenderUnlock) {
 			unlockUi.updateObject();
 		}
+		addedToInventory.update(player);
 	}
 }

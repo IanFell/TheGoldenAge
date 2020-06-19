@@ -21,6 +21,7 @@ import loaders.GameObjectLoader;
 import missions.MissionRawBar;
 import screens.Screens;
 import store.Store;
+import ui.AddedToInventory;
 
 /**
  * Handles mouse input.
@@ -36,9 +37,6 @@ public class Mouse extends ComputerInput {
 	private final int PURCHASE_BUTTON_PEARL = 3;
 	private final int PURCHASE_BUTTON_AMMO  = 4;
 	private final int PURCHASE_BUTTON_NULL  = 5;
-
-	// Use this so we can't click on purchasing buttons really fast.
-	private int storeTimer = 0;
 
 	/**
 	 * Constructor.
@@ -149,6 +147,8 @@ public class Mouse extends ComputerInput {
 						Store.playSound = true;
 						// Remove loot (player has bought gun).
 						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
+						AddedToInventory.shouldRender        = true;
+						AddedToInventory.shouldDisplayHealth = true;
 						break;
 					} else {
 						Store.playerIsShortOnLootMessageShouldRender = true;
@@ -162,6 +162,8 @@ public class Mouse extends ComputerInput {
 						Store.playSound = true;
 						// Remove loot (player has bought gun).
 						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
+						AddedToInventory.shouldRender        = true;
+						AddedToInventory.shouldDisplayRum = true;
 						break;
 					} else {
 						Store.playerIsShortOnLootMessageShouldRender = true;
@@ -187,6 +189,9 @@ public class Mouse extends ComputerInput {
 							closeStore();
 							Store.playSound    = true;
 							Store.gunPurchased = true;
+
+							AddedToInventory.shouldRender     = true;
+							AddedToInventory.shouldDisplayGun = true;
 							break;
 						} else {
 							Store.playerIsShortOnLootMessageShouldRender = true;
@@ -208,6 +213,8 @@ public class Mouse extends ComputerInput {
 							Store.pearlPurchased = true;
 							// Remove loot (player has bought gun).
 							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
+							AddedToInventory.shouldRender            = true;
+							AddedToInventory.shouldDisplayMagicPearl = true;
 							break;
 						} else {
 							Store.playerIsShortOnLootMessageShouldRender = true;
@@ -223,6 +230,8 @@ public class Mouse extends ComputerInput {
 								closeStore();
 								Store.playSound = true;
 								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
+								AddedToInventory.shouldRender      = true;
+								AddedToInventory.shouldDisplayAmmo = true;
 								break;
 							} 
 						} else {
