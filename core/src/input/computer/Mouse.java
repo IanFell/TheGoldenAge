@@ -149,6 +149,7 @@ public class Mouse extends ComputerInput {
 						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
 						AddedToInventory.shouldRender        = true;
 						AddedToInventory.shouldDisplayHealth = true;
+						AddedToInventory.timer               = 0;
 						break;
 					} else {
 						Store.playerIsShortOnLootMessageShouldRender = true;
@@ -162,8 +163,9 @@ public class Mouse extends ComputerInput {
 						Store.playSound = true;
 						// Remove loot (player has bought gun).
 						player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
-						AddedToInventory.shouldRender        = true;
+						AddedToInventory.shouldRender     = true;
 						AddedToInventory.shouldDisplayRum = true;
+						AddedToInventory.timer            = 0;
 						break;
 					} else {
 						Store.playerIsShortOnLootMessageShouldRender = true;
@@ -192,6 +194,7 @@ public class Mouse extends ComputerInput {
 
 							AddedToInventory.shouldRender     = true;
 							AddedToInventory.shouldDisplayGun = true;
+							AddedToInventory.timer            = 0;
 							break;
 						} else {
 							Store.playerIsShortOnLootMessageShouldRender = true;
@@ -215,6 +218,7 @@ public class Mouse extends ComputerInput {
 							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
 							AddedToInventory.shouldRender            = true;
 							AddedToInventory.shouldDisplayMagicPearl = true;
+							AddedToInventory.timer                   = 0;
 							break;
 						} else {
 							Store.playerIsShortOnLootMessageShouldRender = true;
@@ -232,6 +236,7 @@ public class Mouse extends ComputerInput {
 								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
 								AddedToInventory.shouldRender      = true;
 								AddedToInventory.shouldDisplayAmmo = true;
+								AddedToInventory.timer             = 0;
 								break;
 							} 
 						} else {

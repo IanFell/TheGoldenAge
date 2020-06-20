@@ -7,6 +7,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.collectibles.Bird;
+import gameobjects.weapons.Gun;
+import gameobjects.weapons.LegendSword;
+import gameobjects.weapons.MagicPearl;
 import input.computer.Mouse;
 import input.controllers.LogitechF310;
 import loaders.ImageLoader;
@@ -69,6 +73,7 @@ public class InventoryUi extends Screens {
 					-camera.viewportHeight
 					);
 			renderInventoryDisplay(batch, imageLoader, inventory);
+			renderInventoryNames(batch, imageLoader, inventory);
 
 			int clickedObject = 0;
 			if (mouseIsClickingOnInventoryObject) {
@@ -160,6 +165,35 @@ public class InventoryUi extends Screens {
 				rectangle.width,
 				-rectangle.height
 				);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch            batch
+	 * @param ImageLoader            imageLoader
+	 * @param ArrayList <GameObject> inventory
+	 */
+	public void renderInventoryNames(SpriteBatch batch, ImageLoader imageLoader, ArrayList <GameObject> inventory) {
+		if (inventory.size() > 0) {
+			for (int i = 0; i < inventory.size(); i++) {
+				float xPos   = inventory.get(i).getX() - 1.5f;
+				float yPos   = inventory.get(i).getY() + 1.3f;
+				float width  = 4.0f;
+				float height = -1.0f;
+				if (inventory.get(i) instanceof LegendSword) {
+					batch.draw(imageLoader.legendSwordUi, xPos, yPos, width, height);
+				}
+				if (inventory.get(i) instanceof MagicPearl) {
+					batch.draw(imageLoader.magicPearlUi, xPos, yPos, width, height);
+				}
+				if (inventory.get(i) instanceof Gun) {
+					batch.draw(imageLoader.gunUi, xPos, yPos, width, height);
+				}
+				if (inventory.get(i) instanceof Bird) {
+					batch.draw(imageLoader.woodyUi, xPos, yPos, width, height);
+				}
+			}
+		}
 	}
 
 	/**

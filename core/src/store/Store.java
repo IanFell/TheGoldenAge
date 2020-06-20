@@ -47,9 +47,11 @@ public class Store extends TextBasedUiParent {
 	public static boolean storeIsUnlocked                   = false; 
 	public static boolean shouldDisplayEnterStoreMessage    = false;
 
-	private int itemSize   = 1;
-	private int coinSize   = 1;
-	private int numberSize = 1;
+	private int itemSize      = 1;
+	private int coinSize      = 1;
+	private int numberSize    = 1;
+	private float nameUiWidth = 4.5f;
+	private int nameUiHeight  = 1;
 
 	public static boolean playSound = false;
 
@@ -125,6 +127,7 @@ public class Store extends TextBasedUiParent {
 			float playerX = player.getX();
 			float playerY = player.getY();
 			renderItems(batch, imageLoader, playerX, playerY + 5);
+			renderItemNames(batch, imageLoader, playerX - 13, playerY + 6.3f);
 			renderCoins(batch, imageLoader, playerX, playerY);
 			renderPrices(batch, imageLoader, playerX, playerY + 1);
 
@@ -145,6 +148,61 @@ public class Store extends TextBasedUiParent {
 					playerY - 2.5f, 
 					5, 
 					-1
+					);
+		}
+	}
+	
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param float       xPos
+	 * @param float       yPos
+	 */
+	private void renderItemNames(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
+		if (heartUnlocked) {
+			batch.draw(
+					imageLoader.healthUi, 
+					xPos, 
+					yPos, 
+					nameUiWidth, 
+					-nameUiHeight
+					);
+		}
+		if (rumUnlocked) {
+			batch.draw(
+					imageLoader.rumUi, 
+					xPos + nameUiWidth + 0.2f, 
+					yPos, 
+					nameUiWidth - 0.6f, 
+					-nameUiHeight
+					);
+		}
+		if (gunUnlocked && !gunPurchased) {
+			batch.draw(
+					imageLoader.gunUi, 
+					xPos + nameUiWidth * 2 - 0.2f, 
+					yPos, 
+					nameUiWidth - 0.3f, 
+					-nameUiHeight
+					);
+		}
+		if (pearlUnlocked && !pearlPurchased) {
+			batch.draw(
+					imageLoader.magicPearlUi, 
+					xPos + nameUiWidth * 3 - 0.4f, 
+					yPos, 
+					nameUiWidth - 0.3f, 
+					-nameUiHeight
+					);
+		}
+		if (ammoUnlocked) {
+			batch.draw(
+					imageLoader.ammoUi, 
+					xPos + nameUiWidth * 4 - 0.4f, 
+					yPos, 
+					nameUiWidth - 0.3f, 
+					-nameUiHeight
 					);
 		}
 	}

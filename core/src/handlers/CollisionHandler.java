@@ -258,6 +258,7 @@ public class CollisionHandler {
 			((Player) player).getInventory().addObjectToInventory(legendSword);
 			AddedToInventory.shouldRender             = true;
 			AddedToInventory.shouldDisplayLegendSword = true;
+			AddedToInventory.timer                    = 0;
 
 			// Uncomment this to fill up inventory.
 			/*
@@ -332,6 +333,7 @@ public class CollisionHandler {
 			BirdWeapon.playCollectionSound          = true;
 			AddedToInventory.shouldRender           = true;
 			AddedToInventory.shouldDisplayWoody     = true;
+			AddedToInventory.timer                  = 0;
 		}
 	}
 
@@ -472,6 +474,7 @@ public class CollisionHandler {
 			Heart.playSound                      = true;
 			AddedToInventory.shouldRender        = true;
 			AddedToInventory.shouldDisplayHealth = true;
+			AddedToInventory.timer               = 0;
 		}
 	}
 
@@ -486,8 +489,9 @@ public class CollisionHandler {
 				ammo.setHasBeenCollected(true);
 				AmmoHandler.ammoCount += AmmoHandler.ammoValue;
 				Ammo.playSound = true;
-				AddedToInventory.shouldRender       = true;
+				AddedToInventory.shouldRender      = true;
 				AddedToInventory.shouldDisplayAmmo = true;
+				AddedToInventory.timer             = 0;
 			} 
 		}
 	}
@@ -525,6 +529,7 @@ public class CollisionHandler {
 			RumHandler.rumCount++;
 			AddedToInventory.shouldRender     = true;
 			AddedToInventory.shouldDisplayRum = true;
+			AddedToInventory.timer            = 0;
 		}
 	}
 

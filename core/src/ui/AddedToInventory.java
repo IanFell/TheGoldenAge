@@ -22,9 +22,9 @@ public class AddedToInventory extends GameObject {
 
 	public static boolean shouldRender = false;
 
-	private int timer = 0;
+	public static int timer = 0;
 
-	private final int DISPLAY_VALUE = 200;
+	private final int DISPLAY_VALUE = 50;
 
 	/**
 	 * Constructor.
