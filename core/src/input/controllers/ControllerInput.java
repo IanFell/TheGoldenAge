@@ -12,6 +12,7 @@ import helpers.GameAttributeHelper;
 import input.Input;
 import inventory.Inventory;
 import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import store.Store;
 import ui.InventoryUi;
 import ui.MapUi;
@@ -25,12 +26,13 @@ import ui.MapUi;
 public class ControllerInput extends Input {
 
 	public static int storeObjectNumber     = 0;
-	private int storeClickTimer             = 0;
-	private boolean storeDPadHasBeenClicked = false;
+
+	private final int CLICK_TIMER_MAX_VALUE = 15;
 
 	// Make sure inventory button if held down is not being hit infinite times.
 	private float clickUiTimer      = GameAttributeHelper.TIMER_START_VALUE;
-	private int inventoryClickTimer = GameAttributeHelper.TIMER_START_VALUE;
+	private int clickTimer          = GameAttributeHelper.TIMER_START_VALUE;
+	private boolean canClick        = true;
 
 	protected Controller controller;
 
@@ -104,15 +106,6 @@ public class ControllerInput extends Input {
 			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered) {
 				pollSticks(player);
 			}
-			if (Store.storeShouldBeRendered) {
-				if (storeDPadHasBeenClicked) {
-					storeClickTimer++;
-					if (storeClickTimer > 10) {
-						storeClickTimer         = 0;
-						storeDPadHasBeenClicked = false;
-					}
-				}
-			}
 			pollMainFourButtons(player, myGame);
 			pollTriggers(player);
 			pollStartSection();
@@ -160,9 +153,10 @@ public class ControllerInput extends Input {
 	 */
 	private void pollDPad(GameObject player, MyGame myGame) {
 		// Use timer so we can't change between inventory objects too quickly.
-		inventoryClickTimer++;
-		if (inventoryClickTimer > 9) {
-			inventoryClickTimer = GameAttributeHelper.TIMER_START_VALUE;
+		clickTimer++;
+		if (clickTimer > CLICK_TIMER_MAX_VALUE) {
+			clickTimer = GameAttributeHelper.TIMER_START_VALUE;
+			canClick = true;
 		}
 
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
@@ -170,27 +164,29 @@ public class ControllerInput extends Input {
 		} else if (controller.getPov(0) == BUTTON_DPAD_DOWN) {
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
 			if (Inventory.currentlySelectedInventoryObject > 0) {
-				if (inventoryClickTimer > 8) {
+				if (canClick) {
 					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
 					InventoryUi.clickedObject--;
+					canClick = false;
 				}
 			}
 			if (Store.storeShouldBeRendered) {
-				if (!storeDPadHasBeenClicked) {
+				if (canClick) {
 					selectStoreObject(myGame, GameObject.DIRECTION_LEFT);
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
 			if (Inventory.allInventoryShouldBeRendered) {
 				if (Inventory.currentlySelectedInventoryObject < 11) {
-					if (inventoryClickTimer > 8) {
+					if (canClick) {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
 						InventoryUi.clickedObject++;
+						canClick = false;
 					}
 				}
 			}
 			if (Store.storeShouldBeRendered) {
-				if (!storeDPadHasBeenClicked) {
+				if (canClick) {
 					selectStoreObject(myGame, GameObject.DIRECTION_RIGHT);
 				}
 			}
@@ -208,7 +204,8 @@ public class ControllerInput extends Input {
 		} else {
 			storeObjectNumber++;
 		}
-		storeDPadHasBeenClicked = true;
+		//storeDPadHasBeenClicked = true;
+		canClick = false;
 	}
 
 	/**
@@ -268,7 +265,18 @@ public class ControllerInput extends Input {
 					player.setDirection(Player.DIRECTION_DOWN);
 				} 
 			}
-		} else {
+		} else if (MissionStumpHole.missionIsActive) { 
+			// Stump Hole Mission uses a different player than normal since it's kind of like a mini game.
+			if (stickIsMoved(AXIS_LEFT_X)) {
+				if (controller.getAxis(AXIS_LEFT_X) < 0) {
+					MissionStumpHole.player.setX(MissionStumpHole.player.getX() - MissionStumpHole.playerDx);
+					MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_LEFT;
+				} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
+					MissionStumpHole.player.setX(MissionStumpHole.player.getX() + MissionStumpHole.playerDx);
+					MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_RIGHT;
+				}
+			}
+		}  else {
 			// Left stick.
 			if (stickIsMoved(AXIS_LEFT_X)) {
 				System.out.print("LEFT STICK X pressed \n");

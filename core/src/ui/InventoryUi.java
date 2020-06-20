@@ -77,6 +77,8 @@ public class InventoryUi extends Screens {
 					-camera.viewportHeight
 					);
 			renderInventoryDisplay(batch, imageLoader, inventory);
+			// White square that flashes when player clicks on an inventory square.
+			drawClickHover(batch, imageLoader, clickedObject, rectangle);
 			renderInventoryNames(batch, imageLoader, inventory);
 
 			if (mouseIsClickingOnInventoryObject) {
@@ -89,9 +91,6 @@ public class InventoryUi extends Screens {
 				// TODO this wasn't working correctly, so it's moved below.
 				//drawClickHover(batch, imageLoader, clickedObject, rectangle);
 			}
-
-			// White square that flashes when player clicks on an inventory square.
-			drawClickHover(batch, imageLoader, clickedObject, rectangle);
 
 			fire.setX(rectangle.x + 1.5f);
 			fire.setY(rectangle.y);
@@ -167,7 +166,7 @@ public class InventoryUi extends Screens {
 		}
 
 		batch.draw(
-				imageLoader.whiteSquare,
+				imageLoader.transparentSquare,
 				rectangle.x,
 				rectangle.y,
 				rectangle.width,

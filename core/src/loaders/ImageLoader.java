@@ -171,6 +171,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture transparentSquare;
 	public Texture gunUi;
 	public Texture magicPearlUi;
 	public Texture woodyUi;
@@ -408,6 +409,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		transparentSquare            = new Texture(Gdx.files.internal("artwork/ui/TransparentSquare.png"));
 		gunUi                        = new Texture(Gdx.files.internal("artwork/ui/Gun.png"));
 		healthUi                     = new Texture(Gdx.files.internal("artwork/ui/Health.png"));
 		woodyUi                      = new Texture(Gdx.files.internal("artwork/ui/Woody.png"));
@@ -675,6 +677,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		transparentSquare.dispose();
 		legendSwordUi.dispose();
 		ammoUi.dispose();
 		healthUi.dispose();

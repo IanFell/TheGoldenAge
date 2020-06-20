@@ -128,10 +128,10 @@ public class Store extends TextBasedUiParent {
 			float playerX = player.getX();
 			float playerY = player.getY();
 			renderItems(batch, imageLoader, playerX, playerY + 5);
+			renderSquareOverSelectedItem(batch, imageLoader, playerX - 1.4f, playerY + 6f);
 			renderItemNames(batch, imageLoader, playerX - 13, playerY + 6.3f);
 			renderCoins(batch, imageLoader, playerX, playerY);
 			renderPrices(batch, imageLoader, playerX, playerY + 1);
-			renderSquareOverSelectedItem(batch, imageLoader, playerX - 1.4f, playerY + 6f);
 
 			// Render this if player doesn't have enough loot to buy item.
 			if (playerIsShortOnLootMessageShouldRender) {
@@ -165,7 +165,7 @@ public class Store extends TextBasedUiParent {
 		switch (ControllerInput.storeObjectNumber) {
 		case SALE_HEARTS:
 			batch.draw(
-					imageLoader.whiteSquare, 
+					imageLoader.transparentSquare, 
 					xPos - 11.5f, 
 					yPos, 
 					4.3f, 
@@ -174,7 +174,7 @@ public class Store extends TextBasedUiParent {
 			break;
 		case SALE_RUM:
 			batch.draw(
-					imageLoader.whiteSquare, 
+					imageLoader.transparentSquare, 
 					xPos - 11.5f + 4.7f, 
 					yPos, 
 					3.7f, 
@@ -183,7 +183,7 @@ public class Store extends TextBasedUiParent {
 			break;
 		case SALE_GUN:
 			batch.draw(
-					imageLoader.whiteSquare, 
+					imageLoader.transparentSquare, 
 					xPos - 11.5f + 4.5f + 4.3f, 
 					yPos, 
 					4.0f, 
@@ -192,7 +192,7 @@ public class Store extends TextBasedUiParent {
 			break;
 		case SALE_PEARL:
 			batch.draw(
-					imageLoader.whiteSquare, 
+					imageLoader.transparentSquare, 
 					xPos - 11.5f + 4.5f + 4.3f + 4.3f, 
 					yPos, 
 					4.0f, 
@@ -201,7 +201,7 @@ public class Store extends TextBasedUiParent {
 			break;
 		case SALE_AMMO:
 			batch.draw(
-					imageLoader.whiteSquare, 
+					imageLoader.transparentSquare, 
 					xPos - 11.5f + 4.5f + 4.3f + 4.3f + 4.3f, 
 					yPos, 
 					4.0f, 

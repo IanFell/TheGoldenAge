@@ -6,6 +6,7 @@ import controllers.GameStateController;
 import debugging.Debugger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.nature.Stump;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
@@ -16,6 +17,7 @@ import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import screens.Screens;
 import store.Store;
 import ui.AddedToInventory;
@@ -111,6 +113,17 @@ public class LogitechF310 extends ControllerInput {
 
 				// Skip Intro.
 				Debugger.skipIntroCutscene = true;
+				
+				// Stump hole mission uses a different player than the game world player.
+				if (MissionStumpHole.missionIsActive) {
+					if (Stump.playerIsOnStump) {
+						Stump.playerIsOnStump                = false;
+						MissionStumpHole.playerIsJumping     = true;
+						MissionStumpHole.jumpSoundShouldPlay = true;
+					}
+				} else {
+					Player.isJumping = true;
+				}
 
 				/*
 				 * A button will initially select the first inventory object.
@@ -122,6 +135,7 @@ public class LogitechF310 extends ControllerInput {
 								Inventory.currentlySelectedInventoryObject, 
 								player
 								);
+						Inventory.allInventoryShouldBeRendered = false;
 					} else {
 						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
 							MissionRawBar.introHasCompleted = true;
