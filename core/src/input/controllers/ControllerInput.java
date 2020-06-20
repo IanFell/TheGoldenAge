@@ -3,6 +3,7 @@ package input.controllers;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
+import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
@@ -11,6 +12,8 @@ import helpers.GameAttributeHelper;
 import input.Input;
 import inventory.Inventory;
 import missions.MissionRawBar;
+import store.Store;
+import ui.InventoryUi;
 import ui.MapUi;
 
 /**
@@ -20,6 +23,10 @@ import ui.MapUi;
  *
  */
 public class ControllerInput extends Input {
+
+	public static int storeObjectNumber     = 0;
+	private int storeClickTimer             = 0;
+	private boolean storeDPadHasBeenClicked = false;
 
 	// Make sure inventory button if held down is not being hit infinite times.
 	private float clickUiTimer      = GameAttributeHelper.TIMER_START_VALUE;
@@ -89,17 +96,27 @@ public class ControllerInput extends Input {
 	 * Polling is broken up into sections of buttons for better readability. 
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
-	public void handleInput(GameObject player) {
+	public void handleInput(GameObject player, MyGame myGame) {
 		if (hasControllers) {  
-			// Dont poll these if UI is open.
+			// Don't poll these if UI is open.
 			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered) {
 				pollSticks(player);
 			}
-			pollMainFourButtons(player);
+			if (Store.storeShouldBeRendered) {
+				if (storeDPadHasBeenClicked) {
+					storeClickTimer++;
+					if (storeClickTimer > 10) {
+						storeClickTimer         = 0;
+						storeDPadHasBeenClicked = false;
+					}
+				}
+			}
+			pollMainFourButtons(player, myGame);
 			pollTriggers(player);
 			pollStartSection();
-			pollDPad(player);
+			pollDPad(player, myGame);
 		}
 	}
 
@@ -107,8 +124,9 @@ public class ControllerInput extends Input {
 	 * Polls controller for A, B, X, and Y.
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
-	protected void pollMainFourButtons(GameObject player) {
+	protected void pollMainFourButtons(GameObject player, MyGame myGame) {
 		if(controller.getButton(BUTTON_X)) {}
 	}
 
@@ -138,8 +156,9 @@ public class ControllerInput extends Input {
 	 * Polls controller for DPad.
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
-	private void pollDPad(GameObject player) {
+	private void pollDPad(GameObject player, MyGame myGame) {
 		// Use timer so we can't change between inventory objects too quickly.
 		inventoryClickTimer++;
 		if (inventoryClickTimer > 9) {
@@ -153,15 +172,43 @@ public class ControllerInput extends Input {
 			if (Inventory.currentlySelectedInventoryObject > 0) {
 				if (inventoryClickTimer > 8) {
 					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
+					InventoryUi.clickedObject--;
+				}
+			}
+			if (Store.storeShouldBeRendered) {
+				if (!storeDPadHasBeenClicked) {
+					selectStoreObject(myGame, GameObject.DIRECTION_LEFT);
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
-			if (Inventory.currentlySelectedInventoryObject < 11) {
-				if (inventoryClickTimer > 8) {
-					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
+			if (Inventory.allInventoryShouldBeRendered) {
+				if (Inventory.currentlySelectedInventoryObject < 11) {
+					if (inventoryClickTimer > 8) {
+						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
+						InventoryUi.clickedObject++;
+					}
+				}
+			}
+			if (Store.storeShouldBeRendered) {
+				if (!storeDPadHasBeenClicked) {
+					selectStoreObject(myGame, GameObject.DIRECTION_RIGHT);
 				}
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * @param MyGame myGame
+	 * @param int    direction
+	 */
+	private void selectStoreObject(MyGame myGame, int direction) {
+		if (direction == GameObject.DIRECTION_LEFT) {
+			storeObjectNumber--;
+		} else {
+			storeObjectNumber++;
+		}
+		storeDPadHasBeenClicked = true;
 	}
 
 	/**

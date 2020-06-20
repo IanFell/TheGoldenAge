@@ -8,6 +8,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import inventory.Inventory;
 import physics.Lighting.Fire;
+import store.Store;
 
 /**
  * 
@@ -15,6 +16,13 @@ import physics.Lighting.Fire;
  *
  */
 public class Input extends ApplicationAdapter {
+	
+	protected final int PURCHASE_BUTTON_HEART = 0;
+	protected final int PURCHASE_BUTTON_RUM   = 1;
+	protected final int PURCHASE_BUTTON_GUN   = 2;
+	protected final int PURCHASE_BUTTON_PEARL = 3;
+	protected final int PURCHASE_BUTTON_AMMO  = 4;
+	protected final int PURCHASE_BUTTON_NULL  = 5;
 
 	/**
 	 * Inventory buttons reside here because it is easier to translate mouse to world coordinates.
@@ -116,6 +124,12 @@ public class Input extends ApplicationAdapter {
 
 		purchasingButtons[5].x      = (float) xStartPositionColumnSix;
 		purchasingButtons[5].y      = (float) yStartPositionBottomRow;
+	}
+	
+	protected void closeStore() {
+		Store.storeShouldBeRendered          = false;
+		Store.playerWantsToEnterStore        = false;
+		Store.shouldDisplayEnterStoreMessage = false;
 	}
 
 	/**

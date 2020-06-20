@@ -31,24 +31,11 @@ import ui.AddedToInventory;
  */
 public class Mouse extends ComputerInput {
 
-	private final int PURCHASE_BUTTON_HEART = 0;
-	private final int PURCHASE_BUTTON_RUM   = 1;
-	private final int PURCHASE_BUTTON_GUN   = 2;
-	private final int PURCHASE_BUTTON_PEARL = 3;
-	private final int PURCHASE_BUTTON_AMMO  = 4;
-	private final int PURCHASE_BUTTON_NULL  = 5;
-
 	/**
 	 * Constructor.
 	 */
 	public Mouse() {
 		super();
-	}
-
-	private void closeStore() {
-		Store.storeShouldBeRendered          = false;
-		Store.playerWantsToEnterStore        = false;
-		Store.shouldDisplayEnterStoreMessage = false;
 	}
 
 	/**

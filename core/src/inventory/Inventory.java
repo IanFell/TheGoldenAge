@@ -35,7 +35,7 @@ public class Inventory extends Screens {
 	public static boolean allInventoryShouldBeRendered;
 	public static int currentlySelectedInventoryObject;
 	private static InventoryUi inventoryUi;
-	public static boolean inventoryHasStartedCollection = false;
+	public static boolean inventoryHasStartedCollection   = false;
 	public static boolean inventoryObjectHasBeenCollected = false;
 
 	/**
@@ -84,26 +84,30 @@ public class Inventory extends Screens {
 		float xPosition = 0;
 		float yPosition = 0;
 		int objectType  = Weapon.WEAPON_TYPE_SWORD;
-		if (inventory.get(currentlySelectedInventoryObject) instanceof Gun) {
-			objectType = Weapon.WEAPON_TYPE_GUN;
-		} else if (inventory.get(currentlySelectedInventoryObject) instanceof MagicPearl) {
-			objectType = Weapon.WEAPON_TYPE_MAGIC_PEARL;
-		} else if (inventory.get(currentlySelectedInventoryObject) instanceof BirdWeapon) {
-			objectType = Weapon.WEAPON_TYPE_BIRD;
-		}
-		if (inventory.size() >= 0) {
-			for (int i = 0; i < inventory.size(); i++) {
-				if (objectType == Weapon.WEAPON_TYPE_SWORD) {
-					updateSword(i, xPosition, yPosition, x, y);
-				} else if (objectType == Weapon.WEAPON_TYPE_GUN){
-					updateGun(i, xPosition, yPosition, x, y);
-				} else if (objectType == Weapon.WEAPON_TYPE_MAGIC_PEARL) {
-					updateMagicPearl(i, xPosition, yPosition, x, y);
-				} else if (objectType == Weapon.WEAPON_TYPE_BIRD) {
-					updateBirdWeapon(i, xPosition, yPosition, x, y);
+		if (inventory.size() > 0) {
+			if (currentlySelectedInventoryObject < inventory.size()) {
+				if (inventory.get(currentlySelectedInventoryObject) instanceof Gun) {
+					objectType = Weapon.WEAPON_TYPE_GUN;
+				} else if (inventory.get(currentlySelectedInventoryObject) instanceof MagicPearl) {
+					objectType = Weapon.WEAPON_TYPE_MAGIC_PEARL;
+				} else if (inventory.get(currentlySelectedInventoryObject) instanceof BirdWeapon) {
+					objectType = Weapon.WEAPON_TYPE_BIRD;
 				}
-				if (Inventory.allInventoryShouldBeRendered) {
-					fire.updateObject(myGame, mapHandler);
+				if (inventory.size() >= 0) {
+					for (int i = 0; i < inventory.size(); i++) {
+						if (objectType == Weapon.WEAPON_TYPE_SWORD) {
+							updateSword(i, xPosition, yPosition, x, y);
+						} else if (objectType == Weapon.WEAPON_TYPE_GUN){
+							updateGun(i, xPosition, yPosition, x, y);
+						} else if (objectType == Weapon.WEAPON_TYPE_MAGIC_PEARL) {
+							updateMagicPearl(i, xPosition, yPosition, x, y);
+						} else if (objectType == Weapon.WEAPON_TYPE_BIRD) {
+							updateBirdWeapon(i, xPosition, yPosition, x, y);
+						}
+						if (Inventory.allInventoryShouldBeRendered) {
+							fire.updateObject(myGame, mapHandler);
+						}
+					}
 				}
 			}
 		}

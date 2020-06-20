@@ -85,7 +85,7 @@ public class InputHandler {
 	private void handleControllerInput(MyGame myGame) {
 		// Handle controller input if controller exists.
 		if (controllerInput != null) {
-			controllerInput.handleInput(PlayerController.getCurrentPlayer(myGame));
+			controllerInput.handleInput(PlayerController.getCurrentPlayer(myGame), myGame);
 		}
 	}
 }

@@ -1,10 +1,24 @@
 package input.controllers;
 
+import com.mygdx.mygame.MyGame;
+
+import controllers.GameStateController;
+import debugging.Debugger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.stationarygameobjects.buildings.TradingPost;
+import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import handlers.collectibles.AmmoHandler;
+import handlers.collectibles.CollectibleHandler;
+import handlers.collectibles.RumHandler;
+import helpers.GameAttributeHelper;
 import inventory.Inventory;
+import loaders.GameObjectLoader;
 import missions.MissionRawBar;
+import screens.Screens;
+import store.Store;
+import ui.AddedToInventory;
 
 /**
  * Logitech F310 GamePad.
@@ -54,15 +68,18 @@ public class LogitechF310 extends ControllerInput {
 		if(controller.getButton(BUTTON_LT)) {} 
 		if(controller.getButton(BUTTON_RT)) {
 			Player.playerIsPerformingAttack = true;
-
 			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 				MagicPearl.isAttacking     = true;
 				MagicPearl.isMovingForward = true;
 			}
 		} else {
 			if (Inventory.inventoryIsEquipped) {
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-					MagicPearl.isMovingForward = false;
+				if (!Store.storeShouldBeRendered) {
+					if (Inventory.currentlySelectedInventoryObject < player.getInventory().inventory.size()) {
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+							MagicPearl.isMovingForward = false;
+						}
+					}
 				}
 			}
 		}
@@ -74,27 +91,155 @@ public class LogitechF310 extends ControllerInput {
 	 * @param GameObject player
 	 */
 	@Override
-	protected void pollMainFourButtons(GameObject player) {
-		super.pollMainFourButtons(player);
-		if(controller.getButton(BUTTON_Y)) {}
+	protected void pollMainFourButtons(GameObject player, MyGame myGame) {
+		super.pollMainFourButtons(player, myGame);
+		if(controller.getButton(BUTTON_Y)) {
+			// Enter store.
+			if (Store.storeIsUnlocked) {
+				Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+			}
+		}
 		if(controller.getButton(BUTTON_A)) {
-			/*
-			 * A button will initially select the first inventory object.
-			 * Player can cycle through inventory after this using D-Pad.
-			 */
-			if (Inventory.allInventoryShouldBeRendered) {
-				selectAlternateInventoryObject(
-						Inventory.currentlySelectedInventoryObject, 
-						player
-						);
-			} else {
-				if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
-					MissionRawBar.introHasCompleted = true;
-				} else {
-					// Only allow player to jump if UI is not open.
-					Player.isJumping = true;
+			switch (GameAttributeHelper.gameState) {
+			case Screens.SPLASH_SCREEN:
+				//GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				break;
+			case Screens.TITLE_SCREEN:
+				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				break;
+			case Screens.GAME_SCREEN:
+
+				// Skip Intro.
+				Debugger.skipIntroCutscene = true;
+
+				/*
+				 * A button will initially select the first inventory object.
+				 * Player can cycle through inventory after this using D-Pad.
+				 */
+				if (!Store.playerWantsToEnterStore) {
+					if (Inventory.allInventoryShouldBeRendered) {
+						selectAlternateInventoryObject(
+								Inventory.currentlySelectedInventoryObject, 
+								player
+								);
+					} else {
+						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
+							MissionRawBar.introHasCompleted = true;
+						} else {
+							// Only allow player to jump if UI is not open.
+							Player.isJumping = true;
+						}
+					}
+					break;
+				} else if (Store.storeShouldBeRendered) {
+					switch(storeObjectNumber) {
+					case PURCHASE_BUTTON_HEART:
+						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART) {
+							player.setHealth(player.getHealth() + 1);
+							closeStore();
+							Store.playSound = true;
+							// Remove loot (player has bought gun).
+							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
+							AddedToInventory.shouldRender        = true;
+							AddedToInventory.shouldDisplayHealth = true;
+							AddedToInventory.timer               = 0;
+							break;
+						} else {
+							Store.playerIsShortOnLootMessageShouldRender = true;
+						}
+						break;
+					case PURCHASE_BUTTON_RUM:
+						if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM) {
+							RumHandler.rumCount++;
+							closeStore();
+							Store.playSound = true;
+							// Remove loot (player has bought gun).
+							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
+							AddedToInventory.shouldRender     = true;
+							AddedToInventory.shouldDisplayRum = true;
+							AddedToInventory.timer            = 0;
+							break;
+						} else {
+							Store.playerIsShortOnLootMessageShouldRender = true;
+						}
+						break;
+					case PURCHASE_BUTTON_GUN:
+						if (!Store.gunPurchased) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN && TradingPost.hasBeenEntered) { 
+								GameObject gun = myGame.getGameScreen().gun;
+								((Player) player).getInventory().addObjectToInventory(gun);
+								Inventory.inventoryHasStartedCollection = true;
+								Gun.hasBeenCollected                    = true;
+								Gun.playCollectionSound                 = true;
+								GameObjectLoader.gameObjectList.add(gun);
+
+								// Remove loot (player has bought gun).
+								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_GUN);
+
+								// Close the store.
+								Store.gunHasBeenPurchasedAtStore = true;
+								TradingPost.hasBeenEntered       = true;
+								closeStore();
+								Store.playSound    = true;
+								Store.gunPurchased = true;
+
+								AddedToInventory.shouldRender     = true;
+								AddedToInventory.shouldDisplayGun = true;
+								AddedToInventory.timer            = 0;
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
+							}
+						}
+						break;
+					case 3:
+						if (!Store.pearlPurchased && Store.pearlUnlocked) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
+								GameObject pearl = myGame.gameScreen.magicPearl;
+								((Player) player).getInventory().addObjectToInventory(pearl);
+								Inventory.inventoryHasStartedCollection = true;
+								pearl.hasBeenCollected                  = true;
+								MagicPearl.playCollectionSound          = true;
+								GameObjectLoader.gameObjectList.add(pearl);
+								closeStore();
+								Store.playSound      = true;
+								Store.pearlPurchased = true;
+								// Remove loot (player has bought gun).
+								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
+								AddedToInventory.shouldRender            = true;
+								AddedToInventory.shouldDisplayMagicPearl = true;
+								AddedToInventory.timer                   = 0;
+								break;
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
+								break;
+							}
+						}
+						break;
+					case 4:
+						if (Store.ammoUnlocked) {
+							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
+								if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
+									AmmoHandler.ammoCount += AmmoHandler.ammoValue;
+									closeStore();
+									Store.playSound = true;
+									player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO);
+									AddedToInventory.shouldRender      = true;
+									AddedToInventory.shouldDisplayAmmo = true;
+									AddedToInventory.timer             = 0;
+									break;
+								} 
+							} else {
+								Store.playerIsShortOnLootMessageShouldRender = true;
+								break;
+							}
+						}
+						break;
+					case 5:
+						break;
+					}
 				}
 			}
+
 		} else {
 			if (Inventory.allInventoryShouldBeRendered) {
 				Inventory.mouseIsClickingOnInventoryObject = false;
@@ -104,6 +249,10 @@ public class LogitechF310 extends ControllerInput {
 			}
 		}
 
-		if(controller.getButton(BUTTON_B)) {} 
+		if(controller.getButton(BUTTON_B)) {
+			myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
+			RumHandler.rumCount   = 99;
+			AmmoHandler.ammoCount = 99;
+		} 
 	}
 }

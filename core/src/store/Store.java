@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import gameobjects.GameObject;
 import handlers.AnimationHandler;
+import input.controllers.ControllerInput;
 import loaders.ImageLoader;
 import missions.MissionRawBar;
 import screens.GameScreen;
@@ -130,6 +131,7 @@ public class Store extends TextBasedUiParent {
 			renderItemNames(batch, imageLoader, playerX - 13, playerY + 6.3f);
 			renderCoins(batch, imageLoader, playerX, playerY);
 			renderPrices(batch, imageLoader, playerX, playerY + 1);
+			renderSquareOverSelectedItem(batch, imageLoader, playerX - 1.4f, playerY + 6f);
 
 			// Render this if player doesn't have enough loot to buy item.
 			if (playerIsShortOnLootMessageShouldRender) {
@@ -151,7 +153,64 @@ public class Store extends TextBasedUiParent {
 					);
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param float       xPos
+	 * @param float       yPos
+	 */
+	private void renderSquareOverSelectedItem(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
+		switch (ControllerInput.storeObjectNumber) {
+		case SALE_HEARTS:
+			batch.draw(
+					imageLoader.whiteSquare, 
+					xPos - 11.5f, 
+					yPos, 
+					4.3f, 
+					-3.5f
+					);
+			break;
+		case SALE_RUM:
+			batch.draw(
+					imageLoader.whiteSquare, 
+					xPos - 11.5f + 4.7f, 
+					yPos, 
+					3.7f, 
+					-3.5f
+					);
+			break;
+		case SALE_GUN:
+			batch.draw(
+					imageLoader.whiteSquare, 
+					xPos - 11.5f + 4.5f + 4.3f, 
+					yPos, 
+					4.0f, 
+					-3.5f
+					);
+			break;
+		case SALE_PEARL:
+			batch.draw(
+					imageLoader.whiteSquare, 
+					xPos - 11.5f + 4.5f + 4.3f + 4.3f, 
+					yPos, 
+					4.0f, 
+					-3.5f
+					);
+			break;
+		case SALE_AMMO:
+			batch.draw(
+					imageLoader.whiteSquare, 
+					xPos - 11.5f + 4.5f + 4.3f + 4.3f + 4.3f, 
+					yPos, 
+					4.0f, 
+					-3.5f
+					);
+			break;
+		}
+	}
+
 	/**
 	 * 
 	 * @param SpriteBatch batch

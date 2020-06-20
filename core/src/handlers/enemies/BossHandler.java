@@ -10,6 +10,7 @@ import missions.MissionCauldron;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import missions.MissionThePoint;
+import ui.BossHealthUi;
 
 /**
  * Boss logic goes here.
@@ -29,6 +30,12 @@ public class BossHandler {
 
 	public static boolean[] shouldPlayLaughSound    = new boolean[5];
 	public static boolean[] laughSoundHasBeenPlayed = new boolean[5];
+
+	private static boolean healthMeterAlphaTradingPostSet = false;
+	private static boolean healthMeterAlphaRawBarSet = false;
+	private static boolean healthMeterAlphaStumpHoleSet = false;
+	private static boolean healthMeterAlphaCauldronSet = false;
+	private static boolean healthMeterAlphaMapSet = false;
 
 	/**
 	 * Constructor.
@@ -50,26 +57,51 @@ public class BossHandler {
 			BossLoader.boss[TRADIN_POST].updateObject(myGame, mapHandler);
 			BossLoader.boss[TRADIN_POST].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(TRADIN_POST);
+
+			if (!healthMeterAlphaTradingPostSet) {
+				BossHealthUi.alpha             = 0;
+				healthMeterAlphaTradingPostSet = true;
+			}
 		}
 		if (MissionRawBar.rawBarMissionComplete && !BossLoader.boss[APALACHICOLA].isDead()) {
 			BossLoader.boss[APALACHICOLA].updateObject(myGame, mapHandler);
 			BossLoader.boss[APALACHICOLA].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(APALACHICOLA);
+
+			if (!healthMeterAlphaRawBarSet) {
+				BossHealthUi.alpha        = 0;
+				healthMeterAlphaRawBarSet = true;
+			}
 		}
 		if (MissionStumpHole.stumpHoleMissionComplete && !BossLoader.boss[STUMP_HOLE].isDead()) {
 			BossLoader.boss[STUMP_HOLE].updateObject(myGame, mapHandler);
 			BossLoader.boss[STUMP_HOLE].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(STUMP_HOLE);
+
+			if (!healthMeterAlphaStumpHoleSet) {
+				BossHealthUi.alpha           = 0;
+				healthMeterAlphaStumpHoleSet = true;
+			}
 		}
 		if (MissionCauldron.missionCauldronComplete && !BossLoader.boss[WEWA].isDead()) {
 			BossLoader.boss[WEWA].updateObject(myGame, mapHandler);
 			BossLoader.boss[WEWA].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(WEWA);
+
+			if (!healthMeterAlphaCauldronSet) {
+				BossHealthUi.alpha          = 0;
+				healthMeterAlphaCauldronSet = true;
+			}
 		}
 		if (MissionThePoint.missionThePointComplete && !BossLoader.boss[THE_POINT].isDead()) {
 			BossLoader.boss[THE_POINT].updateObject(myGame, mapHandler);
 			BossLoader.boss[THE_POINT].setBattleMusicHasStarted(true);
 			handleBossLaughAtStartOfBattle(THE_POINT);
+
+			if (!healthMeterAlphaMapSet) {
+				BossHealthUi.alpha     = 0;
+				healthMeterAlphaMapSet = true;
+			}
 		}
 	}
 

@@ -42,8 +42,10 @@ public class SelectedInventoryUi {
 		if (player.getInventory().getInventoryIsEquipped()) {
 
 			// First, create an object and image to hold display of inventory object on in game UI.
+			if (Inventory.currentlySelectedInventoryObject < player.getInventory().inventory.size()) {
 			GameObject object = player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject);
 			Texture image     = null;
+			
 
 			// Next, find the inventory object we have selected.
 			if (object instanceof Gun) {
@@ -56,7 +58,7 @@ public class SelectedInventoryUi {
 				// This doesn't actually do anything, but we need it so we don't throw a null pointer on the image variable.
 				image = imageLoader.attackBird;
 			}
-
+			
 			// Lastly, draw correct inventory object.
 			batch.draw(
 					image,
@@ -65,6 +67,7 @@ public class SelectedInventoryUi {
 					size, 
 					-size
 					);
+			}
 		}
 	}
 }

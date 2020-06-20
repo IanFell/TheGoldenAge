@@ -26,6 +26,8 @@ import screens.Screens;
  */
 public class InventoryUi extends Screens {
 
+	public static int clickedObject = 0;
+
 	/**
 	 * Constructor.
 	 * 
@@ -60,7 +62,9 @@ public class InventoryUi extends Screens {
 			) {
 		if (inventory.size() > 0) {
 			if (inventoryIsEquipped) {
-				inventory.get(currentlySelectedInventoryObject).renderObject(batch, imageLoader);
+				if (currentlySelectedInventoryObject < inventory.size()) {
+					inventory.get(currentlySelectedInventoryObject).renderObject(batch, imageLoader);
+				}
 			}
 		}
 		if (allInventoryShouldBeRendered) {
@@ -75,7 +79,6 @@ public class InventoryUi extends Screens {
 			renderInventoryDisplay(batch, imageLoader, inventory);
 			renderInventoryNames(batch, imageLoader, inventory);
 
-			int clickedObject = 0;
 			if (mouseIsClickingOnInventoryObject) {
 				for (int i = 0; i < Mouse.inventoryButtonIsPressed.length; i++) {
 					if (Mouse.inventoryButtonIsPressed[i] || LogitechF310.inventoryButtonIsPressed[i]) {
@@ -83,8 +86,13 @@ public class InventoryUi extends Screens {
 					}
 				}
 				// White square that flashes when player clicks on an inventory square.
-				drawClickHover(batch, imageLoader, clickedObject, rectangle);
+				// TODO this wasn't working correctly, so it's moved below.
+				//drawClickHover(batch, imageLoader, clickedObject, rectangle);
 			}
+
+			// White square that flashes when player clicks on an inventory square.
+			drawClickHover(batch, imageLoader, clickedObject, rectangle);
+
 			fire.setX(rectangle.x + 1.5f);
 			fire.setY(rectangle.y);
 			fire.setWidth(rectangle.getWidth() / 6.5f);

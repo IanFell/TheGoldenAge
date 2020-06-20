@@ -42,7 +42,6 @@ public class BossHealthUi extends GameObject {
 	float fadeTimeAlpha = 0.5f;
 	public void renderBossHealthUi(MyGame myGame, Boss boss) {
 		if (shouldDisplay) {
-
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.enemyHealthMeterBlack, 
 					GameScreen.camera.position.x - width / 2, 
@@ -50,7 +49,6 @@ public class BossHealthUi extends GameObject {
 					width, 
 					height
 					);	
-
 
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alpha);
 			myGame.renderer.batch.draw(
