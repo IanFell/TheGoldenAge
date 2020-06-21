@@ -307,13 +307,14 @@ public class Player extends GameCharacter {
 		}
 
 		// Cannot perform attack too fast.
+		/*
 		if (playerIsPerformingAttack) {
 			attackTimer++;
 			if (attackTimer > 5) {
 				attackTimer              = GameAttributeHelper.TIMER_START_VALUE;
 				playerIsPerformingAttack = false;
 			}
-		}
+		}*/
 		dustEmitter.updateParticles(myGame);
 
 		if (isInWater) {

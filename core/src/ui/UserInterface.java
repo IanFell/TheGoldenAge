@@ -32,6 +32,7 @@ public class UserInterface {
 	private AmmoUi ammoUi;
 	private UnlockUi unlockUi;
 	private AddedToInventory addedToInventory;
+	private OutOfAmmo outOfAmmo;
 
 	/**
 	 * Constructor.
@@ -46,6 +47,7 @@ public class UserInterface {
 		ammoUi              = new AmmoUi();
 		unlockUi            = new UnlockUi();
 		addedToInventory    = new AddedToInventory();
+		outOfAmmo           = new OutOfAmmo();
 	}
 
 	/**
@@ -74,6 +76,7 @@ public class UserInterface {
 			}
 
 			addedToInventory.render(myGame);
+			outOfAmmo.render(myGame);
 		}
 	}
 
@@ -95,5 +98,6 @@ public class UserInterface {
 			unlockUi.updateObject();
 		}
 		addedToInventory.update(player);
+		outOfAmmo.update(player);
 	}
 }

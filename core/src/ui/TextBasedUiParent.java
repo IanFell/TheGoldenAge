@@ -60,7 +60,7 @@ public class TextBasedUiParent extends GameObject {
 				ImageHelper.getConvertedTextureForDigit(numberToDisplay, imageLoader, DIGIT_ONE), 
 				xOffset, 
 				yOffset, 
-				textSize, 
+				textSize + textSize, 
 				-textSize
 				);
 		if (numberToDisplay > 9) {
@@ -68,7 +68,7 @@ public class TextBasedUiParent extends GameObject {
 					ImageHelper.getConvertedTextureForDigit(numberToDisplay, imageLoader, DIGIT_TWO),
 					xOffset + textSize, 
 					yOffset, 
-					textSize, 
+					textSize + textSize, 
 					-textSize
 					);
 		}

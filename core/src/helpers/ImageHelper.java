@@ -6,7 +6,6 @@ import com.mygdx.mygame.MyGame;
 
 import loaders.ImageLoader;
 import screens.GameScreen;
-import store.Store;
 import ui.TextBasedUiParent;
 
 /**
@@ -82,15 +81,9 @@ public class ImageHelper {
 	 */
 	private static Texture setTextureNumber(int digit, ImageLoader imageLoader) {
 		Texture texture = imageLoader.numberBlack[0];
-		if (Store.playerWantsToEnterStore ) {
-			texture = imageLoader.numberWhite[0];
-		}
 		for (int i = 0; i < 10; i++) {
 			if (digit == i) {
 				texture = imageLoader.numberBlack[digit];
-				if (Store.playerWantsToEnterStore ) {
-					texture = imageLoader.numberWhite[digit];
-				}
 			}
 		}
 		return texture;

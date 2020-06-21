@@ -21,8 +21,8 @@ public class Pause extends GameObject {
 	public Pause(float x, float y) {
 		this.x      = x;
 		this.dy     = y;
-		this.width  = 4;
-		this.height = 1;
+		this.width  = 12;
+		this.height = 3;
 	}
 
 	/**

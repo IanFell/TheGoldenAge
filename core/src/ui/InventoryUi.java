@@ -95,7 +95,7 @@ public class InventoryUi extends Screens {
 			fire.setHeight(rectangle.getHeight() / 2);
 			fire.renderObject(batch, imageLoader);
 
-			renderUiNavigationBar(imageLoader.inventoryNavigationBar, batch);
+			//renderUiNavigationBar(imageLoader.inventoryNavigationBar, batch);
 		}
 	}
 

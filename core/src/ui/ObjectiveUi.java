@@ -32,8 +32,8 @@ public class ObjectiveUi {
 	private final int VALUE_TO_FLASH    = 7;
 	private final int RESET_TIMER_VALUE = 17;
 
-	private final int WIDTH  = 5;
-	private final int HEIGHT = 1;
+	private final int WIDTH  = 9;
+	private final int HEIGHT = 2;
 
 	private Texture objectiveTexture = null;
 
@@ -50,12 +50,36 @@ public class ObjectiveUi {
 			MyGame myGame, 
 			GameObject player
 			) {
+		// figure out if objective is a boss
+		// change width
+		// buy the gun - move to the right
+		// trading post make bigger
+		float xPos = player.getX() + 3;
+		float width = WIDTH;
+		float height = HEIGHT;
+		if (objectiveTexture != null) {
+			if (objectiveTexture.equals(imageLoader.objectiveKillTheBoss)) {
+				xPos = player.getX() + 5;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveTradinPost)) {
+				width  = width + 2;
+				height = height + 1;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveBuyTheGun)) {
+				xPos = player.getX() + 4;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveRawBar)) {
+				xPos   = player.getX() + 3;
+				width  = width + 2;
+				height = height + 1;
+			}
+		}
 		if (flashTimer > VALUE_TO_FLASH) {
 			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
 			batch.draw(
 					objectiveTexture,
-					player.getX() + 7, 
-					player.getY() - 5, 
+					xPos, 
+					player.getY() - 4, 
 					WIDTH, 
 					-HEIGHT
 					); 

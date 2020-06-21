@@ -109,10 +109,10 @@ public class Store extends TextBasedUiParent {
 		if (shouldDisplayEnterStoreMessage) {
 			batch.draw(
 					imageLoader.objectiveEnterStore, 
-					player.getX() - 5, 
+					player.getX() - 6, 
 					player.getY(), 
-					10, 
-					-2
+					12, 
+					-3
 					);
 		}
 
@@ -277,7 +277,7 @@ public class Store extends TextBasedUiParent {
 		// Heart: Cost 5.
 		if (heartUnlocked) {
 			batch.draw(
-					imageLoader.numberWhite[5], 
+					imageLoader.numberBlack[5], 
 					xPos - 10.2f, 
 					yPos, 
 					numberSize, 
@@ -287,14 +287,14 @@ public class Store extends TextBasedUiParent {
 		// Rum: Cost 15.
 		if (rumUnlocked) {
 			batch.draw(
-					imageLoader.numberWhite[1], 
+					imageLoader.numberBlack[1], 
 					xPos - 6.2f, 
 					yPos, 
 					numberSize, 
 					-numberSize
 					);
 			batch.draw(
-					imageLoader.numberWhite[5], 
+					imageLoader.numberBlack[5], 
 					xPos - 5.6f, 
 					yPos, 
 					numberSize, 
@@ -304,14 +304,14 @@ public class Store extends TextBasedUiParent {
 		// Gun: Cost 10.
 		if (gunUnlocked && !gunPurchased) {
 			batch.draw(
-					imageLoader.numberWhite[1], 
+					imageLoader.numberBlack[1], 
 					xPos - 1.8f, 
 					yPos, 
 					numberSize, 
 					-numberSize
 					);
 			batch.draw(
-					imageLoader.numberWhite[0], 
+					imageLoader.numberBlack[0], 
 					xPos - 1.0f, 
 					yPos, 
 					numberSize, 
@@ -321,14 +321,14 @@ public class Store extends TextBasedUiParent {
 		// Magic Pearl: Cost 10.
 		if (pearlUnlocked && !pearlPurchased) {
 			batch.draw(
-					imageLoader.numberWhite[1], 
+					imageLoader.numberBlack[1], 
 					xPos + 2.8f, 
 					yPos, 
 					numberSize, 
 					-numberSize
 					);
 			batch.draw(
-					imageLoader.numberWhite[0], 
+					imageLoader.numberBlack[0], 
 					xPos + 3.5f, 
 					yPos, 
 					numberSize, 
@@ -338,7 +338,7 @@ public class Store extends TextBasedUiParent {
 		// Ammo: Cost 5 (for 5 ammo).
 		if (ammoUnlocked) {
 			batch.draw(
-					imageLoader.numberWhite[5], 
+					imageLoader.numberBlack[5], 
 					xPos + 7.0f, 
 					yPos, 
 					numberSize, 
@@ -416,7 +416,7 @@ public class Store extends TextBasedUiParent {
 					batch, 
 					elapsedTime, 
 					animation, 
-					xPos - 11.2f, 
+					xPos - 11.5f, 
 					yPos, 
 					coinSize,
 					-coinSize,
@@ -430,7 +430,7 @@ public class Store extends TextBasedUiParent {
 					batch, 
 					elapsedTime, 
 					animation, 
-					xPos - 7.0f, 
+					xPos - 7.5f, 
 					yPos, 
 					coinSize,
 					-coinSize,
@@ -444,7 +444,7 @@ public class Store extends TextBasedUiParent {
 					batch, 
 					elapsedTime, 
 					animation, 
-					xPos - 2.8f, 
+					xPos - 3.3f, 
 					yPos, 
 					coinSize,
 					-coinSize,
@@ -458,7 +458,7 @@ public class Store extends TextBasedUiParent {
 					batch, 
 					elapsedTime, 
 					animation, 
-					xPos + 1.8f, 
+					xPos + 1.3f, 
 					yPos, 
 					coinSize,
 					-coinSize,
@@ -472,7 +472,7 @@ public class Store extends TextBasedUiParent {
 					batch, 
 					elapsedTime, 
 					animation, 
-					xPos + 6.0f, 
+					xPos + 5.5f, 
 					yPos, 
 					coinSize,
 					-coinSize,

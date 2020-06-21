@@ -15,6 +15,7 @@ import loaders.bulletloader.BulletLoader;
 import maps.MapHandler;
 import store.Store;
 import ui.MapUi;
+import ui.OutOfAmmo;
 
 /**
  * 
@@ -87,8 +88,12 @@ public class Gun extends Weapon {
 				AmmoHandler.ammoCount > 0 &&
 				!Store.playerWantsToEnterStore
 				) {
-			BulletLoader.createBullet(myGame);
-			Player.playerIsPerformingAttack = false;
+			if (AmmoHandler.ammoCount > 0) {
+				BulletLoader.createBullet(myGame);
+				Player.playerIsPerformingAttack = false;
+			} 
+		} else if (Player.playerIsPerformingAttack && AmmoHandler.ammoCount <= 0) {
+			OutOfAmmo.shouldRender = true;
 		}
 
 		if (Inventory.allInventoryShouldBeRendered) {

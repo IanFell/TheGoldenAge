@@ -20,6 +20,5 @@ public class PauseScreen extends Screens {
 	 */
 	public PauseScreen(MyGame myGame) {
 		super(myGame);
-		// TODO Auto-generated constructor stub
 	}
 }	
