@@ -27,7 +27,7 @@ public class SelectedInventoryUi {
 	 * @param GameObject  player
 	 */
 	public void renderSelectedInventoryUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame, GameObject player) {
-		int size = 1;
+		int size = 2;
 		// Looks better without this.
 		/*
 		batch.draw(
@@ -43,30 +43,29 @@ public class SelectedInventoryUi {
 
 			// First, create an object and image to hold display of inventory object on in game UI.
 			if (Inventory.currentlySelectedInventoryObject < player.getInventory().inventory.size()) {
-			GameObject object = player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject);
-			Texture image     = null;
-			
+				GameObject object = player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject);
+				Texture image     = null;
 
-			// Next, find the inventory object we have selected.
-			if (object instanceof Gun) {
-				image = imageLoader.gunRight;
-			} else if (object instanceof MagicPearl) {
-				image = imageLoader.magicPearl;
-			} else if (object instanceof LegendSword) {
-				image = imageLoader.legendSwordRainbow;
-			} else if (object instanceof BirdWeapon) {
-				// This doesn't actually do anything, but we need it so we don't throw a null pointer on the image variable.
-				image = imageLoader.attackBird;
-			}
-			
-			// Lastly, draw correct inventory object.
-			batch.draw(
-					image,
-					player.getX() - 12.0f,
-					player.getY() + 6.0f,
-					size, 
-					-size
-					);
+				// Next, find the inventory object we have selected.
+				if (object instanceof Gun) {
+					image = imageLoader.gunRight;
+				} else if (object instanceof MagicPearl) {
+					image = imageLoader.magicPearl;
+				} else if (object instanceof LegendSword) {
+					image = imageLoader.legendSwordRainbow;
+				} else if (object instanceof BirdWeapon) {
+					// This doesn't actually do anything, but we need it so we don't throw a null pointer on the image variable.
+					image = imageLoader.attackBird;
+				}
+
+				// Lastly, draw correct inventory object.
+				batch.draw(
+						image,
+						player.getX() - 12.5f,
+						player.getY() + 6.0f,
+						size, 
+						-size
+						);
 			}
 		}
 	}

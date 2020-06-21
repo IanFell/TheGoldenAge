@@ -12,7 +12,7 @@ import helpers.ImageHelper;
  *
  */
 public class TitleScreen extends Screens {
-	
+
 	private float alpha = 0;
 
 	/**
@@ -50,7 +50,7 @@ public class TitleScreen extends Screens {
 				);
 		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		myGame.renderer.batch.end();
-		
+
 		alpha += 0.009f;
 
 		// Skip the cutscene.

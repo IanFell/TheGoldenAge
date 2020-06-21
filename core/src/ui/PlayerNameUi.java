@@ -36,10 +36,10 @@ public class PlayerNameUi {
 			) {
 		batch.draw(
 				getCurrentPlayerNameImage(getCurrentPlayerNameToDisplayOnUi(), imageLoader), 
-				player.getX() - xOffset, 
+				player.getX() - xOffset + 0.5f, 
 				player.getY() + yOffset, 
-				5, 
-				-1
+				7, 
+				-2
 				); 
 	}
 
