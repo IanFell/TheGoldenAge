@@ -13,7 +13,8 @@ import helpers.ImageHelper;
  */
 public class TitleScreen extends Screens {
 
-	private float alpha = 0;
+	private float alpha           = 0;
+	private boolean alphaIsRising = true;
 
 	/**
 	 * 
@@ -51,9 +52,28 @@ public class TitleScreen extends Screens {
 		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		myGame.renderer.batch.end();
 
-		alpha += 0.009f;
+		handleAlpha();
 
 		// Skip the cutscene.
 		//GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+	}
+
+	/**
+	 * Handles flashing of the "press start" image.
+	 */
+	private void handleAlpha() {
+		if (alphaIsRising) {
+			if (alpha < 1) {
+				alpha += 0.05f;
+			} else {
+				alphaIsRising = false;
+			}
+		} else {
+			if (alpha > 0) {
+				alpha -= 0.05f;
+			} else {
+				alphaIsRising = true;
+			}
+		}
 	}
 }
