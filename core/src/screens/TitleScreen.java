@@ -12,6 +12,8 @@ import helpers.ImageHelper;
  *
  */
 public class TitleScreen extends Screens {
+	
+	private float alpha = 0;
 
 	/**
 	 * 
@@ -36,7 +38,20 @@ public class TitleScreen extends Screens {
 				myGame.imageLoader.titleScreen, 
 				myGame
 				);
+		if (alpha < 1) {
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alpha);
+		}
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.pressStart,
+				GameScreen.camera.position.x - 450,
+				GameScreen.camera.position.y + 200,
+				900,
+				200
+				);
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		myGame.renderer.batch.end();
+		
+		alpha += 0.009f;
 
 		// Skip the cutscene.
 		//GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
