@@ -6,6 +6,7 @@ import controllers.PlayerController;
 import helpers.ControllerInputHelper;
 import input.computer.Keyboard;
 import input.computer.Mouse;
+import input.controllers.Arcade;
 import input.controllers.ControllerInput;
 import input.controllers.LogitechF310;
 import input.controllers.PlayStation4Pad;
@@ -49,6 +50,10 @@ public class InputHandler {
 		}
 		if (controllerName.contains("Wireless Controller")) {
 			controllerInput = new PlayStation4Pad();
+		}
+		if (controllerName.contains("Twin USB Gamepad")) {
+			controllerInput = new Arcade();
+			
 		}
 
 		// If we have found a controller, initialize it.

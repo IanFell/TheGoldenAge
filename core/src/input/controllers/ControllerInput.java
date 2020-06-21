@@ -64,6 +64,14 @@ public class ControllerInput extends Input {
 	protected int BUTTON_R3;
 	protected int BUTTON_BACK;
 	protected int BUTTON_START;
+	
+	/**
+	 * Arcade buttons.
+	 */
+	protected int BUTTON_ATTACK;
+	protected int BUTTON_JUMP;
+	protected int BUTTON_UI;
+	protected int BUTTON_SELECT;
 
 	/**
 	 * Controller D-Pad.
@@ -90,6 +98,10 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
+			
+			
+			//System.out.println(Controllers.getControllers().first().);
+			//System.exit(0);
 		}
 	}
 
@@ -244,7 +256,7 @@ public class ControllerInput extends Input {
 			playerSpeed = Player.PLAYER_SPEED * turboSpeed;
 		}
 		Player.playerIsMoving = false;
-
+		
 		// RawBar Mission uses a different player than normal since it's kind of like a mini game.
 		if (MissionRawBar.phasesAreInProgress) {
 			if (stickIsMoved(AXIS_LEFT_X)) {

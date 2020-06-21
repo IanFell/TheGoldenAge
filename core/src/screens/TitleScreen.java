@@ -2,6 +2,7 @@ package screens;
 
 import com.mygdx.mygame.MyGame;
 
+import controllers.GameStateController;
 import helpers.GameAttributeHelper;
 import helpers.ImageHelper;
 
@@ -37,5 +38,6 @@ public class TitleScreen extends Screens {
 				myGame
 				);
 		myGame.renderer.batch.end();
+		GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
 	}
 }
