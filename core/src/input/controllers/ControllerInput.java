@@ -5,6 +5,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import helpers.ControllerInputHelper;
@@ -25,14 +26,14 @@ import ui.MapUi;
  */
 public class ControllerInput extends Input {
 
-	public static int storeObjectNumber     = 0;
+	public static int storeObjectNumber = 0;
 
 	private final int CLICK_TIMER_MAX_VALUE = 15;
 
 	// Make sure inventory button if held down is not being hit infinite times.
 	private float clickUiTimer      = GameAttributeHelper.TIMER_START_VALUE;
 	private int clickTimer          = GameAttributeHelper.TIMER_START_VALUE;
-	private boolean canClick        = true;
+	protected boolean canClick      = true;
 
 	protected Controller controller;
 
@@ -64,7 +65,7 @@ public class ControllerInput extends Input {
 	protected int BUTTON_R3;
 	protected int BUTTON_BACK;
 	protected int BUTTON_START;
-	
+
 	/**
 	 * Arcade buttons.
 	 */
@@ -98,10 +99,6 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
-			
-			
-			//System.out.println(Controllers.getControllers().first().);
-			//System.exit(0);
 		}
 	}
 
@@ -115,13 +112,20 @@ public class ControllerInput extends Input {
 	public void handleInput(GameObject player, MyGame myGame) {
 		if (hasControllers) {  
 			// Don't poll these if UI is open.
-			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered) {
+			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered && !CutScene.gameShouldPause) {
 				pollSticks(player);
 			}
 			pollMainFourButtons(player, myGame);
 			pollTriggers(player);
 			pollStartSection();
 			pollDPad(player, myGame);
+
+			// Use timer so we can't change between inventory objects too quickly.
+			clickTimer++;
+			if (clickTimer > CLICK_TIMER_MAX_VALUE) {
+				clickTimer = GameAttributeHelper.TIMER_START_VALUE;
+				canClick = true;
+			}
 		}
 	}
 
@@ -164,22 +168,17 @@ public class ControllerInput extends Input {
 	 * @param MyGame     myGame
 	 */
 	private void pollDPad(GameObject player, MyGame myGame) {
-		// Use timer so we can't change between inventory objects too quickly.
-		clickTimer++;
-		if (clickTimer > CLICK_TIMER_MAX_VALUE) {
-			clickTimer = GameAttributeHelper.TIMER_START_VALUE;
-			canClick = true;
-		}
-
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
 			Player.hasTorch = !Player.hasTorch;
 		} else if (controller.getPov(0) == BUTTON_DPAD_DOWN) {
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
 			if (Inventory.currentlySelectedInventoryObject > 0) {
 				if (canClick) {
-					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
-					InventoryUi.clickedObject--;
-					canClick = false;
+					if (InventoryUi.clickedObject > 0) {
+						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
+						InventoryUi.clickedObject--;
+						canClick = false;
+					}
 				}
 			}
 			if (Store.storeShouldBeRendered) {
@@ -188,9 +187,9 @@ public class ControllerInput extends Input {
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
-			if (Inventory.allInventoryShouldBeRendered) {
-				if (Inventory.currentlySelectedInventoryObject < 11) {
-					if (canClick) {
+			if (Inventory.currentlySelectedInventoryObject < 11) {
+				if (canClick) {
+					if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
 						InventoryUi.clickedObject++;
 						canClick = false;
@@ -212,11 +211,14 @@ public class ControllerInput extends Input {
 	 */
 	private void selectStoreObject(MyGame myGame, int direction) {
 		if (direction == GameObject.DIRECTION_LEFT) {
-			storeObjectNumber--;
+			if (storeObjectNumber > 0) {
+				storeObjectNumber--;
+			}
 		} else {
-			storeObjectNumber++;
+			if (storeObjectNumber < 5) {
+				storeObjectNumber++;
+			}
 		}
-		//storeDPadHasBeenClicked = true;
 		canClick = false;
 	}
 
@@ -256,7 +258,7 @@ public class ControllerInput extends Input {
 			playerSpeed = Player.PLAYER_SPEED * turboSpeed;
 		}
 		Player.playerIsMoving = false;
-		
+
 		// RawBar Mission uses a different player than normal since it's kind of like a mini game.
 		if (MissionRawBar.phasesAreInProgress) {
 			if (stickIsMoved(AXIS_LEFT_X)) {

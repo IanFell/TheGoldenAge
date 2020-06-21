@@ -2,7 +2,6 @@ package screens;
 
 import com.mygdx.mygame.MyGame;
 
-import controllers.GameStateController;
 import helpers.GameAttributeHelper;
 import helpers.ImageHelper;
 
@@ -22,7 +21,7 @@ public class TitleScreen extends Screens {
 		super(myGame);
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 	}
-	
+
 	/**
 	 * 
 	 * @param float delta
@@ -38,6 +37,8 @@ public class TitleScreen extends Screens {
 				myGame
 				);
 		myGame.renderer.batch.end();
-		GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+
+		// Skip the cutscene.
+		//GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
 	}
 }

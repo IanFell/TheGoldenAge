@@ -88,6 +88,7 @@ public class Gun extends Weapon {
 				!Store.playerWantsToEnterStore
 				) {
 			BulletLoader.createBullet(myGame);
+			Player.playerIsPerformingAttack = false;
 		}
 
 		if (Inventory.allInventoryShouldBeRendered) {

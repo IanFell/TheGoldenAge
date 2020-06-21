@@ -128,7 +128,7 @@ public class Store extends TextBasedUiParent {
 			float playerX = player.getX();
 			float playerY = player.getY();
 			renderItems(batch, imageLoader, playerX, playerY + 5);
-			renderSquareOverSelectedItem(batch, imageLoader, playerX - 1.4f, playerY + 6f);
+			renderSquareOverSelectedItem(batch, imageLoader, playerX - 1.4f, playerY + 6.2f);
 			renderItemNames(batch, imageLoader, playerX - 13, playerY + 6.3f);
 			renderCoins(batch, imageLoader, playerX, playerY);
 			renderPrices(batch, imageLoader, playerX, playerY + 1);
@@ -169,7 +169,7 @@ public class Store extends TextBasedUiParent {
 					xPos - 11.5f, 
 					yPos, 
 					4.3f, 
-					-3.5f
+					-3.8f
 					);
 			break;
 		case SALE_RUM:
@@ -178,7 +178,7 @@ public class Store extends TextBasedUiParent {
 					xPos - 11.5f + 4.7f, 
 					yPos, 
 					3.7f, 
-					-3.5f
+					-3.8f
 					);
 			break;
 		case SALE_GUN:
@@ -187,7 +187,7 @@ public class Store extends TextBasedUiParent {
 					xPos - 11.5f + 4.5f + 4.3f, 
 					yPos, 
 					4.0f, 
-					-3.5f
+					-3.8f
 					);
 			break;
 		case SALE_PEARL:
@@ -196,7 +196,7 @@ public class Store extends TextBasedUiParent {
 					xPos - 11.5f + 4.5f + 4.3f + 4.3f, 
 					yPos, 
 					4.0f, 
-					-3.5f
+					-3.8f
 					);
 			break;
 		case SALE_AMMO:
@@ -205,7 +205,7 @@ public class Store extends TextBasedUiParent {
 					xPos - 11.5f + 4.5f + 4.3f + 4.3f + 4.3f, 
 					yPos, 
 					4.0f, 
-					-3.5f
+					-3.8f
 					);
 			break;
 		}

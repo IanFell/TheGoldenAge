@@ -70,10 +70,13 @@ public class LogitechF310 extends ControllerInput {
 		//System.out.println(controller.getButton(0));
 		if(controller.getButton(BUTTON_LT)) {} 
 		if(controller.getButton(BUTTON_RT)) {
-			Player.playerIsPerformingAttack = true;
-			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-				MagicPearl.isAttacking     = true;
-				MagicPearl.isMovingForward = true;
+			if (canClick) {
+				Player.playerIsPerformingAttack = true;
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+					MagicPearl.isAttacking     = true;
+					MagicPearl.isMovingForward = true;
+				}
+				canClick = false;
 			}
 		} else {
 			if (Inventory.inventoryIsEquipped) {
@@ -98,8 +101,11 @@ public class LogitechF310 extends ControllerInput {
 		super.pollMainFourButtons(player, myGame);
 		if(controller.getButton(BUTTON_Y)) {
 			// Enter store.
-			if (Store.storeIsUnlocked) {
-				Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+			if (canClick) {
+				if (Store.storeIsUnlocked) {
+					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+					canClick = false;
+				}
 			}
 		}
 		if(controller.getButton(BUTTON_A)) {
@@ -114,7 +120,7 @@ public class LogitechF310 extends ControllerInput {
 
 				// Skip Intro.
 				Debugger.skipIntroCutscene = true;
-				
+
 				// Stump hole mission uses a different player than the game world player.
 				if (MissionStumpHole.missionIsActive) {
 					if (Stump.playerIsOnStump) {
@@ -153,7 +159,7 @@ public class LogitechF310 extends ControllerInput {
 							player.setHealth(player.getHealth() + 1);
 							closeStore();
 							Store.playSound = true;
-							// Remove loot (player has bought gun).
+							// Remove loot (player has bought health).
 							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_HEART);
 							AddedToInventory.shouldRender        = true;
 							AddedToInventory.shouldDisplayHealth = true;
@@ -168,7 +174,7 @@ public class LogitechF310 extends ControllerInput {
 							RumHandler.rumCount++;
 							closeStore();
 							Store.playSound = true;
-							// Remove loot (player has bought gun).
+							// Remove loot (player has bought rum).
 							player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_RUM);
 							AddedToInventory.shouldRender     = true;
 							AddedToInventory.shouldDisplayRum = true;
@@ -218,7 +224,7 @@ public class LogitechF310 extends ControllerInput {
 								closeStore();
 								Store.playSound      = true;
 								Store.pearlPurchased = true;
-								// Remove loot (player has bought gun).
+								// Remove loot (player has bought pearl).
 								player.updatePlayerLoot(-CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL);
 								AddedToInventory.shouldRender            = true;
 								AddedToInventory.shouldDisplayMagicPearl = true;

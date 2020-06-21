@@ -64,6 +64,7 @@ public class CutSceneHandler {
 		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer < ENEMY_CUTSCENE_DELAY) {
 			cutSceneEnemyStartTimer++;
 		}
+
 		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer == ENEMY_CUTSCENE_DELAY) {
 			cutSceneEnemy.updateCutScene(myGame);
 		}

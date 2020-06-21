@@ -87,9 +87,6 @@ public class InventoryUi extends Screens {
 						clickedObject = i;
 					}
 				}
-				// White square that flashes when player clicks on an inventory square.
-				// TODO this wasn't working correctly, so it's moved below.
-				//drawClickHover(batch, imageLoader, clickedObject, rectangle);
 			}
 
 			fire.setX(rectangle.x + 1.5f);
