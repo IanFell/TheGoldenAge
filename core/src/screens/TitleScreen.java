@@ -24,6 +24,11 @@ public class TitleScreen extends Screens {
 	private float alphaCredits           = 0.6f;
 	private boolean alphaIsRisingCredits = true;
 
+	public static int titleScreenHover  = 0;
+	public static final int PRESS_START = 0;
+	public static final int CONTROLS    = 1;
+	public static final int CREDITS     = 2;
+
 	/**
 	 * 
 	 * @param MyGame myGame
@@ -82,6 +87,26 @@ public class TitleScreen extends Screens {
 				200
 				);
 		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+		float yPos = 0;
+		switch(titleScreenHover) {
+		case PRESS_START:
+			yPos = GameScreen.camera.position.y + 200;
+			break;
+		case CONTROLS:
+			yPos = GameScreen.camera.position.y;
+			break;
+		case CREDITS:
+			yPos = GameScreen.camera.position.y - 200;
+			break;
+		}
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.transparentSquare,
+				GameScreen.camera.position.x - 450,
+				yPos,
+				900,
+				200
+				);
 
 		myGame.renderer.batch.end();
 

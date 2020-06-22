@@ -152,11 +152,9 @@ public class Boss extends Enemy {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!dead) {
-			// We need to do this instead of using super() because we need to render the boss lower so it works.
 			updateElapsedTime();
 			
 			if (isPerformingJumpAttack) {
-				System.exit(0);
 				renderEnemyShadow(batch, imageLoader, width, height / 2, jumpAttackStartY);
 			} else {
 				renderEnemyShadow(batch, imageLoader, width, height / 2, y - 1.5f);
@@ -173,6 +171,7 @@ public class Boss extends Enemy {
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_ENEMY
 					);*/
+
 			Texture texture = imageLoader.bossLeft01;
 			if (animationTimer > ANIMATION_OVER_VALUE / 2) {
 				// Switch to second image for animation.

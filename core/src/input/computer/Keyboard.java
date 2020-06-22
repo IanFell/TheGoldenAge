@@ -23,6 +23,7 @@ import missions.MissionStumpHole;
 import screens.GameScreen;
 import screens.PauseScreen;
 import screens.Screens;
+import screens.TitleScreen;
 import store.Store;
 import ui.MapUi;
 
@@ -58,7 +59,15 @@ public class Keyboard extends ComputerInput {
 
 		case Screens.TITLE_SCREEN:
 			if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ 
-				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN); 
+				if (TitleScreen.titleScreenHover == TitleScreen.PRESS_START) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN); 
+				}
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
+				TitleScreen.titleScreenHover--;
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
+				TitleScreen.titleScreenHover++;
 			}
 			break;
 
