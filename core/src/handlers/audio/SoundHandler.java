@@ -105,7 +105,7 @@ public class SoundHandler {
 			}
 
 			if (ArrowHandler.playSound && !MissionStumpHole.missionIsActive) {
-				soundLoader.arrow.play(Mixer.ARROW_VOLUME);
+				soundLoader.bow.play(Mixer.ARROW_VOLUME);
 				ArrowHandler.playSound = false;
 			}
 
@@ -115,17 +115,17 @@ public class SoundHandler {
 			}
 			if (Player.playerIsPerformingAttack) {
 				//if (attackTimer > 1) {
-					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
-						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
-					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
-						if (AmmoHandler.ammoCount > 0) {
-							soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
-						}
-					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-						soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
-					} else {
-						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
+				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
+					soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
+				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
+					if (AmmoHandler.ammoCount > 0) {
+						soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
 					}
+				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+					soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
+				} else {
+					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
+				}
 				//}
 			}
 
