@@ -8,6 +8,7 @@ import com.mygdx.mygame.MyGame;
 import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.Weapon;
 import helpers.ControllerInputHelper;
 import helpers.GameAttributeHelper;
 import input.Input;
@@ -178,6 +179,7 @@ public class ControllerInput extends Input {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
 						InventoryUi.clickedObject--;
 						canClick = false;
+						Weapon.shouldPlaySwitchWeaponAudio = true;
 					}
 				}
 			}
@@ -193,6 +195,7 @@ public class ControllerInput extends Input {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
 						InventoryUi.clickedObject++;
 						canClick = false;
+						Weapon.shouldPlaySwitchWeaponAudio = true;
 					}
 				}
 			}

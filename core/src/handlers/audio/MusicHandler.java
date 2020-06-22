@@ -105,8 +105,12 @@ public class MusicHandler {
 			musicLoader.ocean.setVolume(Mixer.CUTSCENE_MUSIC_VOLUME);
 			musicLoader.ocean.setLooping(true);
 			musicLoader.ocean.play();
+
+			musicLoader.typewriter.setVolume(Mixer.TYPEWRITER_VOLUME);
+			musicLoader.typewriter.play();
 		} else {
 			musicLoader.ocean.stop();
+			musicLoader.typewriter.stop();
 		}
 	}
 

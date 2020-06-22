@@ -15,9 +15,10 @@ public class Mixer {
 	public static final float THREE_QUARTERS_VOLUME = 0.75f;
 	public static final float MAX_VOLUME            = 1.0f;
 
-	public static final float CLICK_VOLUME = MAX_VOLUME;
-
-	public static final float PAUSE_VOLUME = QUARTER_VOLUME;
+	// Ui.
+	public static final float CLICK_VOLUME         = MAX_VOLUME;
+	public static final float PAUSE_VOLUME         = QUARTER_VOLUME;
+	public static final float SWITCH_WEAPON_VOLUME = QUARTER_VOLUME;
 
 	// When player buys something from the store.
 	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
@@ -31,6 +32,7 @@ public class Mixer {
 	public static final float BOSS_BATTLE_MUSIC_VOLUME = MEDIAN_VOLUME;
 	public static final float MISSION_MUSIC_VOLUME     = MEDIAN_VOLUME;
 	public static final float CUTSCENE_MUSIC_VOLUME    = MEDIAN_VOLUME;
+	public static final float TYPEWRITER_VOLUME        = QUARTER_VOLUME;
 
 	// Game character walking and jumping.
 	public final static float FOOTSTEPS_VOLUME     = TWELVETH_VOLUME;

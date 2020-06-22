@@ -37,7 +37,7 @@ public class BirdWeapon extends Weapon {
 	private Animation <TextureRegion> animationRight;
 
 	private int direction;
-	
+
 	private float attackTimer = 0;
 
 	/**
@@ -63,7 +63,7 @@ public class BirdWeapon extends Weapon {
 		dx                = 0;
 		dy                = 0;
 	}
-	
+
 	private void handleAttackTimer() {
 		if (birdIsAttacking) {
 			attackTimer++;
@@ -77,7 +77,6 @@ public class BirdWeapon extends Weapon {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		System.out.println("bird is attacking: " + birdIsAttacking);
 		if (MissionStumpHole.stumpHoleMissionComplete) {
 			x += dx;
 			y += dy;
@@ -89,35 +88,76 @@ public class BirdWeapon extends Weapon {
 				handleAttackTimer();
 				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 				case DIRECTION_LEFT:
-					//dx -= 1;
+					if (attackTimer < 20) {
+						dx = -movementSpeed;
+						dy = 0;
+					}
+					else if (attackTimer > 20 && attackTimer < 40) {
+						dx = movementSpeed;
+						dy = movementSpeed;
+					} 
+					else if (attackTimer > 40 && attackTimer < 60) {
+						dx = 0;
+						dy = -movementSpeed;
+					}
+					else if (attackTimer > 60 && attackTimer < 80) {
+						dx = movementSpeed;
+						dy = movementSpeed;
+					} 
 					break;
 				case DIRECTION_RIGHT:
-					//dx += 1;
-					if (attackTimer < 30) {
+					if (attackTimer < 20) {
 						dx = movementSpeed;
 						dy = 0;
 					}
-					else if (attackTimer > 30 && attackTimer < 60) {
+					else if (attackTimer > 20 && attackTimer < 40) {
 						dx = movementSpeed;
 						dy = -movementSpeed;
 					} 
-					else if (attackTimer > 60 && attackTimer < 90) {
+					else if (attackTimer > 40 && attackTimer < 60) {
 						dx = 0;
 						dy = movementSpeed;
 					}
-					else if (attackTimer > 90 && attackTimer < 120) {
+					else if (attackTimer > 60 && attackTimer < 80) {
 						dx = -movementSpeed;
 						dy = -movementSpeed;
 					} 
-					//else if (attackTimer > 120 && attackTimer < 150) {
-						 
-					//}
 					break;
 				case DIRECTION_UP:
-					//dy -= 1;
+					if (attackTimer < 20) {
+						dx = 0;
+						dy = -movementSpeed;
+					}
+					else if (attackTimer > 20 && attackTimer < 40) {
+						dx = -movementSpeed;
+						dy = -movementSpeed;
+					} 
+					else if (attackTimer > 40 && attackTimer < 60) {
+						dx = movementSpeed;
+						dy = 0;
+					}
+					else if (attackTimer > 60 && attackTimer < 80) {
+						dx = -movementSpeed;
+						dy = -movementSpeed;
+					} 
 					break;
 				case DIRECTION_DOWN:
-					//dy += 1;
+					if (attackTimer < 20) {
+						dx = 0;
+						dy = movementSpeed;
+					}
+					else if (attackTimer > 20 && attackTimer < 40) {
+						dx = movementSpeed;
+						dy = movementSpeed;
+					} 
+					else if (attackTimer > 40 && attackTimer < 60) {
+						dx = -movementSpeed;
+						dy = 0;
+					}
+					else if (attackTimer > 60 && attackTimer < 80) {
+						dx = -movementSpeed;
+						dy = -movementSpeed;
+					} 
 					break;
 				}
 				GameObject player = myGame.getGameObject(Player.PLAYER_ONE);

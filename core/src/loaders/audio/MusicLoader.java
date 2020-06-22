@@ -24,6 +24,7 @@ public class MusicLoader {
 	public Music missionLoop;
 	public Music missionIntro;
 	public Music missionWin;
+	public Music typewriter;
 
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
@@ -46,6 +47,7 @@ public class MusicLoader {
 		missionLoop           = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionLoop.ogg"));
 		missionIntro          = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionIntro.ogg"));
 		missionWin            = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionWin.ogg"));
+		typewriter            = Gdx.audio.newMusic(Gdx.files.internal("audio/Music/Typewriter.ogg"));
 	}
 
 	public void dispose() {
@@ -63,5 +65,6 @@ public class MusicLoader {
 		missionLoop.dispose();
 		missionIntro.dispose();
 		missionWin.dispose();
+		typewriter.dispose();
 	}
 }

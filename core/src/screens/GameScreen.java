@@ -515,16 +515,14 @@ public class GameScreen extends Screens {
 		}
 
 		if (player.getInventory().inventory.size() > 0) {
-			for (int i = 0; i < MissionLegendOfTheSevenSwords.legendSwords.length; i++) {
-				if (
-						player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword && 
-						Inventory.inventoryIsEquipped &&
-						!Store.playerWantsToEnterStore &&
-						!Inventory.allInventoryShouldBeRendered &&
-						!MapUi.mapShouldBeRendered
-						) {
-					MissionLegendOfTheSevenSwords.legendSwords[i].renderObject(myGame.renderer.batch, myGame.imageLoader);
-				}
+			if (
+					player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword && 
+					Inventory.inventoryIsEquipped &&
+					!Store.playerWantsToEnterStore &&
+					!Inventory.allInventoryShouldBeRendered &&
+					!MapUi.mapShouldBeRendered
+					) {
+				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject].renderObject(myGame.renderer.batch, myGame.imageLoader);
 			}
 		}
 

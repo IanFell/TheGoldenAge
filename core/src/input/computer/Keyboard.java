@@ -11,6 +11,7 @@ import debugging.Debugger;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
+import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
 import handlers.holehandler.HoleHandler;
@@ -137,6 +138,7 @@ public class Keyboard extends ComputerInput {
 					weaponElement = Inventory.currentlySelectedInventoryObject;
 					if (weaponElement < player.getInventory().inventory.size() - 1) {
 						Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject + 1;
+						Weapon.shouldPlaySwitchWeaponAudio         = true;
 					}
 				}
 			}
@@ -148,6 +150,7 @@ public class Keyboard extends ComputerInput {
 					// Don't switch if the weapon isn't available.
 					if (Inventory.currentlySelectedInventoryObject > 0) {
 						Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject - 1;
+						Weapon.shouldPlaySwitchWeaponAudio         = true;
 					}
 				}
 			}

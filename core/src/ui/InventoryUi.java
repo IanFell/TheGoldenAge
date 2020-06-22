@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.collectibles.Bird;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
@@ -182,9 +181,9 @@ public class InventoryUi extends Screens {
 		batch.draw(
 				imageLoader.transparentSquare,
 				rectangle.x,
-				rectangle.y,
+				rectangle.y - 0.35f,
 				compensatedWidth,
-				-rectangle.height - 1.3f
+				-rectangle.height + 0.2f
 				);
 	}
 

@@ -14,6 +14,7 @@ import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Weapon;
 import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.enemies.BossHandler;
@@ -183,10 +184,15 @@ public class SoundHandler {
 			}
 			if (Inventory.playClickSound) {
 				if (inventoryTimer < 1) {
-					soundLoader.clickSound.play(Mixer.CLICK_VOLUME);
+					soundLoader.switchWeapons.play(Mixer.CLICK_VOLUME);
 					Inventory.playClickSound = false;
 					inventoryTimer           = GameAttributeHelper.TIMER_START_VALUE;
 				}
+			}
+			// Player is switching weapons without the inventory UI.
+			if (Weapon.shouldPlaySwitchWeaponAudio) {
+				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
+				Weapon.shouldPlaySwitchWeaponAudio = false;
 			}
 			handleJumpingAudio(soundLoader);
 			handleLandingAudio(soundLoader);

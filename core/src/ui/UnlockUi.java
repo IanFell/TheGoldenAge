@@ -50,7 +50,7 @@ public class UnlockUi {
 			batch.draw(imageLoader.objectiveAmmoUnlocked, player.getX() - width / 2, player.getY() - 1, width, -height);
 		}
 		if (shouldRenderMagicPearlObjective) {
-			batch.draw(imageLoader.objectiveMagicPearlUnlocked, player.getX() - width / 2, player.getY() + 3, width + 1, -height - 2);
+			batch.draw(imageLoader.objectiveMagicPearlUnlocked, player.getX() - width / 2, player.getY() + 3, width + 2, -height - 2);
 		}
 	}
 
