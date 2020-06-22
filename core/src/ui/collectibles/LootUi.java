@@ -47,6 +47,8 @@ public class LootUi extends TextBasedUiParent {
 		updateElapsedTime();
 		float xPos = player.getX() - 12.5f;
 		float yPos = player.getY() - 5.0f;
+		batch.draw(imageLoader.lootAlternate, xPos, yPos, width, -height);
+		/*
 		AnimationHandler.renderAnimation(
 				batch, 
 				elapsedTime, 
@@ -57,7 +59,7 @@ public class LootUi extends TextBasedUiParent {
 				height,
 				imageLoader, 
 				AnimationHandler.OBJECT_TYPE_LOOT
-				);
+				); */
 		super.renderUi(batch, imageLoader, myGame, player, xPos + 2, yPos, player.getPlayerLoot());
 	}
 }

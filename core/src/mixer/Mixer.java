@@ -52,7 +52,7 @@ public class Mixer {
 	public static final float PICK_UP_BIRD_VOLUME  = QUARTER_VOLUME;
 
 	// Damage to player and enemies.
-	public final static float PLAYER_HIT_VOLUME  = QUARTER_VOLUME;
+	public final static float PLAYER_HIT_VOLUME  = EIGHTH_VOLUME;
 	public final static float ENEMY_DEATH_VOLUME = MAX_VOLUME;
 	public final static float BOSS_GRUNT_VOLUME  = QUARTER_VOLUME;
 

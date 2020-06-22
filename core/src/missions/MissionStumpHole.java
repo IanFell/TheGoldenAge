@@ -152,7 +152,7 @@ public class MissionStumpHole extends Mission {
 		attackBirdThree.rectangle.width  = attackBirdThree.getWidth();
 		attackBirdThree.rectangle.height = attackBirdThree.getHeight();
 
-		player          = new Rectangle(stumps.get(6).getX(), stumps.get(0).getY() - 60, playerSize, playerSize);
+		player          = new Rectangle(stumps.get(6).getX(), stumps.get(0).getY() - 60, playerSize - 0.2f, playerSize);
 		playerDx        = 0.1f;
 		playerDy        = 0;
 		playerDirection = DIRECTION_RIGHT;

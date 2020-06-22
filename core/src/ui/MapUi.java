@@ -63,7 +63,7 @@ public class MapUi extends Screens {
 					camera.viewportWidth - borderShrinkOffset * 2, 
 					-camera.viewportHeight
 					);
-			renderUiNavigationBar(imageLoader.mapNavigationBar, batch);
+			//renderUiNavigationBar(imageLoader.mapNavigationBar, batch);
 			flashPlayerChunkLocation(batch, imageLoader);
 		}
 	}

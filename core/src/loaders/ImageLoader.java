@@ -171,6 +171,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture lootAlternate;
 	public Texture outOfAmmo;
 	public Texture pressStart;
 	public Texture transparentSquare;
@@ -411,6 +412,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		lootAlternate                = new Texture(Gdx.files.internal("artwork/ui/loot2.png"));
 		outOfAmmo                    = new Texture(Gdx.files.internal("artwork/ui/OutOfAmmo.png"));
 		pressStart                   = new Texture(Gdx.files.internal("artwork/ui/PressStart.png"));
 		transparentSquare            = new Texture(Gdx.files.internal("artwork/ui/TransparentSquare.png"));
@@ -682,6 +684,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		lootAlternate.dispose();
 		outOfAmmo.dispose();
 		transparentSquare.dispose();
 		legendSwordUi.dispose();

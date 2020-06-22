@@ -28,7 +28,7 @@ public class Ammo extends GameObjectCollectible {
 		this.x           = x;
 		this.y           = y;
 		int size         = 1;
-		this.width       = size * 1.0f;
+		this.width       = size * 2.0f;
 		this.height      = size;
 		rectangle.x      = x;
 		rectangle.y      = y - 1;

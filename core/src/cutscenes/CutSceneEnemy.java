@@ -134,6 +134,12 @@ public class CutSceneEnemy extends CutScene {
 		} else if (coveringRow[COVER_ROW_NINE].getWidth() > 0) {
 			coveringRow[COVER_ROW_NINE].setX(coveringRow[COVER_ROW_NINE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_TEN].getWidth() > 0) {
+			coveringRow[COVER_ROW_TEN].setX(coveringRow[COVER_ROW_TEN].getX() + shrinkValue);
+			coveringRow[COVER_ROW_TEN].setWidth(coveringRow[COVER_ROW_TEN].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_ELEVEN].getWidth() > 0) {
+			coveringRow[COVER_ROW_ELEVEN].setX(coveringRow[COVER_ROW_ELEVEN].getX() + shrinkValue);
+			coveringRow[COVER_ROW_ELEVEN].setWidth(coveringRow[COVER_ROW_ELEVEN].getWidth() - shrinkValue);
 		} else {
 			endCutScene();
 		}

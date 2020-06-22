@@ -109,10 +109,10 @@ public class Store extends TextBasedUiParent {
 		if (shouldDisplayEnterStoreMessage) {
 			batch.draw(
 					imageLoader.objectiveEnterStore, 
-					player.getX() - 6, 
+					player.getX() - 7, 
 					player.getY(), 
-					12, 
-					-3
+					14, 
+					-4
 					);
 		}
 
@@ -412,6 +412,8 @@ public class Store extends TextBasedUiParent {
 	private void renderCoins(SpriteBatch batch, ImageLoader imageLoader, float xPos, float yPos) {
 		// Loot object for health.
 		if (heartUnlocked) {
+			batch.draw(imageLoader.lootAlternate, xPos - 11.5f, yPos, coinSize, coinSize);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -422,10 +424,12 @@ public class Store extends TextBasedUiParent {
 					-coinSize,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_LOOT
-					);
+					); */
 		}
 		// Loot object for rum.
 		if (rumUnlocked) {
+			batch.draw(imageLoader.lootAlternate, xPos - 7.5f, yPos, coinSize, coinSize);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -436,10 +440,12 @@ public class Store extends TextBasedUiParent {
 					-coinSize,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_LOOT
-					);
+					); */
 		}
 		// Loot object for gun.
 		if (gunUnlocked && !gunPurchased) {
+			batch.draw(imageLoader.lootAlternate, xPos - 3.3f, yPos, coinSize, coinSize);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -450,10 +456,12 @@ public class Store extends TextBasedUiParent {
 					-coinSize,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_LOOT
-					);
+					); */
 		}
 		// Loot object for magic pearl.
 		if (pearlUnlocked && !pearlPurchased) {
+			batch.draw(imageLoader.lootAlternate, xPos + 1.3f, yPos, coinSize, coinSize);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -464,10 +472,12 @@ public class Store extends TextBasedUiParent {
 					-coinSize,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_LOOT
-					);
+					); */
 		}
 		// Loot object for ammo.
 		if (ammoUnlocked) {
+			batch.draw(imageLoader.lootAlternate, xPos + 5.5f, yPos, coinSize, coinSize);
+			/*
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -478,7 +488,7 @@ public class Store extends TextBasedUiParent {
 					-coinSize,
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_LOOT
-					);
+					); */
 		}
 		// Loot object for last item.
 		/*

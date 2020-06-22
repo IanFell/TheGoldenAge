@@ -9,6 +9,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
+import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import handlers.CutSceneHandler;
 import handlers.MissionHandler;
@@ -33,6 +34,7 @@ import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import maps.MapLoader;
 import maps.MapRenderer;
+import missions.MissionLegendOfTheSevenSwords;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import physics.Lighting.WeaponShadowHandler;
@@ -386,12 +388,13 @@ public class GameScreen extends Screens {
 	}
 
 	private void renderObjectsOnGameScreenThatUseSpriteBatch() {
+		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 		if (shouldRender) {
 			mapRenderer.renderMapOfChunks(myGame, mapHandler);
 			lightingHandler.lightHandler.renderLighting(
 					myGame.renderer.batch, 
 					myGame.imageLoader, 
-					myGame.getGameObject(GameObject.PLAYER_ONE)
+					player
 					);
 			weatherHandler.renderStormCycle(myGame, this);
 			lightingHandler.renderShadows(myGame);
@@ -400,7 +403,7 @@ public class GameScreen extends Screens {
 			 * We are not displaying the "inventory screen" here.
 			 * This renderes weapons as player has them.
 			 */
-			myGame.getGameObject(Player.PLAYER_ONE).inventory.renderInventory(
+			player.inventory.renderInventory(
 					myGame.renderer.batch, 
 					myGame.imageLoader
 					);
@@ -459,7 +462,7 @@ public class GameScreen extends Screens {
 
 			arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
 
-			store.renderStore(myGame.renderer.batch, myGame.imageLoader, myGame.getGameObject(Player.PLAYER_ONE));
+			store.renderStore(myGame.renderer.batch, myGame.imageLoader, player);
 
 			holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
 
@@ -485,7 +488,7 @@ public class GameScreen extends Screens {
 
 			// Here we render the inventory screen if needed.
 			if (Inventory.allInventoryShouldBeRendered) {
-				myGame.getGameObject(Player.PLAYER_ONE).inventory.renderInventory(
+				player.inventory.renderInventory(
 						myGame.renderer.batch, 
 						myGame.imageLoader
 						);
@@ -510,6 +513,21 @@ public class GameScreen extends Screens {
 				}
 			}
 		}
+
+		if (player.getInventory().inventory.size() > 0) {
+			for (int i = 0; i < MissionLegendOfTheSevenSwords.legendSwords.length; i++) {
+				if (
+						player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword && 
+						Inventory.inventoryIsEquipped &&
+						!Store.playerWantsToEnterStore &&
+						!Inventory.allInventoryShouldBeRendered &&
+						!MapUi.mapShouldBeRendered
+						) {
+					MissionLegendOfTheSevenSwords.legendSwords[i].renderObject(myGame.renderer.batch, myGame.imageLoader);
+				}
+			}
+		}
+
 		cutSceneHandler.renderCutScenes(myGame);
 		shouldRender = true;
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {

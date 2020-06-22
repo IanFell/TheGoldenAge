@@ -38,10 +38,10 @@ public class Stump extends NatureObject {
 		super(x, y);
 		this.width                  = 1;
 		this.height                 = 3;
-		float hitboxOffset          = 0.3f;
+		float hitboxOffset          = 0.6f;
 		rectangle.x                 = x + hitboxOffset;
 		rectangle.y                 = y - height;
-		rectangle.width             = width - hitboxOffset;
+		rectangle.width             = width - hitboxOffset * 2;
 		rectangle.height            = height;
 		startY                      = y;
 		int movementOffsetValue     = 1;

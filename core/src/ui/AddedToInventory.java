@@ -31,7 +31,7 @@ public class AddedToInventory extends GameObject {
 	 */
 	public AddedToInventory() {
 		this.width  = 9;
-		this.height = 2;
+		this.height = 3;
 	}
 
 	/**

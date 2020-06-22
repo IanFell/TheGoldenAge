@@ -8,6 +8,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.collectibles.Bird;
+import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -109,8 +110,8 @@ public class InventoryUi extends Screens {
 	 */
 	private void drawClickHover(SpriteBatch batch, ImageLoader imageLoader, int hoverValue, Rectangle rectangle) {
 		int borderShrinkOffset = 1;
-		float yOffsetTopRow    = 6.15f;
-		float yOffsetBottomRow = 1.6f; 
+		float yOffsetTopRow    = 6f;
+		float yOffsetBottomRow = 1.3f; 
 		switch (hoverValue) {
 		case 0:
 			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f;
@@ -183,7 +184,7 @@ public class InventoryUi extends Screens {
 				rectangle.x,
 				rectangle.y,
 				compensatedWidth,
-				-rectangle.height
+				-rectangle.height - 1.3f
 				);
 	}
 
@@ -209,7 +210,7 @@ public class InventoryUi extends Screens {
 				if (inventory.get(i) instanceof Gun) {
 					batch.draw(imageLoader.gunUi, xPos, yPos, width, height);
 				}
-				if (inventory.get(i) instanceof Bird) {
+				if (inventory.get(i) instanceof BirdWeapon) {
 					batch.draw(imageLoader.woodyUi, xPos, yPos, width, height);
 				}
 			}

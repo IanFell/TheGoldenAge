@@ -89,7 +89,10 @@ public class Mouse extends ComputerInput {
 							MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
 						}
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-							BirdWeapon.birdIsAttacking = true;
+							if (!BirdWeapon.birdIsAttacking) {
+								BirdWeapon.birdIsAttacking = true;
+								BirdWeapon.playAttackSound = true;
+							}
 						}
 					}
 					handleStore(player, myGame);
@@ -101,7 +104,7 @@ public class Mouse extends ComputerInput {
 						//MagicPearl.isMovingForward = false;
 						//}
 						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-							BirdWeapon.birdIsAttacking = false;
+							//BirdWeapon.birdIsAttacking = false;
 						}
 					}
 					// Turn off store stuff.

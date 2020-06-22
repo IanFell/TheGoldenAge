@@ -50,38 +50,101 @@ public class ObjectiveUi {
 			MyGame myGame, 
 			GameObject player
 			) {
-		// figure out if objective is a boss
-		// change width
-		// buy the gun - move to the right
-		// trading post make bigger
-		float xPos = player.getX() + 3;
-		float width = WIDTH;
+		float xPos   = player.getX() + 3;
+		float yPos   = player.getY() - 4;
+		float width  = WIDTH;
 		float height = HEIGHT;
 		if (objectiveTexture != null) {
 			if (objectiveTexture.equals(imageLoader.objectiveKillTheBoss)) {
-				xPos = player.getX() + 5;
+				xPos   = player.getX() + 5.5f;
+				yPos   = yPos + 1;
+				width  = width + 2;
+				height = height + 2;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveTradinPost)) {
-				width  = width + 2;
-				height = height + 1;
+				xPos   = xPos - 2.5f;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveEnterTheTradingPost)) {
+				xPos   = xPos - 2.5f;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveBuyTheGun)) {
-				xPos = player.getX() + 4;
+				xPos = player.getX() + 5;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveRawBar)) {
-				xPos   = player.getX() + 3;
+				xPos   = player.getX() + 2;
+				yPos   = yPos + 2;
 				width  = width + 2;
-				height = height + 1;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveCollectLoot)) {
+				xPos   = player.getX() + 4;
+				yPos   = yPos + 1.5f;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveCollectOysters)) {
+				xPos   = player.getX() + 3;
+				yPos   = yPos + 1;
+				width  = width + 3;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveCollectFeathers)) {
+				xPos   = player.getX() + 3;
+				yPos   = yPos + 1;
+				width  = width + 2;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveGoToWewa)) {
+				xPos   = player.getX() + 3;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveStumpHole)) {
+				xPos = xPos - 2;
+				yPos = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveCollectTheBird)) {
+				xPos   = xPos - 2;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveFindTheCauldron)) {
+				xPos   = xPos - 2;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveCollectTheMapAtThePoint)) {
+				xPos   = xPos - 2;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
+			}
+			if (objectiveTexture.equals(imageLoader.objectiveFindTheTreasureAtBlacksIsland)) {
+				xPos   = xPos - 3;
+				yPos   = yPos + 1;
+				width  = width + 4;
+				height = height + 2;
 			}
 		}
 		if (flashTimer > VALUE_TO_FLASH) {
 			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
 			batch.draw(
 					objectiveTexture,
-					xPos, 
-					player.getY() - 4, 
-					WIDTH, 
-					-HEIGHT
+					xPos - 1, 
+					yPos - 0.5f, 
+					width, 
+					-height
 					); 
 		}
 	}

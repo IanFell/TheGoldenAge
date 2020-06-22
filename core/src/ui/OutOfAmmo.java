@@ -4,6 +4,8 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.Gun;
+import inventory.Inventory;
 
 /**
  * 
@@ -31,8 +33,9 @@ public class OutOfAmmo extends GameObject {
 	 * @param MyGame myGame
 	 */
 	public void render(MyGame myGame) {
-		if (shouldRender) {
+		if (shouldRender ) {
 			GameObject player = myGame.getGameObject(Player.PLAYER_ONE); 
+			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun)
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.outOfAmmo, 
 					player.getX() , 

@@ -38,7 +38,7 @@ public class PlayerNameUi {
 				getCurrentPlayerNameImage(getCurrentPlayerNameToDisplayOnUi(), imageLoader), 
 				player.getX() - xOffset + 0.5f, 
 				player.getY() + yOffset, 
-				8, 
+				9, 
 				-2
 				); 
 	}

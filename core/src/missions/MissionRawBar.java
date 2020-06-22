@@ -51,7 +51,7 @@ public class MissionRawBar extends Mission {
 	private double[] oysterX                   = new double[MAX_OYSTERS_SPAWNED];
 	private double[] oysterY                   = new double[MAX_OYSTERS_SPAWNED];
 	private double[] oysterSize                = new double[MAX_OYSTERS_SPAWNED];
-	private float oystersCollected             = 0; // TODO SET THIS HIGH TO SKIP MISSION FOR DEBUG
+	private float oystersCollected             = 10; // TODO SET THIS HIGH TO SKIP MISSION FOR DEBUG
 	private final float OYSTER_VALUE           = 0.2f;
 	private ArrayList<Boolean> collectedOyster = new ArrayList<Boolean>();
 
@@ -384,10 +384,10 @@ public class MissionRawBar extends Mission {
 	private void renderFailMessage(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		batch.draw(
 				imageLoader.objectiveTryAgain, 
-				myGame.getGameObject(Player.PLAYER_ONE).getX() - 2, 
+				myGame.getGameObject(Player.PLAYER_ONE).getX() - 8, 
 				myGame.getGameObject(Player.PLAYER_ONE).getY() - 0.5f,
-				4, 
-				-1
+				16, 
+				-4
 				);
 	}
 

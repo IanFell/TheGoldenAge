@@ -36,7 +36,7 @@ public class MissionLegendOfTheSevenSwords extends Mission {
 
 	public static int swordsCollected;
 
-	private GameObject[] legendSwords = new LegendSword[7];
+	public static GameObject[] legendSwords = new LegendSword[7];
 
 	/**
 	 * Collection of swords player currently obtains.

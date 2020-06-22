@@ -128,6 +128,13 @@ public class SoundHandler {
 				}
 			}
 
+			if (BirdWeapon.birdIsAttacking && BirdWeapon.playAttackSound) {
+				soundLoader.birdTwo.loop(Mixer.BIRD_STUMP_HOLE_MISSION_VOLUME);
+				BirdWeapon.playAttackSound = false;
+			} else if (!BirdWeapon.birdIsAttacking) {
+				soundLoader.birdTwo.stop();
+			}
+
 			// Collectibles.
 			if (Heart.playSound) {
 				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);

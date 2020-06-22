@@ -122,7 +122,7 @@ public class Inventory extends Screens {
 	 * @param float y
 	 */
 	private void updateBirdWeapon(int selectedInventory, float xPosition, float yPosition, float x, float y) {
-		if (!MagicPearl.isAttacking) {
+		if (!MagicPearl.isAttacking && !BirdWeapon.birdIsAttacking) {
 			switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 			case Player.DIRECTION_RIGHT:
 				xPosition = x;
@@ -226,7 +226,7 @@ public class Inventory extends Screens {
 			if (Player.isInWater) {
 				switch (Player.direction) {
 				case Player.DIRECTION_RIGHT:
-					xPosition = x + 4;
+					xPosition = x + 4.5f;
 					yPosition = y - 0.5f;
 					break;
 				case Player.DIRECTION_LEFT:
@@ -285,7 +285,7 @@ public class Inventory extends Screens {
 			} else {
 				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 				case Player.DIRECTION_RIGHT:
-					xPosition = x + 3;
+					xPosition = x + 3.6f;
 					yPosition = y - 1.5f;
 					break;
 				case Player.DIRECTION_LEFT:

@@ -74,7 +74,7 @@ public class CutSceneHandler {
 		if (MissionRawBar.rawBarMissionComplete) {
 			cutSceneFarzenplank.updateCutScene(myGame);
 		}
-		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
 			cutSceneBird.updateCutScene(myGame);
 		}
 		if (MissionCauldron.missionCauldronComplete) {
@@ -102,7 +102,7 @@ public class CutSceneHandler {
 		if (MissionRawBar.rawBarMissionComplete) {
 			cutSceneFarzenplank.renderCutScene(myGame);
 		}
-		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
+		if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()  && myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
 			cutSceneBird.renderCutScene(myGame);
 		}
 		if (MissionCauldron.missionCauldronComplete) {

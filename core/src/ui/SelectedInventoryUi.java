@@ -62,9 +62,9 @@ public class SelectedInventoryUi {
 				batch.draw(
 						image,
 						player.getX() - 12.5f,
-						player.getY() + 6.0f,
+						player.getY() + 6.7f,
 						size, 
-						-size
+						-size * 1.3f
 						);
 			}
 		}

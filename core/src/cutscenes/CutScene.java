@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
 import screens.GameScreen;
 import transitions.Transition;
@@ -154,6 +155,8 @@ public class CutScene {
 			initializeTransition = false;
 			transition.setX(GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() - 7);
 			transition.setY((GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 15);
+			Player.isJumping      = false;
+			Player.playerIsMoving = false;
 		}
 		transition.updateTransition();
 	}

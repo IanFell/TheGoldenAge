@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.AnimationHandler;
@@ -27,6 +28,8 @@ public class BirdWeapon extends Weapon {
 
 	public static boolean playCollectionSound = false;
 
+	public static boolean playAttackSound = false;
+
 	private TextureAtlas textureAtlasLeft;
 	private TextureAtlas textureAtlasRight;
 
@@ -34,6 +37,8 @@ public class BirdWeapon extends Weapon {
 	private Animation <TextureRegion> animationRight;
 
 	private int direction;
+	
+	private float attackTimer = 0;
 
 	/**
 	 * Constructor.
@@ -58,6 +63,12 @@ public class BirdWeapon extends Weapon {
 		dx                = 0;
 		dy                = 0;
 	}
+	
+	private void handleAttackTimer() {
+		if (birdIsAttacking) {
+			attackTimer++;
+		}
+	}
 
 	/**
 	 * 
@@ -66,6 +77,7 @@ public class BirdWeapon extends Weapon {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
+		System.out.println("bird is attacking: " + birdIsAttacking);
 		if (MissionStumpHole.stumpHoleMissionComplete) {
 			x += dx;
 			y += dy;
@@ -73,7 +85,57 @@ public class BirdWeapon extends Weapon {
 			rectangle.y = y;
 
 			if (birdIsAttacking) {
-				determineBirdDirection();
+				float movementSpeed = 0.2f;
+				handleAttackTimer();
+				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+				case DIRECTION_LEFT:
+					//dx -= 1;
+					break;
+				case DIRECTION_RIGHT:
+					//dx += 1;
+					if (attackTimer < 30) {
+						dx = movementSpeed;
+						dy = 0;
+					}
+					else if (attackTimer > 30 && attackTimer < 60) {
+						dx = movementSpeed;
+						dy = -movementSpeed;
+					} 
+					else if (attackTimer > 60 && attackTimer < 90) {
+						dx = 0;
+						dy = movementSpeed;
+					}
+					else if (attackTimer > 90 && attackTimer < 120) {
+						dx = -movementSpeed;
+						dy = -movementSpeed;
+					} 
+					//else if (attackTimer > 120 && attackTimer < 150) {
+						 
+					//}
+					break;
+				case DIRECTION_UP:
+					//dy -= 1;
+					break;
+				case DIRECTION_DOWN:
+					//dy += 1;
+					break;
+				}
+				GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
+				if (attackTimer > 120 && attackTimer < 150) {
+					if (x > player.getX()) {
+						dx = -movementSpeed;
+					} else if (x <= player.getX()) {
+						dx = movementSpeed;
+					}
+					if (y > player.getY()) {
+						dy = -movementSpeed;
+					} else if (y <= player.getY()) {
+						dy = movementSpeed;
+					}
+				} else if (attackTimer > 150) {
+					birdIsAttacking = false;
+					attackTimer     = 0;
+				}
 			} else {
 				dx = 0;
 				dy = 0;
@@ -86,24 +148,8 @@ public class BirdWeapon extends Weapon {
 				// Bird can kill enemies even if he is just sitting on the player's shoulder.
 				myGame.gameScreen.enemyHandler.checkProjectileCollision(myGame, this);
 				myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
+				// TODO BOSS AND GIANT IF THEY'RE NOT ALREADY IN THEIR RESPECTIVE CLASSES.
 			}
-		}
-	}
-
-	private void determineBirdDirection() {
-		switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-		case DIRECTION_LEFT:
-			dx -= 1;
-			break;
-		case DIRECTION_RIGHT:
-			dx += 1;
-			break;
-		case DIRECTION_UP:
-			dy -= 1;
-			break;
-		case DIRECTION_DOWN:
-			dy += 1;
-			break;
 		}
 	}
 
