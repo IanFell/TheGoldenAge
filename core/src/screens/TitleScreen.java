@@ -2,7 +2,6 @@ package screens;
 
 import com.mygdx.mygame.MyGame;
 
-import controllers.GameStateController;
 import helpers.GameAttributeHelper;
 import helpers.ImageHelper;
 
@@ -14,8 +13,16 @@ import helpers.ImageHelper;
  */
 public class TitleScreen extends Screens {
 
-	private float alpha           = 0;
-	private boolean alphaIsRising = true;
+	private float transparentChangeSpeed = 0.05f;
+
+	private float alphaPressStart           = 0;
+	private boolean alphaIsRisingPressStart = true;
+
+	private float alphaControls           = 0.3f;
+	private boolean alphaIsRisingControls = true;
+
+	private float alphaCredits           = 0.6f;
+	private boolean alphaIsRisingCredits = true;
 
 	/**
 	 * 
@@ -40,8 +47,8 @@ public class TitleScreen extends Screens {
 				myGame.imageLoader.titleScreen, 
 				myGame
 				);
-		if (alpha < 1) {
-			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alpha);
+		if (alphaPressStart < 1) {
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
 		}
 		myGame.renderer.batch.draw(
 				myGame.imageLoader.pressStart,
@@ -51,29 +58,85 @@ public class TitleScreen extends Screens {
 				200
 				);
 		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+		if (alphaControls < 1) {
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaControls);
+		}
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.controls,
+				GameScreen.camera.position.x - 450,
+				GameScreen.camera.position.y,
+				900,
+				200
+				);
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+		if (alphaCredits < 1) {
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaCredits);
+		}
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.credits,
+				GameScreen.camera.position.x - 450,
+				GameScreen.camera.position.y - 200,
+				900,
+				200
+				);
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
 		myGame.renderer.batch.end();
 
-		handleAlpha();
+		handleAlphaPressStart();
+		handleAlphaControls();
+		handleAlphaCredits();
 
 		// Skip the cutscene.
 		//GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
 	}
 
-	/**
-	 * Handles flashing of the "press start" image.
-	 */
-	private void handleAlpha() {
-		if (alphaIsRising) {
-			if (alpha < 1) {
-				alpha += 0.05f;
+	private void handleAlphaCredits() {
+		if (alphaIsRisingCredits) {
+			if (alphaCredits < 1) {
+				alphaCredits += transparentChangeSpeed;
 			} else {
-				alphaIsRising = false;
+				alphaIsRisingCredits = false;
 			}
 		} else {
-			if (alpha > 0) {
-				alpha -= 0.05f;
+			if (alphaCredits > 0) {
+				alphaCredits -= transparentChangeSpeed;
 			} else {
-				alphaIsRising = true;
+				alphaIsRisingCredits = true;
+			}
+		}
+	}
+
+	private void handleAlphaControls() {
+		if (alphaIsRisingControls) {
+			if (alphaControls < 1) {
+				alphaControls += transparentChangeSpeed;
+			} else {
+				alphaIsRisingControls = false;
+			}
+		} else {
+			if (alphaControls > 0) {
+				alphaControls -= transparentChangeSpeed;
+			} else {
+				alphaIsRisingControls = true;
+			}
+		}
+	}
+
+	private void handleAlphaPressStart() {
+		if (alphaIsRisingPressStart) {
+			if (alphaPressStart < 1) {
+				alphaPressStart += transparentChangeSpeed;
+			} else {
+				alphaIsRisingPressStart = false;
+			}
+		} else {
+			if (alphaPressStart > 0) {
+				alphaPressStart -= transparentChangeSpeed;
+			} else {
+				alphaIsRisingPressStart = true;
 			}
 		}
 	}
