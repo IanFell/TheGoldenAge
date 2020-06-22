@@ -11,6 +11,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
+import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
@@ -83,12 +84,15 @@ public class Mouse extends ComputerInput {
 					}
 					// Dont throw exception if inventory is not equipped.
 					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
-						Player.playerIsPerformingAttack = true;
-						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+						
+						//if (!Player.isInWater && (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword)) { 
+							Player.playerIsPerformingAttack = true;
+						//}
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 							MagicPearl.isAttacking     = !MagicPearl.isAttacking;
 							MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
 						}
-						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 							if (!BirdWeapon.birdIsAttacking) {
 								BirdWeapon.birdIsAttacking = true;
 								BirdWeapon.playAttackSound = true;

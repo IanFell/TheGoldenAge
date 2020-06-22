@@ -161,7 +161,7 @@ public class BirdWeapon extends Weapon {
 					break;
 				}
 				GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
-				if (attackTimer > 120 && attackTimer < 150) {
+				if (attackTimer > 80 && attackTimer < 100) {
 					if (x > player.getX()) {
 						dx = -movementSpeed;
 					} else if (x <= player.getX()) {
@@ -172,7 +172,7 @@ public class BirdWeapon extends Weapon {
 					} else if (y <= player.getY()) {
 						dy = movementSpeed;
 					}
-				} else if (attackTimer > 150) {
+				} else if (attackTimer > 100) {
 					birdIsAttacking = false;
 					attackTimer     = 0;
 				}

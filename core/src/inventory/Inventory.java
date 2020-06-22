@@ -11,6 +11,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
+import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Weapon;
 import loaders.ImageLoader;

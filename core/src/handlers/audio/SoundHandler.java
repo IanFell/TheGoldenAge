@@ -114,7 +114,7 @@ public class SoundHandler {
 				attackTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
 			if (Player.playerIsPerformingAttack) {
-				if (attackTimer > 1) {
+				//if (attackTimer > 1) {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
@@ -126,7 +126,7 @@ public class SoundHandler {
 					} else {
 						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 					}
-				}
+				//}
 			}
 
 			if (BirdWeapon.birdIsAttacking && BirdWeapon.playAttackSound) {
@@ -184,7 +184,7 @@ public class SoundHandler {
 			}
 			if (Inventory.playClickSound) {
 				if (inventoryTimer < 1) {
-					soundLoader.switchWeapons.play(Mixer.CLICK_VOLUME);
+					soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
 					Inventory.playClickSound = false;
 					inventoryTimer           = GameAttributeHelper.TIMER_START_VALUE;
 				}

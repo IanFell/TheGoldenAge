@@ -439,15 +439,6 @@ public class GameScreen extends Screens {
 			// This shows the border of the towns strictly for debugging.
 			//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
 
-			// Rain should be in front of all objects. 
-			for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
-				weatherHandler.rainHandler[i].renderObject(
-						myGame.renderer.batch, 
-						myGame.imageLoader,
-						this
-						);
-			}
-
 			missionHandler.renderMissions(
 					myGame.renderer.batch, 
 					myGame.imageLoader,
@@ -520,7 +511,8 @@ public class GameScreen extends Screens {
 					Inventory.inventoryIsEquipped &&
 					!Store.playerWantsToEnterStore &&
 					!Inventory.allInventoryShouldBeRendered &&
-					!MapUi.mapShouldBeRendered
+					!MapUi.mapShouldBeRendered &&
+					!Player.isInWater
 					) {
 				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject].renderObject(myGame.renderer.batch, myGame.imageLoader);
 			}
@@ -532,6 +524,14 @@ public class GameScreen extends Screens {
 			pause.renderObject(myGame.renderer.batch, myGame.imageLoader);
 		}
 
+		// Rain should be in front of all objects. 
+		for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
+			weatherHandler.rainHandler[i].renderObject(
+					myGame.renderer.batch, 
+					myGame.imageLoader,
+					this
+					);
+		}
 		weatherHandler.renderClouds(myGame);
 	}
 

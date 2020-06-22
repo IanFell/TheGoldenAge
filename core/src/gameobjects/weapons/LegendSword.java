@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import controllers.PlayerController;
 import gameobjects.gamecharacters.enemies.Boss;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.CollisionHandler;
 import handlers.enemies.GiantHandler;
@@ -61,18 +62,56 @@ public class LegendSword extends Weapon {
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
 			if (hasBeenCollected || Inventory.allInventoryShouldBeRendered) {
-				batch.draw(
-						textureRegionFull, 
-						x, 
-						y, 
-						width / 2, 
-						height / 2, 
-						width, 
-						-height, 
-						1, 
-						1, 
-						rotationAngle
-						); 
+				if (!Player.isInWater || Inventory.allInventoryShouldBeRendered) { 
+					batch.draw(
+							textureRegionFull, 
+							x, 
+							y, 
+							width / 2, 
+							height / 2, 
+							width, 
+							-height, 
+							1, 
+							1, 
+							rotationAngle
+							); 
+				} else if (Player.isInWater && Inventory.allInventoryShouldBeRendered) {
+					batch.draw(
+							textureRegionFull, 
+							x, 
+							y, 
+							width / 2, 
+							height / 2, 
+							width, 
+							-height, 
+							1, 
+							1, 
+							rotationAngle
+							); 
+				} else if (Player.isInWater && !Inventory.allInventoryShouldBeRendered) {
+					float xPos = x;
+					float yPos = y - 1;
+					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+					case DIRECTION_UP:
+						xPos = xPos + 1;
+						break;
+					case DIRECTION_DOWN:
+						xPos = xPos + 1;
+						break;
+					}
+					batch.draw(
+							textureRegionFull, 
+							xPos, 
+							yPos, 
+							width / 2, 
+							height / 2, 
+							width, 
+							-height, 
+							1, 
+							1, 
+							rotationAngle
+							); 
+				}
 			} else {
 				batch.draw(
 						textureRegionHalf, 
