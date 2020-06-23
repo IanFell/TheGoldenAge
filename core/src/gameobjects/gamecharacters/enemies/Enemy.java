@@ -55,7 +55,7 @@ public class Enemy extends GameCharacter {
 	 * How long explosion animation plays after enemy has been killed.
 	 * This is so it wont loop.
 	 */
-	public final static int MAX_DEATH_ANIMATION_VALUE = 8;
+	public final static int MAX_DEATH_ANIMATION_VALUE = 16;
 
 	public final static int DAMAGE_INFLICTED = -1;
 
