@@ -217,6 +217,7 @@ public class ControllerInput extends Input {
 			if (Store.storeShouldBeRendered) {
 				if (canClick) {
 					selectStoreObject(myGame, GameObject.DIRECTION_LEFT);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
@@ -233,6 +234,7 @@ public class ControllerInput extends Input {
 			if (Store.storeShouldBeRendered) {
 				if (canClick) {
 					selectStoreObject(myGame, GameObject.DIRECTION_RIGHT);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 		}
