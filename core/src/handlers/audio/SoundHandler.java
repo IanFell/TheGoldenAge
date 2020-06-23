@@ -43,6 +43,9 @@ import ui.LocationMarker;
  */
 public class SoundHandler {
 
+	private boolean enemyDeathSoundCanPlay = true;
+	private int enemyDeathTimer            = 0;
+
 	private final int QUICK_SAND_LOOPING_VALUE = 20;
 
 	private boolean startLandingAudio = false;
@@ -114,7 +117,6 @@ public class SoundHandler {
 				attackTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
 			if (Player.playerIsPerformingAttack) {
-				//if (attackTimer > 1) {
 				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 					soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
@@ -126,7 +128,6 @@ public class SoundHandler {
 				} else {
 					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}
-				//}
 			}
 
 			if (BirdWeapon.birdIsAttacking && BirdWeapon.playAttackSound) {
@@ -299,7 +300,9 @@ public class SoundHandler {
 			for (int k = 0; k < myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.size(); k++) {
 				// For now make the same sound for every enemy killing.  
 				if (myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).getPlaySound()) {
-					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+					if (enemyDeathSoundCanPlay) {
+						soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+					}
 					myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).setPlaySound(false);
 				}
 			}
@@ -308,16 +311,25 @@ public class SoundHandler {
 			for (int k = 0; k < myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.size(); k++) {
 				// For now make the same sound for every grunt killing.  
 				if (myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.get(k).getPlaySound()) {
-					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+					if (enemyDeathSoundCanPlay) {
+						soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+					}
 					myGame.gameScreen.gruntHandler.gruntSpawner[i].grunts.get(k).setPlaySound(false);
 				}
 			}
 		}
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			if (GiantHandler.giants[i].getPlaySound()) {
-				soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+				if (enemyDeathSoundCanPlay) {
+					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+				}
 				GiantHandler.giants[i].setPlaySound(false);
 			}
+		}
+		enemyDeathTimer++;
+		if (enemyDeathTimer > 10) {
+			enemyDeathTimer        = 0;
+			enemyDeathSoundCanPlay = true;
 		}
 	}
 

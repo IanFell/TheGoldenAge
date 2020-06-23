@@ -15,6 +15,8 @@ import input.Input;
 import inventory.Inventory;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import screens.Screens;
+import screens.TitleScreen;
 import store.Store;
 import ui.InventoryUi;
 import ui.MapUi;
@@ -170,8 +172,21 @@ public class ControllerInput extends Input {
 	 */
 	private void pollDPad(GameObject player, MyGame myGame) {
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
-			Player.hasTorch = !Player.hasTorch;
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+				if (canClick && TitleScreen.titleScreenHover > 0) {
+					TitleScreen.titleScreenHover--;
+					canClick = false;
+				}
+			} else {
+				Player.hasTorch = !Player.hasTorch;
+			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_DOWN) {
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+				if (canClick && TitleScreen.titleScreenHover < TitleScreen.titleScreenOptionsMax - 1) {
+					TitleScreen.titleScreenHover++;
+					canClick = false;
+				}
+			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
 			if (Inventory.currentlySelectedInventoryObject > 0) {
 				if (canClick) {
@@ -253,7 +268,7 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 */
 	protected void pollSticks(GameObject player) {
-		float playerSpeed = Player.PLAYER_SPEED;
+		float playerSpeed = Player.PLAYER_SPEED - 0.1f;
 		int turboSpeed    = 3;
 		if(controller.getButton(BUTTON_L3)) {
 			System.out.print("L3 button pressed \n");

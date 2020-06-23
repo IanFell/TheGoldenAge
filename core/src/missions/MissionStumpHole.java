@@ -157,7 +157,7 @@ public class MissionStumpHole extends Mission {
 		playerDy        = 0;
 		playerDirection = DIRECTION_RIGHT;
 
-		playerFeatherScore = 0;
+		playerFeatherScore = 7; // TODO PUT THIS BACK DOWN TO 0.  7 IS DEBUG WHICH SKIPS THE MISSION
 
 		locationMarker = new LocationMarker(
 				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 

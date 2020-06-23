@@ -19,6 +19,7 @@ import loaders.GameObjectLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.Screens;
+import screens.TitleScreen;
 import store.Store;
 import ui.AddedToInventory;
 
@@ -70,14 +71,12 @@ public class LogitechF310 extends ControllerInput {
 		//System.out.println(controller.getButton(0));
 		if(controller.getButton(BUTTON_LT)) {} 
 		if(controller.getButton(BUTTON_RT)) {
-			if (canClick) {
-				Player.playerIsPerformingAttack = true;
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-					MagicPearl.isAttacking     = true;
-					MagicPearl.isMovingForward = true;
-				}
-				canClick = false;
+			Player.playerIsPerformingAttack = true;
+			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+				MagicPearl.isAttacking     = true;
+				MagicPearl.isMovingForward = true;
 			}
+			canClick = false;
 		} else {
 			if (Inventory.inventoryIsEquipped) {
 				if (!Store.storeShouldBeRendered) {
@@ -88,6 +87,7 @@ public class LogitechF310 extends ControllerInput {
 					}
 				}
 			}
+			Player.playerIsPerformingAttack = false;
 		}
 	}
 
@@ -114,7 +114,9 @@ public class LogitechF310 extends ControllerInput {
 				//GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 				break;
 			case Screens.TITLE_SCREEN:
-				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				if (TitleScreen.titleScreenHover == TitleScreen.PRESS_START) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				}
 				break;
 			case Screens.GAME_SCREEN:
 
@@ -129,7 +131,9 @@ public class LogitechF310 extends ControllerInput {
 						MissionStumpHole.jumpSoundShouldPlay = true;
 					}
 				} else {
-					Player.isJumping = true;
+					if (!Inventory.allInventoryShouldBeRendered) {
+						Player.isJumping = true;
+					}
 				}
 
 				/*
