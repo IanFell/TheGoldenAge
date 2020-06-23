@@ -136,7 +136,7 @@ public class GameWorld {
 		for (int i = 0; i < QuickSandLoader.quickSand.length; i++) {
 			QuickSandLoader.quickSand[i].updateObject(myGame, mapHandler);
 		}
-		for (int i = 0; i < ShockPlantLoader.shockPlant.length; i++) {
+		for (int i = 0; i < ShockPlantLoader.AMOUNT_OF_SHOCK_PLANTS; i++) {
 			ShockPlantLoader.updateShockPlants(myGame.getGameObject(Player.PLAYER_ONE));
 		}
 

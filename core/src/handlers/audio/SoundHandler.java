@@ -345,7 +345,7 @@ public class SoundHandler {
 			}
 		}
 		enemyDeathTimer++;
-		if (enemyDeathTimer > 10) {
+		if (enemyDeathTimer > 20) {
 			enemyDeathTimer        = 0;
 			enemyDeathSoundCanPlay = true;
 		}
