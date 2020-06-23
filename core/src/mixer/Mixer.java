@@ -70,6 +70,7 @@ public class Mixer {
 	public final static float CANNON_FIRE_VOLUME = MEDIAN_VOLUME;
 	public final static float BOMB_VOLUME        = SIXTEENTH_VOLUME;
 	public final static float ARROW_VOLUME       = MEDIAN_VOLUME;
+	public static final float SPARK_VOLUME       = EIGHTH_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;

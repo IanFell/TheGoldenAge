@@ -2,6 +2,7 @@ package loaders;
 
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.gamecharacters.players.Player;
 import handlers.enemies.BossHandler;
 import loaders.bossloader.BossLoader;
 import loaders.boulderloader.BoulderLoader;
@@ -17,6 +18,7 @@ import loaders.plantloaders.PlantLoader;
 import loaders.quicksandloader.QuickSandLoader;
 import loaders.rawbarloader.RawBarLoader;
 import loaders.rockloader.RockLoader;
+import loaders.shockplantloader.ShockPlantLoader;
 import loaders.signloader.SignLoader;
 import loaders.stumploader.StumpLoader;
 import loaders.teepeeloader.TeePeeLoader;
@@ -33,6 +35,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private ShockPlantLoader shockPlantLoader;
 	private LogLoader logLoader;
 	private TreeLoader treeLoader;
 	private DrSuessTreeLoader drSuessTreeLoader;
@@ -60,6 +63,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
+		shockPlantLoader   = new ShockPlantLoader();
 		logLoader          = new LogLoader();
 		treeLoader         = new TreeLoader();
 		drSuessTreeLoader  = new DrSuessTreeLoader();
@@ -88,6 +92,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	private void loadGameWorld(MyGame myGame) {
+		shockPlantLoader.loadShockPlants();
 		logLoader.loadLogs();
 		treeLoader.loadTrees();
 		drSuessTreeLoader.loadTrees();
@@ -130,6 +135,9 @@ public class GameWorld {
 		}
 		for (int i = 0; i < QuickSandLoader.quickSand.length; i++) {
 			QuickSandLoader.quickSand[i].updateObject(myGame, mapHandler);
+		}
+		for (int i = 0; i < ShockPlantLoader.shockPlant.length; i++) {
+			ShockPlantLoader.updateShockPlants(myGame.getGameObject(Player.PLAYER_ONE));
 		}
 
 		if (!MissionStumpHole.missionIsActive) {

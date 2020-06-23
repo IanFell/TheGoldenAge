@@ -14,6 +14,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.QuickSand;
 import gameobjects.nature.hole.Hole;
+import gameobjects.nature.shockplant.ShockPlant;
 import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
@@ -663,6 +664,20 @@ public class CollisionHandler {
 			HoleHandler.playSound      = true;
 			// Move player away from hole so he's not constantly hitting it, triggering the audio.
 			player.setY(player.getY() + 1);
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param ShockPlant shockPlant
+	 */
+	public static void checkIfPlayerHasCollidedWithShockPlant(GameObject player, ShockPlant shockPlant) {
+		if (player.rectangle.overlaps(shockPlant.rectangle)) {
+			player.setHealth(player.getHealth() - 0.1f);
+			player.setPlaySound(true);
+			((Player) player).setBouncingBack(true);
+			ShockPlant.playSparkAudio = true;
 		}
 	}
 }

@@ -35,6 +35,7 @@ public class ImageLoader {
 	public Texture[] townSigns = new Texture[7];
 
 	// Nature Objects.
+	public Texture[] shockPlants = new Texture[8];
 	public Texture bubble;
 	public Texture tunnel;
 	public Texture hole;
@@ -269,23 +270,31 @@ public class ImageLoader {
 		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
-		bubble        = new Texture(Gdx.files.internal("artwork/nature/Bubble.png"));
-		tunnel        = new Texture(Gdx.files.internal("artwork/nature/TunnelMovement.png"));
-		hole          = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
-		rock 		  = new Texture(Gdx.files.internal("artwork/nature/Rock.png"));
-		logs          = new Texture(Gdx.files.internal("artwork/nature/Logs.png"));
-		palmTreeThree = new Texture(Gdx.files.internal("artwork/nature/PalmTreeOneAlternate_April2020.png"));
-		palmTree      = new Texture(Gdx.files.internal("artwork/nature/PalmTreeOne_April2020.png"));
-		plant         = new Texture(Gdx.files.internal("artwork/nature/PlantApril2020.png"));
-		drSuessTree   = new Texture(Gdx.files.internal("artwork/nature/DrSuessTree2020.png"));
-		light         = new Texture(Gdx.files.internal("artwork/nature/Lighting.png"));
-		rain 		  = new Texture(Gdx.files.internal("artwork/nature/Rain.png"));
-		shadow        = new Texture(Gdx.files.internal("artwork/nature/Shadow.png"));
-		cloud         = new Texture(Gdx.files.internal("artwork/nature/Cloud.png"));
-		stump         = new Texture(Gdx.files.internal("artwork/nature/Stump.png"));
-		sky           = new Texture(Gdx.files.internal("artwork/nature/Sky.png"));
-		feather       = new Texture(Gdx.files.internal("artwork/nature/Feather.png"));
-		quickSand     = new Texture(Gdx.files.internal("artwork/nature/QuickSand.png"));
+		shockPlants[0] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant1.png"));
+		shockPlants[1] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant2.png"));
+		shockPlants[2] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant3.png"));
+		shockPlants[3] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant4.png"));
+		shockPlants[4] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant5.png"));
+		shockPlants[5] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant6.png"));
+		shockPlants[6] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant7.png"));
+		shockPlants[7] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant8.png"));
+		bubble         = new Texture(Gdx.files.internal("artwork/nature/Bubble.png"));
+		tunnel         = new Texture(Gdx.files.internal("artwork/nature/TunnelMovement.png"));
+		hole           = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
+		rock 		   = new Texture(Gdx.files.internal("artwork/nature/Rock.png"));
+		logs           = new Texture(Gdx.files.internal("artwork/nature/Logs.png"));
+		palmTreeThree  = new Texture(Gdx.files.internal("artwork/nature/PalmTreeOneAlternate_April2020.png"));
+		palmTree       = new Texture(Gdx.files.internal("artwork/nature/PalmTreeOne_April2020.png"));
+		plant          = new Texture(Gdx.files.internal("artwork/nature/PlantApril2020.png"));
+		drSuessTree    = new Texture(Gdx.files.internal("artwork/nature/DrSuessTree2020.png"));
+		light          = new Texture(Gdx.files.internal("artwork/nature/Lighting.png"));
+		rain 		   = new Texture(Gdx.files.internal("artwork/nature/Rain.png"));
+		shadow         = new Texture(Gdx.files.internal("artwork/nature/Shadow.png"));
+		cloud          = new Texture(Gdx.files.internal("artwork/nature/Cloud.png"));
+		stump          = new Texture(Gdx.files.internal("artwork/nature/Stump.png"));
+		sky            = new Texture(Gdx.files.internal("artwork/nature/Sky.png"));
+		feather        = new Texture(Gdx.files.internal("artwork/nature/Feather.png"));
+		quickSand      = new Texture(Gdx.files.internal("artwork/nature/QuickSand.png")); 
 
 		// Weapon Objects.
 		magicPearl            = new Texture(Gdx.files.internal("artwork/weapons/oyster/MagicPearl.png"));

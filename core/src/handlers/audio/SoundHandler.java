@@ -11,6 +11,7 @@ import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
+import gameobjects.nature.shockplant.ShockPlant;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
@@ -203,6 +204,11 @@ public class SoundHandler {
 			if (Weapon.shouldPlaySwitchWeaponAudio) {
 				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
 				Weapon.shouldPlaySwitchWeaponAudio = false;
+			}
+			
+			if (ShockPlant.playSparkAudio) {
+				soundLoader.spark.play(Mixer.SPARK_VOLUME);
+				ShockPlant.playSparkAudio = false;
 			}
 
 			if (!CutScene.gameShouldPause) {
