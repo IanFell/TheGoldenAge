@@ -2,6 +2,7 @@ package handlers.audio;
 
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
@@ -63,6 +64,13 @@ public class SoundHandler {
 	 * @param MyGame      myGame
 	 */
 	public void handleSound(SoundLoader soundLoader, MyGame myGame) {
+		if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+			// Player is switching options on the title screen.  Just use this audio since it sounds good and already in the game.
+			if (Weapon.shouldPlaySwitchWeaponAudio) {
+				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
+				Weapon.shouldPlaySwitchWeaponAudio = false;
+			}
+		}
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
 			if (LegendSword.playSound) {
 				soundLoader.pickUpSwordSound.play(Mixer.PICK_UP_SWORD_VOLUME);
@@ -116,7 +124,7 @@ public class SoundHandler {
 			if (attackTimer > 2) {
 				attackTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
-			if (Player.playerIsPerformingAttack) {
+			if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause) {
 				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 					soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
@@ -128,6 +136,7 @@ public class SoundHandler {
 				} else {
 					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}
+				//Player.playerIsPerformingAttack = false;
 			}
 
 			if (BirdWeapon.birdIsAttacking && BirdWeapon.playAttackSound) {
@@ -195,9 +204,12 @@ public class SoundHandler {
 				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
 				Weapon.shouldPlaySwitchWeaponAudio = false;
 			}
-			handleJumpingAudio(soundLoader);
-			handleLandingAudio(soundLoader);
-			handleQuickSandAudio(soundLoader);
+
+			if (!CutScene.gameShouldPause) {
+				handleJumpingAudio(soundLoader);
+				handleLandingAudio(soundLoader);
+				handleQuickSandAudio(soundLoader);
+			}
 
 			if (LocationMarker.playSound) {
 				soundLoader.locationMarkerSound.play(Mixer.LOCATION_MARKER_HIT_VOLUME);

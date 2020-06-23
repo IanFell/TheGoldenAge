@@ -344,7 +344,7 @@ public class CollisionHandler {
 	 */
 	public static void checkIfWeaponHasCollidedWithEnemy(Enemy enemy, Weapon weapon) {
 		if (weapon instanceof LegendSword) {
-			if (Player.playerIsPerformingAttack && Inventory.inventoryIsEquipped) {
+			if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
 				// Checking if dead is false keeps the sound from playing repeatedly.
 				if (enemy.rectangle.overlaps(weapon.rectangle) && !enemy.isDead()) {
 					handleEnemyDeath(enemy);

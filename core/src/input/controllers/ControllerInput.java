@@ -29,6 +29,9 @@ import ui.MapUi;
  */
 public class ControllerInput extends Input {
 
+	private boolean canPressTrigger = true;
+	private int triggerTimer        = 0;
+
 	public static int storeObjectNumber = 0;
 
 	private final int CLICK_TIMER_MAX_VALUE = 15;
@@ -120,7 +123,10 @@ public class ControllerInput extends Input {
 			}
 			pollMainFourButtons(player, myGame);
 			pollTriggers(player);
+			//if (canPressTrigger) {
 			pollStartSection();
+			//canPressTrigger = false;
+			//	}
 			pollDPad(player, myGame);
 
 			// Use timer so we can't change between inventory objects too quickly.
@@ -129,6 +135,14 @@ public class ControllerInput extends Input {
 				clickTimer = GameAttributeHelper.TIMER_START_VALUE;
 				canClick = true;
 			}
+
+			if (!canPressTrigger) {
+				triggerTimer++;
+			}
+			if (triggerTimer > 1) {
+				triggerTimer    = 0;
+				canPressTrigger = true;
+			} 
 		}
 	}
 
@@ -175,7 +189,8 @@ public class ControllerInput extends Input {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
 				if (canClick && TitleScreen.titleScreenHover > 0) {
 					TitleScreen.titleScreenHover--;
-					canClick = false;
+					canClick                           = false;
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			} else {
 				Player.hasTorch = !Player.hasTorch;
@@ -184,7 +199,8 @@ public class ControllerInput extends Input {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
 				if (canClick && TitleScreen.titleScreenHover < TitleScreen.titleScreenOptionsMax - 1) {
 					TitleScreen.titleScreenHover++;
-					canClick = false;
+					canClick                           = false;
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
@@ -348,25 +364,27 @@ public class ControllerInput extends Input {
 	 * Polls controller for start, back/select buttons.
 	 */
 	protected void pollStartSection() {
-		if(controller.getButton(BUTTON_BACK)) {
-			System.out.print("BACK button pressed \n");
-		}
-		if(controller.getButton(BUTTON_START)) {
-			// If we press start and UI is open, close it.
-			if (clickUiTimer < 1) {
-				Inventory.playClickSound = true;
-				if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
-					Inventory.allInventoryShouldBeRendered = false;
-					MapUi.mapShouldBeRendered              = false;
-				} else {
-					// If we press start and UI is not open, open inventory screen.
-					// We can navigate through inventory screen by pressing RB.
-					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-				}
+		if (!CutScene.gameShouldPause) {
+			if(controller.getButton(BUTTON_BACK)) {
+				System.out.print("BACK button pressed \n");
 			}
-			clickUiTimer++;
-			if (clickUiTimer > 5) {
-				clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+			if(controller.getButton(BUTTON_START)) {
+				// If we press start and UI is open, close it.
+				if (clickUiTimer < 1) {
+					Inventory.playClickSound = true;
+					if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
+						Inventory.allInventoryShouldBeRendered = false;
+						MapUi.mapShouldBeRendered              = false;
+					} else {
+						// If we press start and UI is not open, open inventory screen.
+						// We can navigate through inventory screen by pressing RB.
+						Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+					}
+				}
+				clickUiTimer++;
+				if (clickUiTimer > 5) {
+					clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+				}
 			}
 		}
 	}

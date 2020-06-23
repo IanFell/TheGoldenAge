@@ -263,6 +263,7 @@ public class Inventory extends Screens {
 					break;
 				}
 			}
+			Player.playerIsPerformingAttack = false;
 		} else {
 			if (Player.isInWater) {
 				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {

@@ -28,7 +28,7 @@ public class TitleScreen extends Screens {
 	public static final int PRESS_START = 0;
 	public static final int CONTROLS    = 1;
 	public static final int CREDITS     = 2;
-	
+
 	public static int titleScreenOptionsMax = 3;
 
 	/**

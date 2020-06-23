@@ -67,11 +67,15 @@ public class LogitechF310 extends ControllerInput {
 	 */
 	@Override
 	protected void pollTriggers(GameObject player) {
+
 		super.pollTriggers(player);
 		//System.out.println(controller.getButton(0));
 		if(controller.getButton(BUTTON_LT)) {} 
+
 		if(controller.getButton(BUTTON_RT)) {
-			Player.playerIsPerformingAttack = true;
+			if (canClick) {
+				Player.playerIsPerformingAttack = true;
+			}
 			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 				MagicPearl.isAttacking     = true;
 				MagicPearl.isMovingForward = true;
@@ -87,8 +91,10 @@ public class LogitechF310 extends ControllerInput {
 					}
 				}
 			}
-			Player.playerIsPerformingAttack = false;
+			//Player.playerIsPerformingAttack = false;
 		}
+		//canPressTrigger = false;
+		//}
 	}
 
 	/**
