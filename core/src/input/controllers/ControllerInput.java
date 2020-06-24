@@ -18,8 +18,10 @@ import missions.MissionStumpHole;
 import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
+import ui.ControlsUi;
 import ui.InventoryUi;
 import ui.MapUi;
+import ui.UserInterface;
 
 /**
  * Parent class for all GamePads.
@@ -31,6 +33,9 @@ public class ControllerInput extends Input {
 
 	private boolean canPressTrigger = true;
 	private int triggerTimer        = 0;
+
+	private boolean canSelectDifferentOption = true;
+	private int selectOptionTimer            = 0;
 
 	public static int storeObjectNumber = 0;
 
@@ -96,6 +101,9 @@ public class ControllerInput extends Input {
 	protected int AXIS_RIGHT_X; // -1 is left | +1 is right
 	protected int AXIS_RIGHT_Y; // -1 is up | +1 is down
 
+	private boolean canPollTriggers  = true;
+	private int pollTriggerTimer     = 0;
+
 	/**
 	 * If a controller is found, set the name.
 	 */
@@ -105,6 +113,45 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
+		}
+	}
+
+	private void handleTriggerPollTimer() {
+		if (!canPollTriggers) {
+			pollTriggerTimer++;
+			if (pollTriggerTimer > 30) {
+				pollTriggerTimer = 0;
+				canPollTriggers = true;
+			}
+		}
+	}
+
+	private void handleClickTimer() {
+		// Use timer so we can't change between inventory objects too quickly.
+		clickTimer++;
+		if (clickTimer > CLICK_TIMER_MAX_VALUE) {
+			clickTimer = GameAttributeHelper.TIMER_START_VALUE;
+			canClick = true;
+		}
+	}
+
+	private void handleTriggerTimer() {
+		if (!canPressTrigger) {
+			triggerTimer++;
+		}
+		if (triggerTimer > 1) {
+			triggerTimer    = 0;
+			canPressTrigger = true;
+		} 
+	}
+
+	private void handleOptionTimer() {
+		if (!canSelectDifferentOption) {
+			selectOptionTimer++;
+			if (selectOptionTimer > 20) {
+				selectOptionTimer = 0;
+				canSelectDifferentOption = true;
+			}
 		}
 	}
 
@@ -123,26 +170,12 @@ public class ControllerInput extends Input {
 			}
 			pollMainFourButtons(player, myGame);
 			pollTriggers(player);
-			//if (canPressTrigger) {
 			pollStartSection();
-			//canPressTrigger = false;
-			//	}
 			pollDPad(player, myGame);
-
-			// Use timer so we can't change between inventory objects too quickly.
-			clickTimer++;
-			if (clickTimer > CLICK_TIMER_MAX_VALUE) {
-				clickTimer = GameAttributeHelper.TIMER_START_VALUE;
-				canClick = true;
-			}
-
-			if (!canPressTrigger) {
-				triggerTimer++;
-			}
-			if (triggerTimer > 1) {
-				triggerTimer    = 0;
-				canPressTrigger = true;
-			} 
+			handleClickTimer();
+			handleTriggerPollTimer();
+			handleTriggerTimer();
+			handleOptionTimer();
 		}
 	}
 
@@ -164,17 +197,38 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 */
 	protected void pollTriggers(GameObject player) {
-		if(controller.getButton(BUTTON_LB)) {
-			if (MapUi.mapShouldBeRendered) {
-				MapUi.mapShouldBeRendered              = !MapUi.mapShouldBeRendered;
-				Inventory.allInventoryShouldBeRendered = true;
+		if (canClick) {
+			if(controller.getButton(BUTTON_LB)) {
+				if (UserInterface.userInterfaceOption > 0) {
+					Weapon.shouldPlaySwitchWeaponAudio = true;
+					if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+						UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
+						MapUi.mapShouldBeRendered              = false;
+						ControlsUi.controlsShouldBeRendered    = false;
+					}
+					else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
+						UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+						MapUi.mapShouldBeRendered              = true;
+						ControlsUi.controlsShouldBeRendered    = false;
+					} 
+				}
 			}
-		}
-		if(controller.getButton(BUTTON_RB)) {
-			if (Inventory.allInventoryShouldBeRendered) {
-				Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-				MapUi.mapShouldBeRendered              = true;
+			if(controller.getButton(BUTTON_RB)) {
+				if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
+					Weapon.shouldPlaySwitchWeaponAudio = true;
+					if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+						UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
+						MapUi.mapShouldBeRendered              = false;
+						ControlsUi.controlsShouldBeRendered    = true;
+					}
+					else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
+						UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+						MapUi.mapShouldBeRendered              = true;
+						ControlsUi.controlsShouldBeRendered    = false;
+					} 
+				}
 			}
+			canClick = false;
 		}
 	}
 
@@ -187,20 +241,24 @@ public class ControllerInput extends Input {
 	private void pollDPad(GameObject player, MyGame myGame) {
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
-				if (canClick && TitleScreen.titleScreenHover > 0) {
-					TitleScreen.titleScreenHover--;
-					canClick                           = false;
-					Weapon.shouldPlaySwitchWeaponAudio = true;
+				if (canSelectDifferentOption) {
+					if (TitleScreen.titleScreenHover > 0) {
+						TitleScreen.titleScreenHover--;
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						canSelectDifferentOption           = false;
+					}
 				}
 			} else {
 				Player.hasTorch = !Player.hasTorch;
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_DOWN) {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
-				if (canClick && TitleScreen.titleScreenHover < TitleScreen.titleScreenOptionsMax - 1) {
-					TitleScreen.titleScreenHover++;
-					canClick                           = false;
-					Weapon.shouldPlaySwitchWeaponAudio = true;
+				if (canSelectDifferentOption) {
+					if (TitleScreen.titleScreenHover < TitleScreen.titleScreenOptionsMax - 1) {
+						TitleScreen.titleScreenHover++;
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						canSelectDifferentOption           = false;
+					}
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
@@ -209,7 +267,7 @@ public class ControllerInput extends Input {
 					if (InventoryUi.clickedObject > 0) {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
 						InventoryUi.clickedObject--;
-						canClick = false;
+						canClick                           = false;
 						Weapon.shouldPlaySwitchWeaponAudio = true;
 					}
 				}
@@ -226,7 +284,7 @@ public class ControllerInput extends Input {
 					if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
 						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
 						InventoryUi.clickedObject++;
-						canClick = false;
+						canClick                           = false;
 						Weapon.shouldPlaySwitchWeaponAudio = true;
 					}
 				}

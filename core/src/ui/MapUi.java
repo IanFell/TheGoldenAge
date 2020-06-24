@@ -57,9 +57,16 @@ public class MapUi extends Screens {
 	public void renderWorldMapUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (mapShouldBeRendered) {
 			batch.draw(
+					imageLoader.blackSquare,
+					camera.position.x - getViewportWidth() / denominatorOffset,
+					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+					camera.viewportWidth, 
+					-camera.viewportHeight
+					);
+			batch.draw(
 					imageLoader.worldMapFake,
 					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
-					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight + 0.5f,
+					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
 					camera.viewportWidth - borderShrinkOffset * 2, 
 					-camera.viewportHeight
 					);

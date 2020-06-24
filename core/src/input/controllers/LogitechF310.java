@@ -10,6 +10,7 @@ import gameobjects.nature.Stump;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
 import handlers.collectibles.RumHandler;
@@ -69,7 +70,7 @@ public class LogitechF310 extends ControllerInput {
 	protected void pollTriggers(GameObject player) {
 
 		super.pollTriggers(player);
-		//System.out.println(controller.getButton(0));
+
 		if(controller.getButton(BUTTON_LT)) {} 
 
 		if(controller.getButton(BUTTON_RT)) {
@@ -119,9 +120,11 @@ public class LogitechF310 extends ControllerInput {
 			case Screens.TITLE_SCREEN:
 				if (TitleScreen.titleScreenHover == TitleScreen.PRESS_START) {
 					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
-				if (TitleScreen.titleScreenHover == TitleScreen.CONTROLS) {
+				else if (TitleScreen.titleScreenHover == TitleScreen.CONTROLS) {
 					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true; 
 				}
 				break;
 			case Screens.GAME_SCREEN:
@@ -284,6 +287,7 @@ public class LogitechF310 extends ControllerInput {
 			switch (GameAttributeHelper.gameState) {
 			case Screens.CONTROLS_SCREEN:
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				Weapon.shouldPlaySwitchWeaponAudio = true;
 				break;
 			case Screens.GAME_SCREEN:
 				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);

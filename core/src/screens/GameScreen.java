@@ -44,6 +44,7 @@ import physics.Lighting.StructureShadowHandler;
 import physics.Weather.LightningBoltHandler;
 import physics.Weather.WeatherHandler;
 import store.Store;
+import ui.ControlsUi;
 import ui.MapUi;
 import ui.Pause;
 import ui.UserInterface;
@@ -69,6 +70,9 @@ public class GameScreen extends Screens {
 
 	// Map when user pauses game.
 	private MapUi mapUi;
+
+	// Controls UI for when user pauses game.
+	private ControlsUi controlsUi;
 
 	/**
 	 * User interface that is always on screen.
@@ -241,6 +245,7 @@ public class GameScreen extends Screens {
 		LightningBoltHandler.init();
 		missionHandler = new MissionHandler(myGame);
 		mapUi          = new MapUi(myGame);
+		controlsUi     = new ControlsUi(myGame);
 		userInterface  = new UserInterface();
 		gun            = new Gun(
 				GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
@@ -483,13 +488,16 @@ public class GameScreen extends Screens {
 						myGame.renderer.batch, 
 						myGame.imageLoader
 						);
+				mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
+				controlsUi.renderControlsUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 			}
 
-			mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
+			
 
 			if (!MissionRawBar.phasesAreInProgress && 
 					!MissionStumpHole.missionIsActive && 
 					!MapUi.mapShouldBeRendered && 
+					!ControlsUi.controlsShouldBeRendered &&
 					!Store.playerWantsToEnterStore
 					) {
 				gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
@@ -512,6 +520,7 @@ public class GameScreen extends Screens {
 					!Store.playerWantsToEnterStore &&
 					!Inventory.allInventoryShouldBeRendered &&
 					!MapUi.mapShouldBeRendered &&
+					!ControlsUi.controlsShouldBeRendered &&
 					!Player.isInWater
 					) {
 				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject].renderObject(myGame.renderer.batch, myGame.imageLoader);

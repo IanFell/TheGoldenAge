@@ -22,6 +22,14 @@ import ui.collectibles.RumUi;
  *
  */
 public class UserInterface {
+	
+	public static final int INVENTORY_SCREEN = 0;
+	public static final int MAP_SCREEN       = 1;
+	public static final int CONTROLS_SCREEN  = 2;
+	
+	public static final int userInterfaceMaxOptionValue = 3;
+
+	public static int userInterfaceOption = 0;
 
 	private HealthUi healthUi;
 	private LootUi lootUi;

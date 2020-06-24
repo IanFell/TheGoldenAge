@@ -65,7 +65,7 @@ public class SoundHandler {
 	 * @param MyGame      myGame
 	 */
 	public void handleSound(SoundLoader soundLoader, MyGame myGame) {
-		if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+		if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN || GameAttributeHelper.gameState == Screens.CONTROLS_SCREEN) {
 			// Player is switching options on the title screen.  Just use this audio since it sounds good and already in the game.
 			if (Weapon.shouldPlaySwitchWeaponAudio) {
 				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);

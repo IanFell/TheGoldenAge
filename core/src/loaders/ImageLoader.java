@@ -172,6 +172,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture controlsUiBackground;
 	public Texture credits;
 	public Texture controls;
 	public Texture lootAlternate;
@@ -424,6 +425,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		controlsUiBackground         = new Texture(Gdx.files.internal("artwork/ui/ControlsUiBackground.png"));
 		controlsUi                   = new Texture(Gdx.files.internal("artwork/ui/Controller.png"));
 		credits                      = new Texture(Gdx.files.internal("artwork/ui/Credits.png"));
 		controls                     = new Texture(Gdx.files.internal("artwork/ui/Controls.png"));
@@ -577,7 +579,6 @@ public class ImageLoader {
 		feather.dispose();
 		quickSand.dispose();
 		pressStart.dispose();
-		controlsUi.dispose();
 
 		// Weapon Objects.
 		magicPearl.dispose();
@@ -700,6 +701,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		controlsUi.dispose();
+		controlsUiBackground.dispose();
 		credits.dispose();
 		controls.dispose();
 		lootAlternate.dispose();

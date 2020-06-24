@@ -68,6 +68,13 @@ public class InventoryUi extends Screens {
 			}
 		}
 		if (allInventoryShouldBeRendered) {
+			batch.draw(
+					imageLoader.blackSquare,
+					camera.position.x - getViewportWidth() / denominatorOffset,
+					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+					camera.viewportWidth, 
+					-camera.viewportHeight
+					);
 			int borderShrinkOffset = 1;
 			batch.draw(
 					imageLoader.inventoryScreen,
@@ -89,11 +96,13 @@ public class InventoryUi extends Screens {
 				}
 			}
 
-			fire.setX(rectangle.x + 1.5f);
-			fire.setY(rectangle.y);
-			fire.setWidth(rectangle.getWidth() / 6.5f);
-			fire.setHeight(rectangle.getHeight() / 2);
-			fire.renderObject(batch, imageLoader);
+			if (inventory.size() > 0) {
+				fire.setX(rectangle.x + 1.5f);
+				fire.setY(rectangle.y);
+				fire.setWidth(rectangle.getWidth() / 6.5f);
+				fire.setHeight(rectangle.getHeight() / 2);
+				fire.renderObject(batch, imageLoader);
+			}
 
 			//renderUiNavigationBar(imageLoader.inventoryNavigationBar, batch);
 		}
