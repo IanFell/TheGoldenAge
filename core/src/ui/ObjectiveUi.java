@@ -167,7 +167,8 @@ public class ObjectiveUi {
 			// Player has purchased gun from Trading Post and has left the store and has completed Stump Hole mission.
 			if (Store.gunHasBeenPurchasedAtStore) {
 				objectiveTexture = imageLoader.objectiveRawBar;
-				if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
+				//if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
+				if (BossLoader.boss[BossHandler.APALACHICOLA].isDead()) {
 					objectiveTexture = imageLoader.objectiveStumpHole;
 					if (MissionStumpHole.missionIsActive) {
 						objectiveTexture = imageLoader.objectiveCollectFeathers;

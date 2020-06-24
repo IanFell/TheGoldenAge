@@ -24,8 +24,8 @@ public class Boss extends Enemy {
 
 
 	// Use this to control shadow when boss jumps.
-    private boolean isPerformingJumpAttack = false;
-    private float jumpAttackStartY         = 0;
+	private boolean isPerformingJumpAttack = false;
+	private float jumpAttackStartY         = 0;
 
 	public static final int WIDTH  = 3;
 	public static final int HEIGHT = 5;
@@ -153,7 +153,7 @@ public class Boss extends Enemy {
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!dead) {
 			updateElapsedTime();
-			
+
 			if (isPerformingJumpAttack) {
 				renderEnemyShadow(batch, imageLoader, width, height / 2, jumpAttackStartY);
 			} else {
@@ -234,21 +234,20 @@ public class Boss extends Enemy {
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 
 		BossHealthUi.shouldDisplay = false;
+		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
+		if (!dead) {
+			BossHealthUi.shouldDisplay = true;
+			checkDeath();
+			if (!Player.isInvincible) { 
+				handleAttack(player);
+			}
+		}
 
 		if (enemiesShouldExecuteAi()) {
 			rectangle.x = x;
 			rectangle.y = y - height;
 
-			handleAttackTimer();
-
-			GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
-			if (!dead) {
-				BossHealthUi.shouldDisplay = true;
-				checkDeath();
-				if (!Player.isInvincible) { 
-					handleAttack(player);
-				}
-			} 
+			handleAttackTimer(); 
 
 			if (explosionsShouldBeCreated) {
 				for (int i = 0; i < explosion.length; i++) {
@@ -283,7 +282,7 @@ public class Boss extends Enemy {
 	}
 
 	private void checkDeath() {
-		if (bossHealth < 0) {
+		if (bossHealth <= 0) {
 			explosionsShouldBeCreated  = true;
 			explosionsShouldBeRendered = true;
 			dead                       = true;
