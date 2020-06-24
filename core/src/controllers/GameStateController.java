@@ -32,6 +32,9 @@ public class GameStateController {
 			myGame.setScreen(myGame.getTitleScreen());
 			GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 			break;
+		case Screens.CONTROLS_SCREEN:
+			myGame.setScreen(myGame.getControlsScreen());
+			GameAttributeHelper.gameState = Screens.CONTROLS_SCREEN;
 		}
 	}
 }

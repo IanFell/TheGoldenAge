@@ -33,9 +33,31 @@ public class ImageHelper {
 				);
 	}
 
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param Texture     texture
+	 * @param MyGame      myGame
+	 */
 	public static void drawTitleScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
 		batch.draw(
 				myGame.imageLoader.titleScreen, 
+				0,
+				0,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				GameScreen.camera.viewportHeight
+				);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param Texture     texture
+	 * @param MyGame      myGame
+	 */
+	public static void drawControlsScreen(SpriteBatch batch, Texture titleScreen, MyGame myGame) {
+		batch.draw(
+				myGame.imageLoader.whiteSquare, 
 				0,
 				0,
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 

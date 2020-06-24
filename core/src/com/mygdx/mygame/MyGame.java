@@ -11,6 +11,7 @@ import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import render.Render;
+import screens.ControlsScreen;
 import screens.GameScreen;
 import screens.TitleScreen;
 
@@ -56,6 +57,7 @@ public class MyGame extends Game {
 
 	public GameScreen gameScreen;
 	public TitleScreen titleScreen;
+	public ControlsScreen controlsScreen;
 
 	/**
 	 * 
@@ -73,6 +75,14 @@ public class MyGame extends Game {
 		return titleScreen;
 	}
 
+	/**
+	 * 
+	 * @return ControlsScreen
+	 */
+	public ControlsScreen getControlsScreen() {
+		return controlsScreen;
+	}
+
 	@Override
 	public void create () {
 		Gdx.graphics.setContinuousRendering(true);
@@ -85,6 +95,7 @@ public class MyGame extends Game {
 		gameAttributeHelper = new GameAttributeHelper();
 
 		// TODO KEEP THESE IN THIS ORDER SO GameAttributeHelper.gameState doesn't get set to the incorrect value.
+		controlsScreen      = new ControlsScreen(this);
 		gameScreen          = new GameScreen(this);
 		titleScreen         = new TitleScreen(this);
 		this.setScreen(titleScreen);

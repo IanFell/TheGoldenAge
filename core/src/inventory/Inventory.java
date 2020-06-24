@@ -94,7 +94,7 @@ public class Inventory extends Screens {
 				} else if (inventory.get(currentlySelectedInventoryObject) instanceof BirdWeapon) {
 					objectType = Weapon.WEAPON_TYPE_BIRD;
 				}
-				if (inventory.size() >= 0) {
+				//if (inventory.size() > 0) {
 					for (int i = 0; i < inventory.size(); i++) {
 						if (objectType == Weapon.WEAPON_TYPE_SWORD) {
 							updateSword(i, xPosition, yPosition, x, y);
@@ -109,7 +109,7 @@ public class Inventory extends Screens {
 							fire.updateObject(myGame, mapHandler);
 						}
 					}
-				}
+				//}
 			}
 		}
 	}

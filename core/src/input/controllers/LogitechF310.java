@@ -91,10 +91,7 @@ public class LogitechF310 extends ControllerInput {
 					}
 				}
 			}
-			//Player.playerIsPerformingAttack = false;
 		}
-		//canPressTrigger = false;
-		//}
 	}
 
 	/**
@@ -122,6 +119,9 @@ public class LogitechF310 extends ControllerInput {
 			case Screens.TITLE_SCREEN:
 				if (TitleScreen.titleScreenHover == TitleScreen.PRESS_START) {
 					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				}
+				if (TitleScreen.titleScreenHover == TitleScreen.CONTROLS) {
+					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
 				}
 				break;
 			case Screens.GAME_SCREEN:
@@ -281,9 +281,16 @@ public class LogitechF310 extends ControllerInput {
 		}
 
 		if(controller.getButton(BUTTON_B)) {
-			myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
-			RumHandler.rumCount   = 99;
-			AmmoHandler.ammoCount = 99;
+			switch (GameAttributeHelper.gameState) {
+			case Screens.CONTROLS_SCREEN:
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				break;
+			case Screens.GAME_SCREEN:
+				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
+				RumHandler.rumCount   = 99;
+				AmmoHandler.ammoCount = 99;
+				break;
+			}
 		} 
 	}
 }
