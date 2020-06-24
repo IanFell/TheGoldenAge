@@ -674,7 +674,7 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerHasCollidedWithShockPlant(GameObject player, ShockPlant shockPlant) {
 		if (player.rectangle.overlaps(shockPlant.rectangle)) {
-			player.setHealth(player.getHealth() - 0.05f);
+			player.setHealth(player.getHealth() - 0.1f);
 			player.setPlaySound(true);
 			((Player) player).setBouncingBack(true);
 			ShockPlant.playSparkAudio = true;

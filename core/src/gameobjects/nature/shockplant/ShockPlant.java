@@ -15,8 +15,11 @@ import loaders.ImageLoader;
 public class ShockPlant extends NatureObject {
 
 	private int animationTimer = 0;
-	
+
 	public static boolean playSparkAudio = false;
+
+	public static boolean shouldCheckCollision = true;
+	public static int collisionTimer           = 0;
 
 	/**
 	 * Constructor.
@@ -47,7 +50,25 @@ public class ShockPlant extends NatureObject {
 	 */
 	public void updateObject(GameObject player) {
 		handleAnimationTimer();
-		CollisionHandler.checkIfPlayerHasCollidedWithShockPlant(player, this);
+		handleCollision(player);
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 */
+	private void handleCollision(GameObject player) {
+		if (shouldCheckCollision) {
+			CollisionHandler.checkIfPlayerHasCollidedWithShockPlant(player, this);
+			shouldCheckCollision = false;
+		}
+		if (!shouldCheckCollision) {
+			collisionTimer++;
+			if (collisionTimer > 50) {
+				shouldCheckCollision = true;
+				collisionTimer       = 0;
+			}
+		}
 	}
 
 	/**
