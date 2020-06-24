@@ -41,7 +41,7 @@ public class ImageHelper {
 	 */
 	public static void drawTitleScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
 		batch.draw(
-				myGame.imageLoader.titleScreen, 
+				texture, 
 				0,
 				0,
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
@@ -55,14 +55,17 @@ public class ImageHelper {
 	 * @param Texture     texture
 	 * @param MyGame      myGame
 	 */
-	public static void drawControlsScreen(SpriteBatch batch, Texture titleScreen, MyGame myGame) {
+	public static void drawControlsScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
 		batch.draw(
-				myGame.imageLoader.whiteSquare, 
+				myGame.imageLoader.titleScreen, 
 				0,
 				0,
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
 				GameScreen.camera.viewportHeight
 				);
+		float width  = GameScreen.camera.viewportWidth / 2;
+		float height = GameScreen.camera.viewportHeight / 2;
+		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2 + 100, width, height);
 	}
 
 	/**

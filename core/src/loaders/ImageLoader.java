@@ -198,6 +198,7 @@ public class ImageLoader {
 	public Texture gamePaused;
 	public Texture enemyHealthMeterBase;
 	public Texture enemyHealthMeterBlack;
+	public Texture controlsUi;
 
 	// Objective UI objects.
 	public Texture objectiveCollectTheMapAtThePoint;
@@ -423,6 +424,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		controlsUi                   = new Texture(Gdx.files.internal("artwork/ui/Controller.png"));
 		credits                      = new Texture(Gdx.files.internal("artwork/ui/Credits.png"));
 		controls                     = new Texture(Gdx.files.internal("artwork/ui/Controls.png"));
 		lootAlternate                = new Texture(Gdx.files.internal("artwork/ui/loot2.png"));
@@ -575,6 +577,7 @@ public class ImageLoader {
 		feather.dispose();
 		quickSand.dispose();
 		pressStart.dispose();
+		controlsUi.dispose();
 
 		// Weapon Objects.
 		magicPearl.dispose();

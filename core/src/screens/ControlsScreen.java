@@ -32,7 +32,7 @@ public class ControlsScreen extends Screens {
 		myGame.renderer.batch.begin();
 		ImageHelper.drawControlsScreen(
 				myGame.renderer.batch, 
-				myGame.imageLoader.whiteSquare, 
+				myGame.imageLoader.controlsUi, 
 				myGame
 				);
 		myGame.renderer.batch.end();
