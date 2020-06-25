@@ -89,4 +89,7 @@ public class Mixer {
 
 	// Missions.
 	public static final float BIRD_STUMP_HOLE_MISSION_VOLUME = QUARTER_VOLUME;
+
+	// Cutscene intro jingle.
+	public static final float CUTSCENE_INTRO_JINGLE_VOLUME = QUARTER_VOLUME;
 }

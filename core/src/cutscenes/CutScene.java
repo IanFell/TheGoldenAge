@@ -55,6 +55,9 @@ public class CutScene {
 	// Pause game during cutscene.
 	public static boolean gameShouldPause = true;
 
+	public static boolean shouldPlayIntroJingle = false;
+	private boolean hasPlayedIntroJingle        = false;
+
 	protected boolean textBoxIsSet = false;
 
 	/**
@@ -94,6 +97,11 @@ public class CutScene {
 		}
 		if (transition != null) {
 			transition.updateTransition();
+		}
+
+		if (!hasPlayedIntroJingle) {
+			shouldPlayIntroJingle = true;
+			hasPlayedIntroJingle  = true;
 		}
 	}
 

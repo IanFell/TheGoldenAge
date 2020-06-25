@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound cutscene;
 	public Sound monkey;
 	public Sound spark;
 	public Sound bow;
@@ -44,6 +45,7 @@ public class SoundLoader {
 	public Sound tunnel;
 
 	public void init() {
+		cutscene            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/CutScene.wav"));
 		monkey              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Monkey.wav"));
 		spark               = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Spark.wav"));
 		bow                 = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Bow.wav"));
@@ -78,6 +80,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		cutscene.dispose();
 		monkey.dispose();
 		spark.dispose();
 		bow.dispose();

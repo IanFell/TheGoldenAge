@@ -73,7 +73,12 @@ public class SoundHandler {
 				Weapon.shouldPlaySwitchWeaponAudio = false;
 			}
 		}
+
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+			if (CutScene.shouldPlayIntroJingle) {
+				soundLoader.cutscene.play(Mixer.CUTSCENE_INTRO_JINGLE_VOLUME);
+				CutScene.shouldPlayIntroJingle = false;
+			}
 			if (LegendSword.playSound) {
 				soundLoader.pickUpSwordSound.play(Mixer.PICK_UP_SWORD_VOLUME);
 				LegendSword.playSound = false;
