@@ -5,6 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import cutscenes.CutScene;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.weapons.Paw;
 import handlers.enemies.BossHandler;
 import helpers.GameAttributeHelper;
 import loaders.audio.MusicLoader;
@@ -24,6 +25,9 @@ import screens.Screens;
  *
  */
 public class MusicHandler {
+
+	// The monkey SFX are really long, so we only play it for 3 seconds.
+	private final int MONKEY_SCREAM_TIME = 3;
 
 	private boolean startDayTimeAmbientAudio   = true;
 	private boolean startNightTimeAmbientAudio = true;
@@ -73,6 +77,9 @@ public class MusicHandler {
 				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
 
+				handleCursedPawWeaponAudio(musicLoader);
+				handleCursedPawCollectionAudio(musicLoader);
+
 				if (!CutScene.gameShouldPause) {
 					musicLoader.ambientMusic.play();
 				} else {
@@ -93,6 +100,38 @@ public class MusicHandler {
 			musicLoader.ocean.setVolume(Mixer.OCEAN_VOLUME);
 			musicLoader.ocean.setLooping(true);
 			musicLoader.ocean.play();
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleCursedPawWeaponAudio(MusicLoader musicLoader) {
+		if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause) {
+			if (Paw.playAttackSound) {
+				musicLoader.monkey.setVolume(Mixer.PAW_ATTACK_VOLUME);
+				musicLoader.monkey.play();
+				Paw.playAttackSound = false;
+			}
+		}
+		if (musicLoader.monkey.getPosition() > MONKEY_SCREAM_TIME) {
+			musicLoader.monkey.stop();
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleCursedPawCollectionAudio(MusicLoader musicLoader) {
+		if (Paw.playCollectionSound) {
+			musicLoader.monkey.setVolume(Mixer.PAW_COLLECT_VOLUME);
+			musicLoader.monkey.play();
+			Paw.playCollectionSound = false;
+		}
+		if (musicLoader.monkey.getPosition() > MONKEY_SCREAM_TIME) {
+			musicLoader.monkey.stop();
 		}
 	}
 

@@ -314,5 +314,13 @@ public class LogitechF310 extends ControllerInput {
 				break;
 			}
 		} 
+
+		if(controller.getButton(BUTTON_X)) {
+			if (RumHandler.rumCount > 0 && !Player.isInvincible) {
+				Player.isInvincible = true;
+				RumHandler.rumCount--;
+				Player.invincibilityTimer = 0;
+			}
+		}
 	}
 }

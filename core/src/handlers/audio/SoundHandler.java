@@ -92,7 +92,6 @@ public class SoundHandler {
 			}
 			if (Paw.playCollectionSound) {
 				soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
-				Paw.playCollectionSound = false;
 			}
 			if (MissionRawBar.playCollectionSound) {
 				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
@@ -141,14 +140,11 @@ public class SoundHandler {
 					soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
 					if (Paw.playAttackSound) {
-						soundLoader.monkey.play(Mixer.PAW_ATTACK_VOLUME);
 						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
-						Paw.playAttackSound = false;
 					}
 				} else {
 					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}
-				//Player.playerIsPerformingAttack = false;
 			}
 
 			if (BirdWeapon.birdIsAttacking && BirdWeapon.playAttackSound) {
@@ -216,7 +212,7 @@ public class SoundHandler {
 				soundLoader.switchWeapons.play(Mixer.SWITCH_WEAPON_VOLUME);
 				Weapon.shouldPlaySwitchWeaponAudio = false;
 			}
-			
+
 			if (ShockPlant.playSparkAudio) {
 				soundLoader.spark.play(Mixer.SPARK_VOLUME);
 				ShockPlant.playSparkAudio = false;

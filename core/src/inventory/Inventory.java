@@ -115,7 +115,7 @@ public class Inventory extends Screens {
 			}
 		}
 	}
-	
+
 	private void updatePawWeapon(int selectedInventory, float xPosition, float yPosition, float x, float y) {
 		switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 		case Player.DIRECTION_RIGHT:
@@ -314,6 +314,10 @@ public class Inventory extends Screens {
 				case Player.DIRECTION_RIGHT:
 					xPosition = x + 3.6f;
 					yPosition = y - 1.5f;
+					// Compensate for player being larger if he's invincible.
+					if (Player.isInvincible) {
+						xPosition = x + 4.1f;
+					}
 					break;
 				case Player.DIRECTION_LEFT:
 					xPosition = x - 3.5f;

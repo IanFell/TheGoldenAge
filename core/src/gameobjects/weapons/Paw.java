@@ -26,6 +26,9 @@ public class Paw extends GameObjectCollectible {
 	public static boolean playAttackSound     = false;
 	private boolean haveKilledEnemies         = false;
 
+	private final int DEAD_TIME = 5000;
+	private int deadTimer       = 0;
+
 	/**
 	 * Constructor.
 	 * 
@@ -67,8 +70,28 @@ public class Paw extends GameObjectCollectible {
 						}
 					}
 				}
+				for (int k = 0; k < myGame.gameScreen.gruntHandler.gruntSpawner.length; k++) {
+					if (myGame.gameScreen.gruntHandler.gruntSpawner[k].grunts != null) {
+						for (int enemy = 0; enemy < myGame.gameScreen.gruntHandler.gruntSpawner[k].grunts.size(); enemy++) {
+							if (myGame.gameScreen.gruntHandler.gruntSpawner[k].grunts.get(enemy) != null) {
+								myGame.gameScreen.gruntHandler.gruntSpawner[k].grunts.get(enemy).setIsDead(true);
+							}
+						}
+					}
+				}
 				haveKilledEnemies = true;
 			}
+			handleDeadTimer();
+		}
+	}
+
+	private void handleDeadTimer() {
+		deadTimer++;
+		if (deadTimer > DEAD_TIME) {
+			hasBeenUsed       = false;
+			haveKilledEnemies = false;
+			deadTimer         = 0;
+
 		}
 	}
 

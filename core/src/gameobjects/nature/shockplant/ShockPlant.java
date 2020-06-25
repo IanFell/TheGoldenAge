@@ -3,6 +3,7 @@ package gameobjects.nature.shockplant;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.NatureObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
@@ -50,7 +51,9 @@ public class ShockPlant extends NatureObject {
 	 */
 	public void updateObject(GameObject player) {
 		handleAnimationTimer();
-		handleCollision(player);
+		if (!Player.isInvincible) {
+			handleCollision(player);
+		}
 	}
 
 	/**

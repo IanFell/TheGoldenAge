@@ -25,6 +25,7 @@ public class MusicLoader {
 	public Music missionIntro;
 	public Music missionWin;
 	public Music typewriter;
+	public Music monkey;
 
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
@@ -33,6 +34,7 @@ public class MusicLoader {
 	public Music footsteps;
 
 	public void init() {
+		monkey                = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Monkey.ogg"));
 		ocean                 = Gdx.audio.newMusic(Gdx.files.internal("audio/music/ocean.ogg"));
 		dayTimeAmbientNoise   = Gdx.audio.newMusic(Gdx.files.internal("audio/music/daytimeambience.ogg"));
 		footsteps             = Gdx.audio.newMusic(Gdx.files.internal("audio/music/footstepsmusic.ogg"));
