@@ -492,7 +492,7 @@ public class GameScreen extends Screens {
 				controlsUi.renderControlsUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 			}
 
-			
+
 
 			if (!MissionRawBar.phasesAreInProgress && 
 					!MissionStumpHole.missionIsActive && 

@@ -11,7 +11,6 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
-import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Weapon;
 import loaders.ImageLoader;
@@ -94,22 +93,20 @@ public class Inventory extends Screens {
 				} else if (inventory.get(currentlySelectedInventoryObject) instanceof BirdWeapon) {
 					objectType = Weapon.WEAPON_TYPE_BIRD;
 				}
-				//if (inventory.size() > 0) {
-					for (int i = 0; i < inventory.size(); i++) {
-						if (objectType == Weapon.WEAPON_TYPE_SWORD) {
-							updateSword(i, xPosition, yPosition, x, y);
-						} else if (objectType == Weapon.WEAPON_TYPE_GUN){
-							updateGun(i, xPosition, yPosition, x, y);
-						} else if (objectType == Weapon.WEAPON_TYPE_MAGIC_PEARL) {
-							updateMagicPearl(i, xPosition, yPosition, x, y);
-						} else if (objectType == Weapon.WEAPON_TYPE_BIRD) {
-							updateBirdWeapon(i, xPosition, yPosition, x, y);
-						}
-						if (Inventory.allInventoryShouldBeRendered) {
-							fire.updateObject(myGame, mapHandler);
-						}
+				for (int i = 0; i < inventory.size(); i++) {
+					if (objectType == Weapon.WEAPON_TYPE_SWORD) {
+						updateSword(i, xPosition, yPosition, x, y);
+					} else if (objectType == Weapon.WEAPON_TYPE_GUN){
+						updateGun(i, xPosition, yPosition, x, y);
+					} else if (objectType == Weapon.WEAPON_TYPE_MAGIC_PEARL) {
+						updateMagicPearl(i, xPosition, yPosition, x, y);
+					} else if (objectType == Weapon.WEAPON_TYPE_BIRD) {
+						updateBirdWeapon(i, xPosition, yPosition, x, y);
 					}
-				//}
+					if (Inventory.allInventoryShouldBeRendered) {
+						fire.updateObject(myGame, mapHandler);
+					}
+				}
 			}
 		}
 	}
