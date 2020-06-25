@@ -372,6 +372,7 @@ public class PlayerOne extends Player {
 				}
 				break;
 			}
+			batch.draw(texture, x - 1.3f, y + 1.75f, 4, -4);
 		} else if (Player.isInWater && !Player.playerIsMoving) {
 			switch (direction) {
 			case DIRECTION_LEFT:
@@ -387,8 +388,8 @@ public class PlayerOne extends Player {
 				texture = imageLoader.oarDown[1];
 				break;
 			}
+			batch.draw(texture, x - 1.3f, y + 1.75f, 4, -4);
 		}
-		batch.draw(texture, x - 1.3f, y + 1.75f, 4, -4);
 	}
 
 	/**

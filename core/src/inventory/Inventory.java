@@ -316,7 +316,7 @@ public class Inventory extends Screens {
 					yPosition = y - 1.5f;
 					// Compensate for player being larger if he's invincible.
 					if (Player.isInvincible) {
-						xPosition = x + 4.1f;
+						xPosition = x + 4.3f;
 					}
 					break;
 				case Player.DIRECTION_LEFT:
@@ -329,7 +329,7 @@ public class Inventory extends Screens {
 					break;
 				case Player.DIRECTION_UP:
 					xPosition = x - 0.3f;
-					yPosition = y - inventoryHeight - 3;
+					yPosition = y - inventoryHeight - 2.7f;
 					break;
 				}
 			}
