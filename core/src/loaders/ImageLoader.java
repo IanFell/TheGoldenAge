@@ -11,6 +11,11 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class ImageLoader {
 
+	public Texture[] oarRight = new Texture[6];
+	public Texture[] oarLeft  = new Texture[6];
+	public Texture[] oarUp    = new Texture[3];
+	public Texture[] oarDown  = new Texture[3];
+
 	// Title screen.
 	public Texture titleScreen;
 
@@ -254,6 +259,26 @@ public class ImageLoader {
 	public Texture[] numberWhite = new Texture[10];
 
 	public void init() {
+
+		// Oar.
+		oarRight[0] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight01.png"));
+		oarRight[1] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight02.png"));
+		oarRight[2] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight03.png"));
+		oarRight[3] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight04.png"));
+		oarRight[4] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight05.png"));
+		oarRight[5] = new Texture(Gdx.files.internal("artwork/oars/right/OarRight06.png"));
+		oarLeft[0]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft01.png"));
+		oarLeft[1]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft02.png"));
+		oarLeft[2]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft03.png"));
+		oarLeft[3]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft04.png"));
+		oarLeft[4]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft05.png"));
+		oarLeft[5]  = new Texture(Gdx.files.internal("artwork/oars/left/OarLeft06.png"));
+		oarUp[0]    = new Texture(Gdx.files.internal("artwork/oars/up/OarUp01.png"));
+		oarUp[1]    = new Texture(Gdx.files.internal("artwork/oars/up/OarUp02.png"));
+		oarUp[2]    = new Texture(Gdx.files.internal("artwork/oars/up/OarUp03.png"));
+		oarDown[0]  = new Texture(Gdx.files.internal("artwork/oars/down/OarDown01.png"));
+		oarDown[1]  = new Texture(Gdx.files.internal("artwork/oars/down/OarDown02.png"));
+		oarDown[2]  = new Texture(Gdx.files.internal("artwork/oars/down/OarDown03.png"));
 
 		// Title Screen.
 		titleScreen = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
@@ -540,6 +565,20 @@ public class ImageLoader {
 	}
 
 	public void dispose() {
+
+		// Oar.
+		for (int i = 0; i < oarRight.length; i++) {
+			oarRight[i].dispose();
+		}
+		for (int i = 0; i < oarLeft.length; i++) {
+			oarLeft[i].dispose();
+		}
+		for (int i = 0; i < oarUp.length; i++) {
+			oarUp[i].dispose();
+		}
+		for (int i = 0; i < oarDown.length; i++) {
+			oarDown[i].dispose();
+		}
 
 		// Title Screen.
 		titleScreen.dispose();

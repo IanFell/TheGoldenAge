@@ -3,6 +3,7 @@ package gameobjects.gamecharacters.players;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -25,6 +26,8 @@ import physics.Lighting.Fire;
  *
  */
 public class PlayerOne extends Player {
+
+	private int oarTimer = 0;
 
 	private float animationSpeed;
 
@@ -279,7 +282,113 @@ public class PlayerOne extends Player {
 		if (hasTorch) {	
 			torch.renderObject(batch, imageLoader);
 		}
+
+		renderOar(batch, imageLoader);
 		//renderHitBox(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderOar(SpriteBatch batch, ImageLoader imageLoader) {
+		Texture texture = imageLoader.oarDown[1];
+		if (isInWater && Player.playerIsMoving) {
+			oarTimer++;
+			switch (direction) {
+			case DIRECTION_LEFT:
+				if(oarTimer <= 10) {
+					texture = imageLoader.oarLeft[0];
+				}
+				else if (oarTimer > 10 && oarTimer < 20) {
+					texture = imageLoader.oarLeft[1];
+				}
+				else if (oarTimer >= 20 && oarTimer < 30) {
+					texture = imageLoader.oarLeft[2];
+				}
+				else if (oarTimer >= 30 && oarTimer < 40) {
+					texture = imageLoader.oarLeft[3];
+				}
+				else if (oarTimer >= 40 && oarTimer < 50) {
+					texture = imageLoader.oarLeft[4];
+				}
+				else if (oarTimer >= 50 && oarTimer < 60) {
+					texture = imageLoader.oarLeft[5];
+				}
+				else {
+					oarTimer = 0;
+				}
+				break;
+			case DIRECTION_RIGHT:
+				if(oarTimer <= 10) {
+					texture = imageLoader.oarRight[0];
+				}
+				else if (oarTimer > 10 && oarTimer < 20) {
+					texture = imageLoader.oarRight[1];
+				}
+				else if (oarTimer >= 20 && oarTimer < 30) {
+					texture = imageLoader.oarRight[2];
+				}
+				else if (oarTimer >= 30 && oarTimer < 40) {
+					texture = imageLoader.oarRight[3];
+				}
+				else if (oarTimer >= 40 && oarTimer < 50) {
+					texture = imageLoader.oarRight[4];
+				}
+				else if (oarTimer >= 50 && oarTimer < 60) {
+					texture = imageLoader.oarRight[5];
+				}
+				else {
+					oarTimer = 0;
+				}
+				break;
+			case DIRECTION_UP:
+				if(oarTimer <= 10) {
+					texture = imageLoader.oarUp[0];
+				}
+				else if (oarTimer > 10 && oarTimer < 20) {
+					texture = imageLoader.oarUp[1];
+				}
+				else if (oarTimer >= 20 && oarTimer < 30) {
+					texture = imageLoader.oarUp[2];
+				}
+				else {
+					oarTimer = 0;
+				}
+				break;
+			case DIRECTION_DOWN:
+				if(oarTimer <= 10) {
+					texture = imageLoader.oarDown[0];
+				}
+				else if (oarTimer > 10 && oarTimer < 20) {
+					texture = imageLoader.oarDown[1];
+				}
+				else if (oarTimer >= 20 && oarTimer < 30) {
+					texture = imageLoader.oarDown[2];
+				}
+				else {
+					oarTimer = 0;
+				}
+				break;
+			}
+		} else if (Player.isInWater && !Player.playerIsMoving) {
+			switch (direction) {
+			case DIRECTION_LEFT:
+				texture = imageLoader.oarLeft[2];
+				break;
+			case DIRECTION_RIGHT:
+				texture = imageLoader.oarRight[2];
+				break;
+			case DIRECTION_UP:
+				texture = imageLoader.oarUp[1];
+				break;
+			case DIRECTION_DOWN:
+				texture = imageLoader.oarDown[1];
+				break;
+			}
+		}
+		batch.draw(texture, x - 1.3f, y + 1.75f, 4, -4);
 	}
 
 	/**
