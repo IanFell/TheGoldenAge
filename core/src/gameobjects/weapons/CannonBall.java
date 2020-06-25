@@ -27,7 +27,7 @@ public class CannonBall extends Weapon {
 
 	public static final int MAX_EXPLOSION_VALUE = 20;
 
-	private final int CANNON_BALL_EXPLOSION_SIZE = 1;
+	private final int CANNON_BALL_EXPLOSION_SIZE = 2;
 
 	/**
 	 * Cannon ball shoots upwards, and shootingTimer starts.
