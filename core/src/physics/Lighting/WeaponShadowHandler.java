@@ -78,5 +78,18 @@ public class WeaponShadowHandler {
 				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 			batch.draw(imageLoader.oysterShadow, birdWeapon.getX(), birdWeapon.getY() + 1.0f, birdWeapon.getWidth(), birdWeapon.getHeight());
 		}
+
+		GameObject paw = myGame.getGameScreen().paw; 
+		// Draw shadow under stationary bird before player has collected it.
+		if (!paw.hasBeenCollected) {
+			// Only render shadow if boss is dead.
+			batch.draw(
+					imageLoader.pawShadow, 
+					paw.getX(), 
+					paw.getY() + 1.0f, 
+					paw.getWidth(), 
+					-paw.getHeight()
+					);
+		}
 	}
 }

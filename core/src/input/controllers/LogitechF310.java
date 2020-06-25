@@ -10,6 +10,7 @@ import gameobjects.nature.Stump;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
@@ -17,6 +18,7 @@ import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
+import loaders.cannonballloader.CannonBallLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.Screens;
@@ -82,9 +84,15 @@ public class LogitechF310 extends ControllerInput {
 			if (canClick) {
 				Player.playerIsPerformingAttack = true;
 			}
-			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-				MagicPearl.isAttacking     = true;
-				MagicPearl.isMovingForward = true;
+			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+					MagicPearl.isAttacking     = true;
+					MagicPearl.isMovingForward = true;
+				}
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+					Paw.hasBeenUsed         = true;
+					Paw.playAttackSound     = true;
+				}
 			}
 			canClick = false;
 		} else {

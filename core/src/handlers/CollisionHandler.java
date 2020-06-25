@@ -23,6 +23,7 @@ import gameobjects.weapons.CannonBall;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
@@ -329,7 +330,6 @@ public class CollisionHandler {
 			((Player) player).getInventory().addObjectToInventory(birdWeapon);
 			Inventory.inventoryHasStartedCollection = true;
 			birdWeapon.hasBeenCollected             = true;
-			//MagicPearl.playCollectionSound        = true;
 			GameObjectLoader.gameObjectList.add(birdWeapon);
 			BirdWeapon.playCollectionSound          = true;
 			AddedToInventory.shouldRender           = true;
@@ -678,6 +678,26 @@ public class CollisionHandler {
 			player.setPlaySound(true);
 			((Player) player).setBouncingBack(true);
 			ShockPlant.playSparkAudio = true;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Paw        paw
+	 */
+	public static void checkIfPlayerHasCollidedWithPaw(GameObject player, Paw paw) {
+		if (paw.rectangle.overlaps(player.rectangle)) {
+			if (!paw.hasBeenCollected) {
+				((Player) player).getInventory().addObjectToInventory(paw);
+				Inventory.inventoryHasStartedCollection = true;
+				paw.hasBeenCollected                    = true;
+				Paw.playCollectionSound                 = true;
+				GameObjectLoader.gameObjectList.add(paw);
+				AddedToInventory.shouldRender           = true;
+				AddedToInventory.shouldDisplayWoody     = true;
+				AddedToInventory.timer                  = 0;
+			}
 		}
 	}
 }

@@ -16,6 +16,7 @@ import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import gameobjects.weapons.Weapon;
 import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
@@ -89,6 +90,10 @@ public class SoundHandler {
 				soundLoader.bird.play(Mixer.PICK_UP_BIRD_VOLUME);
 				BirdWeapon.playCollectionSound = false;
 			}
+			if (Paw.playCollectionSound) {
+				soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
+				Paw.playCollectionSound = false;
+			}
 			if (MissionRawBar.playCollectionSound) {
 				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
 				MissionRawBar.playCollectionSound = false;
@@ -134,6 +139,12 @@ public class SoundHandler {
 					}
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 					soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
+				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
+					if (Paw.playAttackSound) {
+						soundLoader.monkey.play(Mixer.PAW_ATTACK_VOLUME);
+						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
+						Paw.playAttackSound = false;
+					}
 				} else {
 					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}

@@ -19,6 +19,7 @@ public class ImageLoader {
 	public Texture chestOpen;
 	public Texture heart;
 	public Texture heartShadow;
+	public Texture pawShadow;
 	public Texture rum;
 	public Texture rumShadow;
 	public Texture ammo;
@@ -55,6 +56,7 @@ public class ImageLoader {
 	public Texture quickSand;
 
 	// Weapon Objects.
+	public Texture paw;
 	public Texture magicPearl;
 	public Texture gunRight;
 	public Texture gunLeft;
@@ -261,6 +263,7 @@ public class ImageLoader {
 		chestOpen        = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
 		heart            = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
 		heartShadow      = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
+		pawShadow        = new Texture(Gdx.files.internal("artwork/weapons/paw/PawShadow.png"));
 		rum              = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
 		rumShadow        = new Texture(Gdx.files.internal("artwork/collectibles/RumShadow.png"));
 		ammo             = new Texture(Gdx.files.internal("artwork/collectibles/Ammo.png"));
@@ -299,6 +302,7 @@ public class ImageLoader {
 		quickSand      = new Texture(Gdx.files.internal("artwork/nature/QuickSand.png")); 
 
 		// Weapon Objects.
+		paw                   = new Texture(Gdx.files.internal("artwork/weapons/paw/Paw.png"));
 		magicPearl            = new Texture(Gdx.files.internal("artwork/weapons/oyster/MagicPearl.png"));
 		gunRight   			  = new Texture(Gdx.files.internal("artwork/weapons/gun/Right.png"));
 		gunLeft               = new Texture(Gdx.files.internal("artwork/weapons/gun/Left.png"));
@@ -544,6 +548,7 @@ public class ImageLoader {
 		chestOpen.dispose();
 		heart.dispose();
 		heartShadow.dispose();
+		pawShadow.dispose();
 		rum.dispose();
 		rumShadow.dispose();
 		ammo.dispose();
@@ -581,6 +586,7 @@ public class ImageLoader {
 		pressStart.dispose();
 
 		// Weapon Objects.
+		paw.dispose();
 		magicPearl.dispose();
 		gunRight.dispose();
 		gunLeft.dispose();

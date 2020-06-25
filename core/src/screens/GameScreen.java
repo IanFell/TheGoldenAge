@@ -262,10 +262,7 @@ public class GameScreen extends Screens {
 				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 46
 				);
-		paw            = new Paw(
-				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 46,
-				GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 10
-				);
+		paw            = new Paw();
 		heartHandler.init();
 		rumHandler.init();
 		ammoHandler.init();

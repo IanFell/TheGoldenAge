@@ -12,6 +12,7 @@ import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import gameobjects.weapons.Weapon;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -92,6 +93,8 @@ public class Inventory extends Screens {
 					objectType = Weapon.WEAPON_TYPE_MAGIC_PEARL;
 				} else if (inventory.get(currentlySelectedInventoryObject) instanceof BirdWeapon) {
 					objectType = Weapon.WEAPON_TYPE_BIRD;
+				} else if (inventory.get(currentlySelectedInventoryObject) instanceof Paw) {
+					objectType = Weapon.WEAPON_TYPE_PAW;
 				}
 				for (int i = 0; i < inventory.size(); i++) {
 					if (objectType == Weapon.WEAPON_TYPE_SWORD) {
@@ -102,6 +105,8 @@ public class Inventory extends Screens {
 						updateMagicPearl(i, xPosition, yPosition, x, y);
 					} else if (objectType == Weapon.WEAPON_TYPE_BIRD) {
 						updateBirdWeapon(i, xPosition, yPosition, x, y);
+					} else if (objectType == Weapon.WEAPON_TYPE_PAW) {
+						updatePawWeapon(i, xPosition, yPosition, x, y);
 					}
 					if (Inventory.allInventoryShouldBeRendered) {
 						fire.updateObject(myGame, mapHandler);
@@ -109,6 +114,29 @@ public class Inventory extends Screens {
 				}
 			}
 		}
+	}
+	
+	private void updatePawWeapon(int selectedInventory, float xPosition, float yPosition, float x, float y) {
+		switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+		case Player.DIRECTION_RIGHT:
+			xPosition = x;
+			yPosition = y - 1;
+			break;
+		case Player.DIRECTION_LEFT:
+			xPosition = x;
+			yPosition = y - 1;
+			break;
+		case Player.DIRECTION_DOWN:
+			xPosition = x - 1;
+			yPosition = y;
+			break;
+		case Player.DIRECTION_UP:
+			xPosition = x - 1;
+			yPosition = y - 1;
+			break;
+		}	
+		inventory.get(selectedInventory).setX(xPosition);
+		inventory.get(selectedInventory).setY(yPosition);
 	}
 
 	/**
