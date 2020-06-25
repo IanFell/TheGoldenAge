@@ -89,7 +89,7 @@ public class Bullet extends Weapon {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(
-				imageLoader.whiteSquare,
+				imageLoader.bullet,
 				x, 
 				y,
 				width,
