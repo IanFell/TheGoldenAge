@@ -197,38 +197,40 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 */
 	protected void pollTriggers(GameObject player) {
-		if (canClick) {
-			if(controller.getButton(BUTTON_LB)) {
-				if (UserInterface.userInterfaceOption > 0) {
-					Weapon.shouldPlaySwitchWeaponAudio = true;
-					if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
-						UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
-						MapUi.mapShouldBeRendered              = false;
-						ControlsUi.controlsShouldBeRendered    = false;
+		if (Inventory.allInventoryShouldBeRendered) {
+			if (canClick) {
+				if(controller.getButton(BUTTON_LB)) {
+					if (UserInterface.userInterfaceOption > 0) {
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
+							MapUi.mapShouldBeRendered              = false;
+							ControlsUi.controlsShouldBeRendered    = false;
+						}
+						else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+							MapUi.mapShouldBeRendered              = true;
+							ControlsUi.controlsShouldBeRendered    = false;
+						} 
 					}
-					else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
-						UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
-						MapUi.mapShouldBeRendered              = true;
-						ControlsUi.controlsShouldBeRendered    = false;
-					} 
 				}
-			}
-			if(controller.getButton(BUTTON_RB)) {
-				if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
-					Weapon.shouldPlaySwitchWeaponAudio = true;
-					if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
-						UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
-						MapUi.mapShouldBeRendered              = false;
-						ControlsUi.controlsShouldBeRendered    = true;
+				if(controller.getButton(BUTTON_RB)) {
+					if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
+							MapUi.mapShouldBeRendered              = false;
+							ControlsUi.controlsShouldBeRendered    = true;
+						}
+						else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+							MapUi.mapShouldBeRendered              = true;
+							ControlsUi.controlsShouldBeRendered    = false;
+						} 
 					}
-					else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
-						UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
-						MapUi.mapShouldBeRendered              = true;
-						ControlsUi.controlsShouldBeRendered    = false;
-					} 
 				}
+				canClick = false;
 			}
-			canClick = false;
 		}
 	}
 
@@ -263,13 +265,11 @@ public class ControllerInput extends Input {
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
 			if (Inventory.currentlySelectedInventoryObject > 0) {
-				if (canClick) {
-					if (InventoryUi.clickedObject > 0) {
-						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
-						InventoryUi.clickedObject--;
-						canClick                           = false;
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-					}
+				if (InventoryUi.clickedObject > 0) {
+					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
+					InventoryUi.clickedObject--;
+					canClick                           = false;
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 			if (Store.storeShouldBeRendered) {
@@ -280,13 +280,10 @@ public class ControllerInput extends Input {
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
 			if (Inventory.currentlySelectedInventoryObject < 11) {
-				if (canClick) {
-					if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
-						selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
-						InventoryUi.clickedObject++;
-						canClick                           = false;
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-					}
+				if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
+					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
+					InventoryUi.clickedObject++;
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 			if (Store.storeShouldBeRendered) {

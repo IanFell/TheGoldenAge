@@ -15,8 +15,6 @@ import ui.BossHealthUi;
 /**
  * Boss logic goes here.
  * 
- * TODO fix laugh SO IT HAPPENS AT THE START OF EVERY BATTLE.
- * 
  * @author Fabulous Fellini
  *
  */

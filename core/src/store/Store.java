@@ -117,11 +117,19 @@ public class Store extends TextBasedUiParent {
 		}
 
 		if (storeShouldBeRendered && playerWantsToEnterStore) {
+			// Place a black square in the background to cover the remaining part of the screen.
+			batch.draw(
+					imageLoader.blackSquare,
+					player.getX() - 13.7f, 
+					player.getY() + GameScreen.camera.viewportHeight / 2, 
+					GameScreen.camera.viewportWidth, 
+					-GameScreen.camera.viewportHeight
+					);
 			batch.draw(
 					imageLoader.storeUi, 
 					player.getX() - 13.7f, 
 					player.getY() + 8, 
-					27.4f, 
+					GameScreen.camera.viewportWidth, 
 					-GameScreen.camera.viewportHeight
 					);
 
@@ -143,7 +151,6 @@ public class Store extends TextBasedUiParent {
 						-2
 						);
 			}
-
 			batch.draw(
 					imageLoader.objectiveExitStore, 
 					playerX, 

@@ -21,8 +21,6 @@ import ui.BossHealthUi;
  */
 public class Boss extends Enemy {
 
-
-
 	// Use this to control shadow when boss jumps.
 	private boolean isPerformingJumpAttack = false;
 	private float jumpAttackStartY         = 0;
@@ -246,32 +244,37 @@ public class Boss extends Enemy {
 		if (enemiesShouldExecuteAi()) {
 			rectangle.x = x;
 			rectangle.y = y - height;
-
 			handleAttackTimer(); 
-
-			if (explosionsShouldBeCreated) {
-				for (int i = 0; i < explosion.length; i++) {
-					float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
-					float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
-					explosion[i] = new Explosion(xPos, yPos, explosionSize);
-				}
-				explosionsShouldBeCreated = false;
-			}
-
-			if (explosionsShouldBeRendered) {
-				explosionOffsetTimer++;
-				for (int i = 0; i < explosion.length; i++) {
-					explosion[i].updateObject(myGame, mapHandler);
-				}
-			}
-
-			// Shake screen during explosion.
-			if (shouldPlayExplosionMusic) {
-				GameScreen.screenShake.shake(0.3f,  3);
-			} 
-
 			handleAnimationTimer();
 		}
+		if (explosionsShouldBeCreated) {
+			for (int i = 0; i < explosion.length; i++) {
+				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+				explosion[i] = new Explosion(xPos, yPos, explosionSize);
+			}
+			explosionsShouldBeCreated = false;
+		}
+
+		if (explosionsShouldBeRendered) {
+			explosionOffsetTimer++;
+			for (int i = 0; i < explosion.length; i++) {
+				explosion[i].updateObject(myGame, mapHandler);
+			}
+		}
+
+		// Shake screen during explosion.
+		if (shouldPlayExplosionMusic) {
+			GameScreen.screenShake.shake(0.3f,  3);
+		} 
+	}
+
+	/**
+	 * 
+	 * @return boolean
+	 */
+	public boolean isExplosionsShouldBeRendered() {
+		return explosionsShouldBeRendered;
 	}
 
 	private void handleAnimationTimer() {

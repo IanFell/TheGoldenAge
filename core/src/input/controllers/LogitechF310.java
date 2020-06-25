@@ -23,6 +23,7 @@ import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
 import ui.AddedToInventory;
+import ui.InventoryUi;
 
 /**
  * Logitech F310 GamePad.
@@ -71,7 +72,11 @@ public class LogitechF310 extends ControllerInput {
 
 		super.pollTriggers(player);
 
-		if(controller.getButton(BUTTON_LT)) {} 
+		// I can't get the other trigger to function correctly, so lets just use this one.
+		if(controller.getButton(BUTTON_LT)) {
+			MagicPearl.isAttacking     = false;
+			MagicPearl.isMovingForward = false;
+		} 
 
 		if(controller.getButton(BUTTON_RT)) {
 			if (canClick) {
@@ -109,6 +114,7 @@ public class LogitechF310 extends ControllerInput {
 				if (Store.storeIsUnlocked) {
 					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 					canClick = false;
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
 			}
 		}
@@ -148,11 +154,15 @@ public class LogitechF310 extends ControllerInput {
 				/*
 				 * A button will initially select the first inventory object.
 				 * Player can cycle through inventory after this using D-Pad.
+				 * 
+				 * The above is now false.  If we want it true, switch the commented out line below.
+				 * Now, it will start wherever the player left off on the inventory.
 				 */
 				if (!Store.playerWantsToEnterStore) {
 					if (Inventory.allInventoryShouldBeRendered) {
 						selectAlternateInventoryObject(
-								Inventory.currentlySelectedInventoryObject, 
+								//Inventory.currentlySelectedInventoryObject,
+								InventoryUi.clickedObject,
 								player
 								);
 						Inventory.allInventoryShouldBeRendered = false;
@@ -230,7 +240,7 @@ public class LogitechF310 extends ControllerInput {
 							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
 								GameObject pearl = myGame.gameScreen.magicPearl;
 								((Player) player).getInventory().addObjectToInventory(pearl);
-								Inventory.inventoryHasStartedCollection = true;
+								//Inventory.inventoryHasStartedCollection = true;
 								pearl.hasBeenCollected                  = true;
 								MagicPearl.playCollectionSound          = true;
 								GameObjectLoader.gameObjectList.add(pearl);
