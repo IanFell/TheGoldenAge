@@ -174,6 +174,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture pawUi;
 	public Texture controlsUiBackground;
 	public Texture credits;
 	public Texture controls;
@@ -429,6 +430,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		pawUi                        = new Texture(Gdx.files.internal("artwork/ui/CursedPawUi.png"));
 		controlsUiBackground         = new Texture(Gdx.files.internal("artwork/ui/ControlsUiBackground.png"));
 		controlsUi                   = new Texture(Gdx.files.internal("artwork/ui/Controller.png"));
 		credits                      = new Texture(Gdx.files.internal("artwork/ui/Credits.png"));
@@ -707,6 +709,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		pawUi.dispose();
 		controlsUi.dispose();
 		controlsUiBackground.dispose();
 		credits.dispose();

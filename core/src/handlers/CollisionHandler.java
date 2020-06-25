@@ -695,7 +695,7 @@ public class CollisionHandler {
 				Paw.playCollectionSound                 = true;
 				GameObjectLoader.gameObjectList.add(paw);
 				AddedToInventory.shouldRender           = true;
-				AddedToInventory.shouldDisplayWoody     = true;
+				AddedToInventory.shouldDisplayPaw       = true;
 				AddedToInventory.timer                  = 0;
 			}
 		}

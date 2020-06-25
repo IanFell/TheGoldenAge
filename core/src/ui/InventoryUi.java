@@ -11,6 +11,7 @@ import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import input.computer.Mouse;
 import input.controllers.LogitechF310;
 import loaders.ImageLoader;
@@ -220,6 +221,9 @@ public class InventoryUi extends Screens {
 				}
 				if (inventory.get(i) instanceof BirdWeapon) {
 					batch.draw(imageLoader.woodyUi, xPos, yPos, width, height);
+				}
+				if (inventory.get(i) instanceof Paw) {
+					batch.draw(imageLoader.pawUi, xPos, yPos, width, height);
 				}
 			}
 		}
