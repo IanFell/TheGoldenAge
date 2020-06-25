@@ -36,7 +36,7 @@ public class Paw extends GameObjectCollectible {
 	 * @param float y
 	 */
 	public Paw() {
-		this.x                              = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 46;
+		this.x                              = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 146;
 		this.y                              = GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 10;
 		float size                          = 1f;
 		this.width                          = size;
