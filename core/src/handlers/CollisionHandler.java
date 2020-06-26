@@ -20,6 +20,7 @@ import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.CannonBall;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -696,6 +697,26 @@ public class CollisionHandler {
 				GameObjectLoader.gameObjectList.add(paw);
 				AddedToInventory.shouldRender           = true;
 				AddedToInventory.shouldDisplayPaw       = true;
+				AddedToInventory.timer                  = 0;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Dagger     dagger
+	 */
+	public static void checkIfPlayerHasCollidedWithDagger(GameObject player, Dagger dagger) {
+		if (!dagger.hasBeenCollected) {
+			if (dagger.rectangle.overlaps(player.rectangle)) {
+				((Player) player).getInventory().addObjectToInventory(dagger);
+				Inventory.inventoryHasStartedCollection = true;
+				dagger.hasBeenCollected                 = true;
+				Dagger.playCollectionSound              = true;
+				GameObjectLoader.gameObjectList.add(dagger);
+				AddedToInventory.shouldRender           = true;
+				AddedToInventory.shouldDisplayDagger    = true;
 				AddedToInventory.timer                  = 0;
 			}
 		}

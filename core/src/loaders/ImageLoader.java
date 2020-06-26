@@ -61,6 +61,11 @@ public class ImageLoader {
 	public Texture quickSand;
 
 	// Weapon Objects.
+	public Texture daggerShadow;
+	public Texture daggerUp;
+	public Texture daggerDown;
+	public Texture daggerLeft;
+	public Texture daggerRight;
 	public Texture paw;
 	public Texture bullet;
 	public Texture magicPearl;
@@ -180,6 +185,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture daggerUi;
 	public Texture pawUi;
 	public Texture controlsUiBackground;
 	public Texture credits;
@@ -329,6 +335,11 @@ public class ImageLoader {
 		quickSand      = new Texture(Gdx.files.internal("artwork/nature/QuickSand.png")); 
 
 		// Weapon Objects.
+		daggerShadow          = new Texture(Gdx.files.internal("artwork/weapons/dagger/DaggerShadow.png"));
+		daggerUp              = new Texture(Gdx.files.internal("artwork/weapons/dagger/DaggerUp.png"));
+		daggerDown            = new Texture(Gdx.files.internal("artwork/weapons/dagger/DaggerDown.png"));
+		daggerLeft            = new Texture(Gdx.files.internal("artwork/weapons/dagger/DaggerLeft.png"));
+		daggerRight           = new Texture(Gdx.files.internal("artwork/weapons/dagger/DaggerRight.png"));
 		bullet                = new Texture(Gdx.files.internal("artwork/weapons/bullet/Bullet.png"));
 		paw                   = new Texture(Gdx.files.internal("artwork/weapons/paw/Paw.png"));
 		magicPearl            = new Texture(Gdx.files.internal("artwork/weapons/oyster/MagicPearl.png"));
@@ -457,6 +468,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		daggerUi                     = new Texture(Gdx.files.internal("artwork/ui/DaggerUi.png"));
 		pawUi                        = new Texture(Gdx.files.internal("artwork/ui/CursedPawUi.png"));
 		controlsUiBackground         = new Texture(Gdx.files.internal("artwork/ui/ControlsUiBackground.png"));
 		controlsUi                   = new Texture(Gdx.files.internal("artwork/ui/Controller.png"));
@@ -629,6 +641,11 @@ public class ImageLoader {
 		pressStart.dispose();
 
 		// Weapon Objects.
+		daggerShadow.dispose();
+		daggerUp.dispose();
+		daggerDown.dispose();
+		daggerLeft.dispose();
+		daggerRight.dispose();
 		bullet.dispose();
 		paw.dispose();
 		magicPearl.dispose();
@@ -751,6 +768,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		daggerUi.dispose();
 		pawUi.dispose();
 		controlsUi.dispose();
 		controlsUiBackground.dispose();

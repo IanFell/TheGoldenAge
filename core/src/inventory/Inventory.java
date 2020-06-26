@@ -10,6 +10,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
@@ -95,6 +96,8 @@ public class Inventory extends Screens {
 					objectType = Weapon.WEAPON_TYPE_BIRD;
 				} else if (inventory.get(currentlySelectedInventoryObject) instanceof Paw) {
 					objectType = Weapon.WEAPON_TYPE_PAW;
+				} else if (inventory.get(currentlySelectedInventoryObject) instanceof Dagger) {
+					objectType = Weapon.WEAPON_TYPE_DAGGER;
 				}
 				for (int i = 0; i < inventory.size(); i++) {
 					if (objectType == Weapon.WEAPON_TYPE_SWORD) {
@@ -107,6 +110,8 @@ public class Inventory extends Screens {
 						updateBirdWeapon(i, xPosition, yPosition, x, y);
 					} else if (objectType == Weapon.WEAPON_TYPE_PAW) {
 						updatePawWeapon(i, xPosition, yPosition, x, y);
+					} else if (objectType == Weapon.WEAPON_TYPE_DAGGER) {
+						updateDagger(i, xPosition, yPosition, x, y);
 					}
 					if (Inventory.allInventoryShouldBeRendered) {
 						fire.updateObject(myGame, mapHandler);
@@ -116,6 +121,114 @@ public class Inventory extends Screens {
 		}
 	}
 
+	/**
+	 * 
+	 * @param int   selectedInventory
+	 * @param float xPosition
+	 * @param float yPosition
+	 * @param float x
+	 * @param float y
+	 */
+	private void updateDagger(int selectedInventory, float xPosition, float yPosition, float x, float y) {
+		float inventoryHeight = inventory.get(selectedInventory).getHeight();
+		if (Player.playerIsPerformingAttack) {
+			if (Player.isInWater) {
+				switch (Player.direction) {
+				case Player.DIRECTION_RIGHT:
+					xPosition = x + 4.5f;
+					yPosition = y - 0.5f;
+					break;
+				case Player.DIRECTION_LEFT:
+					xPosition = x - 4.5f;
+					yPosition = y - 0.5f;
+					break;
+				case Player.DIRECTION_DOWN:
+					xPosition = x - 0.3f;
+					yPosition = y + inventoryHeight + 2;
+					break;
+				case Player.DIRECTION_UP:
+					xPosition = x - 0.3f;
+					yPosition = y - inventoryHeight - 3;
+					break;
+				}
+			} else {
+				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+				case Player.DIRECTION_RIGHT:
+					xPosition = x + 4;
+					yPosition = y - 1.5f;
+					break;
+				case Player.DIRECTION_LEFT:
+					xPosition = x - 4.5f;
+					yPosition = y - 1.5f;
+					break;
+				case Player.DIRECTION_DOWN:
+					xPosition = x - 0.3f;
+					yPosition = y + inventoryHeight + 1;
+					break;
+				case Player.DIRECTION_UP:
+					xPosition = x - 0.3f;
+					yPosition = y - inventoryHeight - 4;
+					break;
+				}
+			}
+			Player.playerIsPerformingAttack = false;
+		} else {
+			if (Player.isInWater) {
+				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+				case Player.DIRECTION_RIGHT:
+					xPosition = x + 3;
+					yPosition = y - 0.5f;
+					break;
+				case Player.DIRECTION_LEFT:
+					xPosition = x - 3.5f;
+					yPosition = y - 0.5f;
+					break;
+				case Player.DIRECTION_DOWN:
+					xPosition = x - 0.3f;
+					yPosition = y + inventoryHeight + 1;
+					break;
+				case Player.DIRECTION_UP:
+					xPosition = x - 0.3f;
+					yPosition = y - inventoryHeight - 2;
+					break;
+				}
+			} else {
+				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+				case Player.DIRECTION_RIGHT:
+					xPosition = x + 3.6f;
+					yPosition = y - 1.5f;
+					// Compensate for player being larger if he's invincible.
+					if (Player.isInvincible) {
+						xPosition = x + 4.3f;
+					}
+					break;
+				case Player.DIRECTION_LEFT:
+					xPosition = x - 3.5f;
+					yPosition = y - 1.5f;
+					break;
+				case Player.DIRECTION_DOWN:
+					xPosition = x - 0.3f;
+					yPosition = y + inventoryHeight;
+					break;
+				case Player.DIRECTION_UP:
+					xPosition = x - 0.3f;
+					yPosition = y - inventoryHeight - 2.7f;
+					break;
+				}
+			}
+		}
+		inventory.get(selectedInventory).setX(xPosition);
+		inventory.get(selectedInventory).setY(yPosition);
+	}
+
+	/**
+	 * 
+	 * @param int   selectedInventory
+	 * @param float xPosition
+	 * @param float yPosition
+	 * @param float x
+	 * @param float y
+	 */
 	private void updatePawWeapon(int selectedInventory, float xPosition, float yPosition, float x, float y) {
 		switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
 		case Player.DIRECTION_RIGHT:

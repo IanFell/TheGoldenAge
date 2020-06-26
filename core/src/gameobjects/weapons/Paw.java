@@ -88,9 +88,10 @@ public class Paw extends GameObjectCollectible {
 	private void handleDeadTimer() {
 		deadTimer++;
 		if (deadTimer > DEAD_TIME) {
-			hasBeenUsed       = false;
-			haveKilledEnemies = false;
-			deadTimer         = 0;
+			hasBeenUsed         = false;
+			haveKilledEnemies   = false;
+			deadTimer           = 0;
+			playCollectionSound = true;
 
 		}
 	}

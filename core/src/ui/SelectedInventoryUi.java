@@ -6,6 +6,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -58,8 +59,9 @@ public class SelectedInventoryUi {
 					// This doesn't actually do anything, but we need it so we don't throw a null pointer on the image variable.
 					image = imageLoader.attackBird;
 				} else if (object instanceof Paw) {
-					// This doesn't actually do anything, but we need it so we don't throw a null pointer on the image variable.
 					image = imageLoader.paw;
+				} else if (object instanceof Dagger) {
+					image = imageLoader.daggerUp;
 				}
 
 				// Lastly, draw correct inventory object.

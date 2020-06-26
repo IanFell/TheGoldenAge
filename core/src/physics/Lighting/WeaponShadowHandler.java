@@ -80,7 +80,6 @@ public class WeaponShadowHandler {
 		}
 
 		GameObject paw = myGame.getGameScreen().paw; 
-		// Draw shadow under stationary bird before player has collected it.
 		if (!paw.hasBeenCollected) {
 			// Only render shadow if boss is dead.
 			batch.draw(
@@ -89,6 +88,18 @@ public class WeaponShadowHandler {
 					paw.getY() + 1.0f, 
 					paw.getWidth(), 
 					-paw.getHeight()
+					);
+		}
+
+		GameObject dagger = myGame.getGameScreen().dagger; 
+		// Draw shadow under stationary bird before player has collected it.
+		if (!dagger.hasBeenCollected) {
+			batch.draw(
+					imageLoader.daggerShadow, 
+					dagger.getX(), 
+					dagger.getY() + 1.0f, 
+					dagger.getWidth(), 
+					-dagger.getHeight()
 					);
 		}
 	}

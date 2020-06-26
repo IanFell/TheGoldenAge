@@ -14,6 +14,7 @@ public class Weapon extends GameObject {
 	public static int WEAPON_TYPE_MAGIC_PEARL = 2;
 	public static int WEAPON_TYPE_BIRD        = 3;
 	public static int WEAPON_TYPE_PAW         = 4;
+	public static int WEAPON_TYPE_DAGGER      = 5;
 
 	public static boolean shouldPlaySwitchWeaponAudio = false;
 

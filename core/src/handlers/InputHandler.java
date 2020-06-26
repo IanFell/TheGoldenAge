@@ -51,8 +51,8 @@ public class InputHandler {
 		if (controllerName.contains("Wireless Controller")) {
 			controllerInput = new PlayStation4Pad();
 		}
-		if (controllerName.contains("Twin USB Gamepad")) {
-			controllerInput = new Arcade();
+		if (controllerName.contains("Generic   USB  Joystick")) {
+			controllerInput = new LogitechF310();
 			
 		}
 

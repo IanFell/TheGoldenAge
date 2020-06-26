@@ -8,6 +8,7 @@ import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -138,6 +139,7 @@ public class GameScreen extends Screens {
 	public MagicPearl magicPearl;
 	public BirdWeapon birdWeapon;
 	public Paw paw;
+	public Dagger dagger;
 
 	public EnemyHandler enemyHandler = new EnemyHandler();
 	public GruntHandler gruntHandler = new GruntHandler();
@@ -263,6 +265,7 @@ public class GameScreen extends Screens {
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 46
 				);
 		paw            = new Paw();
+		dagger         = new Dagger();
 		heartHandler.init();
 		rumHandler.init();
 		ammoHandler.init();
@@ -369,6 +372,7 @@ public class GameScreen extends Screens {
 		magicPearl.updateObject(myGame, mapHandler);
 		birdWeapon.updateObject(myGame, mapHandler);
 		paw.updateObject(myGame, mapHandler);
+		dagger.updateObject(myGame, mapHandler);
 
 		userInterface.updateUserInterface(myGame.getGameObject(GameObject.PLAYER_ONE));
 
@@ -518,6 +522,7 @@ public class GameScreen extends Screens {
 				}
 				
 				paw.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
+				dagger.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			}
 		}
 

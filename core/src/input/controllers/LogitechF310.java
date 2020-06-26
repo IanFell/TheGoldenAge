@@ -18,7 +18,6 @@ import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
-import loaders.cannonballloader.CannonBallLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.Screens;

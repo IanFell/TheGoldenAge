@@ -8,6 +8,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -224,6 +225,9 @@ public class InventoryUi extends Screens {
 				}
 				if (inventory.get(i) instanceof Paw) {
 					batch.draw(imageLoader.pawUi, xPos, yPos, width, height);
+				}
+				if (inventory.get(i) instanceof Dagger) {
+					batch.draw(imageLoader.daggerUi, xPos, yPos, width, height);
 				}
 			}
 		}
