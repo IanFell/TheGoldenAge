@@ -1,5 +1,6 @@
 package gameobjects.weapons;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
@@ -64,6 +65,7 @@ public class Dagger extends GameObjectCollectible {
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+			
 			if (!hasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
 				batch.draw(
 						imageLoader.daggerUp, 
@@ -82,8 +84,10 @@ public class Dagger extends GameObjectCollectible {
 						-height
 						);
 			} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
-				float xPosition = 0;
-				float yPosition = 0;
+				int daggerDirection   = PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1);
+				float xPosition       = 0;
+				float yPosition       = 0;
+				Texture daggerTexture = imageLoader.daggerUp;
 				if (Player.playerIsPerformingAttack) {
 					if (Player.isInWater) {
 						/*
@@ -149,22 +153,25 @@ public class Dagger extends GameObjectCollectible {
 							break;
 						}*/
 					} else {
-						switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+						switch (daggerDirection) {
 						case Player.DIRECTION_RIGHT:
-							xPosition = x - 3;
-							yPosition = y + 1;
+							xPosition = x - 2.7f;
+							yPosition = y + 1.7f;
 							// Compensate for player being larger if he's invincible.
 							if (Player.isInvincible) {
 								xPosition = x - 1;
 							}
+							daggerTexture = imageLoader.daggerRight;
 							break;
 						case Player.DIRECTION_LEFT:
-							xPosition = x + 3;
-							yPosition = y + 1;
+							xPosition = x + 2.7f;
+							yPosition = y + 1.7f;
+							daggerTexture = imageLoader.daggerLeft;
 							break;
 						case Player.DIRECTION_DOWN:
 							xPosition = x;
 							yPosition = y;
+							daggerTexture = imageLoader.daggerDown;
 							break;
 						case Player.DIRECTION_UP:
 							xPosition = x;
@@ -173,16 +180,11 @@ public class Dagger extends GameObjectCollectible {
 							if (Player.isInvincible) {
 								yPosition = y + 2;
 							}
+							daggerTexture = imageLoader.daggerUp;
 							break;
 						}
 					}
-					batch.draw(
-							imageLoader.daggerUp, 
-							xPosition, 
-							yPosition, 
-							width, 
-							-height
-							);
+					batch.draw(daggerTexture, xPosition, yPosition, width, -height);
 				}
 			}
 		}

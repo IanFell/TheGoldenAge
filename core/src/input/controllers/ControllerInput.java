@@ -186,7 +186,7 @@ public class ControllerInput extends Input {
 	 * @param MyGame     myGame
 	 */
 	protected void pollMainFourButtons(GameObject player, MyGame myGame) {
-		if(controller.getButton(BUTTON_X)) {}
+		//if(controller.getButton(BUTTON_X)) {}
 	}
 
 	/**

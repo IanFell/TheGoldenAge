@@ -52,7 +52,7 @@ public class InputHandler {
 			controllerInput = new PlayStation4Pad();
 		}
 		if (controllerName.contains("Generic   USB  Joystick")) {
-			controllerInput = new LogitechF310();
+			controllerInput = new Arcade();
 			
 		}
 

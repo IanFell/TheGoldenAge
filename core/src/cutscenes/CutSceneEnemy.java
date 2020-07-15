@@ -144,5 +144,4 @@ public class CutSceneEnemy extends CutScene {
 			endCutScene();
 		}
 	}
-
 }

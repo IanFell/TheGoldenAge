@@ -147,5 +147,7 @@ public class CutSceneJollyRoger extends CutScene {
 		if (Debugger.skipIntroCutscene) {
 			endCutScene();
 		}
+
+		handleCutSceneTransition(myGame);
 	}
 }
