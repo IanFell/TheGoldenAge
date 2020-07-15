@@ -11,6 +11,7 @@ import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import screens.GameScreen;
 import store.Store;
 import ui.MapUi;
 
@@ -28,6 +29,10 @@ public class Paw extends GameObjectCollectible {
 
 	private final int DEAD_TIME = 5000;
 	private int deadTimer       = 0;
+
+	private boolean screenShouldShake   = true;
+	private int shakeTimer              = 0;
+	private final int SCREEN_SHAKE_TIME = 100;
 
 	/**
 	 * Constructor.
@@ -80,8 +85,24 @@ public class Paw extends GameObjectCollectible {
 					}
 				}
 				haveKilledEnemies = true;
+				screenShouldShake = true;
 			}
 			handleDeadTimer();
+			handleScreenShakeTimer();
+
+			if (screenShouldShake) {
+				GameScreen.screenShake.shake(0.3f, 3);
+			} 
+		}
+	}
+
+	private void handleScreenShakeTimer() {
+		if (screenShouldShake) {
+			shakeTimer++;
+			if (shakeTimer > SCREEN_SHAKE_TIME) {
+				shakeTimer        = 0;
+				screenShouldShake = false;
+			}
 		}
 	}
 

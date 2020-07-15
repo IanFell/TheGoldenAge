@@ -41,8 +41,9 @@ public class Giant extends Enemy {
 
 	private Rectangle landingSoundBoundary;
 
-	private boolean screenShouldShake = true;
-	private int shakeTimer            = 0;
+	private boolean screenShouldShake   = true;
+	private int shakeTimer              = 0;
+	private final int SCREEN_SHAKE_TIME = 20; 
 
 	private int deathTimer                = 0;
 	private final int AMOUNT_OF_TIME_DEAD = 200;
@@ -121,7 +122,7 @@ public class Giant extends Enemy {
 	private void handleLandingScreenShakeTimer() {
 		if (screenShouldShake) {
 			shakeTimer++;
-			if (shakeTimer > 20) {
+			if (shakeTimer > SCREEN_SHAKE_TIME) {
 				shakeTimer        = 0;
 				screenShouldShake = false;
 			}
