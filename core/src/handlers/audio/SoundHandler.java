@@ -384,9 +384,9 @@ public class SoundHandler {
 	 * @param SoundLoader soundLoader
 	 */
 	private void handleJumpingAudio(SoundLoader soundLoader) {
-		if (Player.isJumping || MissionStumpHole.jumpSoundShouldPlay) {
+		if (Player.isJumping && !MissionStumpHole.missionIsActive) {
 			if (jumpTimer < 1) {
-				if (!Player.isInWater || MissionStumpHole.jumpSoundShouldPlay) { 
+				if (!Player.isInWater) { 
 					soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
 				}
 			}
@@ -394,9 +394,27 @@ public class SoundHandler {
 			if (jumpTimer > 50) {
 				jumpTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
-		} else {
+		} /*else if (MissionStumpHole.missionIsActive && MissionStumpHole.jumpSoundShouldPlay) {
+			if (jumpTimer < 1) {
+				soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
+			}
+			jumpTimer++;
+			if (jumpTimer > 50) {
+				jumpTimer = GameAttributeHelper.TIMER_START_VALUE;
+			}
+		}*/ else {
+			/*
+			if (MissionStumpHole.missionIsActive && MissionStumpHole.jumpSoundShouldPlay) {
+				if (jumpTimer < 1) {
+					soundLoader.jumpSound.play(Mixer.JUMP_VOLUME);
+				}
+				jumpTimer++;
+				if (jumpTimer > 50) {
+					jumpTimer = GameAttributeHelper.TIMER_START_VALUE;
+				}
+			} */
 			jumpTimer = GameAttributeHelper.TIMER_START_VALUE;
-		}
+		} 
 	}
 
 	/**

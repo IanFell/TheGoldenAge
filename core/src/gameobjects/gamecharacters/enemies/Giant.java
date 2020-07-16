@@ -167,9 +167,8 @@ public class Giant extends Enemy {
 			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
 				GameScreen.screenShake.shake(0.3f, 3);
 			} 
-
-			respawn();
 		}
+		respawn();
 	}
 
 	private void respawn() {
@@ -178,6 +177,7 @@ public class Giant extends Enemy {
 			if (deathTimer > AMOUNT_OF_TIME_DEAD) {
 				dead       = false;
 				deathTimer = 0;
+				timer      = 0;
 			}
 		}
 	}
@@ -209,7 +209,10 @@ public class Giant extends Enemy {
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		} else {
 			if (explosion != null) {
+				timer++;
 				if (timer < MAX_DEATH_ANIMATION_VALUE) {
+					//explosion.setX(x);
+					//explosion.setY(y);
 					explosion.renderExplosion(batch, imageLoader);
 				}
 			}

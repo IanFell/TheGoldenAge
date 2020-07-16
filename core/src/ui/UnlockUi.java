@@ -33,8 +33,8 @@ public class UnlockUi {
 	public UnlockUi() {
 		timerAmmo                       = 0;
 		timerMagicPearl                 = 0;
-		width                           = 8;
-		height                          = 3;
+		width                           = 17;
+		height                          = 6;
 		shouldRenderMagicPearlObjective = false;
 		shouldRenderAmmoObjective       = true;
 	}
@@ -47,10 +47,10 @@ public class UnlockUi {
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
 		if (shouldRenderAmmoObjective) {
-			batch.draw(imageLoader.objectiveAmmoUnlocked, player.getX() - width / 2, player.getY() - 1, width, -height);
+			batch.draw(imageLoader.objectiveAmmoUnlocked, player.getX() - width / 2, player.getY(), width, -height);
 		}
 		if (shouldRenderMagicPearlObjective) {
-			batch.draw(imageLoader.objectiveMagicPearlUnlocked, player.getX() - width / 2, player.getY() + 3, width, -height);
+			batch.draw(imageLoader.objectiveMagicPearlUnlocked, player.getX() - width / 2, player.getY() + 4, width, -height);
 		}
 	}
 

@@ -409,7 +409,6 @@ public class GameScreen extends Screens {
 					myGame.imageLoader, 
 					player
 					);
-			weatherHandler.renderStormCycle(myGame, this);
 			lightingHandler.renderShadows(myGame);
 
 			/**
@@ -554,6 +553,7 @@ public class GameScreen extends Screens {
 					this
 					);
 		}
+		weatherHandler.renderStormCycle(myGame, this);
 		weatherHandler.renderClouds(myGame);
 	}
 
