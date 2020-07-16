@@ -13,6 +13,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.shockplant.ShockPlant;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
@@ -24,6 +25,7 @@ import handlers.enemies.BossHandler;
 import handlers.enemies.GiantHandler;
 import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
+import helpers.RandomNumberGenerator;
 import inventory.Inventory;
 import loaders.audio.SoundLoader;
 import loaders.bossloader.BossLoader;
@@ -98,6 +100,10 @@ public class SoundHandler {
 			if (Paw.playCollectionSound) {
 				soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
 			}
+			if (Dagger.playCollectionSound) {
+				soundLoader.dagger.play(Mixer.PICK_UP_DAGGER_VOLUME);
+				Dagger.playCollectionSound = false;
+			}
 			if (MissionRawBar.playCollectionSound) {
 				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
 				MissionRawBar.playCollectionSound = false;
@@ -147,6 +153,8 @@ public class SoundHandler {
 					if (Paw.playAttackSound) {
 						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
 					}
+				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
+					soundLoader.dagger.play(Mixer.DAGGER_ATTACK_VOLUME);
 				} else {
 					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}
@@ -331,7 +339,12 @@ public class SoundHandler {
 				// For now make the same sound for every enemy killing.  
 				if (myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).getPlaySound()) {
 					if (enemyDeathSoundCanPlay) {
-						soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+						int randomSound = RandomNumberGenerator.generateRandomInteger(100);
+						if (randomSound < 50) {
+							soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+						} else {
+							soundLoader.enemyHurt.play(Mixer.ENEMY_DEATH_VOLUME_ALTERNATE);
+						}
 					}
 					myGame.gameScreen.enemyHandler.enemySpawner[i].enemies.get(k).setPlaySound(false);
 				}

@@ -53,11 +53,13 @@ public class Mixer {
 	public final static float PICK_UP_GUN_VOLUME    = MAX_VOLUME;
 	public static final float PICK_UP_BIRD_VOLUME   = QUARTER_VOLUME;
 	public static final float PICK_UP_MONKEY_VOLUME = MEDIAN_VOLUME;
+	public static final float PICK_UP_DAGGER_VOLUME = EIGHTH_VOLUME;
 
 	// Damage to player and enemies.
-	public final static float PLAYER_HIT_VOLUME  = EIGHTH_VOLUME;
-	public final static float ENEMY_DEATH_VOLUME = MAX_VOLUME;
-	public final static float BOSS_GRUNT_VOLUME  = QUARTER_VOLUME;
+	public final static float PLAYER_HIT_VOLUME            = EIGHTH_VOLUME;
+	public final static float ENEMY_DEATH_VOLUME           = MEDIAN_VOLUME;
+	public static final float ENEMY_DEATH_VOLUME_ALTERNATE = QUARTER_VOLUME;
+	public final static float BOSS_GRUNT_VOLUME            = QUARTER_VOLUME;
 
 	public final static float BOSS_LAUGH_VOLUME  = QUARTER_VOLUME;
 
@@ -67,6 +69,7 @@ public class Mixer {
 	public final static float BUBBLE_ATTACK_VOLUME = MAX_VOLUME;
 	public static final float BIRD_ATTACK_VOLUME   = QUARTER_VOLUME;
 	public static final float PAW_ATTACK_VOLUME    = MEDIAN_VOLUME;
+	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME = MEDIAN_VOLUME;

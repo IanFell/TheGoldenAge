@@ -43,8 +43,12 @@ public class SoundLoader {
 	public Sound register;
 	public Sound arrow;
 	public Sound tunnel;
+	public Sound dagger;
+	public Sound enemyHurt;
 
 	public void init() {
+		dagger              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Dagger.wav"));
+		enemyHurt           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/HurtEnemy.wav"));
 		cutscene            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/CutScene.wav"));
 		monkey              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Monkey.wav"));
 		spark               = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Spark.wav"));
@@ -80,6 +84,8 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		enemyHurt.dispose();
+		dagger.dispose();
 		cutscene.dispose();
 		monkey.dispose();
 		spark.dispose();
