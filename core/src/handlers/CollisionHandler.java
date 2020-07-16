@@ -357,12 +357,42 @@ public class CollisionHandler {
 
 	/**
 	 * 
+	 * @param Enemy  enemy
+	 * @param Dagger dagger
+	 */
+	public static void checkIfDaggerHasCollidedWithEnemy(Enemy enemy, Dagger dagger) {
+		if (dagger instanceof Dagger) {
+			if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
+				// Checking if dead is false keeps the sound from playing repeatedly.
+				if (enemy.rectangle.overlaps(dagger.rectangle) && !enemy.isDead()) {
+					handleEnemyDeath(enemy);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
 	 * @param Boss   boss
 	 * @param Weapon weapon
 	 */
 	public static void checkIfWeaponHasCollidedWithBoss(Boss boss, Weapon weapon) {
 		if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
+				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+				Boss.playGruntSound = true;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param Boss   boss
+	 * @param Dagger dagger
+	 */
+	public static void checkIfDaggerHasCollidedWithBoss(Boss boss, Dagger dagger) {
+		if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
+			if (boss.rectangle.overlaps(dagger.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 				Boss.playGruntSound = true;
 			}

@@ -4,6 +4,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.stationarygameobjects.buildings.GruntHut;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.Weapon;
 import handlers.CollisionHandler;
@@ -117,6 +118,21 @@ public class GruntHandler {
 			if (gruntSpawner[i].grunts != null) {
 				for (int k = 0; k < gruntSpawner[i].grunts.size(); k++) {
 					CollisionHandler.checkIfWeaponHasCollidedWithEnemy(gruntSpawner[i].grunts.get(k), legendSword);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param MyGame myGame
+	 * @param Dagger dagger
+	 */
+	public void checkWeaponCollision(MyGame myGame, Dagger dagger) {
+		for (int i = 0; i < gruntSpawner.length; i++) {
+			if (gruntSpawner[i].grunts != null) {
+				for (int k = 0; k < gruntSpawner[i].grunts.size(); k++) {
+					CollisionHandler.checkIfDaggerHasCollidedWithEnemy(gruntSpawner[i].grunts.get(k), dagger);
 				}
 			}
 		}

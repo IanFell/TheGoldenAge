@@ -5,13 +5,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.collectibles.GameObjectCollectible;
+import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.CollisionHandler;
+import handlers.enemies.GiantHandler;
 import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import store.Store;
 import ui.MapUi;
@@ -53,8 +56,18 @@ public class Dagger extends GameObjectCollectible {
 		if (!hasBeenCollected) {
 			CollisionHandler.checkIfPlayerHasCollidedWithDagger(myGame.getGameObject(Player.PLAYER_ONE), this);
 			handleMovement();
+		} else {
+			rectangle.x = x;
+			rectangle.y = y;
+			myGame.gameScreen.enemyHandler.checkWeaponCollision(myGame, this);
+			myGame.gameScreen.gruntHandler.checkWeaponCollision(myGame, this);
+			for (int i = 0; i < BossLoader.boss.length; i++) {
+				CollisionHandler.checkIfDaggerHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
+			}
+			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[0], this);
+			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[1], this);
+			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[2], this);
 		}
-
 	}
 
 	/**
@@ -65,7 +78,7 @@ public class Dagger extends GameObjectCollectible {
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
-			
+
 			if (!hasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
 				batch.draw(
 						imageLoader.daggerUp, 
