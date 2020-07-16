@@ -8,12 +8,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
+import handlers.enemies.GiantHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.MissionStumpHole;
 
@@ -188,7 +191,12 @@ public class BirdWeapon extends Weapon {
 				// Bird can kill enemies even if he is just sitting on the player's shoulder.
 				myGame.gameScreen.enemyHandler.checkProjectileCollision(myGame, this);
 				myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
-				// TODO BOSS AND GIANT IF THEY'RE NOT ALREADY IN THEIR RESPECTIVE CLASSES.
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[0], this);
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[1], this);
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[2], this);
+				for (int i = 0; i < BossLoader.boss.length; i++) {
+					CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
+				}
 			}
 		}
 	}

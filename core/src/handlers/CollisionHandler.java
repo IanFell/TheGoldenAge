@@ -354,6 +354,22 @@ public class CollisionHandler {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * @param Enemy  enemy
+	 * @param Weapon weapon
+	 */
+	public static void checkIfBirdWeaponHasCollidedWithEnemy(Enemy enemy, Weapon weapon) {
+		if (weapon instanceof BirdWeapon) {
+			if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
+				// Checking if dead is false keeps the sound from playing repeatedly.
+				if (enemy.rectangle.overlaps(weapon.rectangle) && !enemy.isDead()) {
+					handleEnemyDeath(enemy);
+				}
+			}
+		}
+	}
 
 	/**
 	 * 
