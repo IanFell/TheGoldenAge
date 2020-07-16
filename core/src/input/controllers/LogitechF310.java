@@ -8,6 +8,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
+import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
@@ -87,6 +88,13 @@ public class LogitechF310 extends ControllerInput {
 				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 					MagicPearl.isAttacking     = true;
 					MagicPearl.isMovingForward = true;
+				}
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+					if (!BirdWeapon.birdIsAttacking) {
+						BirdWeapon.birdIsAttacking = true;
+						BirdWeapon.playAttackSound = true;
+						BirdWeapon.shouldPlaySound = true;
+					}
 				}
 				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
 					Paw.hasBeenUsed         = true;

@@ -147,8 +147,6 @@ public class SoundHandler {
 					if (AmmoHandler.ammoCount > 0) {
 						soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
 					}
-				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-					soundLoader.bird.play(Mixer.BIRD_ATTACK_VOLUME);
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
 					if (Paw.playAttackSound) {
 						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);

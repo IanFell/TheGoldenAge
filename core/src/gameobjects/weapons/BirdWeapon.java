@@ -33,6 +33,8 @@ public class BirdWeapon extends Weapon {
 
 	public static boolean playAttackSound = false;
 
+	public static boolean shouldPlaySound = false;
+
 	private TextureAtlas textureAtlasLeft;
 	private TextureAtlas textureAtlasRight;
 
@@ -87,6 +89,7 @@ public class BirdWeapon extends Weapon {
 			rectangle.y = y;
 
 			if (birdIsAttacking) {
+				shouldPlaySound     = false;
 				float movementSpeed = 0.2f;
 				handleAttackTimer();
 				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
@@ -180,8 +183,9 @@ public class BirdWeapon extends Weapon {
 					attackTimer     = 0;
 				}
 			} else {
-				dx = 0;
-				dy = 0;
+				dx              = 0;
+				dy              = 0;
+				shouldPlaySound = true;
 			}
 
 			if (!hasBeenCollected) {

@@ -211,8 +211,6 @@ public class Giant extends Enemy {
 			if (explosion != null) {
 				timer++;
 				if (timer < MAX_DEATH_ANIMATION_VALUE) {
-					//explosion.setX(x);
-					//explosion.setY(y);
 					explosion.renderExplosion(batch, imageLoader);
 				}
 			}

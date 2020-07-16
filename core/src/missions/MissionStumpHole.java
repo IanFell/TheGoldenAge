@@ -9,6 +9,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.collectibles.Bird;
+import gameobjects.gamecharacters.RockBird;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Feather;
 import gameobjects.nature.Stump;
@@ -26,6 +27,8 @@ import ui.LocationMarker;
  *
  */
 public class MissionStumpHole extends Mission {
+	
+	private RockBird rockBird;
 
 	// When this is true, bird weapon will appear on screen.
 	public static boolean stumpHoleMissionComplete;
@@ -163,6 +166,8 @@ public class MissionStumpHole extends Mission {
 				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 40
 				);
+		
+		rockBird = new RockBird(stumps.get(0).getX(), stumps.get(0).getY() - 8);
 	}
 
 	private void loadStumps() {
@@ -236,6 +241,8 @@ public class MissionStumpHole extends Mission {
 			attackBird.renderObject(batch, imageLoader);
 			attackBirdTwo.renderObject(batch, imageLoader);
 			attackBirdThree.renderObject(batch, imageLoader);
+			
+			rockBird.renderObject(batch, imageLoader);
 
 			//renderHitBoxes(batch, imageLoader);
 
@@ -382,6 +389,10 @@ public class MissionStumpHole extends Mission {
 		attackBirdBreakTimer++;
 		attackBird.rectangle.x = attackBird.getX();
 		attackBird.rectangle.y = attackBird.getY() - attackBird.getHeight();
+		rockBird.rectangle.x   = rockBird.getX();
+		rockBird.rectangle.y   = rockBird.getY();
+		
+		rockBird.updateObject(myGame, mapHandler, stumps.get(0).getX(), stumps.get(8).getX());
 
 		if (playerIsJumping) {
 			// Player goes up.
