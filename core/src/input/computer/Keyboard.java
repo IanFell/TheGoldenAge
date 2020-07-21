@@ -25,6 +25,7 @@ import screens.PauseScreen;
 import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
+import ui.ConfidenceUi;
 import ui.MapUi;
 
 /**
@@ -71,7 +72,7 @@ public class Keyboard extends ComputerInput {
 			}
 			break;
 
-		case Screens.GAME_SCREEN:	System.out.println("xxxxxx");
+		case Screens.GAME_SCREEN:	
 
 		// Skip intro cut scene.
 		if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
@@ -207,9 +208,10 @@ public class Keyboard extends ComputerInput {
 		// If player has rum, decrease rum count and make player invinvible.
 		if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
 			if (RumHandler.rumCount > 0 && !Player.isInvincible) {
-				Player.isInvincible = true;
 				RumHandler.rumCount--;
-				Player.invincibilityTimer = 0;
+				Player.isInvincible                       = true;
+				Player.invincibilityTimer                 = 0;
+				ConfidenceUi.confidenceUiShouldBeRendered = true;
 			}
 		}
 

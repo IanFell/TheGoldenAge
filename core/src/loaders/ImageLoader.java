@@ -129,6 +129,7 @@ public class ImageLoader {
 
 	// Cutscene objects.
 	//public Texture[] cutSceneDialogueOne = new Texture[9];
+	public Texture cutsceneRum;
 	public Texture cutsceneJollyRoger;
 	public Texture cutsceneCutthroat;
 	public Texture cutsceneFarzenplank;
@@ -402,6 +403,7 @@ public class ImageLoader {
 		dustParticleThree = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleThree.png"));
 
 		// Cutscene objects.
+		cutsceneRum         = new Texture(Gdx.files.internal("artwork/cutscenes/Confidence.png"));
 		enemyMessage        = new Texture(Gdx.files.internal("artwork/cutscenes/EnemyMessage.png"));
 		mapMessage          = new Texture(Gdx.files.internal("artwork/cutscenes/MapMessage.png"));
 		birdMessage         = new Texture(Gdx.files.internal("artwork/cutscenes/BirdMessage.png"));
@@ -708,6 +710,7 @@ public class ImageLoader {
 		dustParticleThree.dispose();
 
 		// Cutscene objects.
+		cutsceneRum.dispose();
 		enemyMessage.dispose();
 		mapMessage.dispose();
 		birdMessage.dispose();

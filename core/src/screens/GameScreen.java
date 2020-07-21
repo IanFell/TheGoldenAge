@@ -250,7 +250,7 @@ public class GameScreen extends Screens {
 		missionHandler = new MissionHandler(myGame);
 		mapUi          = new MapUi(myGame);
 		controlsUi     = new ControlsUi(myGame);
-		userInterface  = new UserInterface();
+		userInterface  = new UserInterface(myGame);
 		gun            = new Gun(
 				GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
 				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 63, 

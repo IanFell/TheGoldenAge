@@ -25,6 +25,7 @@ import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
 import ui.AddedToInventory;
+import ui.ConfidenceUi;
 import ui.InventoryUi;
 
 /**
@@ -250,7 +251,7 @@ public class LogitechF310 extends ControllerInput {
 							}
 						}
 						break;
-					case 3:
+					case PURCHASE_BUTTON_PEARL: 
 						if (!Store.pearlPurchased && Store.pearlUnlocked) {
 							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_PEARL) {
 								GameObject pearl = myGame.gameScreen.magicPearl;
@@ -274,7 +275,7 @@ public class LogitechF310 extends ControllerInput {
 							}
 						}
 						break;
-					case 4:
+					case PURCHASE_BUTTON_AMMO:
 						if (Store.ammoUnlocked) {
 							if (player.getPlayerLoot() >= CollectibleHandler.LOOT_NEEDED_TO_BUY_AMMO) {
 								if (AmmoHandler.ammoCount < AmmoHandler.MAX_AMOUNT_AMMO_PLAYER_CAN_CARRY) {
@@ -293,12 +294,11 @@ public class LogitechF310 extends ControllerInput {
 							}
 						}
 						break;
-					case 5:
+					case PURCHASE_BUTTON_NULL:
 						break;
 					}
 				}
 			}
-
 		} else {
 			if (Inventory.allInventoryShouldBeRendered) {
 				Inventory.mouseIsClickingOnInventoryObject = false;
@@ -324,9 +324,10 @@ public class LogitechF310 extends ControllerInput {
 
 		if(controller.getButton(BUTTON_X)) {
 			if (RumHandler.rumCount > 0 && !Player.isInvincible) {
-				Player.isInvincible = true;
 				RumHandler.rumCount--;
-				Player.invincibilityTimer = 0;
+				Player.isInvincible                       = true;
+				Player.invincibilityTimer                 = 0;
+				ConfidenceUi.confidenceUiShouldBeRendered = true;
 			}
 		}
 	}

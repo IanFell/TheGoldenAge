@@ -41,11 +41,12 @@ public class UserInterface {
 	private UnlockUi unlockUi;
 	private AddedToInventory addedToInventory;
 	private OutOfAmmo outOfAmmo;
+	private ConfidenceUi confidenceUi;
 
 	/**
 	 * Constructor.
 	 */
-	public UserInterface() {
+	public UserInterface(MyGame myGame) {
 		healthUi            = new HealthUi();
 		lootUi              = new LootUi();
 		playerNameUi        = new PlayerNameUi();
@@ -56,6 +57,7 @@ public class UserInterface {
 		unlockUi            = new UnlockUi();
 		addedToInventory    = new AddedToInventory();
 		outOfAmmo           = new OutOfAmmo();
+		confidenceUi        = new ConfidenceUi(myGame);
 	}
 
 	/**
@@ -85,6 +87,8 @@ public class UserInterface {
 
 			addedToInventory.render(myGame);
 			outOfAmmo.render(myGame);
+			
+			confidenceUi.renderConfidenceUi(batch, imageLoader, myGame);
 		}
 	}
 
@@ -107,5 +111,6 @@ public class UserInterface {
 		}
 		addedToInventory.update(player);
 		outOfAmmo.update(player);
+		confidenceUi.updateConfidenceUi();
 	}
 }
