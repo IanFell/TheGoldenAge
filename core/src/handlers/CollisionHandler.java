@@ -25,6 +25,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
+import gameobjects.weapons.RockDrop;
 import gameobjects.weapons.Weapon;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
@@ -354,7 +355,7 @@ public class CollisionHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param Enemy  enemy
@@ -764,6 +765,22 @@ public class CollisionHandler {
 				AddedToInventory.shouldRender           = true;
 				AddedToInventory.shouldDisplayDagger    = true;
 				AddedToInventory.timer                  = 0;
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param Rectangle  stumpHolePlayer
+	 * @param RockDrop   rockDrop
+	 * @param GameObject realPlayer
+	 */
+	public static void checkIfPlayerHasCollidedWithRockDrop(Rectangle stumpHolePlayer, RockDrop rockDrop, GameObject realPlayer) {
+		if (stumpHolePlayer.overlaps(rockDrop.rectangle)) {
+			if (!Player.isInvincible) {
+				realPlayer.setHealth(realPlayer.getHealth() - 0.1f);
+				realPlayer.setPlaySound(true);
+				//player.setBounceBack(true);
 			}
 		}
 	}
