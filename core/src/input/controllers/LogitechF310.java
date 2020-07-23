@@ -183,6 +183,7 @@ public class LogitechF310 extends ControllerInput {
 								);
 						Inventory.allInventoryShouldBeRendered = false;
 					} else {
+						// TODO DO I NEED THIS?
 						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
 							MissionRawBar.introHasCompleted = true;
 						} else {

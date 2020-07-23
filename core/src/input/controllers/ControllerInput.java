@@ -42,7 +42,7 @@ public class ControllerInput extends Input {
 	private final int CLICK_TIMER_MAX_VALUE = 15;
 
 	// Make sure inventory button if held down is not being hit infinite times.
-	private float clickUiTimer      = GameAttributeHelper.TIMER_START_VALUE;
+	protected float clickUiTimer    = GameAttributeHelper.TIMER_START_VALUE;
 	private int clickTimer          = GameAttributeHelper.TIMER_START_VALUE;
 	protected boolean canClick      = true;
 
@@ -300,7 +300,7 @@ public class ControllerInput extends Input {
 	 * @param MyGame myGame
 	 * @param int    direction
 	 */
-	private void selectStoreObject(MyGame myGame, int direction) {
+	protected void selectStoreObject(MyGame myGame, int direction) {
 		if (direction == GameObject.DIRECTION_LEFT) {
 			if (storeObjectNumber > 0) {
 				storeObjectNumber--;
@@ -320,7 +320,7 @@ public class ControllerInput extends Input {
 	 * @param boolean    isAdding
 	 * @param GameObject player
 	 */
-	private void selectAlternateInventoryObject(int currentlySelectedInventory, boolean isAdding, GameObject player) {
+	protected void selectAlternateInventoryObject(int currentlySelectedInventory, boolean isAdding, GameObject player) {
 		int increment = 1;
 		inventoryButtonIsPressed[Inventory.currentlySelectedInventoryObject] = false;
 		if (isAdding) {
