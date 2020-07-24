@@ -82,18 +82,20 @@ public class Gun extends Weapon {
 		rectangle.x = x;
 		rectangle.y = y;
 
-		if (
-				Player.playerIsPerformingAttack && 
-				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun && 
-				AmmoHandler.ammoCount > 0 &&
-				!Store.playerWantsToEnterStore
-				) {
-			if (AmmoHandler.ammoCount > 0) {
-				BulletLoader.createBullet(myGame);
-				Player.playerIsPerformingAttack = false;
-			} 
-		} else if (Player.playerIsPerformingAttack && AmmoHandler.ammoCount <= 0) {
-			OutOfAmmo.shouldRender = true;
+		if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.size() > 0) {
+			if (
+					Player.playerIsPerformingAttack && 
+					myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun && 
+					AmmoHandler.ammoCount > 0 &&
+					!Store.playerWantsToEnterStore
+					) {
+				if (AmmoHandler.ammoCount > 0) {
+					BulletLoader.createBullet(myGame);
+					Player.playerIsPerformingAttack = false;
+				} 
+			} else if (Player.playerIsPerformingAttack && AmmoHandler.ammoCount <= 0) {
+				OutOfAmmo.shouldRender = true;
+			}
 		}
 
 		if (Inventory.allInventoryShouldBeRendered) {

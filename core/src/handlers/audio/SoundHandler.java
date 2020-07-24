@@ -141,20 +141,22 @@ public class SoundHandler {
 				attackTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
 			if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause) {
-				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
-					soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
-				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
-					if (AmmoHandler.ammoCount > 0) {
-						soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
+				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.size() > 0) {
+					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
+						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
+					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
+						if (AmmoHandler.ammoCount > 0) {
+							soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
+						}
+					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
+						if (Paw.playAttackSound) {
+							soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
+						}
+					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
+						soundLoader.dagger.play(Mixer.DAGGER_ATTACK_VOLUME);
+					} else {
+						soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 					}
-				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
-					if (Paw.playAttackSound) {
-						soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
-					}
-				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
-					soundLoader.dagger.play(Mixer.DAGGER_ATTACK_VOLUME);
-				} else {
-					soundLoader.bubbleSound.play(Mixer.BUBBLE_ATTACK_VOLUME);
 				}
 			}
 
