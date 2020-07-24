@@ -42,6 +42,7 @@ public class UserInterface {
 	private AddedToInventory addedToInventory;
 	private OutOfAmmo outOfAmmo;
 	private ConfidenceUi confidenceUi;
+	private LivesUi livesUi;
 
 	/**
 	 * Constructor.
@@ -58,6 +59,7 @@ public class UserInterface {
 		addedToInventory    = new AddedToInventory();
 		outOfAmmo           = new OutOfAmmo();
 		confidenceUi        = new ConfidenceUi(myGame);
+		livesUi             = new LivesUi();
 	}
 
 	/**
@@ -89,6 +91,8 @@ public class UserInterface {
 			outOfAmmo.render(myGame);
 			
 			confidenceUi.renderConfidenceUi(batch, imageLoader, myGame);
+			
+			livesUi.renderLivesUi(batch, imageLoader, myGame);
 		}
 	}
 

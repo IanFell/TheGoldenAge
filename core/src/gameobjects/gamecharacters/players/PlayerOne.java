@@ -27,8 +27,8 @@ import physics.Lighting.Fire;
  */
 public class PlayerOne extends Player {
 	
-	private final int MAX_LIVES = 3;
-	private int lives           = 0;
+	private final int MAX_LIVES       = 3;
+	public static int lives           = 0;
 
 	private int oarTimer = 0;
 
