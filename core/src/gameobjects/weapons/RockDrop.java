@@ -54,13 +54,15 @@ public class RockDrop extends GameObject {
 	 * @param float      rightBoundary
 	 */
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		y += dy;
-		rectangle.x = x;
-		rectangle.y = y;
-		CollisionHandler.checkIfPlayerHasCollidedWithRockDrop(
-				MissionStumpHole.player, 
-				this,
-				myGame.getGameObject(Player.PLAYER_ONE)
-				);
+		if (MissionStumpHole.missionIsActive) {
+			y += dy;
+			rectangle.x = x;
+			rectangle.y = y;
+			CollisionHandler.checkIfPlayerHasCollidedWithRockDrop(
+					MissionStumpHole.player, 
+					this,
+					myGame.getGameObject(Player.PLAYER_ONE)
+					);
+		}
 	}
 }

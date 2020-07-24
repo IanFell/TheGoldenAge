@@ -25,8 +25,10 @@ import screens.Screens;
 import store.Store;
 import ui.AddedToInventory;
 import ui.ConfidenceUi;
+import ui.ControlsUi;
 import ui.InventoryUi;
 import ui.MapUi;
+import ui.UserInterface;
 
 /**
  * 
@@ -137,6 +139,45 @@ public class Arcade extends ControllerInput {
 					}
 				}
 			} 
+		}
+
+		if (stickIsMoved(AXIS_LEFT_Y)) {
+			System.out.print("LEFT STICK Y pressed \n");
+			if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
+				if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
+					if (storeCanSwitch) {
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
+							MapUi.mapShouldBeRendered              = false;
+							ControlsUi.controlsShouldBeRendered    = true;
+						}
+						else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+							MapUi.mapShouldBeRendered              = true;
+							ControlsUi.controlsShouldBeRendered    = false;
+						} 
+						storeCanSwitch = false;
+					}
+				}
+			} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
+				if (UserInterface.userInterfaceOption > 0) {
+					if (storeCanSwitch) {
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
+							MapUi.mapShouldBeRendered              = false;
+							ControlsUi.controlsShouldBeRendered    = false;
+						}
+						else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
+							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+							MapUi.mapShouldBeRendered              = true;
+							ControlsUi.controlsShouldBeRendered    = false;
+						} 
+						storeCanSwitch = false;
+					}
+				}
+			} 
 		} 
 	}
 
@@ -165,10 +206,6 @@ public class Arcade extends ControllerInput {
 						Weapon.shouldPlaySwitchWeaponAudio = true;
 						storeCanSwitch                     = false;
 					}
-				}
-				if (MagicPearl.isMovingForward) {
-					MagicPearl.isAttacking     = false;
-					MagicPearl.isMovingForward = false;
 				}
 			}
 		}
@@ -266,11 +303,12 @@ public class Arcade extends ControllerInput {
 				ConfidenceUi.confidenceUiShouldBeRendered = true;
 			}
 
-			buyItemTimer++;
-			if (buyItemTimer > SWITCH_TIME_LIMIT) {
-				buyItemTimer = GameAttributeHelper.TIMER_START_VALUE;
-			}
 			if (Store.shouldDisplayEnterStoreMessage) {
+				// TODO IF STORE DOESNT WORK LOOK HERE
+				buyItemTimer++;
+				if (buyItemTimer > SWITCH_TIME_LIMIT) {
+					buyItemTimer = GameAttributeHelper.TIMER_START_VALUE;
+				}
 				if (buyItemTimer < 1) {
 					switch(storeObjectNumber) {
 					case PURCHASE_BUTTON_HEART:
@@ -386,6 +424,12 @@ public class Arcade extends ControllerInput {
 							player
 							);
 					Inventory.allInventoryShouldBeRendered = false;
+				} else {
+					// Use this button to bring back magic pearl.
+					if (MagicPearl.isMovingForward) {
+						MagicPearl.isAttacking     = false;
+						MagicPearl.isMovingForward = false;
+					}
 				}
 			} 
 		}

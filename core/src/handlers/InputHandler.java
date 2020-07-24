@@ -43,7 +43,7 @@ public class InputHandler {
 
 		// Instantiate correct controller based off controller name.
 		if (controllerName.contains("Logitech")) {
-			controllerInput = new LogitechF310();
+			controllerInput = new Arcade();
 		}
 		if (controllerName.contains("Xbox") && controllerName.contains("360")) {
 			controllerInput = new XBox360Pad();

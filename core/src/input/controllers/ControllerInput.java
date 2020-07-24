@@ -61,7 +61,7 @@ public class ControllerInput extends Input {
 	 * This is used because controller is very sensitive and we
 	 * dont want an accidental movement to trigger.
 	 */
-	private float deadZone = 0.2f;
+	protected float deadZone = 0.2f;
 
 	/**
 	 * Controller buttons.
