@@ -5,14 +5,17 @@ import com.badlogic.gdx.Gdx;
 
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.PlayerOne;
 import handlers.InputHandler;
 import handlers.audio.AudioHandler;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import render.Render;
 import screens.ControlsScreen;
 import screens.GameScreen;
+import screens.Screens;
 import screens.TitleScreen;
 
 /**
@@ -122,6 +125,24 @@ public class MyGame extends Game {
 	private void gameLoop() {
 		inputHandler.handleInput(this);
 		audioHandler.handleAudio(this);
+
+		if (GamePlayHelper.gameOver) {
+			setUpNewGame();
+		}
+	}
+
+	private void setUpNewGame() {
+		audioHandler.dispose();
+		//imageLoader.dispose();
+		controlsScreen.dispose();
+		gameScreen.dispose();
+		titleScreen.dispose();
+		renderer.dispose();
+		GamePlayHelper.gameOver       = false;
+		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
+		PlayerOne.lives               = 0;
+		GameObjectLoader.gameObjectList.clear(); 
+		this.create();
 	}
 
 	/**

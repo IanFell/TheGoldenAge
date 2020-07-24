@@ -14,6 +14,7 @@ import gameobjects.GameObject;
 import gameobjects.collectibles.Torch;
 import handlers.AnimationHandler;
 import handlers.collectibles.RumHandler;
+import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -109,7 +110,8 @@ public class PlayerOne extends Player {
 		}
 		
 		if (lives == MAX_LIVES) {
-			System.exit(0);
+			// Game over is actually reset in MyGame.
+			GamePlayHelper.gameOver = true;
 		}
 
 		if (hasTorch) {	
