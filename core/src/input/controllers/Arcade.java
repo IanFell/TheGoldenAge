@@ -296,13 +296,6 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (controller.getButton(BUTTON_SELECT)) {
-			if (RumHandler.rumCount > 0 && !Player.isInvincible) {
-				RumHandler.rumCount--;
-				Player.isInvincible                       = true;
-				Player.invincibilityTimer                 = 0;
-				ConfidenceUi.confidenceUiShouldBeRendered = true;
-			}
-
 			if (Store.shouldDisplayEnterStoreMessage) {
 				// TODO IF STORE DOESNT WORK LOOK HERE
 				buyItemTimer++;
@@ -429,6 +422,13 @@ public class Arcade extends ControllerInput {
 					if (MagicPearl.isMovingForward) {
 						MagicPearl.isAttacking     = false;
 						MagicPearl.isMovingForward = false;
+					}
+
+					if (RumHandler.rumCount > 0 && !Player.isInvincible) {
+						RumHandler.rumCount--;
+						Player.isInvincible                       = true;
+						Player.invincibilityTimer                 = 0;
+						ConfidenceUi.confidenceUiShouldBeRendered = true;
 					}
 				}
 			} 

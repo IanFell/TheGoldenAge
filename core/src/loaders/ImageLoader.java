@@ -30,6 +30,7 @@ public class ImageLoader {
 	public Texture ammo;
 	public Texture ammoShadow;
 	public Texture treasureMapRight;
+	public Texture treasureMapShadow;
 
 	// Boat objects.
 	public Texture boatSide;
@@ -292,16 +293,17 @@ public class ImageLoader {
 		titleScreen = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
 
 		// Collectibles.
-		treasureMapRight = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapTextWhole.png"));
-		chestClosed      = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
-		chestOpen        = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
-		heart            = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
-		heartShadow      = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
-		pawShadow        = new Texture(Gdx.files.internal("artwork/weapons/paw/PawShadow.png"));
-		rum              = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
-		rumShadow        = new Texture(Gdx.files.internal("artwork/collectibles/RumShadow.png"));
-		ammo             = new Texture(Gdx.files.internal("artwork/collectibles/Ammo.png"));
-		ammoShadow       = new Texture(Gdx.files.internal("artwork/collectibles/AmmoShadow.png"));
+		treasureMapShadow = new Texture(Gdx.files.internal("artwork/collectibles/MapShadow.png"));
+		treasureMapRight  = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapTextWhole.png"));
+		chestClosed       = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
+		chestOpen         = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
+		heart             = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
+		heartShadow       = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
+		pawShadow         = new Texture(Gdx.files.internal("artwork/weapons/paw/PawShadow.png"));
+		rum               = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
+		rumShadow         = new Texture(Gdx.files.internal("artwork/collectibles/RumShadow.png"));
+		ammo              = new Texture(Gdx.files.internal("artwork/collectibles/Ammo.png"));
+		ammoShadow        = new Texture(Gdx.files.internal("artwork/collectibles/AmmoShadow.png"));
 
 		// Boat objects.
 		boatSide = new Texture(Gdx.files.internal("artwork/boat/BOAT_NEW.png"));
@@ -600,6 +602,7 @@ public class ImageLoader {
 		titleScreen.dispose();
 
 		// Collectibles.
+		treasureMapShadow.dispose();
 		treasureMapRight.dispose();
 		chestClosed.dispose();
 		chestOpen.dispose();
