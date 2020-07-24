@@ -33,8 +33,8 @@ public class Dagger extends GameObjectCollectible {
 	 */
 	public Dagger() {
 		super();
-		this.x           = GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 46;
-		this.y           = GameAttributeHelper.CHUNK_ONE_Y_POSITION_START + 10;
+		this.x           = GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 31;
+		this.y           = GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 37.5f;
 		int size         = 1;
 		this.width       = size;
 		this.height      = size;
@@ -172,7 +172,7 @@ public class Dagger extends GameObjectCollectible {
 							yPosition = y + 1.7f;
 							// Compensate for player being larger if he's invincible.
 							if (Player.isInvincible) {
-								xPosition = x - 1;
+								xPosition = x - 2.5f;
 							}
 							daggerTexture = imageLoader.daggerRight;
 							break;
