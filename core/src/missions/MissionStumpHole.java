@@ -27,7 +27,7 @@ import ui.LocationMarker;
  *
  */
 public class MissionStumpHole extends Mission {
-	
+
 	private RockBird rockBird;
 
 	// When this is true, bird weapon will appear on screen.
@@ -166,7 +166,7 @@ public class MissionStumpHole extends Mission {
 				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 
 				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 40
 				);
-		
+
 		rockBird = new RockBird(stumps.get(0).getX(), stumps.get(0).getY() - 8);
 	}
 
@@ -241,8 +241,10 @@ public class MissionStumpHole extends Mission {
 			attackBird.renderObject(batch, imageLoader);
 			attackBirdTwo.renderObject(batch, imageLoader);
 			attackBirdThree.renderObject(batch, imageLoader);
-			
-			rockBird.renderObject(batch, imageLoader);
+
+			if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
+				rockBird.renderObject(batch, imageLoader);
+			}
 
 			//renderHitBoxes(batch, imageLoader);
 
@@ -391,9 +393,12 @@ public class MissionStumpHole extends Mission {
 		attackBird.rectangle.y = attackBird.getY() - attackBird.getHeight();
 		rockBird.rectangle.x   = rockBird.getX();
 		rockBird.rectangle.y   = rockBird.getY();
-		
-		rockBird.updateObject(myGame, mapHandler, stumps.get(0).getX(), stumps.get(8).getX());
 
+		if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
+			rockBird.updateObject(myGame, mapHandler, stumps.get(0).getX(), stumps.get(8).getX());
+
+		}
+		
 		if (playerIsJumping) {
 			// Player goes up.
 			playerDy = playerDy - VERTICAL_ACCELERATION;

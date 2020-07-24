@@ -53,7 +53,7 @@ public class TreasureMap extends GameObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (!hasBeenCollected) {
-			batch.draw(imageLoader.treasureMapShadow, x, y + 1, width, -height);
+			batch.draw(imageLoader.treasureMapShadow, x + 0.5f, y + 1, width, -height);
 			batch.draw(imageLoader.treasureMapRight, x, y, width, -height);
 		}
 	}

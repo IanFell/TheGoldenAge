@@ -20,6 +20,7 @@ import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
+import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.Screens;
 import store.Store;
@@ -279,19 +280,21 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (controller.getButton(BUTTON_UI)) {
-			if (clickUiTimer < 1) {
-				Inventory.playClickSound = true;
-				if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
-					Inventory.allInventoryShouldBeRendered = false;
-					MapUi.mapShouldBeRendered              = false;
-				} else {
-					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-				}
-			} 
+			if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+				if (clickUiTimer < 1) {
+					Inventory.playClickSound = true;
+					if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
+						Inventory.allInventoryShouldBeRendered = false;
+						MapUi.mapShouldBeRendered              = false;
+					} else {
+						Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+					}
+				} 
 
-			clickUiTimer++;
-			if (clickUiTimer > SWITCH_TIME_LIMIT) {
-				clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+				clickUiTimer++;
+				if (clickUiTimer > SWITCH_TIME_LIMIT) {
+					clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+				}
 			}
 		}
 

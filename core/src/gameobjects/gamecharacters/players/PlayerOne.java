@@ -26,6 +26,9 @@ import physics.Lighting.Fire;
  *
  */
 public class PlayerOne extends Player {
+	
+	private final int MAX_LIVES = 3;
+	private int lives           = 0;
 
 	private int oarTimer = 0;
 
@@ -70,7 +73,7 @@ public class PlayerOne extends Player {
 	/**
 	 * Convert the current amount of player loot into a string to display on screen.
 	 * 
-	 * @retrun String
+	 * @return String
 	 */
 	@Override
 	public String convertPlayerLootToString() {
@@ -80,7 +83,7 @@ public class PlayerOne extends Player {
 	/**
 	 * Convert the current amount of player rum into a string to display on screen.
 	 * 
-	 * @retrun String
+	 * @return String
 	 */
 	@Override
 	public String convertPlayerRumToString() {
@@ -99,8 +102,14 @@ public class PlayerOne extends Player {
 		handleJumping(myGame);
 		handleBounceBack();
 
-		if (getHealth() <= 0) {
-			setLifeState(myGame, PLAYER_ONE);
+		if (getHealth() <= 0 && lives < 3) {
+			//setLifeState(myGame, PLAYER_ONE);
+			resetHealthForNewLife();
+			lives++;
+		}
+		
+		if (lives == MAX_LIVES) {
+			System.exit(0);
 		}
 
 		if (hasTorch) {	

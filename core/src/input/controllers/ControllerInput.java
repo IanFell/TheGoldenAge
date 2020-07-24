@@ -342,7 +342,7 @@ public class ControllerInput extends Input {
 	 */
 	protected void pollSticks(GameObject player) {
 		float playerSpeed = Player.PLAYER_SPEED - 0.1f;
-		int turboSpeed    = 0;
+		int turboSpeed    = 5; // TODO CHANGE THIS TO 0 FOR REAL GAME.
 		if(controller.getButton(BUTTON_L3)) {
 			System.out.print("L3 button pressed \n");
 			System.out.println("Player is using turbo!  Going fast!");
