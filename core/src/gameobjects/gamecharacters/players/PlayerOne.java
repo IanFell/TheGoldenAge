@@ -19,6 +19,7 @@ import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import physics.Lighting.Fire;
+import ui.GameOver;
 
 /**
  * Jolly Roger.
@@ -111,7 +112,7 @@ public class PlayerOne extends Player {
 		
 		if (lives == MAX_LIVES) {
 			// Game over is actually reset in MyGame.
-			GamePlayHelper.gameOver = true;
+			GameOver.triggerGameOver = true;
 		}
 
 		if (hasTorch) {	

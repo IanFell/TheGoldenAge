@@ -187,6 +187,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture gameOver;
 	public Texture daggerUi;
 	public Texture pawUi;
 	public Texture controlsUiBackground;
@@ -472,6 +473,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		gameOver                     = new Texture(Gdx.files.internal("artwork/ui/GameOver.png"));
 		daggerUi                     = new Texture(Gdx.files.internal("artwork/ui/DaggerUi.png"));
 		pawUi                        = new Texture(Gdx.files.internal("artwork/ui/CursedPawUi.png"));
 		controlsUiBackground         = new Texture(Gdx.files.internal("artwork/ui/ControlsUiBackground.png"));
@@ -774,6 +776,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		gameOver.dispose();
 		daggerUi.dispose();
 		pawUi.dispose();
 		controlsUi.dispose();

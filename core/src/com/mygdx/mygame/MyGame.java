@@ -17,6 +17,7 @@ import screens.ControlsScreen;
 import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
+import ui.GameOver;
 
 /**
  * Main game class.
@@ -139,6 +140,7 @@ public class MyGame extends Game {
 		titleScreen.dispose();
 		renderer.dispose();
 		GamePlayHelper.gameOver       = false;
+		GameOver.triggerGameOver      = false;
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 		PlayerOne.lives               = 0;
 		GameObjectLoader.gameObjectList.clear(); 

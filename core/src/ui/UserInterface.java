@@ -22,11 +22,11 @@ import ui.collectibles.RumUi;
  *
  */
 public class UserInterface {
-	
+
 	public static final int INVENTORY_SCREEN = 0;
 	public static final int MAP_SCREEN       = 1;
 	public static final int CONTROLS_SCREEN  = 2;
-	
+
 	public static final int userInterfaceMaxOptionValue = 3;
 
 	public static int userInterfaceOption = 0;
@@ -43,6 +43,7 @@ public class UserInterface {
 	private OutOfAmmo outOfAmmo;
 	private ConfidenceUi confidenceUi;
 	private LivesUi livesUi;
+	private GameOver gameOverScreen;
 
 	/**
 	 * Constructor.
@@ -60,6 +61,7 @@ public class UserInterface {
 		outOfAmmo           = new OutOfAmmo();
 		confidenceUi        = new ConfidenceUi(myGame);
 		livesUi             = new LivesUi();
+		gameOverScreen      = new GameOver("Game Over");
 	}
 
 	/**
@@ -89,10 +91,12 @@ public class UserInterface {
 
 			addedToInventory.render(myGame);
 			outOfAmmo.render(myGame);
-			
+
 			confidenceUi.renderConfidenceUi(batch, imageLoader, myGame);
-			
+
 			livesUi.renderLivesUi(batch, imageLoader, myGame);
+
+			gameOverScreen.renderGameOverScreen(batch, imageLoader, myGame);
 		}
 	}
 
@@ -116,5 +120,6 @@ public class UserInterface {
 		addedToInventory.update(player);
 		outOfAmmo.update(player);
 		confidenceUi.updateConfidenceUi();
+		gameOverScreen.updateGameOverScreen();
 	}
 }
