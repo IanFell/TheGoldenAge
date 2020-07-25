@@ -7,6 +7,7 @@ import gameobjects.GameObject;
 import helpers.RandomNumberGenerator;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import missions.MissionStumpHole;
 import screens.GameScreen;
 
 /**
@@ -54,7 +55,7 @@ public class RainHandler extends GameObject {
 			ImageLoader imageLoader, 
 			GameScreen gameScreen
 			) {
-		if (isRaining) {
+		if (isRaining && !MissionStumpHole.missionIsActive) {
 			batch.setProjectionMatrix(GameScreen.camera.combined);
 			batch.draw(imageLoader.rain, x, y, width, height);
 		}
