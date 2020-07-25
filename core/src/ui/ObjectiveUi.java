@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutSceneBird;
 import gameobjects.GameObject;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
@@ -36,6 +37,38 @@ public class ObjectiveUi {
 	private final int HEIGHT = 2;
 
 	private Texture objectiveTexture = null;
+
+	/**
+	 * Handles objective change audio.
+	 */
+	public static boolean playObjectiveChangeGoToTradingPost  = false;
+	public static boolean playObjectiveChangeBuyTheGun        = false;
+	public static boolean playObjectiveChangeEnterTradingPost = false;
+	public static boolean playObjectiveChangeGoToRawBar       = false;
+	public static boolean playObjectiveChangeCollectOysters   = false;
+	public static boolean playObjectiveChangeGoToStumpHole    = false;
+	public static boolean playObjectiveChangeCollectFeathers  = false;
+	public static boolean playObjectiveChangeCollectTheBird   = false;
+	public static boolean playObjectiveChangeGoToWewa         = false;
+	public static boolean playObjectiveChangeFindTheCauldron  = false;
+	public static boolean playObjectiveChangeThePoint         = false;
+	public static boolean playObjectiveChangeTreasure         = false;
+
+	/**
+	 * Handles objective change audio.
+	 */
+	private boolean objectiveChangeGoToTradingPostHasBeenPlayed  = false;
+	private boolean objectiveChangeBuyTheGunHasBeenPlayed        = false;
+	private boolean objectiveChangeEnterTradingPostHasBeenPlayed = false;
+	private boolean objectiveChangeGoToRawBarHasBeenPlayed       = false;
+	private boolean objectiveChangeCollectOystersHasBeenPlayed   = false;
+	private boolean objectiveChangeGoToStumpHoleHasBeenPlayed    = false;
+	private boolean objectiveChangeCollectFeathersHasBeenPlayed  = false;
+	private boolean objectiveChangeCollectTheBirdHasBeenPlayed   = false;
+	private boolean objectiveChangeGoToWewaHasBeenPlayed         = false;
+	private boolean objectiveChangeFindTheCauldronHasBeenPlayed  = false;
+	private boolean objectiveChangeThePointHasBeenPlayed         = false;
+	private boolean objectiveChangeTreasureHasBeenPlayed         = false;
 
 	/**
 	 * 
@@ -160,18 +193,38 @@ public class ObjectiveUi {
 		if (MissionChests.chestMissionIsComplete) {
 			// Player is on his way to Trading Post or has hit the Trading Post location marker and needs to enter the Post.
 			objectiveTexture = imageLoader.objectiveTradinPost;
+			if (!objectiveChangeGoToTradingPostHasBeenPlayed) {
+				playObjectiveChangeGoToTradingPost          = true;
+				objectiveChangeGoToTradingPostHasBeenPlayed = true;
+			}
 			if (MissionTradinPost.locationMarkerHasBeenHit) {
 				objectiveTexture = imageLoader.objectiveEnterTheTradingPost;
+				if (!objectiveChangeEnterTradingPostHasBeenPlayed) {
+					playObjectiveChangeEnterTradingPost          = true;
+					objectiveChangeEnterTradingPostHasBeenPlayed = true;
+				}
 			}
 
 			// Player has purchased gun from Trading Post and has left the store and has completed Stump Hole mission.
 			if (Store.gunHasBeenPurchasedAtStore) {
 				objectiveTexture = imageLoader.objectiveRawBar;
+				if (!objectiveChangeGoToRawBarHasBeenPlayed && BossLoader.boss[BossHandler.TRADIN_POST].isDead()) {
+					playObjectiveChangeGoToRawBar              = true;
+					objectiveChangeGoToRawBarHasBeenPlayed     = true;
+				}
 				//if (MissionRawBar.rawBarMissionComplete && !MissionRawBar.phasesAreInProgress) {
 				if (BossLoader.boss[BossHandler.APALACHICOLA].isDead()) {
 					objectiveTexture = imageLoader.objectiveStumpHole;
+					if (!objectiveChangeGoToStumpHoleHasBeenPlayed) {
+						playObjectiveChangeGoToStumpHole              = true;
+						objectiveChangeGoToStumpHoleHasBeenPlayed     = true;
+					}
 					if (MissionStumpHole.missionIsActive) {
 						objectiveTexture = imageLoader.objectiveCollectFeathers;
+						if (!objectiveChangeCollectFeathersHasBeenPlayed) {
+							playObjectiveChangeCollectFeathers              = true;
+							objectiveChangeCollectFeathersHasBeenPlayed     = true;
+						}
 					}
 				}
 			}
@@ -179,31 +232,55 @@ public class ObjectiveUi {
 			// Player has beat the stump hole boss and needs to collect the bird.
 			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveCollectTheBird;
+				if (!objectiveChangeCollectTheBirdHasBeenPlayed) {
+					playObjectiveChangeCollectTheBird              = true;
+					objectiveChangeCollectTheBirdHasBeenPlayed     = true;
+				}
 			}
 
 			// Player has collected the bird and needs to go to Wewa.
 			if (!MissionWewa.wewaMissionComplete && myGame.getGameScreen().getBirdWeapon().hasBeenCollected) {
 				objectiveTexture = imageLoader.objectiveGoToWewa;
+				if (!objectiveChangeGoToWewaHasBeenPlayed && CutSceneBird.shouldPlayWewaObjectiveChangeAudio) {
+					playObjectiveChangeGoToWewa              = true;
+					objectiveChangeGoToWewaHasBeenPlayed     = true;
+				}
 			}
 
 			// Player needs to find the cauldron.
 			if (MissionWewa.wewaMissionComplete) {
 				objectiveTexture = imageLoader.objectiveFindTheCauldron;
+				if (!objectiveChangeFindTheCauldronHasBeenPlayed) {
+					playObjectiveChangeFindTheCauldron              = true;
+					objectiveChangeFindTheCauldronHasBeenPlayed     = true;
+				}
 			}
 
 			// Player has found the cauldron, and needs to go get the other part of the map at The Point.
 			if (MissionCauldron.missionCauldronComplete) {
 				objectiveTexture = imageLoader.objectiveCollectTheMapAtThePoint;
+				if (!objectiveChangeThePointHasBeenPlayed && BossLoader.boss[BossHandler.WEWA].isDead()) {
+					playObjectiveChangeThePoint              = true;
+					objectiveChangeThePointHasBeenPlayed     = true;
+				}
 			}
 
 			// Player has defeated the boss at The Point and needs to go to Blacks Island and find the treasure.
 			if (BossLoader.boss[BossHandler.THE_POINT].isDead()) {
 				objectiveTexture = imageLoader.objectiveFindTheTreasureAtBlacksIsland;
+				if (!objectiveChangeTreasureHasBeenPlayed) {
+					playObjectiveChangeTreasure              = true;
+					objectiveChangeTreasureHasBeenPlayed     = true;
+				}
 			}
 		}
 
 		if (!MissionRawBar.rawBarMissionComplete && MissionRawBar.phasesAreInProgress) {
 			objectiveTexture = imageLoader.objectiveCollectOysters;
+			if (!objectiveChangeCollectOystersHasBeenPlayed) {
+				playObjectiveChangeCollectOysters              = true;
+				objectiveChangeCollectOystersHasBeenPlayed     = true;
+			}
 		}
 
 		// Bosses.
@@ -212,6 +289,10 @@ public class ObjectiveUi {
 		// Player is inside Trading Post and needs to buy the gun.
 		if (Store.playerWantsToEnterStore && TradingPost.hasBeenEntered && !Store.gunHasBeenPurchasedAtStore) {
 			objectiveTexture = imageLoader.objectiveBuyTheGun;
+			if (!objectiveChangeBuyTheGunHasBeenPlayed) {
+				playObjectiveChangeBuyTheGun          = true;
+				objectiveChangeBuyTheGunHasBeenPlayed = true;
+			}
 		}
 
 		return objectiveTexture;

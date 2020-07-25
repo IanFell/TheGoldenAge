@@ -12,6 +12,9 @@ import screens.GameScreen;
  */
 public class CutSceneBird extends CutScene {
 
+	// Use this to trigger objective change audio so it plays AFTER this cutscene to go to Wewa.
+	public static boolean shouldPlayWewaObjectiveChangeAudio = false;
+
 	/**
 	 * Constructor.
 	 * 
@@ -123,6 +126,7 @@ public class CutSceneBird extends CutScene {
 			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);
 		}  else {
 			endCutScene();
+			shouldPlayWewaObjectiveChangeAudio = true;
 		}
 	}
 }

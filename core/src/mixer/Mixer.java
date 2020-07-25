@@ -96,4 +96,7 @@ public class Mixer {
 
 	// Cutscene intro jingle.
 	public static final float CUTSCENE_INTRO_JINGLE_VOLUME = QUARTER_VOLUME;
+
+	// Objective change.
+	public static final float OBJECTIVE_CHANGE_VOLUME = MEDIAN_VOLUME;
 }

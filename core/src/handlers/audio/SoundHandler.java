@@ -39,6 +39,7 @@ import screens.PauseScreen;
 import screens.Screens;
 import store.Store;
 import ui.LocationMarker;
+import ui.ObjectiveUi;
 
 /**
  * Handles game sounds.
@@ -247,6 +248,8 @@ public class SoundHandler {
 				LocationMarker.playBeepSound = false;
 			}
 
+			handleObjectiveChange(soundLoader);
+
 			if (Store.playSound) {
 				soundLoader.register.play(Mixer.REGISTER_VOLUME);
 				Store.playSound = false;
@@ -268,6 +271,61 @@ public class SoundHandler {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
 				PauseScreen.playSound = false;
 			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param SoundLoader soundLoader
+	 */
+	private void handleObjectiveChange(SoundLoader soundLoader) {
+		if (ObjectiveUi.playObjectiveChangeGoToTradingPost) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeGoToTradingPost = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeEnterTradingPost) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeEnterTradingPost = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeBuyTheGun) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeBuyTheGun = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeGoToRawBar) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeGoToRawBar = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeCollectOysters) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeCollectOysters = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeGoToStumpHole) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeGoToStumpHole = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeCollectFeathers) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeCollectFeathers = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeCollectTheBird) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeCollectTheBird = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeGoToWewa) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeGoToWewa = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeFindTheCauldron) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeFindTheCauldron = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeThePoint) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeThePoint = false;
+		}
+		if (ObjectiveUi.playObjectiveChangeTreasure) {
+			soundLoader.objectiveChange.play(Mixer.OBJECTIVE_CHANGE_VOLUME);
+			ObjectiveUi.playObjectiveChangeTreasure = false;
 		}
 	}
 
