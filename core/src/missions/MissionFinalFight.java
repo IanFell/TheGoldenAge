@@ -3,6 +3,8 @@ package missions;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
+import ui.Win;
 
 /**
  * 
@@ -15,6 +17,8 @@ public class MissionFinalFight extends Mission {
 
 	public static boolean finalFightShouldBeSetup = false;
 
+	private final int FIGHT_TIME = 500;
+
 	/**
 	 * 
 	 * @param GameObject player
@@ -24,8 +28,18 @@ public class MissionFinalFight extends Mission {
 		if (!enemiesHaveBeenSetAroundPlayer) {
 			myGame.getGameScreen().enemyHandler.setEnemiesToPlayer(player);
 			myGame.getGameScreen().gruntHandler.setGruntsToPlayer(player);
-			myGame.getGameScreen().giantHandler.setGiantsToPlayer(player);	
+			//myGame.getGameScreen().giantHandler.setGiantsToPlayer(player);	
 			enemiesHaveBeenSetAroundPlayer = true;
+		}
+	}
+
+	public void updateFinalFight() {
+		if (enemiesHaveBeenSetAroundPlayer) {
+			//Player.isInvincible = true;
+			timer++;
+			if (timer > FIGHT_TIME) {
+				Win.triggerWin = true;
+			}
 		}
 	}
 }

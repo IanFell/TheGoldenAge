@@ -12,9 +12,9 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class GameOver extends CutScene {
-	
-	public static boolean triggerGameOver = false;
+public class Win extends CutScene {
+
+	public static boolean triggerWin = false;
 
 	private int timer = 0;
 
@@ -25,7 +25,7 @@ public class GameOver extends CutScene {
 	 * 
 	 * @param String name
 	 */
-	public GameOver(String name) {
+	public Win(String name) {
 		super(name);
 	}
 
@@ -35,16 +35,17 @@ public class GameOver extends CutScene {
 	 * @param ImageLoader imageLoader
 	 * @param MyGame      myGame
 	 */
-	public void renderGameOverScreen(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
-		if (triggerGameOver) {
-			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.gameOver);
+	public void renderWinningScreen(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		if (triggerWin) {
+			renderBackgroundImage(myGame.renderer.batch, myGame, myGame.imageLoader.win);
 		}
 	}	
 
-	public void updateGameOverScreen() {
-		if (triggerGameOver) {
+	public void updateWinningScreen() {
+		if (triggerWin) {
 			timer++;
 			if (timer > DISPLAY_TIME) {
+				// This just acts as a restart of the game.
 				GamePlayHelper.gameOver = true;
 			}
 		}

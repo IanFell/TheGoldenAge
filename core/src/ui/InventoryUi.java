@@ -121,7 +121,7 @@ public class InventoryUi extends Screens {
 	private void drawClickHover(SpriteBatch batch, ImageLoader imageLoader, int hoverValue, Rectangle rectangle) {
 		int borderShrinkOffset = 1;
 		float yOffsetTopRow    = 6f;
-		float yOffsetBottomRow = 1.3f; 
+		float yOffsetBottomRow = 1.4f; 
 		switch (hoverValue) {
 		case 0:
 			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f;
@@ -227,7 +227,7 @@ public class InventoryUi extends Screens {
 					batch.draw(imageLoader.pawUi, xPos, yPos, width, height);
 				}
 				if (inventory.get(i) instanceof Dagger) {
-					batch.draw(imageLoader.daggerUi, xPos, yPos, width, height);
+					batch.draw(imageLoader.daggerUi, xPos + 0.5f, yPos, width, height);
 				}
 			}
 		}

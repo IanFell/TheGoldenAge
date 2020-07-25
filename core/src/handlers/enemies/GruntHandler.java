@@ -160,7 +160,7 @@ public class GruntHandler {
 	 */
 	public void setGruntsToPlayer(GameObject player) {
 		float spinAngle = 0;
-		int radius      = 4;
+		int radius      = 15;
 		for (int i = 0; i < gruntSpawner.length; i++) {
 			if (gruntSpawner[i].grunts != null) {
 				for (int k = 0; k < gruntSpawner[i].grunts.size(); k++) {

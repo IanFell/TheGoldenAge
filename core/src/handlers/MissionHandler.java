@@ -21,6 +21,7 @@ import missions.MissionStumpHole;
 import missions.MissionThePoint;
 import missions.MissionTradinPost;
 import missions.MissionWewa;
+import ui.Win;
 
 /**
  * 
@@ -140,6 +141,10 @@ public class MissionHandler extends Mission {
 			if (MissionFinalFight.finalFightShouldBeSetup) {
 				missionFinalFight.prepareForFinalFight(myGame.getGameObject(Player.PLAYER_ONE), myGame);
 				MissionFinalFight.finalFightShouldBeSetup = false;
+			}
+
+			if (!Win.triggerWin) {
+				missionFinalFight.updateFinalFight();
 			}
 		}
 	}

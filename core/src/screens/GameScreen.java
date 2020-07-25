@@ -50,6 +50,7 @@ import ui.ControlsUi;
 import ui.MapUi;
 import ui.Pause;
 import ui.UserInterface;
+import ui.Win;
 
 /**
  * Screen of the game while in play.
@@ -501,8 +502,6 @@ public class GameScreen extends Screens {
 				controlsUi.renderControlsUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
 			}
 
-
-
 			if (!MissionRawBar.phasesAreInProgress && 
 					!MissionStumpHole.missionIsActive && 
 					!MapUi.mapShouldBeRendered && 
@@ -525,7 +524,7 @@ public class GameScreen extends Screens {
 			}
 		}
 
-		if (player.getInventory().inventory.size() > 0) {
+		if (player.getInventory().inventory.size() > 0 && !Win.triggerWin) {
 			if (
 					player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword && 
 					Inventory.inventoryIsEquipped &&

@@ -44,6 +44,7 @@ public class UserInterface {
 	private ConfidenceUi confidenceUi;
 	private LivesUi livesUi;
 	private GameOver gameOverScreen;
+	private Win win;
 
 	/**
 	 * Constructor.
@@ -62,6 +63,7 @@ public class UserInterface {
 		confidenceUi        = new ConfidenceUi(myGame);
 		livesUi             = new LivesUi();
 		gameOverScreen      = new GameOver("Game Over");
+		win                 = new Win("Win");
 	}
 
 	/**
@@ -97,6 +99,7 @@ public class UserInterface {
 			livesUi.renderLivesUi(batch, imageLoader, myGame);
 
 			gameOverScreen.renderGameOverScreen(batch, imageLoader, myGame);
+			win.renderWinningScreen(batch, imageLoader, myGame);
 		}
 	}
 
@@ -121,5 +124,6 @@ public class UserInterface {
 		outOfAmmo.update(player);
 		confidenceUi.updateConfidenceUi();
 		gameOverScreen.updateGameOverScreen();
+		win.updateWinningScreen();
 	}
 }
