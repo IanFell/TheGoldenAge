@@ -97,6 +97,9 @@ public class PlayerTwo extends Player {
 					}
 				}
 			}
+			if (PlayerOne.isPoisoned) {
+				batch.draw(imageLoader.poisonCover, x, y, width, -height);
+			}
 			//renderHitBox(batch, imageLoader);
 		}
 	}

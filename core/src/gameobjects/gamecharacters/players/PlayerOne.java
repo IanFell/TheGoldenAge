@@ -28,7 +28,10 @@ import ui.GameOver;
  *
  */
 public class PlayerOne extends Player {
-	
+
+	public static boolean isPoisoned = false;
+	private int poisonTimer          = 0;
+
 	private final int MAX_LIVES       = 3;
 	public static int lives           = 0;
 
@@ -109,7 +112,7 @@ public class PlayerOne extends Player {
 			resetHealthForNewLife();
 			lives++;
 		}
-		
+
 		if (lives == MAX_LIVES) {
 			// Game over is actually reset in MyGame.
 			GameOver.triggerGameOver = true;
@@ -120,6 +123,8 @@ public class PlayerOne extends Player {
 			Fire.playSound = true;
 		}
 
+		handlePoison();
+
 		//simulateDeath(myGame, this);
 
 		if (Inventory.inventoryHasStartedCollection) {
@@ -128,6 +133,29 @@ public class PlayerOne extends Player {
 
 		handleTextures();
 		setPlayerAnimations();
+	}
+
+	private void handlePoison() {
+		handlePoisonTimer();
+		handlePoisonHealth();
+	}
+
+	private void handlePoisonHealth() {
+		if (isPoisoned) {
+			if (poisonTimer == 50 || poisonTimer == 100 || poisonTimer == 150 || poisonTimer == 200) {
+				health--;
+			}
+		}
+	}
+
+	private void handlePoisonTimer() {
+		if (isPoisoned) {
+			poisonTimer++;
+			if (poisonTimer > 200) {
+				poisonTimer = 0;
+				isPoisoned  = false;
+			}
+		}
 	}
 
 	/**
@@ -296,6 +324,10 @@ public class PlayerOne extends Player {
 		}
 
 		renderOar(batch, imageLoader);
+
+		if (isPoisoned) {
+			batch.draw(imageLoader.poisonCover, x, y, width, -height);
+		}
 		//renderHitBox(batch, imageLoader);
 	}
 

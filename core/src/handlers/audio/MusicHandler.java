@@ -3,8 +3,10 @@ package handlers.audio;
 import com.badlogic.gdx.audio.Music;
 
 import cutscenes.CutScene;
+import gameobjects.PoisonPlant;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.Paw;
 import handlers.enemies.BossHandler;
 import helpers.GameAttributeHelper;
@@ -96,10 +98,27 @@ public class MusicHandler {
 			}
 			handleMissionMusic(musicLoader);
 			handleCutsceneMusic(musicLoader);
+			handlePoisonAudio(musicLoader);
 		} else if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
 			musicLoader.ocean.setVolume(Mixer.OCEAN_VOLUME);
 			musicLoader.ocean.setLooping(true);
 			musicLoader.ocean.play();
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handlePoisonAudio(MusicLoader musicLoader) {
+		if (PoisonPlant.playPoisonSound) {
+			musicLoader.poison.setVolume(Mixer.POISON_VOLUME);
+			musicLoader.poison.play();
+			PoisonPlant.playPoisonSound = false;
+		}
+
+		if (!PlayerOne.isPoisoned) {
+			musicLoader.poison.stop();
 		}
 	}
 

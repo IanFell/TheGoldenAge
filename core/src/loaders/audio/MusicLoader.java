@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Music;
  */
 public class MusicLoader {
 
+	public Music poison;
 	public Music dayTimeAmbientNoise;
 	public Music nightTimeAmbientNoise;
 	public Music rainAndThunder;
@@ -34,6 +35,7 @@ public class MusicLoader {
 	public Music footsteps;
 
 	public void init() {
+		poison                = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Slime.ogg"));
 		monkey                = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Monkey.ogg"));
 		ocean                 = Gdx.audio.newMusic(Gdx.files.internal("audio/music/ocean.ogg"));
 		dayTimeAmbientNoise   = Gdx.audio.newMusic(Gdx.files.internal("audio/music/daytimeambience.ogg"));
@@ -53,6 +55,7 @@ public class MusicLoader {
 	}
 
 	public void dispose() {
+		poison.dispose();
 		dayTimeAmbientNoise.dispose();
 		nightTimeAmbientNoise.dispose();
 		rainAndThunder.dispose();

@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound objectiveChange;
 	public Sound cutscene;
 	public Sound monkey;
 	public Sound spark;
@@ -47,6 +48,7 @@ public class SoundLoader {
 	public Sound enemyHurt;
 
 	public void init() {
+		objectiveChange     = Gdx.audio.newSound(Gdx.files.internal("audio/sound/ObjectiveChange.wav"));
 		dagger              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Dagger.wav"));
 		enemyHurt           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/HurtEnemy.wav"));
 		cutscene            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/CutScene.wav"));
@@ -84,6 +86,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		objectiveChange.dispose();
 		enemyHurt.dispose();
 		dagger.dispose();
 		cutscene.dispose();

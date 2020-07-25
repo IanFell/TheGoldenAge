@@ -43,6 +43,8 @@ public class ImageLoader {
 
 	// Nature Objects.
 	public Texture[] shockPlants = new Texture[8];
+	public Texture poisonPlantOne;
+	public Texture poisonPlantTwo;
 	public Texture bubble;
 	public Texture tunnel;
 	public Texture hole;
@@ -127,6 +129,7 @@ public class ImageLoader {
 	public Texture dustParticleOne;
 	public Texture dustParticleTwo;
 	public Texture dustParticleThree;
+	public Texture poisonCover;
 
 	// Cutscene objects.
 	//public Texture[] cutSceneDialogueOne = new Texture[9];
@@ -314,6 +317,8 @@ public class ImageLoader {
 		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
+		poisonPlantOne = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PoisonPlant1.png"));
+		poisonPlantTwo = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PoisonPlant2.png"));
 		shockPlants[0] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant1.png"));
 		shockPlants[1] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant2.png"));
 		shockPlants[2] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant3.png"));
@@ -403,6 +408,7 @@ public class ImageLoader {
 		pigglyWigglyShadow = new Texture(Gdx.files.internal("artwork/structures/shadows/PigglyWiggly3DShadow.png"));
 
 		// Effects Objects.
+		poisonCover       = new Texture(Gdx.files.internal("artwork/effects/poison/PoisonCover.png"));
 		dustParticleOne   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleOne.png"));
 		dustParticleTwo   = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleTwo.png"));
 		dustParticleThree = new Texture(Gdx.files.internal("artwork/effects/dust/DustParticleThree.png"));
@@ -632,6 +638,9 @@ public class ImageLoader {
 		}
 
 		// Nature Objects.
+		for (int i = 0; i < shockPlants.length; i++) {
+			shockPlants[i].dispose();
+		}
 		bubble.dispose();
 		tunnel.dispose();
 		hole.dispose();
@@ -649,7 +658,8 @@ public class ImageLoader {
 		sky.dispose();
 		feather.dispose();
 		quickSand.dispose();
-		pressStart.dispose();
+		poisonPlantOne.dispose();
+		poisonPlantTwo.dispose();
 
 		// Weapon Objects.
 		daggerShadow.dispose();
@@ -714,6 +724,7 @@ public class ImageLoader {
 		pigglyWigglyShadow.dispose();
 
 		// Effects Objects.
+		poisonCover.dispose();
 		dustParticleOne.dispose();
 		dustParticleTwo.dispose();
 		dustParticleThree.dispose();
@@ -780,6 +791,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		pressStart.dispose();
 		playGame.dispose();
 		win.dispose();
 		gameOver.dispose();

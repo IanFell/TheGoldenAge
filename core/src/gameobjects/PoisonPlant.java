@@ -1,8 +1,7 @@
-package gameobjects.nature.shockplant;
+package gameobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.NatureObject;
 import handlers.CollisionHandler;
@@ -13,12 +12,14 @@ import loaders.ImageLoader;
  * @author Fabulous Fellini
  *
  */
-public class ShockPlant extends NatureObject {
+public class PoisonPlant extends NatureObject {
 
-	public static boolean playSparkAudio = false;
+	public static boolean playPoisonAudio = false;
 
 	public static boolean shouldCheckCollision = true;
 	public static int collisionTimer           = 0;
+
+	public static boolean playPoisonSound = false;
 
 	/**
 	 * Constructor.
@@ -26,7 +27,7 @@ public class ShockPlant extends NatureObject {
 	 * @param int x
 	 * @param int y
 	 */
-	public ShockPlant(int x, int y) {
+	public PoisonPlant(int x, int y) {
 		super(x, y);
 		this.width       = 2;
 		this.height      = 2;
@@ -53,7 +54,7 @@ public class ShockPlant extends NatureObject {
 	 */
 	private void handleCollision(GameObject player) {
 		if (shouldCheckCollision) {
-			CollisionHandler.checkIfPlayerHasCollidedWithShockPlant(player, this);
+			CollisionHandler.checkIfPlayerHasCollidedWithPoisonPlant(player, this);
 			shouldCheckCollision = false;
 		}
 		if (!shouldCheckCollision) {
@@ -73,21 +74,21 @@ public class ShockPlant extends NatureObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (animationTimer < 5) {
-			batch.draw(imageLoader.shockPlants[0], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else if (animationTimer > 5 && animationTimer < 10) {
-			batch.draw(imageLoader.shockPlants[1], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		} else if (animationTimer > 10 && animationTimer < 15) {
-			batch.draw(imageLoader.shockPlants[2], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else if (animationTimer > 15 && animationTimer < 20) {
-			batch.draw(imageLoader.shockPlants[3], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		} else if (animationTimer > 20 && animationTimer < 25) {
-			batch.draw(imageLoader.shockPlants[4], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else if (animationTimer > 25 && animationTimer < 30) {
-			batch.draw(imageLoader.shockPlants[5], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		} else if (animationTimer > 30 && animationTimer < 35) {
-			batch.draw(imageLoader.shockPlants[6], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else {
-			batch.draw(imageLoader.shockPlants[7], x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		}
 	}
 }

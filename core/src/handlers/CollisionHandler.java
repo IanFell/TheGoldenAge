@@ -5,12 +5,14 @@ import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import gameobjects.GameObject;
+import gameobjects.PoisonPlant;
 import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Enemy;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.nature.Feather;
 import gameobjects.nature.QuickSand;
 import gameobjects.nature.hole.Hole;
@@ -726,6 +728,21 @@ public class CollisionHandler {
 			player.setPlaySound(true);
 			((Player) player).setBouncingBack(true);
 			ShockPlant.playSparkAudio = true;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject  player
+	 * @param PoisonPlant poisonPlant
+	 */
+	public static void checkIfPlayerHasCollidedWithPoisonPlant(GameObject player, PoisonPlant poisonPlant) {
+		if (player.rectangle.overlaps(poisonPlant.rectangle)) {
+			player.setHealth(player.getHealth() - 0.1f);
+			player.setPlaySound(true);
+			((Player) player).setBouncingBack(true);
+			PlayerOne.isPoisoned        = true;
+			PoisonPlant.playPoisonSound = true;
 		}
 	}
 

@@ -18,7 +18,7 @@ public class GameOver extends CutScene {
 
 	private int timer = 0;
 
-	private final int DISPLAY_TIME = 300;
+	private final int DISPLAY_TIME = 500;
 
 	/**
 	 * Constructor.
