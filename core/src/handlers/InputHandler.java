@@ -27,6 +27,12 @@ public class InputHandler {
 	private Keyboard keyboard = new Keyboard();
 	private Mouse mouse       = new Mouse();
 
+	public final static int INPUT_COMPUTER   = 0;
+	public final static int INPUT_CONTROLLER = 1;
+	public final static int INPUT_ARCADE     = 2;
+
+	public static int inputType = INPUT_COMPUTER;
+
 	/**
 	 * GamePads.  This can be any gamepad, as it will
 	 * be instantiated after we grab the controller's name.
@@ -44,16 +50,19 @@ public class InputHandler {
 		// Instantiate correct controller based off controller name.
 		if (controllerName.contains("Logitech")) {
 			controllerInput = new LogitechF310();
+			inputType       = INPUT_CONTROLLER;
 		}
 		if (controllerName.contains("Xbox") && controllerName.contains("360")) {
 			controllerInput = new XBox360Pad();
+			inputType       = INPUT_CONTROLLER;
 		}
 		if (controllerName.contains("Wireless Controller")) {
 			controllerInput = new PlayStation4Pad();
+			inputType       = INPUT_CONTROLLER;
 		}
 		if (controllerName.contains("Generic   USB  Joystick")) {
 			controllerInput = new Arcade();
-			
+			inputType       = INPUT_ARCADE;
 		}
 
 		// If we have found a controller, initialize it.
