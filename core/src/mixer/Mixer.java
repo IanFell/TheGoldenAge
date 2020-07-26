@@ -61,7 +61,9 @@ public class Mixer {
 	public static final float ENEMY_DEATH_VOLUME_ALTERNATE = QUARTER_VOLUME;
 	public final static float BOSS_GRUNT_VOLUME            = QUARTER_VOLUME;
 
+	// Game character SFX volumes.
 	public final static float BOSS_LAUGH_VOLUME  = QUARTER_VOLUME;
+	public static final float DEATH_VOLUME       = THREE_QUARTERS_VOLUME;
 
 	// Player attacks.
 	public final static float SWORD_ATTACK_VOLUME  = MEDIAN_VOLUME;
@@ -86,6 +88,7 @@ public class Mixer {
 	public final static float BUBBLE_VOLUME          = MEDIAN_VOLUME;
 	public final static float AMMO_COLLECT_VOLUME    = MAX_VOLUME;
 	public static final float PAW_COLLECT_VOLUME     = MEDIAN_VOLUME;
+	public static final float DRINK_VOLUME           = THREE_QUARTERS_VOLUME;
 
 	// Location marker.
 	public final static float LOCATION_MARKER_HIT_VOLUME  = MAX_VOLUME;

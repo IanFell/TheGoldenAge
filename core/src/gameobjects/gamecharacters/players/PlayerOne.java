@@ -68,6 +68,8 @@ public class PlayerOne extends Player {
 	public static ArrayList<Float> playerOneXPositions = new ArrayList<Float>();
 	public static ArrayList<Float> playerOneYPositions = new ArrayList<Float>();
 	public static ArrayList<Integer> playerDirections  = new ArrayList<Integer>();
+	
+	public static boolean playDeathSound = false;
 
 	/**
 	 * Constructor.
@@ -135,6 +137,7 @@ public class PlayerOne extends Player {
 		if (getHealth() <= 0) {
 			explosionsShouldBeRendered = true;
 			explosionsShouldBeCreated  = true;
+			playDeathSound             = true;
 		}
 
 		if (getHealth() <= 0 && lives < 3) {

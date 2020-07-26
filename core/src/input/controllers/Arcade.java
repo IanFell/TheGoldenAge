@@ -6,6 +6,7 @@ import controllers.GameStateController;
 import cutscenes.CutScene;
 import debugging.Debugger;
 import gameobjects.GameObject;
+import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
@@ -432,6 +433,7 @@ public class Arcade extends ControllerInput {
 						Player.isInvincible                       = true;
 						Player.invincibilityTimer                 = 0;
 						ConfidenceUi.confidenceUiShouldBeRendered = true;
+						Rum.playDrinkingSound                     = true;
 					}
 				}
 			} 

@@ -10,6 +10,7 @@ import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.nature.Feather;
 import gameobjects.nature.shockplant.ShockPlant;
 import gameobjects.weapons.BirdWeapon;
@@ -262,6 +263,16 @@ public class SoundHandler {
 				}
 			} else {
 				soundLoader.tunnel.stop();
+			}
+			
+			if (PlayerOne.playDeathSound) {
+				soundLoader.death.play(Mixer.DEATH_VOLUME);
+				PlayerOne.playDeathSound = false;
+			}
+			
+			if (Rum.playDrinkingSound) {
+				soundLoader.drink.play(Mixer.DRINK_VOLUME);
+				Rum.playDrinkingSound = false;
 			}
 
 			// Take this out for now because it's really annoying.

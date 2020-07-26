@@ -16,6 +16,8 @@ import maps.MapHandler;
 public class Rum extends GameObjectCollectible {
 
 	public static boolean playSound;
+	
+	public static boolean playDrinkingSound = false;
 
 	/**
 	 * Constructor.
