@@ -26,6 +26,13 @@ import ui.LocationMarker;
  */
 public class MissionRawBar extends Mission {
 
+	public static float alpha               = 0;
+	public static boolean shouldChangeAlpha = false;
+	public static float percentToChangeAlphaEachHit;
+
+	public static float timerAlpha = 0;
+	public static float percentToChangeTimerAlphaEachHit;
+
 	// Time alloted for all phases of mission.
 	public static final float MAX_MISSION_TIME_PHASE_ONE = 7f;
 
@@ -139,6 +146,9 @@ public class MissionRawBar extends Mission {
 			double yPlanePosition = RandomNumberGenerator.generateRandomDouble(locationMarker.getLocator().getY() - yOffset, locationMarker.getLocator().getY() + yOffset);
 			bubble[i] = new Bubble((int) xPlanePosition, (int) yPlanePosition, bubbleSize, bubbleDy);
 		}
+
+		percentToChangeAlphaEachHit = OYSTER_VALUE / NUMBER_OF_OYSTERS_NEEDED_PHASE_ONE;
+		percentToChangeTimerAlphaEachHit = MAX_MISSION_TIME_PHASE_ONE / 1000;
 	}
 
 	/**
@@ -225,6 +235,7 @@ public class MissionRawBar extends Mission {
 				collectedOyster.set(i, true);
 				oystersCollected += OYSTER_VALUE;
 				playCollectionSound = true;
+				alpha += percentToChangeAlphaEachHit; 
 			}
 		}
 
@@ -255,8 +266,10 @@ public class MissionRawBar extends Mission {
 	 */
 	private void handleCountdownTimer() {
 		timeSeconds +=Gdx.graphics.getRawDeltaTime();
-		if(timeSeconds > phaseTimeLimit){    
+		timerAlpha += percentToChangeTimerAlphaEachHit;
+		if(timeSeconds > phaseTimeLimit){ 
 			resetMissionForRetry();
+			timerAlpha = 0;
 		}
 	}
 
@@ -345,10 +358,10 @@ public class MissionRawBar extends Mission {
 				-GameScreen.camera.viewportHeight
 				);
 
-		renderMeters(batch, imageLoader);
+		renderMeters(batch, imageLoader, myGame);
 
 		if (failMessageShouldDisplay) {
-			renderFailMessage(batch, imageLoader, myGame);
+			resetPhase(batch, imageLoader, myGame);
 		}
 
 		for (int i = 0; i < bubble.length; i++) {
@@ -360,19 +373,71 @@ public class MissionRawBar extends Mission {
 	 * 
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
 	 */
-	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader) {
-		// Oyster value meter.
-		float x = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 51;
-		float y = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48;
-		renderValueMeter(batch, x, y, -numberOfOystersNeededToWin, imageLoader.blackSquare);
-		renderValueMeter(batch, x, y, -oystersCollected, imageLoader.whiteSquare);
+	private void resetPhase(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		renderFailMessage(batch, imageLoader, myGame);
+		alpha = 0;
+	}
 
-		// Time limit meter.
-		x = GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 49;
-		y = GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 48;
-		renderValueMeter(batch, x, y, -phaseTimeLimit, imageLoader.blackSquare);
-		renderValueMeter(batch, x, y, -timeSeconds, imageLoader.whiteSquare);
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		// Oyster Collection.
+		int height = 2;
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.enemyHealthMeterBlack, 
+				GameScreen.camera.position.x - 8 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				numberOfOystersNeededToWin, 
+				height
+				);	
+
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alpha);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.timeMeterBase, 
+				GameScreen.camera.position.x - 8 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				numberOfOystersNeededToWin, 
+				height
+				);	
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.oysterMeterUi, 
+				GameScreen.camera.position.x - 8 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f + height, 
+				numberOfOystersNeededToWin, 
+				-height
+				);	
+
+		// Timer.
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.enemyHealthMeterBlack, 
+				GameScreen.camera.position.x + 3 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				numberOfOystersNeededToWin, 
+				height
+				);	
+
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, timerAlpha);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.timeMeterBase, 
+				GameScreen.camera.position.x + 3 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				numberOfOystersNeededToWin, 
+				height
+				);	
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.timeMeterUi, 
+				GameScreen.camera.position.x + 3 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f + height, 
+				numberOfOystersNeededToWin, 
+				-height
+				);
 	}
 
 	/**

@@ -127,8 +127,9 @@ public class LogitechF310 extends ControllerInput {
 		if(controller.getButton(BUTTON_Y)) {
 			// Enter store.
 			if (canClick) {
-				if (Store.storeIsUnlocked) {
-					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+				if (Store.storeIsUnlocked /*&& Store.storeShouldBeRendered*/) {
+					//Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+					Store.playerWantsToEnterStore = true;
 					canClick = false;
 					Weapon.shouldPlaySwitchWeaponAudio = true;
 				}
@@ -315,10 +316,9 @@ public class LogitechF310 extends ControllerInput {
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 				Weapon.shouldPlaySwitchWeaponAudio = true;
 				break;
-			case Screens.GAME_SCREEN:
-				myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
-				RumHandler.rumCount   = 99;
-				AmmoHandler.ammoCount = 99;
+			case Screens.GAME_SCREEN:	
+				Store.playerWantsToEnterStore = false;
+				givePlayerEverything(myGame);
 				break;
 			}
 		} 
@@ -331,5 +331,16 @@ public class LogitechF310 extends ControllerInput {
 				ConfidenceUi.confidenceUiShouldBeRendered = true;
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	private void givePlayerEverything(MyGame myGame) {
+		myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
+		myGame.getGameObject(Player.PLAYER_ONE).setHealth(30);
+		RumHandler.rumCount   = 99;
+		AmmoHandler.ammoCount = 99;
 	}
 }

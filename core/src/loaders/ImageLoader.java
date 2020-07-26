@@ -190,6 +190,8 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture oysterMeterUi;
+	public Texture timeMeterUi;
 	public Texture playGame;
 	public Texture win;
 	public Texture gameOver;
@@ -222,6 +224,8 @@ public class ImageLoader {
 	public Texture gamePaused;
 	public Texture enemyHealthMeterBase;
 	public Texture enemyHealthMeterBlack;
+	public Texture oysterMeterBase;
+	public Texture timeMeterBase;
 	public Texture controlsUi;
 
 	// Objective UI objects.
@@ -481,6 +485,8 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		oysterMeterUi                = new Texture(Gdx.files.internal("artwork/ui/OysterMeterUi.png"));
+		timeMeterUi                  = new Texture(Gdx.files.internal("artwork/ui/TimeMeterUi.png"));
 		win                          = new Texture(Gdx.files.internal("artwork/ui/WinningScreen.png"));
 		playGame                     = new Texture(Gdx.files.internal("artwork/ui/PlayGame.png"));
 		gameOver                     = new Texture(Gdx.files.internal("artwork/ui/GameOver.png"));
@@ -513,6 +519,8 @@ public class ImageLoader {
 		attackBird                   = new Texture(Gdx.files.internal("artwork/ui/AttackBird.png"));
 		gamePaused                   = new Texture(Gdx.files.internal("artwork/ui/GamePaused.png"));
 		enemyHealthMeterBase         = new Texture(Gdx.files.internal("artwork/ui/EnemyHealthMeterBase.png"));
+		timeMeterBase                = new Texture(Gdx.files.internal("artwork/ui/TimeMeterBase.png"));
+		oysterMeterBase              = new Texture(Gdx.files.internal("artwork/ui/OysterMeterBase.png"));
 		enemyHealthMeterBlack        = new Texture(Gdx.files.internal("artwork/ui/EnemyHealthMeterBlack.png"));
 
 		// Objective UI objects.
@@ -791,6 +799,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		oysterMeterUi.dispose();
+		timeMeterUi.dispose();
 		pressStart.dispose();
 		playGame.dispose();
 		win.dispose();
@@ -824,6 +834,8 @@ public class ImageLoader {
 		locationSkull.dispose();
 		attackBird.dispose();
 		enemyHealthMeterBase.dispose();
+		timeMeterBase.dispose();
+		oysterMeterBase.dispose();
 		enemyHealthMeterBlack.dispose();
 
 		// Objective UI objects.

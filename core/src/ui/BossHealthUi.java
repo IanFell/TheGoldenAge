@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.enemies.Boss;
 import screens.GameScreen;
+import store.Store;
 
 /**
  * 
@@ -39,9 +40,8 @@ public class BossHealthUi extends GameObject {
 	 * @param MyGame myGame
 	 * @param Boss   boss
 	 */
-	float fadeTimeAlpha = 0.5f;
 	public void renderBossHealthUi(MyGame myGame, Boss boss) {
-		if (shouldDisplay) {
+		if (shouldDisplay && !Store.playerWantsToEnterStore) {
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.enemyHealthMeterBlack, 
 					GameScreen.camera.position.x - width / 2, 

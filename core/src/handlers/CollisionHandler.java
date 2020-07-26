@@ -400,6 +400,7 @@ public class CollisionHandler {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 				Boss.playGruntSound = true;
+				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 			}
 		}
 	}
@@ -414,6 +415,7 @@ public class CollisionHandler {
 			if (boss.rectangle.overlaps(dagger.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 				Boss.playGruntSound = true;
+				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 			}
 		}
 	}
@@ -678,11 +680,12 @@ public class CollisionHandler {
 	 * @param Boss       boss
 	 */
 	public static void checkIfPlayerCollidedWithBoss(GameObject player, Boss boss) {
-		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible) {
+		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible && Inventory.inventoryIsEquipped) {
 			boss.setX(boss.getX() + 5);
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
 			player.setPlaySound(true);
+			//BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 		}
 	}
 
