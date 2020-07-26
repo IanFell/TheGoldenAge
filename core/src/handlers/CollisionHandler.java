@@ -612,6 +612,7 @@ public class CollisionHandler {
 				MissionStumpHole.playerFeatherScore += MissionStumpHole.FEATHER_VALUE;
 				feather.hasBeenCollected = true;
 				Feather.playSound        = true;
+				MissionStumpHole.alpha += MissionStumpHole.percentToChangeAlphaEachHit; 
 			}
 		}
 	}

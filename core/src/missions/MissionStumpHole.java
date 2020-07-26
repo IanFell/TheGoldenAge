@@ -28,6 +28,10 @@ import ui.LocationMarker;
  */
 public class MissionStumpHole extends Mission {
 
+	public static float alpha               = 0;
+	public static boolean shouldChangeAlpha = false;
+	public static float percentToChangeAlphaEachHit;
+
 	private RockBird rockBird;
 
 	// When this is true, bird weapon will appear on screen.
@@ -168,6 +172,8 @@ public class MissionStumpHole extends Mission {
 				);
 
 		rockBird = new RockBird(stumps.get(0).getX(), stumps.get(0).getY() - 8);
+
+		percentToChangeAlphaEachHit = FEATHER_VALUE_METER_MAX / FEATHER_VALUE;
 	}
 
 	private void loadStumps() {
@@ -229,7 +235,7 @@ public class MissionStumpHole extends Mission {
 			// Feathers only render when needed.
 			renderFeathers(batch, imageLoader);
 
-			renderMeters(batch, imageLoader, realPlayer);
+			renderMeters(batch, imageLoader, myGame);
 
 			/*
 			// Render bird in front of water if he is spinning.
@@ -274,12 +280,38 @@ public class MissionStumpHole extends Mission {
 	 * 
 	 * @param SpriteBatch batch
 	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
 	 */
-	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader, GameObject playerReal) {
-		float x = playerReal.getX() + 11;
-		float y = playerReal.getY() + 3;
-		renderValueMeter(batch, x, y, -FEATHER_VALUE_METER_MAX, imageLoader.blackSquare);
-		renderValueMeter(batch, x, y, -playerFeatherScore, imageLoader.whiteSquare);
+	private void renderMeters(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		int height = 2;
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.enemyHealthMeterBlack, 
+				GameScreen.camera.position.x - FEATHER_VALUE_METER_MAX / 2 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				FEATHER_VALUE_METER_MAX, 
+				height
+				);	
+
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alpha);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.timeMeterBase, 
+				GameScreen.camera.position.x - FEATHER_VALUE_METER_MAX / 2 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f, 
+				FEATHER_VALUE_METER_MAX, 
+				height
+				);	
+		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+		myGame.renderer.batch.draw(
+				myGame.imageLoader.featherMeterUi, 
+				GameScreen.camera.position.x - 8 /*- width / 2*/, 
+				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f + height, 
+				FEATHER_VALUE_METER_MAX, 
+				-height
+				);	
+		//float x = playerReal.getX() + 11;
+		//float y = playerReal.getY() + 3;
+		//renderValueMeter(batch, x, y, -FEATHER_VALUE_METER_MAX, imageLoader.blackSquare);
+		//renderValueMeter(batch, x, y, -playerFeatherScore, imageLoader.whiteSquare);
 	}
 
 	/**
@@ -398,7 +430,7 @@ public class MissionStumpHole extends Mission {
 			rockBird.updateObject(myGame, mapHandler, stumps.get(0).getX(), stumps.get(8).getX());
 
 		}
-		
+
 		if (playerIsJumping) {
 			// Player goes up.
 			playerDy = playerDy - VERTICAL_ACCELERATION;

@@ -191,6 +191,7 @@ public class ImageLoader {
 
 	// UI objects.
 	public Texture oysterMeterUi;
+	public Texture featherMeterUi;
 	public Texture timeMeterUi;
 	public Texture playGame;
 	public Texture win;
@@ -485,6 +486,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		featherMeterUi               = new Texture(Gdx.files.internal("artwork/ui/FeathersMeterUi.png"));
 		oysterMeterUi                = new Texture(Gdx.files.internal("artwork/ui/OysterMeterUi.png"));
 		timeMeterUi                  = new Texture(Gdx.files.internal("artwork/ui/TimeMeterUi.png"));
 		win                          = new Texture(Gdx.files.internal("artwork/ui/WinningScreen.png"));
@@ -799,6 +801,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		featherMeterUi.dispose();
 		oysterMeterUi.dispose();
 		timeMeterUi.dispose();
 		pressStart.dispose();

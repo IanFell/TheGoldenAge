@@ -14,10 +14,11 @@ import gameobjects.GameObject;
 import gameobjects.collectibles.Torch;
 import handlers.AnimationHandler;
 import handlers.collectibles.RumHandler;
-import helpers.GamePlayHelper;
+import helpers.RandomNumberGenerator;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import physics.Lighting.Explosion;
 import physics.Lighting.Fire;
 import ui.GameOver;
 
@@ -28,6 +29,21 @@ import ui.GameOver;
  *
  */
 public class PlayerOne extends Player {
+
+	private boolean explosionsShouldBeRendered = false;
+	private boolean explosionsShouldBeCreated  = false;
+	private Explosion[] explosion              = new Explosion[5];
+	private int explosionSize                  = 5;
+	// Use this so explosions don't fire all at once.
+	private int explosionOffsetTimer           = 0;
+
+	// Use this to time the rendering of explosions.
+	private int[] explosionFinishTimer   = new int[5];
+	private int[] explosionStartValue    = new int[5];
+	private final int EXPLOSION_MAX_TIME = 100;
+
+	// Use this for the rumble during explosion after boss dies.
+	public static boolean shouldPlayExplosionMusic = false;
 
 	public static boolean isPoisoned = false;
 	private int poisonTimer          = 0;
@@ -64,6 +80,15 @@ public class PlayerOne extends Player {
 		super(name, myGame, playerNumber);
 		playerLoot = 0;
 		torch      = new Torch(0, 0);
+
+		for (int i = 0; i < explosionFinishTimer.length; i++) {
+			explosionFinishTimer[i] = 0;
+		}
+		int startValue = 0;
+		for (int i = 0; i < explosionStartValue.length; i++) {
+			explosionStartValue[i] = startValue;
+			startValue += 10;
+		}
 	}
 
 	/**
@@ -107,6 +132,11 @@ public class PlayerOne extends Player {
 		handleJumping(myGame);
 		handleBounceBack();
 
+		if (getHealth() <= 0) {
+			explosionsShouldBeRendered = true;
+			explosionsShouldBeCreated  = true;
+		}
+
 		if (getHealth() <= 0 && lives < 3) {
 			//setLifeState(myGame, PLAYER_ONE);
 			resetHealthForNewLife();
@@ -133,6 +163,24 @@ public class PlayerOne extends Player {
 
 		handleTextures();
 		setPlayerAnimations();
+
+		if (explosionsShouldBeCreated) { 
+			for (int i = 0; i < explosion.length; i++) {
+				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+				explosion[i] = new Explosion(xPos, yPos, explosionSize);
+			}
+			explosionsShouldBeCreated = false;
+		}
+
+		if (explosionsShouldBeRendered) {
+			explosionOffsetTimer++;
+			for (int i = 0; i < explosion.length; i++) {
+				if (explosion[i] != null) {
+					explosion[i].updateObject(myGame, mapHandler);
+				}
+			}
+		}
 	}
 
 	private void handlePoison() {
@@ -329,6 +377,48 @@ public class PlayerOne extends Player {
 			batch.draw(imageLoader.poisonCover, x, y, width, -height);
 		}
 		//renderHitBox(batch, imageLoader);
+
+		renderExplosions(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderExplosions(SpriteBatch batch, ImageLoader imageLoader) {
+		if (explosionsShouldBeRendered) {
+			if (explosion[0] != null) {
+				explosionFinishTimer[0]++;
+				if (explosionOffsetTimer > explosionStartValue[0] && explosionFinishTimer[0] < EXPLOSION_MAX_TIME) {
+					explosion[0].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosion[1] != null) {
+				explosionFinishTimer[1]++;
+				if (explosionOffsetTimer > explosionStartValue[1] && explosionFinishTimer[1] < EXPLOSION_MAX_TIME) {
+					explosion[1].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosion[2] != null) {
+				explosionFinishTimer[2]++;
+				if (explosionOffsetTimer > explosionStartValue[2] && explosionFinishTimer[2] < EXPLOSION_MAX_TIME) {
+					explosion[2].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosion[3] != null) {
+				explosionFinishTimer[3]++;
+				if (explosionOffsetTimer > explosionStartValue[3] && explosionFinishTimer[3] < EXPLOSION_MAX_TIME) {
+					explosion[3].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosion[4] != null) {
+				explosionFinishTimer[4]++;
+				if (explosionOffsetTimer > explosionStartValue[4] && explosionFinishTimer[4] < EXPLOSION_MAX_TIME) {
+					explosion[4].renderExplosion(batch, imageLoader);
+				} 
+			}
+		}
 	}
 
 	/**

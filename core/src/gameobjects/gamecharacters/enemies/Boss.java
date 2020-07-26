@@ -269,14 +269,6 @@ public class Boss extends Enemy {
 		} 
 	}
 
-	/**
-	 * 
-	 * @return boolean
-	 */
-	public boolean isExplosionsShouldBeRendered() {
-		return explosionsShouldBeRendered;
-	}
-
 	private void handleAnimationTimer() {
 		animationTimer++;
 		if (animationTimer > ANIMATION_OVER_VALUE) {
