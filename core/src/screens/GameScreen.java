@@ -33,6 +33,7 @@ import inventory.Inventory;
 import loaders.GameObjectLoader;
 import loaders.GameWorld;
 import loaders.bossloader.BossLoader;
+import loaders.flyingbirdloader.FlyingBirdLoader;
 import maps.MapHandler;
 import maps.MapLoader;
 import maps.MapRenderer;
@@ -475,6 +476,8 @@ public class GameScreen extends Screens {
 					myGame.imageLoader,
 					myGame
 					);
+			
+			FlyingBirdLoader.renderFlyingBirds(myGame.renderer.batch, myGame.imageLoader);
 
 			/**
 			 * The boss' health UI is attached to the boss object.

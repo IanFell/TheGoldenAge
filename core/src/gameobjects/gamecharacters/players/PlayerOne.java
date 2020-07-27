@@ -45,7 +45,7 @@ public class PlayerOne extends Player {
 	private int[] explosionFinishTimer   = new int[5];
 	private int[] explosionStartValue    = new int[5];
 	private final int EXPLOSION_MAX_TIME = 100;
-	
+
 	// Explosion two.
 	private boolean explosionsTwoShouldBeRendered = false;
 	private boolean explosionsTwoShouldBeCreated  = false;
@@ -83,7 +83,7 @@ public class PlayerOne extends Player {
 	public static ArrayList<Float> playerOneXPositions = new ArrayList<Float>();
 	public static ArrayList<Float> playerOneYPositions = new ArrayList<Float>();
 	public static ArrayList<Integer> playerDirections  = new ArrayList<Integer>();
-	
+
 	public static boolean playDeathSound = false;
 
 	/**
@@ -136,7 +136,7 @@ public class PlayerOne extends Player {
 	public String convertPlayerRumToString() {
 		return Integer.toString(RumHandler.rumCount);
 	}
-	
+
 	private void handleDeathExplosionSetup() {
 		if (getHealth() <= 0 && lives == 1) {
 			explosionsTwoShouldBeRendered = true;
@@ -162,7 +162,7 @@ public class PlayerOne extends Player {
 		handleWalking(myGame);
 		handleJumping(myGame);
 		handleBounceBack();
-		
+
 		handleDeathExplosionSetup();
 
 		if (getHealth() <= 0 && lives < 3) {
@@ -194,14 +194,14 @@ public class PlayerOne extends Player {
 
 		handleDeathExplosion(myGame, mapHandler);
 	}
-	
+
 	/**
 	 * 
 	 * @param MyGame     myGame
 	 * @param MapHandler mapHandler
 	 */
 	private void handleDeathExplosion(MyGame myGame, MapHandler mapHandler) {
-		
+
 		// Explosion one.
 		if (explosionsOneShouldBeCreated) { 
 			for (int i = 0; i < explosion.length; i++) {
@@ -223,12 +223,12 @@ public class PlayerOne extends Player {
 		} else if (explosionFinishTimer[4] > EXPLOSION_MAX_TIME) {
 			explosionsOneShouldBeRendered  = true;
 		}
-		
+
 		// Explosion two.
 		if (explosionsTwoShouldBeCreated) { 
 			for (int i = 0; i < explosionTwo.length; i++) {
-				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
-				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+				float xPos      = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+				float yPos      = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
 				explosionTwo[i] = new Explosion(xPos, yPos, explosionSize);
 			}
 			explosionsTwoShouldBeCreated = false;
@@ -483,7 +483,7 @@ public class PlayerOne extends Player {
 				} 
 			}
 		}
-		
+
 		if (explosionsTwoShouldBeRendered) {
 			if (explosionTwo[0] != null) {
 				explosionTwoFinishTimer[0]++;

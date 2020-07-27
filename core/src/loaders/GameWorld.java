@@ -12,6 +12,7 @@ import loaders.chestloader.ChestLoader;
 import loaders.dockloader.DockLoader;
 import loaders.fireloader.FireLoader;
 import loaders.flowerloader.FlowerLoader;
+import loaders.flyingbirdloader.FlyingBirdLoader;
 import loaders.lighthouseloader.LightHouseLoader;
 import loaders.logloader.LogLoader;
 import loaders.pigglywigglyloader.PigglyWigglyLoader;
@@ -37,6 +38,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private static FlyingBirdLoader flyingBirdLoader;
 	private PoisonPlantLoader poisonPlantLoader;
 	private ShockPlantLoader shockPlantLoader;
 	private LogLoader logLoader;
@@ -66,6 +68,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
+		flyingBirdLoader   = new FlyingBirdLoader();
 		poisonPlantLoader  = new PoisonPlantLoader();
 		shockPlantLoader   = new ShockPlantLoader();
 		logLoader          = new LogLoader();
@@ -172,5 +175,7 @@ public class GameWorld {
 
 		// Update bosses.
 		BossHandler.handleBosses(myGame, mapHandler);
+
+		flyingBirdLoader.updateFlyingBirds();
 	}
 }
