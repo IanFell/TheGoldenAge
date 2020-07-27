@@ -264,12 +264,12 @@ public class SoundHandler {
 			} else {
 				soundLoader.tunnel.stop();
 			}
-			
+
 			if (PlayerOne.playDeathSound) {
 				soundLoader.death.play(Mixer.DEATH_VOLUME);
 				PlayerOne.playDeathSound = false;
 			}
-			
+
 			if (Rum.playDrinkingSound) {
 				soundLoader.drink.play(Mixer.DRINK_VOLUME);
 				Rum.playDrinkingSound = false;

@@ -143,7 +143,7 @@ public class Dagger extends GameObjectCollectible {
 							break;
 						}*/
 					}
-					Player.playerIsPerformingAttack = false;
+					//Player.playerIsPerformingAttack = false;
 				} else {
 					if (Player.isInWater) {
 						/*

@@ -303,15 +303,11 @@ public class MissionStumpHole extends Mission {
 		myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		myGame.renderer.batch.draw(
 				myGame.imageLoader.featherMeterUi, 
-				GameScreen.camera.position.x - 8 /*- width / 2*/, 
+				GameScreen.camera.position.x - FEATHER_VALUE_METER_MAX / 2 /*- width / 2*/, 
 				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 12.5f + height, 
 				FEATHER_VALUE_METER_MAX, 
 				-height
 				);	
-		//float x = playerReal.getX() + 11;
-		//float y = playerReal.getY() + 3;
-		//renderValueMeter(batch, x, y, -FEATHER_VALUE_METER_MAX, imageLoader.blackSquare);
-		//renderValueMeter(batch, x, y, -playerFeatherScore, imageLoader.whiteSquare);
 	}
 
 	/**

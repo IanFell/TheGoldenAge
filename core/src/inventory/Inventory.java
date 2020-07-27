@@ -131,90 +131,47 @@ public class Inventory extends Screens {
 	 */
 	private void updateDagger(int selectedInventory, float xPosition, float yPosition, float x, float y) {
 		float inventoryHeight = inventory.get(selectedInventory).getHeight();
-		if (Player.playerIsPerformingAttack) {
-			if (Player.isInWater) {
-				switch (Player.direction) {
-				case Player.DIRECTION_RIGHT:
-					xPosition = x + 4.5f;
-					yPosition = y - 0.5f;
-					break;
-				case Player.DIRECTION_LEFT:
-					xPosition = x - 4.5f;
-					yPosition = y - 0.5f;
-					break;
-				case Player.DIRECTION_DOWN:
-					xPosition = x - 0.3f;
-					yPosition = y + inventoryHeight + 2;
-					break;
-				case Player.DIRECTION_UP:
-					xPosition = x - 0.3f;
-					yPosition = y - inventoryHeight - 3;
-					break;
-				}
-			} else {
-				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-				case Player.DIRECTION_RIGHT:
-					xPosition = x + 4;
-					yPosition = y - 1.5f;
-					break;
-				case Player.DIRECTION_LEFT:
-					xPosition = x - 4.5f;
-					yPosition = y - 1.5f;
-					break;
-				case Player.DIRECTION_DOWN:
-					xPosition = x - 0.3f;
-					yPosition = y + inventoryHeight + 1;
-					break;
-				case Player.DIRECTION_UP:
-					xPosition = x - 0.3f;
-					yPosition = y - inventoryHeight - 4;
-					break;
-				}
+		if (Player.isInWater) {
+			switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+			case Player.DIRECTION_RIGHT:
+				xPosition = x + 3;
+				yPosition = y - 0.5f;
+				break;
+			case Player.DIRECTION_LEFT:
+				xPosition = x - 3.5f;
+				yPosition = y - 0.5f;
+				break;
+			case Player.DIRECTION_DOWN:
+				xPosition = x - 0.3f;
+				yPosition = y + inventoryHeight + 1;
+				break;
+			case Player.DIRECTION_UP:
+				xPosition = x - 0.3f;
+				yPosition = y - inventoryHeight - 2;
+				break;
 			}
-			Player.playerIsPerformingAttack = false;
 		} else {
-			if (Player.isInWater) {
-				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-				case Player.DIRECTION_RIGHT:
-					xPosition = x + 3;
-					yPosition = y - 0.5f;
-					break;
-				case Player.DIRECTION_LEFT:
-					xPosition = x - 3.5f;
-					yPosition = y - 0.5f;
-					break;
-				case Player.DIRECTION_DOWN:
-					xPosition = x - 0.3f;
-					yPosition = y + inventoryHeight + 1;
-					break;
-				case Player.DIRECTION_UP:
-					xPosition = x - 0.3f;
-					yPosition = y - inventoryHeight - 2;
-					break;
+			switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+			case Player.DIRECTION_RIGHT:
+				xPosition = x + 3.6f;
+				yPosition = y - 1.5f;
+				// Compensate for player being larger if he's invincible.
+				if (Player.isInvincible) {
+					xPosition = x + 4.3f;
 				}
-			} else {
-				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-				case Player.DIRECTION_RIGHT:
-					xPosition = x + 3.6f;
-					yPosition = y - 1.5f;
-					// Compensate for player being larger if he's invincible.
-					if (Player.isInvincible) {
-						xPosition = x + 4.3f;
-					}
-					break;
-				case Player.DIRECTION_LEFT:
-					xPosition = x - 3.5f;
-					yPosition = y - 1.5f;
-					break;
-				case Player.DIRECTION_DOWN:
-					xPosition = x - 0.3f;
-					yPosition = y + inventoryHeight;
-					break;
-				case Player.DIRECTION_UP:
-					xPosition = x - 0.3f;
-					yPosition = y - inventoryHeight - 2.7f;
-					break;
-				}
+				break;
+			case Player.DIRECTION_LEFT:
+				xPosition = x - 3.5f;
+				yPosition = y - 1.5f;
+				break;
+			case Player.DIRECTION_DOWN:
+				xPosition = x - 0.3f;
+				yPosition = y + inventoryHeight;
+				break;
+			case Player.DIRECTION_UP:
+				xPosition = x - 0.3f;
+				yPosition = y - inventoryHeight - 2.7f;
+				break;
 			}
 		}
 		inventory.get(selectedInventory).setX(xPosition);
@@ -401,7 +358,6 @@ public class Inventory extends Screens {
 					break;
 				}
 			}
-			Player.playerIsPerformingAttack = false;
 		} else {
 			if (Player.isInWater) {
 				switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {

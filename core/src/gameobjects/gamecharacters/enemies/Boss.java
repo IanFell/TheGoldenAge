@@ -115,7 +115,6 @@ public class Boss extends Enemy {
 	@Override
 	protected void ram(GameObject player) {
 		super.ram(player);
-		CollisionHandler.checkIfPlayerCollidedWithBoss(player, this);
 	}
 
 	/**
@@ -304,6 +303,16 @@ public class Boss extends Enemy {
 	/**
 	 * 
 	 * @param GameObject player
+	 * @param float      radius
+	 */
+	@Override
+	protected void spin(GameObject player, float radius) {
+		super.spin(player, radius);
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
 	 */
 	private void handleAttack(GameObject player) {
 		if (timer > 100 && timer < 200) {
@@ -341,6 +350,7 @@ public class Boss extends Enemy {
 		if (timer > 1000) {
 			timer = 0;
 		}
+		CollisionHandler.checkIfPlayerCollidedWithBoss(player, this);
 	}
 
 	/**

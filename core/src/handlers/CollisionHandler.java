@@ -349,12 +349,12 @@ public class CollisionHandler {
 	 */
 	public static void checkIfWeaponHasCollidedWithEnemy(Enemy enemy, Weapon weapon) {
 		if (weapon instanceof LegendSword) {
-			if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
-				// Checking if dead is false keeps the sound from playing repeatedly.
-				if (enemy.rectangle.overlaps(weapon.rectangle) && !enemy.isDead()) {
-					handleEnemyDeath(enemy);
-				}
+			//if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
+			// Checking if dead is false keeps the sound from playing repeatedly.
+			if (enemy.rectangle.overlaps(weapon.rectangle) && !enemy.isDead() && Player.playerIsPerformingAttack) {
+				handleEnemyDeath(enemy);
 			}
+			//}
 		}
 	}
 
@@ -381,12 +381,12 @@ public class CollisionHandler {
 	 */
 	public static void checkIfDaggerHasCollidedWithEnemy(Enemy enemy, Dagger dagger) {
 		if (dagger instanceof Dagger) {
-			if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
-				// Checking if dead is false keeps the sound from playing repeatedly.
-				if (enemy.rectangle.overlaps(dagger.rectangle) && !enemy.isDead()) {
-					handleEnemyDeath(enemy);
-				}
+			//if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
+			// Checking if dead is false keeps the sound from playing repeatedly.
+			if (enemy.rectangle.overlaps(dagger.rectangle) && !enemy.isDead() && Player.playerIsPerformingAttack) {
+				handleEnemyDeath(enemy);
 			}
+			//}
 		}
 	}
 
@@ -396,12 +396,10 @@ public class CollisionHandler {
 	 * @param Weapon weapon
 	 */
 	public static void checkIfWeaponHasCollidedWithBoss(Boss boss, Weapon weapon) {
-		if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
-			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
-				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
-				Boss.playGruntSound = true;
-				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
-			}
+		if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead() && Player.playerIsPerformingAttack) {
+			boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+			Boss.playGruntSound = true;
+			BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 		}
 	}
 
@@ -411,12 +409,10 @@ public class CollisionHandler {
 	 * @param Dagger dagger
 	 */
 	public static void checkIfDaggerHasCollidedWithBoss(Boss boss, Dagger dagger) {
-		if (/*Player.playerIsPerformingAttack &&*/ Inventory.inventoryIsEquipped) {
-			if (boss.rectangle.overlaps(dagger.rectangle) && !boss.isDead()) {
-				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
-				Boss.playGruntSound = true;
-				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
-			}
+		if (boss.rectangle.overlaps(dagger.rectangle) && !boss.isDead() && Player.playerIsPerformingAttack) {
+			boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
+			Boss.playGruntSound = true;
+			BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 		}
 	}
 
@@ -472,22 +468,6 @@ public class CollisionHandler {
 	 */
 	public static void checkIfEnemyHasCollidedWithPlayer(Enemy enemy, Player player) {
 		if (enemy.rectangle.overlaps(player.rectangle)) {
-			/*
-			// Use this so enemies don't drain player's health really quick.
-			enemyTimer++;
-			if (enemyTimer > HEALTH_TIMER_MAX) {
-				enemyTimer = 0;
-			}
-			// Comment this out to prevent death.
-			if (enemyTimer > HEALTH_TIMER_TRIGGER) {
-				// Put this here so player can't get hurt in cutscene.
-				if (!CutScene.anyCutSceneIsInProgress) {
-					if (!Player.isInvincible) {
-						player.setHealth(player.getHealth() - 1);
-					}
-				}
-			} */
-
 			// Kill enemy if he is overlapping with player while player is performing attack.
 			if (Player.jumpingAction == Player.DESCENDING_JUMP) {
 				handleEnemyDeath(enemy);
@@ -681,12 +661,11 @@ public class CollisionHandler {
 	 * @param Boss       boss
 	 */
 	public static void checkIfPlayerCollidedWithBoss(GameObject player, Boss boss) {
-		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible && Inventory.inventoryIsEquipped) {
+		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible) {
 			boss.setX(boss.getX() + 5);
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
 			player.setPlaySound(true);
-			//BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
 		}
 	}
 

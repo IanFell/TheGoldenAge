@@ -114,6 +114,7 @@ public class LogitechF310 extends ControllerInput {
 					}
 				}
 			}
+			Player.playerIsPerformingAttack = false;
 		}
 	}
 
@@ -334,7 +335,7 @@ public class LogitechF310 extends ControllerInput {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param MyGame myGame
