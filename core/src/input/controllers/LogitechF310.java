@@ -320,7 +320,7 @@ public class LogitechF310 extends ControllerInput {
 				break;
 			case Screens.GAME_SCREEN:	
 				Store.playerWantsToEnterStore = false;
-				givePlayerEverything(myGame);
+				//givePlayerEverything(myGame);
 				break;
 			}
 		} 

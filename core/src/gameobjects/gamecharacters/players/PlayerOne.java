@@ -20,18 +20,22 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 import physics.Lighting.Explosion;
 import physics.Lighting.Fire;
+import screens.GameScreen;
 import ui.GameOver;
 
 /**
  * Jolly Roger.
+ * 
+ * The explosions are sloppy shit code but it works and I had to do it fast.
  * 
  * @author Fabulous Fellini
  *
  */
 public class PlayerOne extends Player {
 
-	private boolean explosionsShouldBeRendered = false;
-	private boolean explosionsShouldBeCreated  = false;
+	// Explosion one.
+	private boolean explosionsOneShouldBeRendered = false;
+	private boolean explosionsOneShouldBeCreated  = false;
 	private Explosion[] explosion              = new Explosion[5];
 	private int explosionSize                  = 5;
 	// Use this so explosions don't fire all at once.
@@ -41,6 +45,17 @@ public class PlayerOne extends Player {
 	private int[] explosionFinishTimer   = new int[5];
 	private int[] explosionStartValue    = new int[5];
 	private final int EXPLOSION_MAX_TIME = 100;
+	
+	// Explosion two.
+	private boolean explosionsTwoShouldBeRendered = false;
+	private boolean explosionsTwoShouldBeCreated  = false;
+	private Explosion[] explosionTwo              = new Explosion[5];
+	// Use this so explosions don't fire all at once.
+	private int explosionTwoOffsetTimer           = 0;
+
+	// Use this to time the rendering of explosions.
+	private int[] explosionTwoFinishTimer   = new int[5];
+	private int[] explosionTwoStartValue    = new int[5];
 
 	// Use this for the rumble during explosion after boss dies.
 	public static boolean shouldPlayExplosionMusic = false;
@@ -133,11 +148,17 @@ public class PlayerOne extends Player {
 		handleWalking(myGame);
 		handleJumping(myGame);
 		handleBounceBack();
+		
+		if (getHealth() <= 0 && lives == 1) {
+			explosionsTwoShouldBeRendered = true;
+			explosionsTwoShouldBeCreated  = true;
+			playDeathSound                = true;
+		}
 
-		if (getHealth() <= 0) {
-			explosionsShouldBeRendered = true;
-			explosionsShouldBeCreated  = true;
-			playDeathSound             = true;
+		if (getHealth() <= 0 && lives == 0) {
+			explosionsOneShouldBeRendered = true;
+			explosionsOneShouldBeCreated  = true;
+			playDeathSound                = true;
 		}
 
 		if (getHealth() <= 0 && lives < 3) {
@@ -167,22 +188,58 @@ public class PlayerOne extends Player {
 		handleTextures();
 		setPlayerAnimations();
 
-		if (explosionsShouldBeCreated) { 
+		handleDeathExplosion(myGame, mapHandler);
+	}
+	
+	/**
+	 * 
+	 * @param MyGame     myGame
+	 * @param MapHandler mapHandler
+	 */
+	private void handleDeathExplosion(MyGame myGame, MapHandler mapHandler) {
+		
+		// Explosion one.
+		if (explosionsOneShouldBeCreated) { 
 			for (int i = 0; i < explosion.length; i++) {
 				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
 				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
 				explosion[i] = new Explosion(xPos, yPos, explosionSize);
 			}
-			explosionsShouldBeCreated = false;
+			explosionsOneShouldBeCreated = false;
 		}
 
-		if (explosionsShouldBeRendered) {
+		if (explosionsOneShouldBeRendered && explosionFinishTimer[4] < EXPLOSION_MAX_TIME) {
 			explosionOffsetTimer++;
 			for (int i = 0; i < explosion.length; i++) {
 				if (explosion[i] != null) {
 					explosion[i].updateObject(myGame, mapHandler);
 				}
 			}
+			GameScreen.screenShake.shake(0.3f,  3);
+		} else if (explosionFinishTimer[4] > EXPLOSION_MAX_TIME) {
+			explosionsOneShouldBeRendered  = true;
+		}
+		
+		// Explosion two.
+		if (explosionsTwoShouldBeCreated) { 
+			for (int i = 0; i < explosionTwo.length; i++) {
+				float xPos   = (float) RandomNumberGenerator.generateRandomDouble(x - width, x + width);
+				float yPos   = (float) RandomNumberGenerator.generateRandomDouble(y, y + height);
+				explosionTwo[i] = new Explosion(xPos, yPos, explosionSize);
+			}
+			explosionsTwoShouldBeCreated = false;
+		}
+
+		if (explosionsTwoShouldBeRendered && explosionTwoFinishTimer[4] < EXPLOSION_MAX_TIME) {
+			explosionTwoOffsetTimer++;
+			for (int i = 0; i < explosionTwo.length; i++) {
+				if (explosionTwo[i] != null) {
+					explosionTwo[i].updateObject(myGame, mapHandler);
+				}
+			}
+			GameScreen.screenShake.shake(0.3f,  3);
+		} else if (explosionTwoFinishTimer[4] > EXPLOSION_MAX_TIME) {
+			explosionsTwoShouldBeRendered  = true;
 		}
 	}
 
@@ -390,7 +447,7 @@ public class PlayerOne extends Player {
 	 * @param ImageLoader imageLoader
 	 */
 	private void renderExplosions(SpriteBatch batch, ImageLoader imageLoader) {
-		if (explosionsShouldBeRendered) {
+		if (explosionsOneShouldBeRendered) {
 			if (explosion[0] != null) {
 				explosionFinishTimer[0]++;
 				if (explosionOffsetTimer > explosionStartValue[0] && explosionFinishTimer[0] < EXPLOSION_MAX_TIME) {
@@ -419,6 +476,39 @@ public class PlayerOne extends Player {
 				explosionFinishTimer[4]++;
 				if (explosionOffsetTimer > explosionStartValue[4] && explosionFinishTimer[4] < EXPLOSION_MAX_TIME) {
 					explosion[4].renderExplosion(batch, imageLoader);
+				} 
+			}
+		}
+		
+		if (explosionsTwoShouldBeRendered) {
+			if (explosionTwo[0] != null) {
+				explosionTwoFinishTimer[0]++;
+				if (explosionTwoOffsetTimer > explosionTwoStartValue[0] && explosionTwoFinishTimer[0] < EXPLOSION_MAX_TIME) {
+					explosionTwo[0].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosionTwo[1] != null) {
+				explosionTwoFinishTimer[1]++;
+				if (explosionTwoOffsetTimer > explosionTwoStartValue[1] && explosionTwoFinishTimer[1] < EXPLOSION_MAX_TIME) {
+					explosionTwo[1].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosionTwo[2] != null) {
+				explosionTwoFinishTimer[2]++;
+				if (explosionTwoOffsetTimer > explosionTwoStartValue[2] && explosionTwoFinishTimer[2] < EXPLOSION_MAX_TIME) {
+					explosionTwo[2].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosionTwo[3] != null) {
+				explosionTwoFinishTimer[3]++;
+				if (explosionTwoOffsetTimer > explosionTwoStartValue[3] && explosionTwoFinishTimer[3] < EXPLOSION_MAX_TIME) {
+					explosionTwo[3].renderExplosion(batch, imageLoader);
+				}
+			}
+			if (explosionTwo[4] != null) {
+				explosionTwoFinishTimer[4]++;
+				if (explosionTwoOffsetTimer > explosionTwoStartValue[4] && explosionTwoFinishTimer[4] < EXPLOSION_MAX_TIME) {
+					explosionTwo[4].renderExplosion(batch, imageLoader);
 				} 
 			}
 		}
