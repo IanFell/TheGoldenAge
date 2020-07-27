@@ -136,6 +136,20 @@ public class PlayerOne extends Player {
 	public String convertPlayerRumToString() {
 		return Integer.toString(RumHandler.rumCount);
 	}
+	
+	private void handleDeathExplosionSetup() {
+		if (getHealth() <= 0 && lives == 1) {
+			explosionsTwoShouldBeRendered = true;
+			explosionsTwoShouldBeCreated  = true;
+			playDeathSound                = true;
+		}
+
+		if (getHealth() <= 0 && lives == 0) {
+			explosionsOneShouldBeRendered = true;
+			explosionsOneShouldBeCreated  = true;
+			playDeathSound                = true;
+		}
+	}
 
 	/**
 	 * 
@@ -149,17 +163,7 @@ public class PlayerOne extends Player {
 		handleJumping(myGame);
 		handleBounceBack();
 		
-		if (getHealth() <= 0 && lives == 1) {
-			explosionsTwoShouldBeRendered = true;
-			explosionsTwoShouldBeCreated  = true;
-			playDeathSound                = true;
-		}
-
-		if (getHealth() <= 0 && lives == 0) {
-			explosionsOneShouldBeRendered = true;
-			explosionsOneShouldBeCreated  = true;
-			playDeathSound                = true;
-		}
+		handleDeathExplosionSetup();
 
 		if (getHealth() <= 0 && lives < 3) {
 			//setLifeState(myGame, PLAYER_ONE);
