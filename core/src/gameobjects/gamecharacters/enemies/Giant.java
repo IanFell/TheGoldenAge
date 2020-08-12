@@ -15,6 +15,7 @@ import handlers.CollisionHandler;
 import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import physics.Lighting.Explosion;
 import screens.GameScreen;
 
 /**
@@ -47,6 +48,8 @@ public class Giant extends Enemy {
 
 	private int deathTimer                = 0;
 	private final int AMOUNT_OF_TIME_DEAD = 200;
+	
+	private int explosionTimer = 0;
 
 	/**
 	 * Constructor.
@@ -158,10 +161,8 @@ public class Giant extends Enemy {
 			}
 
 			if (!dead) {
-				CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
+				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
 			}
-
-			handleDeathExplosion(GIANT_EXPLOSION_SIZE);
 
 			// If player is within bounds and the giant lands a jump, shake the screen.
 			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
@@ -169,15 +170,29 @@ public class Giant extends Enemy {
 			} 
 		}
 		respawn();
+		
+		if (dead) {
+			handleDeathExplosion(GIANT_EXPLOSION_SIZE);
+		}
+	}
+	
+	protected void handleDeathExplosion(int explosionSize) {
+		if (dead) {
+			if (explosionShouldBeCreated) {
+				explosion                = new Explosion(x, y, explosionSize);
+				explosionShouldBeCreated = false;
+			}
+		}
 	}
 
 	private void respawn() {
 		if (dead) {
 			deathTimer++;
 			if (deathTimer > AMOUNT_OF_TIME_DEAD) {
-				dead       = false;
-				deathTimer = 0;
-				timer      = 0;
+				dead           = false;
+				deathTimer     = 0;
+				timer          = 0;
+				explosionTimer = 0;
 			}
 		}
 	}
@@ -209,8 +224,8 @@ public class Giant extends Enemy {
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		} else {
 			if (explosion != null) {
-				timer++;
-				if (timer < MAX_DEATH_ANIMATION_VALUE) {
+				explosionTimer++;
+				if (explosionTimer < MAX_DEATH_ANIMATION_VALUE) {
 					explosion.renderExplosion(batch, imageLoader);
 				}
 			}

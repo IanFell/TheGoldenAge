@@ -3,8 +3,6 @@ package gameobjects.gamecharacters.enemies;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.players.Player;
-import handlers.CollisionHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
@@ -59,7 +57,7 @@ public class Knight extends Enemy {
 				soundHasBeenPlayed = false;
 			}
 		} else {
-			CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) myGame.getGameObject(Player.PLAYER_ONE));
+			//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) myGame.getGameObject(Player.PLAYER_ONE));
 		}
 	}
 

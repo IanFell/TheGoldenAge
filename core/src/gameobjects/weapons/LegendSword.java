@@ -178,9 +178,9 @@ public class LegendSword extends Weapon {
 	private void checkCollisionWithAllEnemies(MyGame myGame) {
 		myGame.gameScreen.enemyHandler.checkWeaponCollision(myGame, this);
 		myGame.gameScreen.gruntHandler.checkWeaponCollision(myGame, this);
-		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[0], this);
-		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[1], this);
-		CollisionHandler.checkIfWeaponHasCollidedWithEnemy(GiantHandler.giants[2], this);
+		CollisionHandler.checkIfWeaponHasCollidedWithGiant(GiantHandler.giants[0], this);
+		CollisionHandler.checkIfWeaponHasCollidedWithGiant(GiantHandler.giants[1], this);
+		CollisionHandler.checkIfWeaponHasCollidedWithGiant(GiantHandler.giants[2], this);
 		for (int i = 0; i < BossLoader.boss.length; i++) {
 			CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
 		}

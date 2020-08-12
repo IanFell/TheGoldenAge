@@ -84,7 +84,7 @@ public class MagicPearl extends Weapon {
 					myGame.gameScreen.enemyHandler.checkProjectileCollision(myGame, this);
 					myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
 					for (int i = 0; i < GiantHandler.giants.length; i++) {
-						CollisionHandler.checkIfProjectileHasCollidedWithEnemy(GiantHandler.giants[i], this);
+						CollisionHandler.checkIfProjectileHasCollidedWithGiant(GiantHandler.giants[i], this);
 					}
 					for (int i = 0; i < BossLoader.boss.length; i++) {
 						CollisionHandler.checkIfProjectileHasCollidedWithBoss(BossLoader.boss[i], this);

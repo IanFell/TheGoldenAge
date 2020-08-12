@@ -152,7 +152,7 @@ public class EnemyHandler {
 	 */
 	public void setEnemiesToPlayer(GameObject player) {
 		float spinAngle = 0;
-		int radius      = 10;
+		int radius      = 17;
 		for (int i = 0; i < enemySpawner.length; i++) {
 			if (enemySpawner[i].enemies != null) {
 				for (int k = 0; k < enemySpawner[i].enemies.size(); k++) {

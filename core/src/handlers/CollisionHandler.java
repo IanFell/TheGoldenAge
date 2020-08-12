@@ -11,6 +11,7 @@ import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Enemy;
+import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.nature.Feather;
@@ -21,6 +22,7 @@ import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
 import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Bullet;
 import gameobjects.weapons.CannonBall;
 import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
@@ -786,6 +788,30 @@ public class CollisionHandler {
 				realPlayer.setPlaySound(true);
 				//player.setBounceBack(true);
 			}
+		}
+	}
+
+	public static void checkIfWeaponHasCollidedWithGiant(Giant giant, LegendSword legendSword) {
+		if (giant.rectangle.overlaps(legendSword.rectangle) && Player.playerIsPerformingAttack) {
+			giant.setIsDead(true);
+		}
+	}
+
+	public static void checkIfDaggerHasCollidedWithGiant(Giant giant, Dagger dagger) {
+		if (giant.rectangle.overlaps(dagger.rectangle) && Player.playerIsPerformingAttack) {
+			giant.setIsDead(true);
+		}
+	}
+
+	public static void checkIfProjectileHasCollidedWithGiant(Giant giant, Weapon weapon) {
+		if (giant.rectangle.overlaps(weapon.rectangle) && Player.playerIsPerformingAttack) {
+			giant.setIsDead(true);
+		}
+	}
+
+	public static void checkIfBirdWeaponHasCollidedWithGiant(Giant giant, BirdWeapon birdWeapon) {
+		if (giant.rectangle.overlaps(birdWeapon.rectangle) && Player.playerIsPerformingAttack) {
+			giant.setIsDead(true);
 		}
 	}
 }

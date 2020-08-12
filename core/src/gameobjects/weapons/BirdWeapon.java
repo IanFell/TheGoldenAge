@@ -195,9 +195,9 @@ public class BirdWeapon extends Weapon {
 				// Bird can kill enemies even if he is just sitting on the player's shoulder.
 				myGame.gameScreen.enemyHandler.checkProjectileCollision(myGame, this);
 				myGame.gameScreen.gruntHandler.checkProjectileCollision(myGame, this);
-				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[0], this);
-				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[1], this);
-				CollisionHandler.checkIfBirdWeaponHasCollidedWithEnemy(GiantHandler.giants[2], this);
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithGiant(GiantHandler.giants[0], this);
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithGiant(GiantHandler.giants[1], this);
+				CollisionHandler.checkIfBirdWeaponHasCollidedWithGiant(GiantHandler.giants[2], this);
 				for (int i = 0; i < BossLoader.boss.length; i++) {
 					CollisionHandler.checkIfWeaponHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
 				}

@@ -64,9 +64,9 @@ public class Dagger extends GameObjectCollectible {
 			for (int i = 0; i < BossLoader.boss.length; i++) {
 				CollisionHandler.checkIfDaggerHasCollidedWithBoss((Boss) BossLoader.boss[i], this);
 			}
-			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[0], this);
-			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[1], this);
-			CollisionHandler.checkIfDaggerHasCollidedWithEnemy(GiantHandler.giants[2], this);
+			CollisionHandler.checkIfDaggerHasCollidedWithGiant(GiantHandler.giants[0], this);
+			CollisionHandler.checkIfDaggerHasCollidedWithGiant(GiantHandler.giants[1], this);
+			CollisionHandler.checkIfDaggerHasCollidedWithGiant(GiantHandler.giants[2], this);
 		}
 	}
 
