@@ -99,10 +99,14 @@ public class MusicHandler {
 			handleMissionMusic(musicLoader);
 			handleCutsceneMusic(musicLoader);
 			handlePoisonAudio(musicLoader);
+			
+			if (musicLoader.theme.isPlaying()) {
+				musicLoader.theme.stop();
+			}
 		} else if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
-			musicLoader.ocean.setVolume(Mixer.OCEAN_VOLUME);
-			musicLoader.ocean.setLooping(true);
-			musicLoader.ocean.play();
+			musicLoader.theme.setVolume(Mixer.TITLE_SCREEN_VOLUME);
+			musicLoader.theme.setLooping(true);
+			musicLoader.theme.play();
 		}
 	}
 
@@ -169,6 +173,7 @@ public class MusicHandler {
 		} else {
 			musicLoader.ocean.stop();
 			musicLoader.typewriter.stop();
+			musicLoader.theme.stop();
 		}
 	}
 

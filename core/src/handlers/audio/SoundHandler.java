@@ -203,13 +203,8 @@ public class SoundHandler {
 				Boss.playGruntSound = false;
 			}
 
-			for (int i = 0; i < BossLoader.boss.length; i++) {
-				if (BossHandler.shouldPlayLaughSound[i]) {
-					soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
-					BossHandler.shouldPlayLaughSound[i] = false;
-				}
-			}
-
+			handleBossAudio(soundLoader);
+			
 			// Click sound when choosing different inventory objects.
 			inventoryTimer++;
 			if (inventoryTimer > 2) {
@@ -282,6 +277,23 @@ public class SoundHandler {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
 				PauseScreen.playSound = false;
 			}
+		}
+	}
+	
+	private void handleBossAudio(SoundLoader soundLoader) {
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			if (BossHandler.shouldPlayLaughSound[i]) {
+				soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
+				BossHandler.shouldPlayLaughSound[i] = false;
+			}
+		}
+		if (Boss.playSpinAudio) {
+			soundLoader.bossAttackSpin.play(Mixer.BOSS_ATTACK_SPIN_VOLUME);
+			Boss.playSpinAudio = false;
+		}
+		if (Boss.playBashAudio) {
+			soundLoader.bossAttackBash.play(Mixer.BOSS_ATTACK_BASH_VOLUME);
+			Boss.playBashAudio = false;
 		}
 	}
 

@@ -45,7 +45,7 @@ public class Enemy extends GameCharacter {
 	protected float originX;
 	protected float originY;
 	protected float spinAngle;
-	private boolean setOrigin = true;
+	protected boolean setOrigin = true;
 
 	public int direction;
 

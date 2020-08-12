@@ -215,6 +215,7 @@ public class Arcade extends ControllerInput {
 		if (controller.getButton(BUTTON_ATTACK)) {
 			switch (GameAttributeHelper.gameState) {
 			case Screens.GAME_SCREEN:
+				/*
 				if (!canAttack) {
 					attackTimer++;
 					if (attackTimer > SWITCH_TIME_LIMIT) {
@@ -226,7 +227,29 @@ public class Arcade extends ControllerInput {
 				if (canAttack) {
 					Player.playerIsPerformingAttack = true;
 					canAttack                       = false;
+				} */
+				if (canClick) {
+					Player.playerIsPerformingAttack = true;
 				}
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+						MagicPearl.isAttacking     = true;
+						MagicPearl.isMovingForward = true;
+					}
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+						if (!BirdWeapon.birdIsAttacking) {
+							BirdWeapon.birdIsAttacking = true;
+							BirdWeapon.playAttackSound = true;
+							BirdWeapon.shouldPlaySound = true;
+						}
+					}
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+						Paw.hasBeenUsed         = true;
+						Paw.playAttackSound     = true;
+					}
+				}
+				canClick = false;
+				/*
 				if (player.getInventory().inventory.size() > 0) {
 					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
@@ -245,7 +268,7 @@ public class Arcade extends ControllerInput {
 							Paw.playAttackSound     = true;
 						}
 					}
-				}
+				}*/
 			}
 		} else {
 			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
@@ -259,6 +282,8 @@ public class Arcade extends ControllerInput {
 					}
 				}
 			}
+			Player.playerIsPerformingAttack = false;
+			canClick = true;
 		}
 
 		if(controller.getButton(BUTTON_JUMP)) {

@@ -55,6 +55,13 @@ public class Boss extends Enemy {
 	// When boss gets hit, play the grunt sound.
 	public static boolean playGruntSound = false;
 
+	// Boss attacks.
+	public static boolean playSpinAudio = false;
+	public static boolean playBashAudio = false;
+
+	public static boolean bashAudioHasBeenPlayed = false;
+	public static boolean spinAudioHasBeenPlayed = false;
+
 	private int animationTimer;
 
 	private final int ANIMATION_OVER_VALUE = 9;
@@ -114,6 +121,10 @@ public class Boss extends Enemy {
 	 */
 	@Override
 	protected void ram(GameObject player) {
+		if (!bashAudioHasBeenPlayed) {
+			playBashAudio          = true;
+			bashAudioHasBeenPlayed = true;
+		}
 		super.ram(player);
 	}
 
@@ -307,6 +318,12 @@ public class Boss extends Enemy {
 	 */
 	@Override
 	protected void spin(GameObject player, float radius) {
+		if (setOrigin) {
+			if (!spinAudioHasBeenPlayed) {
+				playSpinAudio          = true;
+				spinAudioHasBeenPlayed = true;
+			}
+		}
 		super.spin(player, radius);
 	}
 
@@ -318,12 +335,15 @@ public class Boss extends Enemy {
 		if (timer > 100 && timer < 200) {
 			spin(player, BOSS_RADIUS);
 		} 
+		spinAudioHasBeenPlayed = false;
 		if (timer > 300 && timer < 400) {
 			ram(player);
+			bashAudioHasBeenPlayed = false;
 		}  
 		if(timer > 500 && timer < 600) {
 			spin(player, BOSS_RADIUS);
 		}
+		spinAudioHasBeenPlayed = false;
 		// Make sure shadow doesn't move with player.  This will make it look like he's jumping.
 		isPerformingJumpAttack = true;
 		jumpAttackStartY       = y;
@@ -347,6 +367,7 @@ public class Boss extends Enemy {
 		if (timer > 900 && timer < 1000) {
 			ram(player);
 		}
+		bashAudioHasBeenPlayed = false;
 		if (timer > 1000) {
 			timer = 0;
 		}

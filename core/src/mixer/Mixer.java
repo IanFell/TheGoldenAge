@@ -33,6 +33,7 @@ public class Mixer {
 	public static final float MISSION_MUSIC_VOLUME     = MEDIAN_VOLUME;
 	public static final float CUTSCENE_MUSIC_VOLUME    = MEDIAN_VOLUME;
 	public static final float TYPEWRITER_VOLUME        = QUARTER_VOLUME;
+	public static final float TITLE_SCREEN_VOLUME      = MEDIAN_VOLUME;
 
 	// Game character walking and jumping.
 	public final static float FOOTSTEPS_VOLUME     = TWELVETH_VOLUME;
@@ -74,11 +75,13 @@ public class Mixer {
 	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
 
 	// Enemy attacks.
-	public final static float CANNON_FIRE_VOLUME = MEDIAN_VOLUME;
-	public final static float BOMB_VOLUME        = SIXTEENTH_VOLUME;
-	public final static float ARROW_VOLUME       = MEDIAN_VOLUME;
-	public static final float SPARK_VOLUME       = EIGHTH_VOLUME;
-	public static final float POISON_VOLUME      = MEDIAN_VOLUME;
+	public final static float CANNON_FIRE_VOLUME      = MEDIAN_VOLUME;
+	public final static float BOMB_VOLUME             = SIXTEENTH_VOLUME;
+	public final static float ARROW_VOLUME            = MEDIAN_VOLUME;
+	public static final float SPARK_VOLUME            = EIGHTH_VOLUME;
+	public static final float POISON_VOLUME           = MEDIAN_VOLUME;
+	public static final float BOSS_ATTACK_SPIN_VOLUME = MEDIAN_VOLUME;
+	public static final float BOSS_ATTACK_BASH_VOLUME = SIXTEENTH_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;
