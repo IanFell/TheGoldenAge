@@ -191,12 +191,14 @@ public class CollisionHandler {
 				break;
 			} 
 			if (chest.isClosed()) {
-				chest.setChestValuesAfterCollisionWithPlayer();
-				((Player) player).updatePlayerLoot(Chest.LOOT_VALUE);
+				if (((Player) player).getPlayerLoot() < Player.MAX_AMOUNT_LOOT_PLAYER_CAN_CARRY) {
+					chest.setChestValuesAfterCollisionWithPlayer();
+					((Player) player).updatePlayerLoot(Chest.LOOT_VALUE);
 
-				// Testing mission.  Later, this will be controlled.  Right now, it is always on.
-				if (MissionChests.executeMission) {
-					MissionChests.increaseNumberOfChestsOpened();
+					// Testing mission.  Later, this will be controlled.  Right now, it is always on.
+					if (MissionChests.executeMission) {
+						MissionChests.increaseNumberOfChestsOpened();
+					}
 				}
 			}
 		} 
@@ -557,12 +559,14 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerCollidedWithRum(GameObject player, Rum rum) {
 		if (player.rectangle.overlaps(rum.rectangle)) {
-			rum.setHasBeenCollected(true);
-			Rum.playSound = true;
-			RumHandler.rumCount++;
-			AddedToInventory.shouldRender     = true;
-			AddedToInventory.shouldDisplayRum = true;
-			AddedToInventory.timer            = 0;
+			if (RumHandler.rumCount < RumHandler.MAX_AMOUNT_RUM_PLAYER_CAN_CARRY) {
+				rum.setHasBeenCollected(true);
+				Rum.playSound = true;
+				RumHandler.rumCount++;
+				AddedToInventory.shouldRender     = true;
+				AddedToInventory.shouldDisplayRum = true;
+				AddedToInventory.timer            = 0;
+			}
 		}
 	}
 
