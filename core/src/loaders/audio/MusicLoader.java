@@ -28,7 +28,7 @@ public class MusicLoader {
 	public Music missionWin;
 	public Music typewriter;
 	public Music monkey;
-
+	
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
 	 * (It's not just one footstep sound).

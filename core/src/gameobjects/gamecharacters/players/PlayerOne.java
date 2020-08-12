@@ -21,7 +21,9 @@ import maps.MapHandler;
 import physics.Lighting.Explosion;
 import physics.Lighting.Fire;
 import screens.GameScreen;
+import store.Store;
 import ui.GameOver;
+import ui.MapUi;
 
 /**
  * Jolly Roger.
@@ -193,6 +195,11 @@ public class PlayerOne extends Player {
 		setPlayerAnimations();
 
 		handleDeathExplosion(myGame, mapHandler);
+		
+		// Make sure we can't use weapons when inventory or map or store is open.
+		if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered || Store.playerWantsToEnterStore || Store.shouldDisplayEnterStoreMessage) {
+			playerIsPerformingAttack = false;
+		}
 	}
 
 	/**

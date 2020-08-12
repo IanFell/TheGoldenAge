@@ -1,11 +1,9 @@
 package gameobjects.gamecharacters;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.mygame.MyGame;
 
 import helpers.GameAttributeHelper;
 import loaders.ImageLoader;
-import maps.MapHandler;
 
 /**
  * These birds just fly in the world.  They do not hurt player.
@@ -38,6 +36,7 @@ public class FlyingBird extends GameCharacter {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.attackBird, x, y, width, -height);
+		batch.draw(imageLoader.shadow, x + 3, y + 3, width, -height);
 	}
 
 	public void updateBird() {

@@ -100,7 +100,7 @@ public class Player extends GameCharacter {
 
 	public static boolean isInvincible         = false;
 	public static int invincibilityTimer       = 0;
-	private final int INVINCIBILITY_TIME_LIMIT = 2000;
+	private final int INVINCIBILITY_TIME_LIMIT = 3700;
 
 	public static boolean isInQuickSand          = false;
 	public static int quickSandTimer             = 0;

@@ -33,7 +33,7 @@ public class Mixer {
 	public static final float MISSION_MUSIC_VOLUME     = MEDIAN_VOLUME;
 	public static final float CUTSCENE_MUSIC_VOLUME    = MEDIAN_VOLUME;
 	public static final float TYPEWRITER_VOLUME        = QUARTER_VOLUME;
-	public static final float TITLE_SCREEN_VOLUME      = MEDIAN_VOLUME;
+	public static final float TITLE_SCREEN_VOLUME      = THREE_QUARTERS_VOLUME;
 
 	// Game character walking and jumping.
 	public final static float FOOTSTEPS_VOLUME     = TWELVETH_VOLUME;
