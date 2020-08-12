@@ -192,6 +192,8 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture arcadeMap;
+	public Texture arcadeInventory;
 	public Texture oysterMeterUi;
 	public Texture featherMeterUi;
 	public Texture timeMeterUi;
@@ -328,7 +330,7 @@ public class ImageLoader {
 		poisonPlantTwo   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP2.png"));
 		poisonPlantThree = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP3.png"));
 		poisonPlantFour  = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP4.png"));
-		
+
 		shockPlants[0] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant1.png"));
 		shockPlants[1] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant2.png"));
 		shockPlants[2] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant3.png"));
@@ -337,7 +339,7 @@ public class ImageLoader {
 		shockPlants[5] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant6.png"));
 		shockPlants[6] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant7.png"));
 		shockPlants[7] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant8.png"));
-		
+
 		bubble         = new Texture(Gdx.files.internal("artwork/nature/Bubble.png"));
 		tunnel         = new Texture(Gdx.files.internal("artwork/nature/TunnelMovement.png"));
 		hole           = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
@@ -492,6 +494,8 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		arcadeMap                    = new Texture(Gdx.files.internal("artwork/ui/Map.png"));
+		arcadeInventory              = new Texture(Gdx.files.internal("artwork/ui/Inventory.png"));
 		featherMeterUi               = new Texture(Gdx.files.internal("artwork/ui/FeathersMeterUi.png"));
 		oysterMeterUi                = new Texture(Gdx.files.internal("artwork/ui/OysterMeterUi.png"));
 		timeMeterUi                  = new Texture(Gdx.files.internal("artwork/ui/TimeMeterUi.png"));
@@ -809,6 +813,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		arcadeMap.dispose();
+		arcadeInventory.dispose();
 		featherMeterUi.dispose();
 		oysterMeterUi.dispose();
 		timeMeterUi.dispose();

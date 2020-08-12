@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.gamecharacters.players.Player;
+import handlers.InputHandler;
 import loaders.ImageLoader;
 import screens.Screens;
 
@@ -63,13 +64,23 @@ public class MapUi extends Screens {
 					camera.viewportWidth, 
 					-camera.viewportHeight
 					);
-			batch.draw(
-					imageLoader.worldMapFake,
-					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
-					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
-					camera.viewportWidth - borderShrinkOffset * 2, 
-					-camera.viewportHeight
-					);
+			if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
+				batch.draw(
+						imageLoader.arcadeMap,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			} else {
+				batch.draw(
+						imageLoader.worldMapFake,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			}
 			//renderUiNavigationBar(imageLoader.mapNavigationBar, batch);
 			flashPlayerChunkLocation(batch, imageLoader);
 		}

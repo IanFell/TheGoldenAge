@@ -102,7 +102,7 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (stickIsMoved(AXIS_LEFT_X)) {
-			System.out.print("LEFT STICK X pressed \n");
+			//System.out.print("LEFT STICK X pressed \n");
 			if (controller.getAxis(AXIS_LEFT_X) < 0) {
 				if (Inventory.currentlySelectedInventoryObject > 0) {
 					if (InventoryUi.clickedObject > 0) {
@@ -144,17 +144,18 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (stickIsMoved(AXIS_LEFT_Y)) {
-			System.out.print("LEFT STICK Y pressed \n");
+			//System.out.print("LEFT STICK Y pressed \n");
 			if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
 				if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
 					if (storeCanSwitch) {
 						Weapon.shouldPlaySwitchWeaponAudio = true;
+						/*
 						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
 							MapUi.mapShouldBeRendered              = false;
 							ControlsUi.controlsShouldBeRendered    = true;
-						}
-						else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
+						} */
+						if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 							MapUi.mapShouldBeRendered              = true;
 							ControlsUi.controlsShouldBeRendered    = false;
@@ -171,11 +172,12 @@ public class Arcade extends ControllerInput {
 							MapUi.mapShouldBeRendered              = false;
 							ControlsUi.controlsShouldBeRendered    = false;
 						}
+						/*
 						else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 							MapUi.mapShouldBeRendered              = true;
 							ControlsUi.controlsShouldBeRendered    = false;
-						} 
+						}  */
 						storeCanSwitch = false;
 					}
 				}
@@ -453,7 +455,13 @@ public class Arcade extends ControllerInput {
 						MagicPearl.isMovingForward = false;
 					}
 
-					if (RumHandler.rumCount > 0 && !Player.isInvincible && !Store.playerWantsToEnterStore && !Store.shouldDisplayEnterStoreMessage) {
+					if (
+							RumHandler.rumCount > 0 && 
+							!Player.isInvincible && 
+							!Store.playerWantsToEnterStore && 
+							!Store.shouldDisplayEnterStoreMessage &&
+							!Inventory.allInventoryShouldBeRendered
+							) {
 						RumHandler.rumCount--;
 						Player.isInvincible                       = true;
 						Player.invincibilityTimer                 = 0;

@@ -13,6 +13,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
+import handlers.InputHandler;
 import input.computer.Mouse;
 import input.controllers.LogitechF310;
 import loaders.ImageLoader;
@@ -78,13 +79,23 @@ public class InventoryUi extends Screens {
 					-camera.viewportHeight
 					);
 			int borderShrinkOffset = 1;
-			batch.draw(
-					imageLoader.inventoryScreen,
-					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
-					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
-					camera.viewportWidth - borderShrinkOffset * 2, 
-					-camera.viewportHeight
-					);
+			if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
+				batch.draw(
+						imageLoader.arcadeInventory,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			} else {
+				batch.draw(
+						imageLoader.inventoryScreen,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			}
 			renderInventoryDisplay(batch, imageLoader, inventory);
 			// White square that flashes when player clicks on an inventory square.
 			drawClickHover(batch, imageLoader, clickedObject, rectangle);
