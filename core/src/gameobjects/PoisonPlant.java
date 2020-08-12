@@ -42,7 +42,7 @@ public class PoisonPlant extends NatureObject {
 	 * @param GameObject player
 	 */
 	public void updateObject(GameObject player) {
-		handleAnimationTimer();
+		//handleAnimationTimer();
 		if (!Player.isInvincible) {
 			handleCollision(player);
 		}
@@ -73,22 +73,24 @@ public class PoisonPlant extends NatureObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
+		/*
 		if (animationTimer < 5) {
 			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else if (animationTimer > 5 && animationTimer < 10) {
 			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		} else if (animationTimer > 10 && animationTimer < 15) {
-			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantThree, x, y, width, -height);
 		} else if (animationTimer > 15 && animationTimer < 20) {
 			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
 		} else if (animationTimer > 20 && animationTimer < 25) {
-			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantFour, x, y, width, -height);
 		} else if (animationTimer > 25 && animationTimer < 30) {
-			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
+			batch.draw(imageLoader.poisonPlantThree, x, y, width, -height);
 		} else if (animationTimer > 30 && animationTimer < 35) {
-			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
-		} else {
 			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
-		}
+		} else {
+			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
+		} */
 	}
 }

@@ -453,7 +453,7 @@ public class Arcade extends ControllerInput {
 						MagicPearl.isMovingForward = false;
 					}
 
-					if (RumHandler.rumCount > 0 && !Player.isInvincible) {
+					if (RumHandler.rumCount > 0 && !Player.isInvincible && !Store.playerWantsToEnterStore && !Store.shouldDisplayEnterStoreMessage) {
 						RumHandler.rumCount--;
 						Player.isInvincible                       = true;
 						Player.invincibilityTimer                 = 0;

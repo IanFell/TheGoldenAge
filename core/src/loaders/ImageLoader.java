@@ -45,6 +45,8 @@ public class ImageLoader {
 	public Texture[] shockPlants = new Texture[8];
 	public Texture poisonPlantOne;
 	public Texture poisonPlantTwo;
+	public Texture poisonPlantThree;
+	public Texture poisonPlantFour;
 	public Texture bubble;
 	public Texture tunnel;
 	public Texture hole;
@@ -322,8 +324,11 @@ public class ImageLoader {
 		boatDown = new Texture(Gdx.files.internal("artwork/boat/BoatDown.png"));
 
 		// Nature Objects.
-		poisonPlantOne = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PoisonPlant1.png"));
-		poisonPlantTwo = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PoisonPlant2.png"));
+		poisonPlantOne   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP1.png"));
+		poisonPlantTwo   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP2.png"));
+		poisonPlantThree = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP3.png"));
+		poisonPlantFour  = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP4.png"));
+		
 		shockPlants[0] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant1.png"));
 		shockPlants[1] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant2.png"));
 		shockPlants[2] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant3.png"));
@@ -332,6 +337,7 @@ public class ImageLoader {
 		shockPlants[5] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant6.png"));
 		shockPlants[6] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant7.png"));
 		shockPlants[7] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant8.png"));
+		
 		bubble         = new Texture(Gdx.files.internal("artwork/nature/Bubble.png"));
 		tunnel         = new Texture(Gdx.files.internal("artwork/nature/TunnelMovement.png"));
 		hole           = new Texture(Gdx.files.internal("artwork/nature/Hole.png"));
@@ -670,6 +676,8 @@ public class ImageLoader {
 		quickSand.dispose();
 		poisonPlantOne.dispose();
 		poisonPlantTwo.dispose();
+		poisonPlantThree.dispose();
+		poisonPlantFour.dispose();
 
 		// Weapon Objects.
 		daggerShadow.dispose();
