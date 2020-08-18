@@ -40,7 +40,7 @@ public class MissionHandler extends Mission {
 	private MissionCauldron missionCauldron;
 	private MissionThePoint missionThePoint;
 	private MissionBlacksIsland missionBlacksIsland;
-	private MissionFinalFight missionFinalFight;
+	//private MissionFinalFight missionFinalFight;
 
 	/**
 	 * This mission is always active.
@@ -66,7 +66,7 @@ public class MissionHandler extends Mission {
 		missionCauldron               = new MissionCauldron();
 		missionThePoint               = new MissionThePoint();
 		missionBlacksIsland           = new MissionBlacksIsland();
-		missionFinalFight             = new MissionFinalFight();
+		//missionFinalFight             = new MissionFinalFight();
 	}
 
 	private void initializeRawBarMission() {
@@ -138,6 +138,7 @@ public class MissionHandler extends Mission {
 				MissionRawBar.phasesAreInProgress = false;
 			}
 
+			/*
 			if (MissionFinalFight.finalFightShouldBeSetup) {
 				missionFinalFight.prepareForFinalFight(myGame.getGameObject(Player.PLAYER_ONE), myGame);
 				MissionFinalFight.finalFightShouldBeSetup = false;
@@ -145,7 +146,7 @@ public class MissionHandler extends Mission {
 
 			if (!Win.triggerWin) {
 				missionFinalFight.updateFinalFight();
-			}
+			} */
 		}
 	}
 

@@ -3,7 +3,6 @@ package missions;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
-import gameobjects.gamecharacters.players.Player;
 import ui.Win;
 
 /**

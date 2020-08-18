@@ -7,6 +7,7 @@ import gameobjects.GameObject;
 import loaders.ImageLoader;
 import missions.MissionBlacksIsland;
 import missions.MissionFinalFight;
+import ui.Win;
 
 /**
  * 
@@ -44,6 +45,9 @@ public class Treasure extends GameObject {
 			MissionBlacksIsland.missionBlacksIslandComplete = true;
 			hasBeenCollected                                = true;
 			MissionFinalFight.finalFightShouldBeSetup       = true;
+			
+			// Win the game.
+			Win.triggerWin = true;
 		}
 	}
 
