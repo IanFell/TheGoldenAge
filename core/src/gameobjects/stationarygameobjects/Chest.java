@@ -73,7 +73,7 @@ public class Chest extends GamePlayObject {
 
 			// Show player where to get loot if Mission Chests is active.  After this, they should know.
 			if (locationMarker.timerValuesAreCorrectToFlash() && !MissionChests.missionComplete) {
-				locationMarker.renderObject(batch, imageLoader);
+				locationMarker.renderLootMarker(batch, imageLoader);
 			}
 			// Uncomment this to draw hit box.
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);

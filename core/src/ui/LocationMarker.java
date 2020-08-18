@@ -120,4 +120,19 @@ public class LocationMarker {
 		}
 		return false;
 	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	public void renderLootMarker(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(
+				imageLoader.lootAlternate, 
+				locator.x, 
+				locator.y,
+				locator.width, 
+				-locator.height
+				);
+	}
 }

@@ -791,24 +791,44 @@ public class CollisionHandler {
 		}
 	}
 
+	/**
+	 * 
+	 * @param Giant       giant
+	 * @param LegendSword legendSword
+	 */
 	public static void checkIfWeaponHasCollidedWithGiant(Giant giant, LegendSword legendSword) {
 		if (giant.rectangle.overlaps(legendSword.rectangle) && Player.playerIsPerformingAttack) {
 			giant.setIsDead(true);
 		}
 	}
 
+	/**
+	 * 
+	 * @param Giant  giant
+	 * @param Dagger dagger
+	 */
 	public static void checkIfDaggerHasCollidedWithGiant(Giant giant, Dagger dagger) {
 		if (giant.rectangle.overlaps(dagger.rectangle) && Player.playerIsPerformingAttack) {
 			giant.setIsDead(true);
 		}
 	}
 
+	/**
+	 * 
+	 * @param Giant  giant
+	 * @param Weapon weapon
+	 */
 	public static void checkIfProjectileHasCollidedWithGiant(Giant giant, Weapon weapon) {
 		if (giant.rectangle.overlaps(weapon.rectangle) && Player.playerIsPerformingAttack) {
 			giant.setIsDead(true);
 		}
 	}
 
+	/**
+	 * 
+	 * @param Giant      giant
+	 * @param BirdWeapon birdWeapon
+	 */
 	public static void checkIfBirdWeaponHasCollidedWithGiant(Giant giant, BirdWeapon birdWeapon) {
 		if (giant.rectangle.overlaps(birdWeapon.rectangle) && Player.playerIsPerformingAttack) {
 			giant.setIsDead(true);

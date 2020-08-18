@@ -164,6 +164,7 @@ public class MusicHandler {
 	 */
 	private void handleCutsceneMusic(MusicLoader musicLoader) {
 		if (CutScene.gameShouldPause) {
+			stopMusicForCutscene(musicLoader);
 			musicLoader.ocean.setVolume(Mixer.CUTSCENE_MUSIC_VOLUME);
 			musicLoader.ocean.setLooping(true);
 			musicLoader.ocean.play();
@@ -174,6 +175,19 @@ public class MusicHandler {
 			musicLoader.ocean.stop();
 			musicLoader.typewriter.stop();
 			musicLoader.theme.stop();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void stopMusicForCutscene(MusicLoader musicLoader) {
+		if (musicLoader.poison.isPlaying()) {
+			musicLoader.poison.stop();
+		}
+		if (musicLoader.footsteps.isPlaying()) {
+			musicLoader.footsteps.stop();
 		}
 	}
 

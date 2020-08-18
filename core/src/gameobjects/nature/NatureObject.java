@@ -11,8 +11,10 @@ import gameobjects.GameObject;
  *
  */
 public class NatureObject extends GameObject {
-	
+
 	protected int animationTimer = 0;
+
+	private final int ANIMATION_TIMER_MAX = 40;
 
 	/**
 	 * Constructor.
@@ -33,10 +35,10 @@ public class NatureObject extends GameObject {
 	protected void renderNatureObject(SpriteBatch batch, Texture texture) {
 		batch.draw(texture, x, y, width, -height);
 	}
-	
+
 	protected void handleAnimationTimer() {
 		animationTimer++;
-		if (animationTimer > 40) {
+		if (animationTimer > ANIMATION_TIMER_MAX) {
 			animationTimer = 0;
 		}
 	}

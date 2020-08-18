@@ -47,6 +47,12 @@ public class ImageLoader {
 	public Texture poisonPlantTwo;
 	public Texture poisonPlantThree;
 	public Texture poisonPlantFour;
+	public Texture poisonPlantFive;
+	public Texture poisonPlantSix;
+	public Texture poisonPlantSeven;
+	public Texture poisonPlantEight;
+	public Texture poisonPlantNine;
+	public Texture poisonPlantTen;
 	public Texture bubble;
 	public Texture tunnel;
 	public Texture hole;
@@ -330,6 +336,12 @@ public class ImageLoader {
 		poisonPlantTwo   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP2.png"));
 		poisonPlantThree = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP3.png"));
 		poisonPlantFour  = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP4.png"));
+		poisonPlantFive  = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP5.png"));
+		poisonPlantSix   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP6.png"));
+		poisonPlantSeven = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP7.png"));
+		poisonPlantEight = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP8.png"));
+		poisonPlantNine  = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP9.png"));
+		poisonPlantTen   = new Texture(Gdx.files.internal("artwork/nature/poisonplants/PP10.png"));
 
 		shockPlants[0] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant1.png"));
 		shockPlants[1] = new Texture(Gdx.files.internal("artwork/nature/shockplants/ShockPlant2.png"));
@@ -682,6 +694,12 @@ public class ImageLoader {
 		poisonPlantTwo.dispose();
 		poisonPlantThree.dispose();
 		poisonPlantFour.dispose();
+		poisonPlantFive.dispose();
+		poisonPlantSix.dispose();
+		poisonPlantSeven.dispose();
+		poisonPlantEight.dispose();
+		poisonPlantNine.dispose();
+		poisonPlantTen.dispose();
 
 		// Weapon Objects.
 		daggerShadow.dispose();

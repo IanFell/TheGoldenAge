@@ -203,14 +203,30 @@ public class Arcade extends ControllerInput {
 				Weapon.shouldPlaySwitchWeaponAudio = true;
 			}
 
-			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
-				if (Store.shouldDisplayEnterStoreMessage && storeCanSwitch) {
-					if (Store.storeIsUnlocked) {
-						Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-						storeCanSwitch                     = false;
+			else if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+				if (!Store.playerWantsToEnterStore /*&& !Store.shouldDisplayEnterStoreMessage*/) {
+					if (
+							RumHandler.rumCount > 0 && 
+							!Player.isInvincible && 
+							!Store.playerWantsToEnterStore && 
+							!Store.shouldDisplayEnterStoreMessage &&
+							!Inventory.allInventoryShouldBeRendered
+							) {
+						RumHandler.rumCount--;
+						Player.isInvincible                       = true;
+						Player.invincibilityTimer                 = 0;
+						ConfidenceUi.confidenceUiShouldBeRendered = true;
+						Rum.playDrinkingSound                     = true;
 					}
 				}
+				if (Store.shouldDisplayEnterStoreMessage /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
+					if (Store.storeIsUnlocked) {
+						Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+						Weapon.shouldPlaySwitchWeaponAudio   = true;
+						storeCanSwitch                       = false;
+						Store.shouldDisplayEnterStoreMessage = false;
+					}
+				} 
 			}
 		}
 
@@ -308,6 +324,7 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (controller.getButton(BUTTON_UI)) {
+			//Inventory.allInventoryShouldBeRendered = false;
 			if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
 				if (clickUiTimer < 1) {
 					Inventory.playClickSound = true;
@@ -315,7 +332,9 @@ public class Arcade extends ControllerInput {
 						Inventory.allInventoryShouldBeRendered = false;
 						MapUi.mapShouldBeRendered              = false;
 					} else {
-						Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+						Inventory.allInventoryShouldBeRendered = true;
+						Store.shouldDisplayEnterStoreMessage   = false;
+						storeCanSwitch                         = false;
 					}
 				} 
 
@@ -453,20 +472,6 @@ public class Arcade extends ControllerInput {
 					if (MagicPearl.isMovingForward) {
 						MagicPearl.isAttacking     = false;
 						MagicPearl.isMovingForward = false;
-					}
-
-					if (
-							RumHandler.rumCount > 0 && 
-							!Player.isInvincible && 
-							!Store.playerWantsToEnterStore && 
-							!Store.shouldDisplayEnterStoreMessage &&
-							!Inventory.allInventoryShouldBeRendered
-							) {
-						RumHandler.rumCount--;
-						Player.isInvincible                       = true;
-						Player.invincibilityTimer                 = 0;
-						ConfidenceUi.confidenceUiShouldBeRendered = true;
-						Rum.playDrinkingSound                     = true;
 					}
 				}
 			} 
