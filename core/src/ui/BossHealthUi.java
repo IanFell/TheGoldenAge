@@ -41,7 +41,7 @@ public class BossHealthUi extends GameObject {
 	 * @param Boss   boss
 	 */
 	public void renderBossHealthUi(MyGame myGame, Boss boss) {
-		if (shouldDisplay && !Store.playerWantsToEnterStore) {
+		if (shouldDisplay && !Store.playerWantsToEnterStore && !GameOver.triggerGameOver) {
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.enemyHealthMeterBlack, 
 					GameScreen.camera.position.x - width / 2, 

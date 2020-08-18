@@ -14,6 +14,7 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 import spawners.EnemySpawner;
 import towns.Town;
+import ui.GameOver;
 
 /**
  * 
@@ -95,8 +96,10 @@ public class EnemyHandler {
 	 * @param MapHandler mapHandler
 	 */
 	public void updateEnemies(MyGame myGame, MapHandler mapHandler) {
-		for (int i = 0; i < enemySpawner.length; i++) {
-			enemySpawner[i].updateEnemies(myGame, mapHandler);
+		if (!GameOver.triggerGameOver) {
+			for (int i = 0; i < enemySpawner.length; i++) {
+				enemySpawner[i].updateEnemies(myGame, mapHandler);
+			}
 		}
 	}
 

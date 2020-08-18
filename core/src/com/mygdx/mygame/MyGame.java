@@ -12,12 +12,16 @@ import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
+import missions.MissionRawBar;
 import render.Render;
 import screens.ControlsScreen;
 import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
+import ui.BossHealthUi;
 import ui.GameOver;
+import ui.ObjectiveUi;
+import ui.Win;
 
 /**
  * Main game class.
@@ -144,6 +148,33 @@ public class MyGame extends Game {
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 		PlayerOne.lives               = 0;
 		GameObjectLoader.gameObjectList.clear(); 
+		
+		ObjectiveUi.playObjectiveChangeGoToTradingPost  = false;
+		ObjectiveUi.playObjectiveChangeBuyTheGun        = false;
+		ObjectiveUi.playObjectiveChangeEnterTradingPost = false;
+		ObjectiveUi.playObjectiveChangeGoToRawBar       = false;
+		ObjectiveUi.playObjectiveChangeCollectOysters   = false;
+		ObjectiveUi.playObjectiveChangeGoToStumpHole    = false;
+		ObjectiveUi.playObjectiveChangeCollectFeathers  = false;
+		ObjectiveUi.playObjectiveChangeCollectTheBird   = false;
+		ObjectiveUi.playObjectiveChangeGoToWewa         = false;
+		ObjectiveUi.playObjectiveChangeFindTheCauldron  = false;
+		ObjectiveUi.playObjectiveChangeThePoint         = false;
+		ObjectiveUi.playObjectiveChangeTreasure         = false;
+		
+		MissionRawBar.rawBarMissionComplete = false;
+		MissionRawBar.missionComplete = false;
+		MissionRawBar.phasesAreInProgress = false;
+		MissionRawBar.phaseIsActive = false;
+		
+		
+		
+		BossHealthUi.shouldDisplay = false;
+		
+		GamePlayHelper.gameOver = false;
+		Win.triggerWin = false;
+		GameOver.triggerGameOver = false;
+		
 		this.create();
 	}
 

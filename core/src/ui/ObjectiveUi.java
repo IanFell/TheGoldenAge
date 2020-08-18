@@ -36,7 +36,7 @@ public class ObjectiveUi {
 	private final int WIDTH  = 9;
 	private final int HEIGHT = 2;
 
-	private Texture objectiveTexture = null;
+	private Texture objectiveTexture;
 
 	/**
 	 * Handles objective change audio.
@@ -69,6 +69,13 @@ public class ObjectiveUi {
 	private boolean objectiveChangeFindTheCauldronHasBeenPlayed  = false;
 	private boolean objectiveChangeThePointHasBeenPlayed         = false;
 	private boolean objectiveChangeTreasureHasBeenPlayed         = false;
+	
+	/**
+	 * Constructor.
+	 */
+	public ObjectiveUi() {
+		objectiveTexture = null;
+	}
 
 	/**
 	 * 

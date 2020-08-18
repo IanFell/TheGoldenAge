@@ -124,6 +124,7 @@ public class Boss extends Enemy {
 		if (!bashAudioHasBeenPlayed) {
 			playBashAudio          = true;
 			bashAudioHasBeenPlayed = true;
+			spinAudioHasBeenPlayed = false;
 		}
 		super.ram(player);
 	}
@@ -322,6 +323,7 @@ public class Boss extends Enemy {
 			if (!spinAudioHasBeenPlayed) {
 				playSpinAudio          = true;
 				spinAudioHasBeenPlayed = true;
+				bashAudioHasBeenPlayed = false;
 			}
 		}
 		super.spin(player, radius);
@@ -335,15 +337,15 @@ public class Boss extends Enemy {
 		if (timer > 100 && timer < 200) {
 			spin(player, BOSS_RADIUS);
 		} 
-		spinAudioHasBeenPlayed = false;
+		//spinAudioHasBeenPlayed = false;
 		if (timer > 300 && timer < 400) {
 			ram(player);
-			bashAudioHasBeenPlayed = false;
+			//bashAudioHasBeenPlayed = false;
 		}  
 		if(timer > 500 && timer < 600) {
 			spin(player, BOSS_RADIUS);
 		}
-		spinAudioHasBeenPlayed = false;
+		//spinAudioHasBeenPlayed = false;
 		// Make sure shadow doesn't move with player.  This will make it look like he's jumping.
 		isPerformingJumpAttack = true;
 		jumpAttackStartY       = y;
@@ -367,7 +369,7 @@ public class Boss extends Enemy {
 		if (timer > 900 && timer < 1000) {
 			ram(player);
 		}
-		bashAudioHasBeenPlayed = false;
+		//bashAudioHasBeenPlayed = false;
 		if (timer > 1000) {
 			timer = 0;
 		}

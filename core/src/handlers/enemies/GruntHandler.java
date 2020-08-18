@@ -14,6 +14,7 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 import physics.Lighting.Fire;
 import spawners.GruntSpawner;
+import ui.GameOver;
 
 /**
  * 
@@ -101,10 +102,12 @@ public class GruntHandler {
 	 * @param MapHandler mapHandler
 	 */
 	public void updateGrunts(MyGame myGame, MapHandler mapHandler) {
-		for (int i = 0; i < gruntSpawner.length; i++) {
-			gruntSpawner[i].updateGrunts(myGame, mapHandler);
-			gruntHut[i].updateObject(myGame, mapHandler);
-			fire[i].updateObject(myGame, mapHandler);
+		if (!GameOver.triggerGameOver) {
+			for (int i = 0; i < gruntSpawner.length; i++) {
+				gruntSpawner[i].updateGrunts(myGame, mapHandler);
+				gruntHut[i].updateObject(myGame, mapHandler);
+				fire[i].updateObject(myGame, mapHandler);
+			}
 		}
 	}
 

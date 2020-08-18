@@ -8,6 +8,7 @@ import helpers.GameAttributeHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import ui.GameOver;
 
 /**
  * 
@@ -62,15 +63,17 @@ public class GiantHandler {
 	 * @param MapHandler mapHandler
 	 */
 	public void updateGiants(MyGame myGame, MapHandler mapHandler) {
-		for (int i = 0; i < giants.length; i++) {
-			giants[i].updateObject(myGame, mapHandler);
-		}
-		/**
-		 * This giant will eventually be off the map.
-		 * This patch makes that not happen.
-		 */
-		if (giants[GIANT_WEWA].getY() < 0) {
-			giants[GIANT_WEWA].setY(3);
+		if (!GameOver.triggerGameOver) {
+			for (int i = 0; i < giants.length; i++) {
+				giants[i].updateObject(myGame, mapHandler);
+			}
+			/**
+			 * This giant will eventually be off the map.
+			 * This patch makes that not happen.
+			 */
+			if (giants[GIANT_WEWA].getY() < 0) {
+				giants[GIANT_WEWA].setY(3);
+			}
 		}
 	}
 
