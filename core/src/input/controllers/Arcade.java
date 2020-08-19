@@ -204,29 +204,32 @@ public class Arcade extends ControllerInput {
 			}
 
 			else if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
-				if (!Store.playerWantsToEnterStore /*&& !Store.shouldDisplayEnterStoreMessage*/) {
-					if (
-							RumHandler.rumCount > 0 && 
-							!Player.isInvincible && 
-							!Store.playerWantsToEnterStore && 
-							!Store.shouldDisplayEnterStoreMessage &&
-							!Inventory.allInventoryShouldBeRendered
-							) {
-						RumHandler.rumCount--;
-						Player.isInvincible                       = true;
-						Player.invincibilityTimer                 = 0;
-						ConfidenceUi.confidenceUiShouldBeRendered = true;
-						Rum.playDrinkingSound                     = true;
+				// Dont use this if there's a cutscene in progress to avoid a crash.
+				if (!CutScene.anyCutSceneIsInProgress) {
+					if (!Store.playerWantsToEnterStore /*&& !Store.shouldDisplayEnterStoreMessage*/) {
+						if (
+								RumHandler.rumCount > 0 && 
+								!Player.isInvincible && 
+								!Store.playerWantsToEnterStore && 
+								!Store.shouldDisplayEnterStoreMessage &&
+								!Inventory.allInventoryShouldBeRendered
+								) {
+							RumHandler.rumCount--;
+							Player.isInvincible                       = true;
+							Player.invincibilityTimer                 = 0;
+							ConfidenceUi.confidenceUiShouldBeRendered = true;
+							Rum.playDrinkingSound                     = true;
+						}
 					}
+					if (Store.shouldDisplayEnterStoreMessage /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
+						if (Store.storeIsUnlocked) {
+							Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+							Weapon.shouldPlaySwitchWeaponAudio   = true;
+							//storeCanSwitch                       = false;
+							Store.shouldDisplayEnterStoreMessage = false;
+						}
+					} 
 				}
-				if (Store.shouldDisplayEnterStoreMessage /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
-					if (Store.storeIsUnlocked) {
-						Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
-						Weapon.shouldPlaySwitchWeaponAudio   = true;
-						//storeCanSwitch                       = false;
-						Store.shouldDisplayEnterStoreMessage = false;
-					}
-				} 
 			}
 		}
 
