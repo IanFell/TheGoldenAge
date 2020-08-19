@@ -512,4 +512,9 @@ public class Store extends TextBasedUiParent {
 				);
 		 */
 	}
+
+	public static void resetStore() {
+		gunHasBeenPurchasedAtStore = false;
+		playerWantsToEnterStore    = false;
+	}
 }

@@ -42,4 +42,9 @@ public class MissionBlacksIsland extends Mission {
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader) {
 		treasure.renderObject(batch, imageLoader);
 	}
+
+	public static void resetGame() {
+		missionBlacksIslandComplete = false;
+		missionComplete             = false;
+	}
 }

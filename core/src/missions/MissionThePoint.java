@@ -42,4 +42,9 @@ public class MissionThePoint extends Mission {
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader) {
 		treasureMap.renderObject(batch, imageLoader);
 	}
+
+	public static void resetGame() {
+		missionThePointComplete = false;
+		missionComplete         = false;
+	}
 }

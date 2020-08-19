@@ -475,4 +475,12 @@ public class MissionRawBar extends Mission {
 			}
 		}
 	}
+
+	public static void resetGame() {
+		rawBarMissionComplete    = false;
+		missionComplete          = false;
+		phasesAreInProgress      = false;
+		phaseIsActive            = false;
+		locationMarkerHasBeenHit = false;
+	}
 }

@@ -387,7 +387,7 @@ public class ControllerInput extends Input {
 				System.out.print("LEFT STICK X pressed \n");
 				if (controller.getAxis(AXIS_LEFT_X) < 0) {
 					((Player) player).moveLeft(playerSpeed);
-				} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
+				} /*else*/ if (controller.getAxis(AXIS_LEFT_X) > 0) {
 					((Player) player).moveRight(playerSpeed);
 				} 
 			} 
@@ -395,7 +395,7 @@ public class ControllerInput extends Input {
 				System.out.print("LEFT STICK Y pressed \n");
 				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
 					((Player) player).moveUp(playerSpeed);
-				} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
+				} /*else*/ if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
 					((Player) player).moveDown(playerSpeed);
 				} 
 			} 

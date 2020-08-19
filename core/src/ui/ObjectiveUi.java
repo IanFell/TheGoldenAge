@@ -69,7 +69,7 @@ public class ObjectiveUi {
 	private boolean objectiveChangeFindTheCauldronHasBeenPlayed  = false;
 	private boolean objectiveChangeThePointHasBeenPlayed         = false;
 	private boolean objectiveChangeTreasureHasBeenPlayed         = false;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -332,5 +332,20 @@ public class ObjectiveUi {
 		if (flashTimer > RESET_TIMER_VALUE) {
 			flashTimer = 0;
 		}
+	}
+
+	public static void resetGame() {
+		playObjectiveChangeGoToTradingPost  = false;
+		playObjectiveChangeBuyTheGun        = false;
+		playObjectiveChangeEnterTradingPost = false;
+		playObjectiveChangeGoToRawBar       = false;
+		playObjectiveChangeCollectOysters   = false;
+		playObjectiveChangeGoToStumpHole    = false;
+		playObjectiveChangeCollectFeathers  = false;
+		playObjectiveChangeCollectTheBird   = false;
+		playObjectiveChangeGoToWewa         = false;
+		playObjectiveChangeFindTheCauldron  = false;
+		playObjectiveChangeThePoint         = false;
+		playObjectiveChangeTreasure         = false;
 	}
 }

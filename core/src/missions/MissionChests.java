@@ -87,4 +87,9 @@ public class MissionChests extends Mission {
 			//System.out.println("CHEST MISSION FAILED!");
 		}
 	}
+
+	public static void resetGame() {
+		chestMissionIsComplete = false;
+		missionComplete        = false;
+	}
 }

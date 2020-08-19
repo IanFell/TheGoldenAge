@@ -750,4 +750,10 @@ public class MissionStumpHole extends Mission {
 			playerIsJumping = false;
 		}
 	}
+
+	public static void resetGame() {
+		missionIsActive          = false;
+		missionComplete          = false;
+		stumpHoleMissionComplete = false;	
+	}
 }

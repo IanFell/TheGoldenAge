@@ -48,4 +48,9 @@ public class MissionWewa extends Mission {
 			locationMarker.renderObject(batch, imageLoader);
 		}
 	}
+
+	public static void resetGame() {
+		wewaMissionComplete = false;
+		missionComplete     = false;
+	}
 }

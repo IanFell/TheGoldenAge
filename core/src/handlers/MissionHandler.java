@@ -244,4 +244,15 @@ public class MissionHandler extends Mission {
 		// Use this if we only want to render one phase.
 		missionRawBarPhaseOne.renderMission(batch, imageLoader, myGame);
 	}
+
+	public static void resetMissions() {
+		MissionRawBar.resetGame();
+		MissionStumpHole.resetGame();
+		MissionChests.resetGame();
+		MissionTradinPost.resetGame();
+		MissionWewa.resetGame();
+		MissionCauldron.resetGame();
+		MissionBlacksIsland.resetGame();
+		MissionThePoint.resetGame();	
+	}
 }

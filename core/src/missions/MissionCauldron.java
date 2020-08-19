@@ -10,16 +10,16 @@ import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 
 public class MissionCauldron extends Mission {
-	
+
 	private Cauldron cauldron;
-	
+
 	public static boolean missionCauldronComplete = false;
-	
+
 	public MissionCauldron() {
 		cauldron = new Cauldron(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 62, 30);
 		GameObjectLoader.gameObjectList.add(cauldron);
 	}
-	
+
 	/**
 	 * 
 	 * @param SpriteBatch batch
@@ -28,7 +28,7 @@ public class MissionCauldron extends Mission {
 	public void renderMission(SpriteBatch batch, ImageLoader imageLoader) {
 		cauldron.renderObject(batch, imageLoader);
 	}
-	
+
 	/**
 	 * 
 	 * @param MyGame myGame
@@ -37,5 +37,10 @@ public class MissionCauldron extends Mission {
 		if (cauldron.rectangle.overlaps(myGame.getGameObject(Player.PLAYER_ONE).rectangle)) {
 			missionCauldronComplete = true;
 		}
+	}
+
+	public static void resetGame() {
+		missionCauldronComplete = false;
+		missionComplete         = false;
 	}
 }

@@ -70,22 +70,22 @@ public class Mixer {
 	public final static float SWORD_ATTACK_VOLUME  = QUARTER_VOLUME;
 	public final static float GUN_ATTACK_VOLUME    = SIXTEENTH_VOLUME;
 	public final static float BUBBLE_ATTACK_VOLUME = SIXTEENTH_VOLUME;
-	public static final float BIRD_ATTACK_VOLUME   = QUARTER_VOLUME;
+	public static final float BIRD_ATTACK_VOLUME   = SIXTEENTH_VOLUME;
 	public static final float PAW_ATTACK_VOLUME    = MEDIAN_VOLUME;
 	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
 
 	// Enemy attacks.
-	public final static float CANNON_FIRE_VOLUME      = SIXTEENTH_VOLUME;
+	public final static float CANNON_FIRE_VOLUME      = EIGHTH_VOLUME;
 	public final static float BOMB_VOLUME             = SIXTEENTH_VOLUME;
 	public final static float ARROW_VOLUME            = MEDIAN_VOLUME;
-	public static final float SPARK_VOLUME            = EIGHTH_VOLUME;
+	public static final float SPARK_VOLUME            = SIXTEENTH_VOLUME;
 	public static final float POISON_VOLUME           = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_SPIN_VOLUME = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_BASH_VOLUME = SIXTEENTH_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;
-	public final static float RUM_COLLECT_VOLUME     = EIGHTH_VOLUME;
+	public final static float RUM_COLLECT_VOLUME     = QUARTER_VOLUME;
 	public final static float CHEST_COLLECT_VOLUME   = MEDIAN_VOLUME;
 	public final static float FEATHER_COLLECT_VOLUME = MEDIAN_VOLUME;
 	public final static float BUBBLE_VOLUME          = SIXTEENTH_VOLUME;

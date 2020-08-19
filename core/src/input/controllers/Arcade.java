@@ -223,7 +223,7 @@ public class Arcade extends ControllerInput {
 					if (Store.storeIsUnlocked) {
 						Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 						Weapon.shouldPlaySwitchWeaponAudio   = true;
-						storeCanSwitch                       = false;
+						//storeCanSwitch                       = false;
 						Store.shouldDisplayEnterStoreMessage = false;
 					}
 				} 

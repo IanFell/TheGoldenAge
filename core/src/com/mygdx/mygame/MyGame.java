@@ -6,18 +6,24 @@ import com.badlogic.gdx.Gdx;
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.PlayerOne;
+import gameobjects.stationarygameobjects.buildings.TradingPost;
+import gameobjects.weapons.Gun;
 import handlers.InputHandler;
+import handlers.MissionHandler;
 import handlers.audio.AudioHandler;
+import handlers.collectibles.AmmoHandler;
+import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
-import missions.MissionRawBar;
+import loaders.bossloader.BossLoader;
 import render.Render;
 import screens.ControlsScreen;
 import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
+import store.Store;
 import ui.BossHealthUi;
 import ui.GameOver;
 import ui.ObjectiveUi;
@@ -145,36 +151,28 @@ public class MyGame extends Game {
 		renderer.dispose();
 		GamePlayHelper.gameOver       = false;
 		GameOver.triggerGameOver      = false;
+		Win.triggerWin                = false;
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
 		PlayerOne.lives               = 0;
 		GameObjectLoader.gameObjectList.clear(); 
-		
-		ObjectiveUi.playObjectiveChangeGoToTradingPost  = false;
-		ObjectiveUi.playObjectiveChangeBuyTheGun        = false;
-		ObjectiveUi.playObjectiveChangeEnterTradingPost = false;
-		ObjectiveUi.playObjectiveChangeGoToRawBar       = false;
-		ObjectiveUi.playObjectiveChangeCollectOysters   = false;
-		ObjectiveUi.playObjectiveChangeGoToStumpHole    = false;
-		ObjectiveUi.playObjectiveChangeCollectFeathers  = false;
-		ObjectiveUi.playObjectiveChangeCollectTheBird   = false;
-		ObjectiveUi.playObjectiveChangeGoToWewa         = false;
-		ObjectiveUi.playObjectiveChangeFindTheCauldron  = false;
-		ObjectiveUi.playObjectiveChangeThePoint         = false;
-		ObjectiveUi.playObjectiveChangeTreasure         = false;
-		
-		MissionRawBar.rawBarMissionComplete = false;
-		MissionRawBar.missionComplete = false;
-		MissionRawBar.phasesAreInProgress = false;
-		MissionRawBar.phaseIsActive = false;
-		
-		
-		
+		ObjectiveUi.resetGame();
+		MissionHandler.resetMissions();
+		Store.resetStore();
+
+		Gun.hasBeenCollected       = false;
+		TradingPost.hasBeenEntered = false;
+
+		getGameScreen().getBirdWeapon().hasBeenCollected = false;
+
+		for (int i = 0; i < BossLoader.boss.length; i++) {
+			BossLoader.boss[i].setIsDead(false);
+		}
+
 		BossHealthUi.shouldDisplay = false;
-		
-		GamePlayHelper.gameOver = false;
-		Win.triggerWin = false;
-		GameOver.triggerGameOver = false;
-		
+
+		AmmoHandler.ammoCount = 0;
+		RumHandler.rumCount   = 0;
+
 		this.create();
 	}
 

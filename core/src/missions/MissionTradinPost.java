@@ -59,4 +59,8 @@ public class MissionTradinPost extends Mission {
 			}
 		}
 	}
+
+	public static void resetGame() {
+		locationMarkerHasBeenHit = false;
+	}
 }
