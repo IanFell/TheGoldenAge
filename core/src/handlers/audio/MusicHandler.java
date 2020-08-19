@@ -99,7 +99,7 @@ public class MusicHandler {
 			handleMissionMusic(musicLoader);
 			handleCutsceneMusic(musicLoader);
 			handlePoisonAudio(musicLoader);
-			
+
 			if (musicLoader.theme.isPlaying()) {
 				musicLoader.theme.stop();
 			}
@@ -177,7 +177,7 @@ public class MusicHandler {
 			musicLoader.theme.stop();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param MusicLoader musicLoader
@@ -316,6 +316,12 @@ public class MusicHandler {
 		}
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 			musicLoader.bossBattleMusic.pause();
+		}
+
+		if (Boss.playSpinAudio) {
+			musicLoader.spinAudio.setVolume(Mixer.BOSS_ATTACK_SPIN_VOLUME);
+			musicLoader.spinAudio.play();
+			Boss.playSpinAudio = false;
 		}
 	}
 

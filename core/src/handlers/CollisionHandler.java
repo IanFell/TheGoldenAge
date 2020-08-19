@@ -672,6 +672,9 @@ public class CollisionHandler {
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
 			player.setPlaySound(true);
+
+			// Make bash audio every time boss bashes.
+			Boss.bashAudioHasBeenPlayed = false;
 		}
 	}
 

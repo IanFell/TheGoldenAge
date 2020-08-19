@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Music;
  */
 public class MusicLoader {
 
+	public Music spinAudio;
 	public Music theme;
 	public Music poison;
 	public Music dayTimeAmbientNoise;
@@ -28,7 +29,7 @@ public class MusicLoader {
 	public Music missionWin;
 	public Music typewriter;
 	public Music monkey;
-	
+
 	/**
 	 * This is currently a music type because it is a long file of footsteps.
 	 * (It's not just one footstep sound).
@@ -36,6 +37,7 @@ public class MusicLoader {
 	public Music footsteps;
 
 	public void init() {
+		spinAudio             = Gdx.audio.newMusic(Gdx.files.internal("audio/music/SpinAudio.ogg"));
 		theme                 = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Theme.ogg"));
 		poison                = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Slime.ogg"));
 		monkey                = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Monkey.ogg"));
@@ -57,6 +59,7 @@ public class MusicLoader {
 	}
 
 	public void dispose() {
+		spinAudio.dispose();
 		poison.dispose();
 		theme.dispose();
 		dayTimeAmbientNoise.dispose();
