@@ -23,7 +23,7 @@ public class PoisonPlant extends NatureObject {
 
 	private int poisonTimer;
 
-	private final int POISON_TIMER_MAX = 500;
+	private final int POISON_TIMER_MAX = 2000;
 
 	/**
 	 * Constructor.
@@ -85,27 +85,27 @@ public class PoisonPlant extends NatureObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		if (poisonTimer < 50) {
+		if (poisonTimer < 200) {
 			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
-		} else if (poisonTimer > 50 && poisonTimer < 100) {
+		} else if (poisonTimer > 200 && poisonTimer < 400) {
 			batch.draw(imageLoader.poisonPlantTwo, x, y, width, -height);
-		} else if (poisonTimer > 100 && poisonTimer < 150) {
+		} else if (poisonTimer > 400 && poisonTimer < 600) {
 			batch.draw(imageLoader.poisonPlantThree, x, y, width, -height);
-		} else if (poisonTimer > 150 && poisonTimer < 200) {
+		} else if (poisonTimer > 600 && poisonTimer < 800) {
 			batch.draw(imageLoader.poisonPlantFour, x, y, width, -height);
-		} else if (poisonTimer > 200 && poisonTimer < 250) {
+		} else if (poisonTimer > 800 && poisonTimer < 1000) {
 			batch.draw(imageLoader.poisonPlantFive, x, y, width, -height);
-		} else if (poisonTimer > 250 && poisonTimer < 300) {
+		} else if (poisonTimer > 1000 && poisonTimer < 1200) {
 			batch.draw(imageLoader.poisonPlantSix, x, y, width, -height);
-		} else if (poisonTimer > 300 && poisonTimer < 350) {
+		} else if (poisonTimer > 1200 && poisonTimer < 1400) {
 			batch.draw(imageLoader.poisonPlantSeven, x, y, width, -height);
-		} else if (poisonTimer > 350 && poisonTimer < 400) {
+		} else if (poisonTimer > 1400 && poisonTimer < 1600) {
 			batch.draw(imageLoader.poisonPlantEight, x, y, width, -height);
-		} else if (poisonTimer > 400 && poisonTimer < 450) {
+		} else if (poisonTimer > 1600 && poisonTimer < 1800) {
 			batch.draw(imageLoader.poisonPlantNine, x, y, width, -height);
 		} else /*if (poisonTimer > 450)*/ {
 			batch.draw(imageLoader.poisonPlantTen, x, y, width, -height);
 		} 
-		batch.draw(imageLoader.logs, x, y + 0.3f, width, -height);
+		//batch.draw(imageLoader.logs, x, y + 0.3f, width, -height);
 	}
 }
