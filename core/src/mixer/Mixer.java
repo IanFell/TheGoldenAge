@@ -7,6 +7,7 @@ package mixer;
  */
 public class Mixer {
 	public static final float MINIMUM_VOLUME        = 0f;
+	public static final float THIRTY_SECOND_VOLUME  = 0.03f;
 	public static final float SIXTEENTH_VOLUME      = 0.06f;
 	public static final float TWELVETH_VOLUME       = 0.10f;
 	public static final float EIGHTH_VOLUME         = 0.125f;
@@ -50,7 +51,7 @@ public class Mixer {
 	public final static float OCEAN_VOLUME              = MAX_VOLUME;
 
 	// Pick up weapons.
-	public final static float PICK_UP_SWORD_VOLUME  = TWELVETH_VOLUME;
+	public final static float PICK_UP_SWORD_VOLUME  = EIGHTH_VOLUME;
 	public final static float PICK_UP_GUN_VOLUME    = MAX_VOLUME;
 	public static final float PICK_UP_BIRD_VOLUME   = QUARTER_VOLUME;
 	public static final float PICK_UP_MONKEY_VOLUME = MEDIAN_VOLUME;
@@ -67,7 +68,7 @@ public class Mixer {
 	public static final float DEATH_VOLUME       = THREE_QUARTERS_VOLUME;
 
 	// Player attacks.
-	public final static float SWORD_ATTACK_VOLUME  = QUARTER_VOLUME;
+	public final static float SWORD_ATTACK_VOLUME  = SIXTEENTH_VOLUME;
 	public final static float GUN_ATTACK_VOLUME    = SIXTEENTH_VOLUME;
 	public final static float BUBBLE_ATTACK_VOLUME = SIXTEENTH_VOLUME;
 	public static final float BIRD_ATTACK_VOLUME   = SIXTEENTH_VOLUME;
@@ -75,10 +76,10 @@ public class Mixer {
 	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
 
 	// Enemy attacks.
-	public final static float CANNON_FIRE_VOLUME      = EIGHTH_VOLUME;
-	public final static float BOMB_VOLUME             = SIXTEENTH_VOLUME;
+	public final static float CANNON_FIRE_VOLUME      = QUARTER_VOLUME;
+	public final static float BOMB_VOLUME             = THIRTY_SECOND_VOLUME;
 	public final static float ARROW_VOLUME            = MEDIAN_VOLUME;
-	public static final float SPARK_VOLUME            = SIXTEENTH_VOLUME;
+	public static final float SPARK_VOLUME            = EIGHTH_VOLUME;
 	public static final float POISON_VOLUME           = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_SPIN_VOLUME = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_BASH_VOLUME = SIXTEENTH_VOLUME;
