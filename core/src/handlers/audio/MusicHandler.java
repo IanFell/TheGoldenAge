@@ -10,6 +10,7 @@ import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.Paw;
 import handlers.enemies.BossHandler;
 import helpers.GameAttributeHelper;
+import inventory.Inventory;
 import loaders.audio.MusicLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionRawBar;
@@ -19,6 +20,7 @@ import physics.Lighting.Fire;
 import physics.Weather.NightAndDayCycle;
 import physics.Weather.WeatherHandler;
 import screens.Screens;
+import store.Store;
 
 /**
  * Handles game music.
@@ -457,7 +459,10 @@ public class MusicHandler {
 				Player.playerIsMoving && 
 				Player.jumpingAction == Player.ON_GROUND && 
 				!Player.isInWater && 
-				!MissionRawBar.phasesAreInProgress
+				!MissionRawBar.phasesAreInProgress &&
+				!Inventory.allInventoryShouldBeRendered &&
+				!Store.playerWantsToEnterStore &&
+				!Store.shouldDisplayEnterStoreMessage
 				) {
 			startFootstepsAudio = true;
 		} else {
