@@ -3,6 +3,7 @@ package gameobjects.weapons;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import gameobjects.collectibles.GameObjectCollectible;
 import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
@@ -33,6 +34,10 @@ public class Paw extends GameObjectCollectible {
 	private boolean screenShouldShake   = true;
 	private int shakeTimer              = 0;
 	private final int SCREEN_SHAKE_TIME = 100;
+
+	private boolean displayPawOnScreen      = false;
+	private int displayPawOnScreenTimer     = 0;
+	private final int REEMERGE_DISPLAY_TIME = 100;
 
 	/**
 	 * Constructor.
@@ -93,6 +98,18 @@ public class Paw extends GameObjectCollectible {
 			if (screenShouldShake) {
 				GameScreen.screenShake.shake(0.3f, 3);
 			} 
+
+			handleReEmergeDisplayTimer();
+		}
+	}
+
+	private void handleReEmergeDisplayTimer() {
+		if (displayPawOnScreen) {
+			displayPawOnScreenTimer++;
+			if (displayPawOnScreenTimer > REEMERGE_DISPLAY_TIME) {
+				displayPawOnScreenTimer = 0;
+				displayPawOnScreen = false;
+			}
 		}
 	}
 
@@ -113,7 +130,8 @@ public class Paw extends GameObjectCollectible {
 			haveKilledEnemies   = false;
 			deadTimer           = 0;
 			playCollectionSound = true;
-
+			displayPawOnScreen      = true;
+			displayPawOnScreenTimer = 0;
 		}
 	}
 
@@ -151,6 +169,33 @@ public class Paw extends GameObjectCollectible {
 						-height
 						);
 			}
+		}
+
+		// Display the paw on screen when it comes back.
+		if (displayPawOnScreen) {
+			GameObject player     = myGame.getGameObject(Player.PLAYER_ONE);
+			int weaponNameUiWidth = 10;
+			batch.draw(
+					imageLoader.paw, 
+					player.getX(), 
+					player.getY() - 3, 
+					width, 
+					-height
+					);
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.pawUi, 
+					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 6, 
+					weaponNameUiWidth, 
+					-height
+					);
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.addedToInventory, 
+					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 4, 
+					weaponNameUiWidth, 
+					-height
+					);
 		}
 	}
 }
