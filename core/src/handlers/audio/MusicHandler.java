@@ -22,6 +22,8 @@ import physics.Weather.NightAndDayCycle;
 import physics.Weather.WeatherHandler;
 import screens.Screens;
 import store.Store;
+import ui.GameOver;
+import ui.Win;
 
 /**
  * Handles game music.
@@ -103,10 +105,33 @@ public class MusicHandler {
 			handleCutsceneMusic(musicLoader);
 			handlePoisonAudio(musicLoader);
 
-			if (musicLoader.theme.isPlaying()) {
+			if (musicLoader.theme.isPlaying() && !GameOver.triggerGameOver) {
 				musicLoader.theme.stop();
 			}
+
+			if (GameOver.triggerGameOver) {
+				handleEndOfGame(musicLoader);
+			}
 		} else if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+			musicLoader.theme.setVolume(Mixer.TITLE_SCREEN_VOLUME);
+			musicLoader.theme.setLooping(true);
+			musicLoader.theme.play();
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleEndOfGame(MusicLoader musicLoader) {
+		// Game over screen should only be playing the ocean and day/night/storm SFX.
+		musicLoader.footsteps.stop();
+		musicLoader.ambientMusic.stop();
+		musicLoader.poison.stop();
+		musicLoader.buff.stop();
+		musicLoader.missionLoop.stop();
+		if (Win.triggerWin) {
+			// Winning screen plays the theme.
 			musicLoader.theme.setVolume(Mixer.TITLE_SCREEN_VOLUME);
 			musicLoader.theme.setLooping(true);
 			musicLoader.theme.play();
@@ -345,7 +370,7 @@ public class MusicHandler {
 				musicLoader.bossDeafeatedMusic.stop();
 			}
 		} 
-		
+
 		if (CutScene.gameShouldPause || CutSceneBird.anyCutSceneIsInProgress) {
 			musicLoader.bossDeafeatedMusic.stop();
 		}
