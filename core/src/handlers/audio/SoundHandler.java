@@ -158,6 +158,8 @@ public class SoundHandler {
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun) {
 						if (AmmoHandler.ammoCount > 0) {
 							soundLoader.pistolSound.play(Mixer.GUN_ATTACK_VOLUME);
+						} else {
+							soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
 						}
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
 						if (Paw.playAttackSound) {
@@ -263,16 +265,18 @@ public class SoundHandler {
 				soundLoader.register.play(Mixer.REGISTER_VOLUME);
 				Store.playSound = false;
 			}
-			
+
 			if (Store.playBuzzerAudio) {
 				soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
 				Store.playBuzzerAudio = false;
 			}
-			
+
+			/*
+			 * This is now handled by shooting the gun, not here.
 			if (OutOfAmmo.playBuzzerAudio) {
 				soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
 				OutOfAmmo.playBuzzerAudio = false;
-			}
+			} */
 
 			if (HoleHandler.playerIsInHole) {
 				if (HoleHandler.playSound) {
@@ -461,7 +465,7 @@ public class SoundHandler {
 				}
 			}
 		}
-		
+
 		/*
 		if (Giant.playGiantDeathSound) {
 			soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
