@@ -161,7 +161,7 @@ public class SoundHandler {
 						}
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
 						if (Paw.playAttackSound) {
-							soundLoader.bombSound.play(Mixer.BOMB_VOLUME);
+							soundLoader.bombSound.play(Mixer.PAW_BOMB_VOLUME);
 						}
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
 						soundLoader.dagger.play(Mixer.DAGGER_ATTACK_VOLUME);
@@ -184,7 +184,7 @@ public class SoundHandler {
 				Heart.playSound = false;
 			}
 			if (TenHearts.playSound) {
-				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);
+				soundLoader.trumpet.play(Mixer.TEN_HEARTS_COLLECT_VOLUME);
 				TenHearts.playSound = false;
 			}
 			if (Ammo.playSound) {

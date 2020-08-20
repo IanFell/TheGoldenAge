@@ -76,6 +76,7 @@ public class Mixer {
 	public static final float BIRD_ATTACK_VOLUME   = SIXTEENTH_VOLUME;
 	public static final float PAW_ATTACK_VOLUME    = MEDIAN_VOLUME;
 	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
+	public static final float PAW_BOMB_VOLUME      = MEDIAN_VOLUME;
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME      = QUARTER_VOLUME;
