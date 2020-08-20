@@ -159,14 +159,14 @@ public class ObjectiveUi {
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width - 4;
+				backgroundWidth = width - 3;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveStumpHole)) {
 				xPos            = xPos - 2;
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width + 1;
+				backgroundWidth = width + 0.8f;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectTheBird)) {
 				xPos            = xPos - 2;

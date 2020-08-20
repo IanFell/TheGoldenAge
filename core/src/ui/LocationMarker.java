@@ -137,7 +137,8 @@ public class LocationMarker {
 	}
 
 	public static void resetGame() {
-		playSound     = false;
-		playBeepSound = false;
+		playSound                 = false;
+		playBeepSound             = false;
+		playerIsWithinSoundBounds = false;
 	}
 }
