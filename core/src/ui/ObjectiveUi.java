@@ -152,14 +152,14 @@ public class ObjectiveUi {
 				yPos            = yPos + 1;
 				width           = width + 2;
 				height          = height + 2;
-				backgroundWidth = width;
+				backgroundWidth = width + 0.5f;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveGoToWewa)) {
 				xPos            = player.getX() + 3;
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width;
+				backgroundWidth = width - 4;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveStumpHole)) {
 				xPos            = xPos - 2;
@@ -187,14 +187,14 @@ public class ObjectiveUi {
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width;
+				backgroundWidth = width - 0.5f;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveFindTheTreasureAtBlacksIsland)) {
 				xPos            = xPos - 3;
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width;
+				backgroundWidth = width + 1;
 			}
 		}
 		if (flashTimer > VALUE_TO_FLASH) {

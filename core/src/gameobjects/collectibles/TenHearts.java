@@ -32,7 +32,7 @@ public class TenHearts extends GameObjectCollectible {
 		this.width       = size;
 		this.height      = size;
 		rectangle.x      = x;
-		rectangle.y      = y;
+		rectangle.y      = y - 1;
 		rectangle.width  = size;
 		rectangle.height = size;
 		hasBeenCollected = false;

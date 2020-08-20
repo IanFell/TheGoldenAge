@@ -26,6 +26,7 @@ import screens.TitleScreen;
 import store.Store;
 import ui.BossHealthUi;
 import ui.GameOver;
+import ui.LocationMarker;
 import ui.ObjectiveUi;
 import ui.Win;
 
@@ -172,6 +173,8 @@ public class MyGame extends Game {
 
 		AmmoHandler.ammoCount = 0;
 		RumHandler.rumCount   = 0;
+
+		LocationMarker.resetGame();
 
 		this.create();
 	}

@@ -3,6 +3,7 @@ package handlers.audio;
 import com.badlogic.gdx.audio.Music;
 
 import cutscenes.CutScene;
+import cutscenes.CutSceneBird;
 import gameobjects.PoisonPlant;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
@@ -345,7 +346,7 @@ public class MusicHandler {
 			}
 		} 
 		
-		if (CutScene.gameShouldPause) {
+		if (CutScene.gameShouldPause || CutSceneBird.anyCutSceneIsInProgress) {
 			musicLoader.bossDeafeatedMusic.stop();
 		}
 	}

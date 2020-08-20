@@ -36,7 +36,7 @@ public class FlyingBird extends GameCharacter {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		batch.draw(imageLoader.attackBird, x, y, width, -height);
-		batch.draw(imageLoader.shadow, x + 3, y + 4, width, -height);
+		batch.draw(imageLoader.shadow, x + 2, y + 4, width, -height);
 	}
 
 	public void updateBird() {

@@ -135,4 +135,9 @@ public class LocationMarker {
 				-locator.height
 				);
 	}
+
+	public static void resetGame() {
+		playSound     = false;
+		playBeepSound = false;
+	}
 }
