@@ -20,6 +20,9 @@ public class OutOfAmmo extends GameObject {
 
 	private final int DISPLAY_VALUE = 50;
 
+	public static boolean playBuzzerAudio = false;
+
+
 	/**
 	 * Constructor.
 	 */
@@ -36,13 +39,13 @@ public class OutOfAmmo extends GameObject {
 		if (shouldRender ) {
 			GameObject player = myGame.getGameObject(Player.PLAYER_ONE); 
 			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Gun)
-			myGame.renderer.batch.draw(
-					myGame.imageLoader.outOfAmmo, 
-					player.getX() , 
-					player.getY() , 
-					width, 
-					-height
-					);
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.outOfAmmo, 
+						player.getX() , 
+						player.getY() , 
+						width, 
+						-height
+						);
 		}
 	}
 

@@ -39,6 +39,10 @@ public class Giant extends Enemy {
 	private final int GIANT_EXPLOSION_SIZE = 5;
 
 	public static boolean playLandingSound = false;
+	
+	public static boolean playGiantDeathSound = false;
+	
+	private boolean deathSoundHasPlayed = false;
 
 	private Rectangle landingSoundBoundary;
 
@@ -161,6 +165,7 @@ public class Giant extends Enemy {
 			}
 
 			if (!dead) {
+				deathSoundHasPlayed = false;
 				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
 			}
 
@@ -173,6 +178,11 @@ public class Giant extends Enemy {
 		
 		if (dead) {
 			handleDeathExplosion(GIANT_EXPLOSION_SIZE);
+			/*
+			if (!deathSoundHasPlayed && !playGiantDeathSound) {
+				playGiantDeathSound = true;
+				deathSoundHasPlayed = true;
+			} */
 		}
 	}
 	

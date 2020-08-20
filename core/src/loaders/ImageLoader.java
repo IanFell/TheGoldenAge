@@ -20,6 +20,7 @@ public class ImageLoader {
 	public Texture titleScreen;
 
 	// Collectibles.
+	public Texture tenHearts;
 	public Texture chestClosed;
 	public Texture chestOpen;
 	public Texture heart;
@@ -198,6 +199,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture objectiveBackground;
 	public Texture arcadeMap;
 	public Texture arcadeInventory;
 	public Texture oysterMeterUi;
@@ -314,6 +316,7 @@ public class ImageLoader {
 		titleScreen = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
 
 		// Collectibles.
+		tenHearts         = new Texture(Gdx.files.internal("artwork/collectibles/TenHearts.png"));
 		treasureMapShadow = new Texture(Gdx.files.internal("artwork/collectibles/MapShadow.png"));
 		treasureMapRight  = new Texture(Gdx.files.internal("artwork/collectibles/TreasureMapTextWhole.png"));
 		chestClosed       = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
@@ -506,6 +509,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		objectiveBackground          = new Texture(Gdx.files.internal("artwork/ui/ControlPanelBase.png"));
 		arcadeMap                    = new Texture(Gdx.files.internal("artwork/ui/Map.png"));
 		arcadeInventory              = new Texture(Gdx.files.internal("artwork/ui/Inventory.png"));
 		featherMeterUi               = new Texture(Gdx.files.internal("artwork/ui/FeathersMeterUi.png"));
@@ -646,6 +650,7 @@ public class ImageLoader {
 		titleScreen.dispose();
 
 		// Collectibles.
+		tenHearts.dispose();
 		treasureMapShadow.dispose();
 		treasureMapRight.dispose();
 		chestClosed.dispose();
@@ -831,6 +836,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		objectiveBackground.dispose();
 		arcadeMap.dispose();
 		arcadeInventory.dispose();
 		featherMeterUi.dispose();

@@ -62,10 +62,15 @@ public class WeaponShadowHandler {
 		// Draw shadow under stationary bird before player has collected it.
 		if (!birdWeapon.hasBeenCollected && MissionStumpHole.stumpHoleMissionComplete) {
 			// Only render shadow if boss is dead.
+			int direction = myGame.getGameObject(Player.PLAYER_ONE).direction;
+			float shadowX = birdWeapon.getX() + 1;
+			if (direction == GameObject.DIRECTION_LEFT) {
+				shadowX = birdWeapon.getX() - 1;
+			}
 			if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
 				batch.draw(
 						imageLoader.oysterShadow, 
-						birdWeapon.getX(), 
+						shadowX, 
 						birdWeapon.getY() + 1.0f, 
 						birdWeapon.getWidth(), 
 						birdWeapon.getHeight()

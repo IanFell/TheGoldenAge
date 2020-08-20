@@ -78,6 +78,7 @@ public class Arcade extends ControllerInput {
 				!Inventory.allInventoryShouldBeRendered && 
 				!MapUi.mapShouldBeRendered && 
 				!CutScene.gameShouldPause && 
+				!CutScene.anyCutSceneIsInProgress &&
 				!Store.playerWantsToEnterStore
 				) {
 			pollSticks(player);

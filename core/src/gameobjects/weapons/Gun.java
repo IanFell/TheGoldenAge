@@ -92,7 +92,10 @@ public class Gun extends Weapon {
 				if (AmmoHandler.ammoCount > 0) {
 					BulletLoader.createBullet(myGame);
 					Player.playerIsPerformingAttack = false;
-				} 
+				} else {
+					// Make buzzer sound.
+					OutOfAmmo.playBuzzerAudio = true;
+				}
 			} else if (Player.playerIsPerformingAttack && AmmoHandler.ammoCount <= 0) {
 				OutOfAmmo.shouldRender = true;
 			}

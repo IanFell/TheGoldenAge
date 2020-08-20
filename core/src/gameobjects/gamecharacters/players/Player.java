@@ -69,7 +69,7 @@ public class Player extends GameCharacter {
 	public static final int LIFE_STATE_TWO   = 2;
 	public static final int LIFE_STATE_THREE = 3;
 	
-	public static final int MAX_AMOUNT_LOOT_PLAYER_CAN_CARRY = 99;
+	public static final int MAX_AMOUNT_LOOT_PLAYER_CAN_CARRY = 97;
 
 	public static int lifeState;
 

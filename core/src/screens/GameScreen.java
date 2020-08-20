@@ -21,6 +21,7 @@ import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.HeartHandler;
 import handlers.collectibles.RumHandler;
+import handlers.collectibles.TenHeartsHandler;
 import handlers.enemies.BossHandler;
 import handlers.enemies.EnemyHandler;
 import handlers.enemies.GiantHandler;
@@ -63,12 +64,14 @@ public class GameScreen extends Screens {
 
 	/**
 	 * Use this to NOT draw anything but the intro cutscene for the first frame.
-	 * This is so there's not a flash of the game world before the intro cutscene renders.
+	 * This is so there's not a flash of the game world before the intro cutscene
+	 * renders.
 	 */
 	private boolean shouldRender = false;
-	// Don't render the first frame when game loads.  Give it some time to load up and look nice.
-	private final int ONE_FRAME  = 1;
-	private int renderTimer      = 0;
+	// Don't render the first frame when game loads. Give it some time to load up
+	// and look nice.
+	private final int ONE_FRAME = 1;
+	private int renderTimer = 0;
 
 	private Pause pause = new Pause(0, 0);
 
@@ -79,11 +82,10 @@ public class GameScreen extends Screens {
 	private ControlsUi controlsUi;
 
 	/**
-	 * User interface that is always on screen.
-	 * This includes, hearts, loot, etc.
+	 * User interface that is always on screen. This includes, hearts, loot, etc.
 	 */
 	private UserInterface userInterface;
-	//private GuiScreen guiScreen = new GuiScreen(myGame);
+	// private GuiScreen guiScreen = new GuiScreen(myGame);
 
 	public static int cameraWidth = 10;
 
@@ -114,17 +116,17 @@ public class GameScreen extends Screens {
 	/**
 	 * Used for transparancy to render clouds.
 	 */
-	//private ScreenShader screenShader = new ScreenShader(myGame);
+	// private ScreenShader screenShader = new ScreenShader(myGame);
 
 	/**
 	 * When this screen fades, gameplay starts.
 	 */
-	//private ScreenShader screenShaderPostIntro = new ScreenShader(myGame);
+	// private ScreenShader screenShaderPostIntro = new ScreenShader(myGame);
 
 	/**
-	 *  Screen fades in during transitions.
+	 * Screen fades in during transitions.
 	 */
-	//private TransitionScreen transitionScreen = new TransitionScreen(myGame);
+	// private TransitionScreen transitionScreen = new TransitionScreen(myGame);
 
 	/**
 	 * Handles all game missions.
@@ -132,8 +134,8 @@ public class GameScreen extends Screens {
 	private MissionHandler missionHandler;
 
 	/**
-	 * We need this to instantiate weapons, however all other 
-	 * calls to the weapon handler will deal with static variables.
+	 * We need this to instantiate weapons, however all other calls to the weapon
+	 * handler will deal with static variables.
 	 */
 	private WeaponHandler weaponHandler = new WeaponHandler();
 
@@ -151,9 +153,10 @@ public class GameScreen extends Screens {
 
 	public TownHandler townHandler = new TownHandler();
 
-	private HeartHandler heartHandler = new HeartHandler();
-	private RumHandler rumHandler     = new RumHandler();
-	private AmmoHandler ammoHandler   = new AmmoHandler();
+	private HeartHandler heartHandler         = new HeartHandler();
+	private TenHeartsHandler tenHeartsHandler = new TenHeartsHandler();
+	private RumHandler rumHandler             = new RumHandler();
+	private AmmoHandler ammoHandler           = new AmmoHandler();
 
 	private StructureShadowHandler structureShadowHandler;
 	private CollectibleShadowHandler collectibleShadowHandler;
@@ -171,8 +174,8 @@ public class GameScreen extends Screens {
 	 */
 	public GameScreen(final MyGame myGame) {
 		super(myGame);
-		GameAttributeHelper.gameState = Screens.GAME_SCREEN; 
-		gameScreenHasBeenInitialized  = false;
+		GameAttributeHelper.gameState = Screens.GAME_SCREEN;
+		gameScreenHasBeenInitialized = false;
 		cutSceneHandler.initializeCutScenes();
 	}
 
@@ -193,7 +196,8 @@ public class GameScreen extends Screens {
 			clearScreenAndSetScreenColor(GameAttributeHelper.gameState, weatherHandler);
 		}
 
-		// Screen only shakes when needed, but we must update it at all times just in case it needs to shake.
+		// Screen only shakes when needed, but we must update it at all times just in
+		// case it needs to shake.
 		screenShake.update(delta, camera, myGame.getGameObject(Player.PLAYER_ONE));
 		updateCamera();
 
@@ -207,18 +211,19 @@ public class GameScreen extends Screens {
 		}
 		myGame.renderer.batch.end();
 
-		// Comment this out for now.  Lets see if the game runs faster.
+		// Comment this out for now. Lets see if the game runs faster.
 		// Draw ShapeRenderer.
 		/*
-		if (!TransitionScreen.isTransitionScreenIsComplete()) {
-			Gdx.gl.glEnable(GL20.GL_BLEND);
-			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		} 
-		myGame.renderer.shapeRenderer.begin(ShapeType.Filled);
-		renderObjectsOnGameScreenThatUseShapeRenderer();
-		myGame.renderer.shapeRenderer.end(); */
+		 * if (!TransitionScreen.isTransitionScreenIsComplete()) {
+		 * Gdx.gl.glEnable(GL20.GL_BLEND); Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA,
+		 * GL20.GL_ONE_MINUS_SRC_ALPHA); }
+		 * myGame.renderer.shapeRenderer.begin(ShapeType.Filled);
+		 * renderObjectsOnGameScreenThatUseShapeRenderer();
+		 * myGame.renderer.shapeRenderer.end();
+		 */
 
-		// If a screenshake happened, reset camera to it's original position before shake.
+		// If a screenshake happened, reset camera to it's original position before
+		// shake.
 		if (!weatherHandler.lightningHandler.isLightningShouldBeRendered()) {
 			resetCameraAfterScreenShake();
 		}
@@ -226,15 +231,15 @@ public class GameScreen extends Screens {
 		// Update objects associated with GameScreen.
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
 			updateGameScreen();
-		} 
+		}
 	}
 
 	/**
 	 * Resets camera to it's original position before screenshake.
 	 */
 	public static void resetCameraAfterScreenShake() {
-		camera.position.x           = cameraX;
-		camera.position.y           = cameraY;
+		camera.position.x = cameraX;
+		camera.position.y = cameraY;
 		ScreenShake.screenIsShaking = false;
 	}
 
@@ -250,39 +255,33 @@ public class GameScreen extends Screens {
 		weatherHandler.init(myGame, this);
 		LightningBoltHandler.init();
 		missionHandler = new MissionHandler(myGame);
-		mapUi          = new MapUi(myGame);
-		controlsUi     = new ControlsUi(myGame);
-		userInterface  = new UserInterface(myGame);
-		gun            = new Gun(
-				GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 63, 
-				myGame.imageLoader
-				);
-		magicPearl     = new MagicPearl(
-				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 35, 
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 45
-				);
-		birdWeapon     = new BirdWeapon(
-				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12, 
-				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 46
-				);
-		paw            = new Paw();
-		dagger         = new Dagger();
+		mapUi = new MapUi(myGame);
+		controlsUi = new ControlsUi(myGame);
+		userInterface = new UserInterface(myGame);
+		gun = new Gun(GameAttributeHelper.CHUNK_THREE_X_POSITION_START - 48,
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START - 63, myGame.imageLoader);
+		magicPearl = new MagicPearl(GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 35,
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 45);
+		birdWeapon = new BirdWeapon(GameAttributeHelper.CHUNK_FOUR_X_POSITION_START - 12,
+				GameAttributeHelper.CHUNK_SEVEN_Y_POSITION_START + 46);
+		paw = new Paw();
+		dagger = new Dagger();
 		heartHandler.init();
+		tenHeartsHandler.init();
 		rumHandler.init();
 		ammoHandler.init();
 
-		structureShadowHandler   = new StructureShadowHandler(myGame.imageLoader);
+		structureShadowHandler = new StructureShadowHandler(myGame.imageLoader);
 		collectibleShadowHandler = new CollectibleShadowHandler(myGame.imageLoader);
-		weaponShadowHandler      = new WeaponShadowHandler();
+		weaponShadowHandler = new WeaponShadowHandler();
 
 		holeHandler.init(myGame);
 
 		Input.initializeInventoryAndPurchasingUiForInput();
 
 		/**
-		 * This overlays the game screen and fades out from black.
-		 * This makes the transition between screens much smoother.
+		 * This overlays the game screen and fades out from black. This makes the
+		 * transition between screens much smoother.
 		 */
 		new TransitionScreen(myGame);
 		initializeCamera();
@@ -294,22 +293,21 @@ public class GameScreen extends Screens {
 	@Override
 	protected void updateCamera() {
 		myGame.renderer.batch.setProjectionMatrix(camera.combined);
-		//myGame.renderer.shapeRenderer.setProjectionMatrix(camera.combined);
+		// myGame.renderer.shapeRenderer.setProjectionMatrix(camera.combined);
 		if (!ScreenShake.screenIsShaking) {
 			/*
-			if (cutSceneIntro.isSelectedCutSceneInProgress()) {
-				camera.position.x = cutSceneIntro.getStartXPosition() + 5;
-				camera.position.y = cutSceneIntro.getStartYPosition() + 1;
-			} else {
-				cameraFollowCurrentPlayer();
-			} */
+			 * if (cutSceneIntro.isSelectedCutSceneInProgress()) { camera.position.x =
+			 * cutSceneIntro.getStartXPosition() + 5; camera.position.y =
+			 * cutSceneIntro.getStartYPosition() + 1; } else { cameraFollowCurrentPlayer();
+			 * }
+			 */
 			if (cutSceneHandler.getCutSceneJollyRoger().isSelectedCutSceneInProgress()) {
 				camera.position.x = cutSceneHandler.getCutSceneJollyRoger().getStartXPosition() + 5;
 				camera.position.y = cutSceneHandler.getCutSceneJollyRoger().getStartYPosition() + 1;
 			} else {
 				cameraFollowCurrentPlayer();
 			}
-		} 
+		}
 		camera.update();
 	}
 
@@ -323,7 +321,7 @@ public class GameScreen extends Screens {
 		camera = new OrthographicCamera(viewportWidth, verticalHeight);
 		camera.setToOrtho(true, viewportWidth, verticalHeight);
 		camera.position.x = myGame.getGameObject(GameObject.PLAYER_ONE).getX();
-		camera.position.y = myGame.getGameObject(GameObject.PLAYER_ONE).getY();  
+		camera.position.y = myGame.getGameObject(GameObject.PLAYER_ONE).getY();
 		camera.update();
 	}
 
@@ -345,19 +343,19 @@ public class GameScreen extends Screens {
 			GameWorld.updateGameWorld(myGame, mapHandler);
 			mapUi.updateWorldMapUi();
 			townHandler.updateTowns(myGame);
-			//screenShader.updateObject();
+			// screenShader.updateObject();
 
 			// Fade into gameplay after intro cutscene.
 			/*
-		if (cutSceneIntro.isCutSceneConcluded()) {
-			screenShaderPostIntro.updateObject();
-		} */
+			 * if (cutSceneIntro.isCutSceneConcluded()) {
+			 * screenShaderPostIntro.updateObject(); }
+			 */
 
 			// Start missions after intro cutscene.
 			/*
-		if (cutSceneIntro.isCutSceneConcluded()) {
-			missionHandler.handleMissions(myGame, mapHandler);
-		} */
+			 * if (cutSceneIntro.isCutSceneConcluded()) {
+			 * missionHandler.handleMissions(myGame, mapHandler); }
+			 */
 			if (cutSceneHandler.getCutSceneJollyRoger().isCutSceneConcluded()) {
 				missionHandler.handleMissions(myGame, mapHandler);
 			}
@@ -367,6 +365,7 @@ public class GameScreen extends Screens {
 		cutSceneHandler.updateCutScenes(myGame);
 
 		heartHandler.updateHearts(myGame, mapHandler);
+		tenHeartsHandler.updateTenHearts(myGame, mapHandler);
 		rumHandler.updateRum(myGame, mapHandler);
 		ammoHandler.updateAmmo(myGame, mapHandler);
 
@@ -406,64 +405,40 @@ public class GameScreen extends Screens {
 		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 		if (shouldRender) {
 			mapRenderer.renderMapOfChunks(myGame, mapHandler);
-			lightingHandler.lightHandler.renderLighting(
-					myGame.renderer.batch, 
-					myGame.imageLoader, 
-					player
-					);
+			lightingHandler.lightHandler.renderLighting(myGame.renderer.batch, myGame.imageLoader, player);
 			lightingHandler.renderShadows(myGame);
 
 			/**
-			 * We are not displaying the "inventory screen" here.
-			 * This renderes weapons as player has them.
+			 * We are not displaying the "inventory screen" here. This renderes weapons as
+			 * player has them.
 			 */
-			player.inventory.renderInventory(
-					myGame.renderer.batch, 
-					myGame.imageLoader
-					);
+			player.inventory.renderInventory(myGame.renderer.batch, myGame.imageLoader);
 
 			structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
 			collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
 			weaponShadowHandler.renderWeaponShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
 
-			GamePlayHelper.sortAndRenderObjectsInYPositionOrder(
-					GameObjectLoader.gameObjectList, 
-					myGame.renderer.batch, 
-					myGame.imageLoader
-					);
+			GamePlayHelper.sortAndRenderObjectsInYPositionOrder(GameObjectLoader.gameObjectList, myGame.renderer.batch,
+					myGame.imageLoader);
 
-			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-			heartHandler.renderHearts(
-					myGame.renderer.batch, 
-					myGame.imageLoader
-					);
+			// These are not rendered in the game object list so they're not accidently
+			// rendered behind other objects.
+			heartHandler.renderHearts(myGame.renderer.batch, myGame.imageLoader);
 
-			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-			rumHandler.renderRum(
-					myGame.renderer.batch, 
-					myGame.imageLoader
-					);
+			// These are not rendered in the game object list so they're not accidently
+			// rendered behind other objects.
+			rumHandler.renderRum(myGame.renderer.batch, myGame.imageLoader);
 
-			// These are not rendered in the game object list so they're not accidently rendered behind other objects.
-			ammoHandler.renderAmmo(
-					myGame.renderer.batch, 
-					myGame.imageLoader
-					);
+			// These are not rendered in the game object list so they're not accidently
+			// rendered behind other objects.
+			ammoHandler.renderAmmo(myGame.renderer.batch, myGame.imageLoader);
 
 			// This shows the border of the towns strictly for debugging.
-			//townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
+			// townHandler.renderTownBorders(myGame.renderer.batch, myGame.imageLoader);
 
-			missionHandler.renderMissions(
-					myGame.renderer.batch, 
-					myGame.imageLoader,
-					myGame
-					);
+			missionHandler.renderMissions(myGame.renderer.batch, myGame.imageLoader, myGame);
 
-			WeaponHandler.renderWeapons(
-					myGame.renderer.batch, 
-					myGame.imageLoader, 
-					myGame
-					);
+			WeaponHandler.renderWeapons(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 			arrowHandler.renderArrows(myGame.renderer.batch, myGame.imageLoader);
 
@@ -471,25 +446,18 @@ public class GameScreen extends Screens {
 
 			holeHandler.renderTunnel(myGame.renderer.batch, myGame.imageLoader, myGame);
 
-			userInterface.renderUserInterface(
-					myGame.renderer.batch,  
-					myGame.imageLoader,
-					myGame
-					);
-			
+			userInterface.renderUserInterface(myGame.renderer.batch, myGame.imageLoader, myGame);
+
 			FlyingBirdLoader.renderFlyingBirds(myGame.renderer.batch, myGame.imageLoader);
 
 			/**
-			 * The boss' health UI is attached to the boss object.
-			 * So, render this here so the health UI isn't rendered behind other game objects
-			 * so player can see it at all times.
+			 * The boss' health UI is attached to the boss object. So, render this here so
+			 * the health UI isn't rendered behind other game objects so player can see it
+			 * at all times.
 			 */
 			for (int i = 0; i < BossLoader.boss.length; i++) {
 				if (!BossLoader.boss[i].isDead()) {
-					BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(
-							myGame, 
-							BossLoader.boss[i]
-							);
+					BossLoader.boss[i].getBossHealthUi().renderBossHealthUi(myGame, BossLoader.boss[i]);
 				} else {
 					BossLoader.boss[i].renderObject(myGame.renderer.batch, myGame.imageLoader);
 				}
@@ -497,47 +465,36 @@ public class GameScreen extends Screens {
 
 			// Here we render the inventory screen if needed.
 			if (Inventory.allInventoryShouldBeRendered) {
-				player.inventory.renderInventory(
-						myGame.renderer.batch, 
-						myGame.imageLoader
-						);
-				mapUi.renderWorldMapUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
-				controlsUi.renderControlsUi(myGame.renderer.batch,  myGame.imageLoader, myGame);
+				player.inventory.renderInventory(myGame.renderer.batch, myGame.imageLoader);
+				mapUi.renderWorldMapUi(myGame.renderer.batch, myGame.imageLoader, myGame);
+				controlsUi.renderControlsUi(myGame.renderer.batch, myGame.imageLoader, myGame);
 			}
 
-			if (!MissionRawBar.phasesAreInProgress && 
-					!MissionStumpHole.missionIsActive && 
-					!MapUi.mapShouldBeRendered && 
-					!ControlsUi.controlsShouldBeRendered &&
-					!Store.playerWantsToEnterStore
-					) {
+			if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered
+					&& !ControlsUi.controlsShouldBeRendered && !Store.playerWantsToEnterStore) {
 				gun.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 				magicPearl.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 
 				/**
-				 * Only render bird weapon if Stump Hole boss is defeated.
-				 * We will keep rendering the shadow as a hint to the player that something will be there.
+				 * Only render bird weapon if Stump Hole boss is defeated. We will keep
+				 * rendering the shadow as a hint to the player that something will be there.
 				 */
 				if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead()) {
 					birdWeapon.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 				}
-				
+
 				paw.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 				dagger.renderObject(myGame.renderer.batch, myGame.imageLoader, myGame);
 			}
 		}
 
 		if (player.getInventory().inventory.size() > 0 && !Win.triggerWin) {
-			if (
-					player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword && 
-					Inventory.inventoryIsEquipped &&
-					!Store.playerWantsToEnterStore &&
-					!Inventory.allInventoryShouldBeRendered &&
-					!MapUi.mapShouldBeRendered &&
-					!ControlsUi.controlsShouldBeRendered &&
-					!Player.isInWater
-					) {
-				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject].renderObject(myGame.renderer.batch, myGame.imageLoader);
+			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword
+					&& Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore
+					&& !Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered
+					&& !ControlsUi.controlsShouldBeRendered && !Player.isInWater) {
+				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject]
+						.renderObject(myGame.renderer.batch, myGame.imageLoader);
 			}
 		}
 
@@ -547,29 +504,24 @@ public class GameScreen extends Screens {
 			pause.renderObject(myGame.renderer.batch, myGame.imageLoader);
 		}
 
-		// Rain should be in front of all objects. 
+		// Rain should be in front of all objects.
 		for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
-			weatherHandler.rainHandler[i].renderObject(
-					myGame.renderer.batch, 
-					myGame.imageLoader,
-					this
-					);
+			weatherHandler.rainHandler[i].renderObject(myGame.renderer.batch, myGame.imageLoader, this);
 		}
 		weatherHandler.renderStormCycle(myGame, this);
 		weatherHandler.renderClouds(myGame);
 	}
 
 	/*
-	private void renderObjectsOnGameScreenThatUseShapeRenderer() {
-		screenShader.renderObject(myGame.renderer.shapeRenderer);
-
-		// Fade screen in during transitions of screens.
-		if (!TransitionScreen.isTransitionScreenIsComplete()) {
-			transitionScreen.renderObject(myGame.renderer.shapeRenderer);
-		}
-
-		weatherHandler.renderClouds(myGame);
-	} */
+	 * private void renderObjectsOnGameScreenThatUseShapeRenderer() {
+	 * screenShader.renderObject(myGame.renderer.shapeRenderer);
+	 * 
+	 * // Fade screen in during transitions of screens. if
+	 * (!TransitionScreen.isTransitionScreenIsComplete()) {
+	 * transitionScreen.renderObject(myGame.renderer.shapeRenderer); }
+	 * 
+	 * weatherHandler.renderClouds(myGame); }
+	 */
 
 	/**
 	 * 

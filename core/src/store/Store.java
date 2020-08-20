@@ -21,6 +21,8 @@ import ui.TextBasedUiParent;
  *
  */
 public class Store extends TextBasedUiParent {
+	
+	public static boolean playBuzzerAudio = false;
 
 	private final int SALE_HEARTS = 0;
 	private final int SALE_RUM    = 1;
@@ -70,6 +72,9 @@ public class Store extends TextBasedUiParent {
 
 	public void updateStore() {
 		if (playerIsShortOnLootMessageShouldRender) {
+			if (shortOnLootTimer < 1) {
+				playBuzzerAudio = true;
+			}
 			shortOnLootTimer++;
 			if (shortOnLootTimer >= SHORT_ON_LOOT_MAX_DISPLAY_VALUE) {
 				shortOnLootTimer                       = 0;
@@ -514,7 +519,8 @@ public class Store extends TextBasedUiParent {
 	}
 
 	public static void resetStore() {
-		gunHasBeenPurchasedAtStore = false;
-		playerWantsToEnterStore    = false;
+		gunHasBeenPurchasedAtStore     = false;
+		playerWantsToEnterStore        = false;
+		shouldDisplayEnterStoreMessage = false;
 	}
 }

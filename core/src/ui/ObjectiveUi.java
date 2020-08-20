@@ -94,91 +94,118 @@ public class ObjectiveUi {
 		float yPos   = player.getY() - 4;
 		float width  = WIDTH;
 		float height = HEIGHT;
+		
+		float backgroundWidth = width;
+		float backgroundX     = xPos;
+		
 		if (objectiveTexture != null) {
 			if (objectiveTexture.equals(imageLoader.objectiveKillTheBoss)) {
-				xPos   = player.getX() + 5.5f;
-				yPos   = yPos + 1;
-				width  = width + 2;
-				height = height + 2;
+				xPos            = player.getX() + 5.5f;
+				yPos            = yPos + 1;
+				width           = width + 2;
+				height          = height + 2;
+				backgroundWidth = width - 2;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveTradinPost)) {
-				xPos   = xPos - 2.5f;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2.5f;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width + 1;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveEnterTheTradingPost)) {
-				xPos   = xPos - 2.5f;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2.5f;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width + 1;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveBuyTheGun)) {
-				xPos = player.getX() + 5;
+				xPos            = player.getX() + 5;
+				yPos            = yPos - 1;
+				backgroundX     = xPos + 2;
+				backgroundWidth = width - 4;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveRawBar)) {
-				xPos   = player.getX() + 2;
-				yPos   = yPos + 2;
-				width  = width + 2;
-				height = height + 2;
+				xPos            = player.getX() + 2;
+				yPos            = yPos + 2;
+				width           = width + 2;
+				height          = height + 2;
+				backgroundWidth = width + 1;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectLoot)) {
-				xPos   = player.getX() + 4;
-				yPos   = yPos + 1.5f;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = player.getX() + 4;
+				yPos            = yPos + 1.5f;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width - 3;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectOysters)) {
-				xPos   = player.getX() + 3;
-				yPos   = yPos + 1;
-				width  = width + 3;
-				height = height + 2;
+				xPos            = player.getX() + 3;
+				yPos            = yPos + 1;
+				width           = width + 3;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectFeathers)) {
-				xPos   = player.getX() + 3;
-				yPos   = yPos + 1;
-				width  = width + 2;
-				height = height + 2;
+				xPos            = player.getX() + 3;
+				yPos            = yPos + 1;
+				width           = width + 2;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveGoToWewa)) {
-				xPos   = player.getX() + 3;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = player.getX() + 3;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveStumpHole)) {
-				xPos = xPos - 2;
-				yPos = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width + 1;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectTheBird)) {
-				xPos   = xPos - 2;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveFindTheCauldron)) {
-				xPos   = xPos - 2;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectTheMapAtThePoint)) {
-				xPos   = xPos - 2;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 2;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveFindTheTreasureAtBlacksIsland)) {
-				xPos   = xPos - 3;
-				yPos   = yPos + 1;
-				width  = width + 4;
-				height = height + 2;
+				xPos            = xPos - 3;
+				yPos            = yPos + 1;
+				width           = width + 4;
+				height          = height + 2;
+				backgroundWidth = width;
 			}
 		}
 		if (flashTimer > VALUE_TO_FLASH) {
 			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
+			batch.draw(
+					imageLoader.objectiveBackground,
+					xPos - 1.5f, 
+					yPos - 1.8f, 
+					backgroundWidth, 
+					-height / 2
+					); 
 			batch.draw(
 					objectiveTexture,
 					xPos - 1, 

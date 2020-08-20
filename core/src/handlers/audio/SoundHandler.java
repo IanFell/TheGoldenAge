@@ -7,6 +7,7 @@ import gameobjects.GameObject;
 import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
+import gameobjects.collectibles.TenHearts;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
@@ -41,6 +42,7 @@ import screens.Screens;
 import store.Store;
 import ui.LocationMarker;
 import ui.ObjectiveUi;
+import ui.OutOfAmmo;
 
 /**
  * Handles game sounds.
@@ -139,10 +141,17 @@ public class SoundHandler {
 			}
 
 			attackTimer++;
-			if (attackTimer > 2) {
+			if (attackTimer > 5) {
 				attackTimer = GameAttributeHelper.TIMER_START_VALUE;
 			}
-			if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause) {
+			if (
+					Player.playerIsPerformingAttack && 
+					!CutScene.gameShouldPause &&
+					!Inventory.allInventoryShouldBeRendered &&
+					!Store.playerWantsToEnterStore &&
+					!Store.shouldDisplayEnterStoreMessage &&
+					attackTimer < 2
+					) {
 				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.size() > 0) {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {
 						soundLoader.swordSound.play(Mixer.SWORD_ATTACK_VOLUME);
@@ -173,6 +182,10 @@ public class SoundHandler {
 			if (Heart.playSound) {
 				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);
 				Heart.playSound = false;
+			}
+			if (TenHearts.playSound) {
+				soundLoader.heartSound.play(Mixer.HEART_COLLECT_VOLUME);
+				TenHearts.playSound = false;
 			}
 			if (Ammo.playSound) {
 				soundLoader.pickUpGunSound.play(Mixer.AMMO_COLLECT_VOLUME);
@@ -249,6 +262,16 @@ public class SoundHandler {
 			if (Store.playSound) {
 				soundLoader.register.play(Mixer.REGISTER_VOLUME);
 				Store.playSound = false;
+			}
+			
+			if (Store.playBuzzerAudio) {
+				soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
+				Store.playBuzzerAudio = false;
+			}
+			
+			if (OutOfAmmo.playBuzzerAudio) {
+				soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
+				OutOfAmmo.playBuzzerAudio = false;
 			}
 
 			if (HoleHandler.playerIsInHole) {
@@ -438,6 +461,13 @@ public class SoundHandler {
 				}
 			}
 		}
+		
+		/*
+		if (Giant.playGiantDeathSound) {
+			soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+			Giant.playDeathSound = false;
+		} */
+		/*
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			if (GiantHandler.giants[i].getPlaySound()) {
 				if (enemyDeathSoundCanPlay) {
@@ -445,7 +475,7 @@ public class SoundHandler {
 				}
 				GiantHandler.giants[i].setPlaySound(false);
 			}
-		}
+		} */
 		enemyDeathTimer++;
 		if (enemyDeathTimer > 20) {
 			enemyDeathTimer        = 0;

@@ -9,6 +9,7 @@ import gameobjects.PoisonPlant;
 import gameobjects.collectibles.Ammo;
 import gameobjects.collectibles.Heart;
 import gameobjects.collectibles.Rum;
+import gameobjects.collectibles.TenHearts;
 import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.enemies.Enemy;
 import gameobjects.gamecharacters.enemies.Giant;
@@ -22,7 +23,6 @@ import gameobjects.stationarygameobjects.Chest;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Arrow;
 import gameobjects.weapons.BirdWeapon;
-import gameobjects.weapons.Bullet;
 import gameobjects.weapons.CannonBall;
 import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
@@ -471,7 +471,7 @@ public class CollisionHandler {
 	 * @param Player player
 	 */
 	public static void checkIfEnemyHasCollidedWithPlayer(Enemy enemy, Player player) {
-		if (enemy.rectangle.overlaps(player.rectangle)) {
+		if (enemy.rectangle.overlaps(player.rectangle) && !enemy.isDead()) {
 			// Kill enemy if he is overlapping with player while player is performing attack.
 			if (Player.jumpingAction == Player.DESCENDING_JUMP) {
 				handleEnemyDeath(enemy);
@@ -497,6 +497,10 @@ public class CollisionHandler {
 	private static void handleEnemyDeath(Enemy enemy) {
 		enemy.setIsDead(true);
 		enemy.setPlaySound(true);
+		
+		//if (enemy instanceof Giant) {
+		//	Giant.playGiantDeathSound = true;
+		//}
 	}
 
 	/**
@@ -509,6 +513,22 @@ public class CollisionHandler {
 			heart.setHasBeenCollected(true);
 			((Player) player).setHealth(player.getHealth() + Heart.HEALTH);
 			Heart.playSound                      = true;
+			AddedToInventory.shouldRender        = true;
+			AddedToInventory.shouldDisplayHealth = true;
+			AddedToInventory.timer               = 0;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param TenHearts  tenHearts
+	 */
+	public static void checkIfPlayerCollidedWithTenHearts(GameObject player, TenHearts tenHearts) {
+		if (player.rectangle.overlaps(tenHearts.rectangle)) {
+			tenHearts.hasBeenCollected = true;
+			((Player) player).setHealth(player.getHealth() + TenHearts.HEALTH);
+			TenHearts.playSound                  = true;
 			AddedToInventory.shouldRender        = true;
 			AddedToInventory.shouldDisplayHealth = true;
 			AddedToInventory.timer               = 0;

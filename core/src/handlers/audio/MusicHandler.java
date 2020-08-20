@@ -344,6 +344,10 @@ public class MusicHandler {
 				musicLoader.bossDeafeatedMusic.stop();
 			}
 		} 
+		
+		if (CutScene.gameShouldPause) {
+			musicLoader.bossDeafeatedMusic.stop();
+		}
 	}
 
 	/**
@@ -462,7 +466,8 @@ public class MusicHandler {
 				!MissionRawBar.phasesAreInProgress &&
 				!Inventory.allInventoryShouldBeRendered &&
 				!Store.playerWantsToEnterStore &&
-				!Store.shouldDisplayEnterStoreMessage
+				!Store.shouldDisplayEnterStoreMessage &&
+				!CutScene.gameShouldPause
 				) {
 			startFootstepsAudio = true;
 		} else {

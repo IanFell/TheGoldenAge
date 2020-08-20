@@ -20,6 +20,7 @@ public class Mixer {
 	public static final float CLICK_VOLUME         = MAX_VOLUME;
 	public static final float PAUSE_VOLUME         = QUARTER_VOLUME;
 	public static final float SWITCH_WEAPON_VOLUME = QUARTER_VOLUME;
+	public static final float BUZZER_VOLUME        = MEDIAN_VOLUME;
 
 	// When player buys something from the store.
 	public static final float REGISTER_VOLUME = QUARTER_VOLUME;
