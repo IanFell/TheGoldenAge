@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound trumpet;
 	public Sound buzzer;
 	public Sound bossAttackSpin;
 	public Sound bossAttackBash;
@@ -53,6 +54,7 @@ public class SoundLoader {
 	public Sound enemyHurt;
 
 	public void init() {
+		trumpet             = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Trumpet.wav"));
 		buzzer              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Buzzer.wav"));
 		bossAttackSpin      = Gdx.audio.newSound(Gdx.files.internal("audio/sound/BossWhoosh.wav"));
 		bossAttackBash      = Gdx.audio.newSound(Gdx.files.internal("audio/sound/swish.wav"));
@@ -96,6 +98,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		trumpet.dispose();
 		buzzer.dispose();
 		bossAttackSpin.dispose();
 		bossAttackBash.dispose();

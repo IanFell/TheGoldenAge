@@ -87,14 +87,15 @@ public class Mixer {
 	public static final float BOSS_ATTACK_BASH_VOLUME = EIGHTH_VOLUME;
 
 	// Collectables.
-	public final static float HEART_COLLECT_VOLUME   = EIGHTH_VOLUME;
-	public final static float RUM_COLLECT_VOLUME     = QUARTER_VOLUME;
-	public final static float CHEST_COLLECT_VOLUME   = MEDIAN_VOLUME;
-	public final static float FEATHER_COLLECT_VOLUME = MEDIAN_VOLUME;
-	public final static float BUBBLE_VOLUME          = SIXTEENTH_VOLUME;
-	public final static float AMMO_COLLECT_VOLUME    = MAX_VOLUME;
-	public static final float PAW_COLLECT_VOLUME     = MEDIAN_VOLUME;
-	public static final float DRINK_VOLUME           = THREE_QUARTERS_VOLUME;
+	public final static float HEART_COLLECT_VOLUME      = EIGHTH_VOLUME;
+	public final static float RUM_COLLECT_VOLUME        = QUARTER_VOLUME;
+	public final static float CHEST_COLLECT_VOLUME      = MEDIAN_VOLUME;
+	public final static float FEATHER_COLLECT_VOLUME    = MEDIAN_VOLUME;
+	public final static float BUBBLE_VOLUME             = SIXTEENTH_VOLUME;
+	public final static float AMMO_COLLECT_VOLUME       = MAX_VOLUME;
+	public static final float PAW_COLLECT_VOLUME        = MEDIAN_VOLUME;
+	public static final float DRINK_VOLUME              = THREE_QUARTERS_VOLUME;
+	public static final float TEN_HEARTS_COLLECT_VOLUME = MEDIAN_VOLUME;
 
 	// Location marker.
 	public final static float LOCATION_MARKER_HIT_VOLUME  = MAX_VOLUME;
