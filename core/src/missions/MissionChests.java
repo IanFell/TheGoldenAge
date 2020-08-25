@@ -28,7 +28,7 @@ public class MissionChests extends Mission {
 	private int resetMissionTimer = 0;
 
 	private static int numberOfChestsOpened                              = 0;
-	private static final int AMOUNT_OF_CHESTS_NEEDED_TO_COMPLETE_MISSION = 1; // 10
+	private static final int AMOUNT_OF_CHESTS_NEEDED_TO_COMPLETE_MISSION = 5; // 10
 
 	public static boolean executeMission = true;
 
