@@ -54,7 +54,7 @@ public class StructureShadowHandler {
 				imageLoader.rawBarShadow
 				);
 		barShadow = new BarShadow(
-				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 42.5f, 
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 43.5f, 
 				GameAttributeHelper.CHUNK_THREE_Y_POSITION_START + 9.5f, 
 				BuildingLoader.BUILDING_WIDTH,
 				BuildingLoader.BUILDING_HEIGHT, 

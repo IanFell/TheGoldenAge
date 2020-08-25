@@ -493,7 +493,7 @@ public class GameScreen extends Screens {
 					&& Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore
 					&& !Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered
 					&& !ControlsUi.controlsShouldBeRendered && !Player.isInWater) {
-				MissionLegendOfTheSevenSwords.legendSwords[Inventory.currentlySelectedInventoryObject]
+				player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject)
 						.renderObject(myGame.renderer.batch, myGame.imageLoader);
 			}
 		}

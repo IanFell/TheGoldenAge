@@ -284,6 +284,8 @@ public class ImageLoader {
 	public Texture redSquare;
 
 	// Character objects.
+	public Texture hanging;
+	public Texture hangingShadow;
 	public Texture knightLeft;
 	public Texture knightRight;
 	public Texture bossLeft01;
@@ -609,12 +611,14 @@ public class ImageLoader {
 		redSquare   = new Texture(Gdx.files.internal("artwork/debugging/RedSquare.png"));
 
 		// Character objects.
-		knightLeft  = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightLeft.png"));
-		knightRight = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightRight.png"));
-		bossLeft01  = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/01.png"));
-		bossLeft02  = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/02.png"));
-		bossRight01 = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/01.png"));
-		bossRight02 = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/02.png"));
+		hanging       = new Texture(Gdx.files.internal("artwork/gamecharacters/enemy/Hanging.png"));
+		hangingShadow = new Texture(Gdx.files.internal("artwork/gamecharacters/enemy/HangingShadow.png"));
+		knightLeft    = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightLeft.png"));
+		knightRight   = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightRight.png"));
+		bossLeft01    = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/01.png"));
+		bossLeft02    = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/left/02.png"));
+		bossRight01   = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/01.png"));
+		bossRight02   = new Texture(Gdx.files.internal("artwork/gamecharacters/boss/right/02.png"));
 
 		// Number objects.
 		numberBlack[0] = new Texture(Gdx.files.internal("artwork/numbers/black/0.png"));
@@ -932,6 +936,8 @@ public class ImageLoader {
 		redSquare.dispose();
 
 		// Character objects.
+		hanging.dispose();
+		hangingShadow.dispose();
 		knightLeft.dispose();
 		knightRight.dispose();
 		bossLeft01.dispose();

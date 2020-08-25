@@ -14,6 +14,7 @@ import loaders.dockloader.DockLoader;
 import loaders.fireloader.FireLoader;
 import loaders.flowerloader.FlowerLoader;
 import loaders.flyingbirdloader.FlyingBirdLoader;
+import loaders.hangingloader.HangingLoader;
 import loaders.lighthouseloader.LightHouseLoader;
 import loaders.logloader.LogLoader;
 import loaders.pigglywigglyloader.PigglyWigglyLoader;
@@ -39,6 +40,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private HangingLoader hangingLoader;
 	private BarLoader barLoader;
 	private static FlyingBirdLoader flyingBirdLoader;
 	private PoisonPlantLoader poisonPlantLoader;
@@ -94,6 +96,7 @@ public class GameWorld {
 		quickSandLoader    = new QuickSandLoader();
 		bossLoader         = new BossLoader();
 		barLoader          = new BarLoader();
+		hangingLoader      = new HangingLoader();
 		loadGameWorld(myGame);
 	}
 
@@ -125,6 +128,7 @@ public class GameWorld {
 		quickSandLoader.loadQuickSand();
 		bossLoader.loadBosses();
 		barLoader.loadBar(myGame);
+		hangingLoader.loadHangingLoader();
 	}
 
 	/**
