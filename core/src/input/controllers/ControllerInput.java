@@ -344,8 +344,8 @@ public class ControllerInput extends Input {
 		float playerSpeed = Player.PLAYER_SPEED - 0.1f;
 		int turboSpeed    = 0; // TODO CHANGE THIS TO 0 FOR REAL GAME.
 		if(controller.getButton(BUTTON_L3)) {
-			System.out.print("L3 button pressed \n");
-			System.out.println("Player is using turbo!  Going fast!");
+			//System.out.print("L3 button pressed \n");
+			//System.out.println("Player is using turbo!  Going fast!");
 			playerSpeed = Player.PLAYER_SPEED * turboSpeed;
 		}
 		Player.playerIsMoving = false;
@@ -384,7 +384,7 @@ public class ControllerInput extends Input {
 		}  else {
 			// Left stick.
 			if (stickIsMoved(AXIS_LEFT_X)) {
-				System.out.print("LEFT STICK X pressed \n");
+				//System.out.print("LEFT STICK X pressed \n");
 				if (controller.getAxis(AXIS_LEFT_X) < 0) {
 					((Player) player).moveLeft(playerSpeed);
 				} /*else*/ if (controller.getAxis(AXIS_LEFT_X) > 0) {
@@ -392,7 +392,7 @@ public class ControllerInput extends Input {
 				} 
 			} 
 			if (stickIsMoved(AXIS_LEFT_Y)) {
-				System.out.print("LEFT STICK Y pressed \n");
+				//System.out.print("LEFT STICK Y pressed \n");
 				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
 					((Player) player).moveUp(playerSpeed);
 				} /*else*/ if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
@@ -423,7 +423,7 @@ public class ControllerInput extends Input {
 	protected void pollStartSection() {
 		if (!CutScene.gameShouldPause) {
 			if(controller.getButton(BUTTON_BACK)) {
-				System.out.print("BACK button pressed \n");
+				//System.out.print("BACK button pressed \n");
 			}
 			if(controller.getButton(BUTTON_START)) {
 				// If we press start and UI is open, close it.

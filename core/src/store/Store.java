@@ -113,6 +113,13 @@ public class Store extends TextBasedUiParent {
 
 		if (shouldDisplayEnterStoreMessage) {
 			batch.draw(
+					imageLoader.objectiveBackground, 
+					player.getX() - 7.5f, 
+					player.getY() - 1.2f, 
+					10.5f, 
+					-2
+					);
+			batch.draw(
 					imageLoader.objectiveEnterStore, 
 					player.getX() - 7, 
 					player.getY(), 

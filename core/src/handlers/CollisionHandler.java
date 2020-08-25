@@ -46,6 +46,7 @@ import tiles.Tile;
 import ui.AddedToInventory;
 import ui.BossHealthUi;
 import ui.LocationMarker;
+import ui.collectibles.HealthUi;
 
 /**
  * Handles collisions between game objects.
@@ -458,6 +459,7 @@ public class CollisionHandler {
 		if (player.rectangle.overlaps(cannonBall.rectangle) && !cannonBall.isCannonBallHasHitPlayer()) {
 			if (!Player.isInvincible) {
 				player.setHealth(player.getHealth() - 1);
+				HealthUi.heartsShouldFlashWhite = true;
 			}
 			cannonBall.setCannonBallHasHitPlayer(true);
 			// Make cannonball stop and hit player and explode instead of going through him.
@@ -484,6 +486,7 @@ public class CollisionHandler {
 						player.setHealth(player.getHealth() - 0.1f);
 						player.setPlaySound(true);
 						player.setBouncingBack(true);
+						HealthUi.heartsShouldFlashWhite = true;
 					}
 				}
 			}
@@ -497,7 +500,7 @@ public class CollisionHandler {
 	private static void handleEnemyDeath(Enemy enemy) {
 		enemy.setIsDead(true);
 		enemy.setPlaySound(true);
-		
+
 		//if (enemy instanceof Giant) {
 		//	Giant.playGiantDeathSound = true;
 		//}
@@ -518,7 +521,7 @@ public class CollisionHandler {
 			AddedToInventory.timer               = 0;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param GameObject player
@@ -568,6 +571,7 @@ public class CollisionHandler {
 			// Comment this out to prevent death.
 			if (quickSandTimer > HEALTH_TIMER_TRIGGER) {
 				player.setHealth(player.getHealth() - Heart.HEALTH);
+				HealthUi.heartsShouldFlashWhite = true;
 			}
 			Player.quickSandTimer = 0;
 			Player.isInQuickSand  = true;
@@ -635,6 +639,7 @@ public class CollisionHandler {
 			if (!Player.isInvincible) {
 				player.setHealth(player.getHealth() - 0.1f);
 				player.setPlaySound(true);
+				HealthUi.heartsShouldFlashWhite = true;
 				//player.setBounceBack(true);
 			}
 		}
@@ -691,6 +696,7 @@ public class CollisionHandler {
 			boss.setX(boss.getX() + 5);
 			((Player) player).setBouncingBack(true);
 			player.setHealth(player.getHealth() - 1.0f);
+			HealthUi.heartsShouldFlashWhite = true;
 			player.setPlaySound(true);
 
 			// Make bash audio every time boss bashes.
@@ -708,6 +714,7 @@ public class CollisionHandler {
 			if (!CutScene.anyCutSceneIsInProgress) {
 				if (!Player.isInvincible) {
 					player.setHealth(player.getHealth() - 0.1f);
+					HealthUi.heartsShouldFlashWhite = true;
 					player.setPlaySound(true);
 					((Player) player).setBouncingBack(true);
 				}
@@ -737,6 +744,7 @@ public class CollisionHandler {
 	public static void checkIfPlayerHasCollidedWithShockPlant(GameObject player, ShockPlant shockPlant) {
 		if (player.rectangle.overlaps(shockPlant.rectangle)) {
 			player.setHealth(player.getHealth() - 0.1f);
+			HealthUi.heartsShouldFlashWhite = true;
 			player.setPlaySound(true);
 			((Player) player).setBouncingBack(true);
 			ShockPlant.playSparkAudio = true;
@@ -753,8 +761,9 @@ public class CollisionHandler {
 			player.setHealth(player.getHealth() - 0.1f);
 			player.setPlaySound(true);
 			((Player) player).setBouncingBack(true);
-			PlayerOne.isPoisoned        = true;
-			PoisonPlant.playPoisonSound = true;
+			PlayerOne.isPoisoned            = true;
+			PoisonPlant.playPoisonSound     = true;
+			HealthUi.heartsShouldFlashWhite = true;
 		}
 	}
 
@@ -808,6 +817,7 @@ public class CollisionHandler {
 		if (stumpHolePlayer.overlaps(rockDrop.rectangle)) {
 			if (!Player.isInvincible) {
 				realPlayer.setHealth(realPlayer.getHealth() - 0.1f);
+				HealthUi.heartsShouldFlashWhite = true;
 				realPlayer.setPlaySound(true);
 				//player.setBounceBack(true);
 			}

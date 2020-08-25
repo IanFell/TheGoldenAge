@@ -45,7 +45,7 @@ public class InputHandler {
 	 */
 	public void init() {
 		String controllerName = ControllerInputHelper.getControllerName();
-		System.out.println(controllerName + " found.");
+		// System.out.println(controllerName + " found.");
 
 		// Instantiate correct controller based off controller name.
 		if (controllerName.contains("Logitech")) {

@@ -24,6 +24,7 @@ public class ImageLoader {
 	public Texture chestClosed;
 	public Texture chestOpen;
 	public Texture heart;
+	public Texture whiteHeart;
 	public Texture heartShadow;
 	public Texture pawShadow;
 	public Texture rum;
@@ -133,6 +134,7 @@ public class ImageLoader {
 	public Texture tradingPostShadow;
 	public Texture rawBarShadow;
 	public Texture pigglyWigglyShadow;
+	public Texture fortShadow;
 
 	// Effects Objects.
 	public Texture dustParticleOne;
@@ -322,6 +324,7 @@ public class ImageLoader {
 		chestClosed       = new Texture(Gdx.files.internal("artwork/collectibles/Chest.png"));
 		chestOpen         = new Texture(Gdx.files.internal("artwork/collectibles/ChestOpen.png"));
 		heart             = new Texture(Gdx.files.internal("artwork/collectibles/Heart.png"));
+		whiteHeart        = new Texture(Gdx.files.internal("artwork/collectibles/WhiteHeart.png"));
 		heartShadow       = new Texture(Gdx.files.internal("artwork/collectibles/HeartShadow.png"));
 		pawShadow         = new Texture(Gdx.files.internal("artwork/weapons/paw/PawShadow.png"));
 		rum               = new Texture(Gdx.files.internal("artwork/collectibles/Rum_Alternate.png"));
@@ -430,6 +433,7 @@ public class ImageLoader {
 		fortSide     = new Texture(Gdx.files.internal("artwork/structures/fort/FortSide.png"));
 
 		// Structure Shadows.
+		fortShadow         = new Texture(Gdx.files.internal("artwork/structures/shadows/FortShadow.png"));
 		lightHouseShadow   = new Texture(Gdx.files.internal("artwork/structures/shadows/LightHouseShadowVertical.png"));
 		tradingPostShadow  = new Texture(Gdx.files.internal("artwork/structures/shadows/TradingPost3dShadow.png"));
 		rawBarShadow       = new Texture(Gdx.files.internal("artwork/structures/shadows/RawBar3dShadow.png"));
@@ -656,6 +660,7 @@ public class ImageLoader {
 		chestClosed.dispose();
 		chestOpen.dispose();
 		heart.dispose();
+		whiteHeart.dispose();
 		heartShadow.dispose();
 		pawShadow.dispose();
 		rum.dispose();
@@ -767,6 +772,7 @@ public class ImageLoader {
 		tradingPostShadow.dispose();
 		rawBarShadow.dispose();
 		pigglyWigglyShadow.dispose();
+		fortShadow.dispose();
 
 		// Effects Objects.
 		poisonCover.dispose();

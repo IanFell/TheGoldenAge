@@ -3,9 +3,7 @@ package controllers;
 import com.mygdx.mygame.MyGame;
 
 import helpers.GameAttributeHelper;
-import screens.GameScreen;
 import screens.Screens;
-import screens.TitleScreen;
 
 /**
  * Handles switching between game states.

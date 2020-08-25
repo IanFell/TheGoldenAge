@@ -7,7 +7,6 @@ import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
 import maps.MapHandler;
 import missions.MissionTradinPost;
-import store.Store;
 import towns.CapeSanBlas;
 
 /**

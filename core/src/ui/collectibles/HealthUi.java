@@ -1,5 +1,6 @@
 package ui.collectibles;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
@@ -15,6 +16,12 @@ import loaders.ImageLoader;
 public class HealthUi {
 
 	private final int MAX_HEARTS_TO_DISPLAY_ON_SCREEN = 80;
+
+	public static boolean heartsShouldFlashWhite = false;
+
+	private int flashTimer = 0;
+
+	private final int FLASH_MAX_VALUE = 50;
 
 	/**
 	 * 
@@ -45,8 +52,13 @@ public class HealthUi {
 			} else {
 				yIncrement--;
 			}
+			// If player loses a heart, make them flash white for a quick second.
+			Texture texture = imageLoader.heart;
+			if (heartsShouldFlashWhite) {
+				texture = imageLoader.whiteHeart;
+			}
 			batch.draw(
-					imageLoader.heart,
+					texture,
 					player.getX() - 13.5f + xIncrement,
 					player.getY() - 6.5f + yIncrement,
 					size, 
@@ -56,6 +68,14 @@ public class HealthUi {
 			if (i >= MAX_HEARTS_TO_DISPLAY_ON_SCREEN) {
 				xIncrement = 0;
 				yIncrement = 0;
+			}
+
+			if (heartsShouldFlashWhite) {
+				flashTimer++;
+				if (flashTimer > FLASH_MAX_VALUE) {
+					flashTimer = 0;
+					heartsShouldFlashWhite = false;
+				}
 			}
 		}
 	}

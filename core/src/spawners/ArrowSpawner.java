@@ -48,6 +48,7 @@ public class ArrowSpawner extends GameObject {
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+			batch.draw(imageLoader.fortShadow, x - 1, y - 1, width, -height);
 			batch.draw(imageLoader.fortSide, x, y, width, -height);
 			for (int i = 0; i < knight.length; i++) {
 				Texture bowTexture = imageLoader.bowRight;

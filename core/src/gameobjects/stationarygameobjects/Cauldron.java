@@ -3,7 +3,6 @@ package gameobjects.stationarygameobjects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
-import gameobjects.gamecharacters.players.Player;
 import loaders.ImageLoader;
 import maps.MapHandler;
 import physics.Lighting.Fire;
@@ -14,7 +13,7 @@ import physics.Lighting.Fire;
  *
  */
 public class Cauldron extends GamePlayObject {
-	
+
 	private Fire fire;
 
 	/**
@@ -53,8 +52,11 @@ public class Cauldron extends GamePlayObject {
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		fire.updateObject(myGame, mapHandler);
+		// TODO I have no idea why this is here, 
+		// TODO it obviously does nothing because the game never crashes when this happens.
+		/*
 		if (myGame.getGameObject(Player.PLAYER_ONE).rectangle.overlaps(rectangle)) {
 			System.exit(0);
-		}
+		} */
 	}
 }

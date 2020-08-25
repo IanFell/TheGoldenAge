@@ -166,7 +166,7 @@ public class Gun extends Weapon {
 								); */
 					}
 				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped && !Inventory.allInventoryShouldBeRendered) {
-					System.out.println("getting here");
+					//System.out.println("getting here");
 					batch.draw(
 							textureRegion, 
 							x, 

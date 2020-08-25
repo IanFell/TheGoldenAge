@@ -3,6 +3,7 @@ package com.mygdx.mygame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import cutscenes.CutScene;
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.PlayerOne;
@@ -175,6 +176,8 @@ public class MyGame extends Game {
 		RumHandler.rumCount   = 0;
 
 		LocationMarker.resetGame();
+		
+		CutScene.anyCutSceneIsInProgress = false;
 
 		this.create();
 	}

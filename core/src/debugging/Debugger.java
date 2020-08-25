@@ -40,7 +40,8 @@ public class Debugger {
 		}
 	}
 
+	/*
 	public static void printGettingHereStatement() {
 		System.out.print("GETTING HERE");
-	}
+	} */
 }

@@ -46,7 +46,7 @@ public class Mixer {
 	public final static float GIANT_LANDING_VOLUME = EIGHTH_VOLUME;
 
 	// Ambient noise.
-	public final static float DAY_TIME_AMBIENT_VOLUME   = QUARTER_VOLUME;
+	public final static float DAY_TIME_AMBIENT_VOLUME   = MEDIAN_VOLUME;
 	public final static float NIGHT_TIME_AMBIENT_VOLUME = THREE_QUARTERS_VOLUME;
 	public final static float STORM_VOLUME              = MAX_VOLUME;
 	public final static float FIRE_VOLUME               = MAX_VOLUME;

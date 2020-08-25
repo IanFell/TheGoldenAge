@@ -24,7 +24,6 @@ import gameobjects.weapons.Weapon;
 import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.enemies.BossHandler;
-import handlers.enemies.GiantHandler;
 import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
 import helpers.RandomNumberGenerator;

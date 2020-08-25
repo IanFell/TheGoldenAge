@@ -15,7 +15,6 @@ import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.MissionRawBar;
-import physics.Lighting.Fire;
 import ui.MapUi;
 
 /**
