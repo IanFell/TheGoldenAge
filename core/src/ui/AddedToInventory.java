@@ -21,6 +21,7 @@ public class AddedToInventory extends GameObject {
 	public static boolean shouldDisplayAmmo        = false;
 	public static boolean shouldDisplayPaw         = false;
 	public static boolean shouldDisplayDagger      = false;
+	public static boolean shouldDisplayLoot        = false;
 
 	public static boolean shouldRender = false;
 
@@ -117,6 +118,15 @@ public class AddedToInventory extends GameObject {
 						-height
 						);
 			}
+			else if (shouldDisplayLoot) {
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.lootAddedToInventory, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 6, 
+						weaponNameUiWidth, 
+						-height
+						);
+			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.addedToInventory, 
 					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
@@ -144,6 +154,7 @@ public class AddedToInventory extends GameObject {
 				shouldDisplayHealth      = false;
 				shouldDisplayRum         = false;
 				shouldDisplayAmmo        = false;
+				shouldDisplayLoot        = false;
 			}
 		}
 	}

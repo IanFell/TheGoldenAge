@@ -201,6 +201,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture lootAddedToInventory;
 	public Texture objectiveBackground;
 	public Texture arcadeMap;
 	public Texture arcadeInventory;
@@ -513,6 +514,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		lootAddedToInventory         = new Texture(Gdx.files.internal("artwork/ui/LootAdded.png"));
 		objectiveBackground          = new Texture(Gdx.files.internal("artwork/ui/ControlPanelBase.png"));
 		arcadeMap                    = new Texture(Gdx.files.internal("artwork/ui/Map.png"));
 		arcadeInventory              = new Texture(Gdx.files.internal("artwork/ui/Inventory.png"));
@@ -842,6 +844,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		lootAddedToInventory.dispose();
 		objectiveBackground.dispose();
 		arcadeMap.dispose();
 		arcadeInventory.dispose();

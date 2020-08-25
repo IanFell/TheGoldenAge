@@ -177,7 +177,7 @@ public class CollisionHandler {
 	 * @param Chest      chest
 	 */
 	public static void checkIfPlayerHasCollidedWithChest(GameObject player, Chest chest) {
-		if (chest.rectangle.overlaps(player.rectangle)) {
+		if (chest.rectangle.overlaps(player.rectangle) && player.getPlayerLoot() < Player.MAX_AMOUNT_LOOT_PLAYER_CAN_CARRY) {
 			float offset = 0.5f;
 			switch (Player.direction) {
 			case Player.DIRECTION_LEFT:
@@ -198,6 +198,10 @@ public class CollisionHandler {
 					chest.setChestValuesAfterCollisionWithPlayer();
 					((Player) player).updatePlayerLoot(Chest.LOOT_VALUE);
 
+					AddedToInventory.shouldRender      = true;
+					AddedToInventory.shouldDisplayLoot = true;
+					AddedToInventory.timer             = 0;
+					
 					// Testing mission.  Later, this will be controlled.  Right now, it is always on.
 					if (MissionChests.executeMission) {
 						MissionChests.increaseNumberOfChestsOpened();
