@@ -862,7 +862,7 @@ public class CollisionHandler {
 	 * @param Weapon weapon
 	 */
 	public static void checkIfProjectileHasCollidedWithGiant(Giant giant, Weapon weapon) {
-		if (giant.rectangle.overlaps(weapon.rectangle) && Player.playerIsPerformingAttack) {
+		if (giant.rectangle.overlaps(weapon.rectangle) /*&& Player.playerIsPerformingAttack*/) {
 			giant.setIsDead(true);
 		}
 	}
