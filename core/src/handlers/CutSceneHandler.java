@@ -25,7 +25,7 @@ public class CutSceneHandler {
 
 	private int ENEMY_CUTSCENE_DELAY = 120;
 
-	private CutSceneJollyRoger cutSceneJollyRoger;
+	private static CutSceneJollyRoger cutSceneJollyRoger;
 	private CutSceneCutthroat cutSceneCutthroat;
 	private CutSceneFarzenplank cutSceneFarzenplank;
 	private CutSceneBird cutSceneBird;
@@ -111,5 +111,9 @@ public class CutSceneHandler {
 		if (MissionThePoint.missionThePointComplete) {
 			cutSceneMap.renderCutScene(myGame);
 		}
+	}
+	
+	public static void resetIntroCutscene() {
+		cutSceneJollyRoger.setSelectedCutSceneIsInProgress(false);
 	}
 }

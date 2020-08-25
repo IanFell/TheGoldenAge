@@ -85,7 +85,10 @@ public class Arcade extends ControllerInput {
 		} else {
 			pollSticksForUi(player, myGame);
 		}
-		pollAllArcadeButtons(player, myGame);
+		
+		if (!CutScene.gameShouldPause) { 
+			pollAllArcadeButtons(player, myGame);
+		}
 	}
 
 	/**

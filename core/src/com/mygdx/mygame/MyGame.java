@@ -9,9 +9,11 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
+import handlers.CutSceneHandler;
 import handlers.InputHandler;
 import handlers.MissionHandler;
 import handlers.audio.AudioHandler;
+import handlers.audio.SoundHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
@@ -177,7 +179,9 @@ public class MyGame extends Game {
 
 		LocationMarker.resetGame();
 		
-		CutScene.anyCutSceneIsInProgress = false;
+		CutSceneHandler.resetIntroCutscene();
+		
+		SoundHandler.gameOverDeathHasPlayed = false;
 
 		this.create();
 	}

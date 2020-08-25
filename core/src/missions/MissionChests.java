@@ -67,7 +67,7 @@ public class MissionChests extends Mission {
 			countDownTimer++;
 			// If mission is complete:
 			if (numberOfChestsOpened >= AMOUNT_OF_CHESTS_NEEDED_TO_COMPLETE_MISSION) {
-				executeMission  = false;
+				executeMission         = false;
 				chestMissionIsComplete = true;
 			} 
 		}
@@ -91,5 +91,9 @@ public class MissionChests extends Mission {
 	public static void resetGame() {
 		chestMissionIsComplete = false;
 		missionComplete        = false;
+		numberOfChestsOpened   = 0;
+		executeMission         = true;
+		countDownTimer         = 0;
+
 	}
 }

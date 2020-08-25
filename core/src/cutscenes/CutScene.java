@@ -219,6 +219,14 @@ public class CutScene {
 		return selectedCutSceneIsInProgress;
 	}
 
+	/**
+	 * 
+	 * @param boolean selectedCutSceneIsInProgress
+	 */
+	public void setSelectedCutSceneIsInProgress(boolean selectedCutSceneIsInProgress) {
+		this.selectedCutSceneIsInProgress = selectedCutSceneIsInProgress;
+	}
+
 	protected void endCutScene() {
 		cutSceneConcluded            = true;
 		selectedCutSceneIsInProgress = false;

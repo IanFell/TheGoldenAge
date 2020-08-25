@@ -39,6 +39,7 @@ import mixer.Mixer;
 import screens.PauseScreen;
 import screens.Screens;
 import store.Store;
+import ui.GameOver;
 import ui.LocationMarker;
 import ui.ObjectiveUi;
 
@@ -49,6 +50,8 @@ import ui.ObjectiveUi;
  *
  */
 public class SoundHandler {
+	
+	public static boolean gameOverDeathHasPlayed = false;
 
 	private boolean enemyDeathSoundCanPlay = true;
 	private int enemyDeathTimer            = 0;
@@ -301,6 +304,11 @@ public class SoundHandler {
 			if (PauseScreen.playSound) {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
 				PauseScreen.playSound = false;
+			}
+			
+			if (GameOver.triggerGameOver && !gameOverDeathHasPlayed) {
+				soundLoader.death.play(Mixer.DEATH_VOLUME);
+				gameOverDeathHasPlayed = true;
 			}
 		}
 	}
