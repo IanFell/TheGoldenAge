@@ -7,7 +7,7 @@ package mixer;
  */
 public class Mixer {
 	public static final float MINIMUM_VOLUME        = 0f;
-	public static final float SIXTY_FOURTH_VOLUME   = 0.15f;
+	public static final float SIXTY_FOURTH_VOLUME   = 0.015f;
 	public static final float THIRTY_SECOND_VOLUME  = 0.03f;
 	public static final float SIXTEENTH_VOLUME      = 0.06f;
 	public static final float TWELVETH_VOLUME       = 0.10f;
@@ -80,7 +80,7 @@ public class Mixer {
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME      = QUARTER_VOLUME;
-	public final static float BOMB_VOLUME             = SIXTY_FOURTH_VOLUME;
+	public final static float BOMB_VOLUME             = QUARTER_VOLUME;
 	public final static float ARROW_VOLUME            = MEDIAN_VOLUME;
 	public static final float SPARK_VOLUME            = EIGHTH_VOLUME;
 	public static final float POISON_VOLUME           = MEDIAN_VOLUME;

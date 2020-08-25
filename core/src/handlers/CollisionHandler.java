@@ -460,6 +460,8 @@ public class CollisionHandler {
 			if (!Player.isInvincible) {
 				player.setHealth(player.getHealth() - 1);
 				HealthUi.heartsShouldFlashWhite = true;
+				player.setPlaySound(true);
+				((Player) player).setBouncingBack(true);
 			}
 			cannonBall.setCannonBallHasHitPlayer(true);
 			// Make cannonball stop and hit player and explode instead of going through him.
@@ -640,7 +642,15 @@ public class CollisionHandler {
 				player.setHealth(player.getHealth() - 0.1f);
 				player.setPlaySound(true);
 				HealthUi.heartsShouldFlashWhite = true;
-				//player.setBounceBack(true);
+				// Handle bounce back.
+				switch (MissionStumpHole.playerDirection) {
+				case GameObject.DIRECTION_LEFT:
+					missionPlayerRectangle.setX(missionPlayerRectangle.getX() + 0.2f);
+					break;
+				case GameObject.DIRECTION_RIGHT:
+					missionPlayerRectangle.setX(missionPlayerRectangle.getX() - 0.2f);
+					break;
+				} 
 			}
 		}
 	}

@@ -124,7 +124,7 @@ public class ObjectiveUi {
 				xPos            = player.getX() + 5;
 				yPos            = yPos - 1;
 				backgroundX     = xPos + 2;
-				backgroundWidth = width - 4;
+				backgroundWidth = width - 3;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveRawBar)) {
 				xPos            = player.getX() + 2;
@@ -199,13 +199,16 @@ public class ObjectiveUi {
 		}
 		if (flashTimer > VALUE_TO_FLASH) {
 			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
-			batch.draw(
-					imageLoader.objectiveBackground,
-					xPos - 1.5f, 
-					yPos - 1.8f, 
-					backgroundWidth, 
-					-height / 2
-					); 
+			// Dont draw the background on inventory screen.
+			if (!objectiveTexture.equals(imageLoader.objectiveBuyTheGun)) {
+				batch.draw(
+						imageLoader.objectiveBackground,
+						xPos - 1.5f, 
+						yPos - 1.8f, 
+						backgroundWidth, 
+						-height / 2
+						); 
+			}
 			batch.draw(
 					objectiveTexture,
 					xPos - 1, 

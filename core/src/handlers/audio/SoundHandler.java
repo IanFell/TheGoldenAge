@@ -41,7 +41,6 @@ import screens.Screens;
 import store.Store;
 import ui.LocationMarker;
 import ui.ObjectiveUi;
-import ui.OutOfAmmo;
 
 /**
  * Handles game sounds.

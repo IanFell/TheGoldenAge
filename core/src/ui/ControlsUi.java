@@ -40,7 +40,7 @@ public class ControlsUi extends Screens {
 					camera.viewportWidth, 
 					-camera.viewportHeight
 					);
-			renderScrolls(batch, imageLoader, myGame);
+			//renderScrolls(batch, imageLoader, myGame);
 			batch.draw(
 					imageLoader.controlsUiBackground,
 					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
