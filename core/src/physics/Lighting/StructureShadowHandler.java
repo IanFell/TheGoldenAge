@@ -2,6 +2,7 @@ package physics.Lighting;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import gameobjects.stationarygameobjects.buildings.shadows.BarShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.LightHouseShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.PigglyWigglyShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.RawBarShadow;
@@ -22,6 +23,7 @@ public class StructureShadowHandler {
 	private LightHouseShadow lightHouseShadow;
 	private TradingPostShadow tradingPostShadow;
 	private RawBarShadow rawBarShadow;
+	private BarShadow barShadow;
 	private PigglyWigglyShadow pigglyWigglyShadow;
 
 	/**
@@ -51,6 +53,13 @@ public class StructureShadowHandler {
 				BuildingLoader.BUILDING_HEIGHT, 
 				imageLoader.rawBarShadow
 				);
+		barShadow = new BarShadow(
+				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 42.5f, 
+				GameAttributeHelper.CHUNK_THREE_Y_POSITION_START + 9.5f, 
+				BuildingLoader.BUILDING_WIDTH,
+				BuildingLoader.BUILDING_HEIGHT, 
+				imageLoader.barShadow
+				);
 		pigglyWigglyShadow = new PigglyWigglyShadow(
 				GameAttributeHelper.CHUNK_FOUR_X_POSITION_START + 0.5f, 
 				GameAttributeHelper.CHUNK_THREE_Y_POSITION_START - 6.0f, 
@@ -74,6 +83,9 @@ public class StructureShadowHandler {
 		}
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(rawBarShadow)) {
 			rawBarShadow.renderObject(batch, imageLoader);
+		}
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(barShadow)) {
+			barShadow.renderObject(batch, imageLoader);
 		}
 		if (GamePlayHelper.gameObjectIsWithinScreenBounds(pigglyWigglyShadow)) {
 			pigglyWigglyShadow.renderObject(batch, imageLoader);

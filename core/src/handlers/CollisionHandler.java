@@ -239,6 +239,8 @@ public class CollisionHandler {
 				}
 			} else if (structureName.equalsIgnoreCase("Piggly Wiggly")) {
 				setStoreRenderState();
+			} else if (structureName.equalsIgnoreCase("Bar")) {
+				setStoreRenderState();
 			}
 			Store.shouldDisplayEnterStoreMessage = true;
 		} else {

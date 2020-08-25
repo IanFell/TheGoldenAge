@@ -80,7 +80,7 @@ public class Mixer {
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME      = QUARTER_VOLUME;
-	public final static float BOMB_VOLUME             = QUARTER_VOLUME;
+	public final static float BOMB_VOLUME             = SIXTEENTH_VOLUME;
 	public final static float ARROW_VOLUME            = MEDIAN_VOLUME;
 	public static final float SPARK_VOLUME            = EIGHTH_VOLUME;
 	public static final float POISON_VOLUME           = MEDIAN_VOLUME;

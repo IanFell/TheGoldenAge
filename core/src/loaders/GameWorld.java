@@ -5,6 +5,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import handlers.enemies.BossHandler;
+import loaders.barloader.BarLoader;
 import loaders.bossloader.BossLoader;
 import loaders.boulderloader.BoulderLoader;
 import loaders.cannonloader.CannonLoader;
@@ -38,6 +39,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private BarLoader barLoader;
 	private static FlyingBirdLoader flyingBirdLoader;
 	private PoisonPlantLoader poisonPlantLoader;
 	private ShockPlantLoader shockPlantLoader;
@@ -91,6 +93,7 @@ public class GameWorld {
 		stumpLoader        = new StumpLoader();
 		quickSandLoader    = new QuickSandLoader();
 		bossLoader         = new BossLoader();
+		barLoader          = new BarLoader();
 		loadGameWorld(myGame);
 	}
 
@@ -121,6 +124,7 @@ public class GameWorld {
 		stumpLoader.loadStumps();
 		quickSandLoader.loadQuickSand();
 		bossLoader.loadBosses();
+		barLoader.loadBar(myGame);
 	}
 
 	/**
@@ -170,6 +174,7 @@ public class GameWorld {
 			}
 		}
 		RawBarLoader.rawbar.updateObject(myGame, mapHandler);
+		BarLoader.bar.updateObject(myGame, mapHandler);
 		PigglyWigglyLoader.pigglyWiggly.updateObject(myGame, mapHandler);
 		TradingPostLoader.tradingPost.updateObject(myGame, mapHandler);
 
