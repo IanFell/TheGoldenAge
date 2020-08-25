@@ -6,6 +6,7 @@ import gameobjects.stationarygameobjects.buildings.shadows.BarShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.LightHouseShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.PigglyWigglyShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.RawBarShadow;
+import gameobjects.stationarygameobjects.buildings.shadows.ScallopCoveShadow;
 import gameobjects.stationarygameobjects.buildings.shadows.TradingPostShadow;
 import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
@@ -25,6 +26,7 @@ public class StructureShadowHandler {
 	private RawBarShadow rawBarShadow;
 	private BarShadow barShadow;
 	private PigglyWigglyShadow pigglyWigglyShadow;
+	private ScallopCoveShadow scallopCoveShadow;
 
 	/**
 	 * Constructor.
@@ -66,6 +68,13 @@ public class StructureShadowHandler {
 				BuildingLoader.BUILDING_WIDTH - 1.0f,
 				BuildingLoader.BUILDING_HEIGHT + 0.5f, 
 				imageLoader.pigglyWigglyShadow
+				);
+		scallopCoveShadow = new ScallopCoveShadow(
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 9.5f, 
+				GameAttributeHelper.CHUNK_FIVE_Y_POSITION_START - 90.5f, 
+				BuildingLoader.BUILDING_WIDTH,
+				BuildingLoader.BUILDING_HEIGHT, 
+				imageLoader.barShadow
 				);
 	}
 

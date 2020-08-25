@@ -241,6 +241,8 @@ public class CollisionHandler {
 				setStoreRenderState();
 			} else if (structureName.equalsIgnoreCase("Bar")) {
 				setStoreRenderState();
+			} else if (structureName.equalsIgnoreCase("Scallop Cove")) {
+				setStoreRenderState();
 			}
 			Store.shouldDisplayEnterStoreMessage = true;
 		} else {

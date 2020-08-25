@@ -23,6 +23,7 @@ import loaders.poisonplantloader.PoisonPlantLoader;
 import loaders.quicksandloader.QuickSandLoader;
 import loaders.rawbarloader.RawBarLoader;
 import loaders.rockloader.RockLoader;
+import loaders.scallopcoveloader.ScallopCoveLoader;
 import loaders.shockplantloader.ShockPlantLoader;
 import loaders.signloader.SignLoader;
 import loaders.stumploader.StumpLoader;
@@ -65,6 +66,7 @@ public class GameWorld {
 	private StumpLoader stumpLoader;
 	private QuickSandLoader quickSandLoader;
 	private BossLoader bossLoader;
+	private ScallopCoveLoader scallopCoveLoader;
 
 	/**
 	 * Constructor.
@@ -97,6 +99,7 @@ public class GameWorld {
 		bossLoader         = new BossLoader();
 		barLoader          = new BarLoader();
 		hangingLoader      = new HangingLoader();
+		scallopCoveLoader  = new ScallopCoveLoader();
 		loadGameWorld(myGame);
 	}
 
@@ -129,6 +132,7 @@ public class GameWorld {
 		bossLoader.loadBosses();
 		barLoader.loadBar(myGame);
 		hangingLoader.loadHangingLoader();
+		scallopCoveLoader.loadScallopCove(myGame);
 	}
 
 	/**
@@ -181,6 +185,7 @@ public class GameWorld {
 		BarLoader.bar.updateObject(myGame, mapHandler);
 		PigglyWigglyLoader.pigglyWiggly.updateObject(myGame, mapHandler);
 		TradingPostLoader.tradingPost.updateObject(myGame, mapHandler);
+		ScallopCoveLoader.scallopCove.updateObject(myGame, mapHandler);
 
 		// Update bosses.
 		BossHandler.handleBosses(myGame, mapHandler);
