@@ -64,6 +64,7 @@ public class MapUi extends Screens {
 					camera.viewportWidth, 
 					-camera.viewportHeight
 					);
+			renderScrolls(batch, imageLoader, myGame);
 			if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
 				batch.draw(
 						imageLoader.arcadeMap,

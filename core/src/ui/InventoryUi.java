@@ -78,6 +78,7 @@ public class InventoryUi extends Screens {
 					camera.viewportWidth, 
 					-camera.viewportHeight
 					);
+			renderScrolls(batch, imageLoader, myGame);
 			int borderShrinkOffset = 1;
 			if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
 				batch.draw(

@@ -11,6 +11,7 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import helpers.GameAttributeHelper;
+import loaders.ImageLoader;
 import physics.Weather.WeatherHandler;
 
 /**
@@ -71,6 +72,22 @@ public class Screens implements Screen {
 	public Screens(final MyGame myGame) {
 		this.myGame = myGame;
 		createCamera();
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param MyGame      myGame
+	 */
+	protected void renderScrolls(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
+		batch.draw(
+				imageLoader.treasureMapRight,
+				camera.position.x - getViewportWidth() / denominatorOffset - 1,
+				(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight + 1.5f,
+				camera.viewportWidth + 2, 
+				-camera.viewportHeight - 3
+				);
 	}
 
 	/**
