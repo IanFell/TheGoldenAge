@@ -81,13 +81,15 @@ public class Arcade extends ControllerInput {
 				!CutScene.anyCutSceneIsInProgress &&
 				!Store.playerWantsToEnterStore
 				) {
-			pollSticks(player);
+			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+				pollSticks(player);
+			}
 		} else {
 			pollSticksForUi(player, myGame);
 		}
-		
+
 		//if (!CutScene.gameShouldPause) { 
-			pollAllArcadeButtons(player, myGame);
+		pollAllArcadeButtons(player, myGame);
 		//}
 	}
 
@@ -97,96 +99,98 @@ public class Arcade extends ControllerInput {
 	 * @param MyGame     myGame
 	 */
 	private void pollSticksForUi(GameObject player, MyGame myGame) {
-		if (!storeCanSwitch) {
-			storeSwitchTimer++;
-			if (storeSwitchTimer > SWITCH_TIME_LIMIT) {
-				storeSwitchTimer = 0;
-				storeCanSwitch   = true;
+		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+			if (!storeCanSwitch) {
+				storeSwitchTimer++;
+				if (storeSwitchTimer > SWITCH_TIME_LIMIT) {
+					storeSwitchTimer = 0;
+					storeCanSwitch   = true;
+				}
 			}
-		}
 
-		if (stickIsMoved(AXIS_LEFT_X)) {
-			//System.out.print("LEFT STICK X pressed \n");
-			if (controller.getAxis(AXIS_LEFT_X) < 0) {
-				if (Inventory.currentlySelectedInventoryObject > 0) {
-					if (InventoryUi.clickedObject > 0) {
+			if (stickIsMoved(AXIS_LEFT_X)) {
+				//System.out.print("LEFT STICK X pressed \n");
+				if (controller.getAxis(AXIS_LEFT_X) < 0) {
+					if (Inventory.currentlySelectedInventoryObject > 0) {
+						if (InventoryUi.clickedObject > 0) {
+							if (storeCanSwitch) {
+								selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
+								InventoryUi.clickedObject--;
+								canClick                           = false;
+								Weapon.shouldPlaySwitchWeaponAudio = true;
+								storeCanSwitch                     = false;
+							}
+						}
+					}
+					if (Store.playerWantsToEnterStore) {
 						if (storeCanSwitch) {
-							selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
-							InventoryUi.clickedObject--;
-							canClick                           = false;
+							selectStoreObject(myGame, GameObject.DIRECTION_LEFT);
 							Weapon.shouldPlaySwitchWeaponAudio = true;
 							storeCanSwitch                     = false;
 						}
 					}
-				}
-				if (Store.playerWantsToEnterStore) {
-					if (storeCanSwitch) {
-						selectStoreObject(myGame, GameObject.DIRECTION_LEFT);
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-						storeCanSwitch                     = false;
+				} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
+					if (Inventory.currentlySelectedInventoryObject < 11) {
+						if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
+							if (storeCanSwitch) {
+								selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
+								InventoryUi.clickedObject++;
+								Weapon.shouldPlaySwitchWeaponAudio = true;
+								storeCanSwitch                     = false;
+							}
+						}
 					}
-				}
-			} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
-				if (Inventory.currentlySelectedInventoryObject < 11) {
-					if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
+					if (Store.playerWantsToEnterStore) {
 						if (storeCanSwitch) {
-							selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
-							InventoryUi.clickedObject++;
+							selectStoreObject(myGame, GameObject.DIRECTION_RIGHT);
 							Weapon.shouldPlaySwitchWeaponAudio = true;
 							storeCanSwitch                     = false;
 						}
 					}
-				}
-				if (Store.playerWantsToEnterStore) {
-					if (storeCanSwitch) {
-						selectStoreObject(myGame, GameObject.DIRECTION_RIGHT);
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-						storeCanSwitch                     = false;
-					}
-				}
-			} 
-		}
+				} 
+			}
 
-		if (stickIsMoved(AXIS_LEFT_Y)) {
-			//System.out.print("LEFT STICK Y pressed \n");
-			if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
-				if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
-					if (storeCanSwitch) {
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-						/*
+			if (stickIsMoved(AXIS_LEFT_Y)) {
+				//System.out.print("LEFT STICK Y pressed \n");
+				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
+					if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
+						if (storeCanSwitch) {
+							Weapon.shouldPlaySwitchWeaponAudio = true;
+							/*
 						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
 							MapUi.mapShouldBeRendered              = false;
 							ControlsUi.controlsShouldBeRendered    = true;
 						} */
-						if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
-							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
-							MapUi.mapShouldBeRendered              = true;
-							ControlsUi.controlsShouldBeRendered    = false;
-						} 
-						storeCanSwitch = false;
-					}
-				}
-			} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
-				if (UserInterface.userInterfaceOption > 0) {
-					if (storeCanSwitch) {
-						Weapon.shouldPlaySwitchWeaponAudio = true;
-						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
-							UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
-							MapUi.mapShouldBeRendered              = false;
-							ControlsUi.controlsShouldBeRendered    = false;
+							if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
+								UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
+								MapUi.mapShouldBeRendered              = true;
+								ControlsUi.controlsShouldBeRendered    = false;
+							} 
+							storeCanSwitch = false;
 						}
-						/*
+					}
+				} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
+					if (UserInterface.userInterfaceOption > 0) {
+						if (storeCanSwitch) {
+							Weapon.shouldPlaySwitchWeaponAudio = true;
+							if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
+								UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
+								MapUi.mapShouldBeRendered              = false;
+								ControlsUi.controlsShouldBeRendered    = false;
+							}
+							/*
 						else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 							MapUi.mapShouldBeRendered              = true;
 							ControlsUi.controlsShouldBeRendered    = false;
 						}  */
-						storeCanSwitch = false;
+							storeCanSwitch = false;
+						}
 					}
-				}
+				} 
 			} 
-		} 
+		}
 	}
 
 	/**

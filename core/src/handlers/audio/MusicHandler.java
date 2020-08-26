@@ -109,7 +109,7 @@ public class MusicHandler {
 				musicLoader.theme.stop();
 			}
 
-			if (GameOver.triggerGameOver) {
+			if (GameOver.triggerGameOver || Win.triggerWin) {
 				handleEndOfGame(musicLoader);
 			}
 		} else if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {

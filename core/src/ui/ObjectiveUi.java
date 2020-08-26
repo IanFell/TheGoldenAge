@@ -180,7 +180,7 @@ public class ObjectiveUi {
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width;
+				backgroundWidth = width - 0.2f;
 			}
 			if (objectiveTexture.equals(imageLoader.objectiveCollectTheMapAtThePoint)) {
 				xPos            = xPos - 2;
@@ -194,7 +194,7 @@ public class ObjectiveUi {
 				yPos            = yPos + 1;
 				width           = width + 4;
 				height          = height + 2;
-				backgroundWidth = width + 1;
+				backgroundWidth = width + 0.8f;
 			}
 		}
 		if (flashTimer > VALUE_TO_FLASH) {
