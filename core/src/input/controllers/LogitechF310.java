@@ -74,47 +74,50 @@ public class LogitechF310 extends ControllerInput {
 	@Override
 	protected void pollTriggers(GameObject player) {
 
-		super.pollTriggers(player);
+		if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
 
-		// I can't get the other trigger to function correctly, so lets just use this one.
-		if(controller.getButton(BUTTON_LT)) {
-			MagicPearl.isAttacking     = false;
-			MagicPearl.isMovingForward = false;
-		} 
+			super.pollTriggers(player);
 
-		if(controller.getButton(BUTTON_RT)) {
-			if (canClick) {
-				Player.playerIsPerformingAttack = true;
-			}
-			if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-					MagicPearl.isAttacking     = true;
-					MagicPearl.isMovingForward = true;
+			// I can't get the other trigger to function correctly, so lets just use this one.
+			if(controller.getButton(BUTTON_LT)) {
+				MagicPearl.isAttacking     = false;
+				MagicPearl.isMovingForward = false;
+			} 
+
+			if(controller.getButton(BUTTON_RT)) {
+				if (canClick) {
+					Player.playerIsPerformingAttack = true;
 				}
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-					if (!BirdWeapon.birdIsAttacking) {
-						BirdWeapon.birdIsAttacking = true;
-						BirdWeapon.playAttackSound = true;
-						BirdWeapon.shouldPlaySound = true;
+				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+						MagicPearl.isAttacking     = true;
+						MagicPearl.isMovingForward = true;
+					}
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+						if (!BirdWeapon.birdIsAttacking) {
+							BirdWeapon.birdIsAttacking = true;
+							BirdWeapon.playAttackSound = true;
+							BirdWeapon.shouldPlaySound = true;
+						}
+					}
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+						Paw.hasBeenUsed         = true;
+						Paw.playAttackSound     = true;
 					}
 				}
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
-					Paw.hasBeenUsed         = true;
-					Paw.playAttackSound     = true;
-				}
-			}
-			canClick = false;
-		} else {
-			if (Inventory.inventoryIsEquipped) {
-				if (!Store.storeShouldBeRendered) {
-					if (Inventory.currentlySelectedInventoryObject < player.getInventory().inventory.size()) {
-						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-							MagicPearl.isMovingForward = false;
+				canClick = false;
+			} else {
+				if (Inventory.inventoryIsEquipped) {
+					if (!Store.storeShouldBeRendered) {
+						if (Inventory.currentlySelectedInventoryObject < player.getInventory().inventory.size()) {
+							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+								MagicPearl.isMovingForward = false;
+							}
 						}
 					}
 				}
+				Player.playerIsPerformingAttack = false;
 			}
-			Player.playerIsPerformingAttack = false;
 		}
 	}
 

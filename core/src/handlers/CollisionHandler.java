@@ -260,9 +260,9 @@ public class CollisionHandler {
 			) {
 		if (structure.rectangle.overlaps(player.rectangle)) {
 			setStoreRenderState();
-			Store.shouldDisplayEnterStoreMessage = true;
+			Store.shouldDisplayEnterStoreMessageAlternate = true;
 		} else {
-			Store.shouldDisplayEnterStoreMessage = false;
+			Store.shouldDisplayEnterStoreMessageAlternate = false;
 		}
 	}
 

@@ -21,7 +21,7 @@ import ui.TextBasedUiParent;
  *
  */
 public class Store extends TextBasedUiParent {
-	
+
 	public static boolean playBuzzerAudio = false;
 
 	private final int SALE_HEARTS = 0;
@@ -47,8 +47,9 @@ public class Store extends TextBasedUiParent {
 	public static boolean gunHasBeenPurchasedAtStore        = false;
 	public static boolean playerWantsToEnterStore           = false;
 	// False for game to work.  True to debug.
-	public static boolean storeIsUnlocked                   = false; 
-	public static boolean shouldDisplayEnterStoreMessage    = false;
+	public static boolean storeIsUnlocked                         = false; 
+	public static boolean shouldDisplayEnterStoreMessage          = false;
+	public static boolean shouldDisplayEnterStoreMessageAlternate = false;
 
 	private int itemSize      = 1;
 	private int coinSize      = 1;
@@ -59,6 +60,7 @@ public class Store extends TextBasedUiParent {
 	public static boolean playSound = false;
 
 	public static boolean playerIsShortOnLootMessageShouldRender = false;
+
 	private int shortOnLootTimer                                 = 0;
 	private final int SHORT_ON_LOOT_MAX_DISPLAY_VALUE            = 30;
 
@@ -111,8 +113,7 @@ public class Store extends TextBasedUiParent {
 			storeShouldBeRendered = true;
 		}
 
-		if (shouldDisplayEnterStoreMessage) {
-			/*
+		if (shouldDisplayEnterStoreMessage || shouldDisplayEnterStoreMessageAlternate) {
 			batch.draw(
 					imageLoader.objectiveBackground, 
 					player.getX() - 7.5f, 
@@ -126,7 +127,7 @@ public class Store extends TextBasedUiParent {
 					player.getY(), 
 					14, 
 					-4
-					); */
+					); 
 		}
 
 		if (storeShouldBeRendered && playerWantsToEnterStore) {
@@ -527,8 +528,9 @@ public class Store extends TextBasedUiParent {
 	}
 
 	public static void resetStore() {
-		gunHasBeenPurchasedAtStore     = false;
-		playerWantsToEnterStore        = false;
-		shouldDisplayEnterStoreMessage = false;
+		gunHasBeenPurchasedAtStore              = false;
+		playerWantsToEnterStore                 = false;
+		shouldDisplayEnterStoreMessage          = false;
+		shouldDisplayEnterStoreMessageAlternate = false;
 	}
 }

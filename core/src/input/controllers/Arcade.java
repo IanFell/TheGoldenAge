@@ -49,6 +49,9 @@ public class Arcade extends ControllerInput {
 	private int storeSwitchTimer   = 0;
 	private boolean storeCanSwitch = false;
 
+	private boolean canOpenStore = true;
+	private int openStoreTimer   = 0;
+
 	/**
 	 * Constructor.
 	 */
@@ -81,7 +84,7 @@ public class Arcade extends ControllerInput {
 				!CutScene.anyCutSceneIsInProgress &&
 				!Store.playerWantsToEnterStore
 				) {
-			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN && !CutScene.gameShouldPause) {
 				pollSticks(player);
 			}
 		} else {
@@ -99,7 +102,7 @@ public class Arcade extends ControllerInput {
 	 * @param MyGame     myGame
 	 */
 	private void pollSticksForUi(GameObject player, MyGame myGame) {
-		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN && !CutScene.gameShouldPause) {
 			if (!storeCanSwitch) {
 				storeSwitchTimer++;
 				if (storeSwitchTimer > SWITCH_TIME_LIMIT) {
@@ -229,12 +232,21 @@ public class Arcade extends ControllerInput {
 							Rum.playDrinkingSound                     = true;
 						}
 					}
+
 					if (Store.shouldDisplayEnterStoreMessage /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
-						if (Store.storeIsUnlocked) {
+						if (Store.storeIsUnlocked && canOpenStore) {
 							Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 							Weapon.shouldPlaySwitchWeaponAudio   = true;
 							//storeCanSwitch                       = false;
 							Store.shouldDisplayEnterStoreMessage = false;
+							canOpenStore                         = false;
+						}
+
+						if (!canOpenStore) {
+							openStoreTimer++;
+							if (openStoreTimer > 10) {
+								canOpenStore = true;
+							}
 						}
 					} 
 				}
@@ -244,7 +256,8 @@ public class Arcade extends ControllerInput {
 		if (controller.getButton(BUTTON_ATTACK)) {
 			switch (GameAttributeHelper.gameState) {
 			case Screens.GAME_SCREEN:
-				/*
+				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+					/*
 				if (!canAttack) {
 					attackTimer++;
 					if (attackTimer > SWITCH_TIME_LIMIT) {
@@ -257,28 +270,28 @@ public class Arcade extends ControllerInput {
 					Player.playerIsPerformingAttack = true;
 					canAttack                       = false;
 				} */
-				if (canClick) {
-					Player.playerIsPerformingAttack = true;
-				}
-				if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
-					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-						MagicPearl.isAttacking     = true;
-						MagicPearl.isMovingForward = true;
+					if (canClick) {
+						Player.playerIsPerformingAttack = true;
 					}
-					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-						if (!BirdWeapon.birdIsAttacking) {
-							BirdWeapon.birdIsAttacking = true;
-							BirdWeapon.playAttackSound = true;
-							BirdWeapon.shouldPlaySound = true;
+					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+							MagicPearl.isAttacking     = true;
+							MagicPearl.isMovingForward = true;
+						}
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+							if (!BirdWeapon.birdIsAttacking) {
+								BirdWeapon.birdIsAttacking = true;
+								BirdWeapon.playAttackSound = true;
+								BirdWeapon.shouldPlaySound = true;
+							}
+						}
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+							Paw.hasBeenUsed         = true;
+							Paw.playAttackSound     = true;
 						}
 					}
-					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
-						Paw.hasBeenUsed         = true;
-						Paw.playAttackSound     = true;
-					}
-				}
-				canClick = false;
-				/*
+					canClick = false;
+					/*
 				if (player.getInventory().inventory.size() > 0) {
 					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
@@ -298,6 +311,7 @@ public class Arcade extends ControllerInput {
 						}
 					}
 				}*/
+				}
 			}
 		} else {
 			if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {

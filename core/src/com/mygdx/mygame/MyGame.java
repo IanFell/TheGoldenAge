@@ -177,9 +177,9 @@ public class MyGame extends Game {
 		RumHandler.rumCount   = 0;
 
 		LocationMarker.resetGame();
-		
+
 		CutSceneHandler.resetIntroCutscene();
-		
+
 		SoundHandler.gameOverDeathHasPlayed = false;
 
 		this.create();

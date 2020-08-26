@@ -13,13 +13,16 @@ import maps.MapHandler;
  *
  */
 public class RoastLoader {
-	
-	private final int MEXICO_BEACH = 0;
-	private final int STUMP_HOLE   = 1; 
-	private final int THE_POINT    = 2;
-	private final int WEWA         = 3;
 
-	public static final int AMOUNT_OF_ROASTS = 4;
+	private final int MEXICO_BEACH    = 0;
+	private final int STUMP_HOLE      = 1; 
+	private final int THE_POINT       = 2;
+	private final int WEWA            = 3;
+	private final int APALACHICOLA_01 = 4;
+	private final int APALACHICOLA_02 = 5;
+	private final int APALACHICOLA_03 = 6;
+
+	public static final int AMOUNT_OF_ROASTS = 7;
 
 	private static Roast[] roast = new Roast[AMOUNT_OF_ROASTS];
 
@@ -40,7 +43,19 @@ public class RoastLoader {
 				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 40,
 				11
 				);
-		
+		roast[APALACHICOLA_01] = new Roast(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 25,
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 38
+				);
+		roast[APALACHICOLA_02] = new Roast(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 26,
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 40
+				);
+		roast[APALACHICOLA_03] = new Roast(
+				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 27,
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 42
+				);
+
 		for (int i = 0; i < roast.length; i++) {
 			GameObjectLoader.gameObjectList.add(roast[i]);
 		}
