@@ -329,7 +329,7 @@ public class Arcade extends ControllerInput {
 			canClick = true;
 		}
 
-		if(controller.getButton(BUTTON_JUMP)) {
+		if(controller.getButton(BUTTON_JUMP) && !Store.playerWantsToEnterStore) {
 			if (!Debugger.skipIntroCutscene) {
 				Debugger.skipIntroCutscene = true;
 			}

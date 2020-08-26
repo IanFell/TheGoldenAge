@@ -49,7 +49,7 @@ public class RoastLoader {
 				);
 		roast[APALACHICOLA_02] = new Roast(
 				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 26,
-				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 49
+				GameAttributeHelper.CHUNK_SIX_Y_POSITION_START + 39
 				);
 		roast[APALACHICOLA_03] = new Roast(
 				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 27,
