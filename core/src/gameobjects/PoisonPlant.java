@@ -85,6 +85,7 @@ public class PoisonPlant extends NatureObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(imageLoader.shadow, x, y + 1, width, -height);
 		if (poisonTimer < 200) {
 			batch.draw(imageLoader.poisonPlantOne, x, y, width, -height);
 		} else if (poisonTimer > 200 && poisonTimer < 400) {
