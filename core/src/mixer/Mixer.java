@@ -51,6 +51,7 @@ public class Mixer {
 	public final static float STORM_VOLUME              = MAX_VOLUME;
 	public final static float FIRE_VOLUME               = MAX_VOLUME;
 	public final static float OCEAN_VOLUME              = MAX_VOLUME;
+	public static final float SPLASH_VOLUME             = EIGHTH_VOLUME;
 
 	// Pick up weapons.
 	public final static float PICK_UP_SWORD_VOLUME  = EIGHTH_VOLUME;

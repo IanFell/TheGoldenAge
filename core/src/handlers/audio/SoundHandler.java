@@ -50,7 +50,7 @@ import ui.ObjectiveUi;
  *
  */
 public class SoundHandler {
-	
+
 	public static boolean gameOverDeathHasPlayed = false;
 
 	private boolean enemyDeathSoundCanPlay = true;
@@ -67,6 +67,27 @@ public class SoundHandler {
 
 	private boolean stumpHoleBirdSFXArePlaying = false;
 
+	private final int OAR_SPLASH_TIMER_MAX = 50;
+	private int oarSplashTimer             = 0;
+
+	/**
+	 * 
+	 * @param SoundLoader soundLoader
+	 */
+	private void handleOarSplashAudio(SoundLoader soundLoader) {
+		if (Player.isInWater && !CutScene.gameShouldPause && !Inventory.allInventoryShouldBeRendered) {
+			if (oarSplashTimer < 1) {
+				soundLoader.splash.play(Mixer.SPLASH_VOLUME);
+			}
+			oarSplashTimer++;
+			if (oarSplashTimer > OAR_SPLASH_TIMER_MAX) {
+				oarSplashTimer = 0;
+			}
+		} else {
+			oarSplashTimer = 0;
+		}
+	}
+
 	/**
 	 * 
 	 * @param SoundLoader soundLoader
@@ -82,6 +103,9 @@ public class SoundHandler {
 		}
 
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+
+			handleOarSplashAudio(soundLoader);
+
 			if (CutScene.shouldPlayIntroJingle) {
 				soundLoader.cutscene.play(Mixer.CUTSCENE_INTRO_JINGLE_VOLUME);
 				CutScene.shouldPlayIntroJingle = false;
@@ -305,7 +329,7 @@ public class SoundHandler {
 				soundLoader.pause.play(Mixer.PAUSE_VOLUME);
 				PauseScreen.playSound = false;
 			}
-			
+
 			if (GameOver.triggerGameOver && !gameOverDeathHasPlayed) {
 				soundLoader.death.play(Mixer.DEATH_VOLUME);
 				gameOverDeathHasPlayed = true;
