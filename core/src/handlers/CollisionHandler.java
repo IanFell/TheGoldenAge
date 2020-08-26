@@ -227,6 +227,12 @@ public class CollisionHandler {
 		if (structure.rectangle.overlaps(player.rectangle)) {
 			if (structureName.equalsIgnoreCase("Raw Bar")) {
 				setStoreRenderState();
+			} else if (structureName.equalsIgnoreCase("Piggly Wiggly")) {
+				setStoreRenderState();
+			} else if (structureName.equalsIgnoreCase("Bar")) {
+				setStoreRenderState();
+			} else if (structureName.equalsIgnoreCase("Scallop Cove")) {
+				setStoreRenderState();
 			} else if (structureName.equalsIgnoreCase("Trading Post")) {
 				/**
 				 * Trading Post is where player is introduced to a "store" and must buy something to proceed.
@@ -237,13 +243,7 @@ public class CollisionHandler {
 				} else {
 					Store.storeIsUnlocked = true;
 				}
-			} else if (structureName.equalsIgnoreCase("Piggly Wiggly")) {
-				setStoreRenderState();
-			} else if (structureName.equalsIgnoreCase("Bar")) {
-				setStoreRenderState();
-			} else if (structureName.equalsIgnoreCase("Scallop Cove")) {
-				setStoreRenderState();
-			}
+			} 
 			Store.shouldDisplayEnterStoreMessage = true;
 		} else {
 			Store.shouldDisplayEnterStoreMessage = false;
