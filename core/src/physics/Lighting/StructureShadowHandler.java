@@ -74,7 +74,7 @@ public class StructureShadowHandler {
 				GameAttributeHelper.CHUNK_FIVE_Y_POSITION_START - 90.5f, 
 				BuildingLoader.BUILDING_WIDTH,
 				BuildingLoader.BUILDING_HEIGHT, 
-				imageLoader.barShadow
+				imageLoader.tradingPostShadow
 				);
 	}
 

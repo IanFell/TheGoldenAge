@@ -68,6 +68,8 @@ public class Boss extends Enemy {
 
 	// Used for health meter.  It will get brighter by this percent each time boss is hit.
 	public static float percentToChangeAlphaEachHit;
+	
+	private boolean spinAudioHasBeenSet = false;
 
 	/**
 	 * Constructor.
@@ -242,6 +244,11 @@ public class Boss extends Enemy {
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 
+		if (!spinAudioHasBeenSet) {
+			spinAudioHasBeenPlayed = false;
+			spinAudioHasBeenSet = true;
+		}
+		
 		BossHealthUi.shouldDisplay = false;
 		GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 		if (!dead) {
