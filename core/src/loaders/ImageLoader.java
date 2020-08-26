@@ -119,6 +119,7 @@ public class ImageLoader {
 	// Structure Objects.
 	public Texture scallopCove;
 	public Texture bar;
+	public Texture market;
 	public Texture barShadow;
 	public Texture teePee;
 	public Texture rawbar;
@@ -427,6 +428,7 @@ public class ImageLoader {
 		arrowShadowUp         = new Texture(Gdx.files.internal("artwork/weapons/arrows/ArrowShadowUp.png"));
 
 		// Structure Objects.
+		market       = new Texture(Gdx.files.internal("artwork/structures/Market.png"));
 		scallopCove  = new Texture(Gdx.files.internal("artwork/structures/ScallopCove.png"));
 		bar          = new Texture(Gdx.files.internal("artwork/structures/Bar.png"));
 		barShadow    = new Texture(Gdx.files.internal("artwork/structures/BarShadow.png"));
@@ -769,6 +771,7 @@ public class ImageLoader {
 		arrowShadowUp.dispose();
 
 		// Structure objects.
+		market.dispose();
 		scallopCove.dispose();
 		bar.dispose();
 		barShadow.dispose();

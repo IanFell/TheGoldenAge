@@ -17,6 +17,7 @@ import loaders.flyingbirdloader.FlyingBirdLoader;
 import loaders.hangingloader.HangingLoader;
 import loaders.lighthouseloader.LightHouseLoader;
 import loaders.logloader.LogLoader;
+import loaders.marketloader.MarketLoader;
 import loaders.pigglywigglyloader.PigglyWigglyLoader;
 import loaders.plantloaders.PlantLoader;
 import loaders.poisonplantloader.PoisonPlantLoader;
@@ -42,6 +43,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private MarketLoader marketLoader;
 	private RoastLoader roastLoader;
 	private HangingLoader hangingLoader;
 	private BarLoader barLoader;
@@ -76,6 +78,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
+		marketLoader       = new MarketLoader();
 		roastLoader        = new RoastLoader();
 		flyingBirdLoader   = new FlyingBirdLoader();
 		poisonPlantLoader  = new PoisonPlantLoader();
@@ -111,6 +114,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	private void loadGameWorld(MyGame myGame) {
+		marketLoader.loadMarket(myGame);
 		roastLoader.loadRoastLoader();
 		poisonPlantLoader.loadPoisonPlants();
 		shockPlantLoader.loadShockPlants();
@@ -198,5 +202,7 @@ public class GameWorld {
 		BossHandler.handleBosses(myGame, mapHandler);
 
 		flyingBirdLoader.updateFlyingBirds();
+
+		MarketLoader.market.updateObject(myGame, mapHandler);
 	}
 }

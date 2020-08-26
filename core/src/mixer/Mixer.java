@@ -6,6 +6,7 @@ package mixer;
  *
  */
 public class Mixer {
+	
 	public static final float MINIMUM_VOLUME        = 0f;
 	public static final float SIXTY_FOURTH_VOLUME   = 0.015f;
 	public static final float THIRTY_SECOND_VOLUME  = 0.03f;
@@ -97,7 +98,7 @@ public class Mixer {
 	public final static float AMMO_COLLECT_VOLUME       = MAX_VOLUME;
 	public static final float PAW_COLLECT_VOLUME        = MEDIAN_VOLUME;
 	public static final float DRINK_VOLUME              = THREE_QUARTERS_VOLUME;
-	public static final float TEN_HEARTS_COLLECT_VOLUME = MEDIAN_VOLUME;
+	public static final float TEN_HEARTS_COLLECT_VOLUME = QUARTER_VOLUME;
 
 	// Location marker.
 	public final static float LOCATION_MARKER_HIT_VOLUME  = MAX_VOLUME;
