@@ -22,6 +22,7 @@ import loaders.plantloaders.PlantLoader;
 import loaders.poisonplantloader.PoisonPlantLoader;
 import loaders.quicksandloader.QuickSandLoader;
 import loaders.rawbarloader.RawBarLoader;
+import loaders.roastloader.RoastLoader;
 import loaders.rockloader.RockLoader;
 import loaders.scallopcoveloader.ScallopCoveLoader;
 import loaders.shockplantloader.ShockPlantLoader;
@@ -41,6 +42,7 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private RoastLoader roastLoader;
 	private HangingLoader hangingLoader;
 	private BarLoader barLoader;
 	private static FlyingBirdLoader flyingBirdLoader;
@@ -74,6 +76,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
+		roastLoader        = new RoastLoader();
 		flyingBirdLoader   = new FlyingBirdLoader();
 		poisonPlantLoader  = new PoisonPlantLoader();
 		shockPlantLoader   = new ShockPlantLoader();
@@ -108,6 +111,7 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	private void loadGameWorld(MyGame myGame) {
+		roastLoader.loadRoastLoader();
 		poisonPlantLoader.loadPoisonPlants();
 		shockPlantLoader.loadShockPlants();
 		logLoader.loadLogs();
@@ -162,6 +166,9 @@ public class GameWorld {
 		}
 		for (int i = 0; i < PoisonPlantLoader.AMOUNT_OF_POISON_PLANTS; i++) {
 			PoisonPlantLoader.updatePoisonPlants(player);
+		}
+		for (int i = 0; i < RoastLoader.AMOUNT_OF_ROASTS; i++) {
+			RoastLoader.updateRoasts(myGame, mapHandler);
 		}
 
 		if (!MissionStumpHole.missionIsActive) {

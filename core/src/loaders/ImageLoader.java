@@ -286,6 +286,7 @@ public class ImageLoader {
 
 	// Character objects.
 	public Texture hanging;
+	public Texture roast;
 	public Texture hangingShadow;
 	public Texture knightLeft;
 	public Texture knightRight;
@@ -613,6 +614,7 @@ public class ImageLoader {
 		redSquare   = new Texture(Gdx.files.internal("artwork/debugging/RedSquare.png"));
 
 		// Character objects.
+		roast         = new Texture(Gdx.files.internal("artwork/gamecharacters/enemy/Roast.png"));
 		hanging       = new Texture(Gdx.files.internal("artwork/gamecharacters/enemy/Hanging.png"));
 		hangingShadow = new Texture(Gdx.files.internal("artwork/gamecharacters/enemy/HangingShadow.png"));
 		knightLeft    = new Texture(Gdx.files.internal("artwork/gamecharacters/knight/KnightLeft.png"));
@@ -939,6 +941,7 @@ public class ImageLoader {
 		redSquare.dispose();
 
 		// Character objects.
+		roast.dispose();
 		hanging.dispose();
 		hangingShadow.dispose();
 		knightLeft.dispose();

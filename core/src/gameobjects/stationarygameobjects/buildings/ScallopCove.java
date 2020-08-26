@@ -36,10 +36,9 @@ public class ScallopCove extends Building {
 	 */
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
 		super.updateObject(myGame, mapHandler);
-		CollisionHandler.checkIfPlayerHasCollidedWithStructure(
+		CollisionHandler.checkIfPlayerHasCollidedWithStructureOutsideOfTown(
 				myGame.getGameObject(GameObject.PLAYER_ONE),
 				this,
-				"Scallop Cove",
 				myGame
 				); 
 	}

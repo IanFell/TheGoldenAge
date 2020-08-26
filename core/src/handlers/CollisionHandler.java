@@ -198,10 +198,11 @@ public class CollisionHandler {
 					chest.setChestValuesAfterCollisionWithPlayer();
 					((Player) player).updatePlayerLoot(Chest.LOOT_VALUE);
 
-					AddedToInventory.shouldRender      = true;
-					AddedToInventory.shouldDisplayLoot = true;
-					AddedToInventory.timer             = 0;
-					
+					AddedToInventory.shouldDisplayDagger = false;
+					AddedToInventory.shouldRender        = true;
+					AddedToInventory.shouldDisplayLoot   = true;
+					AddedToInventory.timer               = 0;
+
 					// Testing mission.  Later, this will be controlled.  Right now, it is always on.
 					if (MissionChests.executeMission) {
 						MissionChests.increaseNumberOfChestsOpened();
@@ -229,10 +230,6 @@ public class CollisionHandler {
 				setStoreRenderState();
 			} else if (structureName.equalsIgnoreCase("Piggly Wiggly")) {
 				setStoreRenderState();
-			} else if (structureName.equalsIgnoreCase("Bar")) {
-				setStoreRenderState();
-			} else if (structureName.equalsIgnoreCase("Scallop Cove")) {
-				setStoreRenderState();
 			} else if (structureName.equalsIgnoreCase("Trading Post")) {
 				/**
 				 * Trading Post is where player is introduced to a "store" and must buy something to proceed.
@@ -244,6 +241,25 @@ public class CollisionHandler {
 					Store.storeIsUnlocked = true;
 				}
 			} 
+			Store.shouldDisplayEnterStoreMessage = true;
+		} else {
+			Store.shouldDisplayEnterStoreMessage = false;
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param GameObject structure
+	 * @param MyGame     myGame
+	 */
+	public static void checkIfPlayerHasCollidedWithStructureOutsideOfTown(
+			GameObject player, 
+			GameObject structure, 
+			MyGame myGame
+			) {
+		if (structure.rectangle.overlaps(player.rectangle)) {
+			setStoreRenderState();
 			Store.shouldDisplayEnterStoreMessage = true;
 		} else {
 			Store.shouldDisplayEnterStoreMessage = false;

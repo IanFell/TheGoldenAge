@@ -112,6 +112,7 @@ public class Store extends TextBasedUiParent {
 		}
 
 		if (shouldDisplayEnterStoreMessage) {
+			/*
 			batch.draw(
 					imageLoader.objectiveBackground, 
 					player.getX() - 7.5f, 
@@ -125,7 +126,7 @@ public class Store extends TextBasedUiParent {
 					player.getY(), 
 					14, 
 					-4
-					);
+					); */
 		}
 
 		if (storeShouldBeRendered && playerWantsToEnterStore) {
