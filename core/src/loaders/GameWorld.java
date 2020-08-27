@@ -12,6 +12,7 @@ import loaders.cannonloader.CannonLoader;
 import loaders.chestloader.ChestLoader;
 import loaders.dockloader.DockLoader;
 import loaders.fireloader.FireLoader;
+import loaders.floatingboatloader.FloatingBoatLoader;
 import loaders.flowerloader.FlowerLoader;
 import loaders.flyingbirdloader.FlyingBirdLoader;
 import loaders.hangingloader.HangingLoader;
@@ -28,6 +29,7 @@ import loaders.rockloader.RockLoader;
 import loaders.scallopcoveloader.ScallopCoveLoader;
 import loaders.shockplantloader.ShockPlantLoader;
 import loaders.signloader.SignLoader;
+import loaders.stationaryboatsloader.StationaryBoatsLoader;
 import loaders.stumploader.StumpLoader;
 import loaders.teepeeloader.TeePeeLoader;
 import loaders.tradingpostloader.TradingPostLoader;
@@ -43,6 +45,8 @@ import missions.MissionStumpHole;
  */
 public class GameWorld {
 
+	private static FloatingBoatLoader floatingBoatLoader;
+	private StationaryBoatsLoader stationaryBoatsLoader;
 	private MarketLoader marketLoader;
 	private RoastLoader roastLoader;
 	private HangingLoader hangingLoader;
@@ -78,34 +82,36 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	public GameWorld(MyGame myGame) {
-		marketLoader       = new MarketLoader();
-		roastLoader        = new RoastLoader();
-		flyingBirdLoader   = new FlyingBirdLoader();
-		poisonPlantLoader  = new PoisonPlantLoader();
-		shockPlantLoader   = new ShockPlantLoader();
-		logLoader          = new LogLoader();
-		treeLoader         = new TreeLoader();
-		drSuessTreeLoader  = new DrSuessTreeLoader();
-		plantLoader        = new PlantLoader();
-		chestLoader        = new ChestLoader();
-		teePeeLoader       = new TeePeeLoader();
-		rawBarLoader       = new RawBarLoader();
-		lightHouseLoader   = new LightHouseLoader();
-		fireLoader         = new FireLoader();
-		pigglyWigglyLoader = new PigglyWigglyLoader();
-		rockLoader         = new RockLoader();
-		boulderLoader      = new BoulderLoader();
-		flowerLoader       = new FlowerLoader();
-		signLoader         = new SignLoader();
-		dockLoader         = new DockLoader();
-		tradingPostLoader  = new TradingPostLoader();
-		cannonLoader       = new CannonLoader();
-		stumpLoader        = new StumpLoader();
-		quickSandLoader    = new QuickSandLoader();
-		bossLoader         = new BossLoader();
-		barLoader          = new BarLoader();
-		hangingLoader      = new HangingLoader();
-		scallopCoveLoader  = new ScallopCoveLoader();
+		floatingBoatLoader    = new FloatingBoatLoader();
+		stationaryBoatsLoader = new StationaryBoatsLoader();
+		marketLoader          = new MarketLoader();
+		roastLoader           = new RoastLoader();
+		flyingBirdLoader      = new FlyingBirdLoader();
+		poisonPlantLoader     = new PoisonPlantLoader();
+		shockPlantLoader      = new ShockPlantLoader();
+		logLoader             = new LogLoader();
+		treeLoader            = new TreeLoader();
+		drSuessTreeLoader     = new DrSuessTreeLoader();
+		plantLoader           = new PlantLoader();
+		chestLoader           = new ChestLoader();
+		teePeeLoader          = new TeePeeLoader();
+		rawBarLoader          = new RawBarLoader();
+		lightHouseLoader      = new LightHouseLoader();
+		fireLoader            = new FireLoader();
+		pigglyWigglyLoader    = new PigglyWigglyLoader();
+		rockLoader            = new RockLoader();
+		boulderLoader         = new BoulderLoader();
+		flowerLoader          = new FlowerLoader();
+		signLoader            = new SignLoader();
+		dockLoader            = new DockLoader();
+		tradingPostLoader     = new TradingPostLoader();
+		cannonLoader          = new CannonLoader();
+		stumpLoader           = new StumpLoader();
+		quickSandLoader       = new QuickSandLoader();
+		bossLoader            = new BossLoader();
+		barLoader             = new BarLoader();
+		hangingLoader         = new HangingLoader();
+		scallopCoveLoader     = new ScallopCoveLoader();
 		loadGameWorld(myGame);
 	}
 
@@ -114,6 +120,8 @@ public class GameWorld {
 	 * @param MyGame myGame
 	 */
 	private void loadGameWorld(MyGame myGame) {
+		floatingBoatLoader.loadFloatingBoats();
+		stationaryBoatsLoader.loadStationaryBoats(myGame);
 		marketLoader.loadMarket(myGame);
 		roastLoader.loadRoastLoader();
 		poisonPlantLoader.loadPoisonPlants();
@@ -204,5 +212,7 @@ public class GameWorld {
 		flyingBirdLoader.updateFlyingBirds();
 
 		MarketLoader.market.updateObject(myGame, mapHandler);
+
+		floatingBoatLoader.updateFloatingBoats(myGame, mapHandler);
 	}
 }
