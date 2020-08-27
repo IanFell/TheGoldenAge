@@ -36,7 +36,7 @@ public class MissionRawBar extends Mission {
 	// Time alloted for all phases of mission.
 	public static final float MAX_MISSION_TIME_PHASE_ONE = 7f;
 
-	private final int MAX_OYSTERS_SPAWNED                       = 100;
+	private final int MAX_OYSTERS_SPAWNED                       = 120;
 	public static final int NUMBER_OF_OYSTERS_NEEDED_PHASE_ONE  = 7;
 
 	private int numberOfOystersNeededToWin;

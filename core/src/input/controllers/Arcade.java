@@ -244,7 +244,7 @@ public class Arcade extends ControllerInput {
 
 						if (!canOpenStore) {
 							openStoreTimer++;
-							if (openStoreTimer > 10) {
+							if (openStoreTimer > 20) {
 								canOpenStore = true;
 							}
 						}
