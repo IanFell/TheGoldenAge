@@ -233,7 +233,7 @@ public class Arcade extends ControllerInput {
 						}
 					}
 
-					if (Store.shouldDisplayEnterStoreMessage /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
+					if (Store.shouldDisplayEnterStoreMessage || Store.shouldDisplayEnterStoreMessageAlternate /*&& storeCanSwitch && Store.playerWantsToEnterStore*/) {
 						if (Store.storeIsUnlocked && canOpenStore) {
 							Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 							Weapon.shouldPlaySwitchWeaponAudio   = true;
@@ -329,7 +329,7 @@ public class Arcade extends ControllerInput {
 			canClick = true;
 		}
 
-		if(controller.getButton(BUTTON_JUMP) && !Store.playerWantsToEnterStore) {
+		if(controller.getButton(BUTTON_JUMP) && !Store.playerWantsToEnterStore && !Store.storeShouldBeRendered) {
 			if (!Debugger.skipIntroCutscene) {
 				Debugger.skipIntroCutscene = true;
 			}

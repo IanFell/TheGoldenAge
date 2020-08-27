@@ -23,7 +23,7 @@ import missions.MissionThePoint;
  */
 public class CutSceneHandler {
 
-	private int ENEMY_CUTSCENE_DELAY = 120;
+	private int ENEMY_CUTSCENE_DELAY = 500;
 
 	private static CutSceneJollyRoger cutSceneJollyRoger;
 	private CutSceneCutthroat cutSceneCutthroat;
