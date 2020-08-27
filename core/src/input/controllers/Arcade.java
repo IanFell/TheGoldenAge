@@ -39,7 +39,7 @@ import ui.UserInterface;
  */
 public class Arcade extends ControllerInput {
 
-	private final int SWITCH_TIME_LIMIT = 5;
+	private final int SWITCH_TIME_LIMIT = 3;
 
 	private int buyItemTimer = 0;
 
@@ -256,7 +256,13 @@ public class Arcade extends ControllerInput {
 		if (controller.getButton(BUTTON_ATTACK)) {
 			switch (GameAttributeHelper.gameState) {
 			case Screens.GAME_SCREEN:
-				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+				// TODO IF THIS DOESN'T WORK CHECK HERE.
+				if (
+						!MissionStumpHole.missionIsActive && 
+						!MissionRawBar.phasesAreInProgress && 
+						player.getInventory().inventory.size() > 0 &&
+						!CutScene.gameShouldPause
+						) {
 					/*
 				if (!canAttack) {
 					attackTimer++;

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
+import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
@@ -181,6 +182,8 @@ public class MyGame extends Game {
 		CutSceneHandler.resetIntroCutscene();
 
 		SoundHandler.gameOverDeathHasPlayed = false;
+		
+		getGameObject(Player.PLAYER_ONE).getInventory().inventory.clear();
 
 		this.create();
 	}
