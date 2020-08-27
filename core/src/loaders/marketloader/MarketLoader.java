@@ -24,8 +24,8 @@ public class MarketLoader extends BuildingLoader {
 		market = new Market(
 				GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + 33, 
 				16,
-				BUILDING_WIDTH * 2,
-				BUILDING_HEIGHT / 2,
+				BUILDING_WIDTH * 2 - 2,
+				BUILDING_HEIGHT / 2 - 2,
 				myGame.imageLoader.market
 				);
 		GameObjectLoader.gameObjectList.add(market);
