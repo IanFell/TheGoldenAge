@@ -75,7 +75,7 @@ public class SoundHandler {
 	 * @param SoundLoader soundLoader
 	 */
 	private void handleOarSplashAudio(SoundLoader soundLoader) {
-		if (Player.isInWater && !CutScene.gameShouldPause && !Inventory.allInventoryShouldBeRendered) {
+		if (Player.isInWater && Player.playerIsMoving && !CutScene.gameShouldPause && !Inventory.allInventoryShouldBeRendered) {
 			if (oarSplashTimer < 1) {
 				soundLoader.splash.play(Mixer.SPLASH_VOLUME);
 			}

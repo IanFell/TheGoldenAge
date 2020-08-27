@@ -2,6 +2,7 @@ package missions;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -245,11 +246,17 @@ public class MissionStumpHole extends Mission {
 
 			// Render all three birds in front of water for now.  Uncomment above to change spinning attack bird.
 			attackBird.renderObject(batch, imageLoader);
+			
+			batch.setColor(Color.RED);
 			attackBirdTwo.renderObject(batch, imageLoader);
+			batch.setColor(Color.GREEN);
 			attackBirdThree.renderObject(batch, imageLoader);
+			batch.setColor(Color.WHITE);
 
 			if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
+				batch.setColor(Color.BLUE);
 				rockBird.renderObject(batch, imageLoader);
+				batch.setColor(Color.WHITE);
 			}
 
 			//renderHitBoxes(batch, imageLoader);
