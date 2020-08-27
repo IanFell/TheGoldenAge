@@ -2,6 +2,7 @@ package gameobjects.gamecharacters.players;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
@@ -63,6 +64,9 @@ public class PlayerThree extends Player {
 				 * Only draw player three if we are in life state one.
 				 * If we are in life state 2 or 3, player will still be there, but not render.
 				 */
+				if (PlayerOne.isPoisoned) {
+					batch.setColor(Color.GREEN);
+				}
 				if (lifeState == LIFE_STATE_ONE) {
 					if (!Player.isInvincible) {
 						AnimationHandler.renderAnimation(
@@ -91,7 +95,8 @@ public class PlayerThree extends Player {
 									);
 						}
 					}
-				} 
+				}
+				batch.setColor(Color.WHITE);
 			}
 			if (PlayerOne.isPoisoned) {
 				batch.draw(imageLoader.poisonCover, x, y, width, -height);

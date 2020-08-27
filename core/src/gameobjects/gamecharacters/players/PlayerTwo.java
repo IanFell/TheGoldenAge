@@ -2,6 +2,7 @@ package gameobjects.gamecharacters.players;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
@@ -67,6 +68,10 @@ public class PlayerTwo extends Player {
 			if (!isInWater) {
 				super.renderObject(batch, imageLoader);
 
+				if (PlayerOne.isPoisoned) {
+					batch.setColor(Color.GREEN);
+				}
+				
 				if (lifeState == LIFE_STATE_ONE || lifeState == LIFE_STATE_TWO) {
 					if (!Player.isInvincible) {
 						AnimationHandler.renderAnimation(
@@ -96,6 +101,7 @@ public class PlayerTwo extends Player {
 						}
 					}
 				}
+				batch.setColor(Color.WHITE);
 			}
 			if (PlayerOne.isPoisoned) {
 				batch.draw(imageLoader.poisonCover, x, y, width, -height);

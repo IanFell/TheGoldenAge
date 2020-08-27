@@ -411,6 +411,10 @@ public class PlayerOne extends Player {
 
 		renderBoat(batch, imageLoader);
 
+		if (isPoisoned) {
+			batch.setColor(Color.GREEN);
+		} 
+		
 		if (!Player.isInvincible) {
 			AnimationHandler.renderAnimation(
 					batch, 
@@ -438,6 +442,9 @@ public class PlayerOne extends Player {
 						);
 			}
 		}
+		
+		// Reset batch if player isn't poisoned.
+		batch.setColor(Color.WHITE);
 
 		if (hasTorch) {	
 			torch.renderObject(batch, imageLoader);
