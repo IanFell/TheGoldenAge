@@ -221,6 +221,7 @@ public class WeatherHandler {
 			isStorming            = false;
 			stormTimer            = 0;
 			stormLengthHasBeenSet = false;
+			RainHandler.isRaining = false;
 		}
 	}
 
