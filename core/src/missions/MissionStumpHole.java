@@ -254,9 +254,9 @@ public class MissionStumpHole extends Mission {
 			batch.setColor(Color.WHITE);
 
 			if (playerFeatherScore > FEATHER_VALUE_METER_MAX / 2) {
-				batch.setColor(Color.BLUE);
+				//batch.setColor(Color.BLUE);
 				rockBird.renderObject(batch, imageLoader);
-				batch.setColor(Color.WHITE);
+				//batch.setColor(Color.WHITE);
 			}
 
 			//renderHitBoxes(batch, imageLoader);

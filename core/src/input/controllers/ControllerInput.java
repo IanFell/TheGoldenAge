@@ -435,21 +435,23 @@ public class ControllerInput extends Input {
 				//System.out.print("BACK button pressed \n");
 			}
 			if(controller.getButton(BUTTON_START)) {
-				// If we press start and UI is open, close it.
-				if (clickUiTimer < 1) {
-					Inventory.playClickSound = true;
-					if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
-						Inventory.allInventoryShouldBeRendered = false;
-						MapUi.mapShouldBeRendered              = false;
-					} else {
-						// If we press start and UI is not open, open inventory screen.
-						// We can navigate through inventory screen by pressing RB.
-						Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+					// If we press start and UI is open, close it.
+					if (clickUiTimer < 1) {
+						Inventory.playClickSound = true;
+						if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
+							Inventory.allInventoryShouldBeRendered = false;
+							MapUi.mapShouldBeRendered              = false;
+						} else {
+							// If we press start and UI is not open, open inventory screen.
+							// We can navigate through inventory screen by pressing RB.
+							Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+						}
 					}
-				}
-				clickUiTimer++;
-				if (clickUiTimer > 5) {
-					clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+					clickUiTimer++;
+					if (clickUiTimer > 5) {
+						clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
+					}
 				}
 			}
 		}
