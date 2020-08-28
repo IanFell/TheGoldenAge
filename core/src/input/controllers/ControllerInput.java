@@ -13,6 +13,7 @@ import helpers.ControllerInputHelper;
 import helpers.GameAttributeHelper;
 import input.Input;
 import inventory.Inventory;
+import maps.MapInformationHolder;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import screens.Screens;
@@ -386,17 +387,25 @@ public class ControllerInput extends Input {
 			if (stickIsMoved(AXIS_LEFT_X)) {
 				//System.out.print("LEFT STICK X pressed \n");
 				if (controller.getAxis(AXIS_LEFT_X) < 0) {
-					((Player) player).moveLeft(playerSpeed);
+					if (player.getX() > 0) {
+						((Player) player).moveLeft(playerSpeed);
+					}
 				} /*else*/ if (controller.getAxis(AXIS_LEFT_X) > 0) {
-					((Player) player).moveRight(playerSpeed);
+					if (player.getX() < GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH - 1) {
+						((Player) player).moveRight(playerSpeed);
+					}
 				} 
 			} 
 			if (stickIsMoved(AXIS_LEFT_Y)) {
 				//System.out.print("LEFT STICK Y pressed \n");
 				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
-					((Player) player).moveUp(playerSpeed);
+					if (player.getY() > 0) {
+						((Player) player).moveUp(playerSpeed);
+					}
 				} /*else*/ if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
-					((Player) player).moveDown(playerSpeed);
+					if (player.getY() < GameAttributeHelper.CHUNK_EIGHT_Y_POSITION_START + MapInformationHolder.CHUNK_HEIGHT - 1) {
+						((Player) player).moveDown(playerSpeed);
+					}
 				} 
 			} 
 		}
