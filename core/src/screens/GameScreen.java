@@ -494,7 +494,7 @@ public class GameScreen extends Screens {
 					&& !Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered
 					&& !ControlsUi.controlsShouldBeRendered && !Player.isInWater) {
 				player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject)
-						.renderObject(myGame.renderer.batch, myGame.imageLoader);
+				.renderObject(myGame.renderer.batch, myGame.imageLoader);
 			}
 		}
 
@@ -505,10 +505,12 @@ public class GameScreen extends Screens {
 		}
 
 		// Rain should be in front of all objects.
-		for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
-			weatherHandler.rainHandler[i].renderObject(myGame.renderer.batch, myGame.imageLoader, this);
+		if (WeatherHandler.isStorming()) {
+			for (int i = 0; i < weatherHandler.rainHandler.length; i++) {
+				weatherHandler.rainHandler[i].renderObject(myGame.renderer.batch, myGame.imageLoader, this);
+			}
+			weatherHandler.renderStormCycle(myGame, this);
 		}
-		weatherHandler.renderStormCycle(myGame, this);
 		weatherHandler.renderClouds(myGame);
 	}
 

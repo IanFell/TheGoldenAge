@@ -34,6 +34,15 @@ public class PlayerNameUi {
 			float xOffset, 
 			float yOffset
 			) {
+		
+		batch.draw(
+				imageLoader.objectiveBackground,
+				player.getX() - xOffset + 0.5f,
+				player.getY() + yOffset,
+				9, 
+				-2
+				); 
+		
 		batch.draw(
 				getCurrentPlayerNameImage(getCurrentPlayerNameToDisplayOnUi(), imageLoader), 
 				player.getX() - xOffset + 0.5f, 

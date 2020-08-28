@@ -40,7 +40,7 @@ public class ControllerInput extends Input {
 
 	public static int storeObjectNumber = 0;
 
-	private final int CLICK_TIMER_MAX_VALUE = 15;
+	private final int CLICK_TIMER_MAX_VALUE = 25;
 
 	// Make sure inventory button if held down is not being hit infinite times.
 	protected float clickUiTimer    = GameAttributeHelper.TIMER_START_VALUE;

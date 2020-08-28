@@ -107,9 +107,9 @@ public class Chest extends GamePlayObject {
 			}, amountOfTimeUntilChestIsResetInSecondsAfterItIsOpened);
 		} 
 
-		if (!MissionChests.missionComplete) {
+		//if (!MissionChests.missionComplete) {
 			locationMarker.updateObject();
-		}
+		//}
 	}
 
 	private void setChestToOriginalValues() {

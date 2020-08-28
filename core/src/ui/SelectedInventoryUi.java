@@ -30,15 +30,14 @@ public class SelectedInventoryUi {
 	 */
 	public void renderSelectedInventoryUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame, GameObject player) {
 		int size = 2;
-		// Looks better without this.
-		/*
+		
 		batch.draw(
-				imageLoader.blackSquare,
+				imageLoader.objectiveBackground,
 				player.getX() - 12.0f,
 				player.getY() + 6.0f,
 				size, 
 				-size
-				); */
+				); 
 
 		// Only display inventory object on screen if it is equpped.
 		if (player.getInventory().getInventoryIsEquipped()) {
@@ -70,7 +69,7 @@ public class SelectedInventoryUi {
 						player.getX() - 12.5f,
 						player.getY() + 6.7f,
 						size, 
-						-size * 1.3f
+						-size /* * 1.3f*/
 						);
 			}
 		}
