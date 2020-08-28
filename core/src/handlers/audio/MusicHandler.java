@@ -59,6 +59,37 @@ public class MusicHandler {
 	public static boolean playerHasBeatMission               = false;
 	private boolean missionRawBarStingerHasPlayed            = false;
 	private boolean missionStumpHoleStingerHasPlayed         = false;
+	
+	private boolean shouldPlayBuffStinger                      = false;
+	private int buffStingerTimer                               = 0;
+	private boolean shouldContinueAmbientMusicAfterBuffStinger = true;
+	private boolean isPlayingBuff                              = false;
+	private final int BUFF_DELAY                               = 100;
+	
+	private void handleBuffStingerTiming() {
+		if (isPlayingBuff) {
+			buffStingerTimer++;
+			if (buffStingerTimer > BUFF_DELAY) {
+				buffStingerTimer                           = 0;
+				isPlayingBuff                              = false;
+				shouldContinueAmbientMusicAfterBuffStinger = true;
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleBuffStinger(MusicLoader musicLoader) {
+		if (shouldPlayBuffStinger) {
+			musicLoader.buffOut.setVolume(Mixer.INVINCIBLE_MUSIC_VOLUME);
+			musicLoader.buffOut.play();
+			shouldPlayBuffStinger                      = false;
+			isPlayingBuff                              = true;
+			shouldContinueAmbientMusicAfterBuffStinger = false;
+		}
+	}
 
 	/**
 	 * 
@@ -72,7 +103,10 @@ public class MusicHandler {
 			} else {
 				if (musicLoader.buff.isPlaying()) {
 					musicLoader.buff.stop();
+					handleBuffStinger(musicLoader);
 				}
+				handleBuffStingerTiming();
+				
 				if (NightAndDayCycle.isDayTime()) {
 					handleDayTimeAudio(musicLoader);
 				} else {
@@ -81,6 +115,7 @@ public class MusicHandler {
 				handleFootstepsAudio(musicLoader);
 				handleFireAudio(musicLoader);
 				handleOceanAudio(musicLoader);
+	
 				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
 
@@ -88,7 +123,9 @@ public class MusicHandler {
 				handleCursedPawCollectionAudio(musicLoader);
 
 				if (!CutScene.gameShouldPause) {
-					musicLoader.ambientMusic.play();
+					if (shouldContinueAmbientMusicAfterBuffStinger && !isPlayingBuff) {
+						musicLoader.ambientMusic.play();
+					}
 				} else {
 					musicLoader.ambientMusic.pause();
 				}
@@ -390,6 +427,7 @@ public class MusicHandler {
 		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 			musicLoader.buff.pause();
 		}
+		shouldPlayBuffStinger = true;
 	}
 
 	/**

@@ -24,6 +24,7 @@ public class MusicLoader {
 	public Music bossDeafeatedMusic;
 	public Music bossBattleMusic;
 	public Music buff;
+	public Music buffOut;
 	public Music missionLoop;
 	public Music missionIntro;
 	public Music missionWin;
@@ -52,6 +53,7 @@ public class MusicLoader {
 		bossDeafeatedMusic    = Gdx.audio.newMusic(Gdx.files.internal("audio/music/avalanche.ogg"));
 		bossBattleMusic       = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Combat.ogg"));
 		buff                  = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Buff.ogg"));
+		buffOut               = Gdx.audio.newMusic(Gdx.files.internal("audio/music/BuffOut.ogg"));
 		missionLoop           = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionLoop.ogg"));
 		missionIntro          = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionIntro.ogg"));
 		missionWin            = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionWin.ogg"));
@@ -73,6 +75,7 @@ public class MusicLoader {
 		bossDeafeatedMusic.dispose();
 		bossBattleMusic.dispose();
 		buff.dispose();
+		buffOut.dispose();
 		missionLoop.dispose();
 		missionIntro.dispose();
 		missionWin.dispose();

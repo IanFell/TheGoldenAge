@@ -55,7 +55,7 @@ public class RainHandler extends GameObject {
 			ImageLoader imageLoader, 
 			GameScreen gameScreen
 			) {
-		if (isRaining && !MissionStumpHole.missionIsActive) {
+		if (isRaining /*&& !MissionStumpHole.missionIsActive*/) {
 			batch.setProjectionMatrix(GameScreen.camera.combined);
 			batch.draw(imageLoader.rain, x, y, width, height);
 		}
