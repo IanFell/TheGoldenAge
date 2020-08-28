@@ -19,6 +19,8 @@ public class DesktopLauncher {
 		config.addIcon("artwork/logos/GoldenAgeIcon.png", FileType.Internal);
 		config.title         = "GOLDENAGE";
 		config.foregroundFPS = GameAttributeHelper.FRAMES_PER_SECOND;
+		//config.fullscreen    = true;
+		config.vSyncEnabled  = true;
 
 		// Full screen.
 		float f       = 1.0f;
