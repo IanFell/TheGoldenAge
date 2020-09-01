@@ -66,6 +66,12 @@ public class MusicHandler {
 	private boolean isPlayingBuff                              = false;
 	private final int BUFF_DELAY                               = 100;
 	
+	private boolean shouldPlayBossStinger                      = false;
+	private int bossStingerTimer                               = 0;
+	private boolean shouldContinueAmbientMusicAfterBossStinger = true;
+	private boolean isPlayingBoss                              = false;
+	private final int BOSS_DELAY                               = 100;
+	
 	private void handleBuffStingerTiming() {
 		if (isPlayingBuff) {
 			buffStingerTimer++;
@@ -73,6 +79,17 @@ public class MusicHandler {
 				buffStingerTimer                           = 0;
 				isPlayingBuff                              = false;
 				shouldContinueAmbientMusicAfterBuffStinger = true;
+			}
+		}
+	}
+	
+	private void handleBossStingerTiming() {
+		if (isPlayingBoss) {
+			bossStingerTimer++;
+			if (bossStingerTimer > BOSS_DELAY) {
+				bossStingerTimer                           = 0;
+				isPlayingBoss                              = false;
+				shouldContinueAmbientMusicAfterBossStinger = true;
 			}
 		}
 	}
@@ -88,6 +105,20 @@ public class MusicHandler {
 			shouldPlayBuffStinger                      = false;
 			isPlayingBuff                              = true;
 			shouldContinueAmbientMusicAfterBuffStinger = false;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 */
+	private void handleBossStinger(MusicLoader musicLoader) {
+		if (shouldPlayBossStinger) {
+			musicLoader.bossStinger.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
+			musicLoader.bossStinger.play();
+			shouldPlayBossStinger                      = false;
+			isPlayingBoss                              = true;
+			shouldContinueAmbientMusicAfterBossStinger = false;
 		}
 	}
 
@@ -106,6 +137,12 @@ public class MusicHandler {
 					handleBuffStinger(musicLoader);
 				}
 				handleBuffStingerTiming();
+				/*
+				if (musicLoader.bossBattleMusic.isPlaying()) {
+					musicLoader.bossBattleMusic.stop();
+					handleBossStinger(musicLoader);
+				}
+				handleBossStingerTiming();*/
 				
 				if (NightAndDayCycle.isDayTime()) {
 					handleDayTimeAudio(musicLoader);
@@ -123,7 +160,10 @@ public class MusicHandler {
 				handleCursedPawCollectionAudio(musicLoader);
 
 				if (!CutScene.gameShouldPause) {
-					if (shouldContinueAmbientMusicAfterBuffStinger && !isPlayingBuff) {
+					if (shouldContinueAmbientMusicAfterBuffStinger && 
+							!isPlayingBuff && 
+							shouldContinueAmbientMusicAfterBossStinger
+							) {
 						musicLoader.ambientMusic.play();
 					}
 				} else {
@@ -399,13 +439,17 @@ public class MusicHandler {
 			if (bossExplosionTimer == 0) {
 				musicLoader.bossDeafeatedMusic.setVolume(Mixer.MAX_VOLUME);
 				musicLoader.bossDeafeatedMusic.play();
+				musicLoader.bossStinger.setVolume(Mixer.BOSS_BATTLE_MUSIC_VOLUME);
+				musicLoader.bossStinger.play();
 			}
 			bossExplosionTimer++;
 			if (bossExplosionTimer > EXPLOSION_TIMER_MAX_VALUE) {
 				Boss.shouldPlayExplosionMusic = false;
 				bossExplosionTimer = 0;
 				musicLoader.bossDeafeatedMusic.stop();
+				shouldContinueAmbientMusicAfterBossStinger = true;
 			}
+			shouldContinueAmbientMusicAfterBossStinger = false;
 		} 
 
 		if (CutScene.gameShouldPause || CutSceneBird.anyCutSceneIsInProgress) {
