@@ -32,6 +32,9 @@ import ui.UserInterface;
  */
 public class ControllerInput extends Input {
 
+	// This is a patch for switch inventory slower.
+	private int intventorySwitchTimer = 0;
+
 	private boolean canPressTrigger = true;
 	private int triggerTimer        = 0;
 
@@ -242,6 +245,7 @@ public class ControllerInput extends Input {
 	 * @param MyGame     myGame
 	 */
 	private void pollDPad(GameObject player, MyGame myGame) {
+		intventorySwitchTimer++;
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
 				if (canSelectDifferentOption) {
@@ -265,7 +269,7 @@ public class ControllerInput extends Input {
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_LEFT) {
-			if (Inventory.currentlySelectedInventoryObject > 0) {
+			if (Inventory.currentlySelectedInventoryObject > 0 && intventorySwitchTimer % 5 == 0) {
 				if (InventoryUi.clickedObject > 0) {
 					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, false, player);
 					InventoryUi.clickedObject--;
@@ -280,7 +284,7 @@ public class ControllerInput extends Input {
 				}
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_RIGHT) {
-			if (Inventory.currentlySelectedInventoryObject < 11) {
+			if (Inventory.currentlySelectedInventoryObject < 11 && intventorySwitchTimer % 5 == 0) {
 				if (InventoryUi.clickedObject < player.getInventory().inventory.size() - 1) {
 					selectAlternateInventoryObject(Inventory.currentlySelectedInventoryObject, true, player);
 					InventoryUi.clickedObject++;
