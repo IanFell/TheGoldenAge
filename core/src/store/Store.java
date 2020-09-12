@@ -61,8 +61,8 @@ public class Store extends TextBasedUiParent {
 
 	public static boolean playerIsShortOnLootMessageShouldRender = false;
 
-	private int shortOnLootTimer                                 = 0;
-	private final int SHORT_ON_LOOT_MAX_DISPLAY_VALUE            = 30;
+	public static int shortOnLootTimer                           = 0;
+	public static final int SHORT_ON_LOOT_MAX_DISPLAY_VALUE      = 30;
 
 	/**
 	 * Constructor.

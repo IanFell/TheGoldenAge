@@ -27,6 +27,10 @@ public class CutSceneBird extends CutScene {
 		anyCutSceneIsInProgress = true;
 	}
 
+	public static void resetGame() {
+		shouldPlayWewaObjectiveChangeAudio = false;
+	}
+
 	/**
 	 * 
 	 * @param MyGame myGame

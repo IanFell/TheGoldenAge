@@ -18,6 +18,10 @@ public class CutSceneCutthroat extends CutScene {
 	 */
 	public static boolean bossCanLaugh = false;
 
+	public static void resetGame() {
+		bossCanLaugh = false;
+	}
+
 	/**
 	 * Constructor.
 	 * 

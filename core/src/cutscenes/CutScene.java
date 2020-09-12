@@ -233,4 +233,10 @@ public class CutScene {
 		anyCutSceneIsInProgress      = false;
 		gameShouldPause              = false;
 	}
+
+	public static void resetGame() {
+		anyCutSceneIsInProgress = false;
+		gameShouldPause         = true;
+		shouldPlayIntroJingle   = false;
+	}
 }

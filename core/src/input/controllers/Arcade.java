@@ -377,7 +377,7 @@ public class Arcade extends ControllerInput {
 		}
 
 		if (controller.getButton(BUTTON_SELECT)) {
-			if (Store.shouldDisplayEnterStoreMessage) {
+			if (Store.shouldDisplayEnterStoreMessage || Store.shouldDisplayEnterStoreMessageAlternate) {
 				// TODO IF STORE DOESNT WORK LOOK HERE
 				buyItemTimer++;
 				if (buyItemTimer > SWITCH_TIME_LIMIT) {

@@ -3,6 +3,9 @@ package com.mygdx.mygame;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
+import cutscenes.CutScene;
+import cutscenes.CutSceneBird;
+import cutscenes.CutSceneCutthroat;
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
@@ -162,6 +165,13 @@ public class MyGame extends Game {
 		ObjectiveUi.resetGame();
 		MissionHandler.resetMissions();
 		Store.resetStore();
+		
+		// TODO THESE ARE NEW THINGS ADDED
+		CutScene.resetGame();
+		CutSceneBird.resetGame();
+		CutSceneCutthroat.resetGame();
+		
+		// TODO NEW THINGS ADDED STOP
 
 		Gun.hasBeenCollected       = false;
 		TradingPost.hasBeenEntered = false;
