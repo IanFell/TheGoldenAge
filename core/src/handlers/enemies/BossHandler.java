@@ -31,10 +31,18 @@ public class BossHandler {
 	public static boolean[] laughSoundHasBeenPlayed = new boolean[5];
 
 	private static boolean healthMeterAlphaTradingPostSet = false;
-	private static boolean healthMeterAlphaRawBarSet = false;
-	private static boolean healthMeterAlphaStumpHoleSet = false;
-	private static boolean healthMeterAlphaCauldronSet = false;
-	private static boolean healthMeterAlphaMapSet = false;
+	private static boolean healthMeterAlphaRawBarSet      = false;
+	private static boolean healthMeterAlphaStumpHoleSet   = false;
+	private static boolean healthMeterAlphaCauldronSet    = false;
+	private static boolean healthMeterAlphaMapSet         = false;
+	
+	public static void resetGame() {
+		healthMeterAlphaTradingPostSet = false;
+		healthMeterAlphaRawBarSet      = false;
+		healthMeterAlphaStumpHoleSet   = false;
+		healthMeterAlphaCauldronSet    = false;
+		healthMeterAlphaMapSet         = false;
+	}
 
 	/**
 	 * Constructor.

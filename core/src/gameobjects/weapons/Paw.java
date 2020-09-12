@@ -40,6 +40,12 @@ public class Paw extends GameObjectCollectible {
 	private boolean displayPawOnScreen      = false;
 	private int displayPawOnScreenTimer     = 0;
 	private final int REEMERGE_DISPLAY_TIME = 100;
+	
+	public static void resetGame() {
+		playCollectionSound = false;
+		hasBeenUsed         = false;
+		playAttackSound     = false;
+	}
 
 	/**
 	 * Constructor.

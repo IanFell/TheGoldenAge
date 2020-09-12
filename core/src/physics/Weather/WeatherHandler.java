@@ -45,6 +45,10 @@ public class WeatherHandler {
 	public Cloud[] cloud2 = new Cloud[1];
 	public Cloud[] cloud3 = new Cloud[1];
 	public Cloud[] cloud4 = new Cloud[1];
+	
+	public static void resetGame() {
+		isStorming = false;
+	}
 
 	/**
 	 * Constructor.

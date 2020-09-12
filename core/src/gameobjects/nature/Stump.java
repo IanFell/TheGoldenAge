@@ -26,6 +26,10 @@ public class Stump extends NatureObject {
 	float movementDy;
 
 	public static boolean playerIsOnStump = false;
+	
+	public static void resetGame() {
+		playerIsOnStump = false;
+	}
 
 	/**
 	 * Constructor.

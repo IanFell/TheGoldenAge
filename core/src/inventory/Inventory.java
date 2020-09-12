@@ -39,6 +39,11 @@ public class Inventory extends Screens {
 	private static InventoryUi inventoryUi;
 	public static boolean inventoryHasStartedCollection   = false;
 	public static boolean inventoryObjectHasBeenCollected = false;
+	
+	public static void resetGame() {
+		inventoryHasStartedCollection   = false;
+		inventoryObjectHasBeenCollected = false;
+	}
 
 	/**
 	 * Constructor.

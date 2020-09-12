@@ -26,6 +26,10 @@ public class UnlockUi {
 
 	private int width;
 	private int height;
+	
+	public static void resetGame() {
+		shouldRenderUnlock = true;
+	}
 
 	/**
 	 * Constructor.

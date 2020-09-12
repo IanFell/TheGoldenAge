@@ -24,6 +24,10 @@ public class LightHandler extends AbstractLightingHandler {
 	private float startY = 55;
 
 	public static boolean isGrowing = false;
+	
+	public static void resetGame() {
+		isGrowing = false;
+	}
 
 	/**
 	 * Constructor.

@@ -17,6 +17,10 @@ public class Weapon extends GameObject {
 	public static int WEAPON_TYPE_DAGGER      = 5;
 
 	public static boolean shouldPlaySwitchWeaponAudio = false;
+	
+	public static void resetGame() {
+		shouldPlaySwitchWeaponAudio = false;
+	}
 
 	/**
 	 * Constructor.

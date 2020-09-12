@@ -45,6 +45,10 @@ public class UserInterface {
 	private LivesUi livesUi;
 	private GameOver gameOverScreen;
 	private Win win;
+	
+	public static void resetGame() {
+		userInterfaceOption = 0;
+	}
 
 	/**
 	 * Constructor.

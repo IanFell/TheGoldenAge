@@ -72,6 +72,10 @@ public class MusicHandler {
 	private boolean isPlayingBoss                              = false;
 	private final int BOSS_DELAY                               = 100;
 	
+	public static void resetGame() {
+		playerHasBeatMission = false;
+	}
+	
 	private void handleBuffStingerTiming() {
 		if (isPlayingBuff) {
 			buffStingerTimer++;

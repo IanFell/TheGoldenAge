@@ -29,6 +29,10 @@ public class RainHandler extends GameObject {
 	 * Maximum falling velocity.
 	 */
 	private float maxDy = 0.3f;
+	
+	public static void resetGame() {
+		isRaining = false;
+	}
 
 	/**
 	 * Constructor.

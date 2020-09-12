@@ -66,7 +66,7 @@ public class CutSceneBird extends CutScene {
 					myGame.imageLoader.birdMessage,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

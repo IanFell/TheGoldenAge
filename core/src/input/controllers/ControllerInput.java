@@ -107,6 +107,10 @@ public class ControllerInput extends Input {
 
 	private boolean canPollTriggers  = true;
 	private int pollTriggerTimer     = 0;
+	
+	public static void resetGame() {
+		storeObjectNumber = 0;
+	}
 
 	/**
 	 * If a controller is found, set the name.

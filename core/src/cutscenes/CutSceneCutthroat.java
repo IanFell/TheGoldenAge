@@ -47,7 +47,7 @@ public class CutSceneCutthroat extends CutScene {
 					myGame.imageLoader.cutsceneCutthroat,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

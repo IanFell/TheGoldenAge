@@ -105,6 +105,17 @@ public class Player extends GameCharacter {
 	public static boolean isInQuickSand          = false;
 	public static int quickSandTimer             = 0;
 	private final int QUICK_SAND_TIMER_MAX_VALUE = 50;
+	
+	public static void resetGame() {
+		quickSandTimer     = 0;
+		isInQuickSand      = false;
+		invincibilityTimer = 0;
+		isInvincible       = false;
+		playerIsMoving     = false;
+		jumpCount          = 0;
+		isJumping          = false;
+		isInWater          = false;
+	}
 
 	/**
 	 * Constructor.

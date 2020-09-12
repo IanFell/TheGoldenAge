@@ -19,6 +19,12 @@ public class ShockPlant extends NatureObject {
 
 	public static boolean shouldCheckCollision = true;
 	public static int collisionTimer           = 0;
+	
+	public static void resetGame() {
+		playSparkAudio       = false;
+		shouldCheckCollision = true;
+		collisionTimer       = 0;
+	}
 
 	/**
 	 * Constructor.

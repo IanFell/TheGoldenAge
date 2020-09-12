@@ -69,6 +69,10 @@ public class SoundHandler {
 
 	private final int OAR_SPLASH_TIMER_MAX = 50;
 	private int oarSplashTimer             = 0;
+	
+	public static void resetGame() {
+		gameOverDeathHasPlayed = false;
+	}
 
 	/**
 	 * 

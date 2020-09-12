@@ -19,31 +19,59 @@ import gameobjects.gamecharacters.enemies.Enemy;
 import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
+import gameobjects.nature.Feather;
+import gameobjects.nature.Stump;
+import gameobjects.nature.shockplant.ShockPlant;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
+import gameobjects.weapons.BirdWeapon;
+import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
+import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
+import gameobjects.weapons.Weapon;
+import handlers.CollisionHandler;
 import handlers.CutSceneHandler;
 import handlers.InputHandler;
 import handlers.MissionHandler;
+import handlers.arrowhandler.ArrowHandler;
 import handlers.audio.AudioHandler;
+import handlers.audio.MusicHandler;
 import handlers.audio.SoundHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
+import handlers.enemies.BossHandler;
+import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
 import helpers.GamePlayHelper;
+import input.controllers.ControllerInput;
+import inventory.Inventory;
 import loaders.GameObjectLoader;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
+import physics.Lighting.Fire;
+import physics.Lighting.LightHandler;
+import physics.Weather.LightningBoltHandler;
+import physics.Weather.NightAndDayCycle;
+import physics.Weather.RainHandler;
+import physics.Weather.WeatherHandler;
 import render.Render;
 import screens.ControlsScreen;
 import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
+import ui.AddedToInventory;
 import ui.BossHealthUi;
+import ui.ConfidenceUi;
 import ui.GameOver;
+import ui.InventoryUi;
 import ui.LocationMarker;
 import ui.ObjectiveUi;
+import ui.OutOfAmmo;
+import ui.UnlockUi;
+import ui.UserInterface;
 import ui.Win;
+import ui.collectibles.HealthUi;
 
 /**
  * Main game class.
@@ -169,9 +197,7 @@ public class MyGame extends Game {
 		GameOver.triggerGameOver      = false;
 		Win.triggerWin                = false;
 		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
-		PlayerOne.lives               = 0;
 		GameObjectLoader.gameObjectList.clear(); 
-		ObjectiveUi.resetGame();
 		MissionHandler.resetMissions();
 		Store.resetStore();
 		
@@ -188,10 +214,45 @@ public class MyGame extends Game {
 		Boss.resetGame();
 		Enemy.resetGame();
 		Giant.resetGame();
-		
+		Player.resetGame();
+		PlayerOne.resetGame();
+		Feather.resetGame();
+		Stump.resetGame();
+		ShockPlant.resetGame();
+		BirdWeapon.resetGame();
+		Dagger.resetGame();
+		Gun.resetGame();
+		MagicPearl.resetGame();
+		Paw.resetGame();
+		Weapon.resetGame();
+		CollisionHandler.resetGame();
+		ArrowHandler.resetGame();
+		MusicHandler.resetGame();
+		SoundHandler.resetGame();
+		AmmoHandler.resetGame();
+		RumHandler.resetGame();
+		BossHandler.resetGame();
+		HoleHandler.resetGame();
+		// TODO RESET INPUT BASE CLASS IF THINGS ARE MESSED UP
+		ControllerInput.resetGame();
+		Inventory.resetGame();
+		Fire.resetGame();
+		LightHandler.resetGame();
+		LightningBoltHandler.resetGame();
+		NightAndDayCycle.resetGame();
+		RainHandler.resetGame();
+		WeatherHandler.resetGame();
+		AddedToInventory.resetGame();
+		BossHealthUi.resetGame();
+		ConfidenceUi.resetGame();
+		InventoryUi.resetGame();
+		OutOfAmmo.resetGame();
+		UnlockUi.resetGame();
+		UserInterface.resetGame();
+		HealthUi.resetGame();
+		ObjectiveUi.resetGame();
 		// TODO NEW THINGS ADDED STOP
 
-		Gun.hasBeenCollected       = false;
 		TradingPost.hasBeenEntered = false;
 
 		getGameScreen().getBirdWeapon().hasBeenCollected = false;
@@ -199,11 +260,6 @@ public class MyGame extends Game {
 		for (int i = 0; i < BossLoader.boss.length; i++) {
 			BossLoader.boss[i].setIsDead(false);
 		}
-
-		BossHealthUi.shouldDisplay = false;
-
-		AmmoHandler.ammoCount = 0;
-		RumHandler.rumCount   = 0;
 
 		LocationMarker.resetGame();
 

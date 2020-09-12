@@ -66,6 +66,10 @@ public class CollisionHandler {
 
 	// Times the removal of hearts so they don't dissapear really fast and kill the player.
 	private final static int HEALTH_TIMER_TRIGGER = 24;
+	
+	public static void resetGame() {
+		quickSandTimer = 0;
+	}
 
 	/**
 	 * Only player can collide with solid tiles.
@@ -259,10 +263,10 @@ public class CollisionHandler {
 			MyGame myGame
 			) {
 		if (structure.rectangle.overlaps(player.rectangle)) {
-			setStoreRenderState();
+			//setStoreRenderState();
 			Store.shouldDisplayEnterStoreMessageAlternate = true;
 		} else {
-			Store.shouldDisplayEnterStoreMessageAlternate = false;
+			//Store.shouldDisplayEnterStoreMessageAlternate = false;
 		}
 	}
 

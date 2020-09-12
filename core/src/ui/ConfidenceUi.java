@@ -17,6 +17,10 @@ public class ConfidenceUi extends Screens {
 
 	private int displayTimer            = 0;
 	private final int DISPLAY_MAX_VALUE = 25;
+	
+	public static void resetGame() {
+		confidenceUiShouldBeRendered = false;
+	}
 
 	/**
 	 * Constructor.

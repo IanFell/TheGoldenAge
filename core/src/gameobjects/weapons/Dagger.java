@@ -29,6 +29,10 @@ import ui.Win;
 public class Dagger extends GameObjectCollectible {
 
 	public static boolean playCollectionSound = false;
+	
+	public static void resetGame() {
+		playCollectionSound = false;
+	}
 
 	/**
 	 * Constructor.

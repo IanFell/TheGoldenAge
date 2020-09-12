@@ -32,6 +32,10 @@ public class AmmoHandler extends CollectibleHandler {
 			addRandomlyPlacedAmmo();
 		}
 	}
+	
+	public static void resetGame() {
+		ammoCount = 0;
+	}
 
 	/**
 	 * 

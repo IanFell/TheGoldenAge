@@ -60,7 +60,7 @@ public class CutSceneEnemy extends CutScene {
 					myGame.imageLoader.enemyMessage,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

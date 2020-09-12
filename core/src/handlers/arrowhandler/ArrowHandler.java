@@ -33,6 +33,10 @@ public class ArrowHandler {
 	private final int TOP_BOUNDARY   = 0;
 
 	public static boolean playSound = false;
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * 

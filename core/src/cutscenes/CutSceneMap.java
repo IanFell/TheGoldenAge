@@ -59,7 +59,7 @@ public class CutSceneMap extends CutScene {
 					myGame.imageLoader.mapMessage,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

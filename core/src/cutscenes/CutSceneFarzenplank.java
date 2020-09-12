@@ -59,7 +59,7 @@ public class CutSceneFarzenplank extends CutScene {
 					myGame.imageLoader.cutsceneFarzenplank,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

@@ -88,6 +88,13 @@ public class PlayerOne extends Player {
 	public static ArrayList<Integer> playerDirections  = new ArrayList<Integer>();
 
 	public static boolean playDeathSound = false;
+	
+	public static void resetGame() {
+		playDeathSound           = false;
+		lives                    = 0;
+		isPoisoned               = false;
+		shouldPlayExplosionMusic = false;
+	}
 
 	/**
 	 * Constructor.

@@ -41,6 +41,10 @@ public class NightAndDayCycle extends GameObject {
 	 * we change from day to night, or night to day.
 	 */
 	private float duration = 10;
+	
+	public static void resetGame() {
+		isDayTime = true;
+	}
 
 	/**
 	 * Changes background color from blue to black, or black to blue, depending on time of day.

@@ -1,10 +1,12 @@
 package gameobjects.stationarygameobjects.buildings;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import handlers.CollisionHandler;
+import loaders.ImageLoader;
 import maps.MapHandler;
 
 /**
@@ -41,5 +43,11 @@ public class Bar extends Building {
 				this,
 				myGame
 				); 
+		handleEnterStoreTimer();
+	}
+	
+	@Override
+	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		super.renderObject(batch, imageLoader);
 	}
 }

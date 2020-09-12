@@ -31,6 +31,10 @@ public class RumHandler extends CollectibleHandler {
 			addRandomlyPlacedRum();
 		}
 	}
+	
+	public static void resetGame() {
+		rumCount = 0;
+	}
 
 	/**
 	 * 

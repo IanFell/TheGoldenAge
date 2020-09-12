@@ -74,7 +74,7 @@ public class CutSceneJollyRoger extends CutScene {
 					imageLoader.cutsceneJollyRoger,
 					startXPosition, 
 					startYPosition + 4,
-					width,
+					width + 0.2f,
 					-height
 					);
 			renderBorder(batch, imageLoader, myGame);

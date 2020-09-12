@@ -45,6 +45,11 @@ public class HoleHandler {
 	private Rectangle recTwo;
 
 	private TownHandler townHandler = new TownHandler();
+	
+	public static void resetGame() {
+		playerIsInHole = false;
+		playSound      = false;
+	}
 
 	/**
 	 * 

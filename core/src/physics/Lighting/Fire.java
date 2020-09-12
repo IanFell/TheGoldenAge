@@ -29,6 +29,10 @@ public class Fire extends GameObject {
 	public static boolean playSound = false;
 
 	private Rectangle boundingAudibleRectangle = new Rectangle();
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * Constructor.

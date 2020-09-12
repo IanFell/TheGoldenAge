@@ -17,6 +17,10 @@ import missions.MissionStumpHole;
 public class Feather extends NatureObject {
 
 	public static boolean playSound = false;
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * Constructor.

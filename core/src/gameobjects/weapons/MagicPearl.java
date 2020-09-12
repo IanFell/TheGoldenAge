@@ -40,6 +40,10 @@ public class MagicPearl extends Weapon {
 	private float pearlStartThrowXPosition      = 0;
 	private boolean setPearlThrowXPosition      = true;
 	private boolean pearlHasReachedPeakDistance = false;
+	
+	public static void resetGame() {
+		playCollectionSound = false;
+	}
 
 	/**
 	 * Constructor.

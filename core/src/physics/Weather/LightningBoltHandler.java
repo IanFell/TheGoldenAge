@@ -39,6 +39,10 @@ public class LightningBoltHandler {
 
 	private static Texture texture;
 	
+	public static void resetGame() {
+		renderLightningBoltTime = 0;
+	}
+	
 	public static void init() {
 		setTexture(new Texture("artwork/nature/lightningbolt.png"));
 	}

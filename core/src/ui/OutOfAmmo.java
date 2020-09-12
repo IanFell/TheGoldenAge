@@ -21,6 +21,11 @@ public class OutOfAmmo extends GameObject {
 	private final int DISPLAY_VALUE = 50;
 
 	public static boolean playBuzzerAudio = false;
+	
+	public static void resetGame() {
+		playBuzzerAudio = false;
+		shouldRender    = false;
+	}
 
 
 	/**

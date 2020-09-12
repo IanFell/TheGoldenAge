@@ -30,6 +30,10 @@ import screens.Screens;
 public class InventoryUi extends Screens {
 
 	public static int clickedObject = 0;
+	
+	public static void resetGame() {
+		clickedObject = 0;
+	}
 
 	/**
 	 * Constructor.

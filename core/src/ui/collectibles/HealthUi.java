@@ -22,6 +22,10 @@ public class HealthUi {
 	private int flashTimer = 0;
 
 	private final int FLASH_MAX_VALUE = 50;
+	
+	public static void resetGame() {
+		heartsShouldFlashWhite = false;
+	}
 
 	/**
 	 * 

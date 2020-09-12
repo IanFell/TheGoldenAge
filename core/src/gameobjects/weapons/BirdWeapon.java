@@ -46,6 +46,13 @@ public class BirdWeapon extends Weapon {
 	private int direction;
 
 	private float attackTimer = 0;
+	
+	public static void resetGame() {
+		shouldPlaySound     = false;
+		playAttackSound     = false;
+		playCollectionSound = false;
+		birdIsAttacking     = false;
+	}
 
 	/**
 	 * Constructor.

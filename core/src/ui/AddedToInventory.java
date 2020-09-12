@@ -29,6 +29,23 @@ public class AddedToInventory extends GameObject {
 
 	private final int DISPLAY_VALUE = 50;
 
+	public static void resetGame() {
+		shouldDisplayLegendSword = false;
+		shouldDisplayMagicPearl  = false;
+		shouldDisplayGun         = false;
+		shouldDisplayWoody       = false;
+		shouldDisplayHealth      = false;
+		shouldDisplayRum         = false;
+		shouldDisplayAmmo        = false;
+		shouldDisplayPaw         = false;
+		shouldDisplayDagger      = false;
+		shouldDisplayLoot        = false;
+
+		shouldRender = false;
+
+		timer = 0;
+	}
+
 	/**
 	 * Constructor.
 	 */

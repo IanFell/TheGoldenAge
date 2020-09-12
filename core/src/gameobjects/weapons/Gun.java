@@ -35,6 +35,12 @@ public class Gun extends Weapon {
 	private TextureRegion textureRegion;
 
 	public static boolean playCollectionSound = false;
+	
+	public static void resetGame() {
+		playCollectionSound = false;
+		shouldNotRender     = true;
+		hasBeenCollected    = false;
+	}
 
 	/**
 	 * Constructor.

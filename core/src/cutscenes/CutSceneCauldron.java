@@ -60,7 +60,7 @@ public class CutSceneCauldron extends CutScene {
 					myGame.imageLoader.cauldronMessage,
 					GameScreen.camera.position.x, 
 					GameScreen.camera.position.y,
-					width,
+					width + 0.2f,
 					-height
 					);
 

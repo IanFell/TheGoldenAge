@@ -21,6 +21,12 @@ public class BossHealthUi extends GameObject {
 
 	// Change transparancy of image this value + Boss.percentToChangeAlphaEachHit to make image get brighter.
 	public static float alpha = 0;
+	
+	public static void resetGame() {
+		shouldChangeAlpha = false;
+		shouldDisplay     = false;
+		alpha             = 0;
+	}
 
 	/**
 	 * Constructor.
