@@ -126,7 +126,7 @@ public class SoundHandler {
 				soundLoader.bird.play(Mixer.PICK_UP_BIRD_VOLUME);
 				BirdWeapon.playCollectionSound = false;
 			}
-			if (Paw.playCollectionSound) {
+			if (Paw.playCollectionSound && !Player.isInvincible) {
 				soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
 			}
 			if (Dagger.playCollectionSound) {
@@ -187,7 +187,7 @@ public class SoundHandler {
 							soundLoader.buzzer.play(Mixer.BUZZER_VOLUME);
 						}
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
-						if (Paw.playAttackSound) {
+						if (Paw.playAttackSound && !Player.isInvincible) {
 							soundLoader.bombSound.play(Mixer.PAW_BOMB_VOLUME);
 						}
 					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Dagger) {
