@@ -105,7 +105,7 @@ public class CutSceneFarzenplank extends CutScene {
 	 * This method takes care of shrinking the cover rows to make the text appear to render one letter at a time.
 	 */
 	private void updateCoveringRows() {
-		float shrinkValue = 0.1f;
+		float shrinkValue = 0.2f;
 		if (coveringRow[COVER_ROW_ONE].getWidth() > 0) {
 			coveringRow[COVER_ROW_ONE].setX(coveringRow[COVER_ROW_ONE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_ONE].setWidth(coveringRow[COVER_ROW_ONE].getWidth() - shrinkValue);
