@@ -165,8 +165,8 @@ public class MusicHandler {
 
 				if (!CutScene.gameShouldPause) {
 					if (shouldContinueAmbientMusicAfterBuffStinger && 
-							!isPlayingBuff && 
-							shouldContinueAmbientMusicAfterBossStinger
+							!isPlayingBuff // && 
+							// shouldContinueAmbientMusicAfterBossStinger
 							) {
 						musicLoader.ambientMusic.play();
 					}
@@ -240,7 +240,7 @@ public class MusicHandler {
 	 * @param MusicLoader musicLoader
 	 */
 	private void handleCursedPawWeaponAudio(MusicLoader musicLoader) {
-		if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause) {
+		if (Player.playerIsPerformingAttack && !CutScene.gameShouldPause && !Player.isInvincible) {
 			if (Paw.playAttackSound) {
 				musicLoader.monkey.setVolume(Mixer.PAW_ATTACK_VOLUME);
 				musicLoader.monkey.play();
@@ -257,7 +257,7 @@ public class MusicHandler {
 	 * @param MusicLoader musicLoader
 	 */
 	private void handleCursedPawCollectionAudio(MusicLoader musicLoader) {
-		if (Paw.playCollectionSound) {
+		if (Paw.playCollectionSound && !Player.isInvincible) {
 			musicLoader.monkey.setVolume(Mixer.PAW_COLLECT_VOLUME);
 			musicLoader.monkey.play();
 			Paw.playCollectionSound = false;

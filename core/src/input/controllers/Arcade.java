@@ -276,7 +276,7 @@ public class Arcade extends ControllerInput {
 					Player.playerIsPerformingAttack = true;
 					canAttack                       = false;
 				} */
-					if (canClick) {
+					if (canClick && player.getInventory().inventory.size() > 0) {
 						Player.playerIsPerformingAttack = true;
 					}
 					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) != null) {
