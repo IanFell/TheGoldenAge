@@ -14,8 +14,10 @@ import loaders.ImageLoader;
 import loaders.bulletloader.BulletLoader;
 import maps.MapHandler;
 import store.Store;
+import ui.GameOver;
 import ui.MapUi;
 import ui.OutOfAmmo;
+import ui.Win;
 
 /**
  * 
@@ -139,19 +141,20 @@ public class Gun extends Weapon {
 	 * @param MyGame        myGame
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
-		int value = 1;
-		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
-			// Only render gun if we have enough loot and have entered trading post to buy gun.
-			if (TradingPost.hasBeenEntered) {
-				if (!hasBeenCollected) {	
-					if (!MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered) {
-						/**
-						 * This is commented out because now, player has to BUY the gun from the Trading Post, 
-						 * and this is no longer needed.  
-						 * 
-						 * Keep it for now in case we change the gun back to a regular collectible.
-						 */
-						/*
+		if (!GameOver.triggerGameOver && !Win.triggerWin) {
+			int value = 1;
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+				// Only render gun if we have enough loot and have entered trading post to buy gun.
+				if (TradingPost.hasBeenEntered) {
+					if (!hasBeenCollected) {	
+						if (!MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered) {
+							/**
+							 * This is commented out because now, player has to BUY the gun from the Trading Post, 
+							 * and this is no longer needed.  
+							 * 
+							 * Keep it for now in case we change the gun back to a regular collectible.
+							 */
+							/*
 						batch.draw(
 								textureRegion, 
 								x, 
@@ -164,35 +167,36 @@ public class Gun extends Weapon {
 								value, 
 								rotationAngle
 								); */
+						}
+					} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped && !Inventory.allInventoryShouldBeRendered) {
+						//System.out.println("getting here");
+						batch.draw(
+								textureRegion, 
+								x, 
+								y, 
+								width, 
+								height, 
+								width, 
+								-height, 
+								value, 
+								value, 
+								rotationAngle
+								);
+					} else if (Inventory.allInventoryShouldBeRendered) {
+						textureRegion = new TextureRegion(imageLoader.gunRight);
+						batch.draw(
+								textureRegion, 
+								x, 
+								y, 
+								width, 
+								height, 
+								width, 
+								-height, 
+								value, 
+								value, 
+								0
+								);
 					}
-				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped && !Inventory.allInventoryShouldBeRendered) {
-					//System.out.println("getting here");
-					batch.draw(
-							textureRegion, 
-							x, 
-							y, 
-							width, 
-							height, 
-							width, 
-							-height, 
-							value, 
-							value, 
-							rotationAngle
-							);
-				} else if (Inventory.allInventoryShouldBeRendered) {
-					textureRegion = new TextureRegion(imageLoader.gunRight);
-					batch.draw(
-							textureRegion, 
-							x, 
-							y, 
-							width, 
-							height, 
-							width, 
-							-height, 
-							value, 
-							value, 
-							0
-							);
 				}
 			}
 		}

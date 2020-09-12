@@ -73,6 +73,10 @@ public class Enemy extends GameCharacter {
 	protected boolean explosionShouldBeCreated;
 
 	private final int ENEMY_EXPLOSION_SIZE = 2;
+	
+	public static void resetGame() {
+		playDeathSound = false;
+	}
 
 	/**
 	 * Constructor.

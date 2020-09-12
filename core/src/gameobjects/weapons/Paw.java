@@ -14,7 +14,9 @@ import loaders.ImageLoader;
 import maps.MapHandler;
 import screens.GameScreen;
 import store.Store;
+import ui.GameOver;
 import ui.MapUi;
+import ui.Win;
 
 /**
  * 
@@ -142,60 +144,62 @@ public class Paw extends GameObjectCollectible {
 	 * @param MyGame       myGame
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
-		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this) && !hasBeenUsed) {
-			if (!hasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
-				batch.draw(
-						imageLoader.paw, 
-						x, 
-						y, 
-						width, 
-						-height
-						);
+		if (!GameOver.triggerGameOver && !Win.triggerWin) {
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(this) && !hasBeenUsed) {
+				if (!hasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
+					batch.draw(
+							imageLoader.paw, 
+							x, 
+							y, 
+							width, 
+							-height
+							);
+				}
+				else if (Inventory.allInventoryShouldBeRendered) {
+					batch.draw(
+							imageLoader.paw, 
+							x, 
+							y, 
+							width, 
+							-height
+							);
+				} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
+					batch.draw(
+							imageLoader.paw, 
+							x, 
+							y, 
+							width, 
+							-height
+							);
+				}
 			}
-			else if (Inventory.allInventoryShouldBeRendered) {
-				batch.draw(
-						imageLoader.paw, 
-						x, 
-						y, 
-						width, 
-						-height
-						);
-			} else if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw) {
-				batch.draw(
-						imageLoader.paw, 
-						x, 
-						y, 
-						width, 
-						-height
-						);
-			}
-		}
 
-		// Display the paw on screen when it comes back.
-		if (displayPawOnScreen) {
-			GameObject player     = myGame.getGameObject(Player.PLAYER_ONE);
-			int weaponNameUiWidth = 10;
-			batch.draw(
-					imageLoader.paw, 
-					player.getX(), 
-					player.getY() - 3, 
-					width, 
-					-height
-					);
-			myGame.renderer.batch.draw(
-					myGame.imageLoader.pawUi, 
-					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
-					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 6, 
-					weaponNameUiWidth, 
-					-height
-					);
-			myGame.renderer.batch.draw(
-					myGame.imageLoader.addedToInventory, 
-					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
-					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 4, 
-					weaponNameUiWidth, 
-					-height
-					);
+			// Display the paw on screen when it comes back.
+			if (displayPawOnScreen) {
+				GameObject player     = myGame.getGameObject(Player.PLAYER_ONE);
+				int weaponNameUiWidth = 10;
+				batch.draw(
+						imageLoader.paw, 
+						player.getX(), 
+						player.getY() - 3, 
+						width, 
+						-height
+						);
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.pawUi, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 6, 
+						weaponNameUiWidth, 
+						-height
+						);
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.addedToInventory, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 4, 
+						weaponNameUiWidth, 
+						-height
+						);
+			}
 		}
 	}
 }

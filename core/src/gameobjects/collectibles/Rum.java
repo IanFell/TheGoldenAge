@@ -18,6 +18,11 @@ public class Rum extends GameObjectCollectible {
 	public static boolean playSound;
 	
 	public static boolean playDrinkingSound = false;
+	
+	public static void resetGame() {
+		playSound         = false;
+		playDrinkingSound =  false;
+	}
 
 	/**
 	 * Constructor.

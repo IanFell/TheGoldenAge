@@ -25,6 +25,13 @@ public class PoisonPlant extends NatureObject {
 
 	private final int POISON_TIMER_MAX = 2000;
 
+	public static void resetGame() {
+		playPoisonAudio      = false;
+		shouldCheckCollision = true;
+		collisionTimer       = 0;
+		playPoisonSound      = false;
+	}
+
 	/**
 	 * Constructor.
 	 * 

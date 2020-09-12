@@ -18,6 +18,10 @@ public class TenHearts extends GameObjectCollectible {
 	public static final float HEALTH = 10;
 
 	public static boolean playSound  = false;
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * Constructor.

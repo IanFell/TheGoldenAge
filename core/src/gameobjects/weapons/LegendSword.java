@@ -15,6 +15,8 @@ import inventory.Inventory;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
+import ui.GameOver;
+import ui.Win;
 
 /**
  * 
@@ -60,49 +62,64 @@ public class LegendSword extends Weapon {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
-			if (hasBeenCollected || Inventory.allInventoryShouldBeRendered) {
-				if (!Player.isInWater || Inventory.allInventoryShouldBeRendered) { 
-					batch.draw(
-							textureRegionFull, 
-							x, 
-							y, 
-							width / 2, 
-							height / 2, 
-							width, 
-							-height, 
-							1, 
-							1, 
-							rotationAngle
-							); 
-				} else if (Player.isInWater && Inventory.allInventoryShouldBeRendered) {
-					batch.draw(
-							textureRegionFull, 
-							x, 
-							y, 
-							width / 2, 
-							height / 2, 
-							width, 
-							-height, 
-							1, 
-							1, 
-							rotationAngle
-							); 
-				} else if (Player.isInWater && !Inventory.allInventoryShouldBeRendered) {
-					float xPos = x;
-					float yPos = y - 1;
-					switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
-					case DIRECTION_UP:
-						xPos = xPos + 1;
-						break;
-					case DIRECTION_DOWN:
-						xPos = xPos + 1;
-						break;
+		if (!GameOver.triggerGameOver && !Win.triggerWin) {
+			if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+				if (hasBeenCollected || Inventory.allInventoryShouldBeRendered) {
+					if (!Player.isInWater || Inventory.allInventoryShouldBeRendered) { 
+						batch.draw(
+								textureRegionFull, 
+								x, 
+								y, 
+								width / 2, 
+								height / 2, 
+								width, 
+								-height, 
+								1, 
+								1, 
+								rotationAngle
+								); 
+					} else if (Player.isInWater && Inventory.allInventoryShouldBeRendered) {
+						batch.draw(
+								textureRegionFull, 
+								x, 
+								y, 
+								width / 2, 
+								height / 2, 
+								width, 
+								-height, 
+								1, 
+								1, 
+								rotationAngle
+								); 
+					} else if (Player.isInWater && !Inventory.allInventoryShouldBeRendered) {
+						float xPos = x;
+						float yPos = y - 1;
+						switch (PlayerOne.playerDirections.get(PlayerOne.playerDirections.size() - 1)) {
+						case DIRECTION_UP:
+							xPos = xPos + 1;
+							break;
+						case DIRECTION_DOWN:
+							xPos = xPos + 1;
+							break;
+						}
+						batch.draw(
+								textureRegionFull, 
+								xPos, 
+								yPos, 
+								width / 2, 
+								height / 2, 
+								width, 
+								-height, 
+								1, 
+								1, 
+								rotationAngle
+								); 
 					}
+				} else {
 					batch.draw(
-							textureRegionFull, 
-							xPos, 
-							yPos, 
+							textureRegionHalf, 
+							x, 
+							y, 
 							width / 2, 
 							height / 2, 
 							width, 
@@ -111,25 +128,12 @@ public class LegendSword extends Weapon {
 							1, 
 							rotationAngle
 							); 
+					int plantSize = 1;
+					batch.draw(imageLoader.plant, x, y + 0.5f, plantSize, -plantSize);
 				}
-			} else {
-				batch.draw(
-						textureRegionHalf, 
-						x, 
-						y, 
-						width / 2, 
-						height / 2, 
-						width, 
-						-height, 
-						1, 
-						1, 
-						rotationAngle
-						); 
-				int plantSize = 1;
-				batch.draw(imageLoader.plant, x, y + 0.5f, plantSize, -plantSize);
 			}
+			//renderHitBox(batch, imageLoader);
 		}
-		//renderHitBox(batch, imageLoader);
 	}
 
 	/**

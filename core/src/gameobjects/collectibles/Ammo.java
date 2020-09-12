@@ -17,6 +17,10 @@ import maps.MapHandler;
 public class Ammo extends GameObjectCollectible {
 
 	public static boolean playSound = false;
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * Constructor.

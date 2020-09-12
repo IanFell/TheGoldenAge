@@ -55,6 +55,11 @@ public class Giant extends Enemy {
 	private final int AMOUNT_OF_TIME_DEAD = 200;
 	
 	private int explosionTimer = 0;
+	
+	public static void resetGame() {
+		playLandingSound    = false;
+		playGiantDeathSound = false;
+	}
 
 	/**
 	 * Constructor.

@@ -19,6 +19,8 @@ import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import maps.MapHandler;
 import missions.MissionStumpHole;
+import ui.GameOver;
+import ui.Win;
 
 /**
  * 
@@ -212,40 +214,15 @@ public class BirdWeapon extends Weapon {
 	 * @param MyGame      myGame
 	 */
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
-		if (MissionStumpHole.stumpHoleMissionComplete) {
-			updateElapsedTime();
-			Animation <TextureRegion> animation = animationLeft;
-			if (direction == DIRECTION_RIGHT) {
-				animation = animationRight;
-			}
+		if (!GameOver.triggerGameOver && !Win.triggerWin) {
+			if (MissionStumpHole.stumpHoleMissionComplete) {
+				updateElapsedTime();
+				Animation <TextureRegion> animation = animationLeft;
+				if (direction == DIRECTION_RIGHT) {
+					animation = animationRight;
+				}
 
-			if (!hasBeenCollected) {
-				AnimationHandler.renderAnimation(
-						batch, 
-						elapsedTime, 
-						animation, 
-						x, 
-						y, 
-						width, 
-						height,
-						imageLoader, 
-						AnimationHandler.OBJECT_TYPE_BIRD
-						);
-			} else if ((myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped) || Inventory.allInventoryShouldBeRendered) {
-				if (Inventory.allInventoryShouldBeRendered) {
-					// Force bird to face right if inventory is open.
-					AnimationHandler.renderAnimation(
-							batch, 
-							elapsedTime, 
-							animationRight, 
-							x, 
-							y, 
-							width, 
-							height,
-							imageLoader, 
-							AnimationHandler.OBJECT_TYPE_BIRD
-							);
-				} else {
+				if (!hasBeenCollected) {
 					AnimationHandler.renderAnimation(
 							batch, 
 							elapsedTime, 
@@ -257,8 +234,35 @@ public class BirdWeapon extends Weapon {
 							imageLoader, 
 							AnimationHandler.OBJECT_TYPE_BIRD
 							);
+				} else if ((myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) == this && Inventory.inventoryIsEquipped) || Inventory.allInventoryShouldBeRendered) {
+					if (Inventory.allInventoryShouldBeRendered) {
+						// Force bird to face right if inventory is open.
+						AnimationHandler.renderAnimation(
+								batch, 
+								elapsedTime, 
+								animationRight, 
+								x, 
+								y, 
+								width, 
+								height,
+								imageLoader, 
+								AnimationHandler.OBJECT_TYPE_BIRD
+								);
+					} else {
+						AnimationHandler.renderAnimation(
+								batch, 
+								elapsedTime, 
+								animation, 
+								x, 
+								y, 
+								width, 
+								height,
+								imageLoader, 
+								AnimationHandler.OBJECT_TYPE_BIRD
+								);
+					}
+					//renderHitBox(batch, imageLoader);
 				}
-				//renderHitBox(batch, imageLoader);
 			}
 		}
 	}

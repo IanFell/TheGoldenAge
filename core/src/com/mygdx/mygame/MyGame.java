@@ -6,8 +6,17 @@ import com.badlogic.gdx.Gdx;
 import cutscenes.CutScene;
 import cutscenes.CutSceneBird;
 import cutscenes.CutSceneCutthroat;
+import debugging.Debugger;
 import factories.GameObjectFactory;
 import gameobjects.GameObject;
+import gameobjects.PoisonPlant;
+import gameobjects.collectibles.Ammo;
+import gameobjects.collectibles.Heart;
+import gameobjects.collectibles.Rum;
+import gameobjects.collectibles.TenHearts;
+import gameobjects.gamecharacters.enemies.Boss;
+import gameobjects.gamecharacters.enemies.Enemy;
+import gameobjects.gamecharacters.enemies.Giant;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
@@ -170,6 +179,15 @@ public class MyGame extends Game {
 		CutScene.resetGame();
 		CutSceneBird.resetGame();
 		CutSceneCutthroat.resetGame();
+		Debugger.resetGame();
+		PoisonPlant.resetGame();
+		Ammo.resetGame();
+		Heart.resetGame();
+		Rum.resetGame();
+		TenHearts.resetGame();
+		Boss.resetGame();
+		Enemy.resetGame();
+		Giant.resetGame();
 		
 		// TODO NEW THINGS ADDED STOP
 

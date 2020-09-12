@@ -39,6 +39,10 @@ public class Debugger {
 			}
 		}
 	}
+	
+	public static void resetGame() {
+		skipIntroCutscene = false;
+	}
 
 	/*
 	public static void printGettingHereStatement() {

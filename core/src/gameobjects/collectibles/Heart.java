@@ -19,6 +19,10 @@ public class Heart extends GameObjectCollectible {
 	public static final int HEALTH = 1;
 
 	public static boolean playSound = false;
+	
+	public static void resetGame() {
+		playSound = false;
+	}
 
 	/**
 	 * Constructor.
