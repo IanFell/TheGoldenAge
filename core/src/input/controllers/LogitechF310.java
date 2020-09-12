@@ -38,6 +38,10 @@ import ui.MapUi;
  */
 public class LogitechF310 extends ControllerInput {
 
+	private boolean inventoryHasClosedAndPlayerIsAllowedToJump = true;
+	private int inventoryJumpingTimer                          = 0;
+	private final int INVENTORY_JUMP_TIMER_VALUE               = 10;
+
 	/**
 	 * Trigger buttons.
 	 */
@@ -122,6 +126,16 @@ public class LogitechF310 extends ControllerInput {
 		}
 	}
 
+	private void handleInventoryJumpingTimer() {
+		if (!inventoryHasClosedAndPlayerIsAllowedToJump) {
+			inventoryJumpingTimer++;
+			if (inventoryJumpingTimer > INVENTORY_JUMP_TIMER_VALUE) {
+				inventoryJumpingTimer                      = 0;
+				inventoryHasClosedAndPlayerIsAllowedToJump = true;
+			}
+		}
+	}
+
 	/**
 	 * Polls controller for A, B, X, and Y.
 	 * 
@@ -130,6 +144,7 @@ public class LogitechF310 extends ControllerInput {
 	@Override
 	protected void pollMainFourButtons(GameObject player, MyGame myGame) {
 		super.pollMainFourButtons(player, myGame);
+		handleInventoryJumpingTimer();
 		if(controller.getButton(BUTTON_Y)) {
 			// Enter store.
 			if (canClick) {
@@ -171,7 +186,9 @@ public class LogitechF310 extends ControllerInput {
 					}
 				} else {
 					if (!Inventory.allInventoryShouldBeRendered) {
-						Player.isJumping = true;
+						if (inventoryHasClosedAndPlayerIsAllowedToJump) {
+							Player.isJumping = true;
+						}
 					}
 				}
 
@@ -189,15 +206,18 @@ public class LogitechF310 extends ControllerInput {
 								InventoryUi.clickedObject,
 								player
 								);
-						Inventory.allInventoryShouldBeRendered = false;
-						MapUi.mapShouldBeRendered              = false;
+						Inventory.allInventoryShouldBeRendered     = false;
+						MapUi.mapShouldBeRendered                  = false;
+						inventoryHasClosedAndPlayerIsAllowedToJump = false;
 					} else {
 						// TODO DO I NEED THIS?
 						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
 							MissionRawBar.introHasCompleted = true;
 						} else {
 							// Only allow player to jump if UI is not open.
-							Player.isJumping = true;
+							if (inventoryHasClosedAndPlayerIsAllowedToJump) {
+								Player.isJumping = true;
+							}
 						}
 					}
 					break;
