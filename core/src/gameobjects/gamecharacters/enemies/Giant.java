@@ -1,6 +1,7 @@
 package gameobjects.gamecharacters.enemies;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -217,6 +218,7 @@ public class Giant extends Enemy {
 		updateElapsedTime();
 		if (!dead) {
 			renderEnemyShadow(batch, imageLoader, 5, 2, shadowY);
+			batch.setColor(Color.BLUE);
 			AnimationHandler.renderAnimation(
 					batch, 
 					elapsedTime, 
@@ -228,6 +230,7 @@ public class Giant extends Enemy {
 					imageLoader, 
 					AnimationHandler.OBJECT_TYPE_ENEMY
 					);
+			batch.setColor(Color.WHITE);
 			// Uncomment to debug attackBoundary.
 			//batch.draw(imageLoader.whiteSquare, attackBoundary.x, attackBoundary.y, attackBoundary.width, attackBoundary.height);
 			// Uncomment to draw enemy hit box.
