@@ -28,6 +28,7 @@ import store.Store;
 import ui.AddedToInventory;
 import ui.ConfidenceUi;
 import ui.InventoryUi;
+import ui.MapUi;
 
 /**
  * Logitech F310 GamePad.
@@ -189,6 +190,7 @@ public class LogitechF310 extends ControllerInput {
 								player
 								);
 						Inventory.allInventoryShouldBeRendered = false;
+						MapUi.mapShouldBeRendered              = false;
 					} else {
 						// TODO DO I NEED THIS?
 						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
