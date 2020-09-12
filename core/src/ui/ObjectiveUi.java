@@ -9,6 +9,7 @@ import gameobjects.GameObject;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.Gun;
 import handlers.enemies.BossHandler;
+import inventory.Inventory;
 import loaders.ImageLoader;
 import loaders.bossloader.BossLoader;
 import missions.MissionCauldron;
@@ -94,10 +95,10 @@ public class ObjectiveUi {
 		float yPos   = player.getY() - 4;
 		float width  = WIDTH;
 		float height = HEIGHT;
-		
+
 		float backgroundWidth = width;
 		float backgroundX     = xPos;
-		
+
 		if (objectiveTexture != null) {
 			if (objectiveTexture.equals(imageLoader.objectiveKillTheBoss)) {
 				xPos            = player.getX() + 5.5f;
@@ -200,7 +201,7 @@ public class ObjectiveUi {
 		if (flashTimer > VALUE_TO_FLASH) {
 			Texture objectiveTexture = getObjectiveTexture(imageLoader, myGame);
 			// Dont draw the background on inventory screen.
-			if (!objectiveTexture.equals(imageLoader.objectiveBuyTheGun)) {
+			if (!objectiveTexture.equals(imageLoader.objectiveBuyTheGun) && !Inventory.allInventoryShouldBeRendered && !Store.playerWantsToEnterStore) {
 				batch.draw(
 						imageLoader.objectiveBackground,
 						xPos - 1.5f, 
@@ -209,13 +210,15 @@ public class ObjectiveUi {
 						-height / 2
 						); 
 			}
-			batch.draw(
-					objectiveTexture,
-					xPos - 1, 
-					yPos - 0.5f, 
-					width, 
-					-height
-					); 
+			if (!Inventory.allInventoryShouldBeRendered && !Store.playerWantsToEnterStore) {
+				batch.draw(
+						objectiveTexture,
+						xPos - 1, 
+						yPos - 0.5f, 
+						width, 
+						-height
+						); 
+			} 
 		}
 	}
 
