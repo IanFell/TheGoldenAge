@@ -134,9 +134,10 @@ public class LogitechF310 extends ControllerInput {
 			if (canClick) {
 				if (Store.storeIsUnlocked /*&& Store.storeShouldBeRendered*/) {
 					//Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
-					Store.playerWantsToEnterStore = true;
-					canClick = false;
-					Weapon.shouldPlaySwitchWeaponAudio = true;
+					Store.playerWantsToEnterStore          = true;
+					canClick                               = false;
+					Weapon.shouldPlaySwitchWeaponAudio     = true;
+					// Inventory.allInventoryShouldBeRendered = false;
 				}
 			}
 		}

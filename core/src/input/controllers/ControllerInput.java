@@ -435,7 +435,7 @@ public class ControllerInput extends Input {
 				//System.out.print("BACK button pressed \n");
 			}
 			if(controller.getButton(BUTTON_START)) {
-				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress && !Store.playerWantsToEnterStore) {
 					// If we press start and UI is open, close it.
 					if (clickUiTimer < 1) {
 						Inventory.playClickSound = true;
