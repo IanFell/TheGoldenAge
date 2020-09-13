@@ -158,7 +158,7 @@ public class Arcade extends ControllerInput {
 				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
 					if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
 						if (storeCanSwitch) {
-							Weapon.shouldPlaySwitchWeaponAudio = true;
+							//Weapon.shouldPlaySwitchWeaponAudio = true;
 							/*
 						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
@@ -169,6 +169,7 @@ public class Arcade extends ControllerInput {
 								UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 								MapUi.mapShouldBeRendered              = true;
 								ControlsUi.controlsShouldBeRendered    = false;
+								Weapon.shouldPlaySwitchWeaponAudio = true;
 							} 
 							storeCanSwitch = false;
 						}
@@ -336,9 +337,10 @@ public class Arcade extends ControllerInput {
 		}
 
 		if(controller.getButton(BUTTON_JUMP) && !Store.playerWantsToEnterStore && !Store.storeShouldBeRendered) {
+			/*
 			if (!Debugger.skipIntroCutscene) {
 				Debugger.skipIntroCutscene = true;
-			}
+			} */
 
 			// Stump hole mission uses a different player than the game world player.
 			if (MissionStumpHole.missionIsActive) {
@@ -363,9 +365,16 @@ public class Arcade extends ControllerInput {
 						Inventory.allInventoryShouldBeRendered = false;
 						MapUi.mapShouldBeRendered              = false;
 					} else {
+						// TODO TRY THIS FIRST!!!!
+						//if (!Store.storeShouldBeRendered) { 
 						Inventory.allInventoryShouldBeRendered = true;
 						Store.shouldDisplayEnterStoreMessage   = false;
 						storeCanSwitch                         = false;
+
+						Store.storeShouldBeRendered            = false;
+						Store.playerWantsToEnterStore          = false;
+						Store.shouldDisplayEnterStoreMessageAlternate = false;
+						//}
 					}
 				} 
 
@@ -498,6 +507,7 @@ public class Arcade extends ControllerInput {
 							player
 							);
 					Inventory.allInventoryShouldBeRendered = false;
+					MapUi.mapShouldBeRendered              = false;
 				} else {
 					// Use this button to bring back magic pearl.
 					if (MagicPearl.isMovingForward) {

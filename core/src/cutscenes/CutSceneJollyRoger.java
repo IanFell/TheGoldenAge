@@ -109,24 +109,21 @@ public class CutSceneJollyRoger extends CutScene {
 		} else if (coveringRow[COVER_ROW_THREE].getWidth() > 0) {
 			coveringRow[COVER_ROW_THREE].setX(coveringRow[COVER_ROW_THREE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_THREE].setWidth(coveringRow[COVER_ROW_THREE].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_FOUR].getWidth() > 0) {
+			coveringRow[COVER_ROW_FOUR].setX(coveringRow[COVER_ROW_FOUR].getX() + shrinkValue);
+			coveringRow[COVER_ROW_FOUR].setWidth(coveringRow[COVER_ROW_FOUR].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_FIVE].getWidth() > 0) {
 			coveringRow[COVER_ROW_FIVE].setX(coveringRow[COVER_ROW_FIVE].getX() + shrinkValue);
 			coveringRow[COVER_ROW_FIVE].setWidth(coveringRow[COVER_ROW_FIVE].getWidth() - shrinkValue);
+		} else if (coveringRow[COVER_ROW_SIX].getWidth() > 0) {
+			coveringRow[COVER_ROW_SIX].setX(coveringRow[COVER_ROW_SIX].getX() + shrinkValue);
+			coveringRow[COVER_ROW_SIX].setWidth(coveringRow[COVER_ROW_SIX].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_SEVEN].getWidth() > 0) {
 			coveringRow[COVER_ROW_SEVEN].setX(coveringRow[COVER_ROW_SEVEN].getX() + shrinkValue);
 			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);
 		} else if (coveringRow[COVER_ROW_EIGHT].getWidth() > 0) {
 			coveringRow[COVER_ROW_EIGHT].setX(coveringRow[COVER_ROW_EIGHT].getX() + shrinkValue);
 			coveringRow[COVER_ROW_EIGHT].setWidth(coveringRow[COVER_ROW_EIGHT].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_NINE].getWidth() > 0) {
-			coveringRow[COVER_ROW_NINE].setX(coveringRow[COVER_ROW_NINE].getX() + shrinkValue);
-			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_TEN].getWidth() > 0) {
-			coveringRow[COVER_ROW_TEN].setX(coveringRow[COVER_ROW_TEN].getX() + shrinkValue);
-			coveringRow[COVER_ROW_TEN].setWidth(coveringRow[COVER_ROW_TEN].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_ELEVEN].getWidth() > 0) {
-			coveringRow[COVER_ROW_ELEVEN].setX(coveringRow[COVER_ROW_ELEVEN].getX() + shrinkValue);
-			coveringRow[COVER_ROW_ELEVEN].setWidth(coveringRow[COVER_ROW_ELEVEN].getWidth() - shrinkValue);
 		} else {
 			endCutScene();
 		}

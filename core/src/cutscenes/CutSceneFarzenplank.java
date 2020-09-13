@@ -127,9 +127,6 @@ public class CutSceneFarzenplank extends CutScene {
 		} else if (coveringRow[COVER_ROW_SEVEN].getWidth() > 0) {
 			coveringRow[COVER_ROW_SEVEN].setX(coveringRow[COVER_ROW_SEVEN].getX() + shrinkValue);
 			coveringRow[COVER_ROW_SEVEN].setWidth(coveringRow[COVER_ROW_SEVEN].getWidth() - shrinkValue);
-		} else if (coveringRow[COVER_ROW_EIGHT].getWidth() > 0) {
-			coveringRow[COVER_ROW_EIGHT].setX(coveringRow[COVER_ROW_EIGHT].getX() + shrinkValue);
-			coveringRow[COVER_ROW_EIGHT].setWidth(coveringRow[COVER_ROW_EIGHT].getWidth() - shrinkValue);
 		} else {
 			endCutScene();
 		}
