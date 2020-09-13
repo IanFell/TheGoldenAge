@@ -16,6 +16,7 @@ import inventory.Inventory;
 import maps.MapInformationHolder;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
+import screens.PauseScreen;
 import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
@@ -107,7 +108,7 @@ public class ControllerInput extends Input {
 
 	private boolean canPollTriggers  = true;
 	private int pollTriggerTimer     = 0;
-	
+
 	public static void resetGame() {
 		storeObjectNumber = 0;
 	}
@@ -439,9 +440,20 @@ public class ControllerInput extends Input {
 	 */
 	protected void pollStartSection() {
 		if (!CutScene.gameShouldPause) {
+
 			if(controller.getButton(BUTTON_BACK)) {
-				//System.out.print("BACK button pressed \n");
+				if (canClick) {
+					//System.out.print("BACK button pressed \n");
+					if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+					} else {
+						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+					}
+					PauseScreen.playSound = true;
+					canClick = false;
+				}
 			}
+
 			if(controller.getButton(BUTTON_START)) {
 				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress && !Store.playerWantsToEnterStore) {
 					// If we press start and UI is open, close it.
