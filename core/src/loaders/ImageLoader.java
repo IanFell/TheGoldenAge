@@ -223,6 +223,7 @@ public class ImageLoader {
 	public Texture lootAlternate;
 	public Texture outOfAmmo;
 	public Texture pressStart;
+	public Texture exitGame;
 	public Texture pressY;
 	public Texture pressB;
 	public Texture transparentSquare;
@@ -546,6 +547,7 @@ public class ImageLoader {
 		lootAlternate                = new Texture(Gdx.files.internal("artwork/ui/loot2.png"));
 		outOfAmmo                    = new Texture(Gdx.files.internal("artwork/ui/OutOfAmmo.png"));
 		pressStart                   = new Texture(Gdx.files.internal("artwork/ui/PressStart.png"));
+		exitGame                     = new Texture(Gdx.files.internal("artwork/ui/ExitGame.png"));
 		pressY                       = new Texture(Gdx.files.internal("artwork/ui/PressY.png"));
 		pressB                       = new Texture(Gdx.files.internal("artwork/ui/PressB.png"));
 		transparentSquare            = new Texture(Gdx.files.internal("artwork/ui/TransparentSquare.png"));
@@ -874,6 +876,7 @@ public class ImageLoader {
 		oysterMeterUi.dispose();
 		timeMeterUi.dispose();
 		pressStart.dispose();
+		exitGame.dispose();
 		pressY.dispose();
 		pressB.dispose();
 		playGame.dispose();

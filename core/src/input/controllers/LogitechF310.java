@@ -82,6 +82,13 @@ public class LogitechF310 extends ControllerInput {
 		if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
 
 			super.pollTriggers(player);
+			
+			// If player presses both triggers on pause screen, exit game.
+			if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+				if(controller.getButton(BUTTON_LT) && controller.getButton(BUTTON_RT)) {
+					System.exit(0);
+				}
+			}
 
 			// I can't get the other trigger to function correctly, so lets just use this one.
 			if(controller.getButton(BUTTON_LT)) {
@@ -89,7 +96,7 @@ public class LogitechF310 extends ControllerInput {
 				MagicPearl.isMovingForward = false;
 			} 
 
-			if(controller.getButton(BUTTON_RT)) {
+			if(controller.getButton(BUTTON_RT) && player.getInventory().inventory.size() > 0) {
 				if (canClick) {
 					Player.playerIsPerformingAttack = true;
 				}
