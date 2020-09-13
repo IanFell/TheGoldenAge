@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import gameobjects.GameObject;
 import handlers.AnimationHandler;
+import handlers.InputHandler;
 import input.controllers.ControllerInput;
 import loaders.ImageLoader;
 import missions.MissionRawBar;
@@ -105,6 +106,62 @@ public class Store extends TextBasedUiParent {
 	 * @param ImageLoader imageLoader
 	 * @param GameObject  player
 	 */
+	private void renderEnterStoreUi(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
+		batch.draw(
+				imageLoader.objectiveBackground, 
+				player.getX() - 7.5f, 
+				player.getY() - 1.2f, 
+				10.5f, 
+				-2
+				);
+		batch.draw(
+				imageLoader.objectiveEnterStore, 
+				player.getX() - 7, 
+				player.getY(), 
+				14, 
+				-4
+				); 
+
+		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
+			batch.draw(
+					imageLoader.objectiveBackground, 
+					player.getX() - 7.5f, 
+					player.getY() + 1, 
+					10.5f, 
+					-2
+					);
+			batch.draw(
+					imageLoader.pressY, 
+					player.getX() - 7, 
+					player.getY() + 2.2f, 
+					14, 
+					-4
+					); 
+		}
+		if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
+			batch.draw(
+					imageLoader.objectiveBackground, 
+					player.getX() - 7.5f, 
+					player.getY() + 1, 
+					10.5f, 
+					-2
+					);
+			batch.draw(
+					imageLoader.pressStart, 
+					player.getX() - 7, 
+					player.getY() + 2.2f, 
+					14, 
+					-4
+					); 
+		}
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param GameObject  player
+	 */
 	public void renderStore(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
 
 		updateElapsedTime();
@@ -114,20 +171,7 @@ public class Store extends TextBasedUiParent {
 		}
 
 		if (shouldDisplayEnterStoreMessage || shouldDisplayEnterStoreMessageAlternate) {
-			batch.draw(
-					imageLoader.objectiveBackground, 
-					player.getX() - 7.5f, 
-					player.getY() - 1.2f, 
-					10.5f, 
-					-2
-					);
-			batch.draw(
-					imageLoader.objectiveEnterStore, 
-					player.getX() - 7, 
-					player.getY(), 
-					14, 
-					-4
-					); 
+			renderEnterStoreUi(batch, imageLoader, player);
 		}
 
 		if (storeShouldBeRendered && playerWantsToEnterStore) {
