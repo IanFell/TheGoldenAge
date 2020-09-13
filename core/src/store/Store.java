@@ -209,10 +209,38 @@ public class Store extends TextBasedUiParent {
 						-2
 						);
 			}
+			renderExitStoreUi(batch, imageLoader, player);
+		}
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 * @param GameObject  player
+	 */
+	private void renderExitStoreUi(SpriteBatch batch, ImageLoader imageLoader, GameObject player) {
+		batch.draw(
+				imageLoader.objectiveExitStore, 
+				player.getX(), 
+				player.getY() - 2.5f, 
+				5, 
+				-1
+				);
+		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
 			batch.draw(
-					imageLoader.objectiveExitStore, 
-					playerX, 
-					playerY - 2.5f, 
+					imageLoader.pressB, 
+					player.getX() + 4, 
+					player.getY() - 2.5f, 
+					5, 
+					-1
+					);
+		}
+		if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
+			batch.draw(
+					imageLoader.pressStart, 
+					player.getX() + 4, 
+					player.getY() - 2.5f, 
 					5, 
 					-1
 					);
