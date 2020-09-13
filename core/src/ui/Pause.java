@@ -32,6 +32,13 @@ public class Pause extends GameObject {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.draw(
+				imageLoader.blackSquare,
+				x - 10,
+				y + 10,
+				40, 
+				-40
+				);
 		batch.draw(imageLoader.gamePaused, x, y + height / 2, width, -height);
 		batch.draw(imageLoader.exitGame, x, y + height / 2 + 2, width, -height);
 	}

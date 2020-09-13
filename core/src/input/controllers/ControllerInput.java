@@ -351,78 +351,79 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 */
 	protected void pollSticks(GameObject player) {
-		float playerSpeed = Player.PLAYER_SPEED - 0.1f;
-		int turboSpeed    = 0; // TODO CHANGE THIS TO 0 FOR REAL GAME.
-		if(controller.getButton(BUTTON_L3)) {
-			//System.out.print("L3 button pressed \n");
-			//System.out.println("Player is using turbo!  Going fast!");
-			playerSpeed = Player.PLAYER_SPEED * turboSpeed;
-		}
-		Player.playerIsMoving = false;
-
-		// RawBar Mission uses a different player than normal since it's kind of like a mini game.
-		if (MissionRawBar.phasesAreInProgress) {
-			if (stickIsMoved(AXIS_LEFT_X)) {
-				if (controller.getAxis(AXIS_LEFT_X) < 0) {
-					MissionRawBar.playerX -= MissionRawBar.MISSION_RAW_BAR_SPEED;
-					player.setDirection(Player.DIRECTION_LEFT);
-				} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
-					MissionRawBar.playerX += MissionRawBar.MISSION_RAW_BAR_SPEED;
-					player.setDirection(Player.DIRECTION_RIGHT);
-				} 
-			} 
-			if (stickIsMoved(AXIS_LEFT_Y)) {
-				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
-					MissionRawBar.playerY -= MissionRawBar.MISSION_RAW_BAR_SPEED;
-					player.setDirection(Player.DIRECTION_UP);
-				} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
-					MissionRawBar.playerY += MissionRawBar.MISSION_RAW_BAR_SPEED;
-					player.setDirection(Player.DIRECTION_DOWN);
-				} 
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+			float playerSpeed = Player.PLAYER_SPEED - 0.1f;
+			int turboSpeed    = 0; // TODO CHANGE THIS TO 0 FOR REAL GAME.
+			if(controller.getButton(BUTTON_L3)) {
+				//System.out.print("L3 button pressed \n");
+				//System.out.println("Player is using turbo!  Going fast!");
+				playerSpeed = Player.PLAYER_SPEED * turboSpeed;
 			}
-		} else if (MissionStumpHole.missionIsActive) { 
-			// Stump Hole Mission uses a different player than normal since it's kind of like a mini game.
-			if (stickIsMoved(AXIS_LEFT_X)) {
-				if (controller.getAxis(AXIS_LEFT_X) < 0) {
-					MissionStumpHole.player.setX(MissionStumpHole.player.getX() - MissionStumpHole.playerDx);
-					MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_LEFT;
-				} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
-					MissionStumpHole.player.setX(MissionStumpHole.player.getX() + MissionStumpHole.playerDx);
-					MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_RIGHT;
+			Player.playerIsMoving = false;
+
+			// RawBar Mission uses a different player than normal since it's kind of like a mini game.
+			if (MissionRawBar.phasesAreInProgress) {
+				if (stickIsMoved(AXIS_LEFT_X)) {
+					if (controller.getAxis(AXIS_LEFT_X) < 0) {
+						MissionRawBar.playerX -= MissionRawBar.MISSION_RAW_BAR_SPEED;
+						player.setDirection(Player.DIRECTION_LEFT);
+					} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
+						MissionRawBar.playerX += MissionRawBar.MISSION_RAW_BAR_SPEED;
+						player.setDirection(Player.DIRECTION_RIGHT);
+					} 
+				} 
+				if (stickIsMoved(AXIS_LEFT_Y)) {
+					if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
+						MissionRawBar.playerY -= MissionRawBar.MISSION_RAW_BAR_SPEED;
+						player.setDirection(Player.DIRECTION_UP);
+					} else if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
+						MissionRawBar.playerY += MissionRawBar.MISSION_RAW_BAR_SPEED;
+						player.setDirection(Player.DIRECTION_DOWN);
+					} 
 				}
+			} else if (MissionStumpHole.missionIsActive) { 
+				// Stump Hole Mission uses a different player than normal since it's kind of like a mini game.
+				if (stickIsMoved(AXIS_LEFT_X)) {
+					if (controller.getAxis(AXIS_LEFT_X) < 0) {
+						MissionStumpHole.player.setX(MissionStumpHole.player.getX() - MissionStumpHole.playerDx);
+						MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_LEFT;
+					} else if (controller.getAxis(AXIS_LEFT_X) > 0) {
+						MissionStumpHole.player.setX(MissionStumpHole.player.getX() + MissionStumpHole.playerDx);
+						MissionStumpHole.playerDirection = MissionStumpHole.DIRECTION_RIGHT;
+					}
+				}
+			}  else {
+				// Left stick.
+				if (stickIsMoved(AXIS_LEFT_X)) {
+					//System.out.print("LEFT STICK X pressed \n");
+					if (controller.getAxis(AXIS_LEFT_X) < 0) {
+						if (player.getX() > 0) {
+							((Player) player).moveLeft(playerSpeed);
+						}
+					} /*else*/ if (controller.getAxis(AXIS_LEFT_X) > 0) {
+						if (player.getX() < GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH - 1) {
+							((Player) player).moveRight(playerSpeed);
+						}
+					} 
+				} 
+				if (stickIsMoved(AXIS_LEFT_Y)) {
+					//System.out.print("LEFT STICK Y pressed \n");
+					if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
+						if (player.getY() > 0) {
+							((Player) player).moveUp(playerSpeed);
+						}
+					} /*else*/ if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
+						if (player.getY() < GameAttributeHelper.CHUNK_EIGHT_Y_POSITION_START + MapInformationHolder.CHUNK_HEIGHT - 1) {
+							((Player) player).moveDown(playerSpeed);
+						}
+					} 
+				} 
 			}
-		}  else {
-			// Left stick.
-			if (stickIsMoved(AXIS_LEFT_X)) {
-				//System.out.print("LEFT STICK X pressed \n");
-				if (controller.getAxis(AXIS_LEFT_X) < 0) {
-					if (player.getX() > 0) {
-						((Player) player).moveLeft(playerSpeed);
-					}
-				} /*else*/ if (controller.getAxis(AXIS_LEFT_X) > 0) {
-					if (player.getX() < GameAttributeHelper.CHUNK_EIGHT_X_POSITION_START + MapInformationHolder.CHUNK_WIDTH - 1) {
-						((Player) player).moveRight(playerSpeed);
-					}
-				} 
-			} 
-			if (stickIsMoved(AXIS_LEFT_Y)) {
-				//System.out.print("LEFT STICK Y pressed \n");
-				if (controller.getAxis(AXIS_LEFT_Y) < deadZone) {
-					if (player.getY() > 0) {
-						((Player) player).moveUp(playerSpeed);
-					}
-				} /*else*/ if (controller.getAxis(AXIS_LEFT_Y) > deadZone) {
-					if (player.getY() < GameAttributeHelper.CHUNK_EIGHT_Y_POSITION_START + MapInformationHolder.CHUNK_HEIGHT - 1) {
-						((Player) player).moveDown(playerSpeed);
-					}
-				} 
-			} 
-		}
 
-		/**
-		 * We don't use the right stick yet, so don't even check it.
-		 */
-		/*
+			/**
+			 * We don't use the right stick yet, so don't even check it.
+			 */
+			/*
 		if (stickIsMoved(AXIS_RIGHT_X)) {
 			System.out.print("RIGHT STICK X pressed \n");
 		}
@@ -432,7 +433,8 @@ public class ControllerInput extends Input {
 		if(controller.getButton(BUTTON_R3)) {
 			System.out.print("R3 button pressed \n");
 		} 
-		 */
+			 */
+		}
 	}
 
 	/**
