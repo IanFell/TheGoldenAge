@@ -1,5 +1,6 @@
 package gameobjects.gamecharacters;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import helpers.GameAttributeHelper;
@@ -35,8 +36,10 @@ public class FlyingBird extends GameCharacter {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
+		batch.setColor(Color.PINK);
 		batch.draw(imageLoader.attackBird, x, y, width, -height);
 		batch.draw(imageLoader.shadow, x + 2, y + 4, width, -height);
+		batch.setColor(Color.WHITE);
 	}
 
 	public void updateBird() {
