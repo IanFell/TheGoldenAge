@@ -39,9 +39,9 @@ public class Giant extends Enemy {
 	private final int GIANT_EXPLOSION_SIZE = 5;
 
 	public static boolean playLandingSound = false;
-	
+
 	public static boolean playGiantDeathSound = false;
-	
+
 	private boolean deathSoundHasPlayed = false;
 
 	private Rectangle landingSoundBoundary;
@@ -52,9 +52,9 @@ public class Giant extends Enemy {
 
 	private int deathTimer                = 0;
 	private final int AMOUNT_OF_TIME_DEAD = 200;
-	
+
 	private int explosionTimer = 0;
-	
+
 	public static void resetGame() {
 		playLandingSound    = false;
 		playGiantDeathSound = false;
@@ -154,7 +154,7 @@ public class Giant extends Enemy {
 
 			landingSoundBoundary.x = x - 10;
 			landingSoundBoundary.y = y - 10;
-			
+
 			if (explosion != null) {
 				explosion.setX(x);
 				explosion.setY(y);
@@ -174,28 +174,22 @@ public class Giant extends Enemy {
 				direction = DIRECTION_LEFT;
 			}
 
-			if (!dead) {
-				//deathSoundHasPlayed = false;
-				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
-			}
-
 			// If player is within bounds and the giant lands a jump, shake the screen.
 			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
 				GameScreen.screenShake.shake(0.3f, 3);
 			} 
 		}
 		respawn();
-		
+
 		if (dead) {
 			handleDeathExplosion(GIANT_EXPLOSION_SIZE);
-			/*
-			if (!deathSoundHasPlayed && !playGiantDeathSound) {
-				playGiantDeathSound = true;
-				deathSoundHasPlayed = true;
-			} */
 		}
 	}
-	
+
+	/**
+	 * 
+	 * @param int explosionSize
+	 */
 	protected void handleDeathExplosion(int explosionSize) {
 		if (dead) {
 			if (explosionShouldBeCreated) {

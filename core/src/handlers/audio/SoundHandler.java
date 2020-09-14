@@ -69,7 +69,7 @@ public class SoundHandler {
 
 	private final int OAR_SPLASH_TIMER_MAX = 50;
 	private int oarSplashTimer             = 0;
-	
+
 	public static void resetGame() {
 		gameOverDeathHasPlayed = false;
 	}
@@ -500,20 +500,11 @@ public class SoundHandler {
 			}
 		}
 
-		
 		if (Giant.playGiantDeathSound) {
 			soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
 			Giant.playGiantDeathSound = false;
 		} 
-		/*
-		for (int i = 0; i < GiantHandler.giants.length; i++) {
-			if (GiantHandler.giants[i].getPlaySound()) {
-				if (enemyDeathSoundCanPlay) {
-					soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
-				}
-				GiantHandler.giants[i].setPlaySound(false);
-			}
-		} */
+
 		enemyDeathTimer++;
 		if (enemyDeathTimer > 20) {
 			enemyDeathTimer        = 0;
