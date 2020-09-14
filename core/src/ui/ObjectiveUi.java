@@ -219,6 +219,17 @@ public class ObjectiveUi {
 						-height
 						); 
 			} 
+
+			// Patch for objective texture to "buy the gun" rendering.
+			if (objectiveTexture.equals(imageLoader.objectiveBuyTheGun) && !Inventory.allInventoryShouldBeRendered) {
+				batch.draw(
+						objectiveTexture,
+						xPos - 1, 
+						yPos - 0.5f, 
+						width, 
+						-height
+						); 
+			}
 		}
 	}
 
