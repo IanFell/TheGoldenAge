@@ -448,7 +448,6 @@ public class ControllerInput extends Input {
 	 */
 	protected void pollStartSection() {
 		if (!CutScene.gameShouldPause) {
-
 			if(controller.getButton(BUTTON_BACK)) {
 				if (canClick) {
 					//System.out.print("BACK button pressed \n");

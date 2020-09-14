@@ -371,29 +371,31 @@ public class Arcade extends ControllerInput {
 
 		if (controller.getButton(BUTTON_UI)) {
 			//Inventory.allInventoryShouldBeRendered = false;
-			if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
-				if (clickUiTimer < 1) {
-					Inventory.playClickSound = true;
-					if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
-						Inventory.allInventoryShouldBeRendered = false;
-						MapUi.mapShouldBeRendered              = false;
-					} else {
-						// TODO TRY THIS FIRST!!!!
-						//if (!Store.storeShouldBeRendered) { 
-						Inventory.allInventoryShouldBeRendered = true;
-						Store.shouldDisplayEnterStoreMessage   = false;
-						storeCanSwitch                         = false;
+			if (!CutScene.gameShouldPause) {
+				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+					if (clickUiTimer < 1) {
+						Inventory.playClickSound = true;
+						if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered) {
+							Inventory.allInventoryShouldBeRendered = false;
+							MapUi.mapShouldBeRendered              = false;
+						} else {
+							// TODO TRY THIS FIRST!!!!
+							//if (!Store.storeShouldBeRendered) { 
+							Inventory.allInventoryShouldBeRendered = true;
+							Store.shouldDisplayEnterStoreMessage   = false;
+							storeCanSwitch                         = false;
 
-						Store.storeShouldBeRendered            = false;
-						Store.playerWantsToEnterStore          = false;
-						Store.shouldDisplayEnterStoreMessageAlternate = false;
-						//}
+							Store.storeShouldBeRendered            = false;
+							Store.playerWantsToEnterStore          = false;
+							Store.shouldDisplayEnterStoreMessageAlternate = false;
+							//}
+						}
+					} 
+
+					clickUiTimer++;
+					if (clickUiTimer > SWITCH_TIME_LIMIT) {
+						clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
 					}
-				} 
-
-				clickUiTimer++;
-				if (clickUiTimer > SWITCH_TIME_LIMIT) {
-					clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
 				}
 			}
 		}
