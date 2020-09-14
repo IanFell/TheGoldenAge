@@ -67,6 +67,18 @@ public class ImageHelper {
 		float height = GameScreen.camera.viewportHeight / 2;
 		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2 + 100, width, height);
 	}
+	
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param Texture     texture
+	 * @param MyGame      myGame
+	 */
+	public static void drawCreditsScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
+		float width  = GameScreen.camera.viewportWidth / 2;
+		float height = GameScreen.camera.viewportHeight / 2;
+		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2 + 100, width, height);	
+	}
 
 	/**
 	 * Gets the current value of the digit and sets the corresponding texture.

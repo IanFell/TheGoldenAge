@@ -82,7 +82,7 @@ public class LogitechF310 extends ControllerInput {
 		if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
 
 			super.pollTriggers(player);
-			
+
 			// If player presses both triggers on pause screen, exit game.
 			if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 				if(controller.getButton(BUTTON_LT) && controller.getButton(BUTTON_RT)) {
@@ -176,6 +176,10 @@ public class LogitechF310 extends ControllerInput {
 				}
 				else if (TitleScreen.titleScreenHover == TitleScreen.CONTROLS) {
 					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true; 
+				}
+				else if (TitleScreen.titleScreenHover == TitleScreen.CREDITS) {
+					GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
 					Weapon.shouldPlaySwitchWeaponAudio = true; 
 				}
 				break;
@@ -347,6 +351,10 @@ public class LogitechF310 extends ControllerInput {
 
 		if(controller.getButton(BUTTON_B)) {
 			switch (GameAttributeHelper.gameState) {
+			case Screens.CREDITS_SCREEN:
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				Weapon.shouldPlaySwitchWeaponAudio = true;
+				break;
 			case Screens.CONTROLS_SCREEN:
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 				Weapon.shouldPlaySwitchWeaponAudio = true;

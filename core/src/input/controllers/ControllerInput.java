@@ -11,6 +11,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.Weapon;
 import helpers.ControllerInputHelper;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import input.Input;
 import inventory.Inventory;
 import maps.MapInformationHolder;
@@ -21,9 +22,11 @@ import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
 import ui.ControlsUi;
+import ui.GameOver;
 import ui.InventoryUi;
 import ui.MapUi;
 import ui.UserInterface;
+import ui.Win;
 
 /**
  * Parent class for all GamePads.
@@ -457,6 +460,13 @@ public class ControllerInput extends Input {
 			}
 
 			if(controller.getButton(BUTTON_START)) {
+				/*
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+					GamePlayHelper.gameOver  = true;
+					GameOver.triggerGameOver = true;
+					Win.triggerWin           = true;
+				} */
+				
 				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress && !Store.playerWantsToEnterStore) {
 					// If we press start and UI is open, close it.
 					if (clickUiTimer < 1) {

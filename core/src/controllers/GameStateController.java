@@ -33,6 +33,11 @@ public class GameStateController {
 		case Screens.CONTROLS_SCREEN:
 			myGame.setScreen(myGame.getControlsScreen());
 			GameAttributeHelper.gameState = Screens.CONTROLS_SCREEN;
+			break;
+		case Screens.CREDITS_SCREEN:
+			myGame.setScreen(myGame.getCreditsScreen());
+			GameAttributeHelper.gameState = Screens.CREDITS_SCREEN;
+			break;
 		}
 	}
 }

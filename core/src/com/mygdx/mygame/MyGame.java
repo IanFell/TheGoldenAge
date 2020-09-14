@@ -56,6 +56,7 @@ import physics.Weather.RainHandler;
 import physics.Weather.WeatherHandler;
 import render.Render;
 import screens.ControlsScreen;
+import screens.CreditsScreen;
 import screens.GameScreen;
 import screens.Screens;
 import screens.TitleScreen;
@@ -116,6 +117,7 @@ public class MyGame extends Game {
 	public GameScreen gameScreen;
 	public TitleScreen titleScreen;
 	public ControlsScreen controlsScreen;
+	public CreditsScreen creditsScreen;
 
 	/**
 	 * 
@@ -131,6 +133,14 @@ public class MyGame extends Game {
 	 */
 	public TitleScreen getTitleScreen() {
 		return titleScreen;
+	}
+
+	/**
+	 * 
+	 * @return CreditsScreen
+	 */
+	public CreditsScreen getCreditsScreen() {
+		return creditsScreen;
 	}
 
 	/**
@@ -153,6 +163,7 @@ public class MyGame extends Game {
 		gameAttributeHelper = new GameAttributeHelper();
 
 		// TODO KEEP THESE IN THIS ORDER SO GameAttributeHelper.gameState doesn't get set to the incorrect value.
+		creditsScreen       = new CreditsScreen(this);
 		controlsScreen      = new ControlsScreen(this);
 		gameScreen          = new GameScreen(this);
 		titleScreen         = new TitleScreen(this);

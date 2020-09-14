@@ -40,7 +40,8 @@ public class Pause extends GameObject {
 				-40
 				);
 		batch.draw(imageLoader.gamePaused, x, y + height / 2, width, -height);
-		batch.draw(imageLoader.exitGame, x, y + height / 2 + 2, width, -height);
+		batch.draw(imageLoader.newGame, x, y + height / 2 + 2, width, -height);
+		batch.draw(imageLoader.exitGame, x, y + height / 2 + 4, width, -height);
 	}
 
 	/**

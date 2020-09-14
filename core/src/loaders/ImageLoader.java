@@ -223,6 +223,8 @@ public class ImageLoader {
 	public Texture lootAlternate;
 	public Texture outOfAmmo;
 	public Texture pressStart;
+	public Texture creditsScreenUi;
+	public Texture newGame;
 	public Texture exitGame;
 	public Texture pressY;
 	public Texture pressB;
@@ -547,6 +549,8 @@ public class ImageLoader {
 		lootAlternate                = new Texture(Gdx.files.internal("artwork/ui/loot2.png"));
 		outOfAmmo                    = new Texture(Gdx.files.internal("artwork/ui/OutOfAmmo.png"));
 		pressStart                   = new Texture(Gdx.files.internal("artwork/ui/PressStart.png"));
+		creditsScreenUi              = new Texture(Gdx.files.internal("artwork/ui/CreditsScreenUi.png"));
+		newGame                      = new Texture(Gdx.files.internal("artwork/ui/NewGame.png"));
 		exitGame                     = new Texture(Gdx.files.internal("artwork/ui/ExitGame.png"));
 		pressY                       = new Texture(Gdx.files.internal("artwork/ui/PressY.png"));
 		pressB                       = new Texture(Gdx.files.internal("artwork/ui/PressB.png"));
@@ -876,6 +880,8 @@ public class ImageLoader {
 		oysterMeterUi.dispose();
 		timeMeterUi.dispose();
 		pressStart.dispose();
+		creditsScreenUi.dispose();
+		newGame.dispose();
 		exitGame.dispose();
 		pressY.dispose();
 		pressB.dispose();
