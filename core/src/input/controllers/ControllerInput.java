@@ -213,35 +213,38 @@ public class ControllerInput extends Input {
 			if (canClick) {
 				if(controller.getButton(BUTTON_LB)) {
 					if (UserInterface.userInterfaceOption > 0) {
-						Weapon.shouldPlaySwitchWeaponAudio = true;
 						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.INVENTORY_SCREEN;
 							MapUi.mapShouldBeRendered              = false;
 							ControlsUi.controlsShouldBeRendered    = false;
+							Weapon.shouldPlaySwitchWeaponAudio     = true;
 						}
 						else if (UserInterface.userInterfaceOption == UserInterface.CONTROLS_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 							MapUi.mapShouldBeRendered              = true;
 							ControlsUi.controlsShouldBeRendered    = false;
+							Weapon.shouldPlaySwitchWeaponAudio     = true;
 						} 
 					}
+					canClick = false;
 				}
 				if(controller.getButton(BUTTON_RB)) {
 					if (UserInterface.userInterfaceOption < UserInterface.userInterfaceMaxOptionValue) {
-						Weapon.shouldPlaySwitchWeaponAudio = true;
 						if (UserInterface.userInterfaceOption == UserInterface.MAP_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.CONTROLS_SCREEN;
 							MapUi.mapShouldBeRendered              = false;
 							ControlsUi.controlsShouldBeRendered    = true;
+							Weapon.shouldPlaySwitchWeaponAudio     = true;
 						}
 						else if (UserInterface.userInterfaceOption == UserInterface.INVENTORY_SCREEN) {
 							UserInterface.userInterfaceOption      = UserInterface.MAP_SCREEN;
 							MapUi.mapShouldBeRendered              = true;
 							ControlsUi.controlsShouldBeRendered    = false;
+							Weapon.shouldPlaySwitchWeaponAudio     = true;
 						} 
 					}
+					canClick = false;
 				}
-				canClick = false;
 			}
 		}
 	}
@@ -466,7 +469,7 @@ public class ControllerInput extends Input {
 					GameOver.triggerGameOver = true;
 					Win.triggerWin           = true;
 				} */
-				
+
 				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress && !Store.playerWantsToEnterStore) {
 					// If we press start and UI is open, close it.
 					if (clickUiTimer < 1) {
