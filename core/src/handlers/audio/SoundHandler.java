@@ -95,6 +95,40 @@ public class SoundHandler {
 	/**
 	 * 
 	 * @param SoundLoader soundLoader
+	 */
+	private void handleCollectibleAudio(SoundLoader soundLoader) {
+		if (LegendSword.playSound) {
+			soundLoader.pickUpSwordSound.play(Mixer.PICK_UP_SWORD_VOLUME);
+			LegendSword.playSound = false;
+		}
+		if (Gun.playCollectionSound) {
+			soundLoader.pickUpGunSound.play(Mixer.PICK_UP_GUN_VOLUME);
+			Gun.playCollectionSound = false;
+		}
+		if (MagicPearl.playCollectionSound) {
+			soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
+			MagicPearl.playCollectionSound = false;
+		}
+		if (BirdWeapon.playCollectionSound) {
+			soundLoader.bird.play(Mixer.PICK_UP_BIRD_VOLUME);
+			BirdWeapon.playCollectionSound = false;
+		}
+		if (Paw.playCollectionSound && !Player.isInvincible) {
+			soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
+		}
+		if (Dagger.playCollectionSound) {
+			soundLoader.dagger.play(Mixer.PICK_UP_DAGGER_VOLUME);
+			Dagger.playCollectionSound = false;
+		}
+		if (MissionRawBar.playCollectionSound) {
+			soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
+			MissionRawBar.playCollectionSound = false;
+		}
+	}
+
+	/**
+	 * 
+	 * @param SoundLoader soundLoader
 	 * @param MyGame      myGame
 	 */
 	public void handleSound(SoundLoader soundLoader, MyGame myGame) {
@@ -114,33 +148,8 @@ public class SoundHandler {
 				soundLoader.cutscene.play(Mixer.CUTSCENE_INTRO_JINGLE_VOLUME);
 				CutScene.shouldPlayIntroJingle = false;
 			}
-			if (LegendSword.playSound) {
-				soundLoader.pickUpSwordSound.play(Mixer.PICK_UP_SWORD_VOLUME);
-				LegendSword.playSound = false;
-			}
-			if (Gun.playCollectionSound) {
-				soundLoader.pickUpGunSound.play(Mixer.PICK_UP_GUN_VOLUME);
-				Gun.playCollectionSound = false;
-			}
-			if (MagicPearl.playCollectionSound) {
-				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
-				MagicPearl.playCollectionSound = false;
-			}
-			if (BirdWeapon.playCollectionSound) {
-				soundLoader.bird.play(Mixer.PICK_UP_BIRD_VOLUME);
-				BirdWeapon.playCollectionSound = false;
-			}
-			if (Paw.playCollectionSound && !Player.isInvincible) {
-				soundLoader.monkey.play(Mixer.PICK_UP_MONKEY_VOLUME);
-			}
-			if (Dagger.playCollectionSound) {
-				soundLoader.dagger.play(Mixer.PICK_UP_DAGGER_VOLUME);
-				Dagger.playCollectionSound = false;
-			}
-			if (MissionRawBar.playCollectionSound) {
-				soundLoader.bubbleSound.play(Mixer.BUBBLE_VOLUME);
-				MissionRawBar.playCollectionSound = false;
-			}
+
+			handleCollectibleAudio(soundLoader);
 
 			// This will throw a null pointer if started from the title screen without the if statement.
 			if (myGame.gameScreen.enemyHandler.enemySpawner[0] != null) {
@@ -179,6 +188,9 @@ public class SoundHandler {
 					!Inventory.allInventoryShouldBeRendered &&
 					!Store.playerWantsToEnterStore &&
 					!Store.shouldDisplayEnterStoreMessage &&
+					!Store.shouldDisplayEnterStoreMessageAlternate &&
+					!MissionRawBar.phasesAreInProgress &&
+					!MissionStumpHole.missionIsActive &&
 					attackTimer < 2
 					) {
 				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.size() > 0) {
