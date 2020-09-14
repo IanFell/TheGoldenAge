@@ -4,11 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
+import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
+import ui.MapUi;
 
 /**
  * 
@@ -67,7 +70,10 @@ public class Arrow extends Weapon {
 		y += dy;
 		rectangle.x = x;
 		rectangle.y = y;
-		CollisionHandler.checkIfArrowHasCollidedWithPlayer(myGame.getGameObject(Player.PLAYER_ONE), this);
+
+		if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered && !CutScene.gameShouldPause) {
+			CollisionHandler.checkIfArrowHasCollidedWithPlayer(myGame.getGameObject(Player.PLAYER_ONE), this);
+		}
 	}
 
 	/**
