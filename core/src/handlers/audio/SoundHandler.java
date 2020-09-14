@@ -500,11 +500,11 @@ public class SoundHandler {
 			}
 		}
 
-		/*
+		
 		if (Giant.playGiantDeathSound) {
 			soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
-			Giant.playDeathSound = false;
-		} */
+			Giant.playGiantDeathSound = false;
+		} 
 		/*
 		for (int i = 0; i < GiantHandler.giants.length; i++) {
 			if (GiantHandler.giants[i].getPlaySound()) {

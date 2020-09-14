@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
-import controllers.PlayerController;
 import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
@@ -155,6 +154,11 @@ public class Giant extends Enemy {
 
 			landingSoundBoundary.x = x - 10;
 			landingSoundBoundary.y = y - 10;
+			
+			if (explosion != null) {
+				explosion.setX(x);
+				explosion.setY(y);
+			}
 
 			handleJumping(myGame);
 
@@ -171,7 +175,7 @@ public class Giant extends Enemy {
 			}
 
 			if (!dead) {
-				deathSoundHasPlayed = false;
+				//deathSoundHasPlayed = false;
 				//CollisionHandler.checkIfEnemyHasCollidedWithPlayer(this, (Player) PlayerController.getCurrentPlayer(myGame));
 			}
 
@@ -195,7 +199,7 @@ public class Giant extends Enemy {
 	protected void handleDeathExplosion(int explosionSize) {
 		if (dead) {
 			if (explosionShouldBeCreated) {
-				explosion                = new Explosion(x, y, explosionSize);
+				explosion                = new Explosion(rectangle.x, rectangle.y, explosionSize);
 				explosionShouldBeCreated = false;
 			}
 		}
@@ -242,6 +246,9 @@ public class Giant extends Enemy {
 			//batch.draw(imageLoader.whiteSquare, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
 		} else {
 			if (explosion != null) {
+				if (explosionTimer < 1) {
+					playGiantDeathSound = true;
+				}
 				explosionTimer++;
 				if (explosionTimer < MAX_DEATH_ANIMATION_VALUE) {
 					explosion.renderExplosion(batch, imageLoader);
