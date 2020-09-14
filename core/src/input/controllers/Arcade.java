@@ -241,6 +241,19 @@ public class Arcade extends ControllerInput {
 							//storeCanSwitch                       = false;
 							Store.shouldDisplayEnterStoreMessage = false;
 							canOpenStore                         = false;
+
+							// TODO 
+							/**
+							 * Since entering the store with rum triggers drinking rum, lets set those
+							 * variables to false right away.  This should patch that problem.
+							 */
+							if (RumHandler.rumCount > 0) {
+								RumHandler.rumCount++;
+								Player.isInvincible                       = false;
+								Player.invincibilityTimer                 = 0;
+								ConfidenceUi.confidenceUiShouldBeRendered = false;
+								Rum.playDrinkingSound                     = false;
+							}
 						}
 
 						if (!canOpenStore) {
