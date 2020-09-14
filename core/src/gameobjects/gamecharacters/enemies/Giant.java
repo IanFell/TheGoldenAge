@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.mygame.MyGame;
 
+import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import handlers.AnimationHandler;
 import handlers.CollisionHandler;
@@ -174,10 +175,13 @@ public class Giant extends Enemy {
 				direction = DIRECTION_LEFT;
 			}
 
+			GameObject player = myGame.getGameObject(Player.PLAYER_ONE);
 			// If player is within bounds and the giant lands a jump, shake the screen.
-			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(myGame.getGameObject(Player.PLAYER_ONE), landingSoundBoundary)) {
+			if (screenShouldShake && CollisionHandler.playerIsWithinSoundBoundsOfGiant(player, landingSoundBoundary)) {
 				GameScreen.screenShake.shake(0.3f, 3);
 			} 
+
+			CollisionHandler.checkIfPlayerhasCollidedWithGiant(player, this);
 		}
 		respawn();
 

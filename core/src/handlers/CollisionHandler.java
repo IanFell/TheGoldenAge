@@ -66,7 +66,7 @@ public class CollisionHandler {
 
 	// Times the removal of hearts so they don't dissapear really fast and kill the player.
 	private final static int HEALTH_TIMER_TRIGGER = 24;
-	
+
 	public static void resetGame() {
 		quickSandTimer = 0;
 	}
@@ -903,6 +903,24 @@ public class CollisionHandler {
 	public static void checkIfBirdWeaponHasCollidedWithGiant(Giant giant, BirdWeapon birdWeapon) {
 		if (giant.rectangle.overlaps(birdWeapon.rectangle) && Player.playerIsPerformingAttack) {
 			giant.setIsDead(true);
+		}
+	}
+
+	/**
+	 * 
+	 * @param GameObject player
+	 * @param Giant      giant
+	 */
+	public static void checkIfPlayerhasCollidedWithGiant(GameObject player, Giant giant) {
+		if (giant.rectangle.overlaps(player.rectangle) && !giant.isDead()) {
+			if (!CutScene.anyCutSceneIsInProgress) {
+				if (!Player.isInvincible) {
+					player.setHealth(player.getHealth() - 0.1f);
+					player.setPlaySound(true);
+					((Player) player).setBouncingBack(true);
+					HealthUi.heartsShouldFlashWhite = true;
+				}
+			}
 		}
 	}
 }
