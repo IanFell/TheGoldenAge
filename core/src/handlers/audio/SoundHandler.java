@@ -284,7 +284,7 @@ public class SoundHandler {
 			}
 
 			if (LocationMarker.playBeepSound) {
-				soundLoader.locatorBeep.play(Mixer.LOCATION_MARKER_BEEP_VOLUME);
+				//soundLoader.locatorBeep.play(Mixer.LOCATION_MARKER_BEEP_VOLUME);
 				LocationMarker.playBeepSound = false;
 			}
 
