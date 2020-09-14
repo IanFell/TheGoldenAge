@@ -36,7 +36,7 @@ public class FlyingBird extends GameCharacter {
 	 */
 	@Override
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader) {
-		batch.setColor(Color.PINK);
+		batch.setColor(Color.CYAN);
 		batch.draw(imageLoader.attackBird, x, y, width, -height);
 		batch.draw(imageLoader.shadow, x + 2, y + 4, width, -height);
 		batch.setColor(Color.WHITE);

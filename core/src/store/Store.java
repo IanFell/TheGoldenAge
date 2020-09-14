@@ -150,8 +150,8 @@ public class Store extends TextBasedUiParent {
 					imageLoader.pressStart, 
 					player.getX() - 7, 
 					player.getY() + 2.2f, 
-					14, 
-					-4
+					10, 
+					-2
 					); 
 		}
 	}
