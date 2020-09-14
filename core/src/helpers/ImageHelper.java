@@ -63,9 +63,9 @@ public class ImageHelper {
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
 				GameScreen.camera.viewportHeight
 				);
-		float width  = GameScreen.camera.viewportWidth / 2;
-		float height = GameScreen.camera.viewportHeight / 2;
-		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2 + 100, width, height);
+		float width  = GameScreen.camera.viewportWidth;
+		float height = GameScreen.camera.viewportHeight;
+		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2, width, height);
 	}
 	
 	/**
@@ -75,9 +75,9 @@ public class ImageHelper {
 	 * @param MyGame      myGame
 	 */
 	public static void drawCreditsScreen(SpriteBatch batch, Texture texture, MyGame myGame) {
-		float width  = GameScreen.camera.viewportWidth / 2;
-		float height = GameScreen.camera.viewportHeight / 2;
-		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2 + 100, width, height);	
+		float width  = GameScreen.camera.viewportWidth;
+		float height = GameScreen.camera.viewportHeight;
+		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2, width, height);	
 	}
 
 	/**

@@ -33,6 +33,7 @@ public class ControlsUi extends Screens {
 	 */
 	public void renderControlsUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (controlsShouldBeRendered) {
+			/*
 			batch.draw(
 					imageLoader.blackSquare,
 					camera.position.x - getViewportWidth() / denominatorOffset,
@@ -48,12 +49,20 @@ public class ControlsUi extends Screens {
 					camera.viewportWidth - borderShrinkOffset * 2, 
 					-camera.viewportHeight
 					);
+					*/
 			batch.draw(
 					imageLoader.controlsUi,
-					camera.position.x - (camera.viewportWidth / 2) / 2,
-					camera.position.y + 5,
-					camera.viewportWidth / 2, 
-					-camera.viewportHeight / 2
+					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+					camera.viewportWidth - borderShrinkOffset * 2, 
+					-camera.viewportHeight
+					);
+			batch.draw(
+					imageLoader.controlsUiBackground,
+					camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+					(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight + 12.5f,
+					camera.viewportWidth - borderShrinkOffset * 2, 
+					-camera.viewportHeight
 					);
 		}
 	}
