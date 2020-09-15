@@ -267,7 +267,7 @@ public class ControllerInput extends Input {
 					}
 				}
 			} else {
-				Player.hasTorch = !Player.hasTorch;
+				//Player.hasTorch = !Player.hasTorch;
 			}
 		} else if (controller.getPov(0) == BUTTON_DPAD_DOWN) {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
