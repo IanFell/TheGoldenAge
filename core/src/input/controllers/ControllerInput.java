@@ -49,6 +49,10 @@ public class ControllerInput extends Input {
 
 	private final int CLICK_TIMER_MAX_VALUE = 5;
 
+	private final int PAUSE_TIMER_MAX_VALUE = 20;
+	private boolean canPause                = true;
+	private int pauseTimer                  = 0;
+
 	// Make sure inventory button if held down is not being hit infinite times.
 	protected float clickUiTimer    = GameAttributeHelper.TIMER_START_VALUE;
 	private int clickTimer          = GameAttributeHelper.TIMER_START_VALUE;
@@ -147,6 +151,14 @@ public class ControllerInput extends Input {
 		}
 	}
 
+	private void handlePauseTimer() {
+		pauseTimer++;
+		if (pauseTimer > PAUSE_TIMER_MAX_VALUE) {
+			pauseTimer = GameAttributeHelper.TIMER_START_VALUE;
+			canPause = true;
+		}
+	}
+
 	private void handleTriggerTimer() {
 		if (!canPressTrigger) {
 			triggerTimer++;
@@ -185,6 +197,7 @@ public class ControllerInput extends Input {
 			pollStartSection();
 			pollDPad(player, myGame);
 			handleClickTimer();
+			handlePauseTimer();
 			handleTriggerPollTimer();
 			handleTriggerTimer();
 			handleOptionTimer();
@@ -449,7 +462,7 @@ public class ControllerInput extends Input {
 	protected void pollStartSection() {
 		if (!CutScene.gameShouldPause) {
 			if(controller.getButton(BUTTON_BACK)) {
-				if (canClick) {
+				if (canPause) {
 					//System.out.print("BACK button pressed \n");
 					if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
 						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
@@ -457,7 +470,7 @@ public class ControllerInput extends Input {
 						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
 					}
 					PauseScreen.playSound = true;
-					canClick = false;
+					canPause              = false;
 				}
 			}
 
