@@ -311,7 +311,7 @@ public class LightningBoltHandler {
 	 * @param MyGame myGame
 	 */
 	public static void drawLightningBolt(MyGame myGame) {
-		System.out.println("Drawing lightning bolts!");
+		//System.out.println("Drawing lightning bolts!");
 		float lightningBoltXPosition = myGame.getGameObject(GameObject.PLAYER_ONE).getX();
 		Vector2[] lightningBoltVectors = new Vector2[] {
 				new Vector2(lightningBoltXPosition, myGame.getGameObject(GameObject.PLAYER_ONE).getY() - 200),

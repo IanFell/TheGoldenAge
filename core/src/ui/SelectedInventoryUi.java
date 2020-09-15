@@ -66,10 +66,10 @@ public class SelectedInventoryUi {
 				// Lastly, draw correct inventory object.
 				batch.draw(
 						image,
-						player.getX() - 12f,
-						player.getY() + 6.2f,
-						size, 
-						-size /* * 1.3f*/
+						player.getX() - 11.5f,
+						player.getY() + 5.525f,
+						1, 
+						-1 /* * 1.3f*/
 						);
 			}
 		}
