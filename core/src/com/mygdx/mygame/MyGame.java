@@ -64,6 +64,7 @@ import store.Store;
 import ui.AddedToInventory;
 import ui.BossHealthUi;
 import ui.ConfidenceUi;
+import ui.DeathUi;
 import ui.GameOver;
 import ui.InventoryUi;
 import ui.LocationMarker;
@@ -262,6 +263,7 @@ public class MyGame extends Game {
 		UserInterface.resetGame();
 		HealthUi.resetGame();
 		ObjectiveUi.resetGame();
+		DeathUi.resetGame();
 		// TODO NEW THINGS ADDED STOP
 
 		TradingPost.hasBeenEntered = false;

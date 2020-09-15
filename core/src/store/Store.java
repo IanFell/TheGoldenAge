@@ -180,7 +180,7 @@ public class Store extends TextBasedUiParent {
 					imageLoader.blackSquare,
 					player.getX() - 13.7f, 
 					player.getY() + GameScreen.camera.viewportHeight / 2, 
-					GameScreen.camera.viewportWidth, 
+					GameScreen.camera.viewportWidth + 1, 
 					-GameScreen.camera.viewportHeight
 					);
 			batch.draw(
@@ -259,45 +259,45 @@ public class Store extends TextBasedUiParent {
 		case SALE_HEARTS:
 			batch.draw(
 					imageLoader.transparentSquare, 
-					xPos - 11.5f, 
+					xPos - 11.6f, 
 					yPos, 
-					4.3f, 
+					4.25f, 
 					-3.8f
 					);
 			break;
 		case SALE_RUM:
 			batch.draw(
 					imageLoader.transparentSquare, 
-					xPos - 11.5f + 4.7f, 
+					xPos - 11.5f + 4.5f, 
 					yPos, 
-					3.7f, 
+					3.65f, 
 					-3.8f
 					);
 			break;
 		case SALE_GUN:
 			batch.draw(
 					imageLoader.transparentSquare, 
-					xPos - 11.5f + 4.5f + 4.3f, 
+					xPos - 11.5f + 4.5f + 4.0f, 
 					yPos, 
-					4.0f, 
+					3.85f, 
 					-3.8f
 					);
 			break;
 		case SALE_PEARL:
 			batch.draw(
 					imageLoader.transparentSquare, 
-					xPos - 11.5f + 4.5f + 4.3f + 4.3f, 
+					xPos - 11.5f + 4.5f + 4.3f + 3.95f, 
 					yPos, 
-					4.0f, 
+					3.85f, 
 					-3.8f
 					);
 			break;
 		case SALE_AMMO:
 			batch.draw(
 					imageLoader.transparentSquare, 
-					xPos - 11.5f + 4.5f + 4.3f + 4.3f + 4.3f, 
+					xPos - 11.5f + 4.5f + 4.3f + 4.3f + 3.9f, 
 					yPos, 
-					4.0f, 
+					3.8f, 
 					-3.8f
 					);
 			break;

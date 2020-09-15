@@ -45,7 +45,8 @@ public class UserInterface {
 	private LivesUi livesUi;
 	private GameOver gameOverScreen;
 	private Win win;
-	
+	private DeathUi deathUi;
+
 	public static void resetGame() {
 		userInterfaceOption = 0;
 	}
@@ -68,6 +69,7 @@ public class UserInterface {
 		livesUi             = new LivesUi();
 		gameOverScreen      = new GameOver("Game Over");
 		win                 = new Win("Win");
+		deathUi             = new DeathUi(myGame);
 	}
 
 	/**
@@ -100,6 +102,8 @@ public class UserInterface {
 
 			confidenceUi.renderConfidenceUi(batch, imageLoader, myGame);
 
+			deathUi.renderDeathUi(batch, imageLoader, myGame);
+
 			livesUi.renderLivesUi(batch, imageLoader, myGame);
 
 			gameOverScreen.renderGameOverScreen(batch, imageLoader, myGame);
@@ -127,6 +131,7 @@ public class UserInterface {
 		addedToInventory.update(player);
 		outOfAmmo.update(player);
 		confidenceUi.updateConfidenceUi();
+		deathUi.updateDeathUi();
 		gameOverScreen.updateGameOverScreen();
 		win.updateWinningScreen();
 	}

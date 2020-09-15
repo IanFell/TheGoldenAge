@@ -335,7 +335,7 @@ public class ControllerInput extends Input {
 				storeObjectNumber--;
 			}
 		} else {
-			if (storeObjectNumber < 5) {
+			if (storeObjectNumber < 4) {
 				storeObjectNumber++;
 			}
 		}

@@ -215,6 +215,8 @@ public class ImageLoader {
 	public Texture playGame;
 	public Texture win;
 	public Texture gameOver;
+	public Texture livesLeftOne;
+	public Texture livesLeftTwo;
 	public Texture daggerUi;
 	public Texture pawUi;
 	public Texture controlsUiBackground;
@@ -540,6 +542,8 @@ public class ImageLoader {
 		win                          = new Texture(Gdx.files.internal("artwork/ui/WinningScreen.png"));
 		playGame                     = new Texture(Gdx.files.internal("artwork/ui/PlayGame.png"));
 		gameOver                     = new Texture(Gdx.files.internal("artwork/ui/GameOver.png"));
+		livesLeftOne                 = new Texture(Gdx.files.internal("artwork/ui/LivesLeft1.png"));
+		livesLeftTwo                 = new Texture(Gdx.files.internal("artwork/ui/LivesLeft2.png"));
 		daggerUi                     = new Texture(Gdx.files.internal("artwork/ui/DaggerUi.png"));
 		pawUi                        = new Texture(Gdx.files.internal("artwork/ui/CursedPawUi.png"));
 		controlsUiBackground         = new Texture(Gdx.files.internal("artwork/ui/ControlsUiBackground.png"));
@@ -888,6 +892,8 @@ public class ImageLoader {
 		playGame.dispose();
 		win.dispose();
 		gameOver.dispose();
+		livesLeftOne.dispose();
+		livesLeftTwo.dispose();
 		daggerUi.dispose();
 		pawUi.dispose();
 		controlsUi.dispose();

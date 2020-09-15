@@ -23,6 +23,7 @@ import physics.Lighting.Explosion;
 import physics.Lighting.Fire;
 import screens.GameScreen;
 import store.Store;
+import ui.DeathUi;
 import ui.GameOver;
 import ui.MapUi;
 
@@ -88,7 +89,7 @@ public class PlayerOne extends Player {
 	public static ArrayList<Integer> playerDirections  = new ArrayList<Integer>();
 
 	public static boolean playDeathSound = false;
-	
+
 	public static void resetGame() {
 		playDeathSound           = false;
 		lives                    = 0;
@@ -149,15 +150,17 @@ public class PlayerOne extends Player {
 
 	private void handleDeathExplosionSetup() {
 		if (getHealth() <= 0 && lives == 1) {
-			explosionsTwoShouldBeRendered = true;
-			explosionsTwoShouldBeCreated  = true;
-			playDeathSound                = true;
+			explosionsTwoShouldBeRendered   = true;
+			explosionsTwoShouldBeCreated    = true;
+			playDeathSound                  = true;
+			DeathUi.deathUiShouldBeRendered = true;
 		}
 
 		if (getHealth() <= 0 && lives == 0) {
-			explosionsOneShouldBeRendered = true;
-			explosionsOneShouldBeCreated  = true;
-			playDeathSound                = true;
+			explosionsOneShouldBeRendered   = true;
+			explosionsOneShouldBeCreated    = true;
+			playDeathSound                  = true;
+			DeathUi.deathUiShouldBeRendered = true;
 		}
 	}
 
@@ -203,7 +206,7 @@ public class PlayerOne extends Player {
 		setPlayerAnimations();
 
 		handleDeathExplosion(myGame, mapHandler);
-		
+
 		// Make sure we can't use weapons when inventory or map or store is open.
 		if (Inventory.allInventoryShouldBeRendered || MapUi.mapShouldBeRendered || Store.playerWantsToEnterStore || Store.shouldDisplayEnterStoreMessage) {
 			playerIsPerformingAttack = false;
@@ -421,7 +424,7 @@ public class PlayerOne extends Player {
 		if (isPoisoned) {
 			batch.setColor(Color.GREEN);
 		} 
-		
+
 		if (!Player.isInvincible) {
 			AnimationHandler.renderAnimation(
 					batch, 
@@ -449,7 +452,7 @@ public class PlayerOne extends Player {
 						);
 			}
 		}
-		
+
 		// Reset batch if player isn't poisoned.
 		batch.setColor(Color.WHITE);
 
