@@ -137,30 +137,30 @@ public class InventoryUi extends Screens {
 	private void drawClickHover(SpriteBatch batch, ImageLoader imageLoader, int hoverValue, Rectangle rectangle) {
 		int borderShrinkOffset = 1;
 		float yOffsetTopRow    = 6f;
-		float yOffsetBottomRow = 1.4f; 
+		float yOffsetBottomRow = 1.45f; 
 		switch (hoverValue) {
 		case 0:
 			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 1:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 4.4f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 4.2f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 2:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 8.2f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 7.9f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 3:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 12.2f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 11.8f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 4:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 16.3f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 15.75f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 5:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 20.3f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 19.6f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetTopRow;
 			break;
 		case 6:
@@ -168,42 +168,45 @@ public class InventoryUi extends Screens {
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		case 7:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 4.4f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 4.2f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		case 8:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 8.2f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 7.9f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		case 9:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 12.2f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 11.8f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		case 10:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 16.3f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 15.75f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		case 11:
-			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 20.3f;
+			rectangle.x = camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset + 0.7f + 19.6f;
 			rectangle.y = (camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight - yOffsetBottomRow;
 			break;
 		}
 
 		float compensatedWidth = rectangle.width;
+		if (hoverValue == 0 || hoverValue == 6) {
+			compensatedWidth = rectangle.width - 0.1f;
+		}
 		if (hoverValue == 1 || hoverValue == 7) {
-			compensatedWidth = rectangle.width - 0.5f;
+			compensatedWidth = rectangle.width - 0.6f;
 		}
 		else if (hoverValue == 2 || hoverValue == 8) {
-			compensatedWidth = rectangle.width - 0.3f;
-		}
-		else if (hoverValue == 3 || hoverValue == 9) {
-			compensatedWidth = rectangle.width - 0.3f;
-		}
-		else if (hoverValue == 4 || hoverValue == 10) {
 			compensatedWidth = rectangle.width - 0.4f;
 		}
+		else if (hoverValue == 3 || hoverValue == 9) {
+			compensatedWidth = rectangle.width - 0.4f;
+		}
+		else if (hoverValue == 4 || hoverValue == 10) {
+			compensatedWidth = rectangle.width - 0.45f;
+		}
 		else if (hoverValue == 5 || hoverValue == 11) {
-			compensatedWidth = rectangle.width - 0.3f;
+			compensatedWidth = rectangle.width - 0.35f;
 		}
 		batch.draw(
 				imageLoader.transparentSquare,
