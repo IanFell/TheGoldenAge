@@ -124,7 +124,10 @@ public class CutSceneMap extends CutScene {
 		} else if (coveringRow[COVER_ROW_EIGHT].getWidth() > 0) {
 			coveringRow[COVER_ROW_EIGHT].setX(coveringRow[COVER_ROW_EIGHT].getX() + shrinkValue);
 			coveringRow[COVER_ROW_EIGHT].setWidth(coveringRow[COVER_ROW_EIGHT].getWidth() - shrinkValue);
-		}  else {
+		} else if (coveringRow[COVER_ROW_NINE].getWidth() > 0) {
+			coveringRow[COVER_ROW_NINE].setX(coveringRow[COVER_ROW_NINE].getX() + shrinkValue);
+			coveringRow[COVER_ROW_NINE].setWidth(coveringRow[COVER_ROW_NINE].getWidth() - shrinkValue);
+		} else {
 			endCutScene();
 		}
 	}
