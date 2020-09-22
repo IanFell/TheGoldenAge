@@ -66,7 +66,7 @@ public class SelectedInventoryUi {
 				// Compensate for the fucked up gun image not being drawn correctly on the y-axis.
 				float yPos = player.getY() + 5.525f;
 				if (object instanceof Gun) {
-					yPos = player.getY() + 5.525f - 0.3f;
+					yPos = player.getY() + 5.525f + 0.3f;
 				}
 
 				// Lastly, draw correct inventory object.

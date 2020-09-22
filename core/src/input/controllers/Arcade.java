@@ -105,7 +105,7 @@ public class Arcade extends ControllerInput {
 	 * @param MyGame     myGame
 	 */
 	private void pollSticksForUi(GameObject player, MyGame myGame) {
-		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN && !CutScene.gameShouldPause) {
+		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN && !CutScene.gameShouldPause && !ConfidenceUi.confidenceUiShouldBeRendered) {
 			if (!storeCanSwitch) {
 				storeSwitchTimer++;
 				if (storeSwitchTimer > SWITCH_TIME_LIMIT) {

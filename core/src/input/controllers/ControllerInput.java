@@ -21,6 +21,7 @@ import screens.PauseScreen;
 import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
+import ui.ConfidenceUi;
 import ui.ControlsUi;
 import ui.GameOver;
 import ui.InventoryUi;
@@ -370,7 +371,7 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 */
 	protected void pollSticks(GameObject player) {
-		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+		if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY && !CutScene.gameShouldPause && !ConfidenceUi.confidenceUiShouldBeRendered) {
 			float playerSpeed = Player.PLAYER_SPEED - 0.1f;
 			int turboSpeed    = 0; // TODO CHANGE THIS TO 0 FOR REAL GAME.
 			if(controller.getButton(BUTTON_L3)) {
