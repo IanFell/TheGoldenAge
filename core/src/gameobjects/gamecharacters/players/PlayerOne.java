@@ -13,12 +13,25 @@ import com.mygdx.mygame.MyGame;
 
 import gameobjects.GameObject;
 import gameobjects.collectibles.Torch;
+import gameobjects.collectibles.TreasureMap;
+import gameobjects.weapons.BirdWeapon;
 import handlers.AnimationHandler;
 import handlers.collectibles.RumHandler;
+import handlers.enemies.BossHandler;
 import helpers.RandomNumberGenerator;
 import inventory.Inventory;
 import loaders.ImageLoader;
+import loaders.bossloader.BossLoader;
+import loaders.marketloader.MarketLoader;
+import loaders.rawbarloader.RawBarLoader;
+import loaders.tradingpostloader.TradingPostLoader;
 import maps.MapHandler;
+import missions.MissionChests;
+import missions.MissionRawBar;
+import missions.MissionStumpHole;
+import missions.MissionThePoint;
+import missions.MissionTradinPost;
+import missions.MissionWewa;
 import physics.Lighting.Explosion;
 import physics.Lighting.Fire;
 import screens.GameScreen;
@@ -36,6 +49,14 @@ import ui.MapUi;
  *
  */
 public class PlayerOne extends Player {
+
+	private int MISSION_GO_TO_TRADING_POST = 0;
+	private int MISSION_GO_TO_RAW_BAR      = 1;
+	private int MISSION_GO_TO_STUMP_HOLE   = 2;
+	private int MISSION_GO_TO_WEWA         = 3;
+	private int MISSION_THE_POINT          = 4;
+
+	private MissionWewa missionWewa;
 
 	// Explosion one.
 	private boolean explosionsOneShouldBeRendered = false;
@@ -117,6 +138,8 @@ public class PlayerOne extends Player {
 			explosionStartValue[i] = startValue;
 			startValue += 10;
 		}
+
+		missionWewa = new MissionWewa();
 	}
 
 	/**
@@ -468,6 +491,100 @@ public class PlayerOne extends Player {
 		//renderHitBox(batch, imageLoader);
 
 		renderExplosions(batch, imageLoader);
+
+		renderLocationMarkerGoalIcon(batch, imageLoader);
+	}
+
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param ImageLoader imageLoader
+	 */
+	private void renderLocationMarkerGoalIcon(SpriteBatch batch, ImageLoader imageLoader) {
+		int locationSkullSize = 1;
+		float locationSkullX  = 0;
+		float locationSkullY  = 0;
+		int currentMission    = getCurrentMission();
+		float offset          = 4.5f;
+
+		if (currentMission == MISSION_GO_TO_TRADING_POST) {
+			GameObject tradingPost = TradingPostLoader.tradingPost;
+			if (tradingPost.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (tradingPost.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_RAW_BAR) {
+			GameObject rawbar = RawBarLoader.rawbar;
+			if (rawbar.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (rawbar.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_STUMP_HOLE) {
+			GameObject stump = MissionStumpHole.stumps.get(1);
+			if (stump.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (stump.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_WEWA) {
+			GameObject market = MarketLoader.market;
+			if (market.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (market.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_THE_POINT) {
+			GameObject boss = BossLoader.boss[BossHandler.THE_POINT];
+			if (boss.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (boss.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		}
+		batch.draw(imageLoader.locationSkull, locationSkullX, locationSkullY, locationSkullSize, -locationSkullSize);
+	}
+
+	private int getCurrentMission() {
+		int currentMission = 10; // TODO CHANGE THIS WHEN COMPLETE
+		if (MissionChests.chestMissionIsComplete && !MissionTradinPost.locationMarkerHasBeenHit) {
+			currentMission = MISSION_GO_TO_TRADING_POST;
+		} else if (BossLoader.boss[BossHandler.TRADIN_POST].isDead() && !MissionRawBar.locationMarkerHasBeenHit) {
+			currentMission = MISSION_GO_TO_RAW_BAR;
+		} else if (BossLoader.boss[BossHandler.APALACHICOLA].isDead() && !MissionStumpHole.stumpHoleMissionComplete) {
+			currentMission = MISSION_GO_TO_STUMP_HOLE;
+		} else if (BossLoader.boss[BossHandler.STUMP_HOLE].isDead() && !MissionWewa.wewaMissionComplete) {
+			currentMission = MISSION_GO_TO_WEWA;
+		} else if (MissionWewa.wewaMissionComplete && !MissionThePoint.missionThePointComplete) {
+			currentMission = MISSION_THE_POINT;
+		}
+		return currentMission;
 	}
 
 	/**
