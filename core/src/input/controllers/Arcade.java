@@ -39,6 +39,9 @@ import ui.UserInterface;
  */
 public class Arcade extends ControllerInput {
 
+	// Can only open or close store if this value is up.
+	private final int OPEN_STORE_TIMER_VALUE = 30;
+
 	private final int SWITCH_TIME_LIMIT = 3;
 
 	private int buyItemTimer = 0;
@@ -258,7 +261,7 @@ public class Arcade extends ControllerInput {
 
 						if (!canOpenStore) {
 							openStoreTimer++;
-							if (openStoreTimer > 20) {
+							if (openStoreTimer > OPEN_STORE_TIMER_VALUE) {
 								canOpenStore = true;
 							}
 						}
