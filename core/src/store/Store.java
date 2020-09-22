@@ -279,7 +279,7 @@ public class Store extends TextBasedUiParent {
 					imageLoader.transparentSquare, 
 					xPos - 11.5f + 4.5f + 4.0f, 
 					yPos, 
-					3.85f, 
+					3.9f, 
 					-3.8f
 					);
 			break;
