@@ -30,7 +30,7 @@ public class SelectedInventoryUi {
 	 */
 	public void renderSelectedInventoryUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame, GameObject player) {
 		int size = 2;
-		
+
 		batch.draw(
 				imageLoader.objectiveBackground,
 				player.getX() - 12.0f,
@@ -63,11 +63,17 @@ public class SelectedInventoryUi {
 					image = imageLoader.daggerUp;
 				}
 
+				// Compensate for the fucked up gun image not being drawn correctly on the y-axis.
+				float yPos = player.getY() + 5.525f;
+				if (object instanceof Gun) {
+					yPos = player.getY() + 5.525f - 0.3f;
+				}
+
 				// Lastly, draw correct inventory object.
 				batch.draw(
 						image,
 						player.getX() - 11.5f,
-						player.getY() + 5.525f,
+						yPos,
 						1, 
 						-1 /* * 1.3f*/
 						);
