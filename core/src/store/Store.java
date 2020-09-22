@@ -149,7 +149,7 @@ public class Store extends TextBasedUiParent {
 			batch.draw(
 					imageLoader.pressStart, 
 					player.getX() - 7, 
-					player.getY() + 2.2f, 
+					player.getY() + 1.2f, 
 					10, 
 					-2
 					); 
