@@ -115,6 +115,7 @@ public class LogitechF310 extends ControllerInput {
 					if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
 						Paw.hasBeenUsed         = true;
 						Paw.playAttackSound     = true;
+						Paw.haveKilledEnemies   = false;
 					}
 				}
 				canClick = false;

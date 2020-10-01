@@ -812,16 +812,16 @@ public class CollisionHandler {
 	 */
 	public static void checkIfPlayerHasCollidedWithPaw(GameObject player, Paw paw) {
 		if (paw.rectangle.overlaps(player.rectangle)) {
-			if (!paw.hasBeenCollected) {
-				((Player) player).getInventory().addObjectToInventory(paw);
-				Inventory.inventoryHasStartedCollection = true;
-				paw.hasBeenCollected                    = true;
-				Paw.playCollectionSound                 = true;
-				GameObjectLoader.gameObjectList.add(paw);
-				AddedToInventory.shouldRender           = true;
-				AddedToInventory.shouldDisplayPaw       = true;
-				AddedToInventory.timer                  = 0;
-			}
+			//if (!Paw.pawHasBeenCollected) {
+			((Player) player).getInventory().addObjectToInventory(paw);
+			Inventory.inventoryHasStartedCollection = true;
+			Paw.pawHasBeenCollected                 = true;
+			Paw.playCollectionSound                 = true;
+			GameObjectLoader.gameObjectList.add(paw);
+			AddedToInventory.shouldRender           = true;
+			AddedToInventory.shouldDisplayPaw       = true;
+			AddedToInventory.timer                  = 0;
+			//}
 		}
 	}
 

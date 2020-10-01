@@ -7,6 +7,7 @@ import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import handlers.arrowhandler.ArrowHandler;
 import handlers.enemies.BossHandler;
 import inventory.Inventory;
@@ -85,8 +86,7 @@ public class WeaponShadowHandler {
 		}
 
 		GameObject paw = myGame.getGameScreen().paw; 
-		if (!paw.hasBeenCollected) {
-			// Only render shadow if boss is dead.
+		if (!Paw.hasBeenUsed) {
 			batch.draw(
 					imageLoader.pawShadow, 
 					paw.getX(), 

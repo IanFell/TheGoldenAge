@@ -25,12 +25,14 @@ import ui.Win;
  */
 public class Paw extends GameObjectCollectible {
 
+	public static boolean pawHasBeenCollected = false;
+
 	public static boolean playCollectionSound = false;
 	public static boolean hasBeenUsed         = false;
 	public static boolean playAttackSound     = false;
-	private boolean haveKilledEnemies         = false;
+	public static boolean haveKilledEnemies   = true;
 
-	private final int DEAD_TIME = 5000;
+	private final int DEAD_TIME = 500;
 	private int deadTimer       = 0;
 
 	private boolean screenShouldShake   = true;
@@ -40,11 +42,13 @@ public class Paw extends GameObjectCollectible {
 	private boolean displayPawOnScreen      = false;
 	private int displayPawOnScreenTimer     = 0;
 	private final int REEMERGE_DISPLAY_TIME = 100;
-	
+
 	public static void resetGame() {
 		playCollectionSound = false;
 		hasBeenUsed         = false;
 		playAttackSound     = false;
+		pawHasBeenCollected = false;
+		haveKilledEnemies   = true;
 	}
 
 	/**
@@ -74,7 +78,7 @@ public class Paw extends GameObjectCollectible {
 	 */
 	@Override
 	public void updateObject(MyGame myGame, MapHandler mapHandler) {
-		if (!hasBeenUsed) {
+		if (!pawHasBeenCollected) {
 			CollisionHandler.checkIfPlayerHasCollidedWithPaw(myGame.getGameObject(Player.PLAYER_ONE), this);
 			handleMovement();
 		} else {
@@ -100,14 +104,14 @@ public class Paw extends GameObjectCollectible {
 				haveKilledEnemies = true;
 				screenShouldShake = true;
 			}
-			handleDeadTimer();
-			handleScreenShakeTimer();
+			//handleDeadTimer();
+			//handleScreenShakeTimer();
 
-			if (screenShouldShake) {
-				GameScreen.screenShake.shake(0.3f, 3);
-			} 
-
-			handleReEmergeDisplayTimer();
+			//if (screenShouldShake) {
+			//	GameScreen.screenShake.shake(0.3f, 3);
+			//} 
+			//handleReEmergeDisplayTimer();
+			//}
 		}
 	}
 
@@ -116,7 +120,7 @@ public class Paw extends GameObjectCollectible {
 			displayPawOnScreenTimer++;
 			if (displayPawOnScreenTimer > REEMERGE_DISPLAY_TIME) {
 				displayPawOnScreenTimer = 0;
-				displayPawOnScreen = false;
+				displayPawOnScreen      = false;
 			}
 		}
 	}
@@ -152,7 +156,7 @@ public class Paw extends GameObjectCollectible {
 	public void renderObject(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		if (!GameOver.triggerGameOver && !Win.triggerWin) {
 			if (GamePlayHelper.gameObjectIsWithinScreenBounds(this) && !hasBeenUsed) {
-				if (!hasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
+				if (!pawHasBeenCollected && !MapUi.mapShouldBeRendered && !Inventory.allInventoryShouldBeRendered && !Store.storeShouldBeRendered) {
 					batch.draw(
 							imageLoader.paw, 
 							x, 
@@ -180,6 +184,7 @@ public class Paw extends GameObjectCollectible {
 				}
 			}
 
+			/*
 			// Display the paw on screen when it comes back.
 			if (displayPawOnScreen) {
 				GameObject player     = myGame.getGameObject(Player.PLAYER_ONE);
@@ -205,7 +210,7 @@ public class Paw extends GameObjectCollectible {
 						weaponNameUiWidth, 
 						-height
 						);
-			}
+			} */
 		}
 	}
 }
