@@ -40,7 +40,7 @@ import ui.UserInterface;
 public class Arcade extends ControllerInput {
 
 	// Can only open or close store if this value is up.
-	private final int OPEN_STORE_TIMER_VALUE = 30;
+	private final int OPEN_STORE_TIMER_VALUE = 50;
 
 	private final int SWITCH_TIME_LIMIT = 3;
 
@@ -221,7 +221,7 @@ public class Arcade extends ControllerInput {
 			else if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
 				// Dont use this if there's a cutscene in progress to avoid a crash.
 				if (!CutScene.anyCutSceneIsInProgress) {
-					if (!Store.playerWantsToEnterStore /*&& !Store.shouldDisplayEnterStoreMessage*/) {
+					if (!Store.playerWantsToEnterStore && !Store.shouldDisplayEnterStoreMessage && !Store.shouldDisplayEnterStoreMessageAlternate /*&& !Store.shouldDisplayEnterStoreMessage*/) {
 						if (
 								RumHandler.rumCount > 0 && 
 								!Player.isInvincible && 

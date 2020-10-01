@@ -476,12 +476,13 @@ public class ControllerInput extends Input {
 			}
 
 			if(controller.getButton(BUTTON_START)) {
-				/*
+
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
-					GamePlayHelper.gameOver  = true;
-					GameOver.triggerGameOver = true;
-					Win.triggerWin           = true;
-				} */
+					GamePlayHelper.gameOver           = true;
+					GameOver.triggerGameOver          = true;
+					Win.triggerWin                    = true;
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				} 
 
 				if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress && !Store.playerWantsToEnterStore) {
 					// If we press start and UI is open, close it.
