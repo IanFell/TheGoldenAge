@@ -191,7 +191,8 @@ public class SoundHandler {
 					!Store.shouldDisplayEnterStoreMessageAlternate &&
 					!MissionRawBar.phasesAreInProgress &&
 					!MissionStumpHole.missionIsActive &&
-					attackTimer < 2
+					attackTimer < 3
+					//attackTimer < 2
 					) {
 				if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.size() > 0) {
 					if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword) {

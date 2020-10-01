@@ -50,6 +50,9 @@ import ui.MapUi;
  */
 public class PlayerOne extends Player {
 
+	private int locationMarkerIconFlashTimer                = 0;
+	private final int LOCATION_MARKER_FLASH_TIMER_INCREMENT = 60;
+
 	private int MISSION_GO_TO_TRADING_POST = 0;
 	private int MISSION_GO_TO_RAW_BAR      = 1;
 	private int MISSION_GO_TO_STUMP_HOLE   = 2;
@@ -507,67 +510,75 @@ public class PlayerOne extends Player {
 		int currentMission    = getCurrentMission();
 		float offset          = 4.5f;
 
-		if (currentMission == MISSION_GO_TO_TRADING_POST) {
-			GameObject tradingPost = TradingPostLoader.tradingPost;
-			if (tradingPost.getX() < x) {
-				locationSkullX = x - offset;
-			} else {
-				locationSkullX = x + offset;
+		/*
+		locationMarkerIconFlashTimer++;
+		if (locationMarkerIconFlashTimer > LOCATION_MARKER_FLASH_TIMER_INCREMENT) {
+			locationMarkerIconFlashTimer = 0;
+		} */
+
+		//if (locationMarkerIconFlashTimer % 30 == 0) {
+			if (currentMission == MISSION_GO_TO_TRADING_POST) {
+				GameObject tradingPost = TradingPostLoader.tradingPost;
+				if (tradingPost.getX() < x) {
+					locationSkullX = x - offset;
+				} else {
+					locationSkullX = x + offset;
+				}
+				if (tradingPost.getY() < y) {
+					locationSkullY = y - offset;
+				} else {
+					locationSkullY = y + offset;
+				}
+			} else if (currentMission == MISSION_GO_TO_RAW_BAR) {
+				GameObject rawbar = RawBarLoader.rawbar;
+				if (rawbar.getX() < x) {
+					locationSkullX = x - offset;
+				} else {
+					locationSkullX = x + offset;
+				}
+				if (rawbar.getY() < y) {
+					locationSkullY = y - offset;
+				} else {
+					locationSkullY = y + offset;
+				}
+			} else if (currentMission == MISSION_GO_TO_STUMP_HOLE) {
+				GameObject stump = MissionStumpHole.stumps.get(1);
+				if (stump.getX() < x) {
+					locationSkullX = x - offset;
+				} else {
+					locationSkullX = x + offset;
+				}
+				if (stump.getY() < y) {
+					locationSkullY = y - offset;
+				} else {
+					locationSkullY = y + offset;
+				}
+			} else if (currentMission == MISSION_GO_TO_WEWA) {
+				GameObject market = MarketLoader.market;
+				if (market.getX() < x) {
+					locationSkullX = x - offset;
+				} else {
+					locationSkullX = x + offset;
+				}
+				if (market.getY() < y) {
+					locationSkullY = y - offset;
+				} else {
+					locationSkullY = y + offset;
+				}
+			} else if (currentMission == MISSION_THE_POINT) {
+				GameObject boss = BossLoader.boss[BossHandler.THE_POINT];
+				if (boss.getX() < x) {
+					locationSkullX = x - offset;
+				} else {
+					locationSkullX = x + offset;
+				}
+				if (boss.getY() < y) {
+					locationSkullY = y - offset;
+				} else {
+					locationSkullY = y + offset;
+				}
 			}
-			if (tradingPost.getY() < y) {
-				locationSkullY = y - offset;
-			} else {
-				locationSkullY = y + offset;
-			}
-		} else if (currentMission == MISSION_GO_TO_RAW_BAR) {
-			GameObject rawbar = RawBarLoader.rawbar;
-			if (rawbar.getX() < x) {
-				locationSkullX = x - offset;
-			} else {
-				locationSkullX = x + offset;
-			}
-			if (rawbar.getY() < y) {
-				locationSkullY = y - offset;
-			} else {
-				locationSkullY = y + offset;
-			}
-		} else if (currentMission == MISSION_GO_TO_STUMP_HOLE) {
-			GameObject stump = MissionStumpHole.stumps.get(1);
-			if (stump.getX() < x) {
-				locationSkullX = x - offset;
-			} else {
-				locationSkullX = x + offset;
-			}
-			if (stump.getY() < y) {
-				locationSkullY = y - offset;
-			} else {
-				locationSkullY = y + offset;
-			}
-		} else if (currentMission == MISSION_GO_TO_WEWA) {
-			GameObject market = MarketLoader.market;
-			if (market.getX() < x) {
-				locationSkullX = x - offset;
-			} else {
-				locationSkullX = x + offset;
-			}
-			if (market.getY() < y) {
-				locationSkullY = y - offset;
-			} else {
-				locationSkullY = y + offset;
-			}
-		} else if (currentMission == MISSION_THE_POINT) {
-			GameObject boss = BossLoader.boss[BossHandler.THE_POINT];
-			if (boss.getX() < x) {
-				locationSkullX = x - offset;
-			} else {
-				locationSkullX = x + offset;
-			}
-			if (boss.getY() < y) {
-				locationSkullY = y - offset;
-			} else {
-				locationSkullY = y + offset;
-			}
-		}
+		//}
 		batch.draw(imageLoader.locationSkull, locationSkullX, locationSkullY, locationSkullSize, -locationSkullSize);
 	}
 

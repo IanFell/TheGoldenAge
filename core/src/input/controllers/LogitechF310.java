@@ -338,6 +338,7 @@ public class LogitechF310 extends ControllerInput {
 					case PURCHASE_BUTTON_NULL:
 						break;
 					}
+					inventoryHasClosedAndPlayerIsAllowedToJump = false;
 				}
 			}
 		} else {
