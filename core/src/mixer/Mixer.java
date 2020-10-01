@@ -6,7 +6,7 @@ package mixer;
  *
  */
 public class Mixer {
-	
+
 	public static final float MINIMUM_VOLUME        = 0f;
 	public static final float SIXTY_FOURTH_VOLUME   = 0.015f;
 	public static final float THIRTY_SECOND_VOLUME  = 0.03f;
@@ -66,10 +66,12 @@ public class Mixer {
 	public final static float ENEMY_DEATH_VOLUME           = MEDIAN_VOLUME;
 	public static final float ENEMY_DEATH_VOLUME_ALTERNATE = QUARTER_VOLUME;
 	public final static float BOSS_GRUNT_VOLUME            = QUARTER_VOLUME;
+	public static final float LOW_HEALTH_BEEP_VOLUME       = MEDIAN_VOLUME;
 
 	// Game character SFX volumes.
-	public final static float BOSS_LAUGH_VOLUME  = QUARTER_VOLUME;
-	public static final float DEATH_VOLUME       = THREE_QUARTERS_VOLUME;
+	public final static float BOSS_LAUGH_VOLUME             = QUARTER_VOLUME;
+	public static final float DEATH_VOLUME                  = THREE_QUARTERS_VOLUME;
+	public static final float PIRATE_VOICE_GAME_OVER_VOLUME = THREE_QUARTERS_VOLUME;
 
 	// Player attacks.
 	public final static float SWORD_ATTACK_VOLUME  = SIXTEENTH_VOLUME;

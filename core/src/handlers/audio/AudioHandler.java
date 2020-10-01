@@ -49,6 +49,6 @@ public class AudioHandler {
 	 */
 	public void handleAudio(MyGame myGame) {
 		soundHandler.handleSound(soundLoader, myGame);
-		musicHandler.handleMusic(musicLoader);
+		musicHandler.handleMusic(musicLoader, myGame);
 	}
 }

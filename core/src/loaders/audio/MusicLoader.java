@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Music;
  */
 public class MusicLoader {
 
+	public Music lowHealthBeep;
 	public Music bossStinger;
 	public Music spinAudio;
 	public Music theme;
@@ -39,6 +40,7 @@ public class MusicLoader {
 	public Music footsteps;
 
 	public void init() {
+		lowHealthBeep         = Gdx.audio.newMusic(Gdx.files.internal("audio/music/LowHealthBeep.ogg"));
 		bossStinger           = Gdx.audio.newMusic(Gdx.files.internal("audio/music/CombatOut.ogg"));
 		spinAudio             = Gdx.audio.newMusic(Gdx.files.internal("audio/music/SpinAudio.ogg"));
 		theme                 = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Theme.ogg"));
@@ -63,6 +65,7 @@ public class MusicLoader {
 	}
 
 	public void dispose() {
+		lowHealthBeep.dispose();
 		bossStinger.dispose();
 		spinAudio.dispose();
 		poison.dispose();

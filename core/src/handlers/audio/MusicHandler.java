@@ -1,6 +1,7 @@
 package handlers.audio;
 
 import com.badlogic.gdx.audio.Music;
+import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
 import cutscenes.CutSceneBird;
@@ -9,6 +10,7 @@ import gameobjects.gamecharacters.enemies.Boss;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.weapons.Paw;
+import handlers.collectibles.HeartHandler;
 import handlers.enemies.BossHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
@@ -59,23 +61,23 @@ public class MusicHandler {
 	public static boolean playerHasBeatMission               = false;
 	private boolean missionRawBarStingerHasPlayed            = false;
 	private boolean missionStumpHoleStingerHasPlayed         = false;
-	
+
 	private boolean shouldPlayBuffStinger                      = false;
 	private int buffStingerTimer                               = 0;
 	private boolean shouldContinueAmbientMusicAfterBuffStinger = true;
 	private boolean isPlayingBuff                              = false;
 	private final int BUFF_DELAY                               = 100;
-	
+
 	private boolean shouldPlayBossStinger                      = false;
 	private int bossStingerTimer                               = 0;
 	private boolean shouldContinueAmbientMusicAfterBossStinger = true;
 	private boolean isPlayingBoss                              = false;
 	private final int BOSS_DELAY                               = 100;
-	
+
 	public static void resetGame() {
 		playerHasBeatMission = false;
 	}
-	
+
 	private void handleBuffStingerTiming() {
 		if (isPlayingBuff) {
 			buffStingerTimer++;
@@ -86,7 +88,7 @@ public class MusicHandler {
 			}
 		}
 	}
-	
+
 	private void handleBossStingerTiming() {
 		if (isPlayingBoss) {
 			bossStingerTimer++;
@@ -97,7 +99,7 @@ public class MusicHandler {
 			}
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param MusicLoader musicLoader
@@ -111,7 +113,7 @@ public class MusicHandler {
 			shouldContinueAmbientMusicAfterBuffStinger = false;
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param MusicLoader musicLoader
@@ -129,8 +131,9 @@ public class MusicHandler {
 	/**
 	 * 
 	 * @param MusicLoader musicLoader
+	 * @param MyGame      myGame
 	 */
-	public void handleMusic(MusicLoader musicLoader) {
+	public void handleMusic(MusicLoader musicLoader, MyGame myGame) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
 			// Dont let invincible music play during a boss battle because it will interfere with battle music.
 			if (Player.isInvincible && !bossBattleIsInProgress && !CutScene.gameShouldPause) {
@@ -147,7 +150,7 @@ public class MusicHandler {
 					handleBossStinger(musicLoader);
 				}
 				handleBossStingerTiming();*/
-				
+
 				if (NightAndDayCycle.isDayTime()) {
 					handleDayTimeAudio(musicLoader);
 				} else {
@@ -156,7 +159,7 @@ public class MusicHandler {
 				handleFootstepsAudio(musicLoader);
 				handleFireAudio(musicLoader);
 				handleOceanAudio(musicLoader);
-	
+
 				musicLoader.ambientMusic.setVolume(Mixer.AMBIENT_MUSIC_VOLUME);
 				musicLoader.ambientMusic.setLooping(true);
 
@@ -186,6 +189,8 @@ public class MusicHandler {
 			handleCutsceneMusic(musicLoader);
 			handlePoisonAudio(musicLoader);
 
+			handleLowHealthBeep(musicLoader, myGame);
+
 			if (musicLoader.theme.isPlaying() && !GameOver.triggerGameOver) {
 				musicLoader.theme.stop();
 			}
@@ -197,6 +202,22 @@ public class MusicHandler {
 			musicLoader.theme.setVolume(Mixer.TITLE_SCREEN_VOLUME);
 			musicLoader.theme.setLooping(true);
 			musicLoader.theme.play();
+		}
+	}
+
+	/**
+	 * 
+	 * @param MusicLoader musicLoader
+	 * @param MyGame      myGame
+	 */
+	private void handleLowHealthBeep(MusicLoader musicLoader, MyGame myGame) {
+		float heartSize = myGame.getGameObject(Player.PLAYER_ONE).getHealth();
+		if (heartSize > 0 && heartSize < 5) {
+			musicLoader.lowHealthBeep.setVolume(Mixer.LOW_HEALTH_BEEP_VOLUME);
+			musicLoader.lowHealthBeep.setLooping(true);
+			musicLoader.lowHealthBeep.play();
+		} else {
+			musicLoader.lowHealthBeep.stop();
 		}
 	}
 

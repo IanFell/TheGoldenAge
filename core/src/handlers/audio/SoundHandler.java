@@ -349,6 +349,7 @@ public class SoundHandler {
 
 			if (GameOver.triggerGameOver && !gameOverDeathHasPlayed) {
 				soundLoader.death.play(Mixer.DEATH_VOLUME);
+				soundLoader.gameOver.play(Mixer.PIRATE_VOICE_GAME_OVER_VOLUME);
 				gameOverDeathHasPlayed = true;
 			}
 		}
