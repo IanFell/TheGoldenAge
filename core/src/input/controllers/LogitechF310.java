@@ -162,6 +162,8 @@ public class LogitechF310 extends ControllerInput {
 					canClick                               = false;
 					Weapon.shouldPlaySwitchWeaponAudio     = true;
 					// Inventory.allInventoryShouldBeRendered = false;
+				} else {
+					Store.playBuzzerAudio = true;
 				}
 			}
 		}

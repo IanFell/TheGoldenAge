@@ -258,6 +258,8 @@ public class Arcade extends ControllerInput {
 								ConfidenceUi.confidenceUiShouldBeRendered = false;
 								Rum.playDrinkingSound                     = false;
 							} */
+						} else {
+							Store.playBuzzerAudio = true;
 						}
 
 						if (!canOpenStore) {
