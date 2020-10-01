@@ -42,7 +42,7 @@ public class Arcade extends ControllerInput {
 	// Can only open or close store if this value is up.
 	private final int OPEN_STORE_TIMER_VALUE = 50;
 
-	private final int SWITCH_TIME_LIMIT = 3;
+	private final int SWITCH_TIME_LIMIT = 7;
 
 	private int buyItemTimer = 0;
 
@@ -245,18 +245,19 @@ public class Arcade extends ControllerInput {
 							Store.shouldDisplayEnterStoreMessage = false;
 							canOpenStore                         = false;
 
-							// TODO 
+							// TODO maybe
 							/**
 							 * Since entering the store with rum triggers drinking rum, lets set those
 							 * variables to false right away.  This should patch that problem.
 							 */
+							/*
 							if (RumHandler.rumCount > 0) {
 								RumHandler.rumCount++;
 								Player.isInvincible                       = false;
 								Player.invincibilityTimer                 = 0;
 								ConfidenceUi.confidenceUiShouldBeRendered = false;
 								Rum.playDrinkingSound                     = false;
-							}
+							} */
 						}
 
 						if (!canOpenStore) {

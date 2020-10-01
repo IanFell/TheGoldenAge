@@ -156,6 +156,7 @@ public class MyGame extends Game {
 	public void create () {
 		Gdx.graphics.setContinuousRendering(true);
 		Gdx.graphics.setResizable(false);
+		Gdx.input.setCursorCatched(true);
 		imageLoader.init();
 		renderer.init();
 		gameObjectLoader.createObjects(this);
