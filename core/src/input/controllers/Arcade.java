@@ -261,14 +261,13 @@ public class Arcade extends ControllerInput {
 						} else {
 							Store.playBuzzerAudio = true;
 						}
-
-						if (!canOpenStore) {
-							openStoreTimer++;
-							if (openStoreTimer > OPEN_STORE_TIMER_VALUE) {
-								canOpenStore = true;
-							}
-						}
 					} 
+				}
+				if (!canOpenStore) {
+					openStoreTimer++;
+					if (openStoreTimer > OPEN_STORE_TIMER_VALUE) {
+						canOpenStore = true;
+					}
 				}
 			}
 		}
