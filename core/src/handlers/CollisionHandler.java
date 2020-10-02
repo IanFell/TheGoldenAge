@@ -901,7 +901,7 @@ public class CollisionHandler {
 	 * @param BirdWeapon birdWeapon
 	 */
 	public static void checkIfBirdWeaponHasCollidedWithGiant(Giant giant, BirdWeapon birdWeapon) {
-		if (giant.rectangle.overlaps(birdWeapon.rectangle) && Player.playerIsPerformingAttack) {
+		if (giant.rectangle.overlaps(birdWeapon.rectangle) /*&& Player.playerIsPerformingAttack*/) {
 			giant.setIsDead(true);
 		}
 	}
