@@ -23,7 +23,9 @@ import missions.MissionRawBar;
 import missions.MissionStumpHole;
 import physics.Lighting.Explosion;
 import store.Store;
+import ui.GameOver;
 import ui.MapUi;
+import ui.Win;
 
 /**
  * 
@@ -343,7 +345,9 @@ public class Enemy extends GameCharacter {
 				!MapUi.mapShouldBeRendered &&
 				!MissionRawBar.phasesAreInProgress &&
 				!MissionStumpHole.missionIsActive &&
-				!HoleHandler.playerIsInHole
+				!HoleHandler.playerIsInHole &&
+				!Win.triggerWin &&
+				!GameOver.triggerGameOver
 				) {
 			return true;
 		}
