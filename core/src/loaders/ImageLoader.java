@@ -205,6 +205,7 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture space;
 	public Texture rightClick;
 	public Texture leftClick;
 	public Texture computerControls;
@@ -535,6 +536,7 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		space                        = new Texture(Gdx.files.internal("artwork/ui/Space.png"));
 		leftClick                    = new Texture(Gdx.files.internal("artwork/ui/LeftClick.png"));
 		rightClick                   = new Texture(Gdx.files.internal("artwork/ui/RightClick.png"));
 		computerControls             = new Texture(Gdx.files.internal("artwork/ui/ComputerControls.png"));
@@ -882,6 +884,7 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		space.dispose();
 		rightClick.dispose();
 		leftClick.dispose();
 		computerControls.dispose();

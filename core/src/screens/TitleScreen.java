@@ -165,19 +165,26 @@ public class TitleScreen extends Screens {
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-			/*
 			if (alphaCredits < 1) {
 				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaCredits);
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.credits,
-					GameScreen.camera.position.x - 450,
+					GameScreen.camera.position.x - 1050,
+					GameScreen.camera.position.y - 200,
+					900,
+					200
+					);
+			
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.space,
+					GameScreen.camera.position.x + 250,
 					GameScreen.camera.position.y - 200,
 					900,
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-*/
+
 			/*
 			float yPos = 0;
 			switch(titleScreenHover) {

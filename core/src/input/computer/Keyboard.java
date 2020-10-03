@@ -71,68 +71,86 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 				TitleScreen.titleScreenHover++;
 			}
-			break;
 			
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN); 
+			}
+			
+			break;
+
 		case Screens.CONTROLS_SCREEN:
 			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			break;
+			
+		case Screens.CREDITS_SCREEN:
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
 
 		case Screens.GAME_SCREEN:	
 
-		// Skip intro cut scene.
-		if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-			Debugger.skipIntroCutscene = true;
-		}
+			// Skip intro cut scene.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+				Debugger.skipIntroCutscene = true;
+			}
 
-		if (
-				!Inventory.allInventoryShouldBeRendered && 
-				!MapUi.mapShouldBeRendered && 
-				GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
-				!HoleHandler.playerIsInHole &&
-				!CutScene.gameShouldPause
-				) {
-			//handleKeyboardDirectionalButtons(myGame, "arrows", player);
-			handleKeyboardDirectionalButtons(myGame, "wasd", player);
-		}
+			if (
+					!Inventory.allInventoryShouldBeRendered && 
+					!MapUi.mapShouldBeRendered && 
+					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
+					!HoleHandler.playerIsInHole &&
+					!CutScene.gameShouldPause
+					) {
+				//handleKeyboardDirectionalButtons(myGame, "arrows", player);
+				handleKeyboardDirectionalButtons(myGame, "wasd", player);
+			}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-			// Stump hole mission uses a different player than the game world player.
-			if (MissionStumpHole.missionIsActive) {
-				if (Stump.playerIsOnStump) {
-					Stump.playerIsOnStump                = false;
-					MissionStumpHole.playerIsJumping     = true;
-					MissionStumpHole.jumpSoundShouldPlay = true;
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				// Stump hole mission uses a different player than the game world player.
+				if (MissionStumpHole.missionIsActive) {
+					if (Stump.playerIsOnStump) {
+						Stump.playerIsOnStump                = false;
+						MissionStumpHole.playerIsJumping     = true;
+						MissionStumpHole.jumpSoundShouldPlay = true;
+					}
+				} else {
+					Player.isJumping = true;
 				}
 			} else {
-				Player.isJumping = true;
+				// If we have released space bar.
+				if (MissionStumpHole.missionIsActive) {
+					MissionStumpHole.jumpSoundShouldPlay = false;
+				}
 			}
-		} else {
-			// If we have released space bar.
-			if (MissionStumpHole.missionIsActive) {
-				MissionStumpHole.jumpSoundShouldPlay = false;
-			}
-		}
 
-		// Execute screenshake.
-		/*
+			// Execute screenshake.
+			/*
 			if (Gdx.input.isKeyPressed(Input.Keys.Z)) { 
 				GameScreen.screenShake.shake(0.3f, 3);
 			} */
 
-		/**
-		 * Perform operations on lighting.  
-		 * This will make the light texture grow,
-		 * then shrink back to normal size when key is released.
-		 */
-		/*
+			/**
+			 * Perform operations on lighting.  
+			 * This will make the light texture grow,
+			 * then shrink back to normal size when key is released.
+			 */
+			/*
 			if (Gdx.input.isKeyPressed(Input.Keys.L)) { 
 				LightHandler.isGrowing = true;
 			} else {
 				LightHandler.isGrowing = false;
 			} */
 
+			/*
 		float cameraZoomAmount = 1.0f;
 		// Zoom camera out.
 		if (Gdx.input.isKeyJustPressed(Input.Keys.Z) && Gdx.input.isKeyPressed(Input.Keys.O)) {
@@ -146,118 +164,122 @@ public class Keyboard extends ComputerInput {
 
 		if (Gdx.input.isKeyJustPressed(Input.Keys.F)) {
 			Player.hasTorch = !Player.hasTorch;
-		}
+		}*/
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
-			if (player.getInventory().getInventoryIsEquipped()) {
-				if (player.getInventory().inventory.size() > 0) {
-					// Don't switch if the weapon isn't available.
-					weaponElement = Inventory.currentlySelectedInventoryObject;
-					if (weaponElement < player.getInventory().inventory.size() - 1) {
-						Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject + 1;
-						Weapon.shouldPlaySwitchWeaponAudio         = true;
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						weaponElement = Inventory.currentlySelectedInventoryObject;
+						if (weaponElement < player.getInventory().inventory.size() - 1) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject + 1;
+							Weapon.shouldPlaySwitchWeaponAudio         = true;
+						}
 					}
 				}
 			}
-		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
-			if (player.getInventory().getInventoryIsEquipped()) {
-				if (player.getInventory().inventory.size() > 0) {
-					// Don't switch if the weapon isn't available.
-					if (Inventory.currentlySelectedInventoryObject > 0) {
-						Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject - 1;
-						Weapon.shouldPlaySwitchWeaponAudio         = true;
+			if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						if (Inventory.currentlySelectedInventoryObject > 0) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject - 1;
+							Weapon.shouldPlaySwitchWeaponAudio         = true;
+						}
 					}
 				}
 			}
-		}
 
-		// Display all inventory.
-		if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
-			//if (!startClickTimer) {
-			//startClickTimer                        = true;
-			if (!Store.playerWantsToEnterStore) {
-				Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
-				MapUi.mapShouldBeRendered              = false;
-			}
-			//} else {
-			// Make sure inventory button is only hit once.
-			//inventoryTimer++;
-			//if (inventoryTimer > 1) {
-			//	resetClickTimer();
-			//}
-			//}
-		} 
+			// Display all inventory.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+				//if (!startClickTimer) {
+				//startClickTimer                        = true;
+				if (!Store.playerWantsToEnterStore) {
+					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+					MapUi.mapShouldBeRendered              = false;
+				}
+				//} else {
+				// Make sure inventory button is only hit once.
+				//inventoryTimer++;
+				//if (inventoryTimer > 1) {
+				//	resetClickTimer();
+				//}
+				//}
+			} 
 
+			/*
 		if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
 			Inventory.inventoryIsEquipped = false;
-		}
+		}*/
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-			if (!startClickTimer) {
-				startClickTimer                        = true;
-				MapUi.mapShouldBeRendered              = !MapUi.mapShouldBeRendered;
-				Inventory.allInventoryShouldBeRendered = false;
-			} else {
-				// Make sure inventory button is only hit once.
-				inventoryTimer++;
-				if (inventoryTimer > 1) {
-					resetClickTimer();
+			if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+				if (!startClickTimer) {
+					startClickTimer                        = true;
+					MapUi.mapShouldBeRendered              = !MapUi.mapShouldBeRendered;
+					Inventory.allInventoryShouldBeRendered = false;
+				} else {
+					// Make sure inventory button is only hit once.
+					inventoryTimer++;
+					if (inventoryTimer > 1) {
+						resetClickTimer();
+					}
 				}
 			}
-		}
 
-		//if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
-		//BulletLoader.createBullet(myGame);
-		//} 
+			//if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+			//BulletLoader.createBullet(myGame);
+			//} 
 
-		// If player has rum, decrease rum count and make player invinvible.
-		if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
-			if (RumHandler.rumCount > 0 && !Player.isInvincible) {
-				RumHandler.rumCount--;
-				Player.isInvincible                       = true;
-				Player.invincibilityTimer                 = 0;
-				ConfidenceUi.confidenceUiShouldBeRendered = true;
-				Rum.playDrinkingSound                     = true;
+			// If player has rum, decrease rum count and make player invinvible.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+				if (RumHandler.rumCount > 0 && !Player.isInvincible) {
+					RumHandler.rumCount--;
+					Player.isInvincible                       = true;
+					Player.invincibilityTimer                 = 0;
+					ConfidenceUi.confidenceUiShouldBeRendered = true;
+					Rum.playDrinkingSound                     = true;
+				}
 			}
-		}
 
+			/*
 		if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
 			Store.storeShouldBeRendered = !Store.storeShouldBeRendered;
-		}
+		}*/
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
-			if (Store.storeIsUnlocked) {
-				Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+			if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+				if (Store.storeIsUnlocked) {
+					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+				}
 			}
-		}
 
+			/*
 		// Fill your collectibles for debugging.
 		if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
 			myGame.getGameObject(Player.PLAYER_ONE).updatePlayerLoot(20);
 			RumHandler.rumCount   = 99;
 			AmmoHandler.ammoCount = 99;
-		}
+		}*/
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
-			//if (pauseTimer % 5 == 0) {
-			if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
-				GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
-			} else {
-				GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				//if (pauseTimer % 5 == 0) {
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+				} else {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				}
+				PauseScreen.playSound = true;
+				//}
 			}
-			PauseScreen.playSound = true;
+			//pauseTimer++;
+			//if (pauseTimer > 50) {
+			//	pauseTimer = 0;
 			//}
-		}
-		//pauseTimer++;
-		//if (pauseTimer > 50) {
-		//	pauseTimer = 0;
-		//}
-
+			/*
 		if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 			System.exit(0);
-		}
+		}*/
 		}
 	}
 
@@ -275,7 +297,7 @@ public class Keyboard extends ComputerInput {
 	private void handleKeyboardDirectionalButtons(MyGame myGame, String directions, GameObject player) {
 
 		// If user presses the T button to use turbo.
-		int turboSpeed    = 20;
+		int turboSpeed    = 0;
 		float playerSpeed = Player.PLAYER_SPEED;
 		if (Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)) {
 			playerSpeed = Player.PLAYER_SPEED * turboSpeed;
