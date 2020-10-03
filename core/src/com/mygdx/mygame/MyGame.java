@@ -156,12 +156,14 @@ public class MyGame extends Game {
 	public void create () {
 		Gdx.graphics.setContinuousRendering(true);
 		Gdx.graphics.setResizable(false);
-		Gdx.input.setCursorCatched(true);
 		imageLoader.init();
 		renderer.init();
 		gameObjectLoader.createObjects(this);
 		audioHandler.init();
 		inputHandler.init();
+		if (InputHandler.inputType == InputHandler.INPUT_ARCADE || InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
+			Gdx.input.setCursorCatched(true);
+		}
 		gameAttributeHelper = new GameAttributeHelper();
 
 		// TODO KEEP THESE IN THIS ORDER SO GameAttributeHelper.gameState doesn't get set to the incorrect value.
