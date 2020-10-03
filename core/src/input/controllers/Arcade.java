@@ -275,7 +275,6 @@ public class Arcade extends ControllerInput {
 		if (controller.getButton(BUTTON_ATTACK)) {
 			switch (GameAttributeHelper.gameState) {
 			case Screens.GAME_SCREEN:
-				// TODO IF THIS DOESN'T WORK CHECK HERE.
 				if (
 						!MissionStumpHole.missionIsActive && 
 						!MissionRawBar.phasesAreInProgress && 
@@ -313,6 +312,7 @@ public class Arcade extends ControllerInput {
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
 							Paw.hasBeenUsed         = true;
 							Paw.playAttackSound     = true;
+							Paw.haveKilledEnemies   = false;
 						}
 					}
 					canClick = false;
