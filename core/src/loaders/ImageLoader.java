@@ -205,6 +205,8 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture newGameN;
+	public Texture exitGameQ;
 	public Texture space;
 	public Texture rightClick;
 	public Texture leftClick;
@@ -537,6 +539,8 @@ public class ImageLoader {
 
 		// UI objects.
 		space                        = new Texture(Gdx.files.internal("artwork/ui/Space.png"));
+		newGameN                     = new Texture(Gdx.files.internal("artwork/ui/NewGameN.png"));
+		exitGameQ                    = new Texture(Gdx.files.internal("artwork/ui/ExitGameQ.png"));
 		leftClick                    = new Texture(Gdx.files.internal("artwork/ui/LeftClick.png"));
 		rightClick                   = new Texture(Gdx.files.internal("artwork/ui/RightClick.png"));
 		computerControls             = new Texture(Gdx.files.internal("artwork/ui/ComputerControls.png"));
@@ -884,6 +888,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		exitGameQ.dispose();
+		newGameN.dispose();
 		space.dispose();
 		rightClick.dispose();
 		leftClick.dispose();

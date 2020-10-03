@@ -3,6 +3,7 @@ package ui;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.GameObject;
+import handlers.InputHandler;
 import loaders.ImageLoader;
 
 /**
@@ -40,8 +41,15 @@ public class Pause extends GameObject {
 				-40
 				);
 		batch.draw(imageLoader.gamePaused, x, y + height / 2, width, -height);
-		batch.draw(imageLoader.newGame, x, y + height / 2 + 4, width, -height);
-		batch.draw(imageLoader.exitGame, x, y + height / 2 + 6, width, -height);
+		
+		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
+			batch.draw(imageLoader.newGame, x, y + height / 2 + 4, width, -height);
+			batch.draw(imageLoader.exitGame, x, y + height / 2 + 6, width, -height);
+		} else {
+			// If it's mouse and keyboard.  Arcade doesn't have a pause.
+			batch.draw(imageLoader.newGameN, x, y + height / 2 + 4, width, -height);
+			batch.draw(imageLoader.exitGameQ, x, y + height / 2 + 6, width, -height);
+		}
 	}
 
 	/**

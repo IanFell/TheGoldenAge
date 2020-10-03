@@ -175,7 +175,7 @@ public class TitleScreen extends Screens {
 					900,
 					200
 					);
-			
+
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.space,
 					GameScreen.camera.position.x + 250,
@@ -205,9 +205,9 @@ public class TitleScreen extends Screens {
 					900,
 					200
 					);
-					*/
+			 */
 		} 
-			
+
 		myGame.renderer.batch.end();
 
 		handleAlphaPressStart();

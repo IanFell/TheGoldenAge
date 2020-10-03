@@ -92,9 +92,9 @@ public class Mouse extends ComputerInput {
 					}
 					// Dont throw exception if inventory is not equipped.
 					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
-						
+
 						//if (!Player.isInWater && (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword)) { 
-							Player.playerIsPerformingAttack = true;
+						Player.playerIsPerformingAttack = true;
 						//}
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 							MagicPearl.isAttacking     = !MagicPearl.isAttacking;

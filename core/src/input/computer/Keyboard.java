@@ -17,6 +17,7 @@ import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.RumHandler;
 import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import missions.MissionRawBar;
@@ -27,7 +28,9 @@ import screens.Screens;
 import screens.TitleScreen;
 import store.Store;
 import ui.ConfidenceUi;
+import ui.GameOver;
 import ui.MapUi;
+import ui.Win;
 
 /**
  * Handles keyboard input.
@@ -71,11 +74,11 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 				TitleScreen.titleScreenHover++;
 			}
-			
+
 			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
 				GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN); 
 			}
-			
+
 			break;
 
 		case Screens.CONTROLS_SCREEN:
@@ -86,7 +89,7 @@ public class Keyboard extends ComputerInput {
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
-			
+
 		case Screens.CREDITS_SCREEN:
 			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
@@ -271,6 +274,18 @@ public class Keyboard extends ComputerInput {
 				}
 				PauseScreen.playSound = true;
 				//}
+			}
+
+			if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+					GamePlayHelper.gameOver           = true;
+					GameOver.triggerGameOver          = true;
+					Win.triggerWin                    = true;
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				}
+				if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+					System.exit(0);
+				}
 			}
 			//pauseTimer++;
 			//if (pauseTimer > 50) {
