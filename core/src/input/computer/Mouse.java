@@ -60,6 +60,14 @@ public class Mouse extends ComputerInput {
 			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
 			}
+			if(Gdx.input.isButtonJustPressed(Input.Buttons.RIGHT)){
+				GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
+			}
+			break;
+		case Screens.CONTROLS_SCREEN:
+			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
 			break;
 		case Screens.GAME_SCREEN:
 			if (Inventory.allInventoryShouldBeRendered) {

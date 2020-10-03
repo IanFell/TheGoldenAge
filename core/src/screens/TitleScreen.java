@@ -125,7 +125,82 @@ public class TitleScreen extends Screens {
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-		}
+		} 
+		else if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+			if (alphaPressStart < 1) {
+				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
+			}
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.playGame,
+					GameScreen.camera.position.x - 1060,
+					GameScreen.camera.position.y + 180,
+					920,
+					240
+					);
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.leftClick,
+					GameScreen.camera.position.x + 260,
+					GameScreen.camera.position.y + 180,
+					920,
+					240
+					);
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+			if (alphaControls < 1) {
+				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaControls);
+			}
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.controls,
+					GameScreen.camera.position.x - 1050,
+					GameScreen.camera.position.y,
+					900,
+					200
+					);
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.rightClick,
+					GameScreen.camera.position.x + 250,
+					GameScreen.camera.position.y,
+					900,
+					200
+					);
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+			/*
+			if (alphaCredits < 1) {
+				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaCredits);
+			}
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.credits,
+					GameScreen.camera.position.x - 450,
+					GameScreen.camera.position.y - 200,
+					900,
+					200
+					);
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+*/
+			/*
+			float yPos = 0;
+			switch(titleScreenHover) {
+			case PRESS_START:
+				yPos = GameScreen.camera.position.y + 200;
+				break;
+			case CONTROLS:
+				yPos = GameScreen.camera.position.y;
+				break;
+			case CREDITS:
+				yPos = GameScreen.camera.position.y - 200;
+				break;
+			}
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.transparentSquare,
+					GameScreen.camera.position.x - 450,
+					yPos,
+					900,
+					200
+					);
+					*/
+		} 
+			
 		myGame.renderer.batch.end();
 
 		handleAlphaPressStart();

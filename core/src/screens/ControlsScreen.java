@@ -1,7 +1,9 @@
 package screens;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.mygame.MyGame;
 
+import handlers.InputHandler;
 import helpers.GameAttributeHelper;
 import helpers.ImageHelper;
 
@@ -30,9 +32,13 @@ public class ControlsScreen extends Screens {
 		clearScreenAndSetScreenColor(GameAttributeHelper.gameState, null);
 		updateCamera();
 		myGame.renderer.batch.begin();
+		Texture texture = myGame.imageLoader.controlsUi;
+		if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+			texture = myGame.imageLoader.computerControls;
+		}
 		ImageHelper.drawControlsScreen(
 				myGame.renderer.batch, 
-				myGame.imageLoader.controlsUi, 
+				texture, 
 				myGame
 				);
 		myGame.renderer.batch.end();

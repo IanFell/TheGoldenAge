@@ -205,6 +205,9 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture rightClick;
+	public Texture leftClick;
+	public Texture computerControls;
 	public Texture lootAddedToInventory;
 	public Texture objectiveBackground;
 	public Texture arcadeMap;
@@ -532,6 +535,9 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		leftClick                    = new Texture(Gdx.files.internal("artwork/ui/LeftClick.png"));
+		rightClick                   = new Texture(Gdx.files.internal("artwork/ui/RightClick.png"));
+		computerControls             = new Texture(Gdx.files.internal("artwork/ui/ComputerControls.png"));
 		lootAddedToInventory         = new Texture(Gdx.files.internal("artwork/ui/LootAdded.png"));
 		objectiveBackground          = new Texture(Gdx.files.internal("artwork/ui/ControlPanelBase.png"));
 		arcadeMap                    = new Texture(Gdx.files.internal("artwork/ui/Map.png"));
@@ -876,6 +882,9 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		rightClick.dispose();
+		leftClick.dispose();
+		computerControls.dispose();
 		lootAddedToInventory.dispose();
 		objectiveBackground.dispose();
 		arcadeMap.dispose();

@@ -72,6 +72,12 @@ public class Keyboard extends ComputerInput {
 				TitleScreen.titleScreenHover++;
 			}
 			break;
+			
+		case Screens.CONTROLS_SCREEN:
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			break;
 
 		case Screens.GAME_SCREEN:	
 
