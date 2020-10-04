@@ -1,5 +1,6 @@
 package handlers.audio;
 
+import com.badlogic.gdx.audio.Sound;
 import com.mygdx.mygame.MyGame;
 
 import cutscenes.CutScene;
@@ -332,12 +333,17 @@ public class SoundHandler {
 			if (PlayerOne.playDeathSound) {
 				// Play female death scream.
 				soundLoader.femaleScream.play(Mixer.DEATH_VOLUME);
-				
+
 				// Now we will have a male player following so play both death screams.
 				if (Store.gunHasBeenPurchasedAtStore) {
 					soundLoader.death.play(Mixer.DEATH_VOLUME);
 				}
-				
+
+				// Now we have two males following.
+				if (MissionRawBar.rawBarMissionComplete) {
+					soundLoader.maleScream.play(Mixer.DEATH_VOLUME);
+				}
+
 				PlayerOne.playDeathSound = false;
 			}
 
@@ -366,7 +372,27 @@ public class SoundHandler {
 	private void handleBossAudio(SoundLoader soundLoader) {
 		for (int i = 0; i < BossLoader.boss.length; i++) {
 			if (BossHandler.shouldPlayLaughSound[i]) {
-				soundLoader.myTreasure.play(Mixer.BOSS_LAUGH_VOLUME);
+
+				Sound bossMessage = soundLoader.myTreasure;
+				switch (i) {
+				case BossHandler.TRADIN_POST:
+					bossMessage = soundLoader.looking;
+					break;
+				case BossHandler.APALACHICOLA:
+					bossMessage = soundLoader.hey;
+					break;
+				case BossHandler.STUMP_HOLE:
+					bossMessage = soundLoader.looking;
+					break;
+				case BossHandler.WEWA:
+					bossMessage = soundLoader.you;
+					break;
+				case BossHandler.THE_POINT:
+					bossMessage = soundLoader.myTreasure;
+					break;
+				}
+				bossMessage.play(Mixer.BOSS_LAUGH_VOLUME);
+
 				BossHandler.shouldPlayLaughSound[i] = false;
 			}
 		}

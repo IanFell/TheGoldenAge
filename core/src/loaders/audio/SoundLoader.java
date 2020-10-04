@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound maleScream;
 	public Sound myTreasure;
 	public Sound femaleScream;
 	public Sound gameOver;
@@ -56,10 +57,17 @@ public class SoundLoader {
 	public Sound tunnel;
 	public Sound dagger;
 	public Sound enemyHurt;
+	public Sound you;
+	public Sound hey;
+	public Sound looking;
+	public Sound kids;
 
 	public void init() {
 		myTreasure          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/MyTreasure.wav"));
+		kids                = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Kids.wav"));
+		hey                 = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Hey.wav"));
 		gameOver            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/GameOver.wav"));
+		maleScream          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/MaleScream.wav"));
 		femaleScream        = Gdx.audio.newSound(Gdx.files.internal("audio/sound/FemaleScream.wav"));
 		splash              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Splash.wav"));
 		trumpet             = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Trumpet.wav"));
@@ -103,9 +111,16 @@ public class SoundLoader {
 		register            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/register.wav"));
 		arrow               = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Arrow.wav"));
 		tunnel              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Tunnel.wav"));
+		you                 = Gdx.audio.newSound(Gdx.files.internal("audio/sound/You.wav"));
+		looking             = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Looking.wav"));
 	}
 
 	public void dispose() {
+		kids.dispose();
+		looking.dispose();
+		hey.dispose();
+		you.dispose();
+		maleScream.dispose();
 		myTreasure.dispose();
 		femaleScream.dispose();
 		gameOver.dispose();
