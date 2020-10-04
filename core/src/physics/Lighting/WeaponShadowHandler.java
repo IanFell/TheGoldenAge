@@ -86,7 +86,21 @@ public class WeaponShadowHandler {
 		}
 
 		GameObject paw = myGame.getGameScreen().paw; 
-		if (!Paw.hasBeenUsed) {
+		if (!Paw.pawHasBeenCollected) {
+			batch.draw(
+					imageLoader.pawShadow, 
+					paw.getX(), 
+					paw.getY() + 1.0f, 
+					paw.getWidth(), 
+					-paw.getHeight()
+					);
+		}
+
+		else if (
+				Paw.pawHasBeenCollected &&
+				myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw &&
+				!Paw.hasBeenUsed
+				) {
 			batch.draw(
 					imageLoader.pawShadow, 
 					paw.getX(), 
