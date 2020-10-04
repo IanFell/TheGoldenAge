@@ -377,7 +377,7 @@ public class ControllerInput extends Input {
 			if(controller.getButton(BUTTON_L3)) {
 				//System.out.print("L3 button pressed \n");
 				//System.out.println("Player is using turbo!  Going fast!");
-				playerSpeed = Player.PLAYER_SPEED * turboSpeed;
+				//playerSpeed = Player.PLAYER_SPEED * turboSpeed;  // This is for debug.
 			}
 			Player.playerIsMoving = false;
 
