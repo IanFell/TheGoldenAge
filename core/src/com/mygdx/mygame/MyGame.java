@@ -200,6 +200,8 @@ public class MyGame extends Game {
 		audioHandler.handleAudio(this);
 
 		if (GamePlayHelper.gameOver) {
+			// If a cutscene is happening, stop it so it doesn't render over the game over or win screen.
+			CutScene.gameShouldPause = false;
 			setUpNewGame();
 		}
 	}
