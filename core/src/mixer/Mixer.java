@@ -90,6 +90,7 @@ public class Mixer {
 	public static final float POISON_VOLUME           = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_SPIN_VOLUME = MEDIAN_VOLUME;
 	public static final float BOSS_ATTACK_BASH_VOLUME = EIGHTH_VOLUME;
+	public static final float ARROW_SWOOSH_VOLUME     = MEDIAN_VOLUME;
 
 	// Collectables.
 	public final static float HEART_COLLECT_VOLUME      = EIGHTH_VOLUME;

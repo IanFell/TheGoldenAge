@@ -15,6 +15,7 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.nature.Feather;
 import gameobjects.nature.shockplant.ShockPlant;
+import gameobjects.weapons.Arrow;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Dagger;
 import gameobjects.weapons.Gun;
@@ -376,6 +377,11 @@ public class SoundHandler {
 				} 
 			} else {
 				soundLoader.laserFall.stop();
+			}
+
+			if (Arrow.playArrowSwooshAudio) {
+				soundLoader.arrowSwoosh.play(Mixer.ARROW_SWOOSH_VOLUME);
+				Arrow.playArrowSwooshAudio = false;
 			}
 		}
 	}

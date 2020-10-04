@@ -8,6 +8,7 @@ import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
 import handlers.CollisionHandler;
+import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.ImageLoader;
 import maps.MapHandler;
@@ -19,6 +20,10 @@ import ui.MapUi;
  *
  */
 public class Arrow extends Weapon {
+
+	private boolean arrowSwooshAudioHasBeenPlayed;
+	private int arrowSwooshTimer;
+	public static boolean playArrowSwooshAudio = false;
 
 	private int directionOfArrow;
 	private float dx;
@@ -49,6 +54,9 @@ public class Arrow extends Weapon {
 		}
 		rectangle.width  = width;
 		rectangle.height = height;
+
+		arrowSwooshAudioHasBeenPlayed = false;
+		arrowSwooshTimer              = 0;
 	}
 
 	/**
@@ -73,6 +81,24 @@ public class Arrow extends Weapon {
 
 		if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered && !CutScene.gameShouldPause) {
 			CollisionHandler.checkIfArrowHasCollidedWithPlayer(myGame.getGameObject(Player.PLAYER_ONE), this);
+		}
+
+		handleSwooshAudioTrigger();
+	}
+
+	private void handleSwooshAudioTrigger() {
+		if (GamePlayHelper.gameObjectIsWithinScreenBounds(this)) {
+			if (!arrowSwooshAudioHasBeenPlayed && arrowSwooshTimer == 0) {
+				playArrowSwooshAudio = true;
+				arrowSwooshAudioHasBeenPlayed = true;
+			}
+		}
+		if (arrowSwooshAudioHasBeenPlayed) {
+			arrowSwooshTimer++;
+			if (arrowSwooshTimer > 100) {
+				arrowSwooshTimer              = 0;
+				arrowSwooshAudioHasBeenPlayed = false;
+			}
 		}
 	}
 
