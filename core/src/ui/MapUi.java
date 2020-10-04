@@ -73,9 +73,19 @@ public class MapUi extends Screens {
 						camera.viewportWidth - borderShrinkOffset * 2, 
 						-camera.viewportHeight
 						);
-			} else {
+			} 
+			else if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
 				batch.draw(
 						imageLoader.worldMapFake,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			}
+			else {
+				batch.draw(
+						imageLoader.mapComputer,
 						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
 						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
 						camera.viewportWidth - borderShrinkOffset * 2, 

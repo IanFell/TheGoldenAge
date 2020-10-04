@@ -13,7 +13,7 @@ import gameobjects.collectibles.Rum;
 import gameobjects.gamecharacters.players.Player;
 import gameobjects.nature.Stump;
 import gameobjects.weapons.Weapon;
-import handlers.collectibles.AmmoHandler;
+import handlers.InputHandler;
 import handlers.collectibles.RumHandler;
 import handlers.holehandler.HoleHandler;
 import helpers.GameAttributeHelper;
@@ -22,7 +22,6 @@ import inventory.Inventory;
 import loaders.GameObjectLoader;
 import missions.MissionRawBar;
 import missions.MissionStumpHole;
-import screens.GameScreen;
 import screens.PauseScreen;
 import screens.Screens;
 import screens.TitleScreen;
@@ -40,10 +39,6 @@ import ui.Win;
  */
 public class Keyboard extends ComputerInput {
 
-	// Make sure button if held down is not being hit infinite times.
-	private int inventoryTimer      = 0;
-	private boolean startClickTimer = false;
-
 	private int weaponElement = 0;
 
 	//private int pauseTimer = 0;
@@ -54,6 +49,180 @@ public class Keyboard extends ComputerInput {
 	 */
 	@Override
 	public void handleInput(MyGame myGame) {
+		GameObject player = PlayerController.getCurrentPlayer(myGame);
+		switch (GameAttributeHelper.gameState) {
+
+		case Screens.TITLE_SCREEN:
+			if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ 
+				if (TitleScreen.titleScreenHover == TitleScreen.PRESS_START) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN); 
+				}
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN); 
+			}
+			break;
+
+		case Screens.CONTROLS_SCREEN:
+			if (GameAttributeHelper.playerHasStartedGame && InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				}
+				if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				}
+				if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+				}
+			} else {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+					GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				}
+				if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+					GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+				}
+			}
+			break;
+
+		case Screens.CREDITS_SCREEN:
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
+			}
+			break;
+
+		case Screens.GAME_SCREEN:	
+
+			// Skip intro cut scene.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+				Debugger.skipIntroCutscene = true;
+			}
+
+			if (
+					!Inventory.allInventoryShouldBeRendered && 
+					!MapUi.mapShouldBeRendered && 
+					GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
+					!HoleHandler.playerIsInHole &&
+					!CutScene.gameShouldPause
+					) {
+				handleKeyboardDirectionalButtons(myGame, "wasd", player);
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+				// Stump hole mission uses a different player than the game world player.
+				if (MissionStumpHole.missionIsActive) {
+					if (Stump.playerIsOnStump) {
+						Stump.playerIsOnStump                = false;
+						MissionStumpHole.playerIsJumping     = true;
+						MissionStumpHole.jumpSoundShouldPlay = true;
+					}
+				} else {
+					Player.isJumping = true;
+				}
+			} else {
+				// If we have released space bar.
+				if (MissionStumpHole.missionIsActive) {
+					MissionStumpHole.jumpSoundShouldPlay = false;
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						weaponElement = Inventory.currentlySelectedInventoryObject;
+						if (weaponElement < player.getInventory().inventory.size() - 1) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject + 1;
+							Weapon.shouldPlaySwitchWeaponAudio         = true;
+						}
+					}
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+				if (player.getInventory().getInventoryIsEquipped()) {
+					if (player.getInventory().inventory.size() > 0) {
+						// Don't switch if the weapon isn't available.
+						if (Inventory.currentlySelectedInventoryObject > 0) {
+							Inventory.currentlySelectedInventoryObject = Inventory.currentlySelectedInventoryObject - 1;
+							Weapon.shouldPlaySwitchWeaponAudio         = true;
+						}
+					}
+				}
+			}
+
+			// Display all inventory.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+				if (!Store.playerWantsToEnterStore) {
+					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
+					MapUi.mapShouldBeRendered              = false;
+				}
+			} 
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+				if (!Store.playerWantsToEnterStore) {
+					MapUi.mapShouldBeRendered = !MapUi.mapShouldBeRendered;
+					Inventory.allInventoryShouldBeRendered = false;
+				}
+			}
+
+			// If player has rum, decrease rum count and make player invinvible.
+			if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+				if (RumHandler.rumCount > 0 && !Player.isInvincible) {
+					RumHandler.rumCount--;
+					Player.isInvincible                       = true;
+					Player.invincibilityTimer                 = 0;
+					ConfidenceUi.confidenceUiShouldBeRendered = true;
+					Rum.playDrinkingSound                     = true;
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+				if (Store.storeIsUnlocked) {
+					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+				if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+				} else {
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				}
+				PauseScreen.playSound = true;
+			}
+
+			if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+				if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+					GamePlayHelper.gameOver           = true;
+					GameOver.triggerGameOver          = true;
+					Win.triggerWin                    = true;
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				}
+				if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+					System.exit(0);
+				}
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @param MyGame myGame
+	 */
+	//@Override
+	public void handleInputOld(MyGame myGame) {
 		GameObject player = PlayerController.getCurrentPlayer(myGame);
 		switch (GameAttributeHelper.gameState) {
 		case Screens.SPLASH_SCREEN:
@@ -218,6 +387,12 @@ public class Keyboard extends ComputerInput {
 		}*/
 
 			if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+				if (!Store.playerWantsToEnterStore) {
+					MapUi.mapShouldBeRendered = !MapUi.mapShouldBeRendered;
+					Inventory.allInventoryShouldBeRendered = false;
+				}
+
+				/*
 				if (!startClickTimer) {
 					startClickTimer                        = true;
 					MapUi.mapShouldBeRendered              = !MapUi.mapShouldBeRendered;
@@ -228,7 +403,7 @@ public class Keyboard extends ComputerInput {
 					if (inventoryTimer > 1) {
 						resetClickTimer();
 					}
-				}
+				} */
 			}
 
 			//if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
@@ -254,6 +429,12 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
 				if (Store.storeIsUnlocked) {
 					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+				}
+			}
+
+			if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+				if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
+					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
 				}
 			}
 
@@ -298,10 +479,6 @@ public class Keyboard extends ComputerInput {
 		}
 	}
 
-	private void resetClickTimer() {
-		inventoryTimer  = 0;
-		startClickTimer = false;
-	}
 
 	/**
 	 * Handles arrows and WASD.

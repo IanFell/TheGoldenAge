@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
+import handlers.InputHandler;
 import loaders.ImageLoader;
 import screens.GameScreen;
+import screens.Screens;
 import ui.TextBasedUiParent;
 
 /**
@@ -30,6 +32,23 @@ public class ImageHelper {
 				(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight,
 				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
 				-GameScreen.camera.viewportHeight
+				);
+	}
+	
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param Texture     texture
+	 * @param int         width
+	 * @param int         height
+	 */
+	public static void drawSplashScreen(SpriteBatch batch, Texture texture, int width, int height, MyGame myGame) {
+		batch.draw(
+				texture, 
+				GameScreen.camera.position.x - GameScreen.camera.viewportWidth / 2,
+				GameScreen.camera.position.y - GameScreen.camera.viewportHeight / 2,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				GameScreen.camera.viewportHeight
 				);
 	}
 
@@ -66,6 +85,10 @@ public class ImageHelper {
 		float width  = GameScreen.camera.viewportWidth;
 		float height = GameScreen.camera.viewportHeight;
 		batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y - height / 2, width, height);
+		
+		if (GameAttributeHelper.playerHasStartedGame && InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+			batch.draw(texture, GameScreen.camera.position.x - width / 2, GameScreen.camera.position.y + height / 2, width, -height);
+		}
 	}
 	
 	/**

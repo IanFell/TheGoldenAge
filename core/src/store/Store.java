@@ -154,6 +154,22 @@ public class Store extends TextBasedUiParent {
 					-2
 					); 
 		}
+		if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+			batch.draw(
+					imageLoader.objectiveBackground, 
+					player.getX() - 7.5f, 
+					player.getY() + 1, 
+					2.5f, 
+					-2
+					);
+			batch.draw(
+					imageLoader.pressE, 
+					player.getX() - 7, 
+					player.getY() + 1.2f, 
+					10, 
+					-2
+					); 
+		}
 	}
 
 	/**

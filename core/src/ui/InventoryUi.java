@@ -92,9 +92,19 @@ public class InventoryUi extends Screens {
 						camera.viewportWidth - borderShrinkOffset * 2, 
 						-camera.viewportHeight
 						);
-			} else {
+			} 
+			else if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
 				batch.draw(
 						imageLoader.inventoryScreen,
+						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
+						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
+						camera.viewportWidth - borderShrinkOffset * 2, 
+						-camera.viewportHeight
+						);
+			}
+			else {
+				batch.draw(
+						imageLoader.inventoryComputer,
 						camera.position.x - getViewportWidth() / denominatorOffset + borderShrinkOffset,
 						(camera.position.y - verticalHeight / denominatorOffset) + camera.viewportHeight,
 						camera.viewportWidth - borderShrinkOffset * 2, 

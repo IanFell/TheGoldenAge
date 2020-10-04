@@ -14,6 +14,7 @@ import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
 import handlers.CutSceneHandler;
+import handlers.InputHandler;
 import handlers.MissionHandler;
 import handlers.TownHandler;
 import handlers.WeaponHandler;
@@ -276,6 +277,8 @@ public class GameScreen extends Screens {
 		weaponShadowHandler = new WeaponShadowHandler();
 
 		holeHandler.init(myGame);
+		
+		GameAttributeHelper.playerHasStartedGame = true;
 
 		Input.initializeInventoryAndPurchasingUiForInput();
 
@@ -468,6 +471,10 @@ public class GameScreen extends Screens {
 				player.inventory.renderInventory(myGame.renderer.batch, myGame.imageLoader);
 				mapUi.renderWorldMapUi(myGame.renderer.batch, myGame.imageLoader, myGame);
 				controlsUi.renderControlsUi(myGame.renderer.batch, myGame.imageLoader, myGame);
+			}
+			
+			if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+				mapUi.renderWorldMapUi(myGame.renderer.batch, myGame.imageLoader, myGame);
 			}
 
 			if (!MissionRawBar.phasesAreInProgress && !MissionStumpHole.missionIsActive && !MapUi.mapShouldBeRendered

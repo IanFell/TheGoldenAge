@@ -205,6 +205,8 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture mapComputer;
+	public Texture inventoryComputer;
 	public Texture newGameN;
 	public Texture exitGameQ;
 	public Texture space;
@@ -231,6 +233,7 @@ public class ImageLoader {
 	public Texture lootAlternate;
 	public Texture outOfAmmo;
 	public Texture pressStart;
+	public Texture pressE;
 	public Texture creditsScreenUi;
 	public Texture newGame;
 	public Texture exitGame;
@@ -538,6 +541,8 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		inventoryComputer            = new Texture(Gdx.files.internal("artwork/ui/InventoryComputer.png"));
+		mapComputer                  = new Texture(Gdx.files.internal("artwork/ui/MapComputer.png"));
 		space                        = new Texture(Gdx.files.internal("artwork/ui/Space.png"));
 		newGameN                     = new Texture(Gdx.files.internal("artwork/ui/NewGameN.png"));
 		exitGameQ                    = new Texture(Gdx.files.internal("artwork/ui/ExitGameQ.png"));
@@ -565,6 +570,7 @@ public class ImageLoader {
 		lootAlternate                = new Texture(Gdx.files.internal("artwork/ui/loot2.png"));
 		outOfAmmo                    = new Texture(Gdx.files.internal("artwork/ui/OutOfAmmo.png"));
 		pressStart                   = new Texture(Gdx.files.internal("artwork/ui/PressStart.png"));
+		pressE                       = new Texture(Gdx.files.internal("artwork/ui/E.png"));
 		creditsScreenUi              = new Texture(Gdx.files.internal("artwork/ui/CreditsScreenUi.png"));
 		newGame                      = new Texture(Gdx.files.internal("artwork/ui/NewGame.png"));
 		exitGame                     = new Texture(Gdx.files.internal("artwork/ui/ExitGame.png"));
@@ -888,6 +894,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		mapComputer.dispose();
+		inventoryComputer.dispose();
 		exitGameQ.dispose();
 		newGameN.dispose();
 		space.dispose();
@@ -902,6 +910,7 @@ public class ImageLoader {
 		oysterMeterUi.dispose();
 		timeMeterUi.dispose();
 		pressStart.dispose();
+		pressE.dispose();
 		creditsScreenUi.dispose();
 		newGame.dispose();
 		exitGame.dispose();

@@ -59,6 +59,7 @@ import screens.ControlsScreen;
 import screens.CreditsScreen;
 import screens.GameScreen;
 import screens.Screens;
+import screens.SplashScreen;
 import screens.TitleScreen;
 import store.Store;
 import ui.AddedToInventory;
@@ -119,6 +120,7 @@ public class MyGame extends Game {
 	public TitleScreen titleScreen;
 	public ControlsScreen controlsScreen;
 	public CreditsScreen creditsScreen;
+	public SplashScreen splashScreen;
 
 	/**
 	 * 
@@ -171,7 +173,8 @@ public class MyGame extends Game {
 		controlsScreen      = new ControlsScreen(this);
 		gameScreen          = new GameScreen(this);
 		titleScreen         = new TitleScreen(this);
-		this.setScreen(titleScreen);
+		splashScreen        = new SplashScreen(this);
+		this.setScreen(splashScreen);
 		//this.setScreen(gameScreen);
 	}
 
@@ -207,6 +210,7 @@ public class MyGame extends Game {
 		controlsScreen.dispose();
 		gameScreen.dispose();
 		titleScreen.dispose();
+		splashScreen.dispose();
 		renderer.dispose();
 		GamePlayHelper.gameOver       = false;
 		GameOver.triggerGameOver      = false;
@@ -215,7 +219,7 @@ public class MyGame extends Game {
 		GameObjectLoader.gameObjectList.clear(); 
 		MissionHandler.resetMissions();
 		Store.resetStore();
-		
+
 		// TODO THESE ARE NEW THINGS ADDED
 		CutScene.resetGame();
 		CutSceneBird.resetGame();
@@ -282,7 +286,9 @@ public class MyGame extends Game {
 		CutSceneHandler.resetIntroCutscene();
 
 		SoundHandler.gameOverDeathHasPlayed = false;
-		
+
+		GameAttributeHelper.playerHasStartedGame = false;
+
 		getGameObject(Player.PLAYER_ONE).getInventory().inventory.clear();
 
 		this.create();

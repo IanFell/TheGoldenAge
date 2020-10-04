@@ -11,8 +11,8 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.stationarygameobjects.buildings.TradingPost;
 import gameobjects.weapons.BirdWeapon;
 import gameobjects.weapons.Gun;
-import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
+import gameobjects.weapons.Paw;
 import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
 import handlers.collectibles.RumHandler;
@@ -51,11 +51,7 @@ public class Mouse extends ComputerInput {
 
 		GameObject player = PlayerController.getCurrentPlayer(myGame);
 		switch (GameAttributeHelper.gameState) {
-		case Screens.SPLASH_SCREEN:
-			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-				//GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
-			}
-			break;
+		
 		case Screens.TITLE_SCREEN:
 			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
@@ -64,11 +60,13 @@ public class Mouse extends ComputerInput {
 				GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
 			}
 			break;
+			
 		case Screens.CONTROLS_SCREEN:
 			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
+			
 		case Screens.GAME_SCREEN:
 			if (Inventory.allInventoryShouldBeRendered) {
 				// Inventory menu buttons.
@@ -105,6 +103,11 @@ public class Mouse extends ComputerInput {
 								BirdWeapon.birdIsAttacking = true;
 								BirdWeapon.playAttackSound = true;
 							}
+						}
+						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+							Paw.hasBeenUsed         = true;
+							Paw.playAttackSound     = true;
+							Paw.haveKilledEnemies   = false;
 						}
 					}
 					handleStore(player, myGame);
