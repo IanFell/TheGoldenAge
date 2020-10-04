@@ -508,7 +508,7 @@ public class PlayerOne extends Player {
 		float locationSkullX  = 0;
 		float locationSkullY  = 0;
 		int currentMission    = getCurrentMission();
-		float offset          = 4.5f;
+		float offset          = 4.0f;
 
 		/*
 		locationMarkerIconFlashTimer++;
