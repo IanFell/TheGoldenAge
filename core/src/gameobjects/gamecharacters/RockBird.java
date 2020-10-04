@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.mygame.MyGame;
 
 import gameobjects.weapons.RockDrop;
+import handlers.audio.SoundHandler;
 import loaders.ImageLoader;
 import maps.MapHandler;
 
@@ -76,6 +77,7 @@ public class RockBird extends GameCharacter {
 		if (x < rightBoundary) {
 			if (rockDrop.size() < 3) {
 				rockDrop.add(new RockDrop(x, y));
+				SoundHandler.playRockDropAudio = true;
 			}
 		}
 		for (int i = 0; i < rockDrop.size(); i++) {

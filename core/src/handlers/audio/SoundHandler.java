@@ -54,6 +54,8 @@ public class SoundHandler {
 
 	public static boolean gameOverDeathHasPlayed = false;
 
+	public static boolean playRockDropAudio = false;
+
 	private boolean enemyDeathSoundCanPlay = true;
 	private int enemyDeathTimer            = 0;
 
@@ -365,6 +367,15 @@ public class SoundHandler {
 				soundLoader.femaleScream.play(Mixer.DEATH_VOLUME);
 				soundLoader.gameOver.play(Mixer.PIRATE_VOICE_GAME_OVER_VOLUME);
 				gameOverDeathHasPlayed = true;
+			}
+
+			if (MissionStumpHole.missionIsActive) {
+				if (playRockDropAudio) {
+					soundLoader.laserFall.play(Mixer.LASER_FALL_VOLUME);
+					playRockDropAudio = false;
+				} 
+			} else {
+				soundLoader.laserFall.stop();
 			}
 		}
 	}
