@@ -22,7 +22,7 @@ public class ScallopCoveLoader extends BuildingLoader {
 	 */
 	public void loadScallopCove(MyGame myGame) {
 		scallopCove = new ScallopCove(
-				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 10, 
+				GameAttributeHelper.CHUNK_TWO_X_POSITION_START + 6, 
 				GameAttributeHelper.CHUNK_FIVE_Y_POSITION_START - 90,
 				BUILDING_WIDTH,
 				BUILDING_HEIGHT,

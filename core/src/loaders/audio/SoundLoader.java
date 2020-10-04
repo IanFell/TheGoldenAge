@@ -11,6 +11,8 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound myTreasure;
+	public Sound femaleScream;
 	public Sound gameOver;
 	public Sound splash;
 	public Sound trumpet;
@@ -56,7 +58,9 @@ public class SoundLoader {
 	public Sound enemyHurt;
 
 	public void init() {
+		myTreasure          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/MyTreasure.wav"));
 		gameOver            = Gdx.audio.newSound(Gdx.files.internal("audio/sound/GameOver.wav"));
+		femaleScream        = Gdx.audio.newSound(Gdx.files.internal("audio/sound/FemaleScream.wav"));
 		splash              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Splash.wav"));
 		trumpet             = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Trumpet.wav"));
 		buzzer              = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Buzzer.wav"));
@@ -102,6 +106,8 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		myTreasure.dispose();
+		femaleScream.dispose();
 		gameOver.dispose();
 		splash.dispose();
 		trumpet.dispose();

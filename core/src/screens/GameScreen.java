@@ -417,7 +417,7 @@ public class GameScreen extends Screens {
 			 */
 			player.inventory.renderInventory(myGame.renderer.batch, myGame.imageLoader);
 
-			structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
+			//structureShadowHandler.renderStructureShadows(myGame.renderer.batch, myGame.imageLoader);
 			collectibleShadowHandler.renderCollectibleShadows(myGame.renderer.batch, myGame.imageLoader);
 			weaponShadowHandler.renderWeaponShadows(myGame.renderer.batch, myGame.imageLoader, myGame);
 

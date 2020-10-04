@@ -161,6 +161,7 @@ public class Keyboard extends ComputerInput {
 				if (!Store.playerWantsToEnterStore) {
 					Inventory.allInventoryShouldBeRendered = !Inventory.allInventoryShouldBeRendered;
 					MapUi.mapShouldBeRendered              = false;
+					Inventory.playClickSound               = true;
 				}
 			} 
 
@@ -185,6 +186,7 @@ public class Keyboard extends ComputerInput {
 			if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
 				if (Store.storeIsUnlocked) {
 					Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
+					Inventory.playClickSound                   = true;
 				}
 			}
 

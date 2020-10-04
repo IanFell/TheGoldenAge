@@ -51,7 +51,7 @@ public class Mouse extends ComputerInput {
 
 		GameObject player = PlayerController.getCurrentPlayer(myGame);
 		switch (GameAttributeHelper.gameState) {
-		
+
 		case Screens.TITLE_SCREEN:
 			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
@@ -60,13 +60,13 @@ public class Mouse extends ComputerInput {
 				GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
 			}
 			break;
-			
+
 		case Screens.CONTROLS_SCREEN:
 			if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
 				GameStateController.switchGameStates(myGame, Screens.TITLE_SCREEN);
 			}
 			break;
-			
+
 		case Screens.GAME_SCREEN:
 			if (Inventory.allInventoryShouldBeRendered) {
 				// Inventory menu buttons.
@@ -74,6 +74,7 @@ public class Mouse extends ComputerInput {
 					for (int i = 0; i < ((Player) player).getInventory().inventory.size(); i++) {
 						if (inventoryButtons[i].contains(Gdx.input.getX(), Gdx.input.getY())) {
 							selectAlternateInventoryObject(i, player);
+							Inventory.allInventoryShouldBeRendered = false;
 						}
 					}
 				} else {
@@ -90,10 +91,7 @@ public class Mouse extends ComputerInput {
 					}
 					// Dont throw exception if inventory is not equipped.
 					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
-
-						//if (!Player.isInWater && (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof LegendSword)) { 
 						Player.playerIsPerformingAttack = true;
-						//}
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 							MagicPearl.isAttacking     = !MagicPearl.isAttacking;
 							MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
@@ -113,15 +111,7 @@ public class Mouse extends ComputerInput {
 					handleStore(player, myGame);
 				} else {
 					Player.playerIsPerformingAttack = false;
-					// Dont throw exception if inventory is not equipped.
-					if (Inventory.inventoryIsEquipped) {
-						//if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-						//MagicPearl.isMovingForward = false;
-						//}
-						if (myGame.getGameObject(Player.PLAYER_ONE).getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-							//BirdWeapon.birdIsAttacking = false;
-						}
-					}
+
 					// Turn off store stuff.
 					Store.mouseIsClickingOnPurchasingObject = false;
 					for (int i = 0; i < purchasingButtonIsPressed.length; i++) {
@@ -138,11 +128,6 @@ public class Mouse extends ComputerInput {
 	 * @param MyGae      myGame
 	 */
 	private void handleStore(GameObject player, MyGame myGame) {
-		//storeTimer++;
-		//if (storeTimer > 50) {
-		//	storeTimer = 0;
-		//}
-		//if (storeTimer % 5 == 0) {
 		if (Store.storeShouldBeRendered) {
 			for (int i = 0; i < purchasingButtons.length; i++) {
 				if (purchasingButtons[PURCHASE_BUTTON_HEART].contains(Gdx.input.getX(), Gdx.input.getY())) {
@@ -257,6 +242,5 @@ public class Mouse extends ComputerInput {
 				}
 			}
 		} 
-		//}
 	}
 }

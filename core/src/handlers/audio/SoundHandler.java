@@ -330,7 +330,14 @@ public class SoundHandler {
 			}
 
 			if (PlayerOne.playDeathSound) {
-				soundLoader.death.play(Mixer.DEATH_VOLUME);
+				// Play female death scream.
+				soundLoader.femaleScream.play(Mixer.DEATH_VOLUME);
+				
+				// Now we will have a male player following so play both death screams.
+				if (Store.gunHasBeenPurchasedAtStore) {
+					soundLoader.death.play(Mixer.DEATH_VOLUME);
+				}
+				
 				PlayerOne.playDeathSound = false;
 			}
 
@@ -349,6 +356,7 @@ public class SoundHandler {
 
 			if (GameOver.triggerGameOver && !gameOverDeathHasPlayed) {
 				soundLoader.death.play(Mixer.DEATH_VOLUME);
+				soundLoader.femaleScream.play(Mixer.DEATH_VOLUME);
 				soundLoader.gameOver.play(Mixer.PIRATE_VOICE_GAME_OVER_VOLUME);
 				gameOverDeathHasPlayed = true;
 			}
@@ -358,7 +366,7 @@ public class SoundHandler {
 	private void handleBossAudio(SoundLoader soundLoader) {
 		for (int i = 0; i < BossLoader.boss.length; i++) {
 			if (BossHandler.shouldPlayLaughSound[i]) {
-				soundLoader.bossLaugh.play(Mixer.BOSS_LAUGH_VOLUME);
+				soundLoader.myTreasure.play(Mixer.BOSS_LAUGH_VOLUME);
 				BossHandler.shouldPlayLaughSound[i] = false;
 			}
 		}
