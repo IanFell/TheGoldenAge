@@ -215,7 +215,7 @@ public class MyGame extends Game {
 		GamePlayHelper.gameOver       = false;
 		GameOver.triggerGameOver      = false;
 		Win.triggerWin                = false;
-		GameAttributeHelper.gameState = Screens.TITLE_SCREEN;
+		GameAttributeHelper.gameState = Screens.SPLASH_SCREEN;
 		GameObjectLoader.gameObjectList.clear(); 
 		MissionHandler.resetMissions();
 		Store.resetStore();
