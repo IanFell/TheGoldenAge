@@ -61,6 +61,7 @@ public class MissionTradinPost extends Mission {
 	}
 
 	public static void resetGame() {
-		locationMarkerHasBeenHit = false;
+		locationMarkerHasBeenHit   = false;
+		TradingPost.hasBeenEntered = false;
 	}
 }

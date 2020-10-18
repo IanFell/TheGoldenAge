@@ -616,10 +616,17 @@ public class Store extends TextBasedUiParent {
 	}
 
 	public static void resetStore() {
+		mouseIsClickingOnPurchasingObject       = false;
+		storeShouldBeRendered                   = false;
 		gunHasBeenPurchasedAtStore              = false;
 		playerWantsToEnterStore                 = false;
 		shouldDisplayEnterStoreMessage          = false;
 		shouldDisplayEnterStoreMessageAlternate = false;
 		storeIsUnlocked                         = false;
+		playSound                               = false;
+		playerIsShortOnLootMessageShouldRender  = false;
+		shortOnLootTimer                        = 0;
+		gunPurchased                            = false;
+		pearlPurchased                          = false;
 	}
 }
