@@ -620,5 +620,6 @@ public class Store extends TextBasedUiParent {
 		playerWantsToEnterStore                 = false;
 		shouldDisplayEnterStoreMessage          = false;
 		shouldDisplayEnterStoreMessageAlternate = false;
+		storeIsUnlocked                         = false;
 	}
 }

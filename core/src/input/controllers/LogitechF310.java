@@ -156,7 +156,7 @@ public class LogitechF310 extends ControllerInput {
 		if(controller.getButton(BUTTON_Y)) {
 			// Enter store.
 			if (canClick) {
-				if (Store.storeIsUnlocked /*&& Store.storeShouldBeRendered*/) {
+				if (Store.storeIsUnlocked && (Store.shouldDisplayEnterStoreMessage || Store.shouldDisplayEnterStoreMessageAlternate)) {
 					//Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 					Store.playerWantsToEnterStore          = true;
 					canClick                               = false;
