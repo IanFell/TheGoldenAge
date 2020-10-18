@@ -205,6 +205,8 @@ public class PlayerOne extends Player {
 
 		handleDeathExplosionSetup();
 
+		handlePoison();
+
 		if (getHealth() <= 0 && lives < 3) {
 			//setLifeState(myGame, PLAYER_ONE);
 			resetHealthForNewLife();
@@ -220,8 +222,6 @@ public class PlayerOne extends Player {
 			torch.updateObject(myGame, mapHandler);
 			Fire.playSound = true;
 		}
-
-		handlePoison();
 
 		//simulateDeath(myGame, this);
 
@@ -302,6 +302,10 @@ public class PlayerOne extends Player {
 			if (poisonTimer == 50 || poisonTimer == 100 || poisonTimer == 150 || poisonTimer == 200) {
 				health--;
 				HealthUi.heartsShouldFlashWhite = true;
+
+				if (health <= 0) {
+					DeathUi.deathUiShouldBeRendered = true;
+				}
 			} else {
 				HealthUi.heartsShouldFlashWhite = false;
 			}
@@ -521,67 +525,67 @@ public class PlayerOne extends Player {
 		} */
 
 		//if (locationMarkerIconFlashTimer % 30 == 0) {
-			if (currentMission == MISSION_GO_TO_TRADING_POST) {
-				GameObject tradingPost = TradingPostLoader.tradingPost;
-				if (tradingPost.getX() < x) {
-					locationSkullX = x - offset;
-				} else {
-					locationSkullX = x + offset;
-				}
-				if (tradingPost.getY() < y) {
-					locationSkullY = y - offset;
-				} else {
-					locationSkullY = y + offset;
-				}
-			} else if (currentMission == MISSION_GO_TO_RAW_BAR) {
-				GameObject rawbar = RawBarLoader.rawbar;
-				if (rawbar.getX() < x) {
-					locationSkullX = x - offset;
-				} else {
-					locationSkullX = x + offset;
-				}
-				if (rawbar.getY() < y) {
-					locationSkullY = y - offset;
-				} else {
-					locationSkullY = y + offset;
-				}
-			} else if (currentMission == MISSION_GO_TO_STUMP_HOLE) {
-				GameObject stump = MissionStumpHole.stumps.get(1);
-				if (stump.getX() < x) {
-					locationSkullX = x - offset;
-				} else {
-					locationSkullX = x + offset;
-				}
-				if (stump.getY() < y) {
-					locationSkullY = y - offset;
-				} else {
-					locationSkullY = y + offset;
-				}
-			} else if (currentMission == MISSION_GO_TO_WEWA) {
-				GameObject market = MarketLoader.market;
-				if (market.getX() < x) {
-					locationSkullX = x - offset;
-				} else {
-					locationSkullX = x + offset;
-				}
-				if (market.getY() < y) {
-					locationSkullY = y - offset;
-				} else {
-					locationSkullY = y + offset;
-				}
-			} else if (currentMission == MISSION_THE_POINT) {
-				GameObject boss = BossLoader.boss[BossHandler.THE_POINT];
-				if (boss.getX() < x) {
-					locationSkullX = x - offset;
-				} else {
-					locationSkullX = x + offset;
-				}
-				if (boss.getY() < y) {
-					locationSkullY = y - offset;
-				} else {
-					locationSkullY = y + offset;
-				}
+		if (currentMission == MISSION_GO_TO_TRADING_POST) {
+			GameObject tradingPost = TradingPostLoader.tradingPost;
+			if (tradingPost.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
 			}
+			if (tradingPost.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_RAW_BAR) {
+			GameObject rawbar = RawBarLoader.rawbar;
+			if (rawbar.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (rawbar.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_STUMP_HOLE) {
+			GameObject stump = MissionStumpHole.stumps.get(1);
+			if (stump.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (stump.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_GO_TO_WEWA) {
+			GameObject market = MarketLoader.market;
+			if (market.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (market.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		} else if (currentMission == MISSION_THE_POINT) {
+			GameObject boss = BossLoader.boss[BossHandler.THE_POINT];
+			if (boss.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (boss.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
+		}
 		//}
 		batch.draw(imageLoader.locationSkull, locationSkullX, locationSkullY, locationSkullSize, -locationSkullSize);
 	}

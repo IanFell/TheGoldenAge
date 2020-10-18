@@ -3,6 +3,7 @@ package gameobjects;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import gameobjects.gamecharacters.players.Player;
+import gameobjects.gamecharacters.players.PlayerOne;
 import gameobjects.nature.NatureObject;
 import handlers.CollisionHandler;
 import loaders.ImageLoader;
