@@ -18,6 +18,7 @@ import handlers.collectibles.AmmoHandler;
 import handlers.collectibles.CollectibleHandler;
 import handlers.collectibles.RumHandler;
 import helpers.GameAttributeHelper;
+import helpers.GamePlayHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import missions.MissionRawBar;
@@ -27,8 +28,10 @@ import screens.TitleScreen;
 import store.Store;
 import ui.AddedToInventory;
 import ui.ConfidenceUi;
+import ui.GameOver;
 import ui.InventoryUi;
 import ui.MapUi;
+import ui.Win;
 
 /**
  * Logitech F310 GamePad.
@@ -187,6 +190,13 @@ public class LogitechF310 extends ControllerInput {
 				}
 				break;
 			case Screens.GAME_SCREEN:
+				
+				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
+					GamePlayHelper.gameOver           = true;
+					GameOver.triggerGameOver          = true;
+					Win.triggerWin                    = true;
+					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+				} 
 
 				// Skip Intro.
 				Debugger.skipIntroCutscene = true;
