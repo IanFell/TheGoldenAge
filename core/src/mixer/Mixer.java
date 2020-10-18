@@ -69,7 +69,7 @@ public class Mixer {
 	public static final float LOW_HEALTH_BEEP_VOLUME       = MEDIAN_VOLUME;
 
 	// Game character SFX volumes.
-	public final static float BOSS_LAUGH_VOLUME             = QUARTER_VOLUME;
+	public final static float BOSS_LAUGH_VOLUME             = EIGHTH_VOLUME;
 	public static final float DEATH_VOLUME                  = THREE_QUARTERS_VOLUME;
 	public static final float PIRATE_VOICE_GAME_OVER_VOLUME = THREE_QUARTERS_VOLUME;
 
@@ -80,7 +80,7 @@ public class Mixer {
 	public static final float BIRD_ATTACK_VOLUME   = SIXTEENTH_VOLUME;
 	public static final float PAW_ATTACK_VOLUME    = MEDIAN_VOLUME;
 	public static final float DAGGER_ATTACK_VOLUME = EIGHTH_VOLUME;
-	public static final float PAW_BOMB_VOLUME      = MEDIAN_VOLUME;
+	public static final float PAW_BOMB_VOLUME      = EIGHTH_VOLUME;
 
 	// Enemy attacks.
 	public final static float CANNON_FIRE_VOLUME      = QUARTER_VOLUME;

@@ -39,6 +39,7 @@ import store.Store;
 import ui.DeathUi;
 import ui.GameOver;
 import ui.MapUi;
+import ui.collectibles.HealthUi;
 
 /**
  * Jolly Roger.
@@ -300,6 +301,9 @@ public class PlayerOne extends Player {
 		if (isPoisoned) {
 			if (poisonTimer == 50 || poisonTimer == 100 || poisonTimer == 150 || poisonTimer == 200) {
 				health--;
+				HealthUi.heartsShouldFlashWhite = true;
+			} else {
+				HealthUi.heartsShouldFlashWhite = false;
 			}
 		}
 	}

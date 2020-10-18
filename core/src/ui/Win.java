@@ -18,7 +18,7 @@ public class Win extends CutScene {
 
 	private int timer = 0;
 
-	private final int DISPLAY_TIME = 500;
+	private final int DISPLAY_TIME = 300;
 
 	/**
 	 * Constructor.
