@@ -135,8 +135,14 @@ public class MusicHandler {
 	 */
 	public void handleMusic(MusicLoader musicLoader, MyGame myGame) {
 		if (GameAttributeHelper.gameState == Screens.GAME_SCREEN) {
-			// Dont let invincible music play during a boss battle because it will interfere with battle music.
-			if (Player.isInvincible && !bossBattleIsInProgress && !CutScene.gameShouldPause) {
+			// Dont let invincible music play during a boss battle or missions because it will interfere with battle music.
+			if (
+					Player.isInvincible && 
+					!bossBattleIsInProgress && 
+					!CutScene.gameShouldPause &&
+					!MissionRawBar.phasesAreInProgress &&
+					!MissionStumpHole.missionIsActive
+					) {
 				handleInvincibleAudio(musicLoader);
 			} else {
 				if (musicLoader.buff.isPlaying()) {
