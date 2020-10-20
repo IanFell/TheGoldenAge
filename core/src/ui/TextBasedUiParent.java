@@ -66,7 +66,7 @@ public class TextBasedUiParent extends GameObject {
 		if (numberToDisplay > 9) {
 			batch.draw(
 					ImageHelper.getConvertedTextureForDigit(numberToDisplay, imageLoader, DIGIT_TWO),
-					xOffset + textSize, 
+					xOffset + textSize + 0.3f, 
 					yOffset, 
 					textSize + textSize, 
 					-textSize
