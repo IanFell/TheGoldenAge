@@ -234,9 +234,9 @@ public class MusicHandler {
 		musicLoader.missionLoop.stop();
 		if (Win.triggerWin) {
 			// Winning screen plays the theme.
-			musicLoader.theme.setVolume(Mixer.TITLE_SCREEN_VOLUME);
-			musicLoader.theme.setLooping(true);
-			musicLoader.theme.play();
+			musicLoader.winMusic.setVolume(Mixer.TITLE_SCREEN_VOLUME);
+			//musicLoader.winMusic.setLooping(true);
+			musicLoader.winMusic.play();
 		}
 	}
 
