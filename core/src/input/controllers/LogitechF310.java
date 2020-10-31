@@ -174,7 +174,7 @@ public class LogitechF310 extends ControllerInput {
 				}
 				break;
 			case Screens.GAME_SCREEN:
-				
+
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 					GamePlayHelper.gameOver           = true;
 					GameOver.triggerGameOver          = true;

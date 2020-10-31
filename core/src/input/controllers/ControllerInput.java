@@ -50,7 +50,7 @@ public class ControllerInput extends Input {
 	private final int CLICK_TIMER_MAX_VALUE = 5;
 
 	private final int PAUSE_TIMER_MAX_VALUE = 20;
-	private boolean canPause                = true;
+	protected boolean canPause              = true;
 	private int pauseTimer                  = 0;
 
 	// Make sure inventory button if held down is not being hit infinite times.
