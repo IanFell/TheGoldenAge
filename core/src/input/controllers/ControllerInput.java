@@ -11,7 +11,6 @@ import gameobjects.gamecharacters.players.Player;
 import gameobjects.weapons.Weapon;
 import helpers.ControllerInputHelper;
 import helpers.GameAttributeHelper;
-import helpers.GamePlayHelper;
 import input.Input;
 import inventory.Inventory;
 import maps.MapInformationHolder;
@@ -117,6 +116,10 @@ public class ControllerInput extends Input {
 	private boolean canPollTriggers  = true;
 	private int pollTriggerTimer     = 0;
 
+	protected boolean inventoryHasClosedAndPlayerIsAllowedToJump = true;
+	protected int inventoryJumpingTimer                          = 0;
+	protected final int INVENTORY_JUMP_TIMER_VALUE               = 10;
+
 	public static void resetGame() {
 		storeObjectNumber = 0;
 	}
@@ -130,6 +133,16 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
+		}
+	}
+
+	protected void handleInventoryJumpingTimer() {
+		if (!inventoryHasClosedAndPlayerIsAllowedToJump) {
+			inventoryJumpingTimer++;
+			if (inventoryJumpingTimer > INVENTORY_JUMP_TIMER_VALUE) {
+				inventoryJumpingTimer                      = 0;
+				inventoryHasClosedAndPlayerIsAllowedToJump = true;
+			}
 		}
 	}
 

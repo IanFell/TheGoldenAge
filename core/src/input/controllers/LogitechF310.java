@@ -41,10 +41,6 @@ import ui.Win;
  */
 public class LogitechF310 extends ControllerInput {
 
-	private boolean inventoryHasClosedAndPlayerIsAllowedToJump = true;
-	private int inventoryJumpingTimer                          = 0;
-	private final int INVENTORY_JUMP_TIMER_VALUE               = 10;
-
 	/**
 	 * Trigger buttons.
 	 */
@@ -137,16 +133,6 @@ public class LogitechF310 extends ControllerInput {
 		}
 	}
 
-	private void handleInventoryJumpingTimer() {
-		if (!inventoryHasClosedAndPlayerIsAllowedToJump) {
-			inventoryJumpingTimer++;
-			if (inventoryJumpingTimer > INVENTORY_JUMP_TIMER_VALUE) {
-				inventoryJumpingTimer                      = 0;
-				inventoryHasClosedAndPlayerIsAllowedToJump = true;
-			}
-		}
-	}
-
 	/**
 	 * Polls controller for A, B, X, and Y.
 	 * 
@@ -160,11 +146,9 @@ public class LogitechF310 extends ControllerInput {
 			// Enter store.
 			if (canClick) {
 				if (Store.storeIsUnlocked && (Store.shouldDisplayEnterStoreMessage || Store.shouldDisplayEnterStoreMessageAlternate)) {
-					//Store.playerWantsToEnterStore = !Store.playerWantsToEnterStore;
 					Store.playerWantsToEnterStore          = true;
 					canClick                               = false;
 					Weapon.shouldPlaySwitchWeaponAudio     = true;
-					// Inventory.allInventoryShouldBeRendered = false;
 				} else {
 					Store.playBuzzerAudio = true;
 				}
@@ -234,7 +218,6 @@ public class LogitechF310 extends ControllerInput {
 						MapUi.mapShouldBeRendered                  = false;
 						inventoryHasClosedAndPlayerIsAllowedToJump = false;
 					} else {
-						// TODO DO I NEED THIS?
 						if (!MissionRawBar.introHasCompleted && MissionRawBar.missionIsActive) {
 							MissionRawBar.introHasCompleted = true;
 						} else {
