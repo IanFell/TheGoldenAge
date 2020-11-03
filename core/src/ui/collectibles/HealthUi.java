@@ -39,7 +39,7 @@ public class HealthUi {
 		GameObject player    = PlayerController.getCurrentPlayer(myGame);
 		float size           = 0.8f;
 		int topRightCorner   = 27;
-		int bottomRightCorer = 40;
+		int bottomRightCorer = 41;
 		int bottomLeftCorner = 66;
 
 		// Render the hearts in a square around the perimeter of the screen, starting from the top left.
