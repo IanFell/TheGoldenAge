@@ -28,6 +28,9 @@ import ui.LocationMarker;
  *
  */
 public class MissionStumpHole extends Mission {
+	
+	private boolean splashSoundHasPlayed  = false;
+	public static boolean playSplashSound = false;
 
 	public static float alpha               = 0;
 	public static boolean shouldChangeAlpha = false;
@@ -443,6 +446,7 @@ public class MissionStumpHole extends Mission {
 				playerIsJumping = false;
 				jumpTimer       = 0;
 			}
+			splashSoundHasPlayed = false;
 		}
 
 		for (int i = 0; i < stumps.size(); i++) {
@@ -752,6 +756,11 @@ public class MissionStumpHole extends Mission {
 			playerDy += gravity * dt; 
 			// Position formula.
 			player.y += playerDy * dt + .00005f * gravity * dt * dt; 
+			
+			if (!splashSoundHasPlayed) {
+				playSplashSound      = true;
+				splashSoundHasPlayed = true;
+			}
 		} else {
 			// Make sure this is false so player can still move on top of stumps.
 			playerIsJumping = false;
@@ -762,5 +771,6 @@ public class MissionStumpHole extends Mission {
 		missionIsActive          = false;
 		missionComplete          = false;
 		stumpHoleMissionComplete = false;	
+		playSplashSound          = false;
 	}
 }

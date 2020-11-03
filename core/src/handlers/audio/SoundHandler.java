@@ -383,6 +383,11 @@ public class SoundHandler {
 				soundLoader.arrowSwoosh.play(Mixer.ARROW_SWOOSH_VOLUME);
 				Arrow.playArrowSwooshAudio = false;
 			}
+
+			if (MissionStumpHole.playSplashSound) {
+				soundLoader.splash.play(Mixer.SPLASH_VOLUME);
+				MissionStumpHole.playSplashSound = false;
+			}
 		}
 	}
 
