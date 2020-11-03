@@ -32,6 +32,8 @@ public class InputHandler {
 	public final static int INPUT_ARCADE     = 2;
 
 	public static int inputType = INPUT_COMPUTER;
+	
+	public static boolean isPlaystationController = false;
 
 	/**
 	 * GamePads.  This can be any gamepad, as it will
@@ -49,20 +51,24 @@ public class InputHandler {
 
 		// Instantiate correct controller based off controller name.
 		if (controllerName.contains("Logitech")) {
-			controllerInput = new LogitechF310();
-			inputType       = INPUT_CONTROLLER;
+			controllerInput         = new LogitechF310();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = false;
 		}
 		if (controllerName.contains("Xbox") && controllerName.contains("360")) {
-			controllerInput = new XBox360Pad();
-			inputType       = INPUT_CONTROLLER;
+			controllerInput         = new XBox360Pad();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = false;
 		}
 		if (controllerName.contains("Wireless Controller")) {
-			controllerInput = new PlayStation4Pad();
-			inputType       = INPUT_CONTROLLER;
+			controllerInput         = new PlayStation4Pad();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = true;
 		}
 		if (controllerName.contains("Generic   USB  Joystick")) {
-			controllerInput = new Arcade();
-			inputType       = INPUT_ARCADE;
+			controllerInput         = new Arcade();
+			inputType               = INPUT_ARCADE;
+			isPlaystationController = false;
 		}
 
 		// If we have found a controller, initialize it.

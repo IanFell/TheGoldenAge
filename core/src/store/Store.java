@@ -130,13 +130,24 @@ public class Store extends TextBasedUiParent {
 					10.5f, 
 					-2
 					);
-			batch.draw(
-					imageLoader.pressY, 
-					player.getX() - 7, 
-					player.getY() + 2.2f, 
-					14, 
-					-4
-					); 
+			
+			if (InputHandler.isPlaystationController) {
+				batch.draw(
+						imageLoader.pressTriangle, 
+						player.getX() - 7, 
+						player.getY() + 2.2f, 
+						14, 
+						-4
+						); 
+			} else {
+				batch.draw(
+						imageLoader.pressY, 
+						player.getX() - 7, 
+						player.getY() + 2.2f, 
+						14, 
+						-4
+						); 
+			}
 		}
 		if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
 			batch.draw(
@@ -244,13 +255,23 @@ public class Store extends TextBasedUiParent {
 				-1
 				);
 		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
-			batch.draw(
-					imageLoader.pressB, 
-					player.getX() + 4, 
-					player.getY() - 2.5f, 
-					5, 
-					-1
-					);
+			if (InputHandler.isPlaystationController) {
+				batch.draw(
+						imageLoader.pressCircle, 
+						player.getX() + 4, 
+						player.getY() - 2.5f, 
+						5, 
+						-1
+						);
+			} else {
+				batch.draw(
+						imageLoader.pressB, 
+						player.getX() + 4, 
+						player.getY() - 2.5f, 
+						5, 
+						-1
+						);
+			}
 		}
 		if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
 			batch.draw(

@@ -205,6 +205,8 @@ public class ImageLoader {
 	public Texture nightTimeShader;
 
 	// UI objects.
+	public Texture pressTriangle;
+	public Texture pressCircle;
 	public Texture mapComputer;
 	public Texture inventoryComputer;
 	public Texture newGameN;
@@ -541,6 +543,8 @@ public class ImageLoader {
 		nightTimeShader        = new Texture(Gdx.files.internal("artwork/tiles/NightTimeShader.png"));
 
 		// UI objects.
+		pressTriangle                = new Texture(Gdx.files.internal("artwork/ui/PressTriangle.png"));
+		pressCircle                  = new Texture(Gdx.files.internal("artwork/ui/PressCircle.png"));
 		inventoryComputer            = new Texture(Gdx.files.internal("artwork/ui/InventoryComputer.png"));
 		mapComputer                  = new Texture(Gdx.files.internal("artwork/ui/MapComputer.png"));
 		space                        = new Texture(Gdx.files.internal("artwork/ui/Space.png"));
@@ -894,6 +898,8 @@ public class ImageLoader {
 		nightTimeShader.dispose();
 
 		// UI objects.
+		pressTriangle.dispose();
+		pressCircle.dispose();
 		mapComputer.dispose();
 		inventoryComputer.dispose();
 		exitGameQ.dispose();
