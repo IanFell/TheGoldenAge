@@ -32,7 +32,8 @@ public class WeatherHandler {
 
 	private static boolean isStorming  = false;
 	private final int STORM_CYCLE_MIN  = 1000;
-	private final int STORM_CYCLE_MAX  = 10000;
+	private final int STORM_CYCLE_MAX  = 3000;
+	//private final int STORM_CYCLE_MAX  = 10000;
 	private double stormLength         = 0L;
 	private int stormTimer             = 0;
 	private boolean stormLengthHasBeenSet;
