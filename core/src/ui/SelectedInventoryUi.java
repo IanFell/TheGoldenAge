@@ -11,6 +11,7 @@ import gameobjects.weapons.Gun;
 import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
+import handlers.InputHandler;
 import inventory.Inventory;
 import loaders.ImageLoader;
 
@@ -77,6 +78,24 @@ public class SelectedInventoryUi {
 						1, 
 						-1 /* * 1.3f*/
 						);
+				
+				if (object instanceof MagicPearl) {
+					if (MagicPearl.isAttacking) {
+						Texture texture = imageLoader.pearlLt;
+						
+						if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
+							texture = imageLoader.pearlStart;
+						}
+						
+						batch.draw(
+								texture,
+								player.getX() + 4.5f,
+								player.getY() - 2,
+								8, 
+								-3 /* * 1.3f*/
+								);
+					}
+				}
 			}
 		}
 	}

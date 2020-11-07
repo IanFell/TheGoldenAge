@@ -11,6 +11,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 public class SoundLoader {
 
+	public Sound giantGrunt;
 	public Sound arrowSwoosh;
 	public Sound laserFall;
 	public Sound maleScream;
@@ -66,7 +67,8 @@ public class SoundLoader {
 
 	public void init() {
 		laserFall           = Gdx.audio.newSound(Gdx.files.internal("audio/sound/LaserFall.ogg"));
-		arrowSwoosh          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/ArrowSwoosh.wav"));
+		giantGrunt          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/GiantGrunt.wav"));
+		arrowSwoosh         = Gdx.audio.newSound(Gdx.files.internal("audio/sound/ArrowSwoosh.wav"));
 		myTreasure          = Gdx.audio.newSound(Gdx.files.internal("audio/sound/MyTreasure.wav"));
 		kids                = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Kids.wav"));
 		hey                 = Gdx.audio.newSound(Gdx.files.internal("audio/sound/Hey.wav"));
@@ -120,6 +122,7 @@ public class SoundLoader {
 	}
 
 	public void dispose() {
+		giantGrunt.dispose();
 		arrowSwoosh.dispose();
 		laserFall.dispose();
 		kids.dispose();

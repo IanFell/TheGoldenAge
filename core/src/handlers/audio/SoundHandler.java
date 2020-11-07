@@ -571,7 +571,7 @@ public class SoundHandler {
 		}
 
 		if (Giant.playGiantDeathSound) {
-			soundLoader.enemyDeathSound.play(Mixer.ENEMY_DEATH_VOLUME);
+			soundLoader.giantGrunt.play(Mixer.ENEMY_DEATH_VOLUME);
 			Giant.playGiantDeathSound = false;
 		} 
 
