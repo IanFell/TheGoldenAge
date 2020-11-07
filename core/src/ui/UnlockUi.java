@@ -37,8 +37,8 @@ public class UnlockUi {
 	public UnlockUi() {
 		timerAmmo                       = 0;
 		timerMagicPearl                 = 0;
-		width                           = 17;
-		height                          = 6;
+		width                           = 10;
+		height                          = 3;
 		shouldRenderMagicPearlObjective = false;
 		shouldRenderAmmoObjective       = true;
 	}
