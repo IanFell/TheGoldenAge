@@ -30,7 +30,7 @@ public class Boss extends Enemy {
 
 	private BossHealthUi bossHealthUi;
 
-	private final int BOSS_MAX_HEALTH = 25;
+	private final int BOSS_MAX_HEALTH = 100;
 	private float bossHealth;
 
 	public final static float BOSS_DAMAGE_TAKEN_FROM_PLAYER = 1f; // 0.08f

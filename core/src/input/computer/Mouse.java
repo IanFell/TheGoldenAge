@@ -94,7 +94,7 @@ public class Mouse extends ComputerInput {
 						Player.playerIsPerformingAttack = true;
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
 							MagicPearl.isAttacking     = !MagicPearl.isAttacking;
-							MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
+					MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
 						}
 						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
 							if (!BirdWeapon.birdIsAttacking) {

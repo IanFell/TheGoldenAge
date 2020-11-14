@@ -50,6 +50,8 @@ import ui.collectibles.HealthUi;
  *
  */
 public class PlayerOne extends Player {
+	
+	private int currentMission = 10;
 
 	private int locationMarkerIconFlashTimer                = 0;
 	private final int LOCATION_MARKER_FLASH_TIMER_INCREMENT = 60;
@@ -59,6 +61,7 @@ public class PlayerOne extends Player {
 	private int MISSION_GO_TO_STUMP_HOLE   = 2;
 	private int MISSION_GO_TO_WEWA         = 3;
 	private int MISSION_THE_POINT          = 4;
+	private int MISSION_COLLECT_BIRD       = 5;
 
 	private MissionWewa missionWewa;
 
@@ -515,7 +518,7 @@ public class PlayerOne extends Player {
 		int locationSkullSize = 1;
 		float locationSkullX  = 0;
 		float locationSkullY  = 0;
-		int currentMission    = getCurrentMission();
+		currentMission        = getCurrentMission();
 		float offset          = 4.0f;
 
 		/*
@@ -585,6 +588,18 @@ public class PlayerOne extends Player {
 			} else {
 				locationSkullY = y + offset;
 			}
+		} else if (currentMission == MISSION_COLLECT_BIRD) {
+			GameObject stump = MissionStumpHole.stumps.get(1);
+			if (stump.getX() < x) {
+				locationSkullX = x - offset;
+			} else {
+				locationSkullX = x + offset;
+			}
+			if (stump.getY() < y) {
+				locationSkullY = y - offset;
+			} else {
+				locationSkullY = y + offset;
+			}
 		}
 		//}
 		batch.draw(imageLoader.locationSkull, locationSkullX, locationSkullY, locationSkullSize, -locationSkullSize);
@@ -602,7 +617,7 @@ public class PlayerOne extends Player {
 			currentMission = MISSION_GO_TO_WEWA;
 		} else if (MissionWewa.wewaMissionComplete && !MissionThePoint.missionThePointComplete) {
 			currentMission = MISSION_THE_POINT;
-		}
+		} 
 		return currentMission;
 	}
 

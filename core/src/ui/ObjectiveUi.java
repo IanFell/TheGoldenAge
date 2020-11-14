@@ -219,6 +219,23 @@ public class ObjectiveUi {
 						-height
 						); 
 			} 
+			
+			if (objectiveTexture.equals(imageLoader.objectiveCollectTheBird)) {
+				batch.draw(
+						imageLoader.objectiveBackground,
+						xPos - 3.75f, 
+						yPos + 0.5f, 
+						backgroundWidth + 3, 
+						-height / 2
+						); 
+				batch.draw(
+						imageLoader.objectiveStumpHole,
+						xPos - 3.5f, 
+						yPos + 1.8f, 
+						width, 
+						-height
+						); 
+			}
 
 			// Patch for objective texture to "buy the gun" rendering.
 			if (objectiveTexture.equals(imageLoader.objectiveBuyTheGun) && !Inventory.allInventoryShouldBeRendered) {

@@ -63,7 +63,7 @@ public class MusicLoader {
 		missionLoop           = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionLoop.ogg"));
 		missionIntro          = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionIntro.ogg"));
 		missionWin            = Gdx.audio.newMusic(Gdx.files.internal("audio/music/MissionWin.ogg"));
-		typewriter            = Gdx.audio.newMusic(Gdx.files.internal("audio/Music/Typewriter.ogg"));
+		typewriter            = Gdx.audio.newMusic(Gdx.files.internal("audio/music/Typewriter.ogg"));
 	}
 
 	public void dispose() {
