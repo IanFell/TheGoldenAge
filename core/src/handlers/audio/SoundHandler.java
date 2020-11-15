@@ -23,6 +23,7 @@ import gameobjects.weapons.LegendSword;
 import gameobjects.weapons.MagicPearl;
 import gameobjects.weapons.Paw;
 import gameobjects.weapons.Weapon;
+import handlers.CutSceneHandler;
 import handlers.arrowhandler.ArrowHandler;
 import handlers.collectibles.AmmoHandler;
 import handlers.enemies.BossHandler;
@@ -290,8 +291,10 @@ public class SoundHandler {
 			}
 
 			if (!CutScene.gameShouldPause) {
-				handleJumpingAudio(soundLoader);
-				handleLandingAudio(soundLoader);
+				if (CutSceneHandler.playerCanJump) {
+					handleJumpingAudio(soundLoader);
+					handleLandingAudio(soundLoader);
+				}
 				handleQuickSandAudio(soundLoader);
 			}
 

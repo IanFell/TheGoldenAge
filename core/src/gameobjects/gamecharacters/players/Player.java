@@ -12,6 +12,7 @@ import com.mygdx.mygame.MyGame;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.GameCharacter;
 import handlers.AnimationHandler;
+import handlers.CutSceneHandler;
 import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
@@ -372,7 +373,7 @@ public class Player extends GameCharacter {
 	 * @param MyGame myGame
 	 */
 	protected void handleJumping(MyGame myGame) {
-		if (isJumping && !isInWater) {
+		if (isJumping && !isInWater && CutSceneHandler.playerCanJump) {
 			jumpCount++;
 			if (jumpCount >= JUMP_COUNT_MAX) {
 				// Reset jump variables and get ready to jump again.

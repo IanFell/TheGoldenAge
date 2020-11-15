@@ -24,6 +24,8 @@ import missions.MissionThePoint;
 public class CutSceneHandler {
 
 	private int ENEMY_CUTSCENE_DELAY = 500;
+	
+	public static boolean playerCanJump = true;
 
 	private static CutSceneJollyRoger cutSceneJollyRoger;
 	private CutSceneCutthroat cutSceneCutthroat;
@@ -43,6 +45,7 @@ public class CutSceneHandler {
 		cutSceneBird        = new CutSceneBird("Cutscene Bird");
 		cutSceneCauldron    = new CutSceneCauldron("Cutscene Cauldron");
 		cutSceneMap         = new CutSceneMap("Cutscene Map");
+		playerCanJump       = true;
 	}
 
 	/**
@@ -68,6 +71,14 @@ public class CutSceneHandler {
 		if (cutSceneJollyRoger.isCutSceneConcluded() && cutSceneEnemyStartTimer == ENEMY_CUTSCENE_DELAY) {
 			cutSceneEnemy.updateCutScene(myGame);
 		}
+		
+		// Remove player jumping ability slightly before enemy cutscene.
+		if (cutSceneEnemyStartTimer > 450 && cutSceneEnemyStartTimer < 500) {
+			playerCanJump = false;
+		} else {
+			playerCanJump = true;
+		}
+		
 		if (Gun.hasBeenCollected) {
 			cutSceneCutthroat.updateCutScene(myGame);
 		}

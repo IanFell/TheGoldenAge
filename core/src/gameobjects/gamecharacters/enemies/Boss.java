@@ -88,13 +88,16 @@ public class Boss extends Enemy {
 	 * @param float width
 	 * @param float height
 	 * @param int   direction
+	 * @param int   maxHealth
 	 */
-	public Boss(float x, float y, float width, float height, int direction) {
+	public Boss(float x, float y, float width, float height, int direction, int maxHealth) {
 		super(x, y, width, height, direction);
 		rectangle.width       = width;
 		rectangle.height      = height;
 		bossHealthUi          = new BossHealthUi(x, y - 2);
-		bossHealth            = BOSS_MAX_HEALTH;
+		//bossHealth            = BOSS_MAX_HEALTH;
+		// Lets make each boss harder as the game progresses instead of a set value.
+		bossHealth            = maxHealth;
 		battleMusicHasStarted = false;
 		for (int i = 0; i < explosionFinishTimer.length; i++) {
 			explosionFinishTimer[i] = 0;
