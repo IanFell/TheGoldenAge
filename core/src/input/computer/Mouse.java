@@ -23,6 +23,8 @@ import missions.MissionRawBar;
 import screens.Screens;
 import store.Store;
 import ui.AddedToInventory;
+import ui.GameOver;
+import ui.Win;
 
 /**
  * Handles mouse input.
@@ -68,54 +70,56 @@ public class Mouse extends ComputerInput {
 			break;
 
 		case Screens.GAME_SCREEN:
-			if (Inventory.allInventoryShouldBeRendered) {
-				// Inventory menu buttons.
-				if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-					for (int i = 0; i < ((Player) player).getInventory().inventory.size(); i++) {
-						if (inventoryButtons[i].contains(Gdx.input.getX(), Gdx.input.getY())) {
-							selectAlternateInventoryObject(i, player);
-							Inventory.allInventoryShouldBeRendered = false;
-						}
-					}
-				} else {
-					Inventory.mouseIsClickingOnInventoryObject = false;
-					for (int i = 0; i < inventoryButtonIsPressed.length; i++) {
-						inventoryButtonIsPressed[i] = false;
-					}
-				}
-			} else {
-				if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-					// Skip the raw bar mission intro if we click on anywhere on the screen.
-					if (MissionRawBar.missionIsActive && !MissionRawBar.introHasCompleted) {
-						MissionRawBar.introHasCompleted = true;
-					}
-					// Dont throw exception if inventory is not equipped.
-					if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
-						Player.playerIsPerformingAttack = true;
-						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-							MagicPearl.isAttacking     = !MagicPearl.isAttacking;
-					MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
-						}
-						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-							if (!BirdWeapon.birdIsAttacking) {
-								BirdWeapon.birdIsAttacking = true;
-								BirdWeapon.playAttackSound = true;
+			if ( !Win.triggerWin && !GameOver.triggerGameOver) {
+				if (Inventory.allInventoryShouldBeRendered) {
+					// Inventory menu buttons.
+					if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+						for (int i = 0; i < ((Player) player).getInventory().inventory.size(); i++) {
+							if (inventoryButtons[i].contains(Gdx.input.getX(), Gdx.input.getY())) {
+								selectAlternateInventoryObject(i, player);
+								Inventory.allInventoryShouldBeRendered = false;
 							}
 						}
-						if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
-							Paw.hasBeenUsed         = true;
-							Paw.playAttackSound     = true;
-							Paw.haveKilledEnemies   = false;
+					} else {
+						Inventory.mouseIsClickingOnInventoryObject = false;
+						for (int i = 0; i < inventoryButtonIsPressed.length; i++) {
+							inventoryButtonIsPressed[i] = false;
 						}
 					}
-					handleStore(player, myGame);
 				} else {
-					Player.playerIsPerformingAttack = false;
+					if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+						// Skip the raw bar mission intro if we click on anywhere on the screen.
+						if (MissionRawBar.missionIsActive && !MissionRawBar.introHasCompleted) {
+							MissionRawBar.introHasCompleted = true;
+						}
+						// Dont throw exception if inventory is not equipped.
+						if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
+							Player.playerIsPerformingAttack = true;
+							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+								MagicPearl.isAttacking     = !MagicPearl.isAttacking;
+								MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
+							}
+							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+								if (!BirdWeapon.birdIsAttacking) {
+									BirdWeapon.birdIsAttacking = true;
+									BirdWeapon.playAttackSound = true;
+								}
+							}
+							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+								Paw.hasBeenUsed         = true;
+								Paw.playAttackSound     = true;
+								Paw.haveKilledEnemies   = false;
+							}
+						}
+						handleStore(player, myGame);
+					} else {
+						Player.playerIsPerformingAttack = false;
 
-					// Turn off store stuff.
-					Store.mouseIsClickingOnPurchasingObject = false;
-					for (int i = 0; i < purchasingButtonIsPressed.length; i++) {
-						purchasingButtonIsPressed[i] = false;
+						// Turn off store stuff.
+						Store.mouseIsClickingOnPurchasingObject = false;
+						for (int i = 0; i < purchasingButtonIsPressed.length; i++) {
+							purchasingButtonIsPressed[i] = false;
+						}
 					}
 				}
 			}

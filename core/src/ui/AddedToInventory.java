@@ -62,10 +62,28 @@ public class AddedToInventory extends GameObject {
 		if (shouldRender) {
 			float weaponNameUiWidth = width + 1;
 			int offset              = 5;
-			if (shouldDisplayLegendSword) {
+			int left                = 1;
+			
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.objectiveBackground, 
+					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
+					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
+					weaponNameUiWidth, 
+					-height
+					);
+			
+			if (shouldDisplayPaw) {
+				myGame.renderer.batch.draw(
+						myGame.imageLoader.pawUi, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
+						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
+						weaponNameUiWidth, 
+						-height
+						);
+			} else if (shouldDisplayLegendSword) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.legendSwordUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -73,7 +91,7 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayMagicPearl) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.magicPearlUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -81,7 +99,7 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayGun) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.gunUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -89,7 +107,7 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayWoody) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.woodyUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -97,7 +115,7 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayHealth) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.healthUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -105,7 +123,7 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayRum) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.rumUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
@@ -113,41 +131,39 @@ public class AddedToInventory extends GameObject {
 			} else if (shouldDisplayAmmo) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.ammoUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
 						);
-			} else if (shouldDisplayPaw) {
-				myGame.renderer.batch.draw(
-						myGame.imageLoader.pawUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
-						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
-						weaponNameUiWidth, 
-						-height
-						);
-			}
-			else if (shouldDisplayDagger) {
+			} else if (shouldDisplayDagger) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.daggerUi, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
 						);
-			}
-			else if (shouldDisplayLoot) {
+			} else if (shouldDisplayLoot) {
 				myGame.renderer.batch.draw(
 						myGame.imageLoader.lootAddedToInventory, 
-						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+						GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 						(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - offset, 
 						weaponNameUiWidth, 
 						-height
 						);
 			}
+			
+			myGame.renderer.batch.draw(
+					myGame.imageLoader.objectiveBackground, 
+					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
+					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 4.3f, 
+					weaponNameUiWidth, 
+					-1
+					);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.addedToInventory, 
-					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + 2, 
+					GameScreen.camera.position.x - myGame.getGameScreen().getViewportWidth() / myGame.getGameScreen().getDenominatorOffset() + left, 
 					(GameScreen.camera.position.y - myGame.getGameScreen().getVerticalHeight() / myGame.getGameScreen().getDenominatorOffset()) + GameScreen.camera.viewportHeight - 3, 
 					weaponNameUiWidth, 
 					-height
@@ -173,6 +189,7 @@ public class AddedToInventory extends GameObject {
 				shouldDisplayRum         = false;
 				shouldDisplayAmmo        = false;
 				shouldDisplayLoot        = false;
+				shouldDisplayPaw         = false;
 			}
 		}
 	}

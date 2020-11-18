@@ -15,11 +15,11 @@ public class BossLoader {
 
 	public static Boss[] boss = new Boss[5];
 	
-	private int MAX_HEALTH_TRADING_POST = 30;
-	private int MAX_HEALTH_APALACHICOLA = 50;
-	private int MAX_HEALTH_STUMP_HOLE   = 70;
-	private int MAX_HEALTH_WEWA         = 100;
-	private int MAX_HEALTH_POINT        = 130;
+	private int MAX_HEALTH_TRADING_POST = 20;
+	private int MAX_HEALTH_APALACHICOLA = 40;
+	private int MAX_HEALTH_STUMP_HOLE   = 60;
+	private int MAX_HEALTH_WEWA         = 80;
+	private int MAX_HEALTH_POINT        = 100;
 
 	public void loadBosses() {
 		boss[0] = new Boss(

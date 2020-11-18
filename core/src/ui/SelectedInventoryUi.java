@@ -88,6 +88,13 @@ public class SelectedInventoryUi {
 						}
 						
 						batch.draw(
+								imageLoader.objectiveBackground,
+								player.getX() + 4.5f,
+								player.getY() - 2,
+								8, 
+								-3 /* * 1.3f*/
+								);
+						batch.draw(
 								texture,
 								player.getX() + 4.5f,
 								player.getY() - 2,

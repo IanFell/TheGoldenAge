@@ -33,7 +33,7 @@ public class UserInterface {
 
 	private HealthUi healthUi;
 	private LootUi lootUi;
-	private PlayerNameUi playerNameUi;
+	//private PlayerNameUi playerNameUi;
 	private SelectedInventoryUi selectedInventoryUi;
 	private RumUi rumUi;
 	private ObjectiveUi objective;
@@ -57,7 +57,7 @@ public class UserInterface {
 	public UserInterface(MyGame myGame) {
 		healthUi            = new HealthUi();
 		lootUi              = new LootUi();
-		playerNameUi        = new PlayerNameUi();
+		//playerNameUi        = new PlayerNameUi();
 		selectedInventoryUi = new SelectedInventoryUi();
 		rumUi               = new RumUi();
 		objective           = new ObjectiveUi();
@@ -89,7 +89,7 @@ public class UserInterface {
 			objective.renderUi(batch, imageLoader, myGame, player);
 
 			if (!Store.playerWantsToEnterStore) {
-				playerNameUi.renderUi(batch, imageLoader, myGame, player, 10.5f, 6.0f);
+				//playerNameUi.renderUi(batch, imageLoader, myGame, player, 10.5f, 6.0f);
 				selectedInventoryUi.renderSelectedInventoryUi(batch, imageLoader, myGame, player);
 			}
 

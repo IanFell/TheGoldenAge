@@ -347,7 +347,7 @@ public class SoundHandler {
 
 				// Now we have two males following.
 				if (MissionRawBar.rawBarMissionComplete) {
-					soundLoader.maleScream.play(Mixer.DEATH_VOLUME);
+					soundLoader.maleScream.play(Mixer.DEATH_VOLUME_SHIVER);
 				}
 
 				PlayerOne.playDeathSound = false;
@@ -574,7 +574,7 @@ public class SoundHandler {
 		}
 
 		if (Giant.playGiantDeathSound) {
-			soundLoader.giantGrunt.play(Mixer.ENEMY_DEATH_VOLUME);
+			soundLoader.giantGrunt.play(Mixer.GIANT_DEATH_VOLUME);
 			Giant.playGiantDeathSound = false;
 		} 
 

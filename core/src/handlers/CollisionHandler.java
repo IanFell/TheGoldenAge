@@ -733,7 +733,7 @@ public class CollisionHandler {
 		if (player.rectangle.overlaps(boss.rectangle) && !Player.isInvincible) {
 			boss.setX(boss.getX() + 5);
 			((Player) player).setBouncingBack(true);
-			player.setHealth(player.getHealth() - 1.0f);
+			player.setHealth(player.getHealth() - 0.5f);
 			HealthUi.heartsShouldFlashWhite = true;
 			player.setPlaySound(true);
 
