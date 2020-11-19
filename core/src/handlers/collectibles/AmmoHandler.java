@@ -28,6 +28,9 @@ public class AmmoHandler extends CollectibleHandler {
 	public static ArrayList <Ammo> ammo = new ArrayList<Ammo>();
 
 	public void init() {
+		if (ammo.size() > 0) {
+			ammo.clear();
+		}
 		for (int i = 0; i < MAX_AMOUNT_AMMO_ALLOWED_IN_WORLD_TO_COLLECT; i++) {
 			addRandomlyPlacedAmmo();
 		}

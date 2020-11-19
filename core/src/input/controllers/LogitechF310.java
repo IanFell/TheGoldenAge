@@ -183,7 +183,7 @@ public class LogitechF310 extends ControllerInput {
 				} 
 
 				// Skip Intro.
-				Debugger.skipIntroCutscene = true;
+				//Debugger.skipIntroCutscene = true;
 
 				// Stump hole mission uses a different player than the game world player.
 				if (MissionStumpHole.missionIsActive) {

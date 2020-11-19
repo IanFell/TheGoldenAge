@@ -23,6 +23,9 @@ public class HeartHandler extends CollectibleHandler {
 	public static ArrayList <Heart> hearts = new ArrayList<Heart>();
 
 	public void init() {
+		if (hearts.size() > 0) {
+			hearts.clear();
+		}
 		for (int i = 0; i < MAX_AMOUNT_HEARTS_ALLOWED; i++) {
 			addRandomlyPlacedHeart();
 		}

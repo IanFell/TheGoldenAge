@@ -20,6 +20,7 @@ import helpers.GameAttributeHelper;
 import inventory.Inventory;
 import loaders.GameObjectLoader;
 import missions.MissionRawBar;
+import missions.MissionStumpHole;
 import screens.Screens;
 import store.Store;
 import ui.AddedToInventory;
@@ -94,21 +95,23 @@ public class Mouse extends ComputerInput {
 						}
 						// Dont throw exception if inventory is not equipped.
 						if (Inventory.inventoryIsEquipped && !Store.playerWantsToEnterStore) {
-							Player.playerIsPerformingAttack = true;
-							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
-								MagicPearl.isAttacking     = !MagicPearl.isAttacking;
-								MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
-							}
-							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
-								if (!BirdWeapon.birdIsAttacking) {
-									BirdWeapon.birdIsAttacking = true;
-									BirdWeapon.playAttackSound = true;
+							if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
+								Player.playerIsPerformingAttack = true;
+								if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof MagicPearl) {
+									MagicPearl.isAttacking     = !MagicPearl.isAttacking;
+									MagicPearl.isMovingForward = !MagicPearl.isMovingForward;
 								}
-							}
-							if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
-								Paw.hasBeenUsed         = true;
-								Paw.playAttackSound     = true;
-								Paw.haveKilledEnemies   = false;
+								if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof BirdWeapon) {
+									if (!BirdWeapon.birdIsAttacking) {
+										BirdWeapon.birdIsAttacking = true;
+										BirdWeapon.playAttackSound = true;
+									}
+								}
+								if (player.getInventory().inventory.get(Inventory.currentlySelectedInventoryObject) instanceof Paw && !Paw.hasBeenUsed) {
+									Paw.hasBeenUsed         = true;
+									Paw.playAttackSound     = true;
+									Paw.haveKilledEnemies   = false;
+								}
 							}
 						}
 						handleStore(player, myGame);

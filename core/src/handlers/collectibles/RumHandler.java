@@ -27,6 +27,9 @@ public class RumHandler extends CollectibleHandler {
 	public static ArrayList <Rum> rum = new ArrayList<Rum>();
 
 	public void init() {
+		if (rum.size() > 0) {
+			rum.clear();
+		}
 		for (int i = 0; i < MAX_AMOUNT_RUM_ALLOWED; i++) {
 			addRandomlyPlacedRum();
 		}

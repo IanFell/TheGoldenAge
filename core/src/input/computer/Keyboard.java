@@ -100,7 +100,7 @@ public class Keyboard extends ComputerInput {
 			if ( !Win.triggerWin && !GameOver.triggerGameOver) {
 				// Skip intro cut scene.
 				if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-					Debugger.skipIntroCutscene = true;
+					//Debugger.skipIntroCutscene = true;
 				}
 
 				if (
@@ -197,12 +197,14 @@ public class Keyboard extends ComputerInput {
 				}
 
 				if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-					if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
-						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
-					} else {
-						GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+					if (!CutScene.gameShouldPause) {
+						if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY) {
+							GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PAUSE;
+						} else {
+							GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
+						}
+						PauseScreen.playSound = true;
 					}
-					PauseScreen.playSound = true;
 				}
 
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
