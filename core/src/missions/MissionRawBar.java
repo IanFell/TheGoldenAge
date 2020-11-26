@@ -74,7 +74,8 @@ public class MissionRawBar extends Mission {
 	private float timeSeconds = 0f;
 	private float phaseTimeLimit;
 
-	public static final float MISSION_RAW_BAR_SPEED = 0.3f;
+	public static final float MISSION_RAW_BAR_SPEED_ARCADE = 0.3f;
+	public static final float MISSION_RAW_BAR_SPEED        = 0.2f;
 
 	public static boolean introHasCompleted = false;
 

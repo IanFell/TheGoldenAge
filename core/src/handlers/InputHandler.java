@@ -55,7 +55,7 @@ public class InputHandler {
 			inputType               = INPUT_CONTROLLER;
 			isPlaystationController = false;
 		}
-		if (controllerName.contains("Xbox") && controllerName.contains("360")) {
+		if (controllerName.contains("Xbox") /*&& controllerName.contains("360")*/) {
 			controllerInput         = new XBox360Pad();
 			inputType               = INPUT_CONTROLLER;
 			isPlaystationController = false;

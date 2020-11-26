@@ -203,7 +203,12 @@ public class ControllerInput extends Input {
 	public void handleInput(GameObject player, MyGame myGame) {
 		if (hasControllers && !Win.triggerWin && !GameOver.triggerGameOver) {  
 			// Don't poll these if UI is open.
-			if (!Inventory.allInventoryShouldBeRendered && !MapUi.mapShouldBeRendered && !CutScene.gameShouldPause) {
+			if (
+					!Inventory.allInventoryShouldBeRendered && 
+					!MapUi.mapShouldBeRendered && 
+					!CutScene.gameShouldPause && 
+					!ConfidenceUi.confidenceUiShouldBeRendered
+					) {
 				pollSticks(player);
 			}
 			pollMainFourButtons(player, myGame);

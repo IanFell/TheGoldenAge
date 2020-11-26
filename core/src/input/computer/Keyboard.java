@@ -108,7 +108,8 @@ public class Keyboard extends ComputerInput {
 						!MapUi.mapShouldBeRendered && 
 						GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PLAY &&
 						!HoleHandler.playerIsInHole &&
-						!CutScene.gameShouldPause 
+						!CutScene.gameShouldPause &&
+						!ConfidenceUi.confidenceUiShouldBeRendered
 						) {
 					handleKeyboardDirectionalButtons(myGame, "wasd", player);
 				}
