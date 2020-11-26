@@ -67,9 +67,17 @@ public class Boss extends Enemy {
 	private final int ANIMATION_OVER_VALUE = 9;
 
 	// Used for health meter.  It will get brighter by this percent each time boss is hit.
-	public static float percentToChangeAlphaEachHit;
+	private float percentToChangeAlphaEachHit;
 
 	private boolean spinAudioHasBeenSet = false;
+
+	/**
+	 * 
+	 * @return float
+	 */
+	public float getPercentToChangeAlphaEachHit() {
+		return percentToChangeAlphaEachHit;
+	}
 
 	public static void resetGame() {
 		shouldPlayExplosionMusic = false;
@@ -121,7 +129,7 @@ public class Boss extends Enemy {
 		 */
 		animationTimer = 0;
 
-		percentToChangeAlphaEachHit = BOSS_DAMAGE_TAKEN_FROM_PLAYER / BOSS_MAX_HEALTH;    
+		percentToChangeAlphaEachHit = BOSS_DAMAGE_TAKEN_FROM_PLAYER / bossHealth;    
 
 		this.originX = x;
 		this.originY = y;

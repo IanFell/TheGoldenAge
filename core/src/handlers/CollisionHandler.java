@@ -432,7 +432,7 @@ public class CollisionHandler {
 		if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead() && Player.playerIsPerformingAttack) {
 			boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 			Boss.playGruntSound = true;
-			BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
+			BossHealthUi.alpha += boss.getPercentToChangeAlphaEachHit();
 		}
 	}
 
@@ -445,7 +445,7 @@ public class CollisionHandler {
 		if (boss.rectangle.overlaps(dagger.rectangle) && !boss.isDead() && Player.playerIsPerformingAttack) {
 			boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 			Boss.playGruntSound = true;
-			BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit;
+			BossHealthUi.alpha += boss.getPercentToChangeAlphaEachHit();
 		}
 	}
 
@@ -473,7 +473,7 @@ public class CollisionHandler {
 			if (boss.rectangle.overlaps(weapon.rectangle) && !boss.isDead()) {
 				boss.setBossHealth(boss.getBossHealth() - Boss.BOSS_DAMAGE_TAKEN_FROM_PLAYER);
 				Boss.playGruntSound = true;
-				BossHealthUi.alpha += Boss.percentToChangeAlphaEachHit; 
+				BossHealthUi.alpha += boss.getPercentToChangeAlphaEachHit();
 			}
 		}
 	}
