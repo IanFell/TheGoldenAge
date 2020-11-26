@@ -197,7 +197,7 @@ public class Giant extends Enemy {
 	protected void handleDeathExplosion(int explosionSize) {
 		if (dead) {
 			if (explosionShouldBeCreated) {
-				explosion                = new Explosion(rectangle.x, rectangle.y, explosionSize);
+				explosion                = new Explosion(rectangle.x, rectangle.y + height, explosionSize);
 				explosionShouldBeCreated = false;
 			}
 		}
