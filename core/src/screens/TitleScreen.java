@@ -62,10 +62,10 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.playGame,
-					GameScreen.camera.position.x - 460,
-					GameScreen.camera.position.y + 180,
-					920,
-					240
+					1150,
+					1100,
+					900, 
+					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -74,9 +74,9 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.controls,
-					GameScreen.camera.position.x - 450,
-					GameScreen.camera.position.y,
+					1150,
 					900,
+					900, 
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -86,9 +86,9 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.credits,
-					GameScreen.camera.position.x - 450,
-					GameScreen.camera.position.y - 200,
-					900,
+					1150,
+					700,
+					900, 
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -96,18 +96,18 @@ public class TitleScreen extends Screens {
 			float yPos = 0;
 			switch(titleScreenHover) {
 			case PRESS_START:
-				yPos = GameScreen.camera.position.y + 200;
+				yPos = 1100;
 				break;
 			case CONTROLS:
-				yPos = GameScreen.camera.position.y;
+				yPos = 900;
 				break;
 			case CREDITS:
-				yPos = GameScreen.camera.position.y - 200;
+				yPos = 700;
 				break;
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.transparentSquare,
-					GameScreen.camera.position.x - 450,
+					1150,
 					yPos,
 					900,
 					200
@@ -132,17 +132,17 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.playGame,
-					GameScreen.camera.position.x - 1060,
-					GameScreen.camera.position.y + 180,
-					920,
-					240
+					900,
+					1100,
+					900, 
+					200
 					);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.leftClick,
-					GameScreen.camera.position.x + 260,
-					GameScreen.camera.position.y + 180,
-					920,
-					240
+					1900,
+					1100,
+					900, 
+					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 
@@ -151,16 +151,16 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.controls,
-					GameScreen.camera.position.x - 1050,
-					GameScreen.camera.position.y,
 					900,
+					900,
+					900, 
 					200
 					);
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.rightClick,
-					GameScreen.camera.position.x + 250,
-					GameScreen.camera.position.y,
+					1900,
 					900,
+					900, 
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -170,17 +170,17 @@ public class TitleScreen extends Screens {
 			}
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.credits,
-					GameScreen.camera.position.x - 1050,
-					GameScreen.camera.position.y - 200,
 					900,
+					700,
+					900, 
 					200
 					);
 
 			myGame.renderer.batch.draw(
 					myGame.imageLoader.space,
-					GameScreen.camera.position.x + 250,
-					GameScreen.camera.position.y - 200,
-					900,
+					1900,
+					700,
+					900, 
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
