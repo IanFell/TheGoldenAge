@@ -5,6 +5,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.controllers.PovDirection;
 import com.mygdx.mygame.MyGame;
 
+import controllers.GameStateController;
 import cutscenes.CutScene;
 import gameobjects.GameObject;
 import gameobjects.gamecharacters.players.Player;
@@ -212,8 +213,8 @@ public class ControllerInput extends Input {
 				pollSticks(player);
 			}
 			pollMainFourButtons(player, myGame);
-			pollTriggers(player);
-			pollStartSection();
+			pollTriggers(player, myGame);
+			pollStartSection(myGame);
 			pollDPad(player, myGame);
 			handleClickTimer();
 			handlePauseTimer();
@@ -239,8 +240,9 @@ public class ControllerInput extends Input {
 	 * controllers because the triggers are registered differently.
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
-	protected void pollTriggers(GameObject player) {
+	protected void pollTriggers(GameObject player, MyGame myGame) {
 		if (Inventory.allInventoryShouldBeRendered) {
 			if (canClick) {
 				if(controller.getButton(BUTTON_LB)) {
@@ -477,8 +479,16 @@ public class ControllerInput extends Input {
 
 	/**
 	 * Polls controller for start, back/select buttons.
+	 * 
+	 * @param MyGame myGame
 	 */
-	protected void pollStartSection() {
+	protected void pollStartSection(MyGame myGame) {
+		if(controller.getButton(BUTTON_START)) {	
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+					GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
+			}
+		}
 		if (!CutScene.gameShouldPause) {
 			if(controller.getButton(BUTTON_BACK)) {
 				if (canPause) {
@@ -494,6 +504,12 @@ public class ControllerInput extends Input {
 			}
 
 			if(controller.getButton(BUTTON_START)) {
+				
+				if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+						GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
+						Weapon.shouldPlaySwitchWeaponAudio = true;
+				}
+				
 				if (GameAttributeHelper.gamePlayState == GameAttributeHelper.STATE_PAUSE) {
 					GameAttributeHelper.gamePlayState = GameAttributeHelper.STATE_PLAY;
 				}

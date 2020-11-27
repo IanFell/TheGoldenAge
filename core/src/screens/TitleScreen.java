@@ -57,6 +57,12 @@ public class TitleScreen extends Screens {
 				);
 
 		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
+			ImageHelper.drawTitleScreen(
+					myGame.renderer.batch, 
+					myGame.imageLoader.titleScreenComputer, 
+					myGame
+					);
+			/*
 			if (alphaPressStart < 1) {
 				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
 			}
@@ -111,7 +117,7 @@ public class TitleScreen extends Screens {
 					yPos,
 					900,
 					200
-					);
+					); */
 		}
 		else if (InputHandler.inputType == InputHandler.INPUT_ARCADE) {
 			if (alphaPressStart < 1) {
@@ -127,6 +133,12 @@ public class TitleScreen extends Screens {
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		} 
 		else if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
+			ImageHelper.drawTitleScreen(
+					myGame.renderer.batch, 
+					myGame.imageLoader.titleScreenController, 
+					myGame
+					);
+			/*
 			if (alphaPressStart < 1) {
 				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
 			}
@@ -184,6 +196,7 @@ public class TitleScreen extends Screens {
 					200
 					);
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+			*/
 
 			/*
 			float yPos = 0;

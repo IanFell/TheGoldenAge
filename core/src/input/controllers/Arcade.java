@@ -300,9 +300,10 @@ public class Arcade extends ControllerInput {
 	/**
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
 	@Override
-	protected void pollTriggers(GameObject player) {}
+	protected void pollTriggers(GameObject player, MyGame myGame) {}
 
 	/**
 	 * 

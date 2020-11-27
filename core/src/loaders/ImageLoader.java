@@ -18,6 +18,8 @@ public class ImageLoader {
 
 	// Title screen.
 	public Texture titleScreen;
+	public Texture titleScreenController;
+	public Texture titleScreenComputer;
 
 	// Collectibles.
 	public Texture tenHearts;
@@ -343,7 +345,9 @@ public class ImageLoader {
 		oarDown[2]  = new Texture(Gdx.files.internal("artwork/oars/down/OarDown03.png"));
 
 		// Title Screen.
-		titleScreen = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
+		titleScreen           = new Texture(Gdx.files.internal("artwork/titlescreen/goldenage.png"));
+		titleScreenComputer   = new Texture(Gdx.files.internal("artwork/titlescreen/TitleScreenComputer.png"));
+		titleScreenController = new Texture(Gdx.files.internal("artwork/titlescreen/TitleScreenController.png"));
 
 		// Collectibles.
 		tenHearts         = new Texture(Gdx.files.internal("artwork/collectibles/TenHearts.png"));
@@ -708,7 +712,8 @@ public class ImageLoader {
 
 		// Title Screen.
 		titleScreen.dispose();
-
+		titleScreenController.dispose();
+		titleScreenComputer.dispose();
 		// Collectibles.
 		tenHearts.dispose();
 		treasureMapShadow.dispose();

@@ -96,11 +96,19 @@ public class PlayStation4Pad extends ControllerInput {
 			System.out.print("HUGE CENTER button pressed \n");
 		}
 	} */
-	
+
 	/**
 	 * Polls controller for start, back/select buttons.
+	 * 
+	 * @param MyGame myGame
 	 */
-	protected void pollStartSection() {
+	protected void pollStartSection(MyGame myGame) {
+		if(controller.getButton(BUTTON_OPTIONS)) {	
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+				GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
+				Weapon.shouldPlaySwitchWeaponAudio = true;
+			}
+		}
 		if (!CutScene.gameShouldPause) {
 			if(controller.getButton(BUTTON_SHARE)) {
 				if (canPause) {
@@ -169,7 +177,7 @@ public class PlayStation4Pad extends ControllerInput {
 			System.out.print("Circle button pressed \n");
 		}
 	}*/
-	
+
 	/**
 	 * Polls controller for A, B, X, and Y.
 	 * 
@@ -187,7 +195,9 @@ public class PlayStation4Pad extends ControllerInput {
 					canClick                               = false;
 					Weapon.shouldPlaySwitchWeaponAudio     = true;
 				} else {
-					Store.playBuzzerAudio = true;
+					if ((Store.shouldDisplayEnterStoreMessage || Store.shouldDisplayEnterStoreMessageAlternate)) {
+						Store.playBuzzerAudio = true;
+					}
 				}
 			}
 		}
@@ -220,7 +230,7 @@ public class PlayStation4Pad extends ControllerInput {
 				} 
 
 				// Skip Intro.
-				Debugger.skipIntroCutscene = true;
+				//Debugger.skipIntroCutscene = true;
 
 				// Stump hole mission uses a different player than the game world player.
 				if (MissionStumpHole.missionIsActive) {
@@ -434,19 +444,34 @@ public class PlayStation4Pad extends ControllerInput {
 			System.out.print("R2 button pressed \n");
 		}
 	}*/
-	
+
 	/**
 	 * Polls controller for LB, RB, LT, RT.
 	 * 
 	 * @param GameObject player
+	 * @param MyGame     myGame
 	 */
 	@Override
-	protected void pollTriggers(GameObject player) {
+	protected void pollTriggers(GameObject player, MyGame myGame) {
 
 		if (!MissionStumpHole.missionIsActive && !MissionRawBar.phasesAreInProgress) {
 
 			//super.pollTriggers(player);
-			
+
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+				if(controller.getButton(BUTTON_L2)) {
+					GameStateController.switchGameStates(myGame, Screens.GAME_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
+				}
+			}
+
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+				if(controller.getButton(BUTTON_R2)) {
+					GameStateController.switchGameStates(myGame, Screens.CONTROLS_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
+				}
+			}
+
 			if (Inventory.allInventoryShouldBeRendered) {
 				if (canClick) {
 					if(controller.getButton(BUTTON_L1)) {
