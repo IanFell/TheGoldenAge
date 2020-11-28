@@ -32,7 +32,7 @@ public class PlayerShadowHandler extends AbstractLightingHandler {
 			if (Player.isInvincible) {
 				batch.draw(imageLoader.shadow, player.getX(), player.getY() + offset, width * 4f, height * 2);
 			}
-			handleShadowSizeDuringPlayerJump((Player) player);
+			handleShadowLocationDuringPlayerJump((Player) player);
 		}
 	}
 
@@ -40,7 +40,7 @@ public class PlayerShadowHandler extends AbstractLightingHandler {
 	 * 
 	 * @param Player player
 	 */
-	private void handleShadowSizeDuringPlayerJump(Player player) {
+	private void handleShadowLocationDuringPlayerJump(Player player) {
 		if (Player.jumpingAction == Player.ASCENDING_JUMP) {
 			offset += player.getJumpingSpeedValue();
 		} else if (Player.jumpingAction == Player.DESCENDING_JUMP) {

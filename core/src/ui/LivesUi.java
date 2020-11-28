@@ -25,7 +25,7 @@ public class LivesUi {
 	 */
 	public void renderLivesUi(SpriteBatch batch, ImageLoader imageLoader, MyGame myGame) {
 		float x = myGame.getGameObject(Player.PLAYER_ONE).getX() + 11.5f;
-		float y = myGame.getGameObject(Player.PLAYER_ONE).getY() + 6;
+		float y = myGame.getGameObject(Player.PLAYER_ONE).getY() + 6.5f;
 
 		switch (PlayerOne.lives) {
 		case 2:

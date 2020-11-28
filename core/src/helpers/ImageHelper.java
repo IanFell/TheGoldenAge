@@ -67,6 +67,22 @@ public class ImageHelper {
 				GameScreen.camera.viewportHeight
 				);
 	}
+	
+	/**
+	 * 
+	 * @param SpriteBatch batch
+	 * @param Texture     texture
+	 * @param MyGame      myGame
+	 */
+	public static void drawTitleScreenOverlay(SpriteBatch batch, Texture texture, MyGame myGame) {
+		batch.draw(
+				texture, 
+				0,
+				0,
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
+				GameScreen.camera.viewportHeight
+				);
+	}
 
 	/**
 	 * 

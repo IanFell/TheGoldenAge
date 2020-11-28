@@ -57,7 +57,7 @@ public class TitleScreen extends Screens {
 				);
 
 		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
-			ImageHelper.drawTitleScreen(
+			ImageHelper.drawTitleScreenOverlay(
 					myGame.renderer.batch, 
 					myGame.imageLoader.titleScreenComputer, 
 					myGame

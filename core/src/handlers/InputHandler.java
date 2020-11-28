@@ -10,6 +10,7 @@ import input.controllers.Arcade;
 import input.controllers.ControllerInput;
 import input.controllers.LogitechF310;
 import input.controllers.PlayStation4Pad;
+import input.controllers.Switch;
 import input.controllers.XBox360Pad;
 
 /**
@@ -32,7 +33,7 @@ public class InputHandler {
 	public final static int INPUT_ARCADE     = 2;
 
 	public static int inputType = INPUT_COMPUTER;
-	
+
 	public static boolean isPlaystationController = false;
 
 	/**
@@ -50,12 +51,13 @@ public class InputHandler {
 		// System.out.println(controllerName + " found.");
 
 		// Instantiate correct controller based off controller name.
+		/*
 		if (controllerName.contains("Logitech")) {
 			controllerInput         = new LogitechF310();
 			inputType               = INPUT_CONTROLLER;
 			isPlaystationController = false;
-		}
-		if (controllerName.contains("Xbox") /*&& controllerName.contains("360")*/) {
+		} 
+		if (controllerName.contains("Xbox")) {
 			controllerInput         = new XBox360Pad();
 			inputType               = INPUT_CONTROLLER;
 			isPlaystationController = false;
@@ -68,6 +70,41 @@ public class InputHandler {
 		if (controllerName.contains("Generic   USB  Joystick")) {
 			controllerInput         = new Arcade();
 			inputType               = INPUT_ARCADE;
+			isPlaystationController = false;
+		}*/
+
+
+
+
+
+
+		if (controllerName.contains("Xbox")) {
+			controllerInput         = new XBox360Pad();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = false;
+		}
+		else if (controllerName.contains("Wireless Controller")) {
+			controllerInput         = new PlayStation4Pad();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = true;
+		}
+		else if (controllerName.contains("Generic   USB  Joystick")) {
+			controllerInput         = new Arcade();
+			inputType               = INPUT_ARCADE;
+			isPlaystationController = false;
+		}
+		else if (!controllerName.contentEquals("No controller found")) {
+			controllerInput         = new LogitechF310();
+			inputType               = INPUT_CONTROLLER;
+			isPlaystationController = false;
+		}
+
+		// This is a switch controller.  For some reason it registers as an XBox controller.
+		// Put it down here so if we get this message it will load the switch controller and
+		// not XBox.
+		if (controllerName.contains("360 For Windows") || controllerName.contains("Pro Controller")) {
+			controllerInput         = new Switch();
+			inputType               = INPUT_CONTROLLER;
 			isPlaystationController = false;
 		}
 

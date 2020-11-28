@@ -134,6 +134,9 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
+			
+			System.out.println(controller.getName());
+			//System.exit(0);
 		}
 	}
 
@@ -147,7 +150,7 @@ public class ControllerInput extends Input {
 		}
 	}
 
-	private void handleTriggerPollTimer() {
+	protected void handleTriggerPollTimer() {
 		if (!canPollTriggers) {
 			pollTriggerTimer++;
 			if (pollTriggerTimer > 30) {
@@ -157,7 +160,7 @@ public class ControllerInput extends Input {
 		}
 	}
 
-	private void handleClickTimer() {
+	protected void handleClickTimer() {
 		// Use timer so we can't change between inventory objects too quickly.
 		clickTimer++;
 		if (clickTimer > CLICK_TIMER_MAX_VALUE) {
@@ -166,7 +169,7 @@ public class ControllerInput extends Input {
 		}
 	}
 
-	private void handlePauseTimer() {
+	protected void handlePauseTimer() {
 		pauseTimer++;
 		if (pauseTimer > PAUSE_TIMER_MAX_VALUE) {
 			pauseTimer = GameAttributeHelper.TIMER_START_VALUE;
@@ -174,7 +177,7 @@ public class ControllerInput extends Input {
 		}
 	}
 
-	private void handleTriggerTimer() {
+	protected void handleTriggerTimer() {
 		if (!canPressTrigger) {
 			triggerTimer++;
 		}
@@ -184,7 +187,7 @@ public class ControllerInput extends Input {
 		} 
 	}
 
-	private void handleOptionTimer() {
+	protected void handleOptionTimer() {
 		if (!canSelectDifferentOption) {
 			selectOptionTimer++;
 			if (selectOptionTimer > 20) {
@@ -289,7 +292,7 @@ public class ControllerInput extends Input {
 	 * @param GameObject player
 	 * @param MyGame     myGame
 	 */
-	private void pollDPad(GameObject player, MyGame myGame) {
+	protected void pollDPad(GameObject player, MyGame myGame) {
 		intventorySwitchTimer++;
 		if (controller.getPov(0) == BUTTON_DPAD_UP) {
 			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
