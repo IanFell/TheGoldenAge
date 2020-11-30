@@ -75,12 +75,14 @@ public class ImageHelper {
 	 * @param MyGame      myGame
 	 */
 	public static void drawTitleScreenOverlay(SpriteBatch batch, Texture texture, MyGame myGame) {
+		float wOffset = GameScreen.camera.viewportWidth / 2;
+		float hOffset = GameScreen.camera.viewportHeight / 2;
 		batch.draw(
 				texture, 
 				0,
 				0,
-				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset(), 
-				GameScreen.camera.viewportHeight
+				GameScreen.camera.viewportWidth - myGame.getGameScreen().getBorderShrinkOffset() + myGame.getGameScreen().getBorderShrinkOffset() - wOffset, 
+				GameScreen.camera.viewportHeight - hOffset
 				);
 	}
 

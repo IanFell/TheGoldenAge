@@ -177,7 +177,8 @@ public class MissionStumpHole extends Mission {
 
 		rockBird = new RockBird(stumps.get(0).getX(), stumps.get(0).getY() - 8);
 
-		percentToChangeAlphaEachHit = FEATHER_VALUE_METER_MAX / FEATHER_VALUE;
+		//percentToChangeAlphaEachHit = FEATHER_VALUE_METER_MAX / FEATHER_VALUE;
+		percentToChangeAlphaEachHit = FEATHER_VALUE / FEATHER_VALUE_METER_MAX;
 	}
 
 	private void loadStumps() {

@@ -134,9 +134,6 @@ public class ControllerInput extends Input {
 		} else {
 			controller     = ControllerInputHelper.getFirstController();
 			controllerName = ControllerInputHelper.getControllerName();
-			
-			System.out.println(controller.getName());
-			//System.exit(0);
 		}
 	}
 
@@ -486,12 +483,7 @@ public class ControllerInput extends Input {
 	 * @param MyGame myGame
 	 */
 	protected void pollStartSection(MyGame myGame) {
-		if(controller.getButton(BUTTON_START)) {	
-			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
-					GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
-					Weapon.shouldPlaySwitchWeaponAudio = true;
-			}
-		}
+		
 		if (!CutScene.gameShouldPause) {
 			if(controller.getButton(BUTTON_BACK)) {
 				if (canPause) {
@@ -542,6 +534,13 @@ public class ControllerInput extends Input {
 						clickUiTimer = GameAttributeHelper.TIMER_START_VALUE;
 					}
 				}
+			}
+		}
+		
+		if(controller.getButton(BUTTON_START)) {	
+			if (GameAttributeHelper.gameState == Screens.TITLE_SCREEN) {
+					GameStateController.switchGameStates(myGame, Screens.CREDITS_SCREEN);
+					Weapon.shouldPlaySwitchWeaponAudio = true;
 			}
 		}
 	}

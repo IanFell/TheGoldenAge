@@ -59,7 +59,7 @@ public class MissionRawBar extends Mission {
 	private double[] oysterY                   = new double[MAX_OYSTERS_SPAWNED];
 	private double[] oysterSize                = new double[MAX_OYSTERS_SPAWNED];
 	private float oystersCollected             = 0; // TODO SET THIS HIGH TO SKIP MISSION FOR DEBUG
-	private final float OYSTER_VALUE           = 0.2f;
+	private final float OYSTER_VALUE           = 0.185f;
 	private ArrayList<Boolean> collectedOyster = new ArrayList<Boolean>();
 
 	public static float playerX;

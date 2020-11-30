@@ -57,11 +57,15 @@ public class TitleScreen extends Screens {
 				);
 
 		if (InputHandler.inputType == InputHandler.INPUT_CONTROLLER) {
+			if (alphaPressStart < 1) {
+				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
+			}
 			ImageHelper.drawTitleScreenOverlay(
 					myGame.renderer.batch, 
 					myGame.imageLoader.titleScreenComputer, 
 					myGame
 					);
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 			/*
 			if (alphaPressStart < 1) {
 				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
@@ -133,11 +137,15 @@ public class TitleScreen extends Screens {
 			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 		} 
 		else if (InputHandler.inputType == InputHandler.INPUT_COMPUTER) {
-			ImageHelper.drawTitleScreen(
+			if (alphaPressStart < 1) {
+				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
+			}
+			ImageHelper.drawTitleScreenOverlay(
 					myGame.renderer.batch, 
 					myGame.imageLoader.titleScreenController, 
 					myGame
 					);
+			myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
 			/*
 			if (alphaPressStart < 1) {
 				myGame.renderer.batch.setColor(1.0f, 1.0f, 1.0f, alphaPressStart);
